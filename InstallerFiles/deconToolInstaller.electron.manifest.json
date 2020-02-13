@@ -1,0 +1,48 @@
+{
+  "executable": "WebServer",
+  "description": "Wide Area Decontamination Tool",
+  "name": "Wide Area Decon",
+  "author": "Battelle Memorial Institute",
+  "splashscreen": {
+    "imageFile": ""
+  },
+  "singleInstance": false,
+  "build": {
+    "appId": "com.electron.Battelle.WideAreaDeconTool.app",
+    "productName": "Wide Area Decon",
+    "copyright": "Copyright � 2020",
+    "buildVersion": "0.0.1",
+    "compression": "maximum",
+    "directories": {
+      "output": "",
+      "buildResources": "build"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "epaLogo.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": false,
+      "installerIcon": "build/epaLogo.ico",
+      "uninstallerIcon": "build/epaLogo.ico",
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": true
+    },
+    "icon": "epaLogo.ico",
+    "extraResources": [],
+    "files": [
+      {
+        "from": "./ElectronHostHook/node_modules",
+        "to": "ElectronHostHook/node_modules",
+        "filter": [
+          "**/*"
+        ]
+      },
+      "**/*"
+    ]
+  }
+
+}
