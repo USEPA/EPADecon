@@ -1,12 +1,18 @@
+using System.Linq;
 using ElectronNET.API;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.SpaServices;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using VueCliMiddleware;
+using WebServer.Models.ClientConfiguration;
 
 namespace WebServer
 {
@@ -22,21 +28,21 @@ namespace WebServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
-            // Add AddRazorPages if the app uses Razor Pages.
-            services.AddRazorPages();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson();
 
 
             // In production, the Vue files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
-            }
+            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
+
+            services.AddTransient(s =>
+                Configuration.GetSection("ClientConfiguration")
+                    .Get<ClientConfiguration>());
+            //s.GetService<IOptions<ClientConfiguration>>().Value);
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-            public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
         {
             if (env.IsDevelopment() || HybridSupport.IsElectronActive)
             {
@@ -49,6 +55,7 @@ namespace WebServer
                 app.UseHsts();
                 app.UseHttpsRedirection();
             }
+
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
@@ -74,15 +81,13 @@ namespace WebServer
                 name: "default",
                 pattern: "{controller}/{action=Index}/{id?}");
 #if DEBUG
-            var vueSettings = Configuration.GetSection("VueCliSettings");
             endpoints.MapToVueCliProxy(
                 "{*path}",
-                new SpaOptions { SourcePath = "ClientApp" },
+                new SpaOptions {SourcePath = "ClientApp"},
                 npmScript: "serve",
                 regex: "App running at",
-                port: vueSettings.GetValue<int>("Port"));
+                port: Configuration.GetValue<int>("Port"));
 #endif
-
         }
 
         private void ConfigureElectron(
