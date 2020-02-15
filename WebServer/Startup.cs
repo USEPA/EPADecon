@@ -36,10 +36,10 @@ namespace WebServer
             services.AddControllersWithViews()
                 .AddNewtonsoftJson();
 
+            services.AddRazorPages();
+
             // In production, the Vue files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
-
-
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -139,7 +139,7 @@ namespace WebServer
                 new SpaOptions {SourcePath = "ClientApp"},
                 npmScript: "serve",
                 regex: "App running at",
-                port: Configuration.GetValue<int>("Port"));
+                port: Configuration.GetValue<int>("Port") + 1);
 #endif
         }
 

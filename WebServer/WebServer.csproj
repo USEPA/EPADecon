@@ -34,7 +34,7 @@
   <ItemGroup>
     <None Include="..\README.md" />
   </ItemGroup>
-  <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
+  <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\WebServer.xml</DocumentationFile>
   </PropertyGroup>
   <Target Name="DeleteNPMBuild" AfterTargets="AfterClean">

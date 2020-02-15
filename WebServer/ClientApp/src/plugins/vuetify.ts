@@ -12,6 +12,7 @@ import Vuetify, {
   VDataTable,
   VProgressLinear,
 } from 'vuetify/lib';
+import ClientConfiguration from '@/interface/clientConfiguration';
 
 // vue-cli a-la-carte installation
 Vue.use(Vuetify, {
@@ -29,8 +30,9 @@ Vue.use(Vuetify, {
   },
 });
 
-const opts = {
+let opts = {
   theme: {
+    dark: true,
     themes: {
       light: {
         primary: '#1976D2',
@@ -46,4 +48,9 @@ const opts = {
   },
 };
 
-export default new Vuetify(opts);
+function GetVuetify(config : ClientConfiguration){
+  let cast : any = config;
+  return new Vuetify(cast);
+}
+
+export default GetVuetify;
