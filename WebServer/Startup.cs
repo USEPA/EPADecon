@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using System.Linq;
 using ElectronNET.API;
 using Microsoft.AspNetCore.Builder;
@@ -9,10 +11,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VueCliMiddleware;
+using WebServer.Controllers;
+using WebServer.Interfaces;
 using WebServer.Models.ClientConfiguration;
+using WebServer.Services;
 
 namespace WebServer
 {
@@ -25,20 +31,44 @@ namespace WebServer
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews()
                 .AddNewtonsoftJson();
 
-
             // In production, the Vue files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
 
-            services.AddTransient(s =>
-                Configuration.GetSection("ClientConfiguration")
-                    .Get<ClientConfiguration>());
-            //s.GetService<IOptions<ClientConfiguration>>().Value);
+
+
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc(
+                    "v1", 
+                    new OpenApiInfo
+                    {
+                        Title = "Wide ARea Decon Rest API", 
+                        Version = "v1"
+                    });
+
+                c.DocInclusionPredicate((docName, apiDesc) =>
+                {
+                    if (apiDesc.HttpMethod == null) return false;
+                    return true;
+                });
+
+                //Set the comments path for the swagger json and ui.
+                c.IncludeXmlComments(
+                    Path
+                        .Combine(
+                            AppContext.BaseDirectory, 
+                            "WebServer.xml"));
+            });
+
+            ConfigureModels(services);
+
+            ConfigureProviders(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +86,14 @@ namespace WebServer
                 app.UseHttpsRedirection();
             }
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Wide Area Decon API V1");
+            });
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
@@ -72,8 +110,23 @@ namespace WebServer
                 spa.Options.SourcePath = "ClientApp";
             });
 #endif
+
         }
 
+
+        private void ConfigureModels(IServiceCollection services)
+        {
+            services.AddTransient(s =>
+                Configuration.GetSection("ClientConfiguration")
+                    .Get<ClientConfiguration>());
+        }
+
+        private void ConfigureProviders(IServiceCollection services)
+        {
+            services.AddTransient<
+                IClientConfigurationProvider, 
+                ClientConfigurationProvider>();
+        }
 
         private void ConfigureEndpoints(IEndpointRouteBuilder endpoints)
         {

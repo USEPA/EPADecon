@@ -16,10 +16,12 @@
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="7.30.2" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="VueCliMiddleware" Version="3.1.1" />
     <PackageReference Include="Battelle.Common.GlacierCrates.AspNetCore.ApiProxy " Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
@@ -32,6 +34,9 @@
   <ItemGroup>
     <None Include="..\README.md" />
   </ItemGroup>
+  <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\WebServer.xml</DocumentationFile>
+  </PropertyGroup>
   <Target Name="DeleteNPMBuild" AfterTargets="AfterClean">
     <Exec WorkingDirectory="$(SpaRoot)" Command="rmdir /S /Q dist" />
   </Target>
@@ -74,9 +79,5 @@
     <Content Update="electron.manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
 </Project>

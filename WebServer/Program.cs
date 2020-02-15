@@ -15,17 +15,14 @@ namespace WebServer
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+        public static void Main(string[] args) => WebHost
+                .CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration(ConfigureIfElectron)
                 .ConfigureKestrel(ConfigureConfigureKestrelSettings)
                 .UseElectron(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .Build()
+                .Run();
 
         private static void ConfigureConfigureKestrelSettings(WebHostBuilderContext ctx, KestrelServerOptions serverOptions)
         {
