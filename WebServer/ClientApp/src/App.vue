@@ -5,11 +5,40 @@
       app
       color="primary"
     >
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer ></v-spacer>
-      <v-btn color="secondary">
-        Run Scenario
-      </v-btn>
+      <v-toolbar-title v-text="applicationTitle"></v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-tooltip
+        v-if="true"
+        bottom
+        color="error"
+      >
+        <template v-slot:activator="{ on }">
+          <div
+            v-on="on"
+            class="disabled-tool-tip"
+          >
+            <v-btn :disabled="true">
+              Run Scenario
+            </v-btn>
+          </div>
+        </template>
+        <span>Please define scenario to run model...</span>
+      </v-tooltip>
+      <v-tooltip
+        v-if="false"
+        bottom
+        color="error"
+      >
+        <template v-slot:activator="{ on }">
+          <v-btn
+            :disabled="true"
+            v-on="on"
+          >
+            Run Scenario
+          </v-btn>
+        </template>
+        <span>Runs the model and generates results</span>
+      </v-tooltip>
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
@@ -22,25 +51,49 @@
         :icons-and-text="true"
       >
         <v-tabs-slider></v-tabs-slider>
-        <template
-          v-for="(item, i) in items">
-          
-        <v-tooltip 
-          bottom
-          :key="i">
-          <template v-slot:activator="{ on }">
-            <v-tab
-              value="true"
-              :to="item.link"
-              :disabled="item.disabled"
-              v-on="on"
-            >
-              {{ item.title }}
-              <v-icon>{{item.icon}}</v-icon>
-            </v-tab>
-          </template>
-          <span>Tool text goes here</span>
-        </v-tooltip>
+        <template v-for="(item, i) in navigationItems">
+
+          <v-tooltip
+            bottom
+            :key="i"
+            v-if="item.enabled"
+          >
+            <template v-slot:activator="{ on }">
+              <v-tab
+                v-on="on"
+                :to="item.link"
+                :disabled="!item.enabled"
+              >
+                {{ item.title }}
+                <v-icon>{{item.icon}}</v-icon>
+              </v-tab>
+            </template>
+            <span>{{item.tooltip.enabled}}</span>
+          </v-tooltip>
+
+          <v-tooltip
+            bottom
+            :key="i"
+            v-if="!item.enabled"
+            color="error"
+          >
+            <template v-slot:activator="{ on }">
+              <div
+                v-on="on"
+                class="v-tab disabled-tool-tip"
+              >
+                <v-tab
+                  value="true"
+                  :to="item.link"
+                  :disabled="!item.enabled"
+                >
+                  {{ item.title }}
+                  <v-icon>{{item.icon}}</v-icon>
+                </v-tab>
+              </div>
+            </template>
+            <span>{{item.tooltip.disabled}}</span>
+          </v-tooltip>
         </template>
       </v-tabs>
     </v-app-bar>
@@ -54,7 +107,7 @@
     <v-footer app>
       <span>&nbsp;Battelle Memorial Institute&nbsp;&copy;&nbsp;2020</span>
       <v-spacer />
-      <span>Version {{ getVersion() }}</span>
+      <span>Version {{ applicationVersion }}</span>
     </v-footer>
 
   </v-app>
@@ -66,46 +119,17 @@ import ClientConfiguration from './interface/clientConfiguration';
 import Axios from 'axios';
 import { watch } from 'fs';
 import Vuetify from 'vuetify';
+import {State} from 'vuex-class';
+import { RootState, NavigationItem } from '@/store/types';
+import { StoreOptions } from 'vuex';
 
-@Component({
-  components: {},
-})
+@Component
 export default class App extends Vue {
-  private width: number;
-  private title: string = 'Wide Area Decontamination Tool';
-  private selectedParameter: string = 'scenario';
-  private items = [
-    {
-      title: 'Define Scenario',
-      icon: 'fa-biohazard',
-      link: '/DefineScenario',
-      disabled: false,
-    },
-    {
-      title: 'Modify Parameters',
-      icon: 'fa-shower',
-      link: '/ModifyParameters',
-      disabled: false,
-    },
-    {
-      title: 'View Results',
-      icon: 'fa-building',
-      link: '/ViewResults',
-      disabled: true,
-    },
-  ];
+  
+  @State applicationTitle: string | undefined;
+  @State navigationItems: NavigationItem[] | undefined;
+  @State applicationVersion: string | undefined;
 
-  constructor() {
-    super();
-    let size = 256;
-    this.items.forEach(item => {
-      if (this.getSize(item.title.length) > size) {
-        size = this.getSize(item.title.length);
-      }
-    });
-
-    this.width = size;
-  }
 
   private getSize(length: number) {
     return 80 + length * 8;
@@ -120,3 +144,8 @@ export default class App extends Vue {
   }
 }
 </script>
+<style scoped  lang="scss">
+.disabled-tool-tip {
+  cursor: no-drop;
+}
+</style>

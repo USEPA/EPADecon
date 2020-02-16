@@ -8,16 +8,46 @@ Vue.use(Vuex);
 
 let store: StoreOptions<RootState> = {
   state: {
-    version: 'Unknown',
+    applicationVersion: 'Unknown',
+    applicationTitle: 'Wide Area Decontamination Tool',
     theme: {},
+    navigationItems: [
+      {
+        title: 'Define Scenario',
+        icon: 'fa-biohazard',
+        link: '/DefineScenario',
+        enabled: true,
+        tooltip: {
+          enabled: 'Parameters which construct the contamination scenario',
+          disabled: 'ERROR - scenario definition should always be enabled',
+        },
+      },
+      {
+        title: 'Modify Parameters',
+        icon: 'fa-shower',
+        link: '/ModifyParameters',
+        enabled: true,
+        tooltip: {
+          enabled:
+            'Parameters which define costs and efficacy of decontamination efforts',
+          disabled: 'ERROR - modify parameters should always be enabled',
+        },
+      },
+      {
+        title: 'View Results',
+        icon: 'fa-building',
+        link: '/ViewResults',
+        enabled: false,
+        tooltip: {
+          enabled: 'View the results from the latest model run',
+          disabled: 'No results - run model to generate results...',
+        },
+      },
+    ],
   },
   modules: {
   },
+  
 };
 
-function GetStore(state: RootState){
-  store.state = {...state};
-  return new Vuex.Store<RootState>(store);
-}
-
-export default GetStore;
+export default new Vuex.Store<RootState>(store);

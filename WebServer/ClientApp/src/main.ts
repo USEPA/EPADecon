@@ -6,17 +6,21 @@ import './plugins/axios';
 import GetVuetify from './plugins/vuetify';
 import App from './App.vue';
 import router from './router';
-import GetStore from '@/store/index';
+import store from '@/store/index';
 import ClientConfiguration from './interface/clientConfiguration';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { RootState } from './store/types';
- 
 
 Vue.config.productionTip = false;
 axios.get<RootState>('/api/ClientConfiguration').then(
   (data) => {
-    let vuetify = GetVuetify(data.data);
-    let store = GetStore(data.data);
+    const vuetify = GetVuetify(data.data);
+    store.replaceState(
+      {...store.state, ...data.data},
+    );
+
+    // eslint-disable-next-line
+    console.log(store);
     new Vue({
       vuetify,
       router,
