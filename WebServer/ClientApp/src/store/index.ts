@@ -6,12 +6,18 @@ Vue.use(Vuex);
 
 // Vuex structure based on https://codeburst.io/vuex-and-typescript-3427ba78cfa8
 
-const store: StoreOptions<RootState> = {
+let store: StoreOptions<RootState> = {
   state: {
-    version: '1.0.0', // a simple property
+    version: 'Unknown',
+    theme: {},
   },
   modules: {
   },
 };
 
-export default new Vuex.Store<RootState>(store);
+function GetStore(state: RootState){
+  store.state = {...state};
+  return new Vuex.Store<RootState>(store);
+}
+
+export default GetStore;

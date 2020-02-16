@@ -13,6 +13,7 @@ import Vuetify, {
   VProgressLinear,
 } from 'vuetify/lib';
 import ClientConfiguration from '@/interface/clientConfiguration';
+import { RootState } from '@/store/types';
 
 // vue-cli a-la-carte installation
 Vue.use(Vuetify, {
@@ -48,7 +49,7 @@ let opts = {
   },
 };
 
-function GetVuetify(config : ClientConfiguration){
+function GetVuetify(config : RootState){
   let cast : any = config;
   return new Vuetify(cast);
 }

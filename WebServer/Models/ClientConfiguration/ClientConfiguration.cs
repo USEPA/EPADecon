@@ -8,5 +8,7 @@ namespace WebServer.Models.ClientConfiguration
         [JsonProperty("theme")]
         public VuetifyTheme VuetifySettings { get; set; }
 
+        [JsonProperty("version")]
+        public string Version => GetType().Assembly.GetName().Version.ToString();
     }
 }

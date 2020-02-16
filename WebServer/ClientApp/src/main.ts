@@ -6,14 +6,17 @@ import './plugins/axios';
 import GetVuetify from './plugins/vuetify';
 import App from './App.vue';
 import router from './router';
-import store from '@/store/index';
+import GetStore from '@/store/index';
 import ClientConfiguration from './interface/clientConfiguration';
+import '@fortawesome/fontawesome-free/css/all.css';
+import { RootState } from './store/types';
+ 
 
 Vue.config.productionTip = false;
-axios.get<ClientConfiguration>('/api/ClientConfiguration').then(
+axios.get<RootState>('/api/ClientConfiguration').then(
   (data) => {
     let vuetify = GetVuetify(data.data);
-    console.log(vuetify);
+    let store = GetStore(data.data);
     new Vue({
       vuetify,
       router,
