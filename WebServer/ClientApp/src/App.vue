@@ -105,7 +105,7 @@
 
     <!-- Application Footer -->
     <v-footer app>
-      <span>&nbsp;Battelle Memorial Institute&nbsp;&copy;&nbsp;2020</span>
+      <span>&nbsp;Developed by Battelle Memorial Institute</span>
       <v-spacer />
       <span>Version {{ applicationVersion }}</span>
     </v-footer>
