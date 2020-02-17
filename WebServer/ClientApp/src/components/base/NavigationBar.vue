@@ -1,6 +1,10 @@
 <template>
   <!-- Navigation Bar -->
   <v-app-bar app color="primary">
+    <v-avatar color='white'>
+      <img src='../../assets/epaLogo.png'/>
+    </v-avatar>
+    <v-spacer></v-spacer>
     <v-toolbar-title v-text="applicationTitle"></v-toolbar-title>
     <v-spacer></v-spacer>
     <v-tooltip v-if="true" bottom color="error">

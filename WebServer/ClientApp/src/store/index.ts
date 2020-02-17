@@ -2,7 +2,6 @@
 import Vue from 'vue';
 import Vuex, { StoreOptions } from 'vuex';
 import { RootState } from './types';
-import { resolve } from 'dns';
 
 Vue.use(Vuex);
 
