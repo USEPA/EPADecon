@@ -12,7 +12,6 @@ import Vuetify, {
   VDataTable,
   VProgressLinear,
 } from 'vuetify/lib';
-import ClientConfiguration from '@/interface/clientConfiguration';
 import { RootState } from '@/store/types';
 
 // vue-cli a-la-carte installation
@@ -31,26 +30,10 @@ Vue.use(Vuetify, {
   },
 });
 
-let opts = {
-  theme: {
-    dark: true,
-    themes: {
-      light: {
-        primary: '#1976D2',
-        secondary: '#424242',
-        accent: '#82B1FF',
-        error: '#FF5252',
-        info: '#2196F3',
-        success: '#4CAF50',
-      },
-      // dark: {
-      // }
-    },
-  },
-};
-
-function GetVuetify(config : RootState){
-  let cast : any = config;
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+function GetVuetify(config: RootState) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const cast: any = config;
   return new Vuetify(cast);
 }
 

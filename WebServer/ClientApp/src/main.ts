@@ -7,24 +7,19 @@ import GetVuetify from './plugins/vuetify';
 import App from './App.vue';
 import router from './router';
 import store from '@/store/index';
-import ClientConfiguration from './interface/clientConfiguration';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { RootState } from './store/types';
 
 Vue.config.productionTip = false;
-axios.get<RootState>('/api/ClientConfiguration').then(
-  (data) => {
-    const vuetify = GetVuetify(data.data);
-    store.replaceState(
-      {...store.state, ...data.data},
-    );
+axios.get<RootState>('/api/ClientConfiguration').then((data) => {
+  const vuetify = GetVuetify(data.data);
+  store.replaceState({ ...store.state, ...data.data });
 
-    // eslint-disable-next-line
-    console.log(store);
-    new Vue({
-      vuetify,
-      router,
-      store,
-      render: (h) => h(App),
-    }).$mount('#app')
-  });
+  new Vue({
+    vuetify,
+    router,
+    store,
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+    render: (h) => h(App),
+  }).$mount('#app');
+});

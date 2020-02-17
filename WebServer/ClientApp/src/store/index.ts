@@ -1,15 +1,18 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import Vue from 'vue';
 import Vuex, { StoreOptions } from 'vuex';
 import { RootState } from './types';
+import { resolve } from 'dns';
 
 Vue.use(Vuex);
 
 // Vuex structure based on https://codeburst.io/vuex-and-typescript-3427ba78cfa8
 
-let store: StoreOptions<RootState> = {
+const store: StoreOptions<RootState> = {
   state: {
     applicationVersion: 'Unknown',
     applicationTitle: 'Wide Area Decontamination Tool',
+    publisherName: 'Battelle Memorial Institute',
     theme: {},
     navigationItems: [
       {
@@ -28,8 +31,7 @@ let store: StoreOptions<RootState> = {
         link: '/ModifyParameters',
         enabled: true,
         tooltip: {
-          enabled:
-            'Parameters which define costs and efficacy of decontamination efforts',
+          enabled: 'Parameters which define costs and efficacy of decontamination efforts',
           disabled: 'ERROR - modify parameters should always be enabled',
         },
       },
@@ -44,10 +46,45 @@ let store: StoreOptions<RootState> = {
         },
       },
     ],
+    applicationActions: [
+      {
+        title: 'Load Scenario',
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        onSelected: () => {},
+        enabled: true,
+        icon: 'fa-upload',
+      },
+      {
+        title: 'Load Parameters',
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        onSelected: () => {},
+        enabled: true,
+        icon: 'fa-upload',
+      },
+      {
+        title: 'Save Scenario',
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        onSelected: () => {},
+        enabled: true,
+        icon: 'fa-save',
+      },
+      {
+        title: 'Save Parameters',
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        onSelected: () => {},
+        enabled: true,
+        icon: 'fa-save',
+      },
+      {
+        title: 'Save Results',
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        onSelected: () => {},
+        enabled: false,
+        icon: 'fa-save',
+      },
+    ],
   },
-  modules: {
-  },
-  
+  modules: {},
 };
 
 export default new Vuex.Store<RootState>(store);

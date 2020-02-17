@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/components/base/Home.vue';
+import DefineScenario from '@/components/scenario/DefineScenario.vue';
+import ModifyParameters from '@/components/parameters/ModifyParameters.vue';
 
 Vue.use(Router);
 
@@ -9,9 +10,14 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home,
+      path: '/DefineScenario',
+      name: 'defineScenario',
+      component: DefineScenario,
+    },
+    {
+      path: '/ModifyParameters',
+      name: 'modifyParameters',
+      component: ModifyParameters,
     },
   ],
 });

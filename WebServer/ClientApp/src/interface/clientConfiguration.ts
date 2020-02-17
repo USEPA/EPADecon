@@ -1,4 +1,4 @@
-import {UserVuetifyPreset} from 'vuetify';
+import { UserVuetifyPreset } from 'vuetify';
 
 interface ClientConfiguration {
   theme: Partial<UserVuetifyPreset>;

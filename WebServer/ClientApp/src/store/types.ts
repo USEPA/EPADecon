@@ -4,7 +4,9 @@ export interface RootState {
   theme: Partial<UserVuetifyPreset>;
   applicationTitle: string;
   applicationVersion: string;
+  publisherName: string;
   navigationItems: NavigationItem[];
+  applicationActions: ApplicationAction[];
 }
 
 export interface TooltipSelector {
@@ -18,4 +20,11 @@ export interface NavigationItem {
   link: string;
   enabled: boolean;
   tooltip: TooltipSelector;
+}
+
+export interface ApplicationAction {
+  title: string;
+  onSelected(): void;
+  enabled: boolean;
+  icon: string;
 }
