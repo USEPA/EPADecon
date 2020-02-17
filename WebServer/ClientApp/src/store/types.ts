@@ -28,3 +28,8 @@ export interface ApplicationAction {
   enabled: boolean;
   icon: string;
 }
+
+export interface ClientConfiguration {
+  theme: Partial<UserVuetifyPreset>;
+  version: string;
+}
