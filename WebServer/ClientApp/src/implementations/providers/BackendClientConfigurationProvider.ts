@@ -1,6 +1,6 @@
-import { IClientConfiguration } from '@/interfaces/configuration/IClientConfiguration';
+import IClientConfiguration from '@/interfaces/configuration/IClientConfiguration';
 import { injectable } from 'inversify';
-import { IClientConfigurationProvider } from '@/interfaces/providers/IClientConfigurationProvider';
+import IClientConfigurationProvider from '@/interfaces/providers/IClientConfigurationProvider';
 
 import axios from 'axios';
 

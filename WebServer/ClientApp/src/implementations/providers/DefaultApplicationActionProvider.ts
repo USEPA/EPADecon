@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
 import IApplicationActionProvider from '@/interfaces/providers/IApplicationActionProvider';
-import { IApplicationAction } from '@/interfaces/configuration/IApplicationAction';
+import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
 
 @injectable()
 export default class DefaultApplicationActionProvider implements IApplicationActionProvider {

@@ -1,5 +1,5 @@
 import { UserVuetifyPreset } from 'vuetify';
 
-export interface IVuetifyThemeSettings {
+export default interface IVuetifyThemeSettings {
   theme: Partial<UserVuetifyPreset>;
 }

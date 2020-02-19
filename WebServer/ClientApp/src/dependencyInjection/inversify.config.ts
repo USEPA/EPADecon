@@ -5,15 +5,18 @@ import { BackendClientConfigurationProvider } from '@/implementations/providers/
 import { TYPES } from './types';
 import DefaultNavigationItemProvider from '@/implementations/providers/DefaultNavigationItemProvider';
 import DefaultApplicationActionProvider from '@/implementations/providers/DefaultApplicationActionProvider';
+import INavigationItemProvider from '@/interfaces/providers/INavigationItemProvider';
+import IApplicationActionProvider from '@/interfaces/providers/IApplicationActionProvider';
+import { IClientConfigurationProvider } from '@/interfaces/providers/IClientConfigurationProvider';
 
 let container = new Container();
 
 container
-  .bind<DefaultClientConfigurationProvider>(TYPES.ClientConfigurationProvider)
+  .bind<IClientConfigurationProvider>(TYPES.ClientConfigurationProvider)
   .to(DefaultClientConfigurationProvider);
 
 container
-  .bind<BackendClientConfigurationProvider>(TYPES.ClientConfigurationProvider)
+  .bind<IClientConfigurationProvider>(TYPES.ClientConfigurationProvider)
   .to(BackendClientConfigurationProvider);
 
 container
@@ -21,11 +24,11 @@ container
   .to(BackendClientConfigurationProvider);
 
 container
-  .bind<DefaultNavigationItemProvider>(TYPES.NavigationItemProvider)
+  .bind<INavigationItemProvider>(TYPES.NavigationItemProvider)
   .to(DefaultNavigationItemProvider);
 
 container
-  .bind<DefaultApplicationActionProvider>(TYPES.ApplicationActionProvider)
+  .bind<IApplicationActionProvider>(TYPES.ApplicationActionProvider)
   .to(DefaultApplicationActionProvider);
 
 export default container;

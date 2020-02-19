@@ -1,4 +1,4 @@
-export interface IApplicationAction {
+export default interface IApplicationAction {
   title: string;
   onSelected(): void;
   enabled: boolean;

@@ -1,6 +1,6 @@
-import { ITooltipSelector } from './ITooltipSelector';
+import ITooltipSelector from './ITooltipSelector';
 
-export interface INavigationItem {
+export default interface INavigationItem {
   title: string;
   icon: string;
   link: string;

@@ -1,5 +1,5 @@
-import { IClientConfiguration } from '../configuration/IClientConfiguration';
+import IClientConfiguration from '../configuration/IClientConfiguration';
 
-export interface IClientConfigurationProvider {
+export default interface IClientConfigurationProvider {
   getClientConfiguration(): Promise<IClientConfiguration>;
 }

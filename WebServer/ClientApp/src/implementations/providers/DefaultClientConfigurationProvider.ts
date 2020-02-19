@@ -1,6 +1,6 @@
-import { IClientConfiguration } from "@/interfaces/configuration/IClientConfiguration";
+import IClientConfiguration from "@/interfaces/configuration/IClientConfiguration";
 import { injectable } from 'inversify';
-import { IClientConfigurationProvider } from '@/interfaces/providers/IClientConfigurationProvider';
+import IClientConfigurationProvider from '@/interfaces/providers/IClientConfigurationProvider';
 
 @injectable()
 export class DefaultClientConfigurationProvider implements IClientConfigurationProvider {
@@ -8,6 +8,8 @@ export class DefaultClientConfigurationProvider implements IClientConfigurationP
     return {
       theme: {},
       applicationVersion: 'unknown',
+      applicationTitle: 'unknown',
+      publisherName: 'unknown',
     };
   }
 }

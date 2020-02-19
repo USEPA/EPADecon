@@ -1,9 +1,9 @@
 import { UserVuetifyPreset } from 'vuetify';
-import { IClientConfiguration } from './IClientConfiguration';
-import { IApplicationAction } from './IApplicationAction';
-import { INavigationItem } from './INavigationItem';
+import IClientConfiguration from './IClientConfiguration';
+import IApplicationAction from './IApplicationAction';
+import INavigationItem from './INavigationItem';
 
-export interface IRootState extends IClientConfiguration {
+export default interface IRootState extends IClientConfiguration {
   theme: Partial<UserVuetifyPreset>;
   applicationTitle: string;
   applicationVersion: string;
