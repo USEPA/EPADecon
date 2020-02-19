@@ -1,5 +1,4 @@
-let TYPES = {
+export const TYPES = {
   ClientConfigurationProvider: Symbol('IClientConfigurationProvider'),
+  BackendClientConfigurationProvider: Symbol('BackendClientConfigurationProvider'),
 };
-
-export default TYPES;

@@ -4,10 +4,10 @@ import { IClientConfigurationProvider } from '@/interfaces/providers/IClientConf
 
 @injectable()
 export class DefaultClientConfigurationProvider implements IClientConfigurationProvider {
-  getClientConfigurattion(): IClientConfiguration {
+  async getClientConfiguration(): Promise<IClientConfiguration> {
     return {
       theme: {},
-      applicationVersion: 'unkown',
+      applicationVersion: 'unknown',
     };
   }
 }

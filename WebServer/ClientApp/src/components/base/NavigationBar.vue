@@ -83,14 +83,15 @@
 <script lang="ts">
 import Vue from 'vue';
 import { State } from 'vuex-class';
-import { NavigationItem, ApplicationAction } from '@/interfaces/configuration';
 import { Component } from 'vue-property-decorator';
+import { IApplicationAction } from '@/interfaces/configuration/IApplicationAction';
+import { INavigationItem } from '@/interfaces/configuration/INavigationItem';
 
 @Component
 export default class NavigationBar extends Vue {
   @State applicationTitle!: string;
-  @State navigationItems!: NavigationItem[];
-  @State applicationActions!: ApplicationAction[];
+  @State navigationItems!: INavigationItem[];
+  @State applicationActions!: IApplicationAction[];
   selectedNavigationRoute: string | null = null;
 
   mounted() {

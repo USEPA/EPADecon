@@ -10,7 +10,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import { State } from 'vuex-class';
-import { NavigationItem } from '@/interfaces/configuration';
 import { Component } from 'vue-property-decorator';
 
 @Component

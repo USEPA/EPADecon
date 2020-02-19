@@ -1,5 +1,7 @@
 import { UserVuetifyPreset } from 'vuetify';
-export interface IClientConfiguration {
+import { IVuetifyThemeSettings } from './IVuetifyThemeSettings';
+
+export interface IClientConfiguration extends IVuetifyThemeSettings {
   theme: Partial<UserVuetifyPreset>;
   applicationVersion: string;
 }

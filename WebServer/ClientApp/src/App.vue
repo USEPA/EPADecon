@@ -12,15 +12,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import Axios from 'axios';
-import { watch } from 'fs';
-import Vuetify from 'vuetify';
-import { State } from 'vuex-class';
-import { RootState, NavigationItem, ClientConfiguration } from '@/interfaces/configuration';
+import { Component, Vue } from 'vue-property-decorator';
 import { StoreOptions } from 'vuex';
 import NavBar from './components/base/NavigationBar.vue';
 import FooterBar from './components/base/FooterBar.vue';
+import { IClientConfigurationProvider } from './interfaces/providers/IClientConfigurationProvider';
+import container from './dependencyInjection/inversify.config';
+import { TYPES } from './dependencyInjection/types';
 
 @Component({
   components: {
