@@ -10,5 +10,11 @@ namespace WebServer.Models.ClientConfiguration
 
         [JsonProperty("applicationVersion")]
         public string Version => GetType().Assembly.GetName().Version.ToString();
+
+        [JsonProperty("applicationTitle")]
+        public string Title => "Wide Area Decontamination";
+
+        [JsonProperty("publisherName")]
+        public string PublisherName => "Battelle Memorial Institute";
     }
 }
