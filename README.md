@@ -32,6 +32,7 @@ To ensure consistency in refactoring and linting, please ensure your Visual Stud
 
 ```json
 {
+  ...,
   "vetur.format.defaultFormatter.html": "js-beautify-html",
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
@@ -72,6 +73,7 @@ To ensure consistency in refactoring and linting, please ensure your Visual Stud
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  ...,
 }
 ```
 
