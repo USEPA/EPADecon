@@ -83,7 +83,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { State } from 'vuex-class';
-import { NavigationItem, ApplicationAction } from '@/store/types';
+import { NavigationItem, ApplicationAction } from '@/interfaces/configuration';
 import { Component } from 'vue-property-decorator';
 
 @Component

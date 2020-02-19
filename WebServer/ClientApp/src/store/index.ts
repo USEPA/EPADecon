@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import Vue from 'vue';
 import Vuex, { StoreOptions } from 'vuex';
-import { RootState } from './types';
+import { IRootState } from '@/interfaces/configuration/IRootState';
 
 Vue.use(Vuex);
 
 // Vuex structure based on https://codeburst.io/vuex-and-typescript-3427ba78cfa8
 
-const store: StoreOptions<RootState> = {
+const store: StoreOptions<IRootState> = {
   state: {
     applicationVersion: 'Unknown',
     applicationTitle: 'Wide Area Decontamination Tool',
@@ -86,4 +86,4 @@ const store: StoreOptions<RootState> = {
   modules: {},
 };
 
-export default new Vuex.Store<RootState>(store);
+export default new Vuex.Store<IRootState>(store);

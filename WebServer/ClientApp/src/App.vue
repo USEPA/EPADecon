@@ -17,7 +17,7 @@ import Axios from 'axios';
 import { watch } from 'fs';
 import Vuetify from 'vuetify';
 import { State } from 'vuex-class';
-import { RootState, NavigationItem, ClientConfiguration } from '@/store/types';
+import { RootState, NavigationItem, ClientConfiguration } from '@/interfaces/configuration';
 import { StoreOptions } from 'vuex';
 import NavBar from './components/base/NavigationBar.vue';
 import FooterBar from './components/base/FooterBar.vue';

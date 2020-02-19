@@ -8,10 +8,10 @@ import App from './App.vue';
 import router from './router';
 import store from '@/store/index';
 import '@fortawesome/fontawesome-free/css/all.css';
-import { RootState } from './store/types';
+import { IRootState } from './interfaces/configuration/IRootState';
 
 Vue.config.productionTip = false;
-axios.get<RootState>('/api/ClientConfiguration').then((data) => {
+axios.get<IRootState>('/api/ClientConfiguration').then((data) => {
   const vuetify = GetVuetify(data.data);
   store.replaceState({ ...store.state, ...data.data });
 

@@ -12,7 +12,7 @@ import Vuetify, {
   VDataTable,
   VProgressLinear,
 } from 'vuetify/lib';
-import { RootState } from '@/store/types';
+import { IRootState } from '@/interfaces/configuration/IRootState';
 
 // vue-cli a-la-carte installation
 Vue.use(Vuetify, {
@@ -31,7 +31,7 @@ Vue.use(Vuetify, {
 });
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-function GetVuetify(config: RootState) {
+function GetVuetify(config: IRootState) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const cast: any = config;
   return new Vuetify(cast);
