@@ -12,7 +12,7 @@ import Vuetify, {
   VDataTable,
   VProgressLinear,
 } from 'vuetify/lib';
-import { IVuetifyThemeSettings } from '@/interfaces/configuration/IVuetifyThemeSettings';
+import IVuetifyThemeSettings from '@/interfaces/configuration/IVuetifyThemeSettings';
 
 // vue-cli a-la-carte installation
 Vue.use(Vuetify, {
@@ -31,6 +31,6 @@ Vue.use(Vuetify, {
 });
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function GetVuetify(config: IVuetifyThemeSettings) {
+export default function GetVuetifyInstance(config: IVuetifyThemeSettings) {
   return new Vuetify(config as any);
 }

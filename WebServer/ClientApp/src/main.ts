@@ -1,15 +1,15 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import Vue from 'vue';
-import './plugins/axios';
-import { GetVuetify } from './plugins/vuetify';
-import App from './App.vue';
-import router from './router';
+import '@/plugins/axios';
+import GetVuetify from '@/plugins/vuetify';
+import App from '@/App.vue';
+import router from '@/router';
 import store from '@/store/index';
 import '@fortawesome/fontawesome-free/css/all.css';
-import { BackendClientConfigurationProvider } from './implementations/providers/BackendClientConfigurationProvider';
-import container from './dependencyInjection/inversify.config';
-import { TYPES } from './dependencyInjection/types';
+import BackendClientConfigurationProvider from '@/implementations/providers/BackendClientConfigurationProvider';
+import container from '@/dependencyInjection/inversify.config';
+import TYPES from '@/dependencyInjection/types';
 
 Vue.config.productionTip = false;
 

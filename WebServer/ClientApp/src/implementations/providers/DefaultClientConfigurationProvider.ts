@@ -3,7 +3,7 @@ import { injectable } from 'inversify';
 import IClientConfigurationProvider from '@/interfaces/providers/IClientConfigurationProvider';
 
 @injectable()
-export class DefaultClientConfigurationProvider implements IClientConfigurationProvider {
+export default class DefaultClientConfigurationProvider implements IClientConfigurationProvider {
   async getClientConfiguration(): Promise<IClientConfiguration> {
     return {
       theme: {},

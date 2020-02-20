@@ -84,8 +84,8 @@
 import Vue from 'vue';
 import { State } from 'vuex-class';
 import { Component } from 'vue-property-decorator';
-import { IApplicationAction } from '@/interfaces/configuration/IApplicationAction';
-import { INavigationItem } from '@/interfaces/configuration/INavigationItem';
+import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
+import INavigationItem from '@/interfaces/configuration/INavigationItem';
 
 @Component
 export default class NavigationBar extends Vue {

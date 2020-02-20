@@ -5,7 +5,7 @@ import IClientConfigurationProvider from '@/interfaces/providers/IClientConfigur
 import axios from 'axios';
 
 @injectable()
-export class BackendClientConfigurationProvider implements IClientConfigurationProvider {
+export default class BackendClientConfigurationProvider implements IClientConfigurationProvider {
   getClientConfiguration(): Promise<IClientConfiguration> {
     return axios
       .get<IClientConfiguration>('/api/ClientConfiguration')
