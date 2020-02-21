@@ -22,15 +22,27 @@ using WebServer.Services;
 
 namespace WebServer
 {
+    /// <summary>
+    /// The webserver startup options class
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Constructor which requires a non-null configuration
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = configuration ??
+                throw new ArgumentNullException(nameof(configuration));
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
+        /// <summary>
+        /// Called during web host startup to configure the services
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews()
@@ -45,10 +57,10 @@ namespace WebServer
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc(
-                    "v1", 
+                    "v1",
                     new OpenApiInfo
                     {
-                        Title = "Wide ARea Decon Rest API", 
+                        Title = "Wide ARea Decon Rest API",
                         Version = "v1"
                     });
 
@@ -62,7 +74,7 @@ namespace WebServer
                 c.IncludeXmlComments(
                     Path
                         .Combine(
-                            AppContext.BaseDirectory, 
+                            AppContext.BaseDirectory,
                             "WebServer.xml"));
             });
 
@@ -71,7 +83,12 @@ namespace WebServer
             ConfigureProviders(services);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        /// <param name="lifetime"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
         {
             if (env.IsDevelopment() || HybridSupport.IsElectronActive)
@@ -90,10 +107,7 @@ namespace WebServer
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Wide Area Decon API V1");
-            });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Wide Area Decon API V1"); });
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
@@ -110,7 +124,6 @@ namespace WebServer
                 spa.Options.SourcePath = "ClientApp";
             });
 #endif
-
         }
 
 
@@ -124,7 +137,7 @@ namespace WebServer
         private void ConfigureProviders(IServiceCollection services)
         {
             services.AddTransient<
-                IClientConfigurationProvider, 
+                IClientConfigurationProvider,
                 ClientConfigurationProvider>();
         }
 

@@ -9,10 +9,16 @@ using Microsoft.Extensions.Hosting;
 
 namespace WebServer
 {
+    /// <summary>
+    /// Object representing the electron configuration settings
+    /// </summary>
     public class ElectronConfiguration
     {
-        public BrowserWindowOptions WindowOptions { get; set; }
+        private BrowserWindowOptions WindowOptions { get; }
 
+        /// <summary>
+        /// Default constructor, instantiates a default browser window
+        /// </summary>
         public ElectronConfiguration()
         {
             WindowOptions = new BrowserWindowOptions()
@@ -24,6 +30,12 @@ namespace WebServer
             };
         }
 
+        /// <summary>
+        /// Configures the application to start for the given app, environment and lifetime
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        /// <param name="lifetime"></param>
         public void Configure(
             IApplicationBuilder app,
             IWebHostEnvironment env,

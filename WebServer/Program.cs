@@ -13,8 +13,15 @@ using Microsoft.Extensions.Hosting;
 
 namespace WebServer
 {
-    public class Program
+    /// <summary>
+    /// Entry point class for the application
+    /// </summary>
+    public static class Program
     {
+        /// <summary>
+        /// The entry point application, starts the program
+        /// </summary>
+        /// <param name="args">The argument list - utilized in electron settings</param>
         public static void Main(string[] args) => WebHost
                 .CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration(ConfigureIfElectron)
