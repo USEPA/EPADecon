@@ -15,7 +15,9 @@
     "types": [
       "node",
       "vuetify",
-      "reflect-metadata"
+      "reflect-metadata",
+      "mocha",
+      "chai"
     ],
     "paths": {
       "@/*": [
@@ -23,7 +25,6 @@
       ]
     },
     "lib": [
-      "ES6",
       "esnext",
       "dom",
       "dom.iterable",
