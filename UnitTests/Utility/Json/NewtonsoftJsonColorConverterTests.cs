@@ -12,8 +12,7 @@ namespace UnitTests.Utility.Json
     {
         [SetUp]
         public void SetUp()
-        {
-
+        { 
         }
 
         [Test]

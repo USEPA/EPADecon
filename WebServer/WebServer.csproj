@@ -8,7 +8,7 @@
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
     <Authors>Kevin Wegman</Authors>
     <Company>Battelle Memorial Institute</Company>
-    <Description>Application to calculate the decontamination costs associated with </Description>
+    <Description>Application to calculate the decontamination costs associated with a wide are contamination event</Description>
     <AssemblyName>WebServer</AssemblyName>
     <RootNamespace>WebServer</RootNamespace>
     <Version>0.0.1</Version>

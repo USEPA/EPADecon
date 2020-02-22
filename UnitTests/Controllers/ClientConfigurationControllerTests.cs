@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using Moq;
 using NUnit.Framework;
 using WebServer.Controllers;
+using WebServer.Interfaces;
 using WebServer.Models.ClientConfiguration;
 using WebServer.Services;
 
@@ -11,7 +13,10 @@ namespace UnitTests.Controllers
     public class ClientConfigurationControllerTests
     {
         private ClientConfiguration TestClientConfiguration { get; set; }
-        private ClientConfigurationController TestController { get; set; }
+        private IClientConfigurationProvider TestClientConfigurationProvider { get; set; }
+
+        private ClientConfigurationController TestController => new ClientConfigurationController(
+            TestClientConfigurationProvider);
 
             [SetUp]
         public void SetUp()
@@ -38,16 +43,20 @@ namespace UnitTests.Controllers
                     }
                 }
             };
-            
+
+            var mock = new Mock<IClientConfigurationProvider>();
+            mock
+                .Setup(p => p.GetConfiguration())
+                .Returns(TestClientConfiguration);
+
+            TestClientConfigurationProvider = mock.Object;
         }
 
         [Test]
         public void ControllerProvidesCorrectConfiguration()
         {
             // Setup
-            TestController = new ClientConfigurationController(
-                new ClientConfigurationProvider(
-                    TestClientConfiguration));
+            // See @SetUp()
 
             // SUT
             var retrievedConfiguration = TestController.Get();
