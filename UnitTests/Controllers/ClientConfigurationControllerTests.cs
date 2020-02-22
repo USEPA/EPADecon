@@ -2,6 +2,7 @@
 using System.Drawing;
 using Moq;
 using NUnit.Framework;
+using UnitTests.Mocks;
 using WebServer.Controllers;
 using WebServer.Interfaces;
 using WebServer.Models.ClientConfiguration;
@@ -13,38 +14,13 @@ namespace UnitTests.Controllers
     public class ClientConfigurationControllerTests
     {
         private ClientConfiguration TestClientConfiguration { get; set; }
-        private IClientConfigurationProvider TestClientConfigurationProvider { get; set; }
-
-        private ClientConfigurationController TestController => new ClientConfigurationController(
-            TestClientConfigurationProvider);
+        private IClientConfigurationService TestClientConfigurationProvider { get; set; }
 
             [SetUp]
         public void SetUp()
         {
-            TestClientConfiguration = new ClientConfiguration()
-            {
-                VuetifySettings = new VuetifyTheme()
-                {
-                    DarkModeEnabled = true,
-                    DisableThemes = true,
-                    ColorSchemes = new VuetifyColorSchemeMap()
-                    {
-                        DarkScheme = new VuetifyColorScheme()
-                        {
-                            Accent = Color.Red,
-                            Anchor = Color.Red,
-                            Error = Color.Red,
-                            Info = Color.Red,
-                            Primary = Color.Red,
-                            Secondary = Color.Red,
-                            Success = Color.Red,
-                            Warning = Color.Red,
-                        }
-                    }
-                }
-            };
-
-            var mock = new Mock<IClientConfigurationProvider>();
+            TestClientConfiguration = ClientConfigurationMocker.GetDefaultConfiguration();
+            var mock = new Mock<IClientConfigurationService>();
             mock
                 .Setup(p => p.GetConfiguration())
                 .Returns(TestClientConfiguration);
@@ -56,10 +32,12 @@ namespace UnitTests.Controllers
         public void ControllerProvidesCorrectConfiguration()
         {
             // Setup
-            // See @SetUp()
+            var testController = new ClientConfigurationController(
+                TestClientConfigurationProvider);
+            
 
             // SUT
-            var retrievedConfiguration = TestController.Get();
+            var retrievedConfiguration = testController.Get();
 
             // Assert
             Assert.AreEqual(

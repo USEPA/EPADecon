@@ -15,13 +15,13 @@ namespace WebServer.Controllers
     [ApiController]
     public class ClientConfigurationController : ControllerBase
     {
-        private readonly IClientConfigurationProvider _configProvider;
+        private readonly IClientConfigurationService _configProvider;
 
         /// <summary>
         /// Default constructor, requires a non-null provider
         /// </summary>
         /// <param name="configProvider"></param>
-        public ClientConfigurationController(IClientConfigurationProvider configProvider)
+        public ClientConfigurationController(IClientConfigurationService configProvider)
         {
             _configProvider = configProvider ??
                 throw new ArgumentNullException(nameof(configProvider));

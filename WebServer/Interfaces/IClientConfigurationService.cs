@@ -5,7 +5,7 @@ namespace WebServer.Interfaces
     /// <summary>
     /// Provides a client configuration object
     /// </summary>
-    public interface IClientConfigurationProvider
+    public interface IClientConfigurationService
     {
         /// <summary>
         /// Gets the client configuration

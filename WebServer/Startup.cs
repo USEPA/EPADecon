@@ -137,8 +137,8 @@ namespace WebServer
         private void ConfigureProviders(IServiceCollection services)
         {
             services.AddTransient<
-                IClientConfigurationProvider,
-                ClientConfigurationProvider>();
+                IClientConfigurationService,
+                ClientConfigurationService>();
         }
 
         private void ConfigureEndpoints(IEndpointRouteBuilder endpoints)
