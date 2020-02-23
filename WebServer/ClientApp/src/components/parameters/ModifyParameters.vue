@@ -11,6 +11,9 @@ import { Component } from 'vue-property-decorator';
 
 @Component
 export default class ModifyParameters extends Vue {
+  created() {
+    console.log('HERE');
+  }
 }
 </script>
 
