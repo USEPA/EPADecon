@@ -7,7 +7,7 @@
     <v-spacer></v-spacer>
     <v-toolbar-title v-text="applicationTitle"></v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-tooltip v-if="true" bottom color="error">
+    <v-tooltip v-if="false" bottom color="error">
       <template v-slot:activator="{ on }">
         <div v-on="on" class="disabled-tool-tip">
           <v-btn :disabled="true">
@@ -17,9 +17,9 @@
       </template>
       <span>Please define scenario to run model...</span>
     </v-tooltip>
-    <v-tooltip v-if="false" bottom color="error">
+    <v-tooltip v-if="true" bottom color="info">
       <template v-slot:activator="{ on }">
-        <v-btn :disabled="true" v-on="on">
+        <v-btn :disabled="false" v-on="on" color="secondary">
           Run Scenario
         </v-btn>
       </template>
@@ -98,6 +98,10 @@ export default class NavigationBar extends Vue {
     if (this.selectedNavigationRoute && this.$router.currentRoute.path !== this.selectedNavigationRoute) {
       this.$router.push(this.selectedNavigationRoute);
     }
+  }
+
+  created() {
+    console.log(this.$vuetify);
   }
 }
 </script>

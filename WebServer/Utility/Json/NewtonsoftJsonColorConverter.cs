@@ -23,7 +23,7 @@ namespace WebServer.Utility.Json
                 throw new ArgumentException("Color converter can only handle Color types!");
             }
             JToken
-                .FromObject(ColorTranslator.ToHtml(castColor))
+                .FromObject($"#{castColor.R:X2}{castColor.G:X2}{castColor.B:X2}")
                 .WriteTo(writer);
         }
 

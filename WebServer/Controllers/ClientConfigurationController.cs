@@ -32,7 +32,6 @@ namespace WebServer.Controllers
         [ProducesResponseType(typeof(ClientConfiguration), 200)]
         public ClientConfiguration Get()
         {
-            var tmp = _configProvider.GetConfiguration();
             return _configProvider.GetConfiguration();
         }
     }
