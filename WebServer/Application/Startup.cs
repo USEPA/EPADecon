@@ -4,10 +4,12 @@ using ElectronNET.API;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.SpaServices;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using VueCliMiddleware;
 using WebServer.Interfaces;
 using WebServer.Models.ClientConfiguration;
 using WebServer.Services;
@@ -121,6 +123,8 @@ namespace WebServer.Application
 
         private void ConfigureModels(IServiceCollection services)
         {
+            services.AddSingleton(Configuration);
+            Configuration.GetValue<ClientConfiguration>(nameof(ClientConfiguration));
             services.AddTransient(s =>
                 Configuration.GetSection("ClientConfiguration")
                     .Get<ClientConfiguration>());

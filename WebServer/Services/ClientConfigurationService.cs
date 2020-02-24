@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.Configuration;
 using WebServer.Interfaces;
 using WebServer.Models.ClientConfiguration;
 
@@ -9,13 +10,13 @@ namespace WebServer.Services
     /// </summary>
     public class ClientConfigurationService : IClientConfigurationService
     {
-        private readonly ClientConfiguration _config;
+        private readonly IConfiguration _config;
 
         /// <summary>
         /// Constructs provider with singleton client configuration object
         /// </summary>
         /// <param name="config"></param>
-        public ClientConfigurationService(ClientConfiguration config)
+        public ClientConfigurationService(IConfiguration config)
         {
             _config = config ?? 
                 throw new ArgumentNullException(nameof(config));
@@ -27,7 +28,9 @@ namespace WebServer.Services
         /// <returns></returns>
         public ClientConfiguration GetConfiguration()
         {
-            return _config;
+            return _config
+                .GetSection(nameof(ClientConfiguration))
+                .Get<ClientConfiguration>();
         }
     }
 }

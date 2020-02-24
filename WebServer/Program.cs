@@ -18,11 +18,10 @@ namespace WebServer
         /// </summary>
         /// <param name="args">The argument list - utilized in electron settings</param>
         public static void Main(string[] args) => WebHost
-                .CreateDefaultBuilder(args)
+                .CreateDefaultBuilder<Startup>(args)
                 .ConfigureAppConfiguration(ConfigureIfElectron)
                 .ConfigureKestrel(ConfigureConfigureKestrelSettings)
                 .UseElectron(args)
-                .UseStartup<Startup>()
                 .Build()
                 .Run();
 
