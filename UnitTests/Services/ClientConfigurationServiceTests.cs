@@ -1,9 +1,5 @@
-﻿using System.Drawing;
-using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UnitTests.Mocks;
-using WebServer.Controllers;
-using WebServer.Interfaces;
 using WebServer.Models.ClientConfiguration;
 using WebServer.Services;
 

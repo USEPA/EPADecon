@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using Newtonsoft.Json;
 using WebServer.Models.ClientConfiguration;
 
 namespace UnitTests.Mocks

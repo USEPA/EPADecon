@@ -1,15 +1,9 @@
 using System;
-using System.Drawing;
-using System.Net;
-using System.Security.Authentication;
-using System.Security.Cryptography.X509Certificates;
 using ElectronNET.API;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 using WebServer.Application;
 
 namespace WebServer
