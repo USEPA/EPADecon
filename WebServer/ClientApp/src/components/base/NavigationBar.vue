@@ -7,23 +7,16 @@
     <v-spacer></v-spacer>
     <v-toolbar-title v-text="applicationTitle"></v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-tooltip v-if="!canRun" bottom color="error">
+    <v-tooltip bottom :color="canRun ? 'info' : 'error'">
       <template v-slot:activator="{ on }">
-        <div v-on="on" class="disabled-tool-tip">
-          <v-btn :disabled="true">
+        <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'" :color="canRun ? 'secondary' : ''">
+          <v-btn v-on="on" :disabled="!canRun" :color="canRun ? 'secondary' : ''">
             Run Scenario
           </v-btn>
         </div>
       </template>
-      <span>Please define scenario to run model...</span>
-    </v-tooltip>
-    <v-tooltip v-if="canRun" bottom color="info">
-      <template v-slot:activator="{ on }">
-        <v-btn :disabled="false" v-on="on" color="secondary">
-          Run Scenario
-        </v-btn>
-      </template>
-      <span>Runs the model and generates results</span>
+      <span v-if="canRun">Runs the model and generates results</span>
+      <span v-if="!canRun">Please define scenario to run model...</span>
     </v-tooltip>
     <v-menu left bottom>
       <template v-slot:activator="{ on }">

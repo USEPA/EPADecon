@@ -13,7 +13,11 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
 @Component
-export default class DefineScenario extends Vue {}
+export default class DefineScenario extends Vue {
+  created() {
+    this.$store.commit('updateRunState', false);
+  }
+}
 </script>
 
 <style scoped lang="scss"></style>

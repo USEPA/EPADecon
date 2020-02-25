@@ -5,6 +5,9 @@ import IRootState from '@/interfaces/store/IRootState';
 import RunSettings from './runSettings/RunSettings';
 import AppSettings from './appSettings/AppSettings';
 import ClientConfiguration from './clientConfiguration/ClientConfiguration';
+import appSettingsMutations from './appSettings/mutations';
+import clientConfigurationMutations from './clientConfiguration/mutations';
+import runSettingsMutations from './runSettings/mutations';
 
 Vue.use(Vuex);
 
@@ -15,6 +18,11 @@ const store: StoreOptions<IRootState> = {
     ...new RunSettings(),
   },
   modules: {},
+  mutations: {
+    ...appSettingsMutations,
+    ...clientConfigurationMutations,
+    ...runSettingsMutations,
+  }
 };
 
 export default new Vuex.Store<IRootState>(store);

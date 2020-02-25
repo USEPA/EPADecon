@@ -17,8 +17,8 @@ import { State } from 'vuex-class';
 export default class ModifyParameters extends Vue {
   @State runSettings!: string;
 
-  static created() {
-    console.log('hi');
+  created() {
+    this.$store.commit('updateRunState', true);
   }
 }
 </script>
