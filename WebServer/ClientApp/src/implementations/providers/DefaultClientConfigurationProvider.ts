@@ -4,6 +4,7 @@ import IClientConfigurationProvider from '@/interfaces/providers/IClientConfigur
 
 @injectable()
 export default class DefaultClientConfigurationProvider implements IClientConfigurationProvider {
+  // eslint-disable-next-line class-methods-use-this
   async getClientConfiguration(): Promise<IClientConfiguration> {
     return {
       theme: {},

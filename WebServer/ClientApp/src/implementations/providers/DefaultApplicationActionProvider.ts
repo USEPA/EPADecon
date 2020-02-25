@@ -4,6 +4,7 @@ import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
 
 @injectable()
 export default class DefaultApplicationActionProvider implements IApplicationActionProvider {
+  // eslint-disable-next-line class-methods-use-this
   getApplicationActions(): IApplicationAction[] {
     return [
       {

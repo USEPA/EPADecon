@@ -32,5 +32,5 @@ Vue.use(Vuetify, {
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export default function GetVuetifyInstance(config: IVuetifyThemeSettings) {
-  return new Vuetify(config as any);
+  return new Vuetify(config as never);
 }

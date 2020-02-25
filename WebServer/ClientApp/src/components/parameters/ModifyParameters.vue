@@ -6,12 +6,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { State } from 'vuex-class';
 import { Component } from 'vue-property-decorator';
 
 @Component
 export default class ModifyParameters extends Vue {
-  created() {
+  static created() {
     console.log('HERE');
   }
 }

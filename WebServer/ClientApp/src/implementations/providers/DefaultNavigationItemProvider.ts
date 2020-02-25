@@ -4,6 +4,7 @@ import INavigationItem from '@/interfaces/configuration/INavigationItem';
 
 @injectable()
 export default class DefaultNavigationItemProvider implements INavigationItemProvider {
+  // eslint-disable-next-line class-methods-use-this
   getNavigationItems(): INavigationItem[] {
     return [
       {

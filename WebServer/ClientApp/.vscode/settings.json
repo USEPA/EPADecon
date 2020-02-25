@@ -7,5 +7,6 @@
             ],
             "url": "./../Schema/appsettings.schema.json"
         }
-    ]
+    ],
+    "eslint.lintTask.enable": true
 }
