@@ -14,9 +14,9 @@ import { Component } from 'vue-property-decorator';
 
 @Component
 export default class FooterBar extends Vue {
-  @State applicationVersion!: string;
-
   @State publisherName!: string;
+
+  @State applicationVersion!: string;
 }
 </script>
 

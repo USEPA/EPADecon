@@ -11,9 +11,16 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import { State } from 'vuex-class';
 
 @Component
-export default class ModifyParameters extends Vue {}
+export default class ModifyParameters extends Vue {
+  @State runSettings!: string;
+
+  static created() {
+    console.log('hi');
+  }
+}
 </script>
 
 <style scoped lang="scss"></style>

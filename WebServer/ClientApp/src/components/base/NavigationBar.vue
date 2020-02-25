@@ -7,7 +7,7 @@
     <v-spacer></v-spacer>
     <v-toolbar-title v-text="applicationTitle"></v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-tooltip v-if="false" bottom color="error">
+    <v-tooltip v-if="!canRun" bottom color="error">
       <template v-slot:activator="{ on }">
         <div v-on="on" class="disabled-tool-tip">
           <v-btn :disabled="true">
@@ -17,7 +17,7 @@
       </template>
       <span>Please define scenario to run model...</span>
     </v-tooltip>
-    <v-tooltip v-if="true" bottom color="info">
+    <v-tooltip v-if="canRun" bottom color="info">
       <template v-slot:activator="{ on }">
         <v-btn :disabled="false" v-on="on" color="secondary">
           Run Scenario
@@ -84,16 +84,18 @@
 import Vue from 'vue';
 import { State } from 'vuex-class';
 import { Component } from 'vue-property-decorator';
-import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
-import INavigationItem from '@/interfaces/configuration/INavigationItem';
+import IApplicationAction from '../../interfaces/configuration/IApplicationAction';
+import INavigationItem from '../../interfaces/configuration/INavigationItem';
 
 @Component
 export default class NavigationBar extends Vue {
   @State applicationTitle!: string;
 
-  @State navigationItems!: INavigationItem[];
+  @State canRun!: boolean;
 
   @State applicationActions!: IApplicationAction[];
+
+  @State navigationItems!: INavigationItem[];
 
   selectedNavigationRoute: string | null = null;
 
