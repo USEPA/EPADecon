@@ -26,8 +26,7 @@ import TYPES from '@/dependencyInjection/types';
     FooterBar,
   },
 })
-export default class App extends Vue {
-}
+export default class App extends Vue {}
 </script>
 <style scoped lang="scss">
 .disabled-tool-tip {

@@ -1,8 +1,8 @@
 <template>
   <!-- Navigation Bar -->
   <v-app-bar app color="primary">
-    <v-avatar color='white'>
-      <img src='../../assets/epaLogo.png'/>
+    <v-avatar color="white">
+      <img src="../../assets/epaLogo.png" />
     </v-avatar>
     <v-spacer></v-spacer>
     <v-toolbar-title v-text="applicationTitle"></v-toolbar-title>
@@ -33,13 +33,13 @@
       </template>
 
       <v-list>
-        <template v-for="(action, i) in applicationActions" >
-        <v-list-item :key="i" @click="action.onSelected" v-if="action.enabled">
-          <v-list-item-icon>
-            <v-icon v-text="action.icon"></v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>{{ action.title }}</v-list-item-title>
-        </v-list-item>
+        <template v-for="(action, i) in applicationActions">
+          <v-list-item :key="i" @click="action.onSelected" v-if="action.enabled">
+            <v-list-item-icon>
+              <v-icon v-text="action.icon"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>{{ action.title }}</v-list-item-title>
+          </v-list-item>
         </template>
       </v-list>
     </v-menu>
@@ -90,8 +90,11 @@ import INavigationItem from '@/interfaces/configuration/INavigationItem';
 @Component
 export default class NavigationBar extends Vue {
   @State applicationTitle!: string;
+
   @State navigationItems!: INavigationItem[];
+
   @State applicationActions!: IApplicationAction[];
+
   selectedNavigationRoute: string | null = null;
 
   mounted() {

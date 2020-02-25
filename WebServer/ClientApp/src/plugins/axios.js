@@ -1,6 +1,4 @@
-﻿'use strict';
-
-import Vue from 'vue';
+﻿import Vue from 'vue';
 import axios from 'axios';
 
 // Full config:  https://github.com/axios/axios#request-config
@@ -14,46 +12,47 @@ const config = {
   // withCredentials: true, // Check cross-site Access-Control
 };
 
-const _axios = axios.create(config);
+const createdAxios = axios.create(config);
 
-_axios.interceptors.request.use(
-  function(config) {
+createdAxios.interceptors.request.use(
+  function requestInterceptorAction() {
     // Do something before request is sent
     return config;
   },
-  function(error) {
+  function requestErrorAction(error) {
     // Do something with request error
     return Promise.reject(error);
   },
 );
 
 // Add a response interceptor
-_axios.interceptors.response.use(
-  function(response) {
+createdAxios.interceptors.response.use(
+  function responseInterceptorAction(response) {
     // Do something with response data
     return response;
   },
-  function(error) {
+  function responseErrorAction(error) {
     // Do something with response error
     return Promise.reject(error);
   },
 );
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-Plugin.install = function(Vue) {
-  Vue.axios = _axios;
-  window.axios = _axios;
-  Object.defineProperties(Vue.prototype, {
+Plugin.install = function installAxiosPlugin(vueInstance) {
+  // eslint-disable-next-line no-param-reassign
+  vueInstance.axios = createdAxios;
+  window.axios = createdAxios;
+  Object.defineProperties(vueInstance.prototype, {
     axios: {
       // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
       get() {
-        return _axios;
+        return createdAxios;
       },
     },
     $axios: {
       // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
       get() {
-        return _axios;
+        return createdAxios;
       },
     },
   });

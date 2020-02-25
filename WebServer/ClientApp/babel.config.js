@@ -1,21 +1,21 @@
 module.exports = {
-  "presets": [
+  presets: [
     [
-      "@vue/cli-plugin-babel/preset",
+      '@vue/cli-plugin-babel/preset',
       {
-        "useBuiltIns": "entry"
-      }
-    ]
+        useBuiltIns: 'entry',
+      },
+    ],
   ],
-  "plugins": [
+  plugins: [
     [
-      "transform-imports",
+      'transform-imports',
       {
-        "vuetify": {
-          "transform": "vuetify/es5/components/${member}",
-          "preventFullImport": false
-        }
-      }
-    ]
-  ]
-}
+        vuetify: {
+          transform: 'vuetify/es5/components/${member}',
+          preventFullImport: false,
+        },
+      },
+    ],
+  ],
+};

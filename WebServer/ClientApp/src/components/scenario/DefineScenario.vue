@@ -10,9 +10,7 @@ import { State } from 'vuex-class';
 import { Component } from 'vue-property-decorator';
 
 @Component
-export default class DefineScenario extends Vue {
-}
+export default class DefineScenario extends Vue {}
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

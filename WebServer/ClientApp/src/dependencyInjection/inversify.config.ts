@@ -9,26 +9,18 @@ import INavigationItemProvider from '@/interfaces/providers/INavigationItemProvi
 import IApplicationActionProvider from '@/interfaces/providers/IApplicationActionProvider';
 import IClientConfigurationProvider from '@/interfaces/providers/IClientConfigurationProvider';
 
-let container = new Container();
+const container = new Container();
 
-container
-  .bind<IClientConfigurationProvider>(TYPES.ClientConfigurationProvider)
-  .to(DefaultClientConfigurationProvider);
+container.bind<IClientConfigurationProvider>(TYPES.ClientConfigurationProvider).to(DefaultClientConfigurationProvider);
 
-container
-  .bind<IClientConfigurationProvider>(TYPES.ClientConfigurationProvider)
-  .to(BackendClientConfigurationProvider);
+container.bind<IClientConfigurationProvider>(TYPES.ClientConfigurationProvider).to(BackendClientConfigurationProvider);
 
 container
   .bind<BackendClientConfigurationProvider>(TYPES.BackendClientConfigurationProvider)
   .to(BackendClientConfigurationProvider);
 
-container
-  .bind<INavigationItemProvider>(TYPES.NavigationItemProvider)
-  .to(DefaultNavigationItemProvider);
+container.bind<INavigationItemProvider>(TYPES.NavigationItemProvider).to(DefaultNavigationItemProvider);
 
-container
-  .bind<IApplicationActionProvider>(TYPES.ApplicationActionProvider)
-  .to(DefaultApplicationActionProvider);
+container.bind<IApplicationActionProvider>(TYPES.ApplicationActionProvider).to(DefaultApplicationActionProvider);
 
 export default container;
