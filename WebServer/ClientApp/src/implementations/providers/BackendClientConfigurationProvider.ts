@@ -8,7 +8,6 @@ import axios from 'axios';
 export default class BackendClientConfigurationProvider implements IClientConfigurationProvider {
   // eslint-disable-next-line class-methods-use-this
   getClientConfiguration(): Promise<IClientConfiguration> {
-    axios.get('/api/ClientConfiguration').then((response) => console.log(response.data));
     return axios
       .get<IClientConfiguration>('/api/ClientConfiguration')
       .then<IClientConfiguration>((response) => response.data);

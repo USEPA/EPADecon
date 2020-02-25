@@ -9,11 +9,7 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
 @Component
-export default class ModifyParameters extends Vue {
-  static created() {
-    console.log('HERE');
-  }
-}
+export default class ModifyParameters extends Vue {}
 </script>
 
 <style scoped lang="scss"></style>

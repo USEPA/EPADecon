@@ -54,11 +54,11 @@
     >
       <v-tabs-slider></v-tabs-slider>
       <template v-for="(item, i) in navigationItems">
-        <v-tooltip bottom :key="i" v-if="item.enabled">
+        <v-tooltip bottom :key="i" v-if="item.enabled" color="info">
           <template v-slot:activator="{ on }">
-            <v-tab v-on="on" :to="item.link" :disabled="!item.enabled">
+            <v-tab :class="getClassName(item.link)" v-on="on" :to="item.link" :disabled="!item.enabled">
               {{ item.title }}
-              <v-icon>{{ item.icon }}</v-icon>
+              <v-icon :class="getClassName(item.link)">{{ item.icon }}</v-icon>
             </v-tab>
           </template>
           <span>{{ item.tooltip.enabled }}</span>
@@ -97,14 +97,16 @@ export default class NavigationBar extends Vue {
 
   selectedNavigationRoute: string | null = null;
 
+  selectedTabName!: never;
+
+  getClassName(name: string) {
+    return name === this.selectedNavigationRoute ? 'secondary--text text--darken-3' : 'info--text text--lighten-2';
+  }
+
   mounted() {
     if (this.selectedNavigationRoute && this.$router.currentRoute.path !== this.selectedNavigationRoute) {
       this.$router.push(this.selectedNavigationRoute);
     }
-  }
-
-  created() {
-    console.log(this.$vuetify);
   }
 }
 </script>
