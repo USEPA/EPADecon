@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <span>Scenario definition page under construction...</span>
-  </div>
+  <v-container fill-height fluid>
+    <v-row align="center" justify="center">
+      <v-col>
+        <p class="text-center display-3">Scenario definition page under construction...</p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">

@@ -9,10 +9,10 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/interface-name-prefix': ['error', { prefixWithI: 'always' }],
-    'no-console': 'error',
-    'no-debugger': 'error',
-    // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    // 'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    // 'no-console': 'error',
+    // 'no-debugger': 'error',
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
   },
   overrides: [
     {

@@ -104,7 +104,7 @@ export default class NavigationBar extends Vue {
   }
 
   getLightClassName(name: string) {
-    return name === this.selectedNavigationRoute ? 'secondary--text text--darken-2' : 'info--text text--lighten-1';
+    return name === this.selectedNavigationRoute ? 'secondary--text text--darken-1' : 'info--text text--lighten-2';
   }
 
   getDarkClassName(name: string) {
