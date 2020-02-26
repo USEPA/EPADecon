@@ -13,31 +13,9 @@
       "request": "launch",
       "name": "Unit Tests",
       "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run-script", 
-        "test:unit:debug"],
+      "runtimeArgs": ["run-script", "test:unit:debug"],
       "port": 9229,
-      "protocol": "inspector",
-    },
-    {
-      "name": "vscode-mocha-tests",
-      "type": "node",
-      "request": "launch",
-      "runtimeArgs": [
-        "./node_modules/@vue/cli-service/bin/vue-cli-service.js",
-        "test:unit",
-        "--inspect-brk",
-        "--watch",
-        "--timeout",
-        "9999999"
-      ],
-      "cwd": "${workspaceFolder}",
-      "protocol": "inspector",
-      "disableOptimisticBPs": true,
-      "console": "integratedTerminal",    
-      "internalConsoleOptions": "neverOpen",
-      "outFiles": [ "${workspaceFolder}/**/*.ts"],
-      "port": 9229
-    },
+      "protocol": "inspector"
+    }
   ]
 }
