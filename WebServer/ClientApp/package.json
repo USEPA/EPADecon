@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "test:unit:debug": "vue-cli-service test:unit --inspect-brk --watch"
+    "test:unit:debug": "vue-cli-service test:unit --inspect-brk --watch --timeout 9999999"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
