@@ -1,15 +1,12 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "configurations": [
     {
       "type": "node",
       "request": "launch",
       "name": "Unit Tests",
       "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "test:unit"
-      ],
+      "runtimeArgs": ["run", "test:unit:debug"],
       "port": 9229
     },
     {

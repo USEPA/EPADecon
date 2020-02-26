@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test:unit:debug": "vue-cli-service test:unit --inspect-brk --watch"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
