@@ -10,8 +10,5 @@
         "**/build/**": true,
 
         "package-lock.json": true
-    },
-
-    // tslint plugin
-    "typescript.tsdk": "./node_modules/typescript/lib"
+    }
 }
