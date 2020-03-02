@@ -1,3 +1,0 @@
---require test/settings.ts-node/tsconfig-paths.js
---require test/settings.ts-node/tsNode.js
---watch-extensions ts
