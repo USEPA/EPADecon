@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "Battelle.EPA.WideAreaDecon.Client"
+		},
+		{
+			"path": "Battelle.EPA.WideAreaDecon.Client.Tests"
+		}
+	],
+  "settings": {}
+}

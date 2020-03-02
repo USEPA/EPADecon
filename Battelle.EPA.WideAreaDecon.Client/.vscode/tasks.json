@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+	"tasks": [
+    {
+      "label": "Run API Server",
+      "type": "process",
+      "command": "dotnet.exe",
+      "args": ["run"],
+      "options": {
+        "cwd": "${workspaceRoot}/../Battelle.EPA.WideAreaDecon.API"
+      }
+    }
+  ]
+}

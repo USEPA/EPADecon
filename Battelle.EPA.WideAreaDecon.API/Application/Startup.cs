@@ -45,7 +45,7 @@ namespace WebServer.Application
             services.AddRazorPages();
 
             // In production, the Vue files will be served from this directory
-            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
+            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "../Battelle.EPA.WideAreaDecon.Client/dist"; });
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -115,7 +115,7 @@ namespace WebServer.Application
 #if !DEBUG
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = "../Battelle.EPA.WideAreaDecon.Client";
             });
 #endif
         }
@@ -145,7 +145,7 @@ namespace WebServer.Application
 #if DEBUG
             endpoints.MapToVueCliProxy(
                 "{*path}",
-                new SpaOptions {SourcePath = "ClientApp"},
+                new SpaOptions {SourcePath = "../Battelle.EPA.WideAreaDecon.Client"},
                 npmScript: "serve",
                 regex: "App running at",
                 port: Configuration.GetValue<int>("Port") + 1);

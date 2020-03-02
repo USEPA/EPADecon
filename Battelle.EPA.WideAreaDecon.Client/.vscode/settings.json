@@ -1,0 +1,12 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "/appsettings.json",
+                "/appsettings.*.json"
+            ],
+            "url": "./../../Battelle.EPA.WideAreaDecon.API/Schema/appsettings.schema.json"
+        }
+    ],
+    "eslint.lintTask.enable": true
+}

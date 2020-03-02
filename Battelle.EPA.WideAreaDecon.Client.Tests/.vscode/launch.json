@@ -2,13 +2,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Full Application",
-      "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:5005/#",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
       "type": "node",
       "request": "launch",
       "name": "Mocha Current File",
