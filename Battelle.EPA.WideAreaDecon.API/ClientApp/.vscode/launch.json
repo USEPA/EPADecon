@@ -11,11 +11,14 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Unit Tests",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run-script", "test:unit:debug"],
-      "port": 9229,
-      "protocol": "inspector"
+      "name": "Mocha Current File",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "args": [
+          "--opts",
+          "${workspaceFolder}/mocha.opts",
+          "${file}"
+        ],
+        "cwd": "${workspaceRoot}"
     }
   ]
 }

@@ -69,7 +69,7 @@ namespace WebServer.Application
                     Path
                         .Combine(
                             AppContext.BaseDirectory,
-                            "WebServer.xml"));
+                            "Battelle.EPA.WideAreaDecon.API.xml"));
             });
 
             ConfigureModels(services);

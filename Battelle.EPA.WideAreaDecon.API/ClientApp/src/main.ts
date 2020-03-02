@@ -10,6 +10,8 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import BackendClientConfigurationProvider from '@/implementations/providers/BackendClientConfigurationProvider';
 import container from '@/dependencyInjection/inversify.config';
 import TYPES from '@/dependencyInjection/types';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import _ from 'lodash';
 
 Vue.config.productionTip = false;
 

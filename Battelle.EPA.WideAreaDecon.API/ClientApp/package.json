@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "test:unit:debug": "vue-cli-service test:unit --inspect-brk --watch --timeout 9999999 --runInBand"
+    "test:unit:debug": "--inspect-brk --watch ./node_modules/@vue/cli-service/bin/vue-cli-service.js test:unit"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
@@ -29,11 +29,13 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.4",
+    "@babel/core": "^7.8.6",
+    "@babel/node": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@babel/register": "^7.8.3",
     "@mdi/font": "^4.9.95",
     "@types/chai": "^4.2.8",
+    "@types/lodash": "^4.14.149",
     "@types/mocha": "^5.2.4",
     "@types/node": "^13.7.6",
     "@typescript-eslint/eslint-plugin": "^2.7.0",
@@ -58,10 +60,11 @@
     "prettier": "^1.19.1",
     "sass": "^1.26.1",
     "sass-loader": "^8.0.2",
+    "ts-loader": "^6.2.1",
     "ts-node": "^8.6.2",
     "ts-node-register": "^1.0.0",
     "ts-node-test-register": "^8.0.1",
-    "typescript": "^3.8.2",
+    "typescript": "^3.8.3",
     "vue-cli-plugin-axios": "0.0.4",
     "vue-cli-plugin-vuetify": "^2.0.5",
     "vue-template-compiler": "^2.6.11",
