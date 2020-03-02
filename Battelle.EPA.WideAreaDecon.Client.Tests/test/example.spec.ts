@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 
-describe('SomeTest', function() {
+describe('SomeTest', function SomeTest() {
   it('should pass', () => {
-    var result = 50;
+    const result = 50;
     expect(result).to.be.equal(50);
   });
 });
