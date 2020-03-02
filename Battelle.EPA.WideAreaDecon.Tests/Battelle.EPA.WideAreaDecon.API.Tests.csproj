@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebServer\WebServer.csproj" />
+    <ProjectReference Include="..\Battelle.EPA.WideAreaDecon.API\Battelle.EPA.WideAreaDecon.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>

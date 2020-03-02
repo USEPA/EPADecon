@@ -1,6 +1,6 @@
 # Introduction
 
-This project currently serves as the application interface and backend for the EPA Wide Area Decontamination Dose response model.
+This project currently serves as the application interface and backend for the EPA Wide Area Decontamination model.
 
 Please contact Kevin Wegman (wegman@battelle.org) for any questions.
 

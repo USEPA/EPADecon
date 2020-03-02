@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebServer", "WebServer\WebServer.csproj", "{68468902-4CDB-4F65-B26F-B9F0A862FE31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battelle.EPA.WideAreaDecon.API", "Battelle.EPA.WideAreaDecon.API\Battelle.EPA.WideAreaDecon.API.csproj", "{68468902-4CDB-4F65-B26F-B9F0A862FE31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{12562CE2-45EA-4FFD-BF5B-D7EDD369555C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battelle.EPA.WideAreaDecon.API.Tests", "Battelle.EPA.WideAreaDecon.API.Tests\Battelle.EPA.WideAreaDecon.API.Tests.csproj", "{12562CE2-45EA-4FFD-BF5B-D7EDD369555C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
