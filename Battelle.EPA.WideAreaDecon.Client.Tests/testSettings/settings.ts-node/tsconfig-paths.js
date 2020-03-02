@@ -14,5 +14,5 @@ const baseUrl = path.resolve(testDirectory, tsConfig.compilerOptions.baseUrl);
 
 tsConfigPaths.register({
   baseUrl, // ./src/
-  paths: Object.assign({}, tsConfig.compilerOptions.paths || {}),
+  paths: { ...(tsConfig.compilerOptions.paths || {}) },
 });

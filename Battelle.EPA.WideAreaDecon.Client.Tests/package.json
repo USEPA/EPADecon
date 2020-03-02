@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "vue-cli-service test:unit src/**/*.spec.ts"
+    "test": "vue-cli-service test:unit src/**/*.spec.ts",
+    "lint": "vue-cli-service lint"
   },
   "author": "",
   "license": "ISC",
