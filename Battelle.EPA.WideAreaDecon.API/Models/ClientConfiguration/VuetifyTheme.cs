@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace WebServer.Models.ClientConfiguration
+namespace Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration
 {
     /// <summary>
     /// Object representing the vuetify theme which is passed to the client application

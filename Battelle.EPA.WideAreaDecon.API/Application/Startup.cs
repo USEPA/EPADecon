@@ -1,5 +1,8 @@
 using System;
 using System.IO;
+using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
+using Battelle.EPA.WideAreaDecon.API.Services;
 using ElectronNET.API;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,11 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using VueCliMiddleware;
-using WebServer.Interfaces;
-using WebServer.Models.ClientConfiguration;
-using WebServer.Services;
 
-namespace WebServer.Application
+namespace Battelle.EPA.WideAreaDecon.API.Application
 {
     /// <summary>
     /// The webserver startup options class

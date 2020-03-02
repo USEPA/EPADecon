@@ -11,7 +11,14 @@
 
         "package-lock.json": true
     },
-
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 2000,
+    
     // tslint plugin
+    "tslint.enable": true,
+    "tslint.jsEnable": true,
     "typescript.tsdk": "./node_modules/typescript/lib"
 }

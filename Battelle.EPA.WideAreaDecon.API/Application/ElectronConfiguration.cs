@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace WebServer.Application
+namespace Battelle.EPA.WideAreaDecon.API.Application
 {
     /// <summary>
     /// Object representing the electron configuration settings

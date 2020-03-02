@@ -2,16 +2,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Debug Current File",
       "type": "node",
       "request": "launch",
-      "name": "Mocha Current File",
-      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-      "args": [
-          "--opts",
-          "${workspaceFolder}/mocha.opts",
-          "${file}"
-        ],
-        "cwd": "${workspaceRoot}"
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "stopOnEntry": false,
+      "args": ["--timeout", "100000", "${file}"],
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector",
+      "internalConsoleOptions": "openOnSessionStart"
     }
   ]
 }

@@ -1,6 +1,6 @@
-﻿using WebServer.Models.ClientConfiguration;
+﻿using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
 
-namespace WebServer.Interfaces
+namespace Battelle.EPA.WideAreaDecon.API.Interfaces
 {
     /// <summary>
     /// Provides a client configuration object

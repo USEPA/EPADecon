@@ -1,11 +1,11 @@
-﻿using Moq;
+﻿using Battelle.EPA.WideAreaDecon.API.Controllers;
+using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
+using Battelle.EPA.WideAreaDecon.API.Tests.Mocks;
+using Moq;
 using NUnit.Framework;
-using UnitTests.Mocks;
-using WebServer.Controllers;
-using WebServer.Interfaces;
-using WebServer.Models.ClientConfiguration;
 
-namespace UnitTests.Controllers
+namespace Battelle.EPA.WideAreaDecon.API.Tests.Controllers
 {
     [TestFixture]
     public class ClientConfigurationControllerTests

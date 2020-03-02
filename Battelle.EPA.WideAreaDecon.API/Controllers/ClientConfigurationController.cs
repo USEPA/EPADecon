@@ -1,9 +1,9 @@
 ﻿using System;
+using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
 using Microsoft.AspNetCore.Mvc;
-using WebServer.Interfaces;
-using WebServer.Models.ClientConfiguration;
 
-namespace WebServer.Controllers
+namespace Battelle.EPA.WideAreaDecon.API.Controllers
 {
     /// <summary>
     /// Controller which provides configuration information to the client.

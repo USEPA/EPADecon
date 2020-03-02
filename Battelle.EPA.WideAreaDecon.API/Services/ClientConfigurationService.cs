@@ -1,9 +1,9 @@
 ﻿using System;
+using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
 using Microsoft.Extensions.Configuration;
-using WebServer.Interfaces;
-using WebServer.Models.ClientConfiguration;
 
-namespace WebServer.Services
+namespace Battelle.EPA.WideAreaDecon.API.Services
 {
     /// <summary>
     /// Provides the client HTTP from a config object

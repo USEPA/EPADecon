@@ -1,12 +1,12 @@
 using System;
+using Battelle.EPA.WideAreaDecon.API.Application;
 using ElectronNET.API;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
-using WebServer.Application;
 
-namespace WebServer
+namespace Battelle.EPA.WideAreaDecon.API
 {
     /// <summary>
     /// Entry point class for the application

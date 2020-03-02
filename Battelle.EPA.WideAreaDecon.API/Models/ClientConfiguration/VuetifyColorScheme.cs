@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
+using Battelle.EPA.WideAreaDecon.API.Utility.Json;
 using Newtonsoft.Json;
-using WebServer.Utility.Json;
 
-namespace WebServer.Models.ClientConfiguration
+namespace Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration
 {
     /// <summary>
     /// Object containing the vuetify color scheme settings

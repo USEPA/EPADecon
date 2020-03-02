@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Drawing;
+using Battelle.EPA.WideAreaDecon.API.Utility.Json;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using WebServer.Utility.Json;
 
-namespace UnitTests.Utility.Json
+namespace Battelle.EPA.WideAreaDecon.API.Tests.Utility.Json
 {
     [TestFixture]
     public class NewtonsoftJsonColorConverterTests

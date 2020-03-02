@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace WebServer.Models.ClientConfiguration
+namespace Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration
 {
     /// <summary>
     /// The client configuration settings which are provided to the frontend on request

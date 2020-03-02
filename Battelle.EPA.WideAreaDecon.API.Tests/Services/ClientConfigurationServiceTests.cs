@@ -1,19 +1,12 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
+using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
+using Battelle.EPA.WideAreaDecon.API.Services;
 using FluentAssertions;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Hosting;
-using Moq;
 using NUnit.Framework;
-using UnitTests.Mocks;
-using WebServer.Models.ClientConfiguration;
-using WebServer.Services;
 
-namespace UnitTests.Services
+namespace Battelle.EPA.WideAreaDecon.API.Tests.Services
 {
     [TestFixture]
     public class ClientConfigurationServiceTests

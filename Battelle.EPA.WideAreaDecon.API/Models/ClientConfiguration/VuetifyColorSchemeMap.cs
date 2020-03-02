@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace WebServer.Models.ClientConfiguration
+namespace Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration
 {
     /// <summary>
     /// Mapping object representing the Vuetify color scheme

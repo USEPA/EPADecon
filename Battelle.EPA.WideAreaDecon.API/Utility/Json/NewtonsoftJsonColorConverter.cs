@@ -3,7 +3,7 @@ using System.Drawing;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace WebServer.Utility.Json
+namespace Battelle.EPA.WideAreaDecon.API.Utility.Json
 {
     /// <summary>
     /// A converter which converts C# Color objects to Hex strings

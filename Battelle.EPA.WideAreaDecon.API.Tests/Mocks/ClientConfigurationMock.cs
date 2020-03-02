@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
-using WebServer.Models.ClientConfiguration;
+using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
 
-namespace UnitTests.Mocks
+namespace Battelle.EPA.WideAreaDecon.API.Tests.Mocks
 {
     public static class ClientConfigurationMocker
     {
