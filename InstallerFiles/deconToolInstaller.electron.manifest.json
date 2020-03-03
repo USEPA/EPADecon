@@ -1,12 +1,13 @@
 {
-  "executable": "WebServer",
+  "executable": "Battelle.EPA.WideAreaDecon.API",
   "description": "Wide Area Decontamination Tool",
   "name": "Wide Area Decon",
   "author": "Battelle Memorial Institute",
   "splashscreen": {
     "imageFile": ""
   },
-  "singleInstance": false,
+  "singleInstance": true,
+  "cacheDirectory": "resources/cache",
   "build": {
     "appId": "com.electron.Battelle.WideAreaDeconTool.app",
     "productName": "Wide Area Decon",
