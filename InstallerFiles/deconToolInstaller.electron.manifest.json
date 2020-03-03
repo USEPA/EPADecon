@@ -7,7 +7,7 @@
     "imageFile": ""
   },
   "singleInstance": true,
-  "cacheDirectory": "resources/cache",
+  "cacheDirectory": "%appdata%/wide-area-decon",
   "build": {
     "appId": "com.electron.Battelle.WideAreaDeconTool.app",
     "productName": "Wide Area Decon",
