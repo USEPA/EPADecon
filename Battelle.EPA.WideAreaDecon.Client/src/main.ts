@@ -21,7 +21,7 @@ container
   .then((data) => {
     const vuetify = GetVuetify(data);
     store.replaceState({ ...store.state, ...data });
-    console.log(store);
+    // console.log(store);
     new Vue({
       vuetify,
       router,

@@ -22,7 +22,7 @@ const store: StoreOptions<IRootState> = {
     ...appSettingsMutations,
     ...clientConfigurationMutations,
     ...runSettingsMutations,
-  }
+  },
 };
 
 export default new Vuex.Store<IRootState>(store);
