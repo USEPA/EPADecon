@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
+    "module": "es2015",
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
     "noImplicitAny": true,
-    "module": "es6",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
@@ -32,15 +32,18 @@
       "scripthost",
       "es5",
       "es2015",
-      "es2015.promise"
+      "es2015.promise",
+      "es6"
     ]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "src/**/*.js",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "tests/**/*.js"
   ],
   "exclude": [
     "node_modules"

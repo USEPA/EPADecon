@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test": "vue-cli-service test:unit tests/**/*.spec.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
@@ -51,6 +52,7 @@
     "axios": "^0.19.2",
     "babel-plugin-transform-imports": "^2.0.0",
     "chai": "^4.1.2",
+    "comment-json": "^3.0.2",
     "eslint": "^6.0.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
@@ -62,6 +64,7 @@
     "ts-node": "^8.6.2",
     "ts-node-register": "^1.0.0",
     "ts-node-test-register": "^8.0.1",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3",
     "vue-cli-plugin-axios": "0.0.4",
     "vue-cli-plugin-vuetify": "^2.0.5",
