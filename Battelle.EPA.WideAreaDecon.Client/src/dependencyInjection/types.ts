@@ -1,8 +1,7 @@
+import PROVIDER_TYPES from './providers/providers.types';
+
 const TYPES = {
-  ClientConfigurationProvider: Symbol('IClientConfigurationProvider'),
-  BackendClientConfigurationProvider: Symbol('BackendClientConfigurationProvider'),
-  NavigationItemProvider: Symbol('INavigationItemProvider'),
-  ApplicationActionProvider: Symbol('IApplicationActionProvider'),
+  ...PROVIDER_TYPES,
 };
 
 export default TYPES;

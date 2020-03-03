@@ -9,6 +9,12 @@
       "options": {
         "cwd": "${workspaceRoot}/../Battelle.EPA.WideAreaDecon.API"
       }
+    },
+    {
+      "label": "Run Unit Tests",
+      "type": "process",
+      "command": "cmd",
+      "args": ["/C", "npm", "run", "test"]
     }
   ]
 }

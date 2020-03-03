@@ -8,7 +8,7 @@ import router from '@/router';
 import store from '@/store/index';
 import '@fortawesome/fontawesome-free/css/all.css';
 import BackendClientConfigurationProvider from '@/implementations/providers/BackendClientConfigurationProvider';
-import container from '@/dependencyInjection/inversify.config';
+import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import _ from 'lodash';

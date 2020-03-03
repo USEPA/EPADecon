@@ -3,7 +3,7 @@ import { UserVuetifyPreset } from 'vuetify';
 import INavigationItem from '@/interfaces/configuration/INavigationItem';
 import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
 import IRunSettings from '@/interfaces/store/runSettings/IRunSettings';
-import container from '@/dependencyInjection/inversify.config';
+import container from '@/dependencyInjection/config';
 import INavigationItemProvider from '@/interfaces/providers/INavigationItemProvider';
 import IApplicationActionProvider from '@/interfaces/providers/IApplicationActionProvider';
 import TYPES from '@/dependencyInjection/types';

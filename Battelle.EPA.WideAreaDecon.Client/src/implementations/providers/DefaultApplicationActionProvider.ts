@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { injectable } from 'inversify';
 import IApplicationActionProvider from '@/interfaces/providers/IApplicationActionProvider';
 import IApplicationAction from '@/interfaces/configuration/IApplicationAction';

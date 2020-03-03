@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { injectable } from 'inversify';
 import INavigationItemProvider from '@/interfaces/providers/INavigationItemProvider';
 import INavigationItem from '@/interfaces/configuration/INavigationItem';
