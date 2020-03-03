@@ -6,7 +6,7 @@
   "ElectronManifest": "InstallerFiles\\deconToolInstaller.electron.manifest.json",
   "ElectronApplication": {
     "Name": "Server",
-    "Location": "WebServer.zip",
+    "Location": "Battelle.EPA.WideAreaDecon.zip",
     "FilesToCopy": [
       {
         "source": "InstallerFiles\\epaLogo.ico",
