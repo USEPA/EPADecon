@@ -45,7 +45,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             services.AddRazorPages();
 
             // In production, the Vue files will be served from this directory
-            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "../Battelle.EPA.WideAreaDecon.Client/dist"; });
+            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "dist"; });
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -115,7 +115,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
 #if !DEBUG
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "../Battelle.EPA.WideAreaDecon.Client";
+                spa.Options.SourcePath = "dist";
             });
 #endif
         }

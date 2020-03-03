@@ -44,6 +44,7 @@
     <Exec Condition="'$(Configuration)'=='Release' And Exists('$(SpaRoot)dist')" WorkingDirectory="$(SpaRoot)" Command="rmdir /S /Q dist" />
     <Exec Condition="'$(Configuration)'=='Release'" WorkingDirectory="$(SpaRoot)" Command="npm run build" />
   </Target>
+
   <Target Name="PublishWebServer" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <!-- Changing so that this isn't built twice - the commands should be executed on build -->
@@ -53,7 +54,7 @@
     <ItemGroup>
       <DistFiles Include="$(SpaRoot)dist\**" />
       <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <RelativePath>$([System.String]::Copy('%(DistFiles.Identity)').Replace('..\Battelle.EPA.WideAreaDecon.Client', ''))</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </ResolvedFileToPublish>
     </ItemGroup>
