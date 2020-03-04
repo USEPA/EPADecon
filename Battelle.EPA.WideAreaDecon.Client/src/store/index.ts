@@ -8,6 +8,8 @@ import ClientConfiguration from './clientConfiguration/ClientConfiguration';
 import appSettingsMutations from './appSettings/mutations';
 import clientConfigurationMutations from './clientConfiguration/mutations';
 import runSettingsMutations from './runSettings/mutations';
+import defineScenarioParametersMutations from './defineScenarioParameters/mutations';
+import DefineScenarioParameters from './defineScenarioParameters/DefineScenarioParameters';
 
 Vue.use(Vuex);
 
@@ -16,12 +18,14 @@ const store: StoreOptions<IRootState> = {
     ...new ClientConfiguration(),
     ...new AppSettings(),
     ...new RunSettings(),
+    ...new DefineScenarioParameters(),
   },
   modules: {},
   mutations: {
     ...appSettingsMutations,
     ...clientConfigurationMutations,
     ...runSettingsMutations,
+    ...defineScenarioParametersMutations,
   },
 };
 

@@ -12,21 +12,30 @@ import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import _ from 'lodash';
+import IScenarioDefinitionProvider from './interfaces/providers/IScenarioDefinitionProvider';
+import DefineScenarioParameters from './store/defineScenarioParameters/DefineScenarioParameters';
 
 Vue.config.productionTip = false;
 
-container
+const clientConfigPromise = container
   .get<BackendClientConfigurationProvider>(TYPES.BackendClientConfigurationProvider)
-  .getClientConfiguration()
-  .then((data) => {
-    const vuetify = GetVuetify(data);
-    store.replaceState({ ...store.state, ...data });
-    // console.log(store);
-    new Vue({
-      vuetify,
-      router,
-      store,
-      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-      render: (h) => h(App),
-    }).$mount('#app');
-  });
+  .getClientConfiguration();
+
+const scenarioDefPromise = container
+  .get<IScenarioDefinitionProvider>(TYPES.ScenarioDefinitionProvider)
+  .getScenarioDefinition();
+
+Promise.all([clientConfigPromise, scenarioDefPromise]).then(([clientConfig, scenarioDef]) => {
+  // empty
+  const vuetify = GetVuetify(clientConfig);
+  const defineScenarioParameters = new DefineScenarioParameters(scenarioDef);
+  store.replaceState({ ...store.state, ...clientConfig, ...defineScenarioParameters });
+  // console.log(store);
+  new Vue({
+    vuetify,
+    router,
+    store,
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+    render: (h) => h(App),
+  }).$mount('#app');
+});

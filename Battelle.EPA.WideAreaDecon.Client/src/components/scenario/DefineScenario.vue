@@ -11,9 +11,13 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import { State } from 'vuex-class';
+import ParameterList from '../../implementations/parameter/ParameterList';
 
 @Component
 export default class DefineScenario extends Vue {
+  @State currentScenarioParameters!: ParameterList;
+
   created() {
     this.$store.commit('updateRunState', false);
   }
