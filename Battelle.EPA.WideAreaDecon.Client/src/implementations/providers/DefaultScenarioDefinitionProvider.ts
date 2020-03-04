@@ -11,5 +11,4 @@ export default class DefaultScenarioDefinitionProvider implements IScenarioDefin
     const data = deserialize<ParameterList>(mockDefineScenario, ParameterList);
     return data;
   }
-
 }
