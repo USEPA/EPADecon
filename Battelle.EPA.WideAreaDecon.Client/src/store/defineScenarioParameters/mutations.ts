@@ -1,10 +1,11 @@
 import { MutationTree } from 'vuex';
 import IRootState from '@/interfaces/store/IRootState';
+import Parameter from '@/implementations/parameter/Parameter';
 
 const defineScenarioParametersMutations: MutationTree<IRootState> = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  exampleScenarioParameterMutation(state) {
-    // console.log(state);
+  changeSelectedScenarioParameter(state: IRootState, newParameter: Parameter) {
+    state.selectedScenarioParameter = newParameter;
   },
 };
 

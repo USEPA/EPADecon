@@ -11,10 +11,15 @@ export default class ParameterList {
       return ParameterFilter;
     },
   })
-  parameters: Array<ParameterFilter>;
+  filters: Array<ParameterFilter>;
 
-  constructor(version = 0, parameters?: ParameterFilter[]) {
+  constructor(version = 0, filters?: ParameterFilter[]) {
     this.version = version;
-    this.parameters = parameters !== undefined ? parameters : new Array<ParameterFilter>();
+    this.filters = filters !== undefined ? filters : new Array<ParameterFilter>();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  public allParametersValid(): boolean {
+    return this.filters.every((f) => f.allParametersValid());
   }
 }

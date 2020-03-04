@@ -8,6 +8,7 @@ enum ParameterType {
   contaminatedBuildingType = 'contaminatedBuildingType',
   contaminatedBuildingTypes = 'contaminatedBuildingTypes',
   sumFraction = 'sumFraction',
+  null = 'null',
 }
 
 export default ParameterType;

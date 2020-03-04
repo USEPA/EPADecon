@@ -22,6 +22,8 @@ export default class AppSettings implements IAppSettings {
 
   publisherName = 'unknown';
 
+  errorIcon = 'fa-exclamation-triangle';
+
   navigationItems: INavigationItem[] = navigationItemProvider.getNavigationItems();
 
   applicationActions: IApplicationAction[] = applicationActionProvider.getApplicationActions();

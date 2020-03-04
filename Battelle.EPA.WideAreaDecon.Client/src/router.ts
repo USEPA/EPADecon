@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import DefineScenario from '@/components/scenario/DefineScenario.vue';
-import ModifyParameters from '@/components/parameters/ModifyParameters.vue';
+import DefineScenario from '@/components/adjustmentPages/DefineScenario.vue';
+import ModifyParameters from '@/components/adjustmentPages/ModifyParameters.vue';
 
 Vue.use(Router);
 

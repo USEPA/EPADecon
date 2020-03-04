@@ -1,7 +1,10 @@
 import ParameterList from '@/implementations/parameter/ParameterList';
+import Parameter from '@/implementations/parameter/Parameter';
 
 export default interface IDefineScenarioParameters {
-  baselineScenarioParameters?: ParameterList;
+  baselineScenarioParameters: ParameterList;
 
-  currentScenarioParameters?: ParameterList;
+  currentScenarioParameters: ParameterList;
+
+  selectedScenarioParameter: Parameter;
 }

@@ -3,7 +3,7 @@ import 'regenerator-runtime/runtime';
 import Vue from 'vue';
 import '@/plugins/axios';
 import GetVuetify from '@/plugins/vuetify';
-import App from '@/App.vue';
+import App from '@/components/App.vue';
 import router from '@/router';
 import store from '@/store/index';
 import '@fortawesome/fontawesome-free/css/all.css';

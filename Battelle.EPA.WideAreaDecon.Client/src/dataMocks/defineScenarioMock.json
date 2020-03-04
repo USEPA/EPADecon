@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "parameters": [
+  "filters": [
     {
       "name": "Interior",
       "filters": [],
@@ -79,17 +79,38 @@
         {
           "name": "Outdoor Contamination Breakdown",
           "type": "sumFraction",
-          "entries": {
-            "Concrete": null,
-            "Greenspace": null,
-            "Water": null
-          }
+          "entries": [
+            {
+              "key": "Concrete",
+              "value": null
+            },
+            {
+              "key": "Greenspace",
+              "value": null
+            },
+            {
+              "key": "Water",
+              "value": null
+            }
+          ]
         }
       ]
     },
     {
       "name": "Underground",
-      "filters": [],
+      "filters": [
+        {
+          "name": "Test Sub Filter",
+          "filters": [],
+          "parameters": [
+            {
+              "name": "Underground Area Contaminated",
+              "type": "constant",
+              "units": "m^2"
+            }
+          ]
+        }
+      ],
       "parameters": [
         {
           "name": "Underground Area Contaminated",

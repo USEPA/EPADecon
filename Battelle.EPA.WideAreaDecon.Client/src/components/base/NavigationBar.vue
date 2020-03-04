@@ -1,6 +1,6 @@
 <template>
   <!-- Navigation Bar -->
-  <v-app-bar app color="primary">
+  <v-app-bar app color="primary" clipped-left>
     <v-avatar color="white">
       <img src="../../assets/epaLogo.png" />
     </v-avatar>
@@ -75,16 +75,16 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { State } from 'vuex-class';
+import { State, Getter } from 'vuex-class';
 import { Component } from 'vue-property-decorator';
-import IApplicationAction from '../../interfaces/configuration/IApplicationAction';
-import INavigationItem from '../../interfaces/configuration/INavigationItem';
+import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
+import INavigationItem from '@/interfaces/configuration/INavigationItem';
 
 @Component
 export default class NavigationBar extends Vue {
   @State applicationTitle!: string;
 
-  @State canRun!: boolean;
+  @Getter canRun!: boolean;
 
   @State applicationActions!: IApplicationAction[];
 

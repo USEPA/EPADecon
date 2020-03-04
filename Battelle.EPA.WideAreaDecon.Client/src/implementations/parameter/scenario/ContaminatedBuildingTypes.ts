@@ -16,7 +16,7 @@ export default class ContaminatedBuildingTypes extends Parameter {
   buildings: Array<ContaminatedBuildingType>;
 
   public isSet(): boolean {
-    return this.type !== undefined;
+    return this.buildings.every((b) => b.isSet());
   }
 
   // eslint-disable-next-line no-useless-constructor

@@ -2,7 +2,7 @@
   <v-container fill-height fluid>
     <v-row align="center" justify="center">
       <v-col>
-        <p class="text-center display-3">Scenario definition page under construction...</p>
+        <p class="text-center display-3">Select a parameter to edit from the left menu...</p>
       </v-col>
     </v-row>
   </v-container>
@@ -12,15 +12,11 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import ParameterList from '../../implementations/parameter/ParameterList';
+import Parameter from '@/implementations/parameter/Parameter';
 
 @Component
-export default class DefineScenario extends Vue {
-  @State currentScenarioParameters!: ParameterList;
-
-  created() {
-    this.$store.commit('updateRunState', false);
-  }
+export default class NullParameter extends Vue {
+  @State selectedScenarioParameter!: Parameter;
 }
 </script>
 

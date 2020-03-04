@@ -1,6 +1,7 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterTypes';
 import Parameter from '../Parameter';
+import KeyValuePair from './keyValuePair';
 
 @Serializable('Parameter')
 export default class SumFraction extends Parameter {
@@ -8,24 +9,17 @@ export default class SumFraction extends Parameter {
   type: ParameterType = ParameterType.sumFraction;
 
   @JsonProperty()
-  entries: Map<string, number | null>;
+  entries: Array<KeyValuePair>;
 
   public isSet(): boolean {
-    if (this.entries === undefined) {
-      return false;
-    }
-    let set = true;
-    this.entries.forEach((val) => {
-      set = val !== undefined && val !== null;
-    });
-    return set;
+    return this.entries.every((e) => e.value !== null);
   }
 
-  constructor(name = 'unknown', entries?: Map<string, number>) {
+  constructor(name = 'unknown', entries?: Array<KeyValuePair>) {
     super(name);
-    if (entries !== undefined && entries.size === 0) {
+    if (entries !== undefined && entries.length === 0) {
       console.error('Constructing ContaminatedBuildingType without any entries not allowed!');
     }
-    this.entries = entries !== undefined ? entries : new Map<string, number>();
+    this.entries = entries !== undefined ? entries : [];
   }
 }
