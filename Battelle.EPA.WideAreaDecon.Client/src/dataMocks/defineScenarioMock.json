@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "parameters": [
+    {
+      "name": "Interior",
+      "filters": [],
+      "parameters": [
+        {
+          "name": "Building Types",
+          "type": "contaminatedBuildingTypes",
+          "buildings": [
+            {
+              "name": "Residential",
+              "type": "contaminatedBuildingType",
+              "area": {
+                "name": "area",
+                "type": "constant",
+                "units": "m^2"
+              }
+            },
+            {
+              "name": "Commercial",
+              "type": "contaminatedBuildingType",
+              "area": {
+                "name": "area",
+                "type": "constant",
+                "units": "m^2"
+              }
+            },
+            {
+              "name": "Industrial",
+              "type": "contaminatedBuildingType",
+              "area": {
+                "name": "area",
+                "type": "constant",
+                "units": "m^2"
+              }
+            },
+            {
+              "name": "Government",
+              "type": "contaminatedBuildingType",
+              "area": {
+                "name": "area",
+                "type": "constant",
+                "units": "m^2"
+              }
+            },
+            {
+              "name": "Educational",
+              "type": "contaminatedBuildingType",
+              "area": {
+                "name": "area",
+                "type": "constant",
+                "units": "m^2"
+              }
+            },
+            {
+              "name": "Agricultural",
+              "type": "contaminatedBuildingType",
+              "area": {
+                "name": "area",
+                "type": "constant",
+                "units": "m^2"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Exterior",
+      "filters": [],
+      "parameters": [
+        {
+          "name": "Outdoor Area Contaminated",
+          "type": "constant",
+          "units": "m^2"
+        },
+        {
+          "name": "Outdoor Contamination Breakdown",
+          "type": "sumFraction",
+          "entries": {
+            "Concrete": null,
+            "Greenspace": null,
+            "Water": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "Underground",
+      "filters": [],
+      "parameters": [
+        {
+          "name": "Underground Area Contaminated",
+          "type": "constant",
+          "units": "m^2"
+        }
+      ]
+    }
+  ]
+}
