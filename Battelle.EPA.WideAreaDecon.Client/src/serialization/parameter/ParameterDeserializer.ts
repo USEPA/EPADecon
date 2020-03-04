@@ -1,4 +1,3 @@
-import { deserialize } from 'typescript-json-serializer';
 import Parameter from '@/implementations/parameter/Parameter';
 import ContaminatedBuildingType from '@/implementations/parameter/scenario/ContaminatedBuildingType';
 import ContaminatedBuildingTypes from '@/implementations/parameter/scenario/ContaminatedBuildingTypes';

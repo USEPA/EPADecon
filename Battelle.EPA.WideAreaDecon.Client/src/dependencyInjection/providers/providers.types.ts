@@ -3,6 +3,7 @@ const PROVIDER_TYPES = {
   BackendClientConfigurationProvider: Symbol('BackendClientConfigurationProvider'),
   NavigationItemProvider: Symbol('INavigationItemProvider'),
   ApplicationActionProvider: Symbol('IApplicationActionProvider'),
+  ScenarioDefinitionProvider: Symbol('IScenarioDefinitionProvider'),
 };
 
 export default PROVIDER_TYPES;
