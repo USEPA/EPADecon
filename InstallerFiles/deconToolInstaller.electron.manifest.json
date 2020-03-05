@@ -7,7 +7,7 @@
     "imageFile": ""
   },
   "singleInstance": true,
-  "cacheDirectory": "%appdata%/wide-area-decon",
+  "cacheDirectory": "resources/cache",
   "build": {
     "appId": "com.electron.Battelle.WideAreaDeconTool.app",
     "productName": "Wide Area Decon",
@@ -24,9 +24,9 @@
     },
     "nsis": {
       "oneClick": false,
-      "perMachine": true,
-      "allowElevation": true,
-      "allowToChangeInstallationDirectory": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
       "installerIcon": "build/epaLogo.ico",
       "uninstallerIcon": "build/epaLogo.ico",
       "createDesktopShortcut": false,
