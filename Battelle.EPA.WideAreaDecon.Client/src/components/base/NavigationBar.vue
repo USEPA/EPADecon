@@ -1,11 +1,20 @@
 <template>
   <!-- Navigation Bar -->
   <v-app-bar app color="primary" clipped-left>
-    <v-avatar color="white">
-      <img src="../../assets/epaLogo.png" />
-    </v-avatar>
+    <v-tab>
+      <v-avatar color="white">
+        <v-img src="@/assets/epaLogo.png" />
+      </v-avatar>
+      <v-container fluid fill-height>
+        <v-row align="center" justify="center">
+          <v-col>
+            <v-flex class="text-center title" v-text="applicationAcronym" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-tab>
     <v-spacer></v-spacer>
-    <v-toolbar-title v-text="applicationTitle"></v-toolbar-title>
+    <v-toolbar-title class="title" v-text="applicationTitle"></v-toolbar-title>
     <v-spacer></v-spacer>
     <v-tooltip bottom :color="canRun ? 'info' : 'error'">
       <template v-slot:activator="{ on }">
@@ -37,6 +46,7 @@
       </v-list>
     </v-menu>
     <v-tabs
+      v-if="enableNavigationTabs"
       v-model="selectedNavigationRoute"
       dark
       color="secondary"
@@ -84,11 +94,15 @@ import INavigationItem from '@/interfaces/configuration/INavigationItem';
 export default class NavigationBar extends Vue {
   @State applicationTitle!: string;
 
+  @State applicationAcronym!: string;
+
   @Getter canRun!: boolean;
 
   @State applicationActions!: IApplicationAction[];
 
   @State navigationItems!: INavigationItem[];
+
+  @State enableNavigationTabs!: boolean;
 
   selectedNavigationRoute: string | null = null;
 

@@ -11,6 +11,8 @@ import runSettingsMutations from './runSettings/mutations';
 import defineScenarioParametersMutations from './defineScenarioParameters/mutations';
 import DefineScenarioParameters from './defineScenarioParameters/DefineScenarioParameters';
 import runSettingsGetters from './runSettings/getters';
+import NavigationSettings from './navigationSettings/NavigationSettings';
+import navigationSettingsMutations from './navigationSettings/mutations';
 
 Vue.use(Vuex);
 
@@ -20,6 +22,7 @@ const store: StoreOptions<IRootState> = {
     ...new AppSettings(),
     ...new RunSettings(),
     ...new DefineScenarioParameters(),
+    ...new NavigationSettings(),
   },
   modules: {},
   getters: {
@@ -30,6 +33,7 @@ const store: StoreOptions<IRootState> = {
     ...clientConfigurationMutations,
     ...runSettingsMutations,
     ...defineScenarioParametersMutations,
+    ...navigationSettingsMutations,
   },
 };
 

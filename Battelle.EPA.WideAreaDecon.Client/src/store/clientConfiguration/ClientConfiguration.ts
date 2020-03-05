@@ -9,4 +9,8 @@ export default class ClientConfiguration implements IClientConfiguration {
   applicationVersion = 'unknown';
 
   publisherName = 'unknown';
+
+  applicationAcronym = 'UNK';
+
+  applicationSponsor = 'unkown';
 }

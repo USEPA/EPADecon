@@ -24,8 +24,8 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import ParameterFilter from '../../implementations/parameter/ParameterFilter';
-import IParameter from '../../interfaces/parameter/IParameter';
+import ParameterFilter from '@/implementations/parameter/ParameterFilter';
+import IParameter from '@/interfaces/parameter/IParameter';
 
 @Component
 export default class ParameterListExpansionPanel extends Vue {

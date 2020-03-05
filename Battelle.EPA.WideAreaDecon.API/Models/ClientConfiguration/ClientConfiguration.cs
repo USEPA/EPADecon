@@ -30,5 +30,17 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration
         /// </summary>
         [JsonProperty("publisherName")]
         public string PublisherName => "Battelle Memorial Institute";
+
+        /// <summary>
+        /// The acronym for the application
+        /// </summary>
+        [JsonProperty("applicationAcronym")]
+        public string Acronym => "WAD";
+
+        /// <summary>
+        /// The agency sponsoring the development of the application
+        /// </summary>
+        [JsonProperty("applicationSponsor")]
+        public string Sponsor => "Environment Protection Agency : Office of Research and Development";
     }
 }

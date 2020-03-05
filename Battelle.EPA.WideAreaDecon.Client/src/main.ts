@@ -31,7 +31,6 @@ const scenarioDefPromise = container
   .get<IScenarioDefinitionProvider>(TYPES.ScenarioDefinitionProvider)
   .getScenarioDefinition()
   .then((scenarioDef) => {
-    console.log(scenarioDef);
     const defineScenarioParameters = new DefineScenarioParameters(scenarioDef);
     store.replaceState({ ...store.state, ...defaultConfig, ...defineScenarioParameters });
   });

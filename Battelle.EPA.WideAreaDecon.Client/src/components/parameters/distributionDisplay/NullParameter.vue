@@ -12,7 +12,7 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import IParameter from '../../../interfaces/parameter/IParameter';
+import IParameter from '@/interfaces/parameter/IParameter';
 
 @Component
 export default class NullParameter extends Vue {

@@ -16,8 +16,8 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 import ParameterSelectionDrawer from '@/components/parameters/ParameterSelectionDrawer.vue';
-import NullParameter from '../../implementations/parameter/NullParameter';
-import IParameter from '../../interfaces/parameter/IParameter';
+import NullParameter from '@/implementations/parameter/NullParameter';
+import IParameter from '@/interfaces/parameter/IParameter';
 
 @Component({
   components: { ParameterSelectionDrawer },
