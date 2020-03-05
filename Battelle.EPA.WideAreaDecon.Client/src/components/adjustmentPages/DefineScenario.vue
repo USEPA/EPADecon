@@ -17,13 +17,13 @@ import { Component } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 import ParameterSelectionDrawer from '@/components/parameters/ParameterSelectionDrawer.vue';
 import NullParameter from '../../implementations/parameter/NullParameter';
-import Parameter from '../../implementations/parameter/Parameter';
+import IParameter from '../../interfaces/parameter/IParameter';
 
 @Component({
   components: { ParameterSelectionDrawer },
 })
 export default class DefineScenario extends Vue {
-  @State selectedScenarioParameter!: Parameter;
+  @State selectedScenarioParameter!: IParameter;
 
   created() {
     this.$store.commit('changeSelectedScenarioParameter', new NullParameter());

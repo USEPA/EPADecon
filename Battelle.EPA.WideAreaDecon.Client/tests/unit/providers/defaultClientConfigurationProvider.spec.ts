@@ -8,7 +8,7 @@ describe('DefaultClientConfigurationProvider', function TestDefaultClientConfigu
     const defaultValue = 'unknown';
 
     // SUT
-    const configuration = await provider.getClientConfiguration();
+    const configuration = await provider.getClientConfigurationAsync();
 
     // Assert
     expect(configuration.theme).to.deep.equal({});

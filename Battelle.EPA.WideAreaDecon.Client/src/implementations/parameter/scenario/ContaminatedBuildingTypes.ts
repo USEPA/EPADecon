@@ -1,10 +1,12 @@
-import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterTypes';
-import Parameter from '../Parameter';
+import IParameter from '@/interfaces/parameter/IParameter';
 import ContaminatedBuildingType from './ContaminatedBuildingType';
 
-@Serializable('Parameter')
-export default class ContaminatedBuildingTypes extends Parameter {
+export default class ContaminatedBuildingTypes implements IParameter {
+  @JsonProperty()
+  name: string;
+
   @JsonProperty()
   type: ParameterType = ParameterType.contaminatedBuildingTypes;
 
@@ -21,7 +23,7 @@ export default class ContaminatedBuildingTypes extends Parameter {
 
   // eslint-disable-next-line no-useless-constructor
   constructor(name = 'unknown', buildings?: ContaminatedBuildingType[]) {
-    super(name);
+    this.name = name;
     if (buildings !== undefined && buildings.length === 0) {
       // console.error('Construction of ContaminatedBulidingTypes with no buildings not allowed!');
     }

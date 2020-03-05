@@ -1,10 +1,12 @@
-import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterTypes';
-import Parameter from '../Parameter';
+import IParameter from '@/interfaces/parameter/IParameter';
 import KeyValuePair from './keyValuePair';
 
-@Serializable('Parameter')
-export default class SumFraction extends Parameter {
+export default class SumFraction implements IParameter {
+  @JsonProperty()
+  name: string;
+
   @JsonProperty()
   type: ParameterType = ParameterType.sumFraction;
 
@@ -16,7 +18,7 @@ export default class SumFraction extends Parameter {
   }
 
   constructor(name = 'unknown', entries?: Array<KeyValuePair>) {
-    super(name);
+    this.name = name;
     if (entries !== undefined && entries.length === 0) {
       // console.error('Constructing ContaminatedBuildingType without any entries not allowed!');
     }

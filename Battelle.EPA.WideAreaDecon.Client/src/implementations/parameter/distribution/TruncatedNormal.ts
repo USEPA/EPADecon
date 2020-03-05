@@ -1,9 +1,11 @@
-import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterTypes';
-import Parameter from '../Parameter';
+import IParameter from '@/interfaces/parameter/IParameter';
 
-@Serializable('Parameter')
-export default class TruncatedNormal extends Parameter {
+export default class TruncatedNormal implements IParameter {
+  @JsonProperty()
+  name: string;
+
   @JsonProperty()
   type: ParameterType = ParameterType.constant;
 
@@ -24,7 +26,7 @@ export default class TruncatedNormal extends Parameter {
   }
 
   constructor(name = 'unknown', min?: number, max?: number, mean?: number, stdDev?: number) {
-    super(name);
+    this.name = name;
     this.min = min;
     this.max = max;
     this.mean = mean;

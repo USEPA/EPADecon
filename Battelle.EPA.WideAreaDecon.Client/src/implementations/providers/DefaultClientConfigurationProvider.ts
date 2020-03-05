@@ -5,13 +5,19 @@ import IClientConfigurationProvider from '@/interfaces/providers/IClientConfigur
 
 @injectable()
 export default class DefaultClientConfigurationProvider implements IClientConfigurationProvider {
+  defaultConfig: IClientConfiguration = {
+    theme: {},
+    applicationVersion: 'unknown',
+    applicationTitle: 'unknown',
+    publisherName: 'unknown',
+  };
+
   // eslint-disable-next-line class-methods-use-this
-  async getClientConfiguration(): Promise<IClientConfiguration> {
-    return {
-      theme: {},
-      applicationVersion: 'unknown',
-      applicationTitle: 'unknown',
-      publisherName: 'unknown',
-    };
+  async getClientConfigurationAsync(): Promise<IClientConfiguration> {
+    return this.getClientConfiguration();
+  }
+
+  getClientConfiguration(): IClientConfiguration {
+    return this.defaultConfig;
   }
 }

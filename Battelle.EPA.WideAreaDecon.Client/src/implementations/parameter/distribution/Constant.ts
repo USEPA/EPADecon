@@ -1,9 +1,11 @@
-import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterTypes';
-import Parameter from '../Parameter';
+import IParameter from '@/interfaces/parameter/IParameter';
 
-@Serializable('Parameter')
-export default class Constant extends Parameter {
+export default class Constant implements IParameter {
+  @JsonProperty()
+  name: string;
+
   @JsonProperty()
   type: ParameterType = ParameterType.constant;
 
@@ -15,7 +17,7 @@ export default class Constant extends Parameter {
   }
 
   constructor(name = 'unknown', value?: number) {
-    super(name);
+    this.name = name;
     this.value = value;
   }
 }

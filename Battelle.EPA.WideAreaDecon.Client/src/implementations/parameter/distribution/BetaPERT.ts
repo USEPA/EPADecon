@@ -1,9 +1,11 @@
-import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterTypes';
-import Parameter from '../Parameter';
+import IParameter from '@/interfaces/parameter/IParameter';
 
-@Serializable('Parameter')
-export default class BetaPERT extends Parameter {
+export default class BetaPERT implements IParameter {
+  @JsonProperty()
+  name: string;
+
   @JsonProperty()
   type: ParameterType = ParameterType.pert;
 
@@ -21,7 +23,7 @@ export default class BetaPERT extends Parameter {
   }
 
   constructor(name = 'unknown', min?: number, max?: number, mode?: number) {
-    super(name);
+    this.name = name;
     this.min = min;
     this.max = max;
     this.mode = mode;

@@ -1,6 +1,6 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterDeserializer from '@/serialization/parameter/ParameterDeserializer';
-import Parameter from './Parameter';
+import IParameter from '@/interfaces/parameter/IParameter';
 
 @Serializable()
 export default class ParameterFilter {
@@ -15,12 +15,12 @@ export default class ParameterFilter {
   public filters: Array<ParameterFilter>;
 
   @JsonProperty(ParameterDeserializer)
-  public parameters: Array<Parameter>;
+  public parameters: Array<IParameter>;
 
-  constructor(name = 'unknown', filters?: ParameterFilter[], parameters?: Parameter[]) {
+  constructor(name = 'unknown', filters?: ParameterFilter[], parameters?: IParameter[]) {
     this.name = name;
     this.filters = filters !== undefined ? filters : new Array<ParameterFilter>();
-    this.parameters = parameters !== undefined ? parameters : new Array<Parameter>();
+    this.parameters = parameters !== undefined ? parameters : new Array<IParameter>();
   }
 
   public allParametersValid(): boolean {

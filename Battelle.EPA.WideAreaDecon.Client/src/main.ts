@@ -14,23 +14,31 @@ import TYPES from '@/dependencyInjection/types';
 import _ from 'lodash';
 import IScenarioDefinitionProvider from './interfaces/providers/IScenarioDefinitionProvider';
 import DefineScenarioParameters from './store/defineScenarioParameters/DefineScenarioParameters';
+import DefaultClientConfigurationProvider from './implementations/providers/DefaultClientConfigurationProvider';
 
 Vue.config.productionTip = false;
 
+let defaultConfig = new DefaultClientConfigurationProvider().getClientConfiguration();
+
 const clientConfigPromise = container
   .get<BackendClientConfigurationProvider>(TYPES.BackendClientConfigurationProvider)
-  .getClientConfiguration();
+  .getClientConfigurationAsync()
+  .then((clientConfig) => {
+    defaultConfig = { ...defaultConfig, ...clientConfig };
+  });
 
 const scenarioDefPromise = container
   .get<IScenarioDefinitionProvider>(TYPES.ScenarioDefinitionProvider)
-  .getScenarioDefinition();
+  .getScenarioDefinition()
+  .then((scenarioDef) => {
+    console.log(scenarioDef);
+    const defineScenarioParameters = new DefineScenarioParameters(scenarioDef);
+    store.replaceState({ ...store.state, ...defaultConfig, ...defineScenarioParameters });
+  });
 
-Promise.all([clientConfigPromise, scenarioDefPromise]).then(([clientConfig, scenarioDef]) => {
-  // empty
-  const vuetify = GetVuetify(clientConfig);
-  const defineScenarioParameters = new DefineScenarioParameters(scenarioDef);
-  store.replaceState({ ...store.state, ...clientConfig, ...defineScenarioParameters });
-  // console.log(store);
+Promise.all([clientConfigPromise, scenarioDefPromise]).finally(() => {
+  store.replaceState({ ...store.state, ...defaultConfig });
+  const vuetify = GetVuetify(defaultConfig);
   new Vue({
     vuetify,
     router,

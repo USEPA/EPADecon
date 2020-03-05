@@ -1,11 +1,13 @@
-import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterTypes';
 import DistributionParameterDeserializer from '@/serialization/parameter/DistributionParameterDeserializer';
-import Parameter from '../Parameter';
+import IParameter from '@/interfaces/parameter/IParameter';
 import DistributionParameter from '../distribution/DistributionParameter';
 
-@Serializable('Parameter')
-export default class ContaminatedBuildingType extends Parameter {
+export default class ContaminatedBuildingType implements IParameter {
+  @JsonProperty()
+  name: string;
+
   @JsonProperty()
   type: ParameterType = ParameterType.contaminatedBuildingType;
 
@@ -20,7 +22,7 @@ export default class ContaminatedBuildingType extends Parameter {
   }
 
   constructor(name = 'unknown', area?: DistributionParameter) {
-    super(name);
+    this.name = name;
     this.area = area;
   }
 }

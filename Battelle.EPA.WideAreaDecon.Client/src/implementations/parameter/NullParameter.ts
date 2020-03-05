@@ -1,8 +1,10 @@
 import ParameterType from '@/enums/parameter/parameterTypes';
-import Parameter from './Parameter';
+import IParameter from '@/interfaces/parameter/IParameter';
+import { JsonProperty } from 'typescript-json-serializer';
 
-export default class NullParameter implements Parameter {
-  name = 'NULL';
+export default class NullParameter implements IParameter {
+  @JsonProperty()
+  name = 'null';
 
   type = ParameterType.null;
 

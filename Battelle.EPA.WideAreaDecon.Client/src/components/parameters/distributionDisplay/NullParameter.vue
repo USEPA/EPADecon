@@ -12,11 +12,11 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import Parameter from '@/implementations/parameter/Parameter';
+import IParameter from '../../../interfaces/parameter/IParameter';
 
 @Component
 export default class NullParameter extends Vue {
-  @State selectedScenarioParameter!: Parameter;
+  @State selectedScenarioParameter!: IParameter;
 }
 </script>
 
