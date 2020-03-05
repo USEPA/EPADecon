@@ -23,7 +23,7 @@ export default class ContaminatedBuildingTypes extends Parameter {
   constructor(name = 'unknown', buildings?: ContaminatedBuildingType[]) {
     super(name);
     if (buildings !== undefined && buildings.length === 0) {
-      console.error('Construction of ContaminatedBulidingTypes with no buildings not allowed!');
+      // console.error('Construction of ContaminatedBulidingTypes with no buildings not allowed!');
     }
     if (buildings) {
       this.buildings = buildings;

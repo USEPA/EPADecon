@@ -1,4 +1,3 @@
-import { deserialize } from 'typescript-json-serializer';
 import Parameter from '@/implementations/parameter/Parameter';
 import Constant from '@/implementations/parameter/distribution/Constant';
 import Uniform from '@/implementations/parameter/distribution/Uniform';

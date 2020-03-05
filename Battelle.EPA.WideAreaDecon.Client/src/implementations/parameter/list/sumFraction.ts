@@ -18,7 +18,7 @@ export default class SumFraction extends Parameter {
   constructor(name = 'unknown', entries?: Array<KeyValuePair>) {
     super(name);
     if (entries !== undefined && entries.length === 0) {
-      console.error('Constructing ContaminatedBuildingType without any entries not allowed!');
+      // console.error('Constructing ContaminatedBuildingType without any entries not allowed!');
     }
     this.entries = entries !== undefined ? entries : [];
   }
