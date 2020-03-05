@@ -6,7 +6,7 @@
       "filters": [],
       "parameters": [
         {
-          "name": "Building Types",
+          "name": "Amount of Contamination",
           "type": "contaminatedBuildingTypes",
           "buildings": [
             {
@@ -98,19 +98,7 @@
     },
     {
       "name": "Underground",
-      "filters": [
-        {
-          "name": "Test Sub Filter",
-          "filters": [],
-          "parameters": [
-            {
-              "name": "Underground Area Contaminated",
-              "type": "constant",
-              "units": "m^2"
-            }
-          ]
-        }
-      ],
+      "filters": [],
       "parameters": [
         {
           "name": "Underground Area Contaminated",
