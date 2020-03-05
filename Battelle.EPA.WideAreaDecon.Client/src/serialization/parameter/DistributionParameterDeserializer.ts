@@ -34,7 +34,7 @@ export default {
         return TruncatedLogNormal;
       }
       default: {
-        console.error(`Did not recognize type ${parameter.type}`);
+        // console.error(`Did not recognize type ${parameter.type}`);
         return undefined;
       }
     }
