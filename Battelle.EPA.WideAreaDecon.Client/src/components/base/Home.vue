@@ -22,15 +22,7 @@
                 <v-toolbar width="300" color="primary">
                   <v-toolbar-title class="subtitle-1" v-text="item.title" />
                   <v-spacer />
-                  <v-dialog v-model="dialog" max-width="600">
-                    <template v-slot:activator="{ on }">
-                      <v-icon v-on="on" @click="selectedHelpItem = item">help</v-icon>
-                    </template>
-                    <v-card>
-                      <v-card-title class="headline" v-text="item.title + ' Help'" />
-                      <v-card-text v-text="item.helpMessage" />
-                    </v-card>
-                  </v-dialog>
+                  <home-option-help :item="item"></home-option-help>
                 </v-toolbar>
                 <v-card :color="'secondary'" class="d-flex align-center" dark height="300" @click="itemSelected(item)">
                   <v-img :src="getImage(item.image)" max-width="300" />
@@ -52,17 +44,16 @@ import container from '@/dependencyInjection/config';
 import IImageProvider from '@/interfaces/providers/IImageProvider';
 import TYPES from '@/dependencyInjection/types';
 import IHomeOptionsProvider from '@/interfaces/providers/IHomeOptionsProvider';
-import IHomeOptions from '../../interfaces/configuration/IHomeOptions';
+import IHomeOptions from '@/interfaces/configuration/IHomeOptions';
+import HomeOptionHelp from '@/components/modals/HomeOptionHelp.vue';
 
-@Component
+@Component({ components: { HomeOptionHelp } })
 export default class Home extends Vue {
   @State applicationTitle!: string;
 
   @State applicationSponsor!: string;
 
   data = container.get<IHomeOptionsProvider>(TYPES.HomeOptionsProvider).getOptions();
-
-  selectedHelpItem?: IHomeOptions;
 
   // eslint-disable-next-line class-methods-use-this, @typescript-eslint/no-explicit-any
   getImage(name: string): any {

@@ -2,8 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import DefineScenario from '@/components/adjustmentPages/DefineScenario.vue';
 import ModifyParameters from '@/components/adjustmentPages/ModifyParameters.vue';
-import LoadPreDefinedScenario from '@/components/load/LoadPreDefinedScenario.vue';
-import LoadPreviousScenario from '@/components/load/LoadPreviousScenario.vue';
+import LoadPreDefinedScenario from '@/components/modals/load/LoadPreDefinedScenario.vue';
+import LoadPreviousScenario from '@/components/modals/load/LoadPreviousScenario.vue';
 import Home from '@/components/base/Home.vue';
 
 Vue.use(Router);
