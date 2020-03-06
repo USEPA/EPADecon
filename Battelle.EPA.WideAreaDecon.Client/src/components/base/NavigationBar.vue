@@ -1,7 +1,7 @@
 <template>
   <!-- Navigation Bar -->
   <v-app-bar app color="primary" clipped-left>
-    <v-tab>
+    <v-tab :to="'/'">
       <v-avatar color="white">
         <v-img :src="imageProvider.getImage('EpaLogo')" />
       </v-avatar>
@@ -62,6 +62,13 @@
             <v-tab :class="getClassName(item.link)" v-on="on" :to="item.link" :disabled="!item.enabled">
               {{ item.title }}
               <v-icon :class="getClassName(item.link)">{{ item.icon }}</v-icon>
+              <v-badge
+                v-if="item.getNumberInvalid() > 0"
+                color="error"
+                :content="item.getNumberInvalid()"
+                offset-x="-150"
+                offset-y="20"
+              />
             </v-tab>
           </template>
           <span>{{ item.tooltip.enabled }}</span>

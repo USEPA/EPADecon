@@ -22,4 +22,12 @@ export default class ParameterList {
   public allParametersValid(): boolean {
     return this.filters.every((f) => f.allParametersValid());
   }
+
+  public numberInvalidParameters(): number {
+    let sum = 0;
+    this.filters.forEach((f) => {
+      sum += f.numberInvalidParameters();
+    });
+    return sum;
+  }
 }

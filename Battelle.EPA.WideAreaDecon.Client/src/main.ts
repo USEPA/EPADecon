@@ -15,6 +15,8 @@ import _ from 'lodash';
 import IScenarioDefinitionProvider from './interfaces/providers/IScenarioDefinitionProvider';
 import DefineScenarioParameters from './store/defineScenarioParameters/DefineScenarioParameters';
 import DefaultClientConfigurationProvider from './implementations/providers/DefaultClientConfigurationProvider';
+import IApplicationActionProvider from './interfaces/providers/IApplicationActionProvider';
+import INavigationItemProvider from './interfaces/providers/INavigationItemProvider';
 
 Vue.config.productionTip = false;
 
@@ -35,8 +37,19 @@ const scenarioDefPromise = container
     store.replaceState({ ...store.state, ...defaultConfig, ...defineScenarioParameters });
   });
 
+const applicationActions = container
+  .get<IApplicationActionProvider>(TYPES.ApplicationActionProvider)
+  .getApplicationActions();
+
+const navigationItems = container.get<INavigationItemProvider>(TYPES.NavigationItemProvider).getNavigationItems();
+
 Promise.all([clientConfigPromise, scenarioDefPromise]).finally(() => {
-  store.replaceState({ ...store.state, ...defaultConfig });
+  store.replaceState({
+    ...store.state,
+    ...defaultConfig,
+    ...{ applicationActions },
+    ...{ navigationItems },
+  });
   const vuetify = GetVuetify(defaultConfig);
   new Vue({
     vuetify,

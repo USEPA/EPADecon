@@ -8,7 +8,6 @@ export default class DefaultImageProvider implements IImageProvider {
 
   // eslint-disable-next-line class-methods-use-this
   getImage(name: string): unknown {
-    // eslint-disable-next-line import/no-dynamic-require,global-require
     return assets[name];
   }
 }

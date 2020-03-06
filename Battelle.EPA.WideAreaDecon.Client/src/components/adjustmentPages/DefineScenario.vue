@@ -27,6 +27,7 @@ export default class DefineScenario extends Vue {
 
   created() {
     this.$store.commit('changeSelectedScenarioParameter', new NullParameter());
+    this.$store.commit('enableNavigationTabs');
   }
 }
 </script>

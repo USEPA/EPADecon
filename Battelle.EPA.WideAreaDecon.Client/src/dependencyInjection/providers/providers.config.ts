@@ -32,7 +32,7 @@ const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => 
 
   bind<IImageProvider>(PROVIDER_TYPES.ImageProvider).to(DefaultImageProvider);
 
-  bind<IHomeOptionsProvider>(PROVIDER_TYPES.HomeOptionsProvider).to(DefaultHomeOptionsProvider)
+  bind<IHomeOptionsProvider>(PROVIDER_TYPES.HomeOptionsProvider).to(DefaultHomeOptionsProvider);
 });
 
 export default providersContainerModule;

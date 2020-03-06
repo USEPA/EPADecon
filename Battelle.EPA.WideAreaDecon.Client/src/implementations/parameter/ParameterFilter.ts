@@ -26,4 +26,15 @@ export default class ParameterFilter {
   public allParametersValid(): boolean {
     return this.filters.every((f) => f.allParametersValid()) && this.parameters.every((p) => p.isSet());
   }
+
+  public numberInvalidParameters(): number {
+    let sum = 0;
+    this.filters.forEach((f) => {
+      sum += f.numberInvalidParameters();
+    });
+    this.parameters.forEach((p) => {
+      sum += p.isSet() ? 0 : 1;
+    });
+    return sum;
+  }
 }

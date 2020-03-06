@@ -23,7 +23,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration
         /// The title of the current application
         /// </summary>
         [JsonProperty("applicationTitle")]
-        public string Title => "Wide Area Decontamination";
+        public string Title => "Wide Area Decontamination Application";
 
         /// <summary>
         /// The publisher of the application

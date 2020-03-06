@@ -7,4 +7,4 @@ var assets = {
   LoadPreviousScenario: require('@/assets/LoadPreviousScenario.png'),
 };
 
-export default assets;
+export default assets as never;

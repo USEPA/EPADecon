@@ -22,7 +22,15 @@
                 <v-toolbar width="300" color="primary">
                   <v-toolbar-title class="subtitle-1" v-text="item.title" />
                   <v-spacer />
-                  <v-icon @click="showHelp(item.helpMessage)">help</v-icon>
+                  <v-dialog v-model="dialog" max-width="600">
+                    <template v-slot:activator="{ on }">
+                      <v-icon v-on="on" @click="selectedHelpItem = item">help</v-icon>
+                    </template>
+                    <v-card>
+                      <v-card-title class="headline" v-text="item.title + ' Help'" />
+                      <v-card-text v-text="item.helpMessage" />
+                    </v-card>
+                  </v-dialog>
                 </v-toolbar>
                 <v-card :color="'secondary'" class="d-flex align-center" dark height="300" @click="itemSelected(item)">
                   <v-img :src="getImage(item.image)" max-width="300" />
@@ -33,26 +41,6 @@
         </v-col>
       </v-row>
     </v-container>
-    <!-- <v-item-group>
-      <v-row>
-        <v-spacer cols="2" />
-        <v-col align-self="center" v-for="(item, n) in data" :key="n" cols="4">
-          <v-item>
-            <v-container>
-              <v-toolbar color="primary">
-                <v-toolbar-title v-text="item.title" />
-                <v-spacer />
-                <v-icon @click=";">help</v-icon>
-              </v-toolbar>
-              <v-card :color="'secondary'" class="d-flex align-center" dark height="300" @click=";" >
-                <v-img src="@/assets/CreateScenario.png" max-width="300" />
-              </v-card>
-            </v-container>
-          </v-item>
-        </v-col>
-        <v-spacer cols="2" />
-      </v-row>
-    </v-item-group> -->
   </v-container>
 </template>
 
@@ -60,13 +48,11 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import container from '../../dependencyInjection/config';
-import IImageProvider from '../../interfaces/providers/IImageProvider';
-import TYPES from '../../dependencyInjection/types';
-import IHomeOptionsProvider from '../../interfaces/providers/IHomeOptionsProvider';
-
-const imageProvider = container.get<IImageProvider>(TYPES.ImageProvider);
-const homeOptions = container.get<IHomeOptionsProvider>(TYPES.HomeOptionsProvider).getOptions();
+import container from '@/dependencyInjection/config';
+import IImageProvider from '@/interfaces/providers/IImageProvider';
+import TYPES from '@/dependencyInjection/types';
+import IHomeOptionsProvider from '@/interfaces/providers/IHomeOptionsProvider';
+import IHomeOptions from '../../interfaces/configuration/IHomeOptions';
 
 @Component
 export default class Home extends Vue {
@@ -74,21 +60,22 @@ export default class Home extends Vue {
 
   @State applicationSponsor!: string;
 
-  data = homeOptions;
+  data = container.get<IHomeOptionsProvider>(TYPES.HomeOptionsProvider).getOptions();
+
+  selectedHelpItem?: IHomeOptions;
 
   // eslint-disable-next-line class-methods-use-this, @typescript-eslint/no-explicit-any
   getImage(name: string): any {
-    return imageProvider.getImage(name);
-  }
-
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
-  showHelp(message: string): void {
-    // do nothing
+    return container.get<IImageProvider>(TYPES.ImageProvider).getImage(name);
   }
 
   // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars,@typescript-eslint/no-explicit-any
-  itemSelected(item: any) {
-    // do nothing
+  itemSelected(item: IHomeOptions) {
+    this.$router.push(item.linkPage);
+  }
+
+  created() {
+    this.$store.commit('disableNavigationTabs');
   }
 }
 </script>
