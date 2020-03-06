@@ -1,6 +1,7 @@
 <template>
   <!-- Navigation Bar -->
   <v-app-bar app color="primary" clipped-left>
+    <!-- Navigate to home icon -->
     <v-tab :to="'/'">
       <v-avatar color="white">
         <v-img :src="imageProvider.getImage('EpaLogo')" />
@@ -14,8 +15,12 @@
       </v-container>
     </v-tab>
     <v-spacer></v-spacer>
+
+    <!-- Application title -->
     <v-toolbar-title class="title" v-text="applicationTitle"></v-toolbar-title>
     <v-spacer></v-spacer>
+
+    <!-- Run button -->
     <v-tooltip bottom :color="canRun ? 'info' : 'error'">
       <template v-slot:activator="{ on }">
         <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'" :color="canRun ? 'secondary' : ''">
@@ -27,7 +32,9 @@
       <span v-if="canRun">Runs the model and generates results</span>
       <span v-if="!canRun">Please define scenario to run model...</span>
     </v-tooltip>
-    <v-menu left bottom>
+
+    <!-- Dropdown menu -->
+    <v-menu left bottom v-if="false">
       <template v-slot:activator="{ on }">
         <v-btn icon v-on="on">
           <v-icon>mdi-dots-vertical</v-icon>
@@ -45,6 +52,8 @@
         </template>
       </v-list>
     </v-menu>
+
+    <!-- Navigation tabs -->
     <v-tabs
       v-if="enableNavigationTabs"
       v-model="selectedNavigationRoute"
