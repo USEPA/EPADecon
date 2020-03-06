@@ -4,7 +4,8 @@
       <template v-slot:activator>
         <v-list-item-title>{{ item.name }}</v-list-item-title>
         <v-list-item-icon v-if="!item.allParametersValid()">
-          <v-icon color="error">{{ errorIcon }}</v-icon>
+          <!-- <v-icon color="error">{{ errorIcon }}</v-icon> -->
+          <v-badge v-if="item.numberInvalidParameters() > 0" color="error" :content="item.numberInvalidParameters()" />
         </v-list-item-icon>
       </template>
       <parameter-filter-expansion-panel :filter="item" :parameterMutationPath="parameterMutationPath" />
@@ -32,6 +33,7 @@ export default class ParameterListExpansionPanel extends Vue {
   list!: ParameterList;
 
   getFilters(): ParameterFilter[] {
+    console.log(this.list.filters);
     return this.list.filters;
   }
 }

@@ -12,7 +12,8 @@
           <v-list-item-title v-text="filt.name"></v-list-item-title>
         </v-list-item-content>
         <v-list-item-icon v-if="!filt.allParametersValid()">
-          <v-icon color="error">{{ errorIcon }}</v-icon>
+          <!-- <v-icon color="error">{{ errorIcon }}</v-icon> -->
+          <v-badge v-if="filt.numberInvalidParameters() > 0" color="error" :content="filt.numberInvalidParameters()" />
         </v-list-item-icon>
       </template>
       <parameter-list-expansion-panel :filter="filt" :parameterMutationPath="parameterMutationPath" />
