@@ -3,7 +3,7 @@
   <v-app-bar app color="primary" clipped-left>
     <v-tab>
       <v-avatar color="white">
-        <v-img src="@/assets/epaLogo.png" />
+        <v-img :src="imageProvider.getImage('EpaLogo')" />
       </v-avatar>
       <v-container fluid fill-height>
         <v-row align="center" justify="center">
@@ -89,6 +89,9 @@ import { State, Getter } from 'vuex-class';
 import { Component } from 'vue-property-decorator';
 import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
 import INavigationItem from '@/interfaces/configuration/INavigationItem';
+import container from '@/dependencyInjection/config';
+import IImageProvider from '../../interfaces/providers/IImageProvider';
+import TYPES from '../../dependencyInjection/types';
 
 @Component
 export default class NavigationBar extends Vue {
@@ -103,6 +106,8 @@ export default class NavigationBar extends Vue {
   @State navigationItems!: INavigationItem[];
 
   @State enableNavigationTabs!: boolean;
+
+  imageProvider = container.get<IImageProvider>(TYPES.ImageProvider);
 
   selectedNavigationRoute: string | null = null;
 

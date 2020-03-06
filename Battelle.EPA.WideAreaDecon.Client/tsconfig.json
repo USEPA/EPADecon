@@ -44,7 +44,8 @@
     "src/**/*.js",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "tests/**/*.js"
+    "tests/**/*.js",
+    "assets/**/*.png",
   ],
   "exclude": [
     "node_modules"

@@ -2,5 +2,4 @@ import INavigationSettings from '@/interfaces/store/navigationSettings/INavigati
 
 export default class NavigationSettings implements INavigationSettings {
   enableNavigationTabs = false;
-
 }

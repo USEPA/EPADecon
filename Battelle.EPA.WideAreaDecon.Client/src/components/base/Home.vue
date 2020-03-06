@@ -22,10 +22,10 @@
                 <v-toolbar width="300" color="primary">
                   <v-toolbar-title class="subtitle-1" v-text="item.title" />
                   <v-spacer />
-                  <v-icon @click=";">help</v-icon>
+                  <v-icon @click="showHelp(item.helpMessage)">help</v-icon>
                 </v-toolbar>
-                <v-card :color="'secondary'" class="d-flex align-center" dark height="300" @click=";">
-                  <v-img :src="item.image" max-width="300" />
+                <v-card :color="'secondary'" class="d-flex align-center" dark height="300" @click="itemSelected(item)">
+                  <v-img :src="getImage(item.image)" max-width="300" />
                 </v-card>
               </v-container>
             </v-card>
@@ -60,6 +60,13 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { State } from 'vuex-class';
+import container from '../../dependencyInjection/config';
+import IImageProvider from '../../interfaces/providers/IImageProvider';
+import TYPES from '../../dependencyInjection/types';
+import IHomeOptionsProvider from '../../interfaces/providers/IHomeOptionsProvider';
+
+const imageProvider = container.get<IImageProvider>(TYPES.ImageProvider);
+const homeOptions = container.get<IHomeOptionsProvider>(TYPES.HomeOptionsProvider).getOptions();
 
 @Component
 export default class Home extends Vue {
@@ -67,23 +74,22 @@ export default class Home extends Vue {
 
   @State applicationSponsor!: string;
 
-  data = [
-    {
-      title: 'Create New Scenario',
-      // eslint-disable-next-line global-require
-      image: require('@/assets/CreateScenario.png'),
-    },
-    {
-      title: 'Create Pre-Defined Scenario',
-      // eslint-disable-next-line global-require
-      image: require('@/assets/LoadPresetScenario.png'),
-    },
-    {
-      title: 'Load Previous Scenario',
-      // eslint-disable-next-line global-require
-      image: require('@/assets/LoadPreviousScenario.png'),
-    },
-  ];
+  data = homeOptions;
+
+  // eslint-disable-next-line class-methods-use-this, @typescript-eslint/no-explicit-any
+  getImage(name: string): any {
+    return imageProvider.getImage(name);
+  }
+
+  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  showHelp(message: string): void {
+    // do nothing
+  }
+
+  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars,@typescript-eslint/no-explicit-any
+  itemSelected(item: any) {
+    // do nothing
+  }
 }
 </script>
 
