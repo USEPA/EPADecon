@@ -1,9 +1,9 @@
 import ParameterList from '@/implementations/parameter/ParameterList';
-import IDefineScenarioParameters from '@/interfaces/store/defineScenarioParameters/IDefineScenarioParameters';
 import deepCopy from '@/utilities/deepCopy';
 import NullParameter from '@/implementations/parameter/NullParameter';
+import IScenarioParameters from '@/interfaces/store/defineScenarioParameters/IScenarioParameters';
 
-export default class DefineScenarioParameters implements IDefineScenarioParameters {
+export default class ScenarioParameters implements IScenarioParameters {
   baselineScenarioParameters: ParameterList = new ParameterList(-1, []);
 
   currentScenarioParameters: ParameterList = new ParameterList(-1, []);

@@ -13,14 +13,18 @@ import TYPES from '@/dependencyInjection/types';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import _ from 'lodash';
 import IScenarioDefinitionProvider from './interfaces/providers/IScenarioDefinitionProvider';
-import DefineScenarioParameters from './store/defineScenarioParameters/DefineScenarioParameters';
+import ScenarioDefinition from './store/scenarioDefinition/ScenarioDefinition';
 import DefaultClientConfigurationProvider from './implementations/providers/DefaultClientConfigurationProvider';
 import IApplicationActionProvider from './interfaces/providers/IApplicationActionProvider';
 import INavigationItemProvider from './interfaces/providers/INavigationItemProvider';
+import IScenarioParameterProvider from './interfaces/providers/IScenarioParameterProvider';
+import ScenarioParameters from './store/scenarioParameters/ScenarioParameters';
 
 Vue.config.productionTip = false;
 
 let defaultConfig = new DefaultClientConfigurationProvider().getClientConfiguration();
+let defaultScenario = new ScenarioDefinition();
+let defaultParameters = new ScenarioParameters();
 
 const clientConfigPromise = container
   .get<BackendClientConfigurationProvider>(TYPES.BackendClientConfigurationProvider)
@@ -33,8 +37,14 @@ const scenarioDefPromise = container
   .get<IScenarioDefinitionProvider>(TYPES.ScenarioDefinitionProvider)
   .getScenarioDefinition()
   .then((scenarioDef) => {
-    const defineScenarioParameters = new DefineScenarioParameters(scenarioDef);
-    store.replaceState({ ...store.state, ...defaultConfig, ...defineScenarioParameters });
+    defaultScenario = new ScenarioDefinition(scenarioDef);
+  });
+
+const scenarioParamsPromise = container
+  .get<IScenarioParameterProvider>(TYPES.ScenarioParameterProvider)
+  .getScenarioParameters()
+  .then((scenarioParams) => {
+    defaultParameters = new ScenarioParameters(scenarioParams);
   });
 
 const applicationActions = container
@@ -43,12 +53,13 @@ const applicationActions = container
 
 const navigationItems = container.get<INavigationItemProvider>(TYPES.NavigationItemProvider).getNavigationItems();
 
-Promise.all([clientConfigPromise, scenarioDefPromise]).finally(() => {
+Promise.all([clientConfigPromise, scenarioDefPromise, scenarioParamsPromise]).finally(() => {
   store.replaceState({
     ...store.state,
     ...defaultConfig,
-    ...{ applicationActions },
-    ...{ navigationItems },
+    ...defaultScenario,
+    ...defaultParameters,
+    ...{ applicationActions, navigationItems },
   });
   const vuetify = GetVuetify(defaultConfig);
   new Vue({

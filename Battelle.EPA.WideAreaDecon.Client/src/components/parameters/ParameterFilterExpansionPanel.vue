@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-list-item v-for="(param, i) in getSubParameters()" :key="param.name + i" @click="doNothing">
+    <v-list-item v-for="(param, i) in getSubParameters()" :key="param.name + i" @click="setNewParameter(param)">
       <v-list-item-title v-text="param.name"></v-list-item-title>
       <v-list-item-icon v-if="!param.isSet()">
         <v-icon color="error">{{ errorIcon }}</v-icon>
@@ -15,7 +15,7 @@
           <v-icon color="error">{{ errorIcon }}</v-icon>
         </v-list-item-icon>
       </template>
-      <parameter-list-expansion-panel :filter="filt" />
+      <parameter-list-expansion-panel :filter="filt" :parameterMutationPath="parameterMutationPath" />
     </v-list-group>
   </v-container>
 </template>
@@ -31,8 +31,9 @@ import IParameter from '@/interfaces/parameter/IParameter';
 export default class ParameterListExpansionPanel extends Vue {
   @State errorIcon!: string;
 
-  @Prop()
-  filter!: ParameterFilter;
+  @Prop({ required: true }) parameterMutationPath!: string;
+
+  @Prop() filter!: ParameterFilter;
 
   getSubFilters(): ParameterFilter[] {
     return this.filter.filters;
@@ -43,8 +44,8 @@ export default class ParameterListExpansionPanel extends Vue {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  doNothing() {
-    // nothing
+  setNewParameter(param: IParameter) {
+    this.$store.commit(this.parameterMutationPath, param);
   }
 }
 </script>

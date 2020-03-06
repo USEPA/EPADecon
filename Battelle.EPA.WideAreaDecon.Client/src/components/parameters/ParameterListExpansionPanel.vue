@@ -7,7 +7,7 @@
           <v-icon color="error">{{ errorIcon }}</v-icon>
         </v-list-item-icon>
       </template>
-      <parameter-filter-expansion-panel :filter="item" />
+      <parameter-filter-expansion-panel :filter="item" :parameterMutationPath="parameterMutationPath" />
     </v-list-group>
   </v-list>
 </template>
@@ -25,6 +25,8 @@ import ParameterFilterExpansionPanel from './ParameterFilterExpansionPanel.vue';
 })
 export default class ParameterListExpansionPanel extends Vue {
   @State errorIcon!: string;
+
+  @Prop({ required: true }) parameterMutationPath!: string;
 
   @Prop()
   list!: ParameterList;

@@ -8,7 +8,7 @@ export default class HomeOptions implements IHomeOptions {
   helpMessage: string;
 
   helpActive: boolean;
-  
+
   linkPage: string;
 
   constructor(title: string, image: string, helpMessage: string, linkPage: string) {

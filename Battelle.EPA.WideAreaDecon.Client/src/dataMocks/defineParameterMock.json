@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "filters": [
+    {
+      "name": "Incident Command",
+      "filters": [
+        {
+          "name": "Logistics",
+          "filters": [],
+          "parameters": [
+            {
+              "name": "Office Rentals",
+              "type": "constant",
+              "value": 1
+            },
+            {
+              "name": "Expendable Office Supplies Per Day",
+              "type": "constant",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "Personnel",
+          "type": "constant",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "name": "Decontamination Efficacy",
+      "filters": [],
+      "parameters": []
+    },
+    {
+      "name": "Building Breakdowns",
+      "filters": [],
+      "parameters": []
+    },
+    {
+      "name": "Source Reduction",
+      "filters": [],
+      "parameters": [
+        {
+          "name": "Contamination Limit for Reduction",
+          "type": "constant",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "name": "Personnel",
+      "filters": [],
+      "parameters": [
+        {
+          "name": "Cost per Personnel",
+          "type": "constant",
+          "value": 1
+        },
+        {
+          "name": "Personnel Availability",
+          "type": "constant",
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

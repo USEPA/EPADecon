@@ -1,15 +1,15 @@
 import { injectable } from 'inversify';
-import IScenarioDefinitionProvider from '@/interfaces/providers/IScenarioDefinitionProvider';
-import mockDefineScenario from '@/dataMocks/defineScenarioMock.json';
+import mockDefineScenario from '@/dataMocks/defineParameterMock.json';
 import { deserialize } from 'typescript-json-serializer';
+import IScenarioParameterProvider from '@/interfaces/providers/IScenarioParameterProvider';
 import ParameterList from '../parameter/ParameterList';
 
 @injectable()
-export default class DefaultScenarioDefinitionProvider implements IScenarioDefinitionProvider {
+export default class DefaultScenarioParameterProvider implements IScenarioParameterProvider {
   data: ParameterList = deserialize<ParameterList>(mockDefineScenario, ParameterList);
 
   // eslint-disable-next-line class-methods-use-this
-  async getScenarioDefinition(): Promise<ParameterList> {
+  async getScenarioParameters(): Promise<ParameterList> {
     return this.data;
   }
 }

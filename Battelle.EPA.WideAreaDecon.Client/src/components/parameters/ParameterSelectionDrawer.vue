@@ -1,13 +1,12 @@
 <template>
   <v-navigation-drawer clipped app :width="500">
-    <parameter-list-expansion-panel :list="currentScenarioParameters" />
+    <parameter-list-expansion-panel :list="parameters" :parameterMutationPath="parameterMutationPath" />
   </v-navigation-drawer>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
-import { State } from 'vuex-class';
+import { Component, Prop } from 'vue-property-decorator';
 import ParameterList from '@/implementations/parameter/ParameterList';
 import ParameterListExpansionPanel from './ParameterListExpansionPanel.vue';
 
@@ -17,7 +16,9 @@ import ParameterListExpansionPanel from './ParameterListExpansionPanel.vue';
   },
 })
 export default class ParameterSelectionDrawer extends Vue {
-  @State currentScenarioParameters!: ParameterList;
+  @Prop({ required: true }) parameters!: ParameterList;
+
+  @Prop({ required: true }) parameterMutationPath!: string;
 }
 </script>
 
