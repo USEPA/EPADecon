@@ -1,7 +1,5 @@
-import ParameterList from '@/implementations/parameter/ParameterList';
+import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 
 export default interface IScenarioParameterSelection {
-  baselineScenarioParameters: ParameterList;
-
-  currentScenarioParameters: ParameterList;
+  scenarioParameters: ParameterWrapperList;
 }

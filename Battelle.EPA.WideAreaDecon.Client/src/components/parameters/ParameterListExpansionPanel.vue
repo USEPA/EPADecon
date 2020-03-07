@@ -22,9 +22,9 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import ParameterList from '@/implementations/parameter/ParameterList';
-import ParameterFilter from '@/implementations/parameter/ParameterFilter';
-import IParameter from '@/interfaces/parameter/IParameter';
+import ParameterWrapperFilter from '@/implementations/parameter/ParameterWrapperFilter';
+import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
+import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import ParameterFilterExpansionPanel from './ParameterFilterExpansionPanel.vue';
 
 @Component({
@@ -33,12 +33,12 @@ import ParameterFilterExpansionPanel from './ParameterFilterExpansionPanel.vue';
 export default class ParameterListExpansionPanel extends Vue {
   @State errorIcon!: string;
 
-  @State currentSelectedParameter!: IParameter;
+  @State currentSelectedParameter!: ParameterWrapper;
 
   @Prop()
-  list!: ParameterList;
+  list!: ParameterWrapperList;
 
-  getFilters(): ParameterFilter[] {
+  getFilters(): ParameterWrapperFilter[] {
     return this.list.filters;
   }
 }

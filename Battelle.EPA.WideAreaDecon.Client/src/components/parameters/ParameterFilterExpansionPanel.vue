@@ -2,20 +2,20 @@
   <v-container>
     <v-list-item
       v-for="(param, i) in getSubParameters()"
-      :key="param.name + i"
+      :key="'parameter_' + i"
       @click="setNewParameter(param)"
       active-class="secondary--text"
     >
       <v-list-item-title
         :class="param === currentSelectedParameter ? 'secondary--text' : ''"
-        v-text="param.name"
+        v-text="param.current.name"
       ></v-list-item-title>
-      <v-list-item-icon v-if="!param.isSet()">
+      <v-list-item-icon v-if="!param.current.isSet()">
         <v-icon color="error">{{ errorIcon }}</v-icon>
       </v-list-item-icon>
     </v-list-item>
 
-    <v-list-group active-class="secondary--text" v-for="(filt, j) in getSubFilters()" :key="filt.name + j" sub-group>
+    <v-list-group active-class="secondary--text" v-for="(filt, j) in getSubFilters()" :key="'filter_' + j" sub-group>
       <template v-slot:activator>
         <v-list-item-content>
           <v-list-item-title v-text="filt.name"></v-list-item-title>
@@ -33,22 +33,23 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import ParameterFilter from '@/implementations/parameter/ParameterFilter';
 import IParameter from '@/interfaces/parameter/IParameter';
+import ParameterWrapperFilter from '@/implementations/parameter/ParameterWrapperFilter';
+import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 
 @Component
 export default class ParameterListExpansionPanel extends Vue {
   @State errorIcon!: string;
 
-  @State currentSelectedParameter!: IParameter;
+  @State currentSelectedParameter!: ParameterWrapper;
 
-  @Prop() filter!: ParameterFilter;
+  @Prop() filter!: ParameterWrapperFilter;
 
-  getSubFilters(): ParameterFilter[] {
+  getSubFilters(): ParameterWrapperFilter[] {
     return this.filter.filters;
   }
 
-  getSubParameters(): IParameter[] {
+  getSubParameters(): ParameterWrapper[] {
     return this.filter.parameters;
   }
 
@@ -57,7 +58,7 @@ export default class ParameterListExpansionPanel extends Vue {
     this.$store.commit('changeCurrentSelectedParameter', param);
   }
 
-  getClassForFilter(filt: ParameterFilter): string {
+  getClassForFilter(filt: ParameterWrapperFilter): string {
     return filt.parameters.some((p) => p === this.currentSelectedParameter) ||
       filt.filters.some((f) => f.subItemSelected(this.currentSelectedParameter))
       ? 'secondary--text'

@@ -3,7 +3,7 @@
     <v-row align="center" justify="center">
       <v-col>
         <p class="text-center display-3">
-          Unknown parameter type <i>{{ selectedParameter.type }}</i> for <b>{{ selectedParameter.name }}</b>...
+          Unknown parameter type <b>{{ selectedParameter.type }}</b>...
         </p>
       </v-col>
     </v-row>

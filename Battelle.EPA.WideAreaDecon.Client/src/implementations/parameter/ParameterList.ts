@@ -1,5 +1,6 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterFilter from './ParameterFilter';
+import ParameterWrapperList from './ParameterWrapperList';
 
 @Serializable()
 export default class ParameterList {
@@ -18,7 +19,13 @@ export default class ParameterList {
     this.filters = filters !== undefined ? filters : new Array<ParameterFilter>();
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  public toWrapperList(): ParameterWrapperList {
+    return new ParameterWrapperList(
+      this.version,
+      this.filters.map((f) => f.toParameterWrapperFilter()),
+    );
+  }
+
   public allParametersValid(): boolean {
     return this.filters.every((f) => f.allParametersValid());
   }

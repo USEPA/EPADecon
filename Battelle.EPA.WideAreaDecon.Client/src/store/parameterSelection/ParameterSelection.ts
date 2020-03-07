@@ -1,35 +1,27 @@
-import ParameterList from '@/implementations/parameter/ParameterList';
 import deepCopy from '@/utilities/deepCopy';
 import NullParameter from '@/implementations/parameter/NullParameter';
 import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
-import IParameter from '@/interfaces/parameter/IParameter';
+import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
+import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 
 export default class ParameterSelection implements IParameterSelection {
-  baselineScenarioParameters: ParameterList;
+  scenarioParameters: ParameterWrapperList;
 
-  currentScenarioParameters: ParameterList;
+  scenarioDefinition: ParameterWrapperList;
 
-  baselineScenarioDefinition: ParameterList;
+  currentSelectedParameter: ParameterWrapper;
 
-  currentScenarioDefinition: ParameterList;
-
-  currentSelectedParameter: IParameter;
-
-  constructor(scenarioDefinition?: ParameterList, scenarioParameters?: ParameterList) {
-    this.baselineScenarioDefinition = new ParameterList(-1, []);
-    this.currentScenarioDefinition = new ParameterList(-1, []);
-    this.baselineScenarioParameters = new ParameterList(-1, []);
-    this.currentScenarioParameters = new ParameterList(-1, []);
-    this.currentSelectedParameter = new NullParameter();
-
-    if (scenarioParameters) {
-      this.baselineScenarioParameters = deepCopy(scenarioParameters);
-      this.currentScenarioParameters = deepCopy(scenarioParameters);
-    }
+  constructor(scenarioDefinition?: ParameterWrapperList, scenarioParameters?: ParameterWrapperList) {
+    this.scenarioDefinition = new ParameterWrapperList(-1, []);
+    this.scenarioParameters = new ParameterWrapperList(-1, []);
+    this.currentSelectedParameter = new ParameterWrapper(new NullParameter());
 
     if (scenarioDefinition) {
-      this.baselineScenarioDefinition = deepCopy(scenarioDefinition);
-      this.currentScenarioDefinition = deepCopy(scenarioDefinition);
+      this.scenarioDefinition = deepCopy(scenarioDefinition);
+    }
+
+    if (scenarioParameters) {
+      this.scenarioParameters = deepCopy(scenarioParameters);
     }
   }
 }

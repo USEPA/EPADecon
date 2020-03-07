@@ -57,7 +57,7 @@ Promise.all([clientConfigPromise, scenarioDefPromise, scenarioParamsPromise]).fi
   store.replaceState({
     ...store.state,
     ...defaultConfig,
-    ...new ParameterSelection(defaultScenario, defaultParameters),
+    ...new ParameterSelection(defaultScenario.toWrapperList(), defaultParameters.toWrapperList()),
     ...{ applicationActions, navigationItems },
   });
   const vuetify = GetVuetify(defaultConfig);

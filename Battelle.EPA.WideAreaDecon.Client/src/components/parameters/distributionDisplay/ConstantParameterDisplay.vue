@@ -1,22 +1,11 @@
 <template>
-  <v-card height="100%" width="100%">
-    <v-card-title background="secondary">{{ selectedParameter.name }}</v-card-title>
-    <v-divider></v-divider>
-    <v-container>
-      <v-row justify="center">
-        <v-col>
-          <v-slider
-            v-model="slider"
-            style="v-slider__track-container"
-            class="align-center"
-            :max="max"
-            :min="min"
-            hide-details
-          />
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-card>
+  <v-container>
+    <v-row justify="center">
+      <v-col>
+        <v-slider v-model="slider" class="align-center" :max="max" :min="min" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -38,7 +27,4 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 </script>
 
 <style scoped lang="scss">
-.v-slider__track-container {
-  height: 10px;
-}
 </style>

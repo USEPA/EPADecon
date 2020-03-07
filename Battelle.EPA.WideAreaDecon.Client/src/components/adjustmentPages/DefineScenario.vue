@@ -1,6 +1,6 @@
 <template>
   <v-container fill-height fluid>
-    <parameter-selection-drawer :parameters="currentScenarioDefinition" />
+    <parameter-selection-drawer :parameters="scenarioDefinition" />
     <parameter-distribution-selector />
   </v-container>
 </template>
@@ -13,15 +13,16 @@ import ParameterSelectionDrawer from '@/components/parameters/ParameterSelection
 import ParameterList from '@/implementations/parameter/ParameterList';
 import ParameterDistributionSelector from '@/components/parameters/distributionDisplay/ParameterDistributionSelector.vue';
 import NullParameter from '@/implementations/parameter/NullParameter';
+import ParameterWrapper from '../../implementations/parameter/ParameterWrapper';
 
 @Component({
   components: { ParameterSelectionDrawer, ParameterDistributionSelector },
 })
 export default class DefineScenario extends Vue {
-  @State currentScenarioDefinition!: ParameterList;
+  @State scenarioDefinition!: ParameterList;
 
   created() {
-    this.$store.commit('changeCurrentSelectedParameter', new NullParameter());
+    this.$store.commit('changeCurrentSelectedParameter', new ParameterWrapper());
     this.$store.commit('enableNavigationTabs');
   }
 }
