@@ -5,24 +5,25 @@
       :key="'parameter_' + i"
       @click="setNewParameter(param)"
       active-class="secondary--text"
+      :class="param.current.isSet() ? '' : 'error lighten-2'"
     >
-      <v-list-item-title
-        :class="param === currentSelectedParameter ? 'secondary--text' : ''"
-        v-text="param.current.name"
-      ></v-list-item-title>
-      <v-list-item-icon v-if="!param.current.isSet()">
-        <v-icon color="error">{{ errorIcon }}</v-icon>
-      </v-list-item-icon>
+      <v-list-item-icon />
+      <v-list-item-title :class="getParameterClass(param)" v-text="param.current.name"></v-list-item-title>
     </v-list-item>
 
     <v-list-group active-class="secondary--text" v-for="(filt, j) in getSubFilters()" :key="'filter_' + j" sub-group>
       <template v-slot:activator>
+        <v-list-item-icon>
+          <v-badge
+            offset-y="20"
+            v-if="filt.numberInvalidParameters() > 0"
+            color="error"
+            :content="filt.numberInvalidParameters()"
+          />
+        </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title v-text="filt.name"></v-list-item-title>
         </v-list-item-content>
-        <v-list-item-icon v-if="!filt.allParametersValid()">
-          <v-badge v-if="filt.numberInvalidParameters() > 0" color="error" :content="filt.numberInvalidParameters()" />
-        </v-list-item-icon>
       </template>
       <parameter-list-expansion-panel :filter="filt" />
     </v-list-group>
@@ -33,7 +34,6 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterWrapperFilter from '@/implementations/parameter/ParameterWrapperFilter';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 
@@ -54,8 +54,17 @@ export default class ParameterListExpansionPanel extends Vue {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  setNewParameter(param: IParameter) {
+  setNewParameter(param: ParameterWrapper) {
     this.$store.commit('changeCurrentSelectedParameter', param);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getParameterClass(param: ParameterWrapper): string {
+    let classText = '';
+    if (param === this.currentSelectedParameter) {
+      classText += 'secondary--text';
+    }
+    return classText;
   }
 
   getClassForFilter(filt: ParameterWrapperFilter): string {

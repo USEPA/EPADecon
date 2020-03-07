@@ -12,11 +12,11 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import NullParameter from '@/implementations/parameter/NullParameter';
+import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 
 @Component
 export default class NullParameterDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: NullParameter;
+  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
 }
 </script>
 

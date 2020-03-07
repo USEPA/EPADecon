@@ -3,14 +3,15 @@
     <v-list-item-group>
       <v-list-group active-class="secondary--text" v-for="(item, i) in getFilters()" :key="i">
         <template v-slot:activator>
-          <v-list-item-title>{{ item.name }}</v-list-item-title>
-          <v-list-item-icon v-if="!item.allParametersValid()">
+          <v-list-item-icon>
             <v-badge
+              offset-y="20"
               v-if="item.numberInvalidParameters() > 0"
               color="error"
               :content="item.numberInvalidParameters()"
             />
           </v-list-item-icon>
+          <v-list-item-title>{{ item.name }}</v-list-item-title>
         </template>
         <parameter-filter-expansion-panel :filter="item" />
       </v-list-group>

@@ -1,12 +1,10 @@
 <template>
   <v-card height="100%" width="100%">
-    <v-card-title v-if="currentSelectedParameter.type != 'null'" class="secondary lighten-2">{{
+    <v-card-title v-if="shouldIncludeTitle" class="secondary lighten-2">{{
       currentSelectedParameter.name
     }}</v-card-title>
-    <v-divider></v-divider>
-    <v-container fill-height fluid>
-      <component :is="distComponent()" :selected-parameter="currentSelectedParameter"> </component>
-    </v-container>
+    <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
+    <component :is="distComponent" :selected-parameter="currentSelectedParameter"> </component>
   </v-card>
 </template>
 
@@ -24,7 +22,7 @@ import ParameterWrapper from '../../../implementations/parameter/ParameterWrappe
 export default class ParameterDistributionSelector extends Vue {
   @State currentSelectedParameter!: ParameterWrapper;
 
-  distComponent(): string {
+  get distComponent(): string {
     switch (this.currentSelectedParameter.current.type) {
       case ParameterType.null:
         return 'null-parameter-display';
@@ -33,6 +31,10 @@ export default class ParameterDistributionSelector extends Vue {
       default:
         return 'unknown-parameter-display';
     }
+  }
+
+  get shouldIncludeTitle(): boolean {
+    return this.currentSelectedParameter.type !== ParameterType.null;
   }
 }
 </script>

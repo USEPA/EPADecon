@@ -3,7 +3,8 @@
     <v-row align="center" justify="center">
       <v-col>
         <p class="text-center display-3">
-          Unknown parameter type <b>{{ selectedParameter.type }}</b>...
+          Unknown parameter type <b>{{ selectedParameter.type }}</b
+          >...
         </p>
       </v-col>
     </v-row>
@@ -13,12 +14,12 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
-import IParameter from '@/interfaces/parameter/IParameter';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
+import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 
 @Component
 export default class UnknownParameterDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: IParameter;
+  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
 }
 </script>
 

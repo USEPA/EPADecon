@@ -1,5 +1,5 @@
-import IParameter from '../parameter/IParameter';
+import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 
 export default interface IParameterDisplay {
-  selectedParameter: IParameter;
+  selectedParameter: ParameterWrapper;
 }
