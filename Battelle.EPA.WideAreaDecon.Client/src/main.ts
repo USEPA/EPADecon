@@ -13,18 +13,18 @@ import TYPES from '@/dependencyInjection/types';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import _ from 'lodash';
 import IScenarioDefinitionProvider from './interfaces/providers/IScenarioDefinitionProvider';
-import ScenarioDefinition from './store/scenarioDefinition/ScenarioDefinition';
 import DefaultClientConfigurationProvider from './implementations/providers/DefaultClientConfigurationProvider';
 import IApplicationActionProvider from './interfaces/providers/IApplicationActionProvider';
 import INavigationItemProvider from './interfaces/providers/INavigationItemProvider';
 import IScenarioParameterProvider from './interfaces/providers/IScenarioParameterProvider';
-import ScenarioParameters from './store/scenarioParameters/ScenarioParameters';
+import ParameterList from './implementations/parameter/ParameterList';
+import ParameterSelection from './store/parameterSelection/ParameterSelection';
 
 Vue.config.productionTip = false;
 
 let defaultConfig = new DefaultClientConfigurationProvider().getClientConfiguration();
-let defaultScenario = new ScenarioDefinition();
-let defaultParameters = new ScenarioParameters();
+let defaultScenario: ParameterList;
+let defaultParameters: ParameterList;
 
 const clientConfigPromise = container
   .get<BackendClientConfigurationProvider>(TYPES.BackendClientConfigurationProvider)
@@ -37,14 +37,14 @@ const scenarioDefPromise = container
   .get<IScenarioDefinitionProvider>(TYPES.ScenarioDefinitionProvider)
   .getScenarioDefinition()
   .then((scenarioDef) => {
-    defaultScenario = new ScenarioDefinition(scenarioDef);
+    defaultScenario = scenarioDef;
   });
 
 const scenarioParamsPromise = container
   .get<IScenarioParameterProvider>(TYPES.ScenarioParameterProvider)
   .getScenarioParameters()
   .then((scenarioParams) => {
-    defaultParameters = new ScenarioParameters(scenarioParams);
+    defaultParameters = scenarioParams;
   });
 
 const applicationActions = container
@@ -57,8 +57,7 @@ Promise.all([clientConfigPromise, scenarioDefPromise, scenarioParamsPromise]).fi
   store.replaceState({
     ...store.state,
     ...defaultConfig,
-    ...defaultScenario,
-    ...defaultParameters,
+    ...new ParameterSelection(defaultScenario, defaultParameters),
     ...{ applicationActions, navigationItems },
   });
   const vuetify = GetVuetify(defaultConfig);

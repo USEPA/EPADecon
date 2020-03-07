@@ -8,13 +8,11 @@ import ClientConfiguration from './clientConfiguration/ClientConfiguration';
 import appSettingsMutations from './appSettings/mutations';
 import clientConfigurationMutations from './clientConfiguration/mutations';
 import runSettingsMutations from './runSettings/mutations';
-import defineScenarioDefinitionMutations from './scenarioDefinition/mutations';
-import ScenarioDefinition from './scenarioDefinition/ScenarioDefinition';
 import runSettingsGetters from './runSettings/getters';
 import NavigationSettings from './navigationSettings/NavigationSettings';
 import navigationSettingsMutations from './navigationSettings/mutations';
-import ScenarioParameters from './scenarioParameters/ScenarioParameters';
-import defineScenarioParametersMutations from './scenarioParameters/mutations';
+import parameterSelectionMutations from './parameterSelection/mutations';
+import ParameterSelection from './parameterSelection/ParameterSelection';
 
 Vue.use(Vuex);
 
@@ -23,8 +21,7 @@ const store: StoreOptions<IRootState> = {
     ...new ClientConfiguration(),
     ...new AppSettings(),
     ...new RunSettings(),
-    ...new ScenarioDefinition(),
-    ...new ScenarioParameters(),
+    ...new ParameterSelection(),
     ...new NavigationSettings(),
   },
   modules: {},
@@ -35,8 +32,7 @@ const store: StoreOptions<IRootState> = {
     ...appSettingsMutations,
     ...clientConfigurationMutations,
     ...runSettingsMutations,
-    ...defineScenarioDefinitionMutations,
-    ...defineScenarioParametersMutations,
+    ...parameterSelectionMutations,
     ...navigationSettingsMutations,
   },
 };

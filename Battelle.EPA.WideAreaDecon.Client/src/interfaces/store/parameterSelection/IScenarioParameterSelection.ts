@@ -1,10 +1,7 @@
 import ParameterList from '@/implementations/parameter/ParameterList';
-import IParameter from '@/interfaces/parameter/IParameter';
 
-export default interface IScenarioParameters {
+export default interface IScenarioParameterSelection {
   baselineScenarioParameters: ParameterList;
 
   currentScenarioParameters: ParameterList;
-
-  selectedScenarioParameter: IParameter;
 }

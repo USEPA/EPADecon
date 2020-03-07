@@ -1,6 +1,6 @@
 <template>
-  <v-navigation-drawer clipped app :width="500">
-    <parameter-list-expansion-panel :list="parameters" :parameterMutationPath="parameterMutationPath" />
+  <v-navigation-drawer color="grey" class="lighten-2" clipped app :width="500">
+    <parameter-list-expansion-panel :list="parameters" />
   </v-navigation-drawer>
 </template>
 
@@ -17,8 +17,6 @@ import ParameterListExpansionPanel from './ParameterListExpansionPanel.vue';
 })
 export default class ParameterSelectionDrawer extends Vue {
   @Prop({ required: true }) parameters!: ParameterList;
-
-  @Prop({ required: true }) parameterMutationPath!: string;
 }
 </script>
 

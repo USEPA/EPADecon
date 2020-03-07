@@ -37,4 +37,8 @@ export default class ParameterFilter {
     });
     return sum;
   }
+
+  public subItemSelected(item: IParameter): boolean {
+    return this.filters.some((f) => f.subItemSelected(item)) || this.parameters.some((p) => p === item);
+  }
 }

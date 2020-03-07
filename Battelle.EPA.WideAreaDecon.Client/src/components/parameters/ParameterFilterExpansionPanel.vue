@@ -1,22 +1,30 @@
 <template>
   <v-container>
-    <v-list-item v-for="(param, i) in getSubParameters()" :key="param.name + i" @click="setNewParameter(param)">
-      <v-list-item-title v-text="param.name"></v-list-item-title>
+    <v-list-item
+      v-for="(param, i) in getSubParameters()"
+      :key="param.name + i"
+      @click="setNewParameter(param)"
+      active-class="secondary--text"
+    >
+      <v-list-item-title
+        :class="param === currentSelectedParameter ? 'secondary--text' : ''"
+        v-text="param.name"
+      ></v-list-item-title>
       <v-list-item-icon v-if="!param.isSet()">
         <v-icon color="error">{{ errorIcon }}</v-icon>
       </v-list-item-icon>
     </v-list-item>
-    <v-list-group v-for="(filt, j) in getSubFilters()" :key="filt.name + j" sub-group>
+
+    <v-list-group active-class="secondary--text" v-for="(filt, j) in getSubFilters()" :key="filt.name + j" sub-group>
       <template v-slot:activator>
         <v-list-item-content>
           <v-list-item-title v-text="filt.name"></v-list-item-title>
         </v-list-item-content>
         <v-list-item-icon v-if="!filt.allParametersValid()">
-          <!-- <v-icon color="error">{{ errorIcon }}</v-icon> -->
           <v-badge v-if="filt.numberInvalidParameters() > 0" color="error" :content="filt.numberInvalidParameters()" />
         </v-list-item-icon>
       </template>
-      <parameter-list-expansion-panel :filter="filt" :parameterMutationPath="parameterMutationPath" />
+      <parameter-list-expansion-panel :filter="filt" />
     </v-list-group>
   </v-container>
 </template>
@@ -32,7 +40,7 @@ import IParameter from '@/interfaces/parameter/IParameter';
 export default class ParameterListExpansionPanel extends Vue {
   @State errorIcon!: string;
 
-  @Prop({ required: true }) parameterMutationPath!: string;
+  @State currentSelectedParameter!: IParameter;
 
   @Prop() filter!: ParameterFilter;
 
@@ -46,7 +54,14 @@ export default class ParameterListExpansionPanel extends Vue {
 
   // eslint-disable-next-line class-methods-use-this
   setNewParameter(param: IParameter) {
-    this.$store.commit(this.parameterMutationPath, param);
+    this.$store.commit('changeCurrentSelectedParameter', param);
+  }
+
+  getClassForFilter(filt: ParameterFilter): string {
+    return filt.parameters.some((p) => p === this.currentSelectedParameter) ||
+      filt.filters.some((f) => f.subItemSelected(this.currentSelectedParameter))
+      ? 'secondary--text'
+      : '';
   }
 }
 </script>
