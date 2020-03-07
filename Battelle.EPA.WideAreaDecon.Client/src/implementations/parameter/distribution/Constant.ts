@@ -7,7 +7,7 @@ export default class Constant implements IParameter {
   name: string;
 
   @JsonProperty()
-  type: ParameterType = ParameterType.constant;
+  readonly type: ParameterType = ParameterType.constant;
 
   @JsonProperty()
   value: number | undefined;
@@ -19,5 +19,13 @@ export default class Constant implements IParameter {
   constructor(name = 'unknown', value?: number) {
     this.name = name;
     this.value = value;
+  }
+
+  isEquivalent(other: IParameter): boolean {
+    return this.compareValues(other as Constant);
+  }
+
+  compareValues(other?: Constant): boolean {
+    return other ? this.type === other.type && this.value === other.value : false;
   }
 }

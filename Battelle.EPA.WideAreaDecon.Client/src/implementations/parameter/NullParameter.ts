@@ -12,4 +12,11 @@ export default class NullParameter implements IParameter {
   isSet(): boolean {
     return false;
   }
+
+  isEquivalent(other: IParameter): boolean {
+    if (other.type !== this.type) {
+      return false;
+    }
+    return true;
+  }
 }

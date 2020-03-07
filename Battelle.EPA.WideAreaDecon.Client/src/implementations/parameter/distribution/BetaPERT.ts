@@ -28,4 +28,14 @@ export default class BetaPERT implements IParameter {
     this.max = max;
     this.mode = mode;
   }
+
+  isEquivalent(other: IParameter): boolean {
+    return this.compareValues(other as BetaPERT);
+  }
+
+  compareValues(other?: BetaPERT): boolean {
+    return other
+      ? this.type === other.type && this.min === other.min && this.max === other.max && this.mode === other.mode
+      : false;
+  }
 }

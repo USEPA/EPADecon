@@ -1,6 +1,6 @@
 <template>
   <v-card height="100%" width="100%">
-    <v-card-title>{{ selectedParameter.name }}</v-card-title>
+    <v-card-title background="secondary">{{ selectedParameter.name }}</v-card-title>
     <v-divider></v-divider>
     <v-container>
       <v-row justify="center">

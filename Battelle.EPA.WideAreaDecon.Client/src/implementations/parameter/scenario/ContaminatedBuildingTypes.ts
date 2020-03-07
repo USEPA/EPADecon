@@ -33,4 +33,15 @@ export default class ContaminatedBuildingTypes implements IParameter {
       this.buildings = new Array<ContaminatedBuildingType>();
     }
   }
+
+  isEquivalent(other: IParameter): boolean {
+    return this.compareValues(other as ContaminatedBuildingTypes);
+  }
+
+  compareValues(other?: ContaminatedBuildingTypes): boolean {
+    if (other === undefined || this.type === other.type) {
+      return false;
+    }
+    return this.buildings.every((contamBuilding, i) => contamBuilding.isEquivalent(other.buildings[i]));
+  }
 }

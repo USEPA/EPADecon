@@ -24,4 +24,12 @@ export default class Uniform implements IParameter {
     this.min = min;
     this.max = max;
   }
+
+  isEquivalent(other: IParameter): boolean {
+    return this.compareValues(other as Uniform);
+  }
+
+  compareValues(other?: Uniform): boolean {
+    return other ? this.type === other.type && this.min === other.min && this.max === other.max : false;
+  }
 }

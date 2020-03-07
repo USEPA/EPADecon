@@ -24,4 +24,12 @@ export default class LogUniform implements IParameter {
     this.logMin = logMin;
     this.logMax = logMax;
   }
+
+  isEquivalent(other: IParameter): boolean {
+    return this.compareValues(other as LogUniform);
+  }
+
+  compareValues(other?: LogUniform): boolean {
+    return other ? this.type === other.type && this.logMin === other.logMin && this.logMax === other.logMax : false;
+  }
 }

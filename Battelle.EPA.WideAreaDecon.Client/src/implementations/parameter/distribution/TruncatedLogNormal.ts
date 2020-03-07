@@ -37,4 +37,18 @@ export default class TruncatedLogNormal implements IParameter {
     this.logMean = logMean;
     this.logStdDev = logStdDev;
   }
+
+  isEquivalent(other: IParameter): boolean {
+    return this.compareValues(other as TruncatedLogNormal);
+  }
+
+  compareValues(other?: TruncatedLogNormal): boolean {
+    return other
+      ? this.type === other.type &&
+          this.logMin === other.logMin &&
+          this.logMax === other.logMax &&
+          this.logMean === other.logMean &&
+          this.logStdDev === other.logStdDev
+      : false;
+  }
 }

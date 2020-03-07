@@ -24,4 +24,15 @@ export default class SumFraction implements IParameter {
     }
     this.entries = entries !== undefined ? entries : [];
   }
+
+  isEquivalent(other: IParameter): boolean {
+    return this.compareValues(other as SumFraction);
+  }
+
+  compareValues(other?: SumFraction): boolean {
+    if (other === undefined || this.type !== other?.type) {
+      return false;
+    }
+    return this.entries.every((kvp, i) => kvp.isEquivalent(other.entries[i]));
+  }
 }

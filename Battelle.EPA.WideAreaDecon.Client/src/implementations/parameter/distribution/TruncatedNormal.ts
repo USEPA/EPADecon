@@ -32,4 +32,18 @@ export default class TruncatedNormal implements IParameter {
     this.mean = mean;
     this.stdDev = stdDev;
   }
+
+  isEquivalent(other: IParameter): boolean {
+    return this.compareValues(other as TruncatedNormal);
+  }
+
+  compareValues(other?: TruncatedNormal): boolean {
+    return other
+      ? this.type === other.type &&
+          this.min === other.min &&
+          this.max === other.max &&
+          this.mean === other.mean &&
+          this.stdDev === other.stdDev
+      : false;
+  }
 }
