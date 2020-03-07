@@ -9,11 +9,11 @@ export default class ParameterSelection implements IParameterSelection {
 
   currentScenarioParameters: ParameterList;
 
-  currentSelectedParameter: IParameter;
-
   baselineScenarioDefinition: ParameterList;
 
   currentScenarioDefinition: ParameterList;
+
+  currentSelectedParameter: IParameter;
 
   constructor(scenarioDefinition?: ParameterList, scenarioParameters?: ParameterList) {
     this.baselineScenarioDefinition = new ParameterList(-1, []);

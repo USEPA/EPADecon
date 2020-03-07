@@ -1,13 +1,7 @@
 <template>
   <v-container fill-height fluid>
     <parameter-selection-drawer :parameters="currentScenarioDefinition" />
-    <v-container fill-height>
-      <v-row align="center" justify="center">
-        <v-col>
-          <p class="text-center display-3">Scenario definition page under construction...</p>
-        </v-col>
-      </v-row>
-    </v-container>
+    <parameter-distribution-selector />
   </v-container>
 </template>
 
@@ -16,18 +10,18 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 import ParameterSelectionDrawer from '@/components/parameters/ParameterSelectionDrawer.vue';
-import IParameter from '@/interfaces/parameter/IParameter';
-import ParameterList from '../../implementations/parameter/ParameterList';
+import ParameterList from '@/implementations/parameter/ParameterList';
+import ParameterDistributionSelector from '@/components/parameters/distributionDisplay/ParameterDistributionSelector.vue';
+import NullParameter from '../../implementations/parameter/NullParameter';
 
 @Component({
-  components: { ParameterSelectionDrawer },
+  components: { ParameterSelectionDrawer, ParameterDistributionSelector },
 })
 export default class DefineScenario extends Vue {
   @State currentScenarioDefinition!: ParameterList;
 
-  @State selectedScenarioDefinitionParameter!: IParameter;
-
   created() {
+    this.$store.commit('changeCurrentSelectedParameter', new NullParameter());
     this.$store.commit('enableNavigationTabs');
   }
 }
