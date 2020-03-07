@@ -12,8 +12,9 @@ import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterType from '@/enums/parameter/parameterTypes';
 import NullParameterDisplay from '@/components/parameters/distributionDisplay/NullParameterDisplay.vue';
 import UnknownParameterDisplay from '@/components/parameters/distributionDisplay/UnknownParameterDisplay.vue';
+import ConstantParameterDisplay from '@/components/parameters/distributionDisplay/ConstantParameterDisplay.vue';
 
-@Component({ components: { NullParameterDisplay, UnknownParameterDisplay } })
+@Component({ components: { NullParameterDisplay, UnknownParameterDisplay, ConstantParameterDisplay } })
 export default class ParameterDistributionSelector extends Vue {
   @State currentSelectedParameter!: IParameter;
 
@@ -21,6 +22,8 @@ export default class ParameterDistributionSelector extends Vue {
     switch (this.currentSelectedParameter.type) {
       case ParameterType.null:
         return 'null-parameter-display';
+      case ParameterType.constant:
+        return 'constant-parameter-display';
       default:
         return 'unknown-parameter-display';
     }

@@ -1,4 +1,5 @@
 import IHomeOptions from '@/interfaces/configuration/IHomeOptions';
+import IHomeOptionAction from '@/interfaces/configuration/IHomeOptionAction';
 
 export default class HomeOptions implements IHomeOptions {
   title: string;
@@ -9,13 +10,13 @@ export default class HomeOptions implements IHomeOptions {
 
   helpActive: boolean;
 
-  linkPage: string;
+  action: IHomeOptionAction;
 
-  constructor(title: string, image: string, helpMessage: string, linkPage: string) {
+  constructor(title: string, image: string, helpMessage: string, action: IHomeOptionAction) {
     this.title = title;
     this.image = image;
     this.helpMessage = helpMessage;
     this.helpActive = false;
-    this.linkPage = linkPage;
+    this.action = action;
   }
 }

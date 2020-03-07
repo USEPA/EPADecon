@@ -26,7 +26,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration
         public string Title => "Wide Area Decontamination Application";
 
         /// <summary>
-        /// The publisher of the application
+        /// The publisher of the application 
         /// </summary>
         [JsonProperty("publisherName")]
         public string PublisherName => "Battelle Memorial Institute";

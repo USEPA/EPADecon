@@ -1,11 +1,15 @@
 <template>
-  <v-dialog :max-width="maxWidth">
+  <v-dialog v-model="dialog" :max-width="maxWidth">
     <template v-slot:activator="{ on }">
       <v-icon v-on="on" @click="selectedHelpItem = item">help</v-icon>
     </template>
-    <v-card>
-      <v-card-title class="headline" v-text="item.title + ' Help'" />
-      <v-card-text v-text="item.helpMessage" />
+    <v-card class="mx-auto">
+      <v-system-bar color="primary" height="60">
+        <v-toolbar-title class="title">{{ item.title }} Info...</v-toolbar-title>
+        <v-spacer />
+        <v-icon @click="dialog = false" size="45">mdi-close</v-icon>
+      </v-system-bar>
+      <v-card-text class="body-1" v-text="item.helpMessage" />
     </v-card>
   </v-dialog>
 </template>
@@ -18,7 +22,7 @@ import container from '@/dependencyInjection/config';
 import IImageProvider from '@/interfaces/providers/IImageProvider';
 import TYPES from '@/dependencyInjection/types';
 import IHomeOptionsProvider from '@/interfaces/providers/IHomeOptionsProvider';
-import IHomeOptions from '../../interfaces/configuration/IHomeOptions';
+import IHomeOptions from '@/interfaces/configuration/IHomeOptions';
 
 @Component
 export default class HomeOptionHelp extends Vue {
@@ -30,6 +34,8 @@ export default class HomeOptionHelp extends Vue {
 
   @State applicationSponsor!: string;
 
+  dialog = false;
+
   data = container.get<IHomeOptionsProvider>(TYPES.HomeOptionsProvider).getOptions();
 
   selectedHelpItem?: IHomeOptions;
@@ -37,15 +43,6 @@ export default class HomeOptionHelp extends Vue {
   // eslint-disable-next-line class-methods-use-this, @typescript-eslint/no-explicit-any
   getImage(name: string): any {
     return container.get<IImageProvider>(TYPES.ImageProvider).getImage(name);
-  }
-
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars,@typescript-eslint/no-explicit-any
-  itemSelected(item: IHomeOptions) {
-    this.$router.push(item.linkPage);
-  }
-
-  created() {
-    this.$store.commit('disableNavigationTabs');
   }
 }
 </script>

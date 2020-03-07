@@ -11,16 +11,12 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
-import { State } from 'vuex-class';
-import IParameter from '@/interfaces/parameter/IParameter';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import NullParameter from '@/implementations/parameter/NullParameter';
 
 @Component
 export default class NullParameterDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) selectedParameter!: NullParameter;
-
-  @State selectedScenarioParameter!: IParameter;
 }
 </script>
 

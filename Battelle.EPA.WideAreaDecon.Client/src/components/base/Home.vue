@@ -24,7 +24,7 @@
                   <v-spacer />
                   <home-option-help :item="item"></home-option-help>
                 </v-toolbar>
-                <v-card :color="'secondary'" class="d-flex align-center" dark height="300" @click="itemSelected(item)">
+                <v-card :color="'secondary'" class="d-flex align-center" height="300" @click="itemSelected(item)">
                   <v-img :src="getImage(item.image)" max-width="300" />
                 </v-card>
               </v-container>
@@ -33,6 +33,13 @@
         </v-col>
       </v-row>
     </v-container>
+
+    <component
+      v-if="modalActive"
+      :is="componentName"
+      :dialogActive="modalActive"
+      @closed="modalActive = false"
+    ></component>
   </v-container>
 </template>
 
@@ -46,14 +53,20 @@ import TYPES from '@/dependencyInjection/types';
 import IHomeOptionsProvider from '@/interfaces/providers/IHomeOptionsProvider';
 import IHomeOptions from '@/interfaces/configuration/IHomeOptions';
 import HomeOptionHelp from '@/components/modals/HomeOptionHelp.vue';
+import LoadPreDefinedScenario from '@/components/modals/load/LoadPreDefinedScenario.vue';
+import LoadPreviousScenario from '@/components/modals/load/LoadPreviousScenario.vue';
 
-@Component({ components: { HomeOptionHelp } })
+@Component({ components: { HomeOptionHelp, LoadPreDefinedScenario, LoadPreviousScenario } })
 export default class Home extends Vue {
   @State applicationTitle!: string;
 
   @State applicationSponsor!: string;
 
   data = container.get<IHomeOptionsProvider>(TYPES.HomeOptionsProvider).getOptions();
+
+  modalActive = false;
+
+  componentName = '';
 
   // eslint-disable-next-line class-methods-use-this, @typescript-eslint/no-explicit-any
   getImage(name: string): any {
@@ -62,7 +75,12 @@ export default class Home extends Vue {
 
   // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars,@typescript-eslint/no-explicit-any
   itemSelected(item: IHomeOptions) {
-    this.$router.push(item.linkPage);
+    if (item.action.isModal()) {
+      this.modalActive = true;
+      this.componentName = item.action.getNext();
+    } else {
+      this.$router.push(item.action.getNext());
+    }
   }
 
   created() {
