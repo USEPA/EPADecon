@@ -14,7 +14,7 @@ export default class ParameterSelection implements IParameterSelection {
   constructor(scenarioDefinition?: ParameterWrapperList, scenarioParameters?: ParameterWrapperList) {
     this.scenarioDefinition = new ParameterWrapperList(-1, []);
     this.scenarioParameters = new ParameterWrapperList(-1, []);
-    this.currentSelectedParameter = new ParameterWrapper(new NullParameter());
+    this.currentSelectedParameter = new ParameterWrapper(null, new NullParameter());
 
     if (scenarioDefinition) {
       this.scenarioDefinition = deepCopy(scenarioDefinition);

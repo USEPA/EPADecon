@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="3" class="mr-auto">
-        <v-card class="pa-2" outlined tile>
+      <v-col cols="2" class="mr-auto">
+        <v-card class=".theme--light.v-card.v-card--outlined pa-2" outlined tile>
           <v-text-field
             ref="value"
             @keydown="onTextEnterPressed"
@@ -21,7 +21,14 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-slider v-model="sliderValue" :max="max" :min="min" :step="0.1">
+        <v-slider
+          v-model="sliderValue"
+          :max="max"
+          :min="min"
+          :step="0.1"
+          thumb-label
+          @end="onSliderStopped"
+        >
           <template v-slot:prepend>
             <p class="grey--text">{{ min }}</p>
           </template>
@@ -75,7 +82,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number) {
     this.textValue = newValue;
-    this.parameterValue.value = newValue;
+    // this.parameterValue.value = newValue;
   }
 
   @Watch('selectedParameter')
@@ -95,6 +102,10 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     if (event.keyCode === Key.Enter) {
       this.updateOnTextChange();
     }
+  }
+
+  onSliderStopped(value: number) {
+    this.parameterValue.value = value;
   }
 
   updateOnTextChange() {
@@ -124,4 +135,11 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.theme--light.v-card.v-card--outlined {
+  border-style: dotted;
+  border: 2px solid;
+  border-color: #0fb924;
+  border-radius: 5px;
+}
+</style>

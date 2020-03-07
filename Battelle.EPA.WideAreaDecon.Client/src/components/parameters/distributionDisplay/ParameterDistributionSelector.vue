@@ -1,8 +1,6 @@
 <template>
   <v-card height="100%" width="100%">
-    <v-card-title v-if="shouldIncludeTitle" class="secondary lighten-2">{{
-      currentSelectedParameter.name
-    }}</v-card-title>
+    <v-card-title v-if="shouldIncludeTitle">{{ currentSelectedParameter.path }}</v-card-title>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
     <component :is="distComponent" :selected-parameter="currentSelectedParameter"> </component>
   </v-card>

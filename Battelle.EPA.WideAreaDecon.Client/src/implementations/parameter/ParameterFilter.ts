@@ -1,6 +1,7 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterDeserializer from '@/serialization/parameter/ParameterDeserializer';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IParameterNode from '@/interfaces/parameter/IParameterNode';
 import ParameterWrapperFilter from './ParameterWrapperFilter';
 import ParameterWrapper from './ParameterWrapper';
 
@@ -25,12 +26,13 @@ export default class ParameterFilter {
     this.parameters = parameters !== undefined ? parameters : new Array<IParameter>();
   }
 
-  public toParameterWrapperFilter(): ParameterWrapperFilter {
-    return new ParameterWrapperFilter(
-      this.name,
-      this.filters.map((f) => f.toParameterWrapperFilter()),
-      this.parameters.map((p) => new ParameterWrapper(p)),
-    );
+  public toParameterWrapperFilter(parent: IParameterNode | null): ParameterWrapperFilter {
+    const newFilter = new ParameterWrapperFilter(parent, this.name);
+
+    newFilter.filters = this.filters.map((f) => f.toParameterWrapperFilter(newFilter));
+    newFilter.parameters = this.parameters.map((p) => new ParameterWrapper(newFilter, p));
+
+    return newFilter;
   }
 
   public allParametersValid(): boolean {

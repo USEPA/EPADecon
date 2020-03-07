@@ -1,8 +1,10 @@
 import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterTypes';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IParameterNode from '@/interfaces/parameter/IParameterNode';
 
 export default class BetaPERT implements IParameter {
+
   @JsonProperty()
   name: string;
 
