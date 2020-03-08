@@ -1,6 +1,7 @@
 import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterTypes';
 import IParameter from '@/interfaces/parameter/IParameter';
+import ParameterMetaData from '../ParameterMetaData';
 
 export default class Constant implements IParameter {
   @JsonProperty()
@@ -11,6 +12,9 @@ export default class Constant implements IParameter {
 
   @JsonProperty()
   value: number | undefined;
+
+  @JsonProperty()
+  metaData: ParameterMetaData = new ParameterMetaData();
 
   public isSet(): boolean {
     return this.value !== undefined;

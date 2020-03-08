@@ -4,6 +4,7 @@ import DistributionParameterDeserializer from '@/serialization/parameter/Distrib
 import IParameter from '@/interfaces/parameter/IParameter';
 import DistributionParameter from '../distribution/DistributionParameter';
 import NullParameter from '../NullParameter';
+import ParameterMetaData from '../ParameterMetaData';
 
 export default class ContaminatedBuildingType implements IParameter {
   @JsonProperty()
@@ -14,6 +15,9 @@ export default class ContaminatedBuildingType implements IParameter {
 
   @JsonProperty(DistributionParameterDeserializer)
   area: DistributionParameter | NullParameter;
+
+  @JsonProperty()
+  metaData: ParameterMetaData = new ParameterMetaData();
 
   public isSet(): boolean {
     if (this.area) {

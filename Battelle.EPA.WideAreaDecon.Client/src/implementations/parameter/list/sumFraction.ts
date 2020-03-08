@@ -2,6 +2,7 @@ import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterTypes';
 import IParameter from '@/interfaces/parameter/IParameter';
 import KeyValuePair from './keyValuePair';
+import ParameterMetaData from '../ParameterMetaData';
 
 export default class SumFraction implements IParameter {
   @JsonProperty()
@@ -9,6 +10,9 @@ export default class SumFraction implements IParameter {
 
   @JsonProperty()
   type: ParameterType = ParameterType.sumFraction;
+
+  @JsonProperty()
+  metaData: ParameterMetaData = new ParameterMetaData();
 
   @JsonProperty({
     predicate: () => {

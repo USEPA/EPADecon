@@ -2,6 +2,7 @@ import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterTypes';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ContaminatedBuildingType from './ContaminatedBuildingType';
+import ParameterMetaData from '../ParameterMetaData';
 
 export default class ContaminatedBuildingTypes implements IParameter {
   @JsonProperty()
@@ -9,6 +10,9 @@ export default class ContaminatedBuildingTypes implements IParameter {
 
   @JsonProperty()
   type: ParameterType = ParameterType.contaminatedBuildingTypes;
+
+  @JsonProperty()
+  metaData: ParameterMetaData = new ParameterMetaData();
 
   @JsonProperty({
     predicate: () => {
