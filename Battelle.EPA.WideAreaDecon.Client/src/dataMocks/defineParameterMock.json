@@ -10,7 +10,7 @@
           "parameters": [
             {
               "name": "Office Rentals",
-              "type": "constant",
+              "type": "Constant",
               "value": 1,
               "metaData": {
                 "min": 0,
@@ -21,7 +21,7 @@
             },
             {
               "name": "Expendable Office Supplies Per Day",
-              "type": "constant",
+              "type": "Constant",
               "value": 1,
               "metaData": {
                 "min": 0,
@@ -36,7 +36,7 @@
       "parameters": [
         {
           "name": "Personnel",
-          "type": "constant",
+          "type": "Constant",
           "value": 1,
           "metaData": {
             "min": 0,
@@ -63,7 +63,7 @@
       "parameters": [
         {
           "name": "Contamination Limit for Reduction",
-          "type": "constant",
+          "type": "Constant",
           "value": 1,
           "metaData": {
             "min": 0,
@@ -80,7 +80,7 @@
       "parameters": [
         {
           "name": "Cost per Personnel",
-          "type": "constant",
+          "type": "Constant",
           "value": 1,
           "metaData": {
             "min": 0,
@@ -91,7 +91,7 @@
         },
         {
           "name": "Personnel Availability",
-          "type": "constant",
+          "type": "Constant",
           "value": 1,
           "metaData": {
             "min": 0,

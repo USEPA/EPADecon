@@ -1,14 +1,14 @@
 enum ParameterType {
-  constant = 'constant',
-  uniform = 'uniform',
-  pert = 'pert',
-  truncatedNormal = 'truncatedNormal',
-  logUniform = 'logUniform',
-  truncatedLogNormal = 'truncatedLogNormal',
-  contaminatedBuildingType = 'contaminatedBuildingType',
-  contaminatedBuildingTypes = 'contaminatedBuildingTypes',
-  sumFraction = 'sumFraction',
-  null = 'null',
+  constant = 'Constant',
+  uniform = 'Uniform',
+  pert = 'Beta PERT',
+  truncatedNormal = 'Truncated Normal',
+  logUniform = 'Log Uniform',
+  truncatedLogNormal = 'Truncated Log Normal',
+  contaminatedBuildingType = 'Contaminated Building Type',
+  contaminatedBuildingTypes = 'Contaminated Building Types',
+  sumFraction = 'Sum Fraction',
+  null = 'Null',
 }
 
 export default ParameterType;

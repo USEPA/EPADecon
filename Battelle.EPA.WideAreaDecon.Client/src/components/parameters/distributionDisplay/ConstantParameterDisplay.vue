@@ -94,9 +94,10 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     const cast = newValue.current as Constant;
     if (cast.value) {
       this.sliderValue = cast.value;
-      this.textValue = cast.value;
-      this.min = this.sliderValue - 100;
-      this.max = this.sliderValue + 100;
+      this.textValue = cast.value.toString();
+      this.min = this.parameterValue.metaData.min ?? this.sliderValue - 100;
+      this.max = this.parameterValue.metaData.max ?? this.sliderValue + 100;
+      this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
     } else {
       this.textValue = '';
     }
@@ -126,7 +127,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
       this.sliderValue = Number(this.textValue);
       this.parameterValue.value = Number(this.textValue);
     } else {
-      this.textValue = this.sliderValue;
+      this.textValue = this.sliderValue.toString();
     }
   }
 
@@ -135,7 +136,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     this.textValue = '';
     if (this.parameterValue.value) {
       this.sliderValue = this.parameterValue.value;
-      this.textValue = this.parameterValue.value;
+      this.textValue = this.parameterValue.value.toString();
     }
     this.min = this.parameterValue.metaData.min ?? this.sliderValue - 100;
     this.max = this.parameterValue.metaData.max ?? this.sliderValue + 100;
@@ -143,10 +144,6 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   }
 
   created() {
-    this.setValues();
-  }
-
-  beforeUpdate() {
     this.setValues();
   }
 }

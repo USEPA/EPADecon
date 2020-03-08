@@ -7,14 +7,14 @@
       "parameters": [
         {
           "name": "Amount of Contamination",
-          "type": "contaminatedBuildingTypes",
+          "type": "Contaminated Building Types",
           "buildings": [
             {
               "name": "Residential",
-              "type": "contaminatedBuildingType",
+              "type": "Contaminated Building Type",
               "area": {
                 "name": "area",
-                "type": "constant",
+                "type": "Constant",
                 "metaData": {
                   "min": 0,
                   "max": 1000000,
@@ -25,10 +25,10 @@
             },
             {
               "name": "Commercial",
-              "type": "contaminatedBuildingType",
+              "type": "Contaminated Building Type",
               "area": {
                 "name": "area",
-                "type": "constant",
+                "type": "Constant",
                 "units": "m^2",
                 "metaData": {
                   "min": 0,
@@ -40,10 +40,10 @@
             },
             {
               "name": "Industrial",
-              "type": "contaminatedBuildingType",
+              "type": "Contaminated Building Type",
               "area": {
                 "name": "area",
-                "type": "constant",
+                "type": "Constant",
                 "units": "m^2",
                 "metaData": {
                   "min": 0,
@@ -55,10 +55,10 @@
             },
             {
               "name": "Government",
-              "type": "contaminatedBuildingType",
+              "type": "Contaminated Building Type",
               "area": {
                 "name": "area",
-                "type": "constant",
+                "type": "Constant",
                 "units": "m^2",
                 "metaData": {
                   "min": 0,
@@ -70,10 +70,10 @@
             },
             {
               "name": "Educational",
-              "type": "contaminatedBuildingType",
+              "type": "Contaminated Building Type",
               "area": {
                 "name": "area",
-                "type": "constant",
+                "type": "Constant",
                 "units": "m^2",
                 "metaData": {
                   "min": 0,
@@ -85,10 +85,10 @@
             },
             {
               "name": "Agricultural",
-              "type": "contaminatedBuildingType",
+              "type": "Contaminated Building Type",
               "area": {
                 "name": "area",
-                "type": "constant",
+                "type": "Constant",
                 "units": "m^2",
                 "metaData": {
                   "min": 0,
@@ -108,7 +108,7 @@
       "parameters": [
         {
           "name": "Outdoor Area Contaminated",
-          "type": "constant",
+          "type": "Constant",
           "metaData": {
             "min": 0,
             "max": 1000000,
@@ -118,7 +118,7 @@
         },
         {
           "name": "Outdoor Contamination Breakdown",
-          "type": "sumFraction",
+          "type": "Sum Fraction",
           "entries": [
             {
               "key": "Concrete",
@@ -148,7 +148,7 @@
       "parameters": [
         {
           "name": "Underground Area Contaminated",
-          "type": "constant",
+          "type": "Constant",
           "metaData": {
             "min": 0,
             "max": 1000000,
