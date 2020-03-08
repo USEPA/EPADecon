@@ -9,6 +9,9 @@ export default class ParameterMetaData {
   max?: number;
 
   @JsonProperty()
+  step?: number;
+
+  @JsonProperty()
   units?: string;
 
   @JsonProperty()

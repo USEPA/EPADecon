@@ -1,12 +1,11 @@
 <template>
   <v-container :style="vuetifyColorProps()">
-    <v-card-title>TEST</v-card-title>
     <v-row
       ><v-col><v-spacer /></v-col
     ></v-row>
     <v-row>
       <v-col>
-        <v-slider v-model="sliderValue" :max="max" :min="min" :step="0.1" thumb-label @change="onSliderStopped">
+        <v-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">
           <template v-slot:prepend>
             <p class="grey--text">{{ min }}</p>
           </template>
@@ -29,7 +28,7 @@
             hide-details="auto"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.units }}</p>
+              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
             </template>
           </v-text-field>
         </v-card>
@@ -76,16 +75,18 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 
   sliderValue = 0;
 
-  textValue: number | string = '';
+  textValue = '';
 
   min = -100;
 
   max = 10000;
 
+  step = 0.1;
+
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number) {
-    this.textValue = newValue;
-    // this.parameterValue.value = newValue;
+    this.textValue = newValue.toString();
+    this.parameterValue.value = newValue;
   }
 
   @Watch('selectedParameter')
@@ -103,7 +104,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 
   onTextEnterPressed(event: KeyboardEvent) {
     if (event.keyCode === Key.Enter) {
-      this.updateOnTextChange();
+      this.updateOnTextChange(this.textValue);
     }
   }
 
@@ -111,7 +112,8 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     this.parameterValue.value = value;
   }
 
-  updateOnTextChange() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  updateOnTextChange(newValue: string | undefined) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.value as any;
     if (this.textValue === '') {
@@ -128,15 +130,24 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     }
   }
 
-  created() {
+  setValues() {
     this.sliderValue = 0;
     this.textValue = '';
     if (this.parameterValue.value) {
       this.sliderValue = this.parameterValue.value;
       this.textValue = this.parameterValue.value;
     }
-    this.min = this.sliderValue - 100;
-    this.max = this.sliderValue + 100;
+    this.min = this.parameterValue.metaData.min ?? this.sliderValue - 100;
+    this.max = this.parameterValue.metaData.max ?? this.sliderValue + 100;
+    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
+  }
+
+  created() {
+    this.setValues();
+  }
+
+  beforeUpdate() {
+    this.setValues();
   }
 }
 </script>
@@ -167,4 +178,4 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 }
 </style>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss4"></style>

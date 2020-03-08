@@ -12,20 +12,22 @@
               "name": "Office Rentals",
               "type": "constant",
               "value": 1,
-              "metadata": {
+              "metaData": {
                 "min": 0,
                 "max": 100,
-                "units": "offices"
+                "units": "offices",
+                "step": 1
               }
             },
             {
               "name": "Expendable Office Supplies Per Day",
               "type": "constant",
               "value": 1,
-              "metadata": {
+              "metaData": {
                 "min": 0,
                 "max": 1000,
-                "units": "supplies / day"
+                "units": "supplies / day",
+                "step": 0.1
               }
             }
           ]
@@ -36,10 +38,11 @@
           "name": "Personnel",
           "type": "constant",
           "value": 1,
-          "metadata": {
+          "metaData": {
             "min": 0,
-            "max": 3,
-            "units": "people"
+            "max": 5,
+            "units": "people",
+            "step": 1
           }
         }
       ]
@@ -62,10 +65,11 @@
           "name": "Contamination Limit for Reduction",
           "type": "constant",
           "value": 1,
-          "metadata": {
+          "metaData": {
             "min": 0,
             "max": 1000,
-            "units": "cfu / m^2"
+            "units": "cfu / m^2",
+            "step": 0.1
           }
         }
       ]
@@ -78,20 +82,22 @@
           "name": "Cost per Personnel",
           "type": "constant",
           "value": 1,
-          "metadata": {
+          "metaData": {
             "min": 0,
             "max": 100,
-            "units": "$ / person"
+            "units": "$ / person",
+            "step": 0.01
           }
         },
         {
           "name": "Personnel Availability",
           "type": "constant",
           "value": 1,
-          "metadata": {
+          "metaData": {
             "min": 0,
             "max": 100,
-            "units": "people"
+            "units": "people",
+            "step": 1
           }
         }
       ]

@@ -15,10 +15,11 @@
               "area": {
                 "name": "area",
                 "type": "constant",
-                "metadata": {
+                "metaData": {
                   "min": 0,
                   "max": 1000000,
-                  "units": "m^2"
+                  "units": "m^2",
+                  "step": 1
                 }
               }
             },
@@ -29,10 +30,11 @@
                 "name": "area",
                 "type": "constant",
                 "units": "m^2",
-                "metadata": {
+                "metaData": {
                   "min": 0,
                   "max": 1000000,
-                  "units": "m^2"
+                  "units": "m^2",
+                  "step": 1
                 }
               }
             },
@@ -43,10 +45,11 @@
                 "name": "area",
                 "type": "constant",
                 "units": "m^2",
-                "metadata": {
+                "metaData": {
                   "min": 0,
                   "max": 1000000,
-                  "units": "m^2"
+                  "units": "m^2",
+                  "step": 1
                 }
               }
             },
@@ -57,10 +60,11 @@
                 "name": "area",
                 "type": "constant",
                 "units": "m^2",
-                "metadata": {
+                "metaData": {
                   "min": 0,
                   "max": 1000000,
-                  "units": "m^2"
+                  "units": "m^2",
+                  "step": 1
                 }
               }
             },
@@ -71,10 +75,11 @@
                 "name": "area",
                 "type": "constant",
                 "units": "m^2",
-                "metadata": {
+                "metaData": {
                   "min": 0,
                   "max": 1000000,
-                  "units": "m^2"
+                  "units": "m^2",
+                  "step": 1
                 }
               }
             },
@@ -85,10 +90,11 @@
                 "name": "area",
                 "type": "constant",
                 "units": "m^2",
-                "metadata": {
+                "metaData": {
                   "min": 0,
                   "max": 1000000,
-                  "units": "m^2"
+                  "units": "m^2",
+                  "step": 1
                 }
               }
             }
@@ -103,10 +109,11 @@
         {
           "name": "Outdoor Area Contaminated",
           "type": "constant",
-          "metadata": {
+          "metaData": {
             "min": 0,
             "max": 1000000,
-            "units": "m^2"
+            "units": "m^2",
+            "step": 1
           }
         },
         {
@@ -126,10 +133,11 @@
               "value": null
             }
           ],
-          "metadata": {
+          "metaData": {
             "min": 0,
             "max": 1,
-            "units": "%"
+            "units": "%",
+            "step": 0.01
           }
         }
       ]
@@ -141,10 +149,11 @@
         {
           "name": "Underground Area Contaminated",
           "type": "constant",
-          "metadata": {
+          "metaData": {
             "min": 0,
             "max": 1000000,
-            "units": "m^2"
+            "units": "m^2",
+            "step": 1
           }
         }
       ]
