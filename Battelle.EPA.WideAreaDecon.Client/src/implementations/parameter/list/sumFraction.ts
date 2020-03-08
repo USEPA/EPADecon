@@ -10,7 +10,11 @@ export default class SumFraction implements IParameter {
   @JsonProperty()
   type: ParameterType = ParameterType.sumFraction;
 
-  @JsonProperty()
+  @JsonProperty({
+    predicate: () => {
+      return KeyValuePair;
+    },
+  })
   entries: Array<KeyValuePair>;
 
   public isSet(): boolean {
@@ -30,9 +34,9 @@ export default class SumFraction implements IParameter {
   }
 
   compareValues(other?: SumFraction): boolean {
-    if (other === undefined || this.type !== other?.type) {
+    if (other === undefined || this.type !== other.type) {
       return false;
     }
-    return this.entries.every((kvp, i) => kvp.isEquivalent(other.entries[i]));
+    return this.entries.every((kvp: KeyValuePair, i: number) => kvp.isEquivalent(other.entries[i]));
   }
 }

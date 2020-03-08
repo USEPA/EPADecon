@@ -1,10 +1,10 @@
 <template>
   <v-card height="100%" width="100%">
     <v-row>
-      <v-col cols="4" class="mr-auto">
+      <v-col cols="auto" class="mr-auto">
         <v-card-title v-if="shouldIncludeTitle" v-text="currentSelectedParameter.path" />
       </v-col>
-      <v-col cols="3">
+      <v-col align-self="center" cols="3">
         <v-btn v-if="shouldIncludeTitle && parameterHasChanged" color="secondary" @click="resetParameter"
           >Reset Parameter</v-btn
         >

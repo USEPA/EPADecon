@@ -39,7 +39,7 @@ export default class ContaminatedBuildingTypes implements IParameter {
   }
 
   compareValues(other?: ContaminatedBuildingTypes): boolean {
-    if (other === undefined || this.type === other.type) {
+    if (other === undefined || this.type !== other.type) {
       return false;
     }
     return this.buildings.every((contamBuilding, i) => contamBuilding.isEquivalent(other.buildings[i]));

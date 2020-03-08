@@ -9,6 +9,9 @@
     >
       <v-list-item-icon />
       <v-list-item-title :class="getParameterClass(param)" v-text="param.current.name"></v-list-item-title>
+      <v-list-item-icon>
+        <v-icon :class="getParameterClass(param)" v-if="param.isChanged()">fa-edit</v-icon>
+      </v-list-item-icon>
     </v-list-item>
 
     <v-list-group active-class="secondary--text" v-for="(filt, j) in getSubFilters()" :key="'filter_' + j" sub-group>
@@ -24,6 +27,9 @@
         <v-list-item-content>
           <v-list-item-title v-text="filt.name"></v-list-item-title>
         </v-list-item-content>
+        <v-list-item-icon>
+          <v-icon v-if="filt.anyParameterChanged()">fa-edit</v-icon>
+        </v-list-item-icon>
       </template>
       <parameter-list-expansion-panel :filter="filt" />
     </v-list-group>

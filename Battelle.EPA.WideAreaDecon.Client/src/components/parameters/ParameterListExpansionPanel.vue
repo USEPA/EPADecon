@@ -12,6 +12,9 @@
             />
           </v-list-item-icon>
           <v-list-item-title>{{ item.name }}</v-list-item-title>
+          <v-list-item-icon>
+            <v-icon v-if="item.anyParameterChanged()">fa-edit</v-icon>
+          </v-list-item-icon>
         </template>
         <parameter-filter-expansion-panel :filter="item" />
       </v-list-group>

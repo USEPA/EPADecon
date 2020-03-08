@@ -122,6 +122,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
       this.textValue = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       this.sliderValue = Number(this.textValue);
+      this.parameterValue.value = Number(this.textValue);
     } else {
       this.textValue = this.sliderValue;
     }

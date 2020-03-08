@@ -1,5 +1,17 @@
 <template>
-  <v-container fill-height fluid>
+  <v-container>
+    <v-row>
+      <v-col><v-spacer /></v-col>
+    </v-row>
+    <v-row>
+      <v-col><v-spacer /></v-col>
+    </v-row>
+    <v-row>
+      <v-col><v-spacer /></v-col>
+    </v-row>
+    <v-row>
+      <v-col><v-spacer /></v-col>
+    </v-row>
     <v-row align="center" justify="center">
       <v-col>
         <p class="text-center display-3">
