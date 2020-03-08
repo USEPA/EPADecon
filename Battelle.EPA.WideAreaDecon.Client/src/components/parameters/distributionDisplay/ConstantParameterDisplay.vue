@@ -1,8 +1,24 @@
 <template>
-  <v-container>
+  <v-container :style="vuetifyColorProps()">
+    <v-card-title>TEST</v-card-title>
+    <v-row
+      ><v-col><v-spacer /></v-col
+    ></v-row>
     <v-row>
-      <v-col cols="2" class="mr-auto">
-        <v-card class=".theme--light.v-card.v-card--outlined pa-2" outlined tile>
+      <v-col>
+        <v-slider v-model="sliderValue" :max="max" :min="min" :step="0.1" thumb-label @change="onSliderStopped">
+          <template v-slot:prepend>
+            <p class="grey--text">{{ min }}</p>
+          </template>
+          <template v-slot:append>
+            <p class="grey--text">{{ max }}</p>
+          </template>
+        </v-slider>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="4" class="mr-auto">
+        <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="value"
             @keydown="onTextEnterPressed"
@@ -19,25 +35,6 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col>
-        <v-slider
-          v-model="sliderValue"
-          :max="max"
-          :min="min"
-          :step="0.1"
-          thumb-label
-          @end="onSliderStopped"
-        >
-          <template v-slot:prepend>
-            <p class="grey--text">{{ min }}</p>
-          </template>
-          <template v-slot:append>
-            <p class="grey--text">{{ max }}</p>
-          </template>
-        </v-slider>
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 
@@ -52,6 +49,12 @@ import { Key } from 'ts-keycode-enum';
 @Component
 export default class ConstantParameterDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) selectedParameter!: ParameterWrapper;
+
+  vuetifyColorProps() {
+    return {
+      '--primary-color': this.$vuetify.theme.currentTheme.primary,
+    };
+  }
 
   get parameterValue(): Constant {
     return this.selectedParameter.current as Constant;
@@ -115,6 +118,8 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
       this.parameterValue.value = undefined;
     } else if (Number(this.textValue) === this.sliderValue) {
       this.parameterValue.value = Number(this.textValue);
+    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+      this.textValue = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       this.sliderValue = Number(this.textValue);
     } else {
@@ -135,11 +140,30 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+.v-slider__track-container {
+  height: 8px !important;
+}
+.v-slider__track-fill {
+  border-radius: 5px !important;
+}
+.v-slider__track-background {
+  border-radius: 5px !important;
+}
+.v-slider__thumb {
+  width: 24px !important;
+  height: 24px !important;
+  left: -12px !important;
+}
+.v-slider__thumb:before {
+  left: -6px !important;
+  top: -6px !important;
+}
 .theme--light.v-card.v-card--outlined {
-  border-style: dotted;
-  border: 2px solid;
-  border-color: #0fb924;
-  border-radius: 5px;
+  border: 2px solid !important;
+  border-color: var(--primary-color) !important;
+  border-radius: 5px !important;
 }
 </style>
+
+<style scoped lang="scss"></style>

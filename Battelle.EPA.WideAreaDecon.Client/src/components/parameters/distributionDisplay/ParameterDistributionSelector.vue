@@ -1,8 +1,17 @@
 <template>
   <v-card height="100%" width="100%">
-    <v-card-title v-if="shouldIncludeTitle">{{ currentSelectedParameter.path }}</v-card-title>
+    <v-row>
+      <v-col cols="4" class="mr-auto">
+        <v-card-title v-if="shouldIncludeTitle" v-text="currentSelectedParameter.path" />
+      </v-col>
+      <v-col cols="3">
+        <v-btn v-if="shouldIncludeTitle && parameterHasChanged" color="secondary" @click="resetParameter"
+          >Reset Parameter</v-btn
+        >
+      </v-col>
+    </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
-    <component :is="distComponent" :selected-parameter="currentSelectedParameter"> </component>
+    <component :key="componentKey" :is="distComponent" :selected-parameter="currentSelectedParameter"> </component>
   </v-card>
 </template>
 
@@ -20,6 +29,8 @@ import ParameterWrapper from '../../../implementations/parameter/ParameterWrappe
 export default class ParameterDistributionSelector extends Vue {
   @State currentSelectedParameter!: ParameterWrapper;
 
+  componentKey = 0;
+
   get distComponent(): string {
     switch (this.currentSelectedParameter.current.type) {
       case ParameterType.null:
@@ -33,6 +44,15 @@ export default class ParameterDistributionSelector extends Vue {
 
   get shouldIncludeTitle(): boolean {
     return this.currentSelectedParameter.type !== ParameterType.null;
+  }
+
+  get parameterHasChanged(): boolean {
+    return this.currentSelectedParameter.isChanged();
+  }
+
+  resetParameter() {
+    this.$store.commit('resetCurrentSelectedParameter');
+    this.componentKey += 1;
   }
 }
 </script>

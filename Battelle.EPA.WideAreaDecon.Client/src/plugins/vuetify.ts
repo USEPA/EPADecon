@@ -16,6 +16,9 @@ import IVuetifyThemeSettings from '@/interfaces/configuration/IVuetifyThemeSetti
 
 // vue-cli a-la-carte installation
 Vue.use(Vuetify, {
+  options: {
+    customProperties: true,
+  },
   components: {
     VAlert,
     VApp,

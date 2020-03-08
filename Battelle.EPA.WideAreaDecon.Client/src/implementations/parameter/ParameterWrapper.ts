@@ -33,6 +33,10 @@ export default class ParameterWrapper implements IParameterNode {
     return !this.baseline.isEquivalent(this.current);
   }
 
+  reset() {
+    this.current = deepCopy(this.baseline);
+  }
+
   constructor(parent: IParameterNode | null = null, param?: IParameter) {
     this.parent = parent;
     this.baseline = new NullParameter();
