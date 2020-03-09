@@ -1,41 +1,28 @@
 <template>
   <v-card height="100%" width="100%">
-    <v-row>
+    <v-row dense>
       <v-col cols="auto" class="mr-auto">
         <v-card-title v-if="shouldIncludeTitle" v-text="currentSelectedParameter.path" />
       </v-col>
       <v-col align-self="center" cols="3">
-        <v-btn v-if="shouldIncludeTitle && parameterHasChanged" color="secondary" @click="resetParameter"
-          >Reset Parameter</v-btn
-        >
+        <v-overflow-btn
+          v-if="isChangeableDist"
+          @change="onDistributionTypeChange"
+          class="my-2"
+          v-model="currentDistType"
+          :items="distNames"
+          filled
+          dense
+        />
+      </v-col>
+      <v-col align-self="center" cols="2">
+        <v-btn height="60" v-if="shouldIncludeTitle && parameterHasChanged" color="secondary" @click="resetParameter">
+          Reset Parameter
+        </v-btn>
       </v-col>
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
     <component :key="componentKey" :is="distComponent" :selected-parameter="currentSelectedParameter"> </component>
-    <v-container>
-      <v-row v-if="isChangeableDist">
-        <v-row align="center" justify="start">
-          <v-col cols="auto">
-            <v-container>
-              <p class="title">Type:</p>
-            </v-container>
-          </v-col>
-
-          <v-col cols="3">
-            <v-container id="dropdown-example-1">
-              <v-overflow-btn
-                @change="onDistributionTypeChange"
-                class="my-2"
-                v-model="currentDistType"
-                :items="distNames"
-                target="#dropdown-example-1"
-                full-width
-              />
-            </v-container>
-          </v-col>
-        </v-row>
-      </v-row>
-    </v-container>
   </v-card>
 </template>
 

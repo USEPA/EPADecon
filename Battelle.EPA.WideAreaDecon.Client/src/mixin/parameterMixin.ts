@@ -15,11 +15,11 @@ const parameterTypeNames = new Map<ParameterType, string>([
 
 const changeableDistributionTypes = new Array<ParameterType>(
   ParameterType.constant,
-  ParameterType.logUniform,
-  ParameterType.pert,
-  ParameterType.truncatedLogNormal,
-  ParameterType.truncatedNormal,
   ParameterType.uniform,
+  ParameterType.pert,
+  ParameterType.truncatedNormal,
+  ParameterType.logUniform,
+  ParameterType.truncatedLogNormal,
 );
 
 export { parameterTypeNames, changeableDistributionTypes };

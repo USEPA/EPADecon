@@ -49,14 +49,14 @@ import { Key } from 'ts-keycode-enum';
 export default class ConstantParameterDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) selectedParameter!: ParameterWrapper;
 
+  get parameterValue(): Constant {
+    return this.selectedParameter.current as Constant;
+  }
+
   vuetifyColorProps() {
     return {
       '--primary-color': this.$vuetify.theme.currentTheme.primary,
     };
-  }
-
-  get parameterValue(): Constant {
-    return this.selectedParameter.current as Constant;
   }
 
   validationRules(value: string): boolean | string {
@@ -132,12 +132,8 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   }
 
   setValues() {
-    this.sliderValue = 0;
-    this.textValue = '';
-    if (this.parameterValue.value) {
-      this.sliderValue = this.parameterValue.value;
-      this.textValue = this.parameterValue.value.toString();
-    }
+    this.sliderValue = this.parameterValue.value ?? 0;
+    this.textValue = this.parameterValue.value?.toString() ?? '';
     this.min = this.parameterValue.metaData.min ?? this.sliderValue - 100;
     this.max = this.parameterValue.metaData.max ?? this.sliderValue + 100;
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
