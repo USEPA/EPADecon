@@ -17,23 +17,23 @@ export default class TruncatedLogNormalParameterConverter implements IParameterC
   convertToNewType(old: TruncatedLogNormal, newType: ParameterType): IParameter {
     switch (newType) {
       case ParameterType.constant:
-        return new Constant(old.name, old.mean);
+        return new Constant(old.name, old.metaData, old.mean);
       case ParameterType.logUniform:
-        return new LogUniform(old.name, old.min, old.max);
+        return new LogUniform(old.name, old.metaData, old.min, old.max);
       case ParameterType.pert:
-        return new BetaPERT(old.name, old.min, old.max, old.mean);
+        return new BetaPERT(old.name, old.metaData, old.min, old.max, old.mean);
       case ParameterType.truncatedLogNormal:
         return old;
       case ParameterType.truncatedNormal:
-        return new TruncatedNormal(old.name, old.min, old.max, old.mean, old.stdDev);
+        return new TruncatedNormal(old.name, old.metaData, old.min, old.max, old.mean, old.stdDev);
       case ParameterType.uniform:
-        return new Uniform(old.name, old.min, old.max);
+        return new Uniform(old.name, old.metaData, old.min, old.max);
       case ParameterType.contaminatedBuildingTypes:
-        return new ContaminatedBuildingTypes();
+        return new ContaminatedBuildingTypes(old.name, old.metaData);
       case ParameterType.contaminatedBuildingType:
-        return new ContaminatedBuildingType();
+        return new ContaminatedBuildingType(old.name, old.metaData);
       case ParameterType.sumFraction:
-        return new SumFraction();
+        return new SumFraction(old.name, old.metaData);
       case ParameterType.null:
         return new NullParameter();
       default:

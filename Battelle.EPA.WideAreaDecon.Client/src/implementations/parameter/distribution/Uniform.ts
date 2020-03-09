@@ -25,16 +25,17 @@ export default class Uniform implements IParameter {
   }
 
   @JsonProperty()
-  metaData: ParameterMetaData = new ParameterMetaData();
+  metaData: ParameterMetaData;
 
   public isSet(): boolean {
     return this.min !== undefined && this.max !== undefined;
   }
 
-  constructor(name = 'unknown', min?: number, max?: number) {
+  constructor(name = 'unknown', metaData = new ParameterMetaData(), min?: number, max?: number) {
     this.name = name;
     this.min = min;
     this.max = max;
+    this.metaData = metaData;
   }
 
   isEquivalent(other: IParameter): boolean {

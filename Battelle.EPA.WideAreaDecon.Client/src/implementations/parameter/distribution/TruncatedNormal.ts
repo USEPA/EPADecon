@@ -8,7 +8,7 @@ export default class TruncatedNormal implements IParameter {
   name: string;
 
   @JsonProperty()
-  type: ParameterType = ParameterType.constant;
+  type: ParameterType = ParameterType.truncatedNormal;
 
   @JsonProperty()
   min: number | undefined;
@@ -23,18 +23,26 @@ export default class TruncatedNormal implements IParameter {
   stdDev: number | undefined;
 
   @JsonProperty()
-  metaData: ParameterMetaData = new ParameterMetaData();
+  metaData: ParameterMetaData;
 
   public isSet(): boolean {
     return this.min !== undefined && this.max !== undefined && this.mean !== undefined && this.stdDev !== undefined;
   }
 
-  constructor(name = 'unknown', min?: number, max?: number, mean?: number, stdDev?: number) {
+  constructor(
+    name = 'unknown',
+    metaData = new ParameterMetaData(),
+    min?: number,
+    max?: number,
+    mean?: number,
+    stdDev?: number,
+  ) {
     this.name = name;
     this.min = min;
     this.max = max;
     this.mean = mean;
     this.stdDev = stdDev;
+    this.metaData = metaData;
   }
 
   isEquivalent(other: IParameter): boolean {

@@ -12,7 +12,7 @@ export default class ContaminatedBuildingTypes implements IParameter {
   type: ParameterType = ParameterType.contaminatedBuildingTypes;
 
   @JsonProperty()
-  metaData: ParameterMetaData = new ParameterMetaData();
+  metaData: ParameterMetaData;
 
   @JsonProperty({
     predicate: () => {
@@ -26,16 +26,14 @@ export default class ContaminatedBuildingTypes implements IParameter {
   }
 
   // eslint-disable-next-line no-useless-constructor
-  constructor(name = 'unknown', buildings?: ContaminatedBuildingType[]) {
+  constructor(name = 'unknown', metaData = new ParameterMetaData(), buildings?: ContaminatedBuildingType[]) {
     this.name = name;
-    if (buildings !== undefined && buildings.length === 0) {
-      // console.error('Construction of ContaminatedBulidingTypes with no buildings not allowed!');
-    }
     if (buildings) {
       this.buildings = buildings;
     } else {
       this.buildings = new Array<ContaminatedBuildingType>();
     }
+    this.metaData = metaData;
   }
 
   isEquivalent(other: IParameter): boolean {

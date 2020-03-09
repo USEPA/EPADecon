@@ -8,38 +8,38 @@ export default class TruncatedLogNormal implements IParameter {
   name: string;
 
   @JsonProperty()
-  type: ParameterType = ParameterType.constant;
+  type: ParameterType = ParameterType.truncatedLogNormal;
 
   @JsonProperty()
   logMin: number | undefined;
 
   get min(): number | undefined {
-    return this.logMin !== undefined ? this.logMin ** 10 : undefined;
+    return this.logMin !== undefined ? 10 ** this.logMin : undefined;
   }
 
   @JsonProperty()
   logMax: number | undefined;
 
   get max(): number | undefined {
-    return this.logMax !== undefined ? this.logMax ** 10 : undefined;
+    return this.logMax !== undefined ? 10 ** this.logMax : undefined;
   }
 
   @JsonProperty()
   logMean: number | undefined;
 
   get mean(): number | undefined {
-    return this.logMean !== undefined ? this.logMean ** 10 : undefined;
+    return this.logMean !== undefined ? 10 ** this.logMean : undefined;
   }
 
   @JsonProperty()
   logStdDev: number | undefined;
 
   get stdDev(): number | undefined {
-    return this.logStdDev !== undefined ? this.logStdDev ** 10 : undefined;
+    return this.logStdDev !== undefined ? 10 ** this.logStdDev : undefined;
   }
 
   @JsonProperty()
-  metaData: ParameterMetaData = new ParameterMetaData();
+  metaData: ParameterMetaData;
 
   public isSet(): boolean {
     return (
@@ -50,12 +50,20 @@ export default class TruncatedLogNormal implements IParameter {
     );
   }
 
-  constructor(name = 'unknown', logMin?: number, logMax?: number, logMean?: number, logStdDev?: number) {
+  constructor(
+    name = 'unknown',
+    metaData = new ParameterMetaData(),
+    logMin?: number,
+    logMax?: number,
+    logMean?: number,
+    logStdDev?: number,
+  ) {
     this.name = name;
     this.logMin = logMin;
     this.logMax = logMax;
     this.logMean = logMean;
     this.logStdDev = logStdDev;
+    this.metaData = metaData;
   }
 
   isEquivalent(other: IParameter): boolean {

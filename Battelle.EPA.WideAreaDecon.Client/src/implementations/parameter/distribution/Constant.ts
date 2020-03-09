@@ -14,15 +14,16 @@ export default class Constant implements IParameter {
   value: number | undefined;
 
   @JsonProperty()
-  metaData: ParameterMetaData = new ParameterMetaData();
+  metaData: ParameterMetaData;
 
   public isSet(): boolean {
     return this.value !== undefined;
   }
 
-  constructor(name = 'unknown', value?: number) {
+  constructor(name = 'unknown', metaData = new ParameterMetaData(), value?: number) {
     this.name = name;
     this.value = value;
+    this.metaData = metaData;
   }
 
   isEquivalent(other: IParameter): boolean {

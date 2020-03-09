@@ -34,17 +34,18 @@ export default class BetaPERT implements IParameter {
   }
 
   @JsonProperty()
-  metaData: ParameterMetaData = new ParameterMetaData();
+  metaData: ParameterMetaData;
 
   public isSet(): boolean {
     return this.min !== undefined && this.max !== undefined && this.mode !== undefined;
   }
 
-  constructor(name = 'unknown', min?: number, max?: number, mode?: number) {
+  constructor(name = 'unknown', metaData = new ParameterMetaData(), min?: number, max?: number, mode?: number) {
     this.name = name;
     this.min = min;
     this.max = max;
     this.mode = mode;
+    this.metaData = metaData;
   }
 
   isEquivalent(other: IParameter): boolean {

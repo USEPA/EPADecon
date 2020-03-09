@@ -8,20 +8,20 @@ export default class LogUniform implements IParameter {
   name: string;
 
   @JsonProperty()
-  type: ParameterType = ParameterType.constant;
+  type: ParameterType = ParameterType.logUniform;
 
   @JsonProperty()
   logMin: number | undefined;
 
   get min(): number | undefined {
-    return this.logMin !== undefined ? this.logMin ** 10 : undefined;
+    return this.logMin !== undefined ? 10 ** this.logMin : undefined;
   }
 
   @JsonProperty()
   logMax: number | undefined;
 
   get max(): number | undefined {
-    return this.logMax !== undefined ? this.logMax ** 10 : undefined;
+    return this.logMax !== undefined ? 10 ** this.logMax : undefined;
   }
 
   get mean(): number | undefined {
@@ -33,16 +33,17 @@ export default class LogUniform implements IParameter {
   }
 
   @JsonProperty()
-  metaData: ParameterMetaData = new ParameterMetaData();
+  metaData: ParameterMetaData;
 
   public isSet(): boolean {
     return this.logMin !== undefined && this.logMax !== undefined;
   }
 
-  constructor(name = 'unknown', logMin?: number, logMax?: number) {
+  constructor(name = 'unknown', metaData = new ParameterMetaData(), logMin?: number, logMax?: number) {
     this.name = name;
     this.logMin = logMin;
     this.logMax = logMax;
+    this.metaData = metaData;
   }
 
   isEquivalent(other: IParameter): boolean {

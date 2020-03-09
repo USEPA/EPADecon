@@ -19,21 +19,33 @@ export default class ConstantParameterConverter implements IParameterConverter {
       case ParameterType.constant:
         return old;
       case ParameterType.logUniform:
-        return new LogUniform(old.name, old.value, old.value);
+        return new LogUniform(
+          old.name,
+          old.metaData,
+          old.value !== undefined ? Math.log10(old.value) : undefined,
+          old.value !== undefined ? Math.log10(old.value) : undefined,
+        );
       case ParameterType.pert:
-        return new BetaPERT(old.name, old.value, old.value, old.value);
+        return new BetaPERT(old.name, old.metaData, old.value, old.value, old.value);
       case ParameterType.truncatedLogNormal:
-        return new TruncatedLogNormal(old.name, old.value, old.value, old.value, old.value);
+        return new TruncatedLogNormal(
+          old.name,
+          old.metaData,
+          old.value !== undefined ? Math.log10(old.value) : undefined,
+          old.value !== undefined ? Math.log10(old.value) : undefined,
+          old.value !== undefined ? Math.log10(old.value) : undefined,
+          old.value !== undefined ? Math.log10(old.value) : undefined,
+        );
       case ParameterType.truncatedNormal:
-        return new TruncatedNormal(old.name, old.value, old.value, old.value, old.value);
+        return new TruncatedNormal(old.name, old.metaData, old.value, old.value, old.value, old.value);
       case ParameterType.uniform:
-        return new Uniform(old.name, old.value, old.value);
+        return new Uniform(old.name, old.metaData, old.value, old.value);
       case ParameterType.contaminatedBuildingTypes:
-        return new ContaminatedBuildingTypes();
+        return new ContaminatedBuildingTypes(old.name, old.metaData);
       case ParameterType.contaminatedBuildingType:
-        return new ContaminatedBuildingType();
+        return new ContaminatedBuildingType(old.name, old.metaData);
       case ParameterType.sumFraction:
-        return new SumFraction();
+        return new SumFraction(old.name, old.metaData);
       case ParameterType.null:
         return new NullParameter();
       default:

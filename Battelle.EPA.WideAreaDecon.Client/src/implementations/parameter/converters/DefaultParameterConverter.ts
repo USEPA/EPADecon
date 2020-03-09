@@ -17,23 +17,23 @@ export default class DefaultParameterConverter implements IParameterConverter {
   convertToNewType(old: IParameter, newType: ParameterType): IParameter {
     switch (newType) {
       case ParameterType.constant:
-        return new Constant(old.name);
+        return new Constant(old.name, old.metaData);
       case ParameterType.logUniform:
-        return new LogUniform(old.name);
+        return new LogUniform(old.name, old.metaData);
       case ParameterType.pert:
-        return new BetaPERT(old.name);
+        return new BetaPERT(old.name, old.metaData);
       case ParameterType.truncatedLogNormal:
-        return new TruncatedLogNormal(old.name);
+        return new TruncatedLogNormal(old.name, old.metaData);
       case ParameterType.truncatedNormal:
-        return new TruncatedNormal(old.name);
+        return new TruncatedNormal(old.name, old.metaData);
       case ParameterType.uniform:
-        return new Uniform(old.name);
+        return new Uniform(old.name, old.metaData);
       case ParameterType.contaminatedBuildingTypes:
-        return new ContaminatedBuildingTypes(old.name);
+        return new ContaminatedBuildingTypes(old.name, old.metaData);
       case ParameterType.contaminatedBuildingType:
-        return new ContaminatedBuildingType(old.name);
+        return new ContaminatedBuildingType(old.name, old.metaData);
       case ParameterType.sumFraction:
-        return new SumFraction(old.name);
+        return new SumFraction(old.name, old.metaData);
       case ParameterType.null:
         return new NullParameter();
       default:

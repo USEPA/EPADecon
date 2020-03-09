@@ -19,19 +19,22 @@ export default class TruncatedNormalParameterConverter implements IParameterConv
       case ParameterType.constant:
         return new Constant(
           old.name,
+          old.metaData,
           old.min !== undefined && old.max !== undefined ? (old.max + old.min) / 2 : undefined,
         );
       case ParameterType.logUniform:
         return new LogUniform(
           old.name,
+          old.metaData,
           old.min !== undefined ? Math.log10(old.min) : undefined,
           old.max !== undefined ? Math.log10(old.max) : undefined,
         );
       case ParameterType.pert:
-        return new BetaPERT(old.name, old.min, old.max, old.mean);
+        return new BetaPERT(old.name, old.metaData, old.min, old.max, old.mean);
       case ParameterType.truncatedLogNormal:
         return new TruncatedLogNormal(
           old.name,
+          old.metaData,
           old.min !== undefined ? Math.log10(old.min) : undefined,
           old.max !== undefined ? Math.log10(old.max) : undefined,
           old.mean !== undefined ? Math.log10(old.mean) : undefined,
@@ -40,13 +43,13 @@ export default class TruncatedNormalParameterConverter implements IParameterConv
       case ParameterType.truncatedNormal:
         return old;
       case ParameterType.uniform:
-        return new Uniform(old.name, old.min, old.max);
+        return new Uniform(old.name, old.metaData, old.min, old.max);
       case ParameterType.contaminatedBuildingTypes:
-        return new ContaminatedBuildingTypes();
+        return new ContaminatedBuildingTypes(old.name, old.metaData);
       case ParameterType.contaminatedBuildingType:
-        return new ContaminatedBuildingType();
+        return new ContaminatedBuildingType(old.name, old.metaData);
       case ParameterType.sumFraction:
-        return new SumFraction();
+        return new SumFraction(old.name, old.metaData);
       case ParameterType.null:
         return new NullParameter();
       default:

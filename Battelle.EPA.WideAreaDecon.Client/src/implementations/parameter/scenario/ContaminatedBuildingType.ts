@@ -17,7 +17,7 @@ export default class ContaminatedBuildingType implements IParameter {
   area: DistributionParameter | NullParameter;
 
   @JsonProperty()
-  metaData: ParameterMetaData = new ParameterMetaData();
+  metaData: ParameterMetaData;
 
   public isSet(): boolean {
     if (this.area) {
@@ -26,9 +26,10 @@ export default class ContaminatedBuildingType implements IParameter {
     return false;
   }
 
-  constructor(name = 'unknown', area?: DistributionParameter) {
+  constructor(name = 'unknown', metaData = new ParameterMetaData(), area?: DistributionParameter) {
     this.name = name;
     this.area = area !== undefined ? area : new NullParameter();
+    this.metaData = metaData;
   }
 
   isEquivalent(other: IParameter): boolean {

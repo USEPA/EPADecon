@@ -12,7 +12,7 @@ export default class SumFraction implements IParameter {
   type: ParameterType = ParameterType.sumFraction;
 
   @JsonProperty()
-  metaData: ParameterMetaData = new ParameterMetaData();
+  metaData: ParameterMetaData;
 
   @JsonProperty({
     predicate: () => {
@@ -25,12 +25,10 @@ export default class SumFraction implements IParameter {
     return this.entries.every((e) => e.value !== null);
   }
 
-  constructor(name = 'unknown', entries?: Array<KeyValuePair>) {
+  constructor(name = 'unknown', metaData = new ParameterMetaData(), entries?: Array<KeyValuePair>) {
     this.name = name;
-    if (entries !== undefined && entries.length === 0) {
-      // console.error('Constructing ContaminatedBuildingType without any entries not allowed!');
-    }
     this.entries = entries !== undefined ? entries : [];
+    this.metaData = metaData;
   }
 
   isEquivalent(other: IParameter): boolean {
