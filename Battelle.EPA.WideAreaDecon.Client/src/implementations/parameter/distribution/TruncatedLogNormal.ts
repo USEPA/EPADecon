@@ -13,14 +13,30 @@ export default class TruncatedLogNormal implements IParameter {
   @JsonProperty()
   logMin: number | undefined;
 
+  get min(): number | undefined {
+    return this.logMin !== undefined ? this.logMin ** 10 : undefined;
+  }
+
   @JsonProperty()
   logMax: number | undefined;
+
+  get max(): number | undefined {
+    return this.logMax !== undefined ? this.logMax ** 10 : undefined;
+  }
 
   @JsonProperty()
   logMean: number | undefined;
 
+  get mean(): number | undefined {
+    return this.logMean !== undefined ? this.logMean ** 10 : undefined;
+  }
+
   @JsonProperty()
   logStdDev: number | undefined;
+
+  get stdDev(): number | undefined {
+    return this.logStdDev !== undefined ? this.logStdDev ** 10 : undefined;
+  }
 
   @JsonProperty()
   metaData: ParameterMetaData = new ParameterMetaData();

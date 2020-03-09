@@ -16,6 +16,14 @@ export default class Uniform implements IParameter {
   @JsonProperty()
   max: number | undefined;
 
+  get mean(): number | undefined {
+    return this.min !== undefined && this.max !== undefined ? (this.min + this.max) / 2.0 : undefined;
+  }
+
+  get stdDev(): number | undefined {
+    return this.min !== undefined && this.max !== undefined ? (this.max - this.min) / 6.0 : undefined;
+  }
+
   @JsonProperty()
   metaData: ParameterMetaData = new ParameterMetaData();
 

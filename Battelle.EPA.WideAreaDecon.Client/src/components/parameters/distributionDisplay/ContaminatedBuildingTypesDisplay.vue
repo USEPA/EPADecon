@@ -30,7 +30,7 @@ import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import ContaminatedBuildingTypes from '@/implementations/parameter/scenario/ContaminatedBuildingTypes';
 
 @Component
-export default class ConstantParameterDisplay extends Vue implements IParameterDisplay {
+export default class ContaminatedBuildingTypesDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) selectedParameter!: ParameterWrapper;
 
   vuetifyColorProps() {

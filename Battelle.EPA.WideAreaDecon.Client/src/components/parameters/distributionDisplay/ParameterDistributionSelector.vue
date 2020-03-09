@@ -16,7 +16,9 @@
       <v-row v-if="isChangeableDist">
         <v-row align="center" justify="start">
           <v-col cols="auto">
-            <p class="title">Type:</p>
+            <v-container>
+              <p class="title">Type:</p>
+            </v-container>
           </v-col>
 
           <v-col cols="3">
@@ -42,18 +44,38 @@ import Vue from 'vue';
 import { Component, Watch } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 import ParameterType from '@/enums/parameter/parameterTypes';
-import NullParameterDisplay from '@/components/parameters/distributionDisplay/NullParameterDisplay.vue';
-import UnknownParameterDisplay from '@/components/parameters/distributionDisplay/UnknownParameterDisplay.vue';
-import ConstantParameterDisplay from '@/components/parameters/distributionDisplay/ConstantParameterDisplay.vue';
-import ContaminatedBuildingTypes from '@/components/parameters/distributionDisplay/ContaminatedBuildingTypes.vue';
+import NullDisplay from '@/components/parameters/distributionDisplay/NullDisplay.vue';
+import UnknownDisplay from '@/components/parameters/distributionDisplay/UnknownDisplay.vue';
+import ConstantDisplay from '@/components/parameters/distributionDisplay/ConstantDisplay.vue';
+import ContaminatedBuildingTypes from '@/components/parameters/distributionDisplay/ContaminatedBuildingTypesDisplay.vue';
+import LogUniformDisplay from '@/components/parameters/distributionDisplay/LogUniformDisplay.vue';
+import BetaPertDisplay from '@/components/parameters/distributionDisplay/BetaPertDisplay.vue';
+import TruncatedLogNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedLogNormalDisplay.vue';
+import TruncatedNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedNormalDisplay.vue';
+import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
+import container from '@/dependencyInjection/config';
+import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
+import TYPES from '@/dependencyInjection/types';
 
 @Component({
-  components: { NullParameterDisplay, UnknownParameterDisplay, ConstantParameterDisplay, ContaminatedBuildingTypes },
+  components: {
+    NullDisplay,
+    UnknownDisplay,
+    ConstantDisplay,
+    ContaminatedBuildingTypes,
+    LogUniformDisplay,
+    BetaPertDisplay,
+    TruncatedLogNormalDisplay,
+    TruncatedNormalDisplay,
+    UniformDisplay,
+  },
 })
 export default class ParameterDistributionSelector extends Vue {
   @State currentSelectedParameter!: ParameterWrapper;
+
+  parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
   @Watch('currentSelectedParameter')
   onCurrentSelectedParameterChange() {
@@ -69,13 +91,23 @@ export default class ParameterDistributionSelector extends Vue {
   get distComponent(): string {
     switch (this.currentSelectedParameter.current.type) {
       case ParameterType.null:
-        return 'null-parameter-display';
+        return 'null-display';
       case ParameterType.constant:
-        return 'constant-parameter-display';
+        return 'constant-display';
+      case ParameterType.logUniform:
+        return 'log-uniform-display';
+      case ParameterType.pert:
+        return 'beta-pert-display';
       case ParameterType.contaminatedBuildingTypes:
-        return 'contaminated-building-types';
+        return 'contaminated-building-types-display';
+      case ParameterType.truncatedLogNormal:
+        return 'truncated-log-normal-display';
+      case ParameterType.truncatedNormal:
+        return 'truncated-normal-display';
+      case ParameterType.uniform:
+        return 'uniform-display';
       default:
-        return 'unknown-parameter-display';
+        return 'unknown-display';
     }
   }
 
@@ -98,7 +130,10 @@ export default class ParameterDistributionSelector extends Vue {
   }
 
   onDistributionTypeChange(): void {
-    this.$store.commit('changeCurrentParameterType', this.currentDistType);
+    this.$store.commit(
+      'changeCurrentParameterType',
+      this.parameterConverter.convertToNewType(this.currentSelectedParameter.current, this.currentDistType),
+    );
   }
 
   created() {

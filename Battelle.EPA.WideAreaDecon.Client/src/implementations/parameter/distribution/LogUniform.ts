@@ -13,8 +13,24 @@ export default class LogUniform implements IParameter {
   @JsonProperty()
   logMin: number | undefined;
 
+  get min(): number | undefined {
+    return this.logMin !== undefined ? this.logMin ** 10 : undefined;
+  }
+
   @JsonProperty()
   logMax: number | undefined;
+
+  get max(): number | undefined {
+    return this.logMax !== undefined ? this.logMax ** 10 : undefined;
+  }
+
+  get mean(): number | undefined {
+    return this.min !== undefined && this.max !== undefined ? (this.max + this.min) / 2.0 : undefined;
+  }
+
+  get stdDev(): number | undefined {
+    return this.min !== undefined && this.max !== undefined ? (this.max - this.min) / 6.0 : undefined;
+  }
 
   @JsonProperty()
   metaData: ParameterMetaData = new ParameterMetaData();
