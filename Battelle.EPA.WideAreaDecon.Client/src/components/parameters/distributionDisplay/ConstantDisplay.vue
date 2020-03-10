@@ -92,50 +92,46 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper) {
     const cast = newValue.current as Constant;
-    if (cast.value) {
-      this.sliderValue = cast.value;
-      this.textValue = cast.value.toString();
-      this.min = this.parameterValue.metaData.min ?? this.sliderValue - 100;
-      this.max = this.parameterValue.metaData.max ?? this.sliderValue + 100;
-      this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
-    } else {
-      this.textValue = '';
-    }
+    this.min = this.parameterValue.metaData.min ?? -100;
+    this.max = this.parameterValue.metaData.max ?? 100;
+    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
+    this.sliderValue = cast.value || (this.min + this.max) / 2.0;
+    this.textValue = cast.value?.toString() ?? '';
   }
 
   onTextEnterPressed(event: KeyboardEvent) {
     if (event.keyCode === Key.Enter) {
-      this.updateOnTextChange(this.textValue);
+      this.updateOnTextChange();
     }
   }
 
-  onSliderStopped(value: number) {
-    this.parameterValue.value = value;
+  onSliderStopped() {
+    this.parameterValue.value = this.sliderValue;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  updateOnTextChange(newValue: string | undefined) {
+  updateOnTextChange() {
+    const value = Number(this.textValue);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.value as any;
     if (this.textValue === '') {
       this.parameterValue.value = undefined;
-    } else if (Number(this.textValue) === this.sliderValue) {
-      this.parameterValue.value = Number(this.textValue);
+    } else if (value === this.sliderValue) {
+      this.parameterValue.value = value;
     } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
       this.textValue = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
-      this.sliderValue = Number(this.textValue);
-      this.parameterValue.value = Number(this.textValue);
+      this.sliderValue = value;
+      this.parameterValue.value = value;
     } else {
       this.textValue = this.sliderValue.toString();
     }
   }
 
   setValues() {
-    this.sliderValue = this.parameterValue.value ?? 0;
     this.textValue = this.parameterValue.value?.toString() ?? '';
-    this.min = this.parameterValue.metaData.min ?? this.sliderValue - 100;
-    this.max = this.parameterValue.metaData.max ?? this.sliderValue + 100;
+    this.min = this.parameterValue.metaData.min ?? -100 + (this.sliderValue ?? 0);
+    this.max = this.parameterValue.metaData.max ?? 100 + (this.sliderValue ?? 0);
+    this.sliderValue = this.parameterValue.value ?? (this.min + this.max) / 2.0;
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
   }
 

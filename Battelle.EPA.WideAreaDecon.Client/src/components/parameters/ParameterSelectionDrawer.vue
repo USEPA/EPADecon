@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer color="grey" class="lighten-2" clipped app :width="500">
+  <v-navigation-drawer color="grey" class="lighten-2" clipped app :width="450">
     <parameter-list-expansion-panel :list="parameters" />
   </v-navigation-drawer>
 </template>

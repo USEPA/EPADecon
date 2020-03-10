@@ -9,7 +9,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-range-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label>
+        <v-range-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">
           <template v-slot:prepend>
             <p class="grey--text">{{ min }}</p>
           </template>
@@ -22,7 +22,15 @@
     <v-row>
       <v-col cols="4" class="mr-auto">
         <v-card class="pa-2" outlined tile>
-          <v-text-field ref="minValue" v-model="textMin" label="Min" :rules="[validationRules]" hide-details="auto">
+          <v-text-field
+            ref="minValue"
+            @keydown="onTextMinEnterPressed"
+            @blur="updateOnTextMinChange"
+            v-model="textMin"
+            label="Min"
+            :rules="[validationRules]"
+            hide-details="auto"
+          >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
             </template>
@@ -31,7 +39,15 @@
       </v-col>
       <v-col cols="4" class="auto">
         <v-card class="pa-2" outlined tile>
-          <v-text-field ref="maxValue" v-model="textMax" label="Max" :rules="[validationRules]" hide-details="auto">
+          <v-text-field
+            ref="maxValue"
+            @keydown="onTextMaxEnterPressed"
+            @blur="updateOnTextMaxChange"
+            v-model="textMax"
+            label="Max"
+            :rules="[validationRules]"
+            hide-details="auto"
+          >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
             </template>
@@ -44,14 +60,27 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
-import Uniform from '../../../implementations/parameter/distribution/Uniform';
+import Uniform from '@/implementations/parameter/distribution/Uniform';
+import { Key } from 'ts-keycode-enum';
 
 @Component
 export default class UniformDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) selectedParameter!: ParameterWrapper;
+
+  sliderValue = [0, 0];
+
+  textMin = '';
+
+  textMax = '';
+
+  min = -100;
+
+  max = 10000;
+
+  step = 0.1;
 
   get parameterValue(): Uniform {
     return this.selectedParameter.current as Uniform;
@@ -77,26 +106,97 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
     return true;
   }
 
-  sliderValue = [0, 0];
+  @Watch('sliderValue')
+  onSliderValueChanged(newValue: number[]) {
+    this.textMin = newValue[0].toString();
+    this.textMax = newValue[1].toString();
+    [this.parameterValue.min, this.parameterValue.max] = newValue;
+  }
 
-  textMin = '';
+  @Watch('selectedParameter')
+  onParameterChanged(newValue: ParameterWrapper) {
+    const cast = newValue.current as Uniform;
+    this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
+    this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
+    this.sliderValue = [cast.min ?? this.min, cast.max ?? this.max];
+    this.textMin = cast.min?.toString() ?? '';
+    this.textMax = cast.max?.toString() ?? '';
+    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
+  }
 
-  textMax = '';
+  onTextMinEnterPressed(event: KeyboardEvent) {
+    if (event.keyCode === Key.Enter) {
+      this.updateOnTextMinChange();
+    }
+  }
 
-  min = -100;
+  onTextMaxEnterPressed(event: KeyboardEvent) {
+    if (event.keyCode === Key.Enter) {
+      this.updateOnTextMaxChange();
+    }
+  }
 
-  max = 10000;
+  updateOnTextMinChange() {
+    const value = Number(this.textMin);
 
-  step = 0.1;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const castComponent = this.$refs.minValue as any;
+    if (this.textMin === '') {
+      this.parameterValue.min = undefined;
+    } else if (value === this.sliderValue[0]) {
+      this.parameterValue.min = value;
+    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+      this.textMin = '';
+    } else if (castComponent.validate && castComponent.validate(true)) {
+      if (this.sliderValue[1] <= value) {
+        this.sliderValue = [value, value];
+        this.parameterValue.min = value;
+        this.parameterValue.max = value;
+      } else {
+        this.sliderValue = [value, this.sliderValue[1]];
+        this.parameterValue.min = value;
+      }
+    } else {
+      this.textMin = this.sliderValue[0].toString();
+    }
+  }
+
+  updateOnTextMaxChange() {
+    const value = Number(this.textMax);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const castComponent = this.$refs.maxValue as any;
+    if (this.textMax === '') {
+      this.parameterValue.max = undefined;
+    } else if (value === this.sliderValue[1]) {
+      this.parameterValue.max = value;
+    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+      this.textMax = '';
+    } else if (castComponent.validate && castComponent.validate(true)) {
+      if (this.sliderValue[0] >= value) {
+        this.sliderValue = [value, value];
+        this.parameterValue.min = value;
+        this.parameterValue.max = value;
+      } else {
+        this.sliderValue = [this.sliderValue[0], value];
+        this.parameterValue.max = value;
+      }
+    } else {
+      this.textMax = this.sliderValue[1].toString();
+    }
+  }
+
+  onSliderStopped(value: number[]) {
+    [this.parameterValue.min, this.parameterValue.max] = value;
+  }
 
   setValues() {
-    this.sliderValue[0] = this.parameterValue.min ?? 0;
-    this.sliderValue[1] = this.parameterValue.max ?? 1;
+    this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
+    this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
+    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
+    this.sliderValue = [this.parameterValue.min ?? 0, this.parameterValue.max ?? 1];
     this.textMin = this.parameterValue.min?.toString() ?? '';
     this.textMax = this.parameterValue.max?.toString() ?? '';
-    this.min = this.parameterValue.metaData.min ?? this.sliderValue[0] - 100;
-    this.max = this.parameterValue.metaData.max ?? this.sliderValue[1] + 100;
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
   }
 
   created() {
