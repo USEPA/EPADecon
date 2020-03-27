@@ -15,6 +15,12 @@
       "type": "process",
       "command": "cmd",
       "args": ["/C", "npm", "run", "test"]
+    },
+    {
+      "label": "Run Linting",
+      "type": "process",
+      "command": "cmd",
+      "args": ["/C", "npm", "run", "lint"]
     }
   ]
 }

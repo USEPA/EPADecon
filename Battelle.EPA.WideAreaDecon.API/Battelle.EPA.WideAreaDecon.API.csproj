@@ -5,13 +5,13 @@
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
     <SpaRoot>..\Battelle.EPA.WideAreaDecon.Client\</SpaRoot>
-    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**;dist\</DefaultItemExcludes>
     <Authors>Kevin Wegman</Authors>
     <Company>Battelle Memorial Institute</Company>
     <Description>Application to calculate the decontamination costs associated with a wide are contamination event</Description>
     <AssemblyName>Battelle.EPA.WideAreaDecon.API</AssemblyName>
     <RootNamespace>Battelle.EPA.WideAreaDecon.API</RootNamespace>
-    <Version>0.0.1</Version>
+    <Version>0.0.3</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="7.30.2" />
@@ -43,6 +43,9 @@
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
     <Exec Condition="'$(Configuration)'=='Release' And Exists('$(SpaRoot)dist')" WorkingDirectory="$(SpaRoot)" Command="rmdir /S /Q dist" />
     <Exec Condition="'$(Configuration)'=='Release'" WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+  </Target>
+  <Target Name="CopyClientDist" AfterTargets="Build" Condition="'$(Configuration)'=='Release'">
+    <Exec WorkingDirectory="$(ProjectDir)" Command="xcopy $(SpaRoot)dist dist /i /s /e /y" />
   </Target>
 
   <Target Name="PublishWebServer" AfterTargets="ComputeFilesToPublish">

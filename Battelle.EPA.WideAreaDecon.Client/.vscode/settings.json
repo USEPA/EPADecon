@@ -3,6 +3,7 @@
     // defaults
     "**/.git": true,
     "**/.DS_Store": true,
+    "dist": true,
 
     "node_modules": true,
 
@@ -17,5 +18,8 @@
       "url": "./../../Battelle.EPA.WideAreaDecon.API/Schema/appsettings.schema.json"
     }
   ],
-  "eslint.lintTask.enable": true
+  "eslint.lintTask.enable": true,
+  "codemetrics.nodeconfiguration.ReturnStatement": 0,
+  "codemetrics.nodeconfiguration.CaseClause": 0,
+  "codemetrics.nodeconfiguration.DefaultClause": 0
 }

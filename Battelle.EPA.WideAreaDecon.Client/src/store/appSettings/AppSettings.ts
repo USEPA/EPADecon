@@ -3,15 +3,8 @@ import { UserVuetifyPreset } from 'vuetify';
 import INavigationItem from '@/interfaces/configuration/INavigationItem';
 import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
 import IRunSettings from '@/interfaces/store/runSettings/IRunSettings';
-import container from '@/dependencyInjection/config';
-import INavigationItemProvider from '@/interfaces/providers/INavigationItemProvider';
-import IApplicationActionProvider from '@/interfaces/providers/IApplicationActionProvider';
-import TYPES from '@/dependencyInjection/types';
 import IClientConfiguration from '@/interfaces/configuration/IClientConfiguration';
 import RunSettings from '../runSettings/RunSettings';
-
-const navigationItemProvider = container.get<INavigationItemProvider>(TYPES.NavigationItemProvider);
-const applicationActionProvider = container.get<IApplicationActionProvider>(TYPES.ApplicationActionProvider);
 
 export default class AppSettings implements IAppSettings {
   theme: Partial<UserVuetifyPreset> = {};
@@ -22,9 +15,11 @@ export default class AppSettings implements IAppSettings {
 
   publisherName = 'unknown';
 
-  navigationItems: INavigationItem[] = navigationItemProvider.getNavigationItems();
+  errorIcon = 'fa-exclamation-triangle';
 
-  applicationActions: IApplicationAction[] = applicationActionProvider.getApplicationActions();
+  navigationItems: INavigationItem[] = [];
+
+  applicationActions: IApplicationAction[] = [];
 
   runSettings: IRunSettings = new RunSettings();
 

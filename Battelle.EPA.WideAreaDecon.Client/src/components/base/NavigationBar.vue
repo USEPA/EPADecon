@@ -1,12 +1,26 @@
 <template>
   <!-- Navigation Bar -->
-  <v-app-bar app color="primary">
-    <v-avatar color="white">
-      <img src="../../assets/epaLogo.png" />
-    </v-avatar>
+  <v-app-bar app color="primary" clipped-left>
+    <!-- Navigate to home icon -->
+    <v-tab :to="'/'">
+      <v-avatar color="white">
+        <v-img :src="imageProvider.getImage('EpaLogo')" />
+      </v-avatar>
+      <v-container fluid fill-height>
+        <v-row align="center" justify="center">
+          <v-col>
+            <v-flex class="text-center title" v-text="applicationAcronym" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-tab>
     <v-spacer></v-spacer>
-    <v-toolbar-title v-text="applicationTitle"></v-toolbar-title>
+
+    <!-- Application title -->
+    <v-toolbar-title class="title" v-text="applicationTitle"></v-toolbar-title>
     <v-spacer></v-spacer>
+
+    <!-- Run button -->
     <v-tooltip bottom :color="canRun ? 'info' : 'error'">
       <template v-slot:activator="{ on }">
         <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'" :color="canRun ? 'secondary' : ''">
@@ -18,7 +32,9 @@
       <span v-if="canRun">Runs the model and generates results</span>
       <span v-if="!canRun">Please define scenario to run model...</span>
     </v-tooltip>
-    <v-menu left bottom>
+
+    <!-- Dropdown menu -->
+    <v-menu left bottom v-if="false">
       <template v-slot:activator="{ on }">
         <v-btn icon v-on="on">
           <v-icon>mdi-dots-vertical</v-icon>
@@ -36,7 +52,10 @@
         </template>
       </v-list>
     </v-menu>
+
+    <!-- Navigation tabs -->
     <v-tabs
+      v-if="enableNavigationTabs"
       v-model="selectedNavigationRoute"
       dark
       color="secondary"
@@ -52,6 +71,13 @@
             <v-tab :class="getClassName(item.link)" v-on="on" :to="item.link" :disabled="!item.enabled">
               {{ item.title }}
               <v-icon :class="getClassName(item.link)">{{ item.icon }}</v-icon>
+              <v-badge
+                v-if="item.getNumberInvalid() > 0"
+                color="error"
+                :content="item.getNumberInvalid()"
+                offset-x="-150"
+                offset-y="20"
+              />
             </v-tab>
           </template>
           <span>{{ item.tooltip.enabled }}</span>
@@ -75,20 +101,29 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { State } from 'vuex-class';
+import { State, Getter } from 'vuex-class';
 import { Component } from 'vue-property-decorator';
-import IApplicationAction from '../../interfaces/configuration/IApplicationAction';
-import INavigationItem from '../../interfaces/configuration/INavigationItem';
+import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
+import INavigationItem from '@/interfaces/configuration/INavigationItem';
+import container from '@/dependencyInjection/config';
+import IImageProvider from '../../interfaces/providers/IImageProvider';
+import TYPES from '../../dependencyInjection/types';
 
 @Component
 export default class NavigationBar extends Vue {
   @State applicationTitle!: string;
 
-  @State canRun!: boolean;
+  @State applicationAcronym!: string;
+
+  @Getter canRun!: boolean;
 
   @State applicationActions!: IApplicationAction[];
 
   @State navigationItems!: INavigationItem[];
+
+  @State enableNavigationTabs!: boolean;
+
+  imageProvider = container.get<IImageProvider>(TYPES.ImageProvider);
 
   selectedNavigationRoute: string | null = null;
 

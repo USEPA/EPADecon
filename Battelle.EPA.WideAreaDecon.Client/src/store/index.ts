@@ -8,6 +8,11 @@ import ClientConfiguration from './clientConfiguration/ClientConfiguration';
 import appSettingsMutations from './appSettings/mutations';
 import clientConfigurationMutations from './clientConfiguration/mutations';
 import runSettingsMutations from './runSettings/mutations';
+import runSettingsGetters from './runSettings/getters';
+import NavigationSettings from './navigationSettings/NavigationSettings';
+import navigationSettingsMutations from './navigationSettings/mutations';
+import parameterSelectionMutations from './parameterSelection/mutations';
+import ParameterSelection from './parameterSelection/ParameterSelection';
 
 Vue.use(Vuex);
 
@@ -16,12 +21,19 @@ const store: StoreOptions<IRootState> = {
     ...new ClientConfiguration(),
     ...new AppSettings(),
     ...new RunSettings(),
+    ...new ParameterSelection(),
+    ...new NavigationSettings(),
   },
   modules: {},
+  getters: {
+    ...runSettingsGetters,
+  },
   mutations: {
     ...appSettingsMutations,
     ...clientConfigurationMutations,
     ...runSettingsMutations,
+    ...parameterSelectionMutations,
+    ...navigationSettingsMutations,
   },
 };
 

@@ -6,4 +6,6 @@ export default interface INavigationItem {
   link: string;
   enabled: boolean;
   tooltip: ITooltipSelector;
+
+  getNumberInvalid(): number;
 }

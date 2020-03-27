@@ -11,6 +11,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
@@ -43,7 +44,8 @@
     "src/**/*.js",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "tests/**/*.js"
+    "tests/**/*.js",
+    "assets/**/*.png",
   ],
   "exclude": [
     "node_modules"
