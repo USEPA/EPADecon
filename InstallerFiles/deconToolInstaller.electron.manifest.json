@@ -12,7 +12,7 @@
     "appId": "com.electron.Battelle.WideAreaDeconTool.app",
     "productName": "Wide Area Decon",
     "copyright": "Copyright � 2020",
-    "buildVersion": "0.0.2",
+    "buildVersion": "0.0.3",
     "compression": "maximum",
     "directories": {
       "output": "",

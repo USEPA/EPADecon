@@ -11,7 +11,7 @@
     <Description>Application to calculate the decontamination costs associated with a wide are contamination event</Description>
     <AssemblyName>Battelle.EPA.WideAreaDecon.API</AssemblyName>
     <RootNamespace>Battelle.EPA.WideAreaDecon.API</RootNamespace>
-    <Version>0.0.1</Version>
+    <Version>0.0.3</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="7.30.2" />
