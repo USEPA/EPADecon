@@ -21,3 +21,19 @@ jobs:
     netCoreVersion: $(netCoreVersion)
     serviceProjects: 'Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj'
     testProjects: 'Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj'
+
+- job: Test_Typescript
+  pool: 'LongBuilds'
+  steps:
+  - task: UseNode@1
+    inputs:
+      version: '12.x'
+  - task: Npm@1
+    inputs:
+      command: 'install'
+      workingDir: 'Battelle.EPA.WideAreaDecon.Client'
+  - task: Npm@1
+    inputs:
+      command: 'custom'
+      workingDir: 'Battelle.EPA.WideAreaDecon.Client'
+      customCommand: 'run test'
