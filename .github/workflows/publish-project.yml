@@ -21,14 +21,12 @@ jobs:
       uses: actions/setup-node@v1.4.1
       with:
         node-version: 12.x
-    - name: Install dependencies
-      run: dotnet restore
     - name: Build
-      run: dotnet build Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj -r win10-x64 --configuration Release --no-restore
+      run: dotnet build Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj -r win10-x64 --configuration Release
     - name: Test
-      run: dotnet test Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj --no-restore --verbosity normal
+      run: dotnet test Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj --verbosity normal
     - name: Publish
-      run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj --no-build -r win10-x64 --configuration Release --no-restore -o ./desktop
+      run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj --no-build -r win10-x64 --configuration Release -o ./desktop
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
