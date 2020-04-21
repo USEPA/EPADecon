@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj --configuration Release --no-restore
+      run: dotnet build Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj -r win10-x64 --configuration Release --no-restore
     - name: Test
       run: dotnet test Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj --no-restore --verbosity normal
     - name: Publish
