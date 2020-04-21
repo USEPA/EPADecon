@@ -1,0 +1,22 @@
+name: $(Date:yyyy-MM-dd-hh-mm-ss)$(Rev:.r)-$(DeploymentName)
+
+resources:
+  repositories:
+  - repository: templates
+    type: git
+    name: BuildSupport/YamlTemplates
+    ref: 'refs/heads/master'
+
+trigger:
+- master
+- master_dev
+
+variables:
+  netCoreVersion: '3.1.x'
+
+jobs:
+# https://wp-abattfs01.milky-way.battelle.org/Common/BuildSupport/_git/YamlTemplates?path=%2FDotNetCore%2FdefaultPipeline.yml&version=GBmaster
+- template: DotNetCore/defaultPipeline.yml@templates
+  parameters:
+    netCoreVersion: $(netCoreVersion)
+    serviceProjects: '$(Build.Repository.Name).Server/$(Build.Repository.Name).Server.csproj'
