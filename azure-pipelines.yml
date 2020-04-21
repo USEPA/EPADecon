@@ -37,3 +37,19 @@ jobs:
       command: 'custom'
       workingDir: 'Battelle.EPA.WideAreaDecon.Client'
       customCommand: 'run test'
+
+- job: Package_Installation_Files
+  pool: 'default'
+  steps:
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: 'InstallerFiles'
+      includeRootFolder: true
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/InstallerFiles.zip'
+      replaceExistingArchive: true
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'installationFiles'
+      publishLocation: 'Container'
