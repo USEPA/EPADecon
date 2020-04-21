@@ -26,7 +26,7 @@ jobs:
     - name: Test
       run: dotnet test Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj --verbosity normal
     - name: Publish
-      run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj --no-build -r win10-x64 --configuration Release -o ./desktop
+      run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj -r win10-x64 --configuration Release -o ./desktop
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
