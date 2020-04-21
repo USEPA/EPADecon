@@ -20,3 +20,4 @@ jobs:
   parameters:
     netCoreVersion: $(netCoreVersion)
     serviceProjects: 'Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj'
+    testProjects: 'Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj'
