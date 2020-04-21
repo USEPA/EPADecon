@@ -1,7 +1,6 @@
 import { MutationTree } from 'vuex';
 import IRootState from '@/interfaces/store/IRootState';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
-import ParameterType from '@/enums/parameter/parameterTypes';
 import IParameter from '@/interfaces/parameter/IParameter';
 
 const parameterSelectionMutations: MutationTree<IRootState> = {
