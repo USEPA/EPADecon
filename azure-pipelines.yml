@@ -19,4 +19,4 @@ jobs:
 - template: DotNetCore/defaultPipeline.yml@templates
   parameters:
     netCoreVersion: $(netCoreVersion)
-    serviceProjects: '$(Build.Repository.Name).Server/$(Build.Repository.Name).Server.csproj'
+    serviceProjects: 'Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj'
