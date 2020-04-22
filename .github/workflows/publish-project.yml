@@ -21,19 +21,15 @@ jobs:
       uses: actions/setup-node@v1.4.1
       with:
         node-version: 12.x
-    - name: Install Packages
-      working-directory: Battelle.EPA.WideAreaDecon.Client
-      run: npm install && npm run test
-    - name: Test
-      run: dotnet test Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj --configuration Release --verbosity normal
     - name: Publish
       run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj -r win10-x64 --configuration Release -o ./publish
-    - name: Zip Release
-      uses: TheDoctor0/zip-release@v0.3.0
-      with:
-        filename: Battelle.EPA.WideAreaDecon.zip
-        directory: ./publish
-        path: ./
+    - name: Test .NET
+      run: dotnet test Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj --configuration Release --verbosity normal
+    - name: Test Typescript
+      working-directory: Battelle.EPA.WideAreaDecon.Client
+      run: npm run test
+    - name: Create Archive
+      run: powershell Compress-Archive -Path ./publish/* -DestinationPath ./Battelle.EPA.WideAreaDecon.zip
     - name: Create Installer
       run: ./InstallerFiles/Battelle.Common.Utilities.ElectronAppInstallerCreator.exe ./InstallerFiles/CreateInstallerDeconTool.json
     - name: Upload artifact
