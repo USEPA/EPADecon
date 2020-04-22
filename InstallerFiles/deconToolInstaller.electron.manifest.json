@@ -19,7 +19,7 @@
       "buildResources": "build"
     },
     "win": {
-      "target": "nsis",
+      "target": "portable",
       "icon": "epaLogo.ico"
     },
     "nsis": {
