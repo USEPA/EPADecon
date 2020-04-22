@@ -24,7 +24,7 @@ jobs:
     - name: Publish
       run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj -r win10-x64 --configuration Release -o ./publish
     - name: Test .NET
-      run: dotnet test Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj --configuration Release --verbosity normal
+      run: dotnet test Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj -r win10-x64 --no-build --configuration Release --verbosity normal
     - name: Test Typescript
       working-directory: Battelle.EPA.WideAreaDecon.Client
       run: npm run test
@@ -36,6 +36,6 @@ jobs:
       uses: actions/upload-artifact@v1.0.0
       with:
         # Artifact name
-        name: app
+        name: application
         # Directory containing files to upload
         path: ./Installer
