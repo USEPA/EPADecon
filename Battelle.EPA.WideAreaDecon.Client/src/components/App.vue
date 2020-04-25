@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <div>Hello world!</div>
     <nav-bar />
 
     <!-- Content Router -->
@@ -22,7 +23,12 @@ import FooterBar from '@/components/base/FooterBar.vue';
     FooterBar,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  // eslint-disable-next-line class-methods-use-this
+  mounted() {
+    console.log('APP MOUNTED');
+  }
+}
 </script>
 <style scoped lang="scss">
 .disabled-tool-tip {
