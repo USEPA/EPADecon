@@ -21,16 +21,21 @@ jobs:
       uses: actions/setup-node@v1.4.1
       with:
         node-version: 12.x
-    - name: Build
-      run: dotnet build Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj -r win10-x64 --configuration Release
-    - name: Test
-      run: dotnet test Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj --verbosity normal
     - name: Publish
-      run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj -r win10-x64 --configuration Release -o ./desktop
+      run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj -r win10-x64 --configuration Release -o ./publish
+    - name: Test .NET
+      run: dotnet test Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj -r win10-x64 --no-build --configuration Release --verbosity normal
+    - name: Test Typescript
+      working-directory: Battelle.EPA.WideAreaDecon.Client
+      run: npm run test
+    - name: Create Archive
+      run: powershell Compress-Archive -Path ./publish/* -DestinationPath ./Battelle.EPA.WideAreaDecon.zip
+    - name: Create Installer
+      run: ./InstallerFiles/Battelle.Common.Utilities.ElectronAppInstallerCreator.exe ./InstallerFiles/CreateInstallerDeconTool.json
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
         # Artifact name
-        name: app
+        name: application
         # Directory containing files to upload
-        path: ./desktop
+        path: ./Installer
