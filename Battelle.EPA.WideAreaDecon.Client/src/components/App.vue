@@ -4,9 +4,9 @@
     <nav-bar />
 
     <!-- Content Router -->
-    <v-content>
+    <v-main>
       <router-view />
-    </v-content>
+    </v-main>
 
     <footer-bar />
   </v-app>

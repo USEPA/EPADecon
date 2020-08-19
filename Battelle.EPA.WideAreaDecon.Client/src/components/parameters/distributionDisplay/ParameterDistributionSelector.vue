@@ -34,7 +34,7 @@ import ParameterType from '@/enums/parameter/parameterTypes';
 import NullDisplay from '@/components/parameters/distributionDisplay/NullDisplay.vue';
 import UnknownDisplay from '@/components/parameters/distributionDisplay/UnknownDisplay.vue';
 import ConstantDisplay from '@/components/parameters/distributionDisplay/ConstantDisplay.vue';
-import ContaminatedBuildingTypes from '@/components/parameters/distributionDisplay/ContaminatedBuildingTypesDisplay.vue';
+import ContaminatedBuildingTypesDisplay from '@/components/parameters/distributionDisplay/ContaminatedBuildingTypesDisplay.vue';
 import LogUniformDisplay from '@/components/parameters/distributionDisplay/LogUniformDisplay.vue';
 import BetaPertDisplay from '@/components/parameters/distributionDisplay/BetaPertDisplay.vue';
 import TruncatedLogNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedLogNormalDisplay.vue';
@@ -51,7 +51,7 @@ import TYPES from '@/dependencyInjection/types';
     NullDisplay,
     UnknownDisplay,
     ConstantDisplay,
-    ContaminatedBuildingTypes,
+    ContaminatedBuildingTypesDisplay,
     LogUniformDisplay,
     BetaPertDisplay,
     TruncatedLogNormalDisplay,
