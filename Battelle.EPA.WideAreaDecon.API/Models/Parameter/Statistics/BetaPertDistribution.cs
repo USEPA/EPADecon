@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
 using System.Xml.Linq;
+using System.Threading.Tasks;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
 using Newtonsoft.Json;
@@ -10,20 +11,24 @@ using Newtonsoft.Json.Converters;
 namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 {
     /// <summary>
-    /// Implementation fo the constant distribution
+    /// Implementation of the beta pert distribution
     /// </summary>
-    public class ConstantDistribution : IParameter
+    public class BetaPertDistribution : IParameter
     {
         public string Name { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public ParameterType Type => ParameterType.Constant;
+        public ParameterType Type => ParameterType.PERT;
 
-        public double Value { get; set; }
+        public double Min { get; set; }
+
+        public double Max { get; set; }
+
+        public double Mode { get; set; }
 
         public ParameterMetaData MetaData { get; set; }
 
-        public static ConstantDistribution ReadExcel(Dictionary<string, string> information)
+        public static BetaPertDistribution ReadExcel(Dictionary<string, string> information)
         {
             throw new NotImplementedException();
         }

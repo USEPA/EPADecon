@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
 using System.Xml.Linq;
+using System.Threading.Tasks;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
+namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Scenario
 {
     /// <summary>
-    /// Implementation fo the constant distribution
+    /// Implementation of the contaminated building type
     /// </summary>
-    public class ConstantDistribution : IParameter
+    public class ContaminatedBuildingType : IParameter
     {
         public string Name { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public ParameterType Type => ParameterType.Constant;
+        public ParameterType Type => ParameterType.ContaminatedBuildingType;
 
-        public double Value { get; set; }
+        public double Area { get; set; }
 
         public ParameterMetaData MetaData { get; set; }
 
-        public static ConstantDistribution ReadExcel(Dictionary<string, string> information)
+        public static ContaminatedBuildingType ReadExcel(Dictionary<string, string> information)
         {
             throw new NotImplementedException();
         }

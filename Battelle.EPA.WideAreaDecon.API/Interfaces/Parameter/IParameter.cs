@@ -4,6 +4,8 @@ using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics;
+using Battelle.EPA.WideAreaDecon.API.Models.Parameter.Scenario;
+using Battelle.EPA.WideAreaDecon.API.Models.Parameter.List;
 
 namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
 {
@@ -12,7 +14,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
         string Name { get; set; }
         ParameterType Type { get; }
         ParameterMetaData MetaData { get; set; }
-
 
         static IParameter ReadExcel(Dictionary<string, string> format)
         {
@@ -26,21 +27,21 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
                 case ParameterType.Constant:
                     return ConstantDistribution.ReadExcel(format);
                 case ParameterType.ContaminatedBuildingType:
-                    break;
+                    return ContaminatedBuildingType.ReadExcel(format);
                 case ParameterType.Uniform:
-                    break;
+                    return UniformDistribution.ReadExcel(format);
                 case ParameterType.PERT:
-                    break;
+                    return BetaPertDistribution.ReadExcel(format);
                 case ParameterType.TruncatedNormal:
-                    break;
+                    return TruncatedNormalDistribution.ReadExcel(format);
                 case ParameterType.LogUniform:
-                    break;
+                    return LogUniformDistribution.ReadExcel(format);
                 case ParameterType.TruncatedLogNormal:
-                    break;
+                    return TruncatedLogNormalDistribution.ReadExcel(format);
                 case ParameterType.ContaminatedBuildingTypes:
-                    break;
+                    return ContaminatedBuildingTypes.ReadExcel(format);
                 case ParameterType.SumFraction:
-                    break;
+                    return SumFraction.ReadExcel(format);
                 case ParameterType.Null:
                     break;
                 default:
