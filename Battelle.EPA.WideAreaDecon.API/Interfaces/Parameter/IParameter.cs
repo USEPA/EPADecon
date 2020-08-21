@@ -6,48 +6,50 @@ using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter.Scenario;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter.List;
+using NPOI.SS.UserModel;
 
 namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
 {
     public interface IParameter
     {
+        private static int TypeLocation => 5;
+
         string Name { get; set; }
         ParameterType Type { get; }
         ParameterMetaData MetaData { get; set; }
 
-        static IParameter ReadExcel(Dictionary<string, string> format)
+        static IParameter FromExcel(IRow format)
         {
-            if (!Enum.TryParse(format["Type"], false, out ParameterType type))
+            if (!Enum.TryParse(format.GetCell(TypeLocation).ToString(), false, out ParameterType type))
             {
-                throw new SerializationException($"Could not determine parameter type for {format["Type"]}");
+                throw new SerializationException($"Could not determine parameter type for {format.GetCell(TypeLocation)}");
             }
 
             switch (type)
             {
                 case ParameterType.Constant:
-                    return ConstantDistribution.ReadExcel(format);
+                    return ConstantDistribution.FromExcel(format);
                 case ParameterType.ContaminatedBuildingType:
-                    return ContaminatedBuildingType.ReadExcel(format);
+                    return ContaminatedBuildingType.FromExcel(format);
                 case ParameterType.Uniform:
-                    return UniformDistribution.ReadExcel(format);
+                    return UniformDistribution.FromExcel(format);
                 case ParameterType.PERT:
-                    return BetaPertDistribution.ReadExcel(format);
+                    return BetaPertDistribution.FromExcel(format);
                 case ParameterType.TruncatedNormal:
-                    return TruncatedNormalDistribution.ReadExcel(format);
+                    return TruncatedNormalDistribution.FromExcel(format);
                 case ParameterType.LogUniform:
-                    return LogUniformDistribution.ReadExcel(format);
+                    return LogUniformDistribution.FromExcel(format);
                 case ParameterType.TruncatedLogNormal:
-                    return TruncatedLogNormalDistribution.ReadExcel(format);
+                    return TruncatedLogNormalDistribution.FromExcel(format);
                 case ParameterType.ContaminatedBuildingTypes:
-                    return ContaminatedBuildingTypes.ReadExcel(format);
+                    return ContaminatedBuildingTypes.FromExcel(format);
                 case ParameterType.SumFraction:
-                    return SumFraction.ReadExcel(format);
+                    return SumFraction.FromExcel(format);
                 case ParameterType.Null:
-                    break;
+                    throw new ApplicationException("Cannot parse parameter type Null");
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            throw new NotImplementedException();
 
         }
     }

@@ -19,6 +19,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="InputFiles\ParameterTests\ConstantDistribution.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="InputFiles\ParameterTests\GenericParameter.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="InputFiles\ReadExcelTest.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Services\ClientConfigurationServiceTests.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

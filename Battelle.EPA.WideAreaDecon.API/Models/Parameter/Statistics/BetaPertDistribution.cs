@@ -7,6 +7,7 @@ using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using NPOI.SS.UserModel;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 {
@@ -28,7 +29,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 
         public ParameterMetaData MetaData { get; set; }
 
-        public static BetaPertDistribution ReadExcel(Dictionary<string, string> information)
+        public static BetaPertDistribution FromExcel(IRow information)
         {
             throw new NotImplementedException();
         }

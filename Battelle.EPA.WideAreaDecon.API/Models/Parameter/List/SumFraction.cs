@@ -7,6 +7,7 @@ using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using NPOI.SS.UserModel;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
 {
@@ -24,7 +25,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
 
         public ParameterMetaData MetaData { get; set; }
 
-        public static SumFraction ReadExcel(Dictionary<string, string> information)
+        public static SumFraction FromExcel(IRow information)
         {
             throw new NotImplementedException();
         }

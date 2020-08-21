@@ -7,6 +7,7 @@ using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using NPOI.SS.UserModel;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Scenario
 {
@@ -24,7 +25,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Scenario
 
         public ParameterMetaData MetaData { get; set; }
 
-        public static ContaminatedBuildingType ReadExcel(Dictionary<string, string> information)
+        public static ContaminatedBuildingType FromExcel(IRow information)
         {
             throw new NotImplementedException();
         }
