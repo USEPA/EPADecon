@@ -29,9 +29,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 
         public static ConstantDistribution FromExcel(IRow information)
         {
-            double? value = null;
-            var valueString = information.GetCell(ValueLocation)?.ToString();
-            if (!string.IsNullOrWhiteSpace(valueString)) value = double.Parse(valueString);
+            ConstantDistribution constDist = new ConstantDistribution();
+
+            double? value = constDist.ParseValueString(ValueLocation, information);
 
             return new ConstantDistribution()
             {
@@ -39,6 +39,17 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
                 Value = value,
                 MetaData = ParameterMetaData.FromExcel(information)
             };
+        }
+
+        private double? ParseValueString(int location, IRow information)
+        {
+            double? value = null;
+
+            var valueString = information.GetCell(location)?.ToString();
+
+            if (!string.IsNullOrWhiteSpace(valueString)) value = double.Parse(valueString);
+
+            return value;
         }
     }
 }
