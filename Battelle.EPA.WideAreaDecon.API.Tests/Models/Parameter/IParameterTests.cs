@@ -31,9 +31,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
             Assert.AreEqual(3, sheet.LastRowNum, $"Incorrect last row number in {TestFileName}");
 
             var expectedTypes = new[]
-                {typeof(ConstantDistribution), typeof(UniformDistribution), typeof(BetaPertDistribution)};
+                {typeof(ConstantDistribution), typeof(UniformDistribution), typeof(BetaPertDistribution), 
+                typeof(LogUniformDistribution), typeof(TruncatedLogNormalDistribution), typeof(TruncatedNormalDistribution)};
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var dist = IParameter.FromExcel(sheet.GetRow(i + 1));
 
