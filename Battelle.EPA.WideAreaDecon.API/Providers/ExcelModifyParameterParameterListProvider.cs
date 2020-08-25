@@ -31,7 +31,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             IRow information = sheet.GetRow(0);
             string versionString = information.GetCell(versionLocation).ToString();
             if (string.IsNullOrEmpty(versionString))
-                throw new SerializationException("No file version found");
+                throw new SerializationException("No file version found in Excel");
 
             int version = int.Parse(versionString);
 
@@ -40,9 +40,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
 
             foreach (var genericSheetName in GenericSheetNames)
             {
-                sheet = xssWorkbook.GetSheet(genericSheetName);
-                // Parse the filters
-                filters.AddRange(ParameterFilter.ParseExcelSheet(sheet));
+                filters.AddRange(ParameterFilter.ParseExcelSheet(xssWorkbook.GetSheet(genericSheetName)));
             }
 
             return new ParameterList() { Version = version, Filters = filters.ToArray() };

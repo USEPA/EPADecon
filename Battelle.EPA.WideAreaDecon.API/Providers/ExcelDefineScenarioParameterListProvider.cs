@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 using NPOI.SS.UserModel;
@@ -10,7 +11,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
 {
     public class ExcelDefineScenarioParameterListProvider : IParameterListProvider
     {
-        private static int versionLocation = 2;
+        private static int NameLocation => 3;
+        private static int VersionLocation => 2;
 
         public string FileName { get; set; }
 
@@ -30,18 +32,21 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             XSSFWorkbook xssWorkbook = new XSSFWorkbook(stream);
 
             // Parse version in using the specific sheet name that contains the version info
+            // making sure it isn't null or empty
             var sheet = xssWorkbook.GetSheet(FileInfoSheetName);
             IRow information = sheet.GetRow(0);
-            int version = int.Parse(information.GetCell(versionLocation).ToString());
+            string versionString = information.GetCell(VersionLocation).ToString();
+            if (string.IsNullOrEmpty(versionString))
+                throw new SerializationException("No file version found in Excel");
+            
+            int version = int.Parse(versionString);
 
             // Parse Filters given other sheet names
             var filters = new List<ParameterFilter>();
 
             foreach (var genericSheetName in GenericSheetNames)
             {
-                sheet = xssWorkbook.GetSheet(genericSheetName);
-                // Parse the filters
-                filters.AddRange(ParameterFilter.ParseExcelSheet(sheet));
+                filters.AddRange(ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName)));
             }
 
             return new ParameterList(){ Version = version, Filters = filters.ToArray()};
