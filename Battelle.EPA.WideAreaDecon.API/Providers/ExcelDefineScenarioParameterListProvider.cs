@@ -4,12 +4,19 @@ using System.IO;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 
 namespace Battelle.EPA.WideAreaDecon.API.Providers
 {
     public class ExcelDefineScenarioParameterListProvider : IParameterListProvider
     {
+        private static int versionLocation = 2;
+
         public string FileName { get; set; }
+
+        public string FileInfoSheetName { get; set; }
+
+        public string[] GenericSheetNames { get; set; }
 
         public ParameterList GetParameterList()
         {
@@ -18,21 +25,24 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             if (!File.Exists(FileName))
                 throw new ApplicationException($"Could not find {nameof(ExcelDefineScenarioParameterListProvider)} filename: {FileName}");
 
-            // Parse version in
-            int version = int.Parse("1");
+            // If the file exists, open a new file stream to open the excel workbook
+            using var stream = new FileStream(FileName, FileMode.Open) { Position = 0 };
+            XSSFWorkbook xssWorkbook = new XSSFWorkbook(stream);
 
-            // Parse Filters
+            // Parse version in using the specific sheet name that contains the version info
+            var sheet = xssWorkbook.GetSheet(FileInfoSheetName);
+            IRow information = sheet.GetRow(0);
+            int version = int.Parse(information.GetCell(versionLocation).ToString());
 
+            // Parse Filters given other sheet names
             var filters = new List<ParameterFilter>();
 
-            var filters1 = ParameterFilter.ParseExcelSheet();
-            var filters2 = ParameterFilter.ParseExcelSheet();
-            var filters3 = ParameterFilter.ParseExcelSheet();
-
-            filters.AddRange(filters1);
-            filters.AddRange(filters2);
-            filters.AddRange(filters3);
-
+            foreach (var genericSheetName in GenericSheetNames)
+            {
+                sheet = xssWorkbook.GetSheet(genericSheetName);
+                // Parse the filters
+                filters.AddRange(ParameterFilter.ParseExcelSheet(sheet));
+            }
 
             return new ParameterList(){ Version = version, Filters = filters.ToArray()};
         }
