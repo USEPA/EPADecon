@@ -56,7 +56,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
                     "v1",
                     new OpenApiInfo
                     {
-                        Title = "Wide ARea Decon Rest API",
+                        Title = "Wide Area Decon Rest API",
                         Version = "v1"
                     });
 
