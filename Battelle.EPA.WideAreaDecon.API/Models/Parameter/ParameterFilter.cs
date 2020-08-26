@@ -15,16 +15,31 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
         public string Name { get; set; }
         public ParameterFilter[] Filters { get; set; }
         public IParameter[] Parameters { get; set; } // IParameter[]
-
-        public static ParameterFilter[] FromExcelWorkbook(XSSFWorkbook xssWorkbook)
+        
+        public static ParameterFilter[] SetScenarioTypeFilters(XSSFWorkbook xssWorkbook, string[] scenarioTypes)
         {
-            // Workbook should be passed in so we can create filtering on the sheet names? 
-            // Or just pass in the sheet names
-            throw new NotImplementedException();
+            foreach (var scenarioType in scenarioTypes)
+            {
+                return new ParameterFilter()
+                {
+                    Name = scenarioType,
+                    Filters = ParameterFilter.FromExcelWorkbook(xssWorkbook),
+                    Parameters = null
+                };
+            }
+        }
+        public static ParameterFilter FromExcelWorkbook(XSSFWorkbook xssWorkbook)
+        {
+            return new ParameterFilter()
+            {
+
+            };
         }
 
         public static ParameterFilter[] FromExcelSheet(ISheet sheet)
         {
+            
+
             // Sheet should be passed in so we can create filtering on the categories
             throw new NotImplementedException();
         }
