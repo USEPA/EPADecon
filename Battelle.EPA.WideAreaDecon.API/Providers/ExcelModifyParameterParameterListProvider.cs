@@ -40,7 +40,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
 
             foreach (var genericSheetName in GenericSheetNames)
             {
-                filters.AddRange(ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName)));
+                filters.Add(ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName)));
             }
 
             return new ParameterList() { Version = version, Filters = filters.ToArray() };

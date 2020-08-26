@@ -15,24 +15,37 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
         public string Name { get; set; }
         public ParameterFilter[] Filters { get; set; }
         public IParameter[] Parameters { get; set; } // IParameter[]
+        
 
-        public static ParameterFilter[] FromExcelWorkbook(XSSFWorkbook xssWorkbook)
+        public static ParameterFilter FromExcelSheet(ISheet sheet)
         {
-            // Workbook should be passed in so we can create filtering on the sheet names? 
-            // Or just pass in the sheet names
-            throw new NotImplementedException();
+            var categories = new Dictionary<string, List<IRow>>();
+            for (int row = 1; row < sheet.LastRowNum; row++)
+            {
+                var current_row = sheet.GetRow(row);
+                var cat = current_row.GetCell(1).StringCellValue;
+
+                if(!categories.ContainsKey(cat)) categories.Add(cat, new List<IRow>());
+                categories[cat].Add(current_row);
+            }
+
+
+            return new ParameterFilter()
+            {
+                Name = sheet.SheetName,
+                Parameters = new IParameter[0],
+                Filters = categories.Select(pair => FromExcelRow(pair.Key, pair.Value)).ToArray()
+            };
         }
 
-        public static ParameterFilter[] FromExcelSheet(ISheet sheet)
+        public static ParameterFilter FromExcelRow(string category, IEnumerable<IRow> rows)
         {
-            // Sheet should be passed in so we can create filtering on the categories
-            throw new NotImplementedException();
-        }
-
-        public static ParameterFilter[] FromExcelRow(IRow[] rows)
-        {
-            // All of the rows that go into the same filtering should be passed in here
-            throw new NotImplementedException();
+            return new ParameterFilter()
+            {
+                Name = category,
+                Filters = new ParameterFilter[0],
+                Parameters = rows.Select(IParameter.FromExcel).ToArray()
+            };
         }
     }
 }
