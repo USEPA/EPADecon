@@ -1,7 +1,9 @@
 using System;
 using System.IO;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
+using Battelle.EPA.WideAreaDecon.API.Providers;
 using Battelle.EPA.WideAreaDecon.API.Services;
 using ElectronNET.API;
 using Microsoft.AspNetCore.Builder;
@@ -135,6 +137,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             services.AddTransient<
                 IClientConfigurationService,
                 ClientConfigurationService>();
+            services.AddSingleton<IParameterListProvider>(new EmptyParameterListProvider());
         }
 
         private void ConfigureEndpoints(IEndpointRouteBuilder endpoints)
