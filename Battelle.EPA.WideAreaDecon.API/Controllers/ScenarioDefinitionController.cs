@@ -4,6 +4,7 @@ using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Providers;
+using Battelle.EPA.WideAreaDecon.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Battelle.EPA.WideAreaDecon.API.Controllers
@@ -12,13 +13,13 @@ namespace Battelle.EPA.WideAreaDecon.API.Controllers
     [ApiController]
     public class ScenarioDefinitionController : ControllerBase
     {
-        private readonly IParameterListProvider _configProvider;
+        private readonly ScenarioDefinitionService _configProvider;
 
         /// <summary>
         /// Default constructor, requires a non-null provider
         /// </summary>
         /// <param name="configProvider"></param>
-        public ScenarioDefinitionController(IParameterListProvider configProvider)
+        public ScenarioDefinitionController(ScenarioDefinitionService configProvider)
         {
             _configProvider = configProvider ??
                 throw new ArgumentNullException(nameof(configProvider));

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Providers;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
@@ -23,6 +24,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
 
         public string FileName { get; set; }
 
+        private string FullFileName => Path.Join(
+            Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), FileName);
+
         public string FileInfoSheetName { get; set; }
 
         public string[] GenericSheetNames { get; set; }
@@ -33,9 +37,14 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
                 throw new ApplicationException(
                     $"No file name provided for {nameof(ExcelDefineScenarioParameterListProvider)}");
             if (!File.Exists(FileName))
-                throw new ApplicationException(
-                    $"Could not find {nameof(ExcelDefineScenarioParameterListProvider)} filename: {FileName}");
-
+            {
+                FileName = FullFileName;
+                if(!File.Exists(FileName))
+                {
+                    throw new ApplicationException(
+                        $"Could not find {nameof(ExcelDefineScenarioParameterListProvider)} filename: {FileName}");
+                }
+            }
             // If the file exists, open a new file stream to open the excel workbook
             using var stream = new FileStream(FileName, FileMode.Open) {Position = 0};
             XSSFWorkbook xssWorkbook = new XSSFWorkbook(stream);

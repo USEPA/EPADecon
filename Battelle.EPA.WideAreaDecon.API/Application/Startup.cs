@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using VueCliMiddleware;
 
 namespace Battelle.EPA.WideAreaDecon.API.Application
@@ -137,6 +138,21 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             services.AddTransient<
                 IClientConfigurationService,
                 ClientConfigurationService>();
+
+            var inputFile = Configuration.GetValue<string>("InputFileConfiguration");
+
+            if (!File.Exists(inputFile))
+            {
+                throw new ApplicationException($"Could not find input file configuration file: {inputFile}");
+            }
+
+            var inputFileConfiguration =
+                    JsonConvert.DeserializeObject<InputFileConfiguration>(File.ReadAllText(inputFile)) ??
+                    throw new ApplicationException("Failed to deserialize to input file configuration");
+
+            services.AddSingleton(inputFileConfiguration.ScenarioParameters);
+            services.AddSingleton(inputFileConfiguration.BaselineParameters);
+
             services.AddSingleton<IParameterListProvider>(new EmptyParameterListProvider());
         }
 
