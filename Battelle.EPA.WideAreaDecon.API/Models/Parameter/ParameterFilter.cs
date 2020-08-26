@@ -12,6 +12,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
 {
     public class ParameterFilter
     {
+        private static int CategoryLocation => 1;
+
         public string Name { get; set; }
         public ParameterFilter[] Filters { get; set; }
         public IParameter[] Parameters { get; set; } // IParameter[]
@@ -20,10 +22,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
         public static ParameterFilter FromExcelSheet(ISheet sheet)
         {
             var categories = new Dictionary<string, List<IRow>>();
-            for (int row = 1; row < sheet.LastRowNum; row++)
+            for (int row = 1; row <= sheet.LastRowNum; row++)
             {
                 var current_row = sheet.GetRow(row);
-                var cat = current_row.GetCell(1).StringCellValue;
+                var cat = current_row.GetCell(CategoryLocation).StringCellValue;
 
                 if(!categories.ContainsKey(cat)) categories.Add(cat, new List<IRow>());
                 categories[cat].Add(current_row);

@@ -13,7 +13,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
     public class ExcelDefineScenarioParameterListProvider : IParameterListProvider
     {
         private static int NameLocation => 3;
-        private static int VersionLocation => 2;
+        private static int VersionRowLocation => 0;
+        private static int VersionCellLocation => 1;
 
         public string FileName { get; set; }
 
@@ -37,14 +38,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             // Parse version in using the specific sheet name that contains the version info
             // making sure it isn't null or empty
             var sheet = xssWorkbook.GetSheet(FileInfoSheetName);
-            IRow information = sheet.GetRow(0);
-            string versionString = information.GetCell(VersionLocation).ToString();
+            IRow information = sheet.GetRow(VersionRowLocation);
+            string versionString = information.GetCell(VersionCellLocation).ToString();
             if (string.IsNullOrEmpty(versionString))
                 throw new SerializationException("No file version found in Excel");
 
             int version = int.Parse(versionString);
-
-            // Parse Filters given other sheet names
 
             return new ParameterList()
             {
