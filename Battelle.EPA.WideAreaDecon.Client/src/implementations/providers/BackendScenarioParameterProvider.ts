@@ -6,11 +6,11 @@ import { deserialize } from 'typescript-json-serializer';
 import ParameterList from '../parameter/ParameterList';
 
 @injectable()
-export default class DefaultScenarioDefinitionProvider implements IScenarioParameterProvider {
+export default class DefaultScenarioParameterProvider implements IScenarioParameterProvider {
   // eslint-disable-next-line class-methods-use-this
   async getScenarioParameters(): Promise<ParameterList> {
     return axios
-      .get<ParameterList>('/api/ScenarioDefinition')
+      .get<ParameterList>('/api/BaselineParameter')
       .then<ParameterList>((response) => deserialize<ParameterList>(response.data, ParameterList));
   }
 }

@@ -6,6 +6,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
     {
         private static int UnitsLocation => 4;
         private static int DescriptionLocation => 3;
+        private static int MinLocation => 10;
+        private static int MaxLocation => 11;
+        private static int StepLocation => 12;
 
         public double? Min { get; set; }
         public double? Max { get; set; }
@@ -18,7 +21,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
             return new ParameterMetaData()
             {
                 Units = information.GetCell(UnitsLocation).ToString(),
-                Description = information.GetCell(DescriptionLocation).ToString()
+                Description = information.GetCell(DescriptionLocation).ToString(),
+                Min = information.GetCell(MinLocation).NumericCellValue,
+                Max = information.GetCell(MaxLocation).NumericCellValue,
+                Step = information.GetCell(StepLocation).NumericCellValue,
             };
         }
     }

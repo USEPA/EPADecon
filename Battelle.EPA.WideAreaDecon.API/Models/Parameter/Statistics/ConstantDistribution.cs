@@ -23,6 +23,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterType Type => ParameterType.Constant;
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public double? Value { get; set; }
 
         public ParameterMetaData MetaData { get; set; }

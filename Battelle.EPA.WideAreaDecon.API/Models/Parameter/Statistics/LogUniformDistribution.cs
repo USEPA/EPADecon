@@ -28,8 +28,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterType Type => ParameterType.LogUniform;
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public double? Min { get; set; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public double? Max { get; set; }
 
         public ParameterMetaData MetaData { get; set; }
