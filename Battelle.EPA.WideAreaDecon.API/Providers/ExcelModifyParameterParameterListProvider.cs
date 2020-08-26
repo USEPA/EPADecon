@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using Battelle.EPA.WideAreaDecon.API.Enumeration.Providers;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
@@ -12,7 +15,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
 {
     public class ExcelModifyParameterParameterListProvider : IParameterListProvider
     {
-        private static int NameLocation => 3;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ParameterListProviderType Type => ParameterListProviderType.ExcelModifyParameter;
+
         private static int VersionRowLocation => 0;
         private static int VersionCellLocation => 1;
 
