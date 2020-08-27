@@ -1,12 +1,5 @@
 <template>
   <v-container :style="vuetifyColorProps()">
-    <v-row align="center" justify="center">
-      <v-col>
-        <v-container width="95%">
-          <v-card height="300">Graph to go here...</v-card>
-        </v-container>
-      </v-col>
-    </v-row>
     <v-row>
       <v-col>
         <v-range-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">

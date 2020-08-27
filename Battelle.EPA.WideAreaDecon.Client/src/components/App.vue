@@ -1,11 +1,12 @@
 <template>
   <v-app>
+    <div>Hello world!</div>
     <nav-bar />
 
     <!-- Content Router -->
-    <v-content>
+    <v-main>
       <router-view />
-    </v-content>
+    </v-main>
 
     <footer-bar />
   </v-app>
@@ -22,7 +23,12 @@ import FooterBar from '@/components/base/FooterBar.vue';
     FooterBar,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  // eslint-disable-next-line class-methods-use-this
+  mounted() {
+    console.log('APP MOUNTED');
+  }
+}
 </script>
 <style scoped lang="scss">
 .disabled-tool-tip {
