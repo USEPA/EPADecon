@@ -108,6 +108,10 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
 
   step = 0.1;
 
+  ignoreNextValueSliderChange = false;
+
+  ignoreNextModeSliderChange = false;
+
   get parameterValue(): BetaPERT {
     return this.selectedParameter.current as BetaPERT;
   }
@@ -134,6 +138,10 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
 
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number[]) {
+    if (this.ignoreNextValueSliderChange) {
+      this.ignoreNextValueSliderChange = false;
+      return;
+    }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
     [this.parameterValue.min, this.parameterValue.max] = newValue;
@@ -147,6 +155,11 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
 
   @Watch('sliderMode')
   onSliderModeChanged(newValue: number) {
+    if (this.ignoreNextModeSliderChange) {
+      this.ignoreNextModeSliderChange = false;
+      return;
+    }
+
     this.textMode = newValue.toString();
     this.parameterValue.mode = newValue;
     if (newValue < this.sliderValue[0]) {
@@ -163,7 +176,15 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
     this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
+
+    this.ignoreNextValueSliderChange = true;
+    this.sliderValue = [this.min, this.min];
     this.sliderValue = [cast.min ?? this.min, cast.max ?? this.max];
+
+    this.ignoreNextModeSliderChange = true;
+    this.sliderMode = this.min;
+    this.sliderMode = cast.mode ?? (this.min + this.max) / 2.0;
+
     this.textMin = cast.min?.toString() ?? '';
     this.textMax = cast.max?.toString() ?? '';
     this.textMode = cast.mode?.toString() ?? '';
@@ -279,8 +300,15 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
   setValues() {
     this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
+
+    this.ignoreNextValueSliderChange = true;
+    this.sliderValue = [this.min, this.min];
     this.sliderValue = [this.parameterValue.min ?? this.min, this.parameterValue.max ?? this.max];
+
+    this.ignoreNextModeSliderChange = true;
+    this.sliderMode = this.min;
     this.sliderMode = this.parameterValue.mode ?? (this.min + this.max) / 2.0;
+
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
     this.textMin = this.parameterValue.min?.toString() ?? '';
     this.textMax = this.parameterValue.max?.toString() ?? '';

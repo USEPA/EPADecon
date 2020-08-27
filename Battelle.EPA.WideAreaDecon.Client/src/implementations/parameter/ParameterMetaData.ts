@@ -16,4 +16,11 @@ export default class ParameterMetaData {
 
   @JsonProperty()
   description?: string;
+
+  get hasDescription() {
+    if (this.description) {
+      return this.description !== '';
+    }
+    return false;
+  }
 }

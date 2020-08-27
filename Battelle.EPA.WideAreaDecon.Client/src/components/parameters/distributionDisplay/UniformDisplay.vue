@@ -75,6 +75,8 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
 
   step = 0.1;
 
+  ignoreNextValueSliderChange = false;
+
   get parameterValue(): Uniform {
     return this.selectedParameter.current as Uniform;
   }
@@ -101,6 +103,10 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
 
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number[]) {
+    if (this.ignoreNextValueSliderChange) {
+      this.ignoreNextValueSliderChange = false;
+      return;
+    }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
     [this.parameterValue.min, this.parameterValue.max] = newValue;
@@ -111,7 +117,11 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
     const cast = newValue.current as Uniform;
     this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
+
+    this.ignoreNextValueSliderChange = true;
+    this.sliderValue = [this.min, this.min];
     this.sliderValue = [cast.min ?? this.min, cast.max ?? this.max];
+
     this.textMin = cast.min?.toString() ?? '';
     this.textMax = cast.max?.toString() ?? '';
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
@@ -187,7 +197,11 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
     this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
+
+    this.ignoreNextValueSliderChange = true;
+    this.sliderValue = [this.min, this.min];
     this.sliderValue = [this.parameterValue.min ?? 0, this.parameterValue.max ?? 1];
+
     this.textMin = this.parameterValue.min?.toString() ?? '';
     this.textMax = this.parameterValue.max?.toString() ?? '';
   }
