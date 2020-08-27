@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "module": "es2015",
+    "target": "ES6",
+    "module": "CommonJS",
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
@@ -30,11 +30,7 @@
       "esnext",
       "dom",
       "dom.iterable",
-      "scripthost",
-      "es5",
-      "es2015",
-      "es2015.promise",
-      "es6"
+      "scripthost"
     ]
   },
   "include": [

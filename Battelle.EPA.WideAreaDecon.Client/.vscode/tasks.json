@@ -4,7 +4,7 @@
     {
       "label": "Run API Server",
       "type": "process",
-      "command": "dotnet.exe",
+      "command": "dotnet",
       "args": ["run"],
       "options": {
         "cwd": "${workspaceRoot}/../Battelle.EPA.WideAreaDecon.API"

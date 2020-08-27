@@ -83,10 +83,16 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 
   step = 0.1;
 
+  ignoreNextSliderChange = false;
+
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number) {
-    this.textValue = newValue.toString();
-    this.parameterValue.value = newValue;
+    if (!this.ignoreNextSliderChange) {
+      this.textValue = newValue.toString();
+      this.parameterValue.value = newValue;
+    } else {
+      this.ignoreNextSliderChange = false;
+    }
   }
 
   @Watch('selectedParameter')
@@ -95,7 +101,13 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     this.min = this.parameterValue.metaData.min ?? -100;
     this.max = this.parameterValue.metaData.max ?? 100;
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
-    this.sliderValue = cast.value || (this.min + this.max) / 2.0;
+
+    // this will force a value change update
+    this.sliderValue = this.min;
+    this.sliderValue = this.parameterValue.value ?? (this.min + this.max) / 2.0;
+
+    this.ignoreNextSliderChange = true;
+
     this.textValue = cast.value?.toString() ?? '';
   }
 
@@ -131,7 +143,13 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     this.textValue = this.parameterValue.value?.toString() ?? '';
     this.min = this.parameterValue.metaData.min ?? -100 + (this.sliderValue ?? 0);
     this.max = this.parameterValue.metaData.max ?? 100 + (this.sliderValue ?? 0);
+
+    // this will force a value change update
+    this.sliderValue = this.min;
     this.sliderValue = this.parameterValue.value ?? (this.min + this.max) / 2.0;
+
+    this.ignoreNextSliderChange = true;
+
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
   }
 

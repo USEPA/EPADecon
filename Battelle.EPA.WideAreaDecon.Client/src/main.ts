@@ -34,14 +34,14 @@ const clientConfigPromise = container
   });
 
 const scenarioDefPromise = container
-  .get<IScenarioDefinitionProvider>(TYPES.ScenarioDefinitionProvider)
+  .get<IScenarioDefinitionProvider>(TYPES.BackendScenarioDefinitionProvider)
   .getScenarioDefinition()
   .then((scenarioDef) => {
     defaultScenario = scenarioDef;
   });
 
 const scenarioParamsPromise = container
-  .get<IScenarioParameterProvider>(TYPES.ScenarioParameterProvider)
+  .get<IScenarioParameterProvider>(TYPES.BackendScenarioParameterProvider)
   .getScenarioParameters()
   .then((scenarioParams) => {
     defaultParameters = scenarioParams;

@@ -9,12 +9,14 @@ import IApplicationActionProvider from '@/interfaces/providers/IApplicationActio
 import IClientConfigurationProvider from '@/interfaces/providers/IClientConfigurationProvider';
 import IScenarioDefinitionProvider from '@/interfaces/providers/IScenarioDefinitionProvider';
 import DefaultScenarioDefinitionProvider from '@/implementations/providers/DefaultScenarioDefinitionProvider';
+import BackendScenarioDefinitionProvider from '@/implementations/providers/BackendScenarioDefinitionProvider';
 import IImageProvider from '@/interfaces/providers/IImageProvider';
 import DefaultImageProvider from '@/implementations/providers/DefaultImageProvider';
 import IHomeOptionsProvider from '@/interfaces/providers/IHomeOptionsProvider';
 import DefaultHomeOptionsProvider from '@/implementations/providers/DefaultHomeOptionsProvider';
 import IScenarioParameterProvider from '@/interfaces/providers/IScenarioParameterProvider';
 import DefaultScenarioParameterProvider from '@/implementations/providers/DefaultScenarioParameterProvider';
+import BackendScenarioParameterProvider from '@/implementations/providers/BackendScenarioParameterProvider';
 import PROVIDER_TYPES from './providers.types';
 
 const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => {
@@ -32,11 +34,23 @@ const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => 
 
   bind<IScenarioDefinitionProvider>(PROVIDER_TYPES.ScenarioDefinitionProvider).to(DefaultScenarioDefinitionProvider);
 
+  bind<IScenarioDefinitionProvider>(PROVIDER_TYPES.ScenarioDefinitionProvider).to(BackendScenarioDefinitionProvider);
+
+  bind<BackendScenarioDefinitionProvider>(PROVIDER_TYPES.BackendScenarioDefinitionProvider).to(
+    BackendScenarioDefinitionProvider,
+  );
+
   bind<IImageProvider>(PROVIDER_TYPES.ImageProvider).to(DefaultImageProvider);
 
   bind<IHomeOptionsProvider>(PROVIDER_TYPES.HomeOptionsProvider).to(DefaultHomeOptionsProvider);
 
   bind<IScenarioParameterProvider>(PROVIDER_TYPES.ScenarioParameterProvider).to(DefaultScenarioParameterProvider);
+
+  bind<IScenarioParameterProvider>(PROVIDER_TYPES.ScenarioParameterProvider).to(BackendScenarioParameterProvider);
+
+  bind<BackendScenarioParameterProvider>(PROVIDER_TYPES.BackendScenarioParameterProvider).to(
+    BackendScenarioParameterProvider,
+  );
 });
 
 export default providersContainerModule;
