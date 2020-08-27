@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
@@ -8,10 +8,10 @@
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**;dist\</DefaultItemExcludes>
     <Authors>Kevin Wegman</Authors>
     <Company>Battelle Memorial Institute</Company>
-    <Description>Application to calculate the decontamination costs associated with a wide are contamination event</Description>
+    <Description>Application to calculate the decontamination costs associated with a wide area contamination event</Description>
     <AssemblyName>Battelle.EPA.WideAreaDecon.API</AssemblyName>
     <RootNamespace>Battelle.EPA.WideAreaDecon.API</RootNamespace>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="7.30.2" />
@@ -21,8 +21,15 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="DotNetCore.NPOI" Version="1.2.2" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\InputFiles\Parameters Datasheet.xlsx" Link="InputFiles\Parameters Datasheet.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\InputFiles\User Inputs.xlsx" Link="InputFiles\User Inputs.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="..\README.md" />
   </ItemGroup>
   <PropertyGroup>
@@ -77,6 +84,9 @@
     </Content>
     <Content Update="electron.manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="inputFileConfiguration.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="Schema\appsettings.schema.json" schema_4appsettings_1schema_1json__JsonSchema="http://json-schema.org/draft-04/schema#" /></VisualStudio></ProjectExtensions>

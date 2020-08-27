@@ -7,6 +7,8 @@ const PROVIDER_TYPES = {
   ImageProvider: Symbol('IImageProvider'),
   HomeOptionsProvider: Symbol('IHomeOptionsProvider'),
   ScenarioParameterProvider: Symbol('IScenarioParameterProvider'),
+  BackendScenarioDefinitionProvider: Symbol('BackendScenarioDefinitionProvider'),
+  BackendScenarioParameterProvider: Symbol('BackendScenarioParameterProvider'),
 };
 
 export default PROVIDER_TYPES;
