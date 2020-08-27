@@ -7,9 +7,27 @@
       active-class="secondary--text"
       :class="param.current.isSet() ? '' : 'error lighten-2'"
     >
-      <v-list-item-icon />
-      <v-list-item-title :class="getParameterClass(param)" v-text="param.current.name"></v-list-item-title>
-      <v-list-item-icon>
+      <v-tooltip v-if="param.current.metaData.hasDescription" right :key="i" color="info">
+        <template v-slot:activator="{ on }">
+          <v-list-item-icon v-on="on" />
+          <v-list-item-title
+            v-on="on"
+            :class="getParameterClass(param)"
+            v-text="param.current.name"
+          ></v-list-item-title>
+          <v-list-item-icon v-on="on">
+            <v-icon :class="getParameterClass(param)" v-if="param.isChanged()">fa-edit</v-icon>
+          </v-list-item-icon>
+        </template>
+        <span>{{ param.current.metaData.description }}</span>
+      </v-tooltip>
+      <v-list-item-icon v-if="!param.current.metaData.hasDescription" />
+      <v-list-item-title
+        v-if="!param.current.metaData.hasDescription"
+        :class="getParameterClass(param)"
+        v-text="param.current.name"
+      ></v-list-item-title>
+      <v-list-item-icon v-if="!param.current.metaData.hasDescription">
         <v-icon :class="getParameterClass(param)" v-if="param.isChanged()">fa-edit</v-icon>
       </v-list-item-icon>
     </v-list-item>
@@ -42,7 +60,6 @@ import { Component, Prop } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 import ParameterWrapperFilter from '@/implementations/parameter/ParameterWrapperFilter';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
-
 
 @Component({
   name: 'ParameterFilterExpansionPanel',
