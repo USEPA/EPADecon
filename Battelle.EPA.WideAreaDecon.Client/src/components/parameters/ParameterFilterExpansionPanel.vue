@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-list-item
-      v-for="(param, i) in getSubParameters()"
+      v-for="(param, i) in SubParameters"
       :key="'parameter_' + i"
       @click="setNewParameter(param)"
       active-class="secondary--text"
@@ -14,7 +14,7 @@
       </v-list-item-icon>
     </v-list-item>
 
-    <v-list-group active-class="secondary--text" v-for="(filt, j) in getSubFilters()" :key="'filter_' + j" sub-group>
+    <v-list-group active-class="secondary--text" v-for="(filt, j) in SubFilters" :key="'filter_' + j" sub-group>
       <template v-slot:activator>
         <v-list-item-icon>
           <v-badge
@@ -51,11 +51,11 @@ export default class ParameterListExpansionPanel extends Vue {
 
   @Prop() filter!: ParameterWrapperFilter;
 
-  getSubFilters(): ParameterWrapperFilter[] {
+  get SubFilters(): ParameterWrapperFilter[] {
     return this.filter.filters;
   }
 
-  getSubParameters(): ParameterWrapper[] {
+  get SubParameters(): ParameterWrapper[] {
     return this.filter.parameters;
   }
 
