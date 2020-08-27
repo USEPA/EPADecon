@@ -1,7 +1,9 @@
 using System;
 using System.IO;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
+using Battelle.EPA.WideAreaDecon.API.Providers;
 using Battelle.EPA.WideAreaDecon.API.Services;
 using ElectronNET.API;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using VueCliMiddleware;
 
 namespace Battelle.EPA.WideAreaDecon.API.Application
@@ -54,7 +57,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
                     "v1",
                     new OpenApiInfo
                     {
-                        Title = "Wide ARea Decon Rest API",
+                        Title = "Wide Area Decon Rest API",
                         Version = "v1"
                     });
 
@@ -135,6 +138,22 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             services.AddTransient<
                 IClientConfigurationService,
                 ClientConfigurationService>();
+
+            var inputFile = Configuration.GetValue<string>("InputFileConfiguration");
+
+            if (!File.Exists(inputFile))
+            {
+                throw new ApplicationException($"Could not find input file configuration file: {inputFile}");
+            }
+
+            var inputFileConfiguration =
+                    JsonConvert.DeserializeObject<InputFileConfiguration>(File.ReadAllText(inputFile)) ??
+                    throw new ApplicationException("Failed to deserialize to input file configuration");
+
+            services.AddSingleton(inputFileConfiguration.ScenarioParameters);
+            services.AddSingleton(inputFileConfiguration.BaselineParameters);
+
+            services.AddSingleton<IParameterListProvider>(new EmptyParameterListProvider());
         }
 
         private void ConfigureEndpoints(IEndpointRouteBuilder endpoints)
