@@ -31,7 +31,7 @@
           <v-icon v-if="filt.anyParameterChanged()">fa-edit</v-icon>
         </v-list-item-icon>
       </template>
-      <parameter-list-expansion-panel :filter="filt" />
+      <parameter-filter-expansion-panel :filter="filt" />
     </v-list-group>
   </v-container>
 </template>
@@ -43,8 +43,11 @@ import { State } from 'vuex-class';
 import ParameterWrapperFilter from '@/implementations/parameter/ParameterWrapperFilter';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 
-@Component
-export default class ParameterListExpansionPanel extends Vue {
+
+@Component({
+  name: 'ParameterFilterExpansionPanel',
+})
+export default class ParameterFilterExpansionPanel extends Vue {
   @State errorIcon!: string;
 
   @State currentSelectedParameter!: ParameterWrapper;
