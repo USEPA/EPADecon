@@ -22,9 +22,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
             {
                 Units = information.GetCell(UnitsLocation).ToString(),
                 Description = information.GetCell(DescriptionLocation).ToString(),
-                Min = information.GetCell(MinLocation).NumericCellValue,
-                Max = information.GetCell(MaxLocation).NumericCellValue,
-                Step = information.GetCell(StepLocation).NumericCellValue,
+                Min = information.GetCell(MinLocation)?.NumericCellValue,
+                Max = information.GetCell(MaxLocation)?.NumericCellValue,
+                Step = information.GetCell(StepLocation)?.NumericCellValue,
             };
         }
     }

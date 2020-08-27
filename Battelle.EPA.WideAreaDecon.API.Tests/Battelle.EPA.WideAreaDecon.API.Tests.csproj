@@ -25,6 +25,12 @@
     <None Update="InputFiles\ParameterTests\GenericParameter.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="InputFiles\ParameterTests\ModifyParameterTestFile.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="InputFiles\ParameterTests\ParameterFilterTestFile.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="InputFiles\ReadExcelTest.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
