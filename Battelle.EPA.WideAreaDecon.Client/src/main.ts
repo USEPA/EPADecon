@@ -11,7 +11,7 @@ import BackendClientConfigurationProvider from '@/implementations/providers/Back
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import _ from 'lodash';
+import * as _ from 'lodash';
 import IScenarioDefinitionProvider from './interfaces/providers/IScenarioDefinitionProvider';
 import DefaultClientConfigurationProvider from './implementations/providers/DefaultClientConfigurationProvider';
 import IApplicationActionProvider from './interfaces/providers/IApplicationActionProvider';
