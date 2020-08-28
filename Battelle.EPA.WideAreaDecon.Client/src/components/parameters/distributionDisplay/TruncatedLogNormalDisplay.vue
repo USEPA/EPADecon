@@ -1,22 +1,116 @@
 <template>
-  <v-container>
+  <v-container :style="vuetifyColorProps()">
     <v-row>
-      <v-col><v-spacer /></v-col>
-    </v-row>
-    <v-row>
-      <v-col><v-spacer /></v-col>
-    </v-row>
-    <v-row>
-      <v-col><v-spacer /></v-col>
-    </v-row>
-    <v-row>
-      <v-col><v-spacer /></v-col>
-    </v-row>
-    <v-row align="center" justify="center">
       <v-col>
-        <p class="text-center display-3">
-          Truncated Log Normal Display under construction...
-        </p>
+        <v-range-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">
+          <template v-slot:prepend>
+            <p class="grey--text">{{ min }}</p>
+          </template>
+          <template v-slot:append>
+            <p class="grey--text">{{ max }}</p>
+          </template>
+        </v-range-slider>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-slider v-model="sliderMean" :max="max" :min="min" :step="step" thumb-label @change="onSliderMeanStopped">
+          <template v-slot:prepend>
+            <p class="grey--text">{{ min }}</p>
+          </template>
+          <template v-slot:append>
+            <p class="grey--text">{{ max }}</p>
+          </template>
+        </v-slider>
+      </v-col>
+      <v-col>
+        <v-slider
+          v-model="sliderStd"
+          :max="max - min"
+          :min="(max - min) / 1000"
+          :step="stdDevStep"
+          thumb-label
+          @change="onSliderStdStopped"
+        >
+          <template v-slot:prepend>
+            <p class="grey--text">{{ (max - min) / 1000 }}</p>
+          </template>
+          <template v-slot:append>
+            <p class="grey--text">{{ max - min }}</p>
+          </template>
+        </v-slider>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="6" class="mr-auto">
+        <v-card class="pa-2" outlined tile>
+          <v-text-field
+            ref="minValue"
+            @keydown="onTextMinEnterPressed"
+            @blur="updateOnTextMinChange"
+            v-model="textMin"
+            label="Min"
+            :rules="[validationRules]"
+            hide-details="auto"
+          >
+            <template v-slot:append>
+              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+            </template>
+          </v-text-field>
+        </v-card>
+      </v-col>
+      <v-col cols="6" class="auto">
+        <v-card class="pa-2" outlined tile>
+          <v-text-field
+            ref="maxValue"
+            @keydown="onTextMaxEnterPressed"
+            @blur="updateOnTextMaxChange"
+            v-model="textMax"
+            label="Max"
+            :rules="[validationRules]"
+            hide-details="auto"
+          >
+            <template v-slot:append>
+              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+            </template>
+          </v-text-field>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="6" class="mr-auto">
+        <v-card class="pa-2" outlined tile>
+          <v-text-field
+            ref="meanValue"
+            @keydown="onTextMeamEnterPressed"
+            @blur="updateOnTextMeanChange"
+            v-model="textMean"
+            label="Mean"
+            :rules="[validationRules]"
+            hide-details="auto"
+          >
+            <template v-slot:append>
+              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+            </template>
+          </v-text-field>
+        </v-card>
+      </v-col>
+      <v-col cols="6" class="auto">
+        <v-card class="pa-2" outlined tile>
+          <v-text-field
+            ref="stdValue"
+            @keydown="onTextStdEnterPressed"
+            @blur="updateOnTextStdChange"
+            v-model="textStd"
+            label="Standard Deviation"
+            :rules="[validationRules]"
+            hide-details="auto"
+          >
+            <template v-slot:append>
+              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+            </template>
+          </v-text-field>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -24,13 +118,303 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
+import { Key } from 'ts-keycode-enum';
+import TruncatedNormal from '@/implementations/parameter/distribution/TruncatedNormal';
+import { max } from 'lodash';
+import TruncatedLogNormal from '@/implementations/parameter/distribution/TruncatedLogNormal';
 
 @Component
 export default class TruncatedLogNormalDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) selectedParameter!: ParameterWrapper;
+
+  sliderValue = [0, 0];
+
+  sliderMean = 0;
+
+  sliderStd = 0;
+
+  textMin = '';
+
+  textMax = '';
+
+  textMean = '';
+
+  textStd = '';
+
+  min = -100;
+
+  max = 10000;
+
+  step = 0.1;
+
+  ignoreNextValueSliderChange = false;
+
+  ignoreNextMeanSliderChange = false;
+
+  ignoreNextStdSliderChange = false;
+
+  get parameterValue(): TruncatedLogNormal {
+    return this.selectedParameter.current as TruncatedLogNormal;
+  }
+
+  get stdDevStep(): number {
+    return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
+  }
+
+  vuetifyColorProps() {
+    return {
+      '--primary-color': this.$vuetify.theme.currentTheme.primary,
+    };
+  }
+
+  validationRules(value: string): boolean | string {
+    const num = Number(value);
+    if (Number.isNaN(num)) {
+      return 'Value must be number!';
+    }
+    if (num > this.max) {
+      return `Value must be less than or equal to ${this.max}`;
+    }
+    if (num < this.min) {
+      return `Value must be greater than or equal to ${this.min}`;
+    }
+    return true;
+  }
+
+  @Watch('sliderValue')
+  onSliderValueChanged(newValue: number[]) {
+    if (this.ignoreNextValueSliderChange) {
+      this.ignoreNextValueSliderChange = false;
+      return;
+    }
+    this.textMin = newValue[0].toString();
+    this.textMax = newValue[1].toString();
+    this.parameterValue.logMin = Math.log10(newValue[0]);
+    this.parameterValue.logMax = Math.log10(newValue[1]);
+    if (newValue[0] > this.sliderMean) {
+      [this.sliderMean] = newValue;
+    }
+    if (newValue[1] < this.sliderMean) {
+      [, this.sliderMean] = newValue;
+    }
+  }
+
+  @Watch('sliderMean')
+  onSliderMeanChanged(newValue: number) {
+    if (this.ignoreNextMeanSliderChange) {
+      this.ignoreNextMeanSliderChange = false;
+      return;
+    }
+
+    this.textMean = newValue.toString();
+    this.parameterValue.logMean = Math.log10(newValue);
+    if (newValue < this.sliderValue[0]) {
+      this.sliderValue = [newValue, this.sliderValue[1]];
+    }
+    if (newValue > this.sliderValue[1]) {
+      this.sliderValue = [this.sliderValue[0], newValue];
+    }
+  }
+
+  @Watch('sliderStd')
+  onSliderStdChanged(newValue: number) {
+    if (this.ignoreNextStdSliderChange) {
+      this.ignoreNextStdSliderChange = false;
+      return;
+    }
+
+    this.textStd = newValue.toString();
+    this.parameterValue.logMean = Math.log10(newValue);
+  }
+
+  @Watch('selectedParameter')
+  onParameterChanged(newValue: ParameterWrapper) {
+    const cast = newValue.current as TruncatedNormal;
+    this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
+    this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
+    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
+
+    this.ignoreNextValueSliderChange = true;
+    this.sliderValue = [this.min, this.min];
+    this.sliderValue = [cast.min ?? this.min, cast.max ?? this.max];
+
+    this.ignoreNextMeanSliderChange = true;
+    this.sliderMean = this.min;
+    this.sliderMean = cast.mean ?? (this.min + this.max) / 2.0;
+
+    this.ignoreNextStdSliderChange = true;
+    this.sliderStd = this.min;
+    this.sliderStd = cast.stdDev ?? (this.min + this.max) / 2.0;
+
+    this.textMin = cast.min?.toString() ?? '';
+    this.textMax = cast.max?.toString() ?? '';
+    this.textMean = cast.mean?.toString() ?? '';
+    this.textStd = cast.stdDev?.toString() ?? '';
+  }
+
+  onTextMinEnterPressed(event: KeyboardEvent) {
+    if (event.keyCode === Key.Enter) {
+      this.updateOnTextMinChange();
+    }
+  }
+
+  onTextMaxEnterPressed(event: KeyboardEvent) {
+    if (event.keyCode === Key.Enter) {
+      this.updateOnTextMaxChange();
+    }
+  }
+
+  onTextMeanEnterPressed(event: KeyboardEvent) {
+    if (event.keyCode === Key.Enter) {
+      this.updateOnTextMeanChange();
+    }
+  }
+
+  onTextStdEnterPressed(event: KeyboardEvent) {
+    if (event.keyCode === Key.Enter) {
+      this.updateOnTextStdChange();
+    }
+  }
+
+  updateOnTextMinChange() {
+    const value = Number(this.textMin);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const castComponent = this.$refs.minValue as any;
+    if (this.textMin === '') {
+      this.parameterValue.logMin = undefined;
+    } else if (value === this.sliderValue[0]) {
+      this.parameterValue.logMin = Math.log10(value);
+    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+      this.textMin = '';
+    } else if (castComponent.validate && castComponent.validate(true)) {
+      if (value >= this.sliderMean) {
+        this.sliderMean = value;
+        this.textMean = value.toString();
+      }
+      if (value >= this.sliderValue[1]) {
+        this.sliderValue = [value, value];
+        this.parameterValue.logMin = Math.log10(value);
+        this.parameterValue.logMax = Math.log10(value);
+      } else {
+        this.sliderValue = [value, this.sliderValue[1]];
+        this.parameterValue.logMin = Math.log10(value);
+      }
+    } else {
+      this.textMin = this.sliderValue[0].toString();
+    }
+  }
+
+  updateOnTextMaxChange() {
+    const value = Number(this.textMax);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const castComponent = this.$refs.maxValue as any;
+    if (this.textMax === '') {
+      this.parameterValue.logMax = undefined;
+    } else if (value === this.sliderValue[1]) {
+      this.parameterValue.logMax = Math.log10(value);
+    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+      this.textMax = '';
+    } else if (castComponent.validate && castComponent.validate(true)) {
+      if (value <= this.sliderMean) {
+        this.sliderMean = value;
+        this.textMean = value.toString();
+      }
+      if (value <= this.sliderValue[0]) {
+        this.sliderValue = [value, value];
+        this.parameterValue.logMin = Math.log10(value);
+        this.parameterValue.logMax = Math.log10(value);
+      } else {
+        this.sliderValue = [this.sliderValue[0], value];
+        this.parameterValue.logMax = Math.log10(value);
+      }
+    } else {
+      this.textMax = this.sliderValue[1].toString();
+    }
+  }
+
+  updateOnTextMeanChange() {
+    const value = Number(this.textMean);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const castComponent = this.$refs.meanValue as any;
+    if (this.textMean === '') {
+      this.parameterValue.logMean = undefined;
+    } else if (value === this.sliderMean) {
+      this.parameterValue.logMean = Math.log10(value);
+    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+      this.textMean = '';
+    } else if (castComponent.validate && castComponent.validate(true)) {
+      if (value >= this.sliderValue[1]) {
+        this.sliderValue = [this.sliderValue[0], value];
+      } else if (value <= this.sliderValue[0]) {
+        this.sliderValue = [value, this.sliderValue[1]];
+      }
+      this.sliderMean = value;
+    } else {
+      this.textMean = this.sliderMean.toString();
+    }
+  }
+
+  updateOnTextStdChange() {
+    const value = Number(this.textStd);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const castComponent = this.$refs.stdValue as any;
+    if (this.textStd === '') {
+      this.parameterValue.logStdDev = undefined;
+    } else if (value === this.sliderStd) {
+      this.parameterValue.logStdDev = Math.log10(value);
+    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+      this.textStd = '';
+    } else {
+      this.textStd = this.sliderStd.toString();
+    }
+  }
+
+  onSliderStopped(value: number[]) {
+    this.parameterValue.logMin = Math.log10(value[0]);
+    this.parameterValue.logMax = Math.log10(value[1]);
+  }
+
+  onSliderMeanStopped(value: number) {
+    this.parameterValue.logMean = Math.log10(value);
+  }
+
+  onSliderStdStopped(value: number) {
+    this.parameterValue.logStdDev = Math.log10(value);
+  }
+
+  setValues() {
+    this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
+    this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
+
+    this.ignoreNextValueSliderChange = true;
+    this.sliderValue = [this.min, this.min];
+    this.sliderValue = [this.parameterValue.min ?? this.min, this.parameterValue.max ?? this.max];
+
+    this.ignoreNextMeanSliderChange = true;
+    this.sliderMean = this.min;
+    this.sliderMean = this.parameterValue.mean ?? (this.min + this.max) / 2.0;
+
+    this.ignoreNextStdSliderChange = true;
+    this.sliderStd = this.min;
+    this.sliderStd = this.parameterValue.stdDev ?? (this.max - this.min) / 5.0;
+
+    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
+    this.textMin = this.parameterValue.min?.toString() ?? '';
+    this.textMax = this.parameterValue.max?.toString() ?? '';
+    this.textMean = this.parameterValue.mean?.toString() ?? '';
+    this.textStd = this.parameterValue.stdDev?.toString() ?? '';
+  }
+
+  created() {
+    this.setValues();
+  }
 }
 </script>
 

@@ -274,7 +274,7 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
     if (this.textMode === '') {
       this.parameterValue.mode = undefined;
     } else if (value === this.sliderMode) {
-      this.parameterValue.max = value;
+      this.parameterValue.mode = value;
     } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
       this.textMode = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
