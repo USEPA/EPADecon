@@ -33,6 +33,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
                     return ContaminatedBuildingType.FromExcel(format);
                 case ParameterType.Uniform:
                     return UniformDistribution.FromExcel(format);
+                case ParameterType.UniformXDependent:
+                    return UniformXDependentDistribution.FromExcel(format);
                 case ParameterType.PERT:
                     return BetaPertDistribution.FromExcel(format);
                 case ParameterType.TruncatedNormal:

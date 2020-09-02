@@ -10,6 +10,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
         [EnumMember(Value = "Uniform")]
         Uniform,
 
+        [EnumMember(Value = "Uniform X Dependent")]
+        UniformXDependent,
+
         [EnumMember(Value = "Beta PERT")]
         PERT,
 
