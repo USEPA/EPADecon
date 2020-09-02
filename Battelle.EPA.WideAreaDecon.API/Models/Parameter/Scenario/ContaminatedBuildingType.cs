@@ -43,6 +43,11 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Scenario
             };
         }
 
+        public static ContaminatedBuildingType FromEfficacyExcelSheet(IRow information)
+        {
+            throw new NotImplementedException();
+        }
+
         private double? ParseValueString(int location, IRow information)
         {
             double? value = null;

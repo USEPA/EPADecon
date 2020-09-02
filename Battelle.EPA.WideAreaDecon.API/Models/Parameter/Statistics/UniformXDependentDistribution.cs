@@ -22,12 +22,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
         private static int NameLocation => 2;
         private static int AppMethodLocation => 3;
         private static int SurfaceTypeLocation => 4;
-        private static int SlopeLocation => 6;
-        private static int YIntLocation => 7;
-        private static int StartingXLocation => 8;
-        private static int StartingYLocation => 9;
-        private static int EndingXLocation => 10;
-        private static int EndingYLocation => 11;
+        private static int SlopeLocation => 9;
+        private static int YIntLocation => 10;
+        private static int StartingXLocation => 11;
+        private static int StartingYLocation => 12;
+        private static int EndingXLocation => 13;
+        private static int EndingYLocation => 14;
 
         public string Name { get; set; }
 
@@ -58,7 +58,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 
         public ParameterMetaData MetaData { get; set; }
 
-        public static UniformXDependentDistribution FromExcel(IRow information)
+        public static UniformXDependentDistribution FromEfficacyExcelSheet(IRow information)
         {
             UniformXDependentDistribution uniformXDependent = new UniformXDependentDistribution();
 

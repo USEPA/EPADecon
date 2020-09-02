@@ -50,6 +50,11 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
             };
         }
 
+        public static UniformDistribution FromEfficacyExcelSheet(IRow information)
+        {
+            throw new NotImplementedException();
+        }
+
         private double? ParseValueString(int location, IRow information)
         {
             double? value = null;

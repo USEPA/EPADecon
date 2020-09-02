@@ -36,5 +36,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Scenario
                 MetaData = ParameterMetaData.FromExcel(information)
             };
         }
+
+        public static ContaminatedBuildingTypes FromEfficacyExcelSheet(IRow information)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

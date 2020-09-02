@@ -33,8 +33,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
                     return ContaminatedBuildingType.FromExcel(format);
                 case ParameterType.Uniform:
                     return UniformDistribution.FromExcel(format);
-                case ParameterType.UniformXDependent:
-                    return UniformXDependentDistribution.FromExcel(format);
                 case ParameterType.PERT:
                     return BetaPertDistribution.FromExcel(format);
                 case ParameterType.TruncatedNormal:
@@ -47,6 +45,42 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
                     return ContaminatedBuildingTypes.FromExcel(format);
                 case ParameterType.SumFraction:
                     return SumFraction.FromExcel(format);
+                case ParameterType.Null:
+                    throw new ApplicationException("Cannot parse parameter type Null");
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        static IParameter FromEfficacyExcelSheet(IRow format)
+        {
+            if (!Enum.TryParse(format.GetCell(TypeLocation).ToString(), false, out ParameterType type))
+            {
+                throw new SerializationException($"Could not determine parameter type for {format.GetCell(TypeLocation)}");
+            }
+
+            switch (type)
+            {
+                case ParameterType.Constant:
+                    return ConstantDistribution.FromEfficacyExcelSheet(format);
+                case ParameterType.ContaminatedBuildingType:
+                    return ContaminatedBuildingType.FromEfficacyExcelSheet(format);
+                case ParameterType.Uniform:
+                    return UniformDistribution.FromEfficacyExcelSheet(format);
+                case ParameterType.UniformXDependent:
+                    return UniformXDependentDistribution.FromEfficacyExcelSheet(format);
+                case ParameterType.PERT:
+                    return BetaPertDistribution.FromEfficacyExcelSheet(format);
+                case ParameterType.TruncatedNormal:
+                    return TruncatedNormalDistribution.FromEfficacyExcelSheet(format);
+                case ParameterType.LogUniform:
+                    return LogUniformDistribution.FromEfficacyExcelSheet(format);
+                case ParameterType.TruncatedLogNormal:
+                    return TruncatedLogNormalDistribution.FromEfficacyExcelSheet(format);
+                case ParameterType.ContaminatedBuildingTypes:
+                    return ContaminatedBuildingTypes.FromEfficacyExcelSheet(format);
+                case ParameterType.SumFraction:
+                    return SumFraction.FromEfficacyExcelSheet(format);
                 case ParameterType.Null:
                     throw new ApplicationException("Cannot parse parameter type Null");
                 default:

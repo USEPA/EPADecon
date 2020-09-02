@@ -36,5 +36,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
                 MetaData = ParameterMetaData.FromExcel(information)
             };
         }
+
+        public static SumFraction FromEfficacyExcelSheet(IRow information)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
