@@ -49,11 +49,13 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 
         public static BetaPertDistribution FromExcel(IRow information)
         {
+            bool isEfficacy = false;
+
             BetaPertDistribution betaPertDist = new BetaPertDistribution();
 
-            double? minValue = betaPertDist.ParseValueString(MinLocation, information);
-            double? maxValue = betaPertDist.ParseValueString(MaxLocation, information);
-            double? modeValue = betaPertDist.ParseValueString(ModeLocation, information);
+            double? minValue = betaPertDist.ParseValueString(MinLocation, information, isEfficacy);
+            double? maxValue = betaPertDist.ParseValueString(MaxLocation, information, isEfficacy);
+            double? modeValue = betaPertDist.ParseValueString(ModeLocation, information, isEfficacy);
 
             return new BetaPertDistribution()
             {
@@ -67,11 +69,13 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 
         public static BetaPertDistribution FromEfficacyExcelSheet(IRow information)
         {
+            bool isEfficacy = true;
+
             BetaPertDistribution betaPertDist = new BetaPertDistribution();
 
-            double? minValue = betaPertDist.ParseValueString(MinLocation + OffsetLocation, information);
-            double? maxValue = betaPertDist.ParseValueString(MaxLocation + OffsetLocation, information);
-            double? modeValue = betaPertDist.ParseValueString(ModeLocation + OffsetLocation, information);
+            double? minValue = betaPertDist.ParseValueString(MinLocation + OffsetLocation, information, isEfficacy);
+            double? maxValue = betaPertDist.ParseValueString(MaxLocation + OffsetLocation, information, isEfficacy);
+            double? modeValue = betaPertDist.ParseValueString(ModeLocation + OffsetLocation, information, isEfficacy);
 
             return new BetaPertDistribution()
             {
@@ -85,13 +89,14 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
             };
         }
 
-        private double? ParseValueString(int location, IRow information)
+        private double? ParseValueString(int location, IRow information, bool isEfficacy)
         {
             double? value = null;
 
             var valueString = information.GetCell(location)?.ToString();
 
-            if (!string.IsNullOrWhiteSpace(valueString)) value = double.Parse(valueString);
+            if (isEfficacy && string.IsNullOrWhiteSpace(valueString)) throw new SerializationException("Parameter has no value associated with it in Excel");
+            else value = double.Parse(valueString);
 
             return value;
         }

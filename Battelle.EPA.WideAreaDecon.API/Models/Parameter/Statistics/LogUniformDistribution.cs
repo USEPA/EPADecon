@@ -20,10 +20,17 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
     public class LogUniformDistribution : IParameter
     {
         private static int NameLocation => 2;
+        private static int AppMethodLocation => 3;
+        private static int SurfaceTypeLocation => 4;
         private static int MinLocation => 6;
         private static int MaxLocation => 7;
+        private static int OffsetLocation => 3;
 
         public string Name { get; set; }
+
+        public string AppMethod { get; set; }
+
+        public string SurfaceType { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterType Type => ParameterType.LogUniform;
@@ -38,10 +45,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 
         public static LogUniformDistribution FromExcel(IRow information)
         {
+            bool isEfficacy = false;
+
             LogUniformDistribution logUnDist = new LogUniformDistribution();
 
-            double? minValue = logUnDist.ParseValueString(MinLocation, information);
-            double? maxValue = logUnDist.ParseValueString(MaxLocation, information);
+            double? minValue = logUnDist.ParseValueString(MinLocation, information, isEfficacy);
+            double? maxValue = logUnDist.ParseValueString(MaxLocation, information, isEfficacy);
 
             return new LogUniformDistribution()
             {
@@ -54,16 +63,32 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 
         public static LogUniformDistribution FromEfficacyExcelSheet(IRow information)
         {
-            throw new NotImplementedException();
+            bool isEfficacy = true;
+
+            LogUniformDistribution logUnDist = new LogUniformDistribution();
+
+            double? minValue = logUnDist.ParseValueString(MinLocation + OffsetLocation, information, isEfficacy);
+            double? maxValue = logUnDist.ParseValueString(MaxLocation + OffsetLocation, information, isEfficacy);
+
+            return new LogUniformDistribution()
+            {
+                Name = information.GetCell(NameLocation)?.ToString() ?? throw new SerializationException("Parameter has no name associated with it in Excel"),
+                AppMethod = information.GetCell(AppMethodLocation)?.ToString() ?? throw new SerializationException("Parameter has no application method associated with it in Excel"),
+                SurfaceType = information.GetCell(SurfaceTypeLocation)?.ToString() ?? throw new SerializationException("Parameter has no surface type associated with it in Excel"),
+                Min = minValue,
+                Max = maxValue,
+                MetaData = ParameterMetaData.FromExcel(information)
+            };
         }
 
-        private double? ParseValueString(int location, IRow information)
+        private double? ParseValueString(int location, IRow information, bool isEfficacy)
         {
             double? value = null;
 
             var valueString = information.GetCell(location)?.ToString();
 
-            if (!string.IsNullOrWhiteSpace(valueString)) value = double.Parse(valueString);
+            if (isEfficacy && string.IsNullOrWhiteSpace(valueString)) throw new SerializationException("Parameter has no value associated with it in Excel");
+            else value = double.Parse(valueString);
 
             return value;
         }

@@ -60,14 +60,16 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 
         public static UniformXDependentDistribution FromEfficacyExcelSheet(IRow information)
         {
+            bool isEfficacy = true;
+
             UniformXDependentDistribution uniformXDependent = new UniformXDependentDistribution();
 
-            double? slopeValue = uniformXDependent.ParseValueString(SlopeLocation, information);
-            double? yIntValue = uniformXDependent.ParseValueString(YIntLocation, information);
-            double? startingXValue = uniformXDependent.ParseValueString(StartingXLocation, information);
-            double? startingYValue = uniformXDependent.ParseValueString(StartingYLocation, information);
-            double? endingXValue = uniformXDependent.ParseValueString(EndingXLocation, information);
-            double? endingYValue = uniformXDependent.ParseValueString(EndingYLocation, information);
+            double? slopeValue = uniformXDependent.ParseValueString(SlopeLocation, information, isEfficacy);
+            double? yIntValue = uniformXDependent.ParseValueString(YIntLocation, information, isEfficacy);
+            double? startingXValue = uniformXDependent.ParseValueString(StartingXLocation, information, isEfficacy);
+            double? startingYValue = uniformXDependent.ParseValueString(StartingYLocation, information, isEfficacy);
+            double? endingXValue = uniformXDependent.ParseValueString(EndingXLocation, information, isEfficacy);
+            double? endingYValue = uniformXDependent.ParseValueString(EndingYLocation, information, isEfficacy);
 
             return new UniformXDependentDistribution()
             {
@@ -84,13 +86,14 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
             };
         }
 
-        private double? ParseValueString(int location, IRow information)
+        private double? ParseValueString(int location, IRow information, bool isEfficacy)
         {
             double? value = null;
 
             var valueString = information.GetCell(location)?.ToString();
 
-            if (!string.IsNullOrWhiteSpace(valueString)) value = double.Parse(valueString);
+            if (isEfficacy && string.IsNullOrWhiteSpace(valueString)) throw new SerializationException("Parameter has no value associated with it in Excel");
+            else value = double.Parse(valueString);
 
             return value;
         }
