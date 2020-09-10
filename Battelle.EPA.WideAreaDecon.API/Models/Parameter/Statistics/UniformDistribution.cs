@@ -55,7 +55,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
                 Name = information.GetCell(NameLocation)?.ToString() ?? throw new SerializationException("Parameter has no name associated with it in Excel"),
                 Min = minValue,
                 Max = maxValue,
-                MetaData = ParameterMetaData.FromExcel(information)
+                MetaData = ParameterMetaData.FromExcel(information, isEfficacy)
             };
         }
 
@@ -75,7 +75,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
                 SurfaceType = information.GetCell(SurfaceTypeLocation)?.ToString() ?? throw new SerializationException("Parameter has no surface type associated with it in Excel"),
                 Min = minValue,
                 Max = maxValue,
-                MetaData = ParameterMetaData.FromExcel(information)
+                MetaData = ParameterMetaData.FromExcel(information, isEfficacy)
             };
         }
 

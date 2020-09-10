@@ -30,10 +30,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
 
         public static SumFraction FromExcel(IRow information)
         {
+            bool isEfficacy = false;
+
             return new SumFraction()
             {
                 Name = information.GetCell(NameLocation)?.ToString() ?? throw new SerializationException("Parameter has no name associated with it in Excel"),
-                MetaData = ParameterMetaData.FromExcel(information)
+                MetaData = ParameterMetaData.FromExcel(information, isEfficacy)
             };
         }
 

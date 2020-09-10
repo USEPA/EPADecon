@@ -67,7 +67,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
                 Max = maxValue,
                 Mean = meanValue,
                 StdDev = stdDevValue,
-                MetaData = ParameterMetaData.FromExcel(information)
+                MetaData = ParameterMetaData.FromExcel(information, isEfficacy)
             };
         }
 
@@ -91,7 +91,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
                 Max = maxValue,
                 Mean = meanValue,
                 StdDev = stdDevValue,
-                MetaData = ParameterMetaData.FromExcel(information)
+                MetaData = ParameterMetaData.FromExcel(information, isEfficacy)
             };
         }
 

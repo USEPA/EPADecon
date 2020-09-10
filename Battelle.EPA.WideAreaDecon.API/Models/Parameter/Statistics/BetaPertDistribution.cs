@@ -63,7 +63,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
                 Min = minValue,
                 Max = maxValue,
                 Mode = modeValue,
-                MetaData = ParameterMetaData.FromExcel(information)
+                MetaData = ParameterMetaData.FromExcel(information, isEfficacy)
             };
         }
 
@@ -85,7 +85,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
                 Min = minValue,
                 Max = maxValue,
                 Mode = modeValue,
-                MetaData = ParameterMetaData.FromExcel(information)
+                MetaData = ParameterMetaData.FromExcel(information, isEfficacy)
             };
         }
 

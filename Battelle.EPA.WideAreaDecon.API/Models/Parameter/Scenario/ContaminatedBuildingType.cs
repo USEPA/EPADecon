@@ -31,6 +31,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Scenario
 
         public static ContaminatedBuildingType FromExcel(IRow information)
         {
+            bool isEfficacy = false;
+
             ContaminatedBuildingType contaminatedBuilding = new ContaminatedBuildingType();
 
             double? areaValue = contaminatedBuilding.ParseValueString(AreaLocation, information);
@@ -39,7 +41,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Scenario
             {
                 Name = information.GetCell(NameLocation)?.ToString() ?? throw new SerializationException("Parameter has no name associated with it in Excel"),
                 Area = areaValue,
-                MetaData = ParameterMetaData.FromExcel(information)
+                MetaData = ParameterMetaData.FromExcel(information, isEfficacy)
             };
         }
 

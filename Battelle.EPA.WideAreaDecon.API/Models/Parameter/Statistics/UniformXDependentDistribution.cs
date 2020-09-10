@@ -82,7 +82,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
                 StartingY = startingYValue,
                 EndingX = endingXValue,
                 EndingY = endingYValue,
-                MetaData = ParameterMetaData.FromExcel(information)
+                MetaData = ParameterMetaData.FromExcel(information, isEfficacy)
             };
         }
 
