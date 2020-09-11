@@ -36,7 +36,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
         public string SurfaceType { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public ParameterType Type => ParameterType.PERT;
+        public ParameterType Type => ParameterType.UniformXDependent;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public double? Slope { get; set; }
