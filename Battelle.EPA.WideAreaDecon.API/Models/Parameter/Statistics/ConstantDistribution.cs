@@ -20,7 +20,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
         private static int AppMethodLocation => 3;
         private static int SurfaceTypeLocation => 4;
         private static int ValueLocation => 6;
-        private static int OffsetLocation => 3;
+        private static int OffsetLocation => 4;
 
         public string Name { get; set; }
 

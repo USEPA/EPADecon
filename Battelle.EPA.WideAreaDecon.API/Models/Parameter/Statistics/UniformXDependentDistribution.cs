@@ -22,12 +22,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
         private static int NameLocation => 2;
         private static int AppMethodLocation => 3;
         private static int SurfaceTypeLocation => 4;
-        private static int SlopeLocation => 9;
-        private static int YIntLocation => 10;
-        private static int StartingXLocation => 11;
-        private static int StartingYLocation => 12;
-        private static int EndingXLocation => 13;
-        private static int EndingYLocation => 14;
+        private static int SlopeLocation => 10;
+        private static int YIntLocation => 11;
+        private static int StartingXLocation => 12;
+        private static int StartingYLocation => 13;
+        private static int EndingXLocation => 14;
+        private static int EndingYLocation => 15;
 
         public string Name { get; set; }
 

@@ -24,7 +24,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
         private static int MaxLocation => 7;
         private static int MeanLocation => 8;
         private static int StdDevLocation => 9;
-        private static int OffsetLocation => 3;
+        private static int OffsetLocation => 4;
 
         public string Name { get; set; }
 

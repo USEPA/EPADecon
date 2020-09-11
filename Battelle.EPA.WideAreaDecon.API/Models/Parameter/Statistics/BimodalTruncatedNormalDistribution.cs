@@ -20,12 +20,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
         private static int NameLocation => 2;
         private static int AppMethodLocation => 3;
         private static int SurfaceTypeLocation => 4;
-        private static int Mean1Location => 9;
-        private static int Std1Location => 10;
-        private static int Mean2Location => 11;
-        private static int Std2Location => 12;
-        private static int MinLocation => 13;
-        private static int MaxLocation => 14;
+        private static int Mean1Location => 10;
+        private static int Std1Location => 11;
+        private static int Mean2Location => 12;
+        private static int Std2Location => 13;
+        private static int MinLocation => 14;
+        private static int MaxLocation => 15;
 
         public string Name { get; set; }
 
