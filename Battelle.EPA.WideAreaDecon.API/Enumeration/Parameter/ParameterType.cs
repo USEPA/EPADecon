@@ -19,6 +19,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
         [EnumMember(Value = "Truncated Normal")]
         TruncatedNormal,
 
+        [EnumMember(Value = "Bimodal Truncated Normal")]
+        BimodalTruncatedNormal,
+
         [EnumMember(Value = "Log Uniform")]
         LogUniform,
 

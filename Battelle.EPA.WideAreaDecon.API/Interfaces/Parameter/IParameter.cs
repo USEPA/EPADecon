@@ -73,6 +73,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
                     return BetaPertDistribution.FromEfficacyExcelSheet(format);
                 case ParameterType.TruncatedNormal:
                     return TruncatedNormalDistribution.FromEfficacyExcelSheet(format);
+                case ParameterType.BimodalTruncatedNormal:
+                    return BimodalTruncatedNormalDistribution.FromEfficacyExcelSheet(format);
                 case ParameterType.LogUniform:
                     return LogUniformDistribution.FromEfficacyExcelSheet(format);
                 case ParameterType.TruncatedLogNormal:
