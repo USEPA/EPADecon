@@ -28,15 +28,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
         [EnumMember(Value = "Truncated Log Normal")]
         TruncatedLogNormal,
 
-        [EnumMember(Value = "Contaminated Building Type")]
-        ContaminatedBuildingType,
-
-        [EnumMember(Value = "Contaminated Building Types")]
-        ContaminatedBuildingTypes,
-
-        [EnumMember(Value = "Sum Fraction")]
-        SumFraction,
-
         [EnumMember(Value = "Null")]
         Null
     }

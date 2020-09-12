@@ -4,11 +4,8 @@ using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics;
-using Battelle.EPA.WideAreaDecon.API.Models.Parameter.Scenario;
-using Battelle.EPA.WideAreaDecon.API.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.API.Utility.Attributes;
 using Battelle.EPA.WideAreaDecon.API.Utility.Extensions;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NPOI.SS.UserModel;
 
 namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
@@ -42,14 +39,11 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
             return type switch
             {
                 ParameterType.Constant => ConstantDistribution.FromExcel(metaData, row),
-                ParameterType.ContaminatedBuildingType => ContaminatedBuildingType.FromExcel(metaData, row),
                 ParameterType.Uniform => UniformDistribution.FromExcel(metaData, row),
                 ParameterType.PERT => BetaPertDistribution.FromExcel(metaData, row),
                 ParameterType.TruncatedNormal => TruncatedNormalDistribution.FromExcel(metaData, row),
                 ParameterType.LogUniform => LogUniformDistribution.FromExcel(metaData, row),
                 ParameterType.TruncatedLogNormal => TruncatedLogNormalDistribution.FromExcel(metaData, row),
-                ParameterType.ContaminatedBuildingTypes => ContaminatedBuildingTypes.FromExcel(metaData, row),
-                ParameterType.SumFraction => SumFraction.FromExcel(metaData, row),
                 ParameterType.UniformXDependent => UniformXDependentDistribution.FromExcel(metaData, row),
                 ParameterType.BimodalTruncatedNormal => BimodalTruncatedNormalDistribution.FromExcel(metaData, row),
                 ParameterType.Null => throw new ApplicationException("Cannot parse parameter type Null"),

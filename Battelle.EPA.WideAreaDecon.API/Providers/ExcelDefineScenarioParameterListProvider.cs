@@ -18,7 +18,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterListProviderType Type => ParameterListProviderType.ExcelDefineScenario;
-        private static int NameLocation => 3;
         private static int VersionRowLocation => 0;
         private static int VersionCellLocation => 1;
 
@@ -63,7 +62,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             {
                 Version = version,
                 Filters = GenericSheetNames.Select(genericSheetName =>
-                    ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName) ?? throw new ApplicationException($"Could not find sheet {genericSheetName}"))).ToArray()
+                    ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName) ?? 
+                        throw new ApplicationException($"Could not find sheet {genericSheetName}"))).ToArray()
             };
         }
     }

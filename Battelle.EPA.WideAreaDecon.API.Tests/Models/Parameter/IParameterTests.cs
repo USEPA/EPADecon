@@ -2,6 +2,7 @@
 using System;
 using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
+using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NPOI.XSSF.UserModel;
@@ -38,7 +39,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
 
             for (int i = 0; i < 6; i++)
             {
-                var dist = IParameter.FromExcel(sheet.GetRow(i + 1));
+                var row = sheet.GetRow(i + 1);
+                var dist = IParameter.FromExcel(ParameterMetaData.FromExcel(row), row);
 
                 switch(i)
                 {

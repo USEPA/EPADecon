@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics;
 using NPOI.HSSF.UserModel;
 using NPOI.XSSF.UserModel;
@@ -46,8 +47,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter.Statistics
 
             for (int i = 0; i < 2; i++)
             {
-                var dist = ConstantDistribution.FromExcel(sheet.GetRow(i + 1));
-                Assert.AreEqual(names[i], dist.Name, $"Name mismatch for distribution {i}");
+                var row = sheet.GetRow(i + 1);
+                var dist = ConstantDistribution.FromExcel(ParameterMetaData.FromExcel(row), row);
+                Assert.AreEqual(names[i], dist.MetaData.Name, $"Name mismatch for distribution {i}");
                 Assert.AreEqual(descriptions[i], dist.MetaData.Description, $"Description mismatch for distribution {i}");
                 Assert.AreEqual(units, dist.MetaData.Units, $"Units mismatch for distribution {i}");
                 Assert.AreEqual(values[i], dist.Value, $"Value mismatch for distribution {i}");

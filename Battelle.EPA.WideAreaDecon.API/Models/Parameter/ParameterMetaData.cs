@@ -14,7 +14,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
     {
         [ExcelProperty(0)] public DecontaminationPhase[] ValidPhases { get; set; }
         [ExcelProperty(1)] public string Category { get; set; }
-        [ExcelProperty(2)] string Name { get; set; }
+        [ExcelProperty(2)] public string Name { get; set; }
         [ExcelProperty(3)] public string Description { get; set; }
         [ExcelProperty(4)] public string Units { get; set; }
         [ExcelProperty(5)] public string Notes { get; set; }
