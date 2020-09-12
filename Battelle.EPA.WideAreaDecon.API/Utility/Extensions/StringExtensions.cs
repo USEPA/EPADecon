@@ -16,6 +16,11 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Extensions
             return (T)Enum.Parse(typeof(T), value, true);
         }
 
+        public static T ParseOptionalEnum<T>(this string value)
+        {
+            return string.IsNullOrWhiteSpace(value) ? default : value.ParseEnum<T>();
+        }
+
         public static double? ConvertToDouble(this string value)
         {
             if (string.IsNullOrWhiteSpace(value))

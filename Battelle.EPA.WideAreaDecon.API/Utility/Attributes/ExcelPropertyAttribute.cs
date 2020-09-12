@@ -23,7 +23,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Attributes
 
         public static string GetCellValue(Type type, string propertyName, IRow row)
         {
-            return GetCell(type, propertyName, row)?.StringCellValue;
+            return GetCell(type, propertyName, row)?.ToString();
         }
         /// <summary>
         /// Constructor requiring specification of location

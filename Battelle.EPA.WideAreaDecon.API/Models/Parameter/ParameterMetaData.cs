@@ -21,6 +21,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
         [ExcelProperty(14)] public double Min { get; set; }
         [ExcelProperty(15)] public double Max { get; set; }
         [ExcelProperty(16)] public double Step { get; set; }
+        [ExcelProperty(17)] public ApplicationMethod? Method { get; set; }
+        [ExcelProperty(18)] public SurfaceType? Type { get; set; }
 
 
         public static ParameterMetaData FromExcel(IRow row)
@@ -42,6 +44,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
                     ?? throw new ApplicationException("Unable to parse name for maximum")),
                 Step = double.Parse(typeof(ParameterMetaData).GetCellValue(nameof(Step), row)
                     ?? throw new ApplicationException("Unable to parse name for maximum")),
+                Method = typeof(ParameterMetaData).GetCellValue(nameof(Method), row)?.ParseOptionalEnum<ApplicationMethod?>(),
+                Type = typeof(ParameterMetaData).GetCellValue(nameof(Type), row)?.ParseOptionalEnum<SurfaceType?>()
             };
         }
     }

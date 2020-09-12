@@ -22,6 +22,9 @@
     <None Update="InputFiles\ParameterTests\ConstantDistribution.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="InputFiles\ParameterTests\EfficacyParameterMetaDataTests.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="InputFiles\ParameterTests\GenericParameter.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -31,7 +34,7 @@
     <None Update="InputFiles\ParameterTests\ParameterFilterTestFile.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="InputFiles\ReadExcelTest.xlsx">
+    <None Update="InputFiles\ParameterTests\ParameterMetaDataTests.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Services\ClientConfigurationServiceTests.json">

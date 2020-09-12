@@ -10,8 +10,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
     public class EfficacyParameterMetaData : ParameterMetaData
     {
 
-        [ExcelProperty(0)] public ApplicationMethod Method { get; set; }
-        [ExcelProperty(1)] public SurfaceType Type { get; set; }
+        [ExcelProperty(17)] public ApplicationMethod Method { get; set; }
+        [ExcelProperty(18)] public SurfaceType Type { get; set; }
 
         public static EfficacyParameterMetaData FromExcel(IRow row)
         {
@@ -20,6 +20,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
             {
                 Category = baseData.Category,
                 Description = baseData.Description,
+                Name = baseData.Name,
                 Max = baseData.Max,
                 Min = baseData.Min,
                 Notes =  baseData.Notes,
