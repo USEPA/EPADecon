@@ -17,9 +17,11 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
         public string Name { get; set; }
         public ParameterFilter[] Filters { get; set; }
         public IParameter[] Parameters { get; set; } // IParameter[]
-        
 
-        public static ParameterFilter FromExcelSheet(ISheet sheet)
+
+        public static ParameterFilter FromExcelSheet(ISheet sheet) => FromExcelSheet(sheet, DefaultMetaDataGenerator);
+
+        public static ParameterFilter FromExcelSheet(ISheet sheet, Func<IRow, ParameterMetaData> metaDataGenerator)
         {
             var categories = new Dictionary<string, List<IRow>>();
             for (int row = 1; row <= sheet.LastRowNum; row++)
@@ -27,7 +29,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
                 var current_row = sheet.GetRow(row);
                 var cat = current_row.GetCell(CategoryLocation).StringCellValue;
 
-                if(!categories.ContainsKey(cat)) categories.Add(cat, new List<IRow>());
+                if (!categories.ContainsKey(cat)) categories.Add(cat, new List<IRow>());
                 categories[cat].Add(current_row);
             }
 
@@ -36,18 +38,27 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
             {
                 Name = sheet.SheetName,
                 Parameters = new IParameter[0],
-                Filters = categories.Select(pair => FromExcelRow(pair.Key, pair.Value)).ToArray()
+                Filters = categories.Select(pair => FromExcelRow(pair.Key, pair.Value, metaDataGenerator)).ToArray()
             };
         }
 
-        public static ParameterFilter FromExcelRow(string category, IEnumerable<IRow> rows)
+        public static ParameterFilter FromExcelRow(string category, IEnumerable<IRow> rows) =>
+            FromExcelRow(category, rows, DefaultMetaDataGenerator);
+
+        public static ParameterFilter FromExcelRow(string category, IEnumerable<IRow> rows,
+            Func<IRow, ParameterMetaData> metaDataGenerator)
         {
             return new ParameterFilter()
             {
                 Name = category,
                 Filters = new ParameterFilter[0],
-                Parameters = rows.Select(IParameter.FromExcel).ToArray()
+                Parameters = rows.Select(row => IParameter.FromExcel(metaDataGenerator(row), row)).ToArray()
             };
+        }
+
+        private static ParameterMetaData DefaultMetaDataGenerator(IRow row)
+        {
+            return ParameterMetaData.FromExcel(row);
         }
     }
 }

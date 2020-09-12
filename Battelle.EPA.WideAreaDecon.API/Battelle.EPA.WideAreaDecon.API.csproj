@@ -24,10 +24,10 @@
     <PackageReference Include="DotNetCore.NPOI" Version="1.2.2" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\InputFiles\Parameters Datasheet.xlsx" Link="InputFiles\Parameters Datasheet.xlsx">
+    <None Include="..\InputFiles\ModifyParameters.xlsx" Link="InputFiles\ModifyParameters.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\InputFiles\User Inputs.xlsx" Link="InputFiles\User Inputs.xlsx">
+    <None Include="..\InputFiles\DefineScenario.xlsx" Link="InputFiles\DefineScenario.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\README.md" />

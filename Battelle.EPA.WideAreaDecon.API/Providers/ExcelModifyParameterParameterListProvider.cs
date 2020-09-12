@@ -48,7 +48,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             }
 
             // If the file exists, open a new file stream to open the excel workbook
-            using var stream = new FileStream(FileName, FileMode.Open) { Position = 0 };
+            using var stream = new FileStream(FileName, FileMode.Open, FileAccess.Read) { Position = 0 };
             XSSFWorkbook xssWorkbook = new XSSFWorkbook(stream);
 
             // Parse version in using the specific sheet name that contains the version info

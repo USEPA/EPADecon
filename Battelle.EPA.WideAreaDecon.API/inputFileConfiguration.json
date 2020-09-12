@@ -2,9 +2,10 @@
   "ScenarioParameters": {
     "Provider": {
       "Type": "ExcelDefineScenario",
-      "FileName": "InputFiles\\User Inputs.xlsx",
+      "FileName": "InputFiles\\DefineScenario.xlsx",
       "FileInfoSheetName": "Internal - File Info",
       "GenericSheetNames": [
+        "Extent of Contamination",
         "Incident Command",
         "Characterization Sampling",
         "Source Reduction",
@@ -16,7 +17,7 @@
   "BaselineParameters": {
     "Provider": {
       "Type": "ExcelModifyParameter",
-      "FileName": "InputFiles\\Parameters Datasheet.xlsx",
+      "FileName": "InputFiles\\ModifyParameters.xlsx",
       "FileInfoSheetName": "Internal - File Info",
       "GenericSheetNames": [
         "Incident Command",
