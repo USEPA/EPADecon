@@ -151,6 +151,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Assert.AreEqual(expected.Min, actual.Min, 1e-3, $"Incorrect {nameof(expected.Min)} for entry {i}");
                 Assert.AreEqual(expected.Max, actual.Max, 1e-3, $"Incorrect {nameof(expected.Max)} for entry {i}");
                 Assert.AreEqual(expected.Step, actual.Step, 1e-3, $"Incorrect {nameof(expected.Step)} for entry {i}");
+                Assert.AreEqual(expected.Method, actual.Method, $"Incorrect {nameof(expected.Method)} for entry {i}");
+                Assert.AreEqual(expected.Type, actual.Type, $"Incorrect {nameof(expected.Method)} for entry {i}");
             }
 
 

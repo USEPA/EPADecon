@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Utility.Attributes;
 using Battelle.EPA.WideAreaDecon.API.Utility.Extensions;
+using ElectronNET.API;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NPOI.SS.UserModel;
 
@@ -27,6 +28,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
 
         public static ParameterMetaData FromExcel(IRow row)
         {
+            var methodString = typeof(ParameterMetaData).GetCellValue(nameof(Method), row);
+
             return new ParameterMetaData()
             {
                 ValidPhases = typeof(ParameterMetaData).GetCellValue(nameof(ValidPhases), row)
@@ -44,8 +47,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
                     ?? throw new ApplicationException("Unable to parse name for maximum")),
                 Step = double.Parse(typeof(ParameterMetaData).GetCellValue(nameof(Step), row)
                     ?? throw new ApplicationException("Unable to parse name for maximum")),
-                Method = typeof(ParameterMetaData).GetCellValue(nameof(Method), row)?.ParseOptionalEnum<ApplicationMethod?>(),
-                Type = typeof(ParameterMetaData).GetCellValue(nameof(Type), row)?.ParseOptionalEnum<SurfaceType?>()
+                Method = typeof(ParameterMetaData).GetCellValue(nameof(Method), row)?.ParseOptionalEnum<ApplicationMethod>(),
+                Type = typeof(ParameterMetaData).GetCellValue(nameof(Type), row)?.ParseOptionalEnum<SurfaceType>()
             };
         }
     }

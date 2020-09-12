@@ -19,9 +19,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
         public IParameter[] Parameters { get; set; } // IParameter[]
 
 
-        public static ParameterFilter FromExcelSheet(ISheet sheet) => FromExcelSheet(sheet, DefaultMetaDataGenerator);
-
-        public static ParameterFilter FromExcelSheet(ISheet sheet, Func<IRow, ParameterMetaData> metaDataGenerator)
+        public static ParameterFilter FromExcelSheet(ISheet sheet)
         {
             var categories = new Dictionary<string, List<IRow>>();
             for (int row = 1; row <= sheet.LastRowNum; row++)
@@ -38,27 +36,20 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
             {
                 Name = sheet.SheetName,
                 Parameters = new IParameter[0],
-                Filters = categories.Select(pair => FromExcelRow(pair.Key, pair.Value, metaDataGenerator)).ToArray()
+                Filters = categories.Select(pair => FromExcelRow(pair.Key, pair.Value)).ToArray()
             };
         }
 
-        public static ParameterFilter FromExcelRow(string category, IEnumerable<IRow> rows) =>
-            FromExcelRow(category, rows, DefaultMetaDataGenerator);
 
-        public static ParameterFilter FromExcelRow(string category, IEnumerable<IRow> rows,
-            Func<IRow, ParameterMetaData> metaDataGenerator)
+        public static ParameterFilter FromExcelRow(string category, IEnumerable<IRow> rows)
         {
             return new ParameterFilter()
             {
                 Name = category,
                 Filters = new ParameterFilter[0],
-                Parameters = rows.Select(row => IParameter.FromExcel(metaDataGenerator(row), row)).ToArray()
+                Parameters = rows.Select(row => IParameter.FromExcel(ParameterMetaData.FromExcel(row), row)).ToArray()
             };
         }
 
-        private static ParameterMetaData DefaultMetaDataGenerator(IRow row)
-        {
-            return ParameterMetaData.FromExcel(row);
-        }
     }
 }

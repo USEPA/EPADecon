@@ -1,4 +1,7 @@
-﻿using System;
+﻿#nullable enable
+using System;
+using System.Data.SqlTypes;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Battelle.EPA.WideAreaDecon.API.Utility.Extensions
 {
@@ -11,14 +14,19 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Extensions
         /// <typeparam name="T">The enum type to parse to</typeparam>
         /// <param name="value">The value to parse from</param>
         /// <returns>An enum type that matches the string</returns>
-        public static T ParseEnum<T>(this string value)
+        public static T ParseEnum<T>(this string value) where T : Enum
         {
             return (T)Enum.Parse(typeof(T), value, true);
         }
 
-        public static T ParseOptionalEnum<T>(this string value)
+        public static T? ParseOptionalEnum<T>(this string value) where T : struct, Enum
         {
-            return string.IsNullOrWhiteSpace(value) ? default : value.ParseEnum<T>();
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return null;
+            }
+
+            return value.ParseEnum<T>();
         }
 
         public static double? ConvertToDouble(this string value)
