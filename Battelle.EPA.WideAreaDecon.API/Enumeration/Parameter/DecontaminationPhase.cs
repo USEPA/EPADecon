@@ -1,6 +1,6 @@
 ﻿namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
 {
-    public enum Phase
+    public enum DecontaminationPhase
     {
         Indoor,
         Underground,

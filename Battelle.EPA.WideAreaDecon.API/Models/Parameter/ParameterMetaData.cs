@@ -12,7 +12,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
 {
     public class ParameterMetaData
     {
-        [ExcelProperty(0)] public Phase[] ValidPhases { get; set; }
+        [ExcelProperty(0)] public DecontaminationPhase[] ValidPhases { get; set; }
         [ExcelProperty(1)] public string Category { get; set; }
         [ExcelProperty(2)] string Name { get; set; }
         [ExcelProperty(3)] public string Description { get; set; }
@@ -29,7 +29,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
             {
                 ValidPhases = typeof(ParameterMetaData).GetCellValue(nameof(ValidPhases), row)
                         ?.Split(';')
-                        .Select(Enum.Parse<Phase>).ToArray() ??
+                        .Select(Enum.Parse<DecontaminationPhase>).ToArray() ??
                     throw new ApplicationException("Error determining Valid Phases"),
                 Category = typeof(ParameterMetaData).GetCellValue(nameof(Category), row),
                 Name = typeof(ParameterMetaData).GetCellValue(nameof(Name), row) ?? throw new ApplicationException("Parameter must have a name"),
