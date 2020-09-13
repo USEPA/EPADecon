@@ -39,8 +39,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
             return new LogUniformDistribution()
             {
                 MetaData = metaData,
-                Min = typeof(LogUniformDistribution).GetCellValue(nameof(Min), information)?.ConvertToDouble(),
-                Max = typeof(LogUniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToDouble()
+                Min = typeof(LogUniformDistribution).GetCellValue(nameof(Min), information)?.ConvertToOptionalDouble(),
+                Max = typeof(LogUniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToOptionalDouble()
             };
         }
 

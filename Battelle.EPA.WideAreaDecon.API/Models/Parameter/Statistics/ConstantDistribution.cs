@@ -32,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
         {
             return new ConstantDistribution()
             {
-                Value = typeof(IParameter).GetCellValue(nameof(Value), row)?.ConvertToDouble(),
+                Value = typeof(IParameter).GetCellValue(nameof(Value), row)?.ConvertToOptionalDouble(),
                 MetaData = metaData
             };
         }

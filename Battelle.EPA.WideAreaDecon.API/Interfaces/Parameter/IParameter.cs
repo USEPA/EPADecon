@@ -28,15 +28,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
         /// <exception cref="SerializationException"></exception>
         /// <exception cref="ApplicationException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        static IParameter FromExcel(ParameterMetaData metaData, IRow row)
+        public static IParameter FromExcel(ParameterMetaData metaData, IRow row)
         {
-            var paramCell = typeof(IParameter).GetCell(nameof(Type), row);
-            if (!Enum.TryParse(paramCell.StringCellValue, false, out ParameterType type))
-            {
-                throw new SerializationException($"Could not determine parameter type for {paramCell}");
-            }
-
-            return type switch
+            return ParseParameterType(row) switch
             {
                 ParameterType.Constant => ConstantDistribution.FromExcel(metaData, row),
                 ParameterType.Uniform => UniformDistribution.FromExcel(metaData, row),
@@ -44,12 +38,17 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
                 ParameterType.TruncatedNormal => TruncatedNormalDistribution.FromExcel(metaData, row),
                 ParameterType.LogUniform => LogUniformDistribution.FromExcel(metaData, row),
                 ParameterType.TruncatedLogNormal => TruncatedLogNormalDistribution.FromExcel(metaData, row),
-                ParameterType.UniformXDependent => UniformXDependentDistribution.FromExcel(metaData, row),
+                ParameterType.UniformXDependent => throw new ApplicationException(
+                    "Cannot parse uniform XDependent from IParameter interface"),
                 ParameterType.BimodalTruncatedNormal => BimodalTruncatedNormalDistribution.FromExcel(metaData, row),
                 ParameterType.Null => throw new ApplicationException("Cannot parse parameter type Null"),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
 
+        public static ParameterType ParseParameterType(IRow row)
+        {
+            return typeof(IParameter).GetCellValue(nameof(Type), row).ParseEnum<ParameterType>();
+        }
     }
 }

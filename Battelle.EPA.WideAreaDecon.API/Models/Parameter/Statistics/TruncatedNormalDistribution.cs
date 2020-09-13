@@ -46,10 +46,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
             return new TruncatedNormalDistribution()
             {
                 MetaData = metaData,
-                Min = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Min), row)?.ConvertToDouble(),
-                Max = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Max), row)?.ConvertToDouble(),
-                Mean = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Mean), row)?.ConvertToDouble(),
-                StdDev = typeof(TruncatedNormalDistribution).GetCellValue(nameof(StdDev), row)?.ConvertToDouble()
+                Min = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Min), row)?.ConvertToOptionalDouble(),
+                Max = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Max), row)?.ConvertToOptionalDouble(),
+                Mean = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Mean), row)?.ConvertToOptionalDouble(),
+                StdDev = typeof(TruncatedNormalDistribution).GetCellValue(nameof(StdDev), row)?.ConvertToOptionalDouble()
             };
         }
 

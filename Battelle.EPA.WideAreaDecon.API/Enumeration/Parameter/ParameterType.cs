@@ -27,6 +27,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
 
         [EnumMember(Value = "Truncated Log Normal")]
         TruncatedLogNormal,
+        [EnumMember(Value = "Efficacy")]
+        Efficacy,
 
         [EnumMember(Value = "Null")]
         Null

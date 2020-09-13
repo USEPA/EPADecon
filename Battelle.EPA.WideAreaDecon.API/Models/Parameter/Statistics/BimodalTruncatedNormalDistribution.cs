@@ -55,12 +55,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
             return new BimodalTruncatedNormalDistribution()
             {
                 MetaData = metaData,
-                Mean1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean1), information)?.ConvertToDouble(),
-                Std1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Std1), information)?.ConvertToDouble(),
-                Mean2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean2), information)?.ConvertToDouble(),
-                Std2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Std2), information)?.ConvertToDouble(),
-                Min = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Min), information)?.ConvertToDouble(),
-                Max = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Max), information)?.ConvertToDouble(),
+                Mean1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean1), information)?.ConvertToOptionalDouble(),
+                Std1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Std1), information)?.ConvertToOptionalDouble(),
+                Mean2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean2), information)?.ConvertToOptionalDouble(),
+                Std2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Std2), information)?.ConvertToOptionalDouble(),
+                Min = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Min), information)?.ConvertToOptionalDouble(),
+                Max = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Max), information)?.ConvertToOptionalDouble(),
             };
         }
     }

@@ -43,9 +43,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
         {
             return new BetaPertDistribution()
             {
-                Min = typeof(BetaPertDistribution).GetCellValue(nameof(Min), row)?.ConvertToDouble(),
-                Max = typeof(BetaPertDistribution).GetCellValue(nameof(Max), row)?.ConvertToDouble(),
-                Mode = typeof(BetaPertDistribution).GetCellValue(nameof(Mode), row)?.ConvertToDouble(),
+                Min = typeof(BetaPertDistribution).GetCellValue(nameof(Min), row)?.ConvertToOptionalDouble(),
+                Max = typeof(BetaPertDistribution).GetCellValue(nameof(Max), row)?.ConvertToOptionalDouble(),
+                Mode = typeof(BetaPertDistribution).GetCellValue(nameof(Mode), row)?.ConvertToOptionalDouble(),
                 MetaData = metaData
             };
         }

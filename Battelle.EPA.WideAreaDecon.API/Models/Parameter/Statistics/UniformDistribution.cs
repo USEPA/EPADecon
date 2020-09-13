@@ -38,8 +38,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
             return new UniformDistribution()
             {
                 MetaData = metaData,
-                Min = typeof(UniformDistribution).GetCellValue(nameof(Min), information)?.ConvertToDouble(),
-                Max = typeof(UniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToDouble()
+                Min = typeof(UniformDistribution).GetCellValue(nameof(Min), information)?.ConvertToOptionalDouble(),
+                Max = typeof(UniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToOptionalDouble()
             };
         }
     }

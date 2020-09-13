@@ -29,10 +29,20 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Extensions
             return value.ParseEnum<T>();
         }
 
-        public static double? ConvertToDouble(this string value)
+        public static double? ConvertToOptionalDouble(this string value)
         {
             if (string.IsNullOrWhiteSpace(value))
                 return null;
+            return double.Parse(value);
+        }
+
+        public static double ConvertToDouble(this string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ApplicationException("Cannot convert null or whitespace value to double");
+            }
+
             return double.Parse(value);
         }
     }
