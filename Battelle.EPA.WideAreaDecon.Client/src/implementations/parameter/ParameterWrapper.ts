@@ -1,6 +1,6 @@
 import IParameter from '@/interfaces/parameter/IParameter';
 import deepCopy from '@/utilities/deepCopy';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import ParameterType from '@/enums/parameter/parameterType';
 import IParameterNode from '@/interfaces/parameter/IParameterNode';
 import NullParameter from './NullParameter';
 
@@ -33,7 +33,7 @@ export default class ParameterWrapper implements IParameterNode {
     return !this.baseline.isEquivalent(this.current);
   }
 
-  reset() {
+  reset(): void {
     this.current = deepCopy(this.baseline);
   }
 

@@ -1,6 +1,6 @@
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import IParameter from '@/interfaces/parameter/IParameter';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import ParameterType from '@/enums/parameter/parameterType';
 import { injectable } from 'inversify';
 import DefaultParameterConverter from './DefaultParameterConverter';
 import Uniform from '../distribution/Uniform';
@@ -33,9 +33,6 @@ export default class ParameterConverter implements IParameterConverter {
         return new TruncatedNormalParameterConverter().convertToNewType(old as TruncatedNormal, newType);
       case ParameterType.uniform:
         return new UniformParameterConverter().convertToNewType(old as Uniform, newType);
-      case ParameterType.contaminatedBuildingTypes:
-      case ParameterType.contaminatedBuildingType:
-      case ParameterType.sumFraction:
       case ParameterType.null:
       default:
         return new DefaultParameterConverter().convertToNewType(old, newType);

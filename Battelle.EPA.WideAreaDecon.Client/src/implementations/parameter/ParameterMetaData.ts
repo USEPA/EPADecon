@@ -18,6 +18,7 @@ export default class ParameterMetaData {
   description?: string;
 
   get hasDescription(): boolean {
+    return this.description !== undefined && this.description !== '';
     if (this.description) {
       return this.description !== '';
     }

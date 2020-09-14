@@ -80,7 +80,7 @@ export default class ParameterFilterExpansionPanel extends Vue {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  setNewParameter(param: ParameterWrapper) {
+  setNewParameter(param: ParameterWrapper): void {
     this.$store.commit('changeCurrentSelectedParameter', param);
   }
 

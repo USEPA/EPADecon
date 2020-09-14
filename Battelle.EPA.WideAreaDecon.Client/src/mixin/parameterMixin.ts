@@ -1,4 +1,4 @@
-import ParameterType from '@/enums/parameter/parameterTypes';
+import ParameterType from '@/enums/parameter/parameterType';
 
 const parameterTypeNames = new Map<ParameterType, string>([
   [ParameterType.constant, 'Constant'],

@@ -53,7 +53,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     return this.selectedParameter.current as Constant;
   }
 
-  vuetifyColorProps() {
+  vuetifyColorProps(): unknown {
     return {
       '--primary-color': this.$vuetify.theme.currentTheme.primary,
     };
@@ -86,7 +86,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   ignoreNextSliderChange = false;
 
   @Watch('sliderValue')
-  onSliderValueChanged(newValue: number) {
+  onSliderValueChanged(newValue: number): void {
     if (!this.ignoreNextSliderChange) {
       this.textValue = newValue.toString();
       this.parameterValue.value = newValue;
@@ -96,7 +96,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   }
 
   @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper) {
+  onParameterChanged(newValue: ParameterWrapper): void {
     const cast = newValue.current as Constant;
     this.min = this.parameterValue.metaData.min ?? -100;
     this.max = this.parameterValue.metaData.max ?? 100;
@@ -111,17 +111,17 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     this.textValue = cast.value?.toString() ?? '';
   }
 
-  onTextEnterPressed(event: KeyboardEvent) {
+  onTextEnterPressed(event: KeyboardEvent): void {
     if (event.keyCode === Key.Enter) {
       this.updateOnTextChange();
     }
   }
 
-  onSliderStopped() {
+  onSliderStopped(): void {
     this.parameterValue.value = this.sliderValue;
   }
 
-  updateOnTextChange() {
+  updateOnTextChange(): void {
     const value = Number(this.textValue);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.value as any;
@@ -139,7 +139,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     }
   }
 
-  setValues() {
+  setValues(): void {
     this.textValue = this.parameterValue.value?.toString() ?? '';
     this.min = this.parameterValue.metaData.min ?? -100 + (this.sliderValue ?? 0);
     this.max = this.parameterValue.metaData.max ?? 100 + (this.sliderValue ?? 0);
@@ -153,7 +153,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
   }
 
-  created() {
+  created(): void {
     this.setValues();
   }
 }

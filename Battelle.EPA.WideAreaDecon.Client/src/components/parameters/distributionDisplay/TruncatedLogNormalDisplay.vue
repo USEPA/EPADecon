@@ -164,7 +164,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
   }
 
-  vuetifyColorProps() {
+  vuetifyColorProps(): unknown {
     return {
       '--primary-color': this.$vuetify.theme.currentTheme.primary,
     };
@@ -185,7 +185,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
   }
 
   @Watch('sliderValue')
-  onSliderValueChanged(newValue: number[]) {
+  onSliderValueChanged(newValue: number[]): void {
     if (this.ignoreNextValueSliderChange) {
       this.ignoreNextValueSliderChange = false;
       return;
@@ -203,7 +203,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
   }
 
   @Watch('sliderMean')
-  onSliderMeanChanged(newValue: number) {
+  onSliderMeanChanged(newValue: number): void {
     if (this.ignoreNextMeanSliderChange) {
       this.ignoreNextMeanSliderChange = false;
       return;
@@ -220,7 +220,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
   }
 
   @Watch('sliderStd')
-  onSliderStdChanged(newValue: number) {
+  onSliderStdChanged(newValue: number): void {
     if (this.ignoreNextStdSliderChange) {
       this.ignoreNextStdSliderChange = false;
       return;
@@ -231,7 +231,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
   }
 
   @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper) {
+  onParameterChanged(newValue: ParameterWrapper): void {
     const cast = newValue.current as TruncatedNormal;
     this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
@@ -255,31 +255,31 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     this.textStd = cast.stdDev?.toString() ?? '';
   }
 
-  onTextMinEnterPressed(event: KeyboardEvent) {
+  onTextMinEnterPressed(event: KeyboardEvent): void {
     if (event.keyCode === Key.Enter) {
       this.updateOnTextMinChange();
     }
   }
 
-  onTextMaxEnterPressed(event: KeyboardEvent) {
+  onTextMaxEnterPressed(event: KeyboardEvent): void {
     if (event.keyCode === Key.Enter) {
       this.updateOnTextMaxChange();
     }
   }
 
-  onTextMeanEnterPressed(event: KeyboardEvent) {
+  onTextMeanEnterPressed(event: KeyboardEvent): void {
     if (event.keyCode === Key.Enter) {
       this.updateOnTextMeanChange();
     }
   }
 
-  onTextStdEnterPressed(event: KeyboardEvent) {
+  onTextStdEnterPressed(event: KeyboardEvent): void {
     if (event.keyCode === Key.Enter) {
       this.updateOnTextStdChange();
     }
   }
 
-  updateOnTextMinChange() {
+  updateOnTextMinChange(): void {
     const value = Number(this.textMin);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -308,7 +308,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
   }
 
-  updateOnTextMaxChange() {
+  updateOnTextMaxChange(): void {
     const value = Number(this.textMax);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -337,7 +337,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
   }
 
-  updateOnTextMeanChange() {
+  updateOnTextMeanChange(): void {
     const value = Number(this.textMean);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -360,7 +360,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
   }
 
-  updateOnTextStdChange() {
+  updateOnTextStdChange(): void {
     const value = Number(this.textStd);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -376,20 +376,20 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
   }
 
-  onSliderStopped(value: number[]) {
+  onSliderStopped(value: number[]): void {
     this.parameterValue.logMin = Math.log10(value[0]);
     this.parameterValue.logMax = Math.log10(value[1]);
   }
 
-  onSliderMeanStopped(value: number) {
+  onSliderMeanStopped(value: number): void {
     this.parameterValue.logMean = Math.log10(value);
   }
 
-  onSliderStdStopped(value: number) {
+  onSliderStdStopped(value: number): void {
     this.parameterValue.logStdDev = Math.log10(value);
   }
 
-  setValues() {
+  setValues(): void {
     this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
 
@@ -412,7 +412,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     this.textStd = this.parameterValue.stdDev?.toString() ?? '';
   }
 
-  created() {
+  created(): void {
     this.setValues();
   }
 }

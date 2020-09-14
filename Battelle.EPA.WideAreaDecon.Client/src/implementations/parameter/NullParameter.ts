@@ -1,4 +1,4 @@
-import ParameterType from '@/enums/parameter/parameterTypes';
+import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import { JsonProperty } from 'typescript-json-serializer';
 import ParameterMetaData from './ParameterMetaData';

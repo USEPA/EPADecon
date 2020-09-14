@@ -30,11 +30,10 @@
 import Vue from 'vue';
 import { Component, Watch } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import ParameterType from '@/enums/parameter/parameterType';
 import NullDisplay from '@/components/parameters/distributionDisplay/NullDisplay.vue';
 import UnknownDisplay from '@/components/parameters/distributionDisplay/UnknownDisplay.vue';
 import ConstantDisplay from '@/components/parameters/distributionDisplay/ConstantDisplay.vue';
-import ContaminatedBuildingTypesDisplay from '@/components/parameters/distributionDisplay/ContaminatedBuildingTypesDisplay.vue';
 import LogUniformDisplay from '@/components/parameters/distributionDisplay/LogUniformDisplay.vue';
 import BetaPertDisplay from '@/components/parameters/distributionDisplay/BetaPertDisplay.vue';
 import TruncatedLogNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedLogNormalDisplay.vue';
@@ -51,7 +50,6 @@ import TYPES from '@/dependencyInjection/types';
     NullDisplay,
     UnknownDisplay,
     ConstantDisplay,
-    ContaminatedBuildingTypesDisplay,
     LogUniformDisplay,
     BetaPertDisplay,
     TruncatedLogNormalDisplay,
@@ -65,7 +63,7 @@ export default class ParameterDistributionSelector extends Vue {
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
   @Watch('currentSelectedParameter')
-  onCurrentSelectedParameterChange() {
+  onCurrentSelectedParameterChange(): void {
     this.currentDistType = this.currentSelectedParameter.type;
   }
 
@@ -85,8 +83,6 @@ export default class ParameterDistributionSelector extends Vue {
         return 'log-uniform-display';
       case ParameterType.pert:
         return 'beta-pert-display';
-      case ParameterType.contaminatedBuildingTypes:
-        return 'contaminated-building-types-display';
       case ParameterType.truncatedLogNormal:
         return 'truncated-log-normal-display';
       case ParameterType.truncatedNormal:
@@ -110,7 +106,7 @@ export default class ParameterDistributionSelector extends Vue {
     return this.currentSelectedParameter.isChanged();
   }
 
-  resetParameter() {
+  resetParameter(): void {
     this.$store.commit('resetCurrentSelectedParameter');
     this.currentDistType = this.currentSelectedParameter.type;
     this.componentKey += 1;
@@ -123,7 +119,7 @@ export default class ParameterDistributionSelector extends Vue {
     );
   }
 
-  created() {
+  created(): void {
     this.currentDistType = this.currentSelectedParameter.type;
   }
 }

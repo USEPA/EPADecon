@@ -4,11 +4,11 @@ import BetaPERT from '@/implementations/parameter/distribution/BetaPERT';
 import TruncatedNormal from '@/implementations/parameter/distribution/TruncatedNormal';
 import LogUniform from '@/implementations/parameter/distribution/LogUniform';
 import TruncatedLogNormal from '@/implementations/parameter/distribution/TruncatedLogNormal';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 
 export default {
-  predicate: (value: unknown) => {
+  predicate: (value: unknown): unknown => {
     const parameter = value as IParameter;
     if (parameter === undefined || parameter === null) {
       return undefined;

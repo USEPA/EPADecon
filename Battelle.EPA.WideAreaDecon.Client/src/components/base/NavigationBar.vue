@@ -127,19 +127,19 @@ export default class NavigationBar extends Vue {
 
   selectedTabName!: never;
 
-  getClassName(name: string) {
+  getClassName(name: string): string {
     return this.$vuetify.theme.dark ? this.getDarkClassName(name) : this.getLightClassName(name);
   }
 
-  getLightClassName(name: string) {
+  getLightClassName(name: string): string {
     return name === this.selectedNavigationRoute ? 'secondary--text text--darken-1' : 'info--text text--lighten-2';
   }
 
-  getDarkClassName(name: string) {
+  getDarkClassName(name: string): string {
     return name === this.selectedNavigationRoute ? 'secondary--text text--lighten-3' : 'info--text text--lighten-4';
   }
 
-  mounted() {
+  mounted(): void {
     if (this.selectedNavigationRoute && this.$router.currentRoute.path !== this.selectedNavigationRoute) {
       this.$router.push(this.selectedNavigationRoute);
     }

@@ -82,7 +82,7 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
     return this.selectedParameter.current as LogUniform;
   }
 
-  vuetifyColorProps() {
+  vuetifyColorProps(): unknown {
     return {
       '--primary-color': this.$vuetify.theme.currentTheme.primary,
     };
@@ -103,7 +103,7 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
   }
 
   @Watch('sliderValue')
-  onSliderValueChanged(newValue: number[]) {
+  onSliderValueChanged(newValue: number[]): void {
     if (this.ignoreNextValueSliderChange) {
       this.ignoreNextValueSliderChange = false;
       return;
@@ -115,7 +115,7 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
   }
 
   @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper) {
+  onParameterChanged(newValue: ParameterWrapper): void {
     const cast = newValue.current as Uniform;
     this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
@@ -129,19 +129,19 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
   }
 
-  onTextMinEnterPressed(event: KeyboardEvent) {
+  onTextMinEnterPressed(event: KeyboardEvent): void {
     if (event.keyCode === Key.Enter) {
       this.updateOnTextMinChange();
     }
   }
 
-  onTextMaxEnterPressed(event: KeyboardEvent) {
+  onTextMaxEnterPressed(event: KeyboardEvent): void {
     if (event.keyCode === Key.Enter) {
       this.updateOnTextMaxChange();
     }
   }
 
-  updateOnTextMinChange() {
+  updateOnTextMinChange(): void {
     const value = Number(this.textMin);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -166,7 +166,7 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
     }
   }
 
-  updateOnTextMaxChange() {
+  updateOnTextMaxChange(): void {
     const value = Number(this.textMax);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -191,12 +191,12 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
     }
   }
 
-  onSliderStopped(value: number[]) {
+  onSliderStopped(value: number[]): void {
     this.parameterValue.logMin = Math.log10(value[0]);
     this.parameterValue.logMax = Math.log10(value[1]);
   }
 
-  setValues() {
+  setValues(): void {
     this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
@@ -209,7 +209,7 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
     this.textMax = this.parameterValue.max?.toString() ?? '';
   }
 
-  created() {
+  created(): void {
     this.setValues();
   }
 }

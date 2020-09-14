@@ -1,15 +1,12 @@
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import IParameter from '@/interfaces/parameter/IParameter';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import ParameterType from '@/enums/parameter/parameterType';
 import TruncatedNormal from '../distribution/TruncatedNormal';
 import Constant from '../distribution/Constant';
 import LogUniform from '../distribution/LogUniform';
 import BetaPERT from '../distribution/BetaPERT';
 import TruncatedLogNormal from '../distribution/TruncatedLogNormal';
 import Uniform from '../distribution/Uniform';
-import ContaminatedBuildingTypes from '../scenario/ContaminatedBuildingTypes';
-import ContaminatedBuildingType from '../scenario/ContaminatedBuildingType';
-import SumFraction from '../list/sumFraction';
 import NullParameter from '../NullParameter';
 
 export default class TruncatedNormalParameterConverter implements IParameterConverter {
@@ -44,12 +41,6 @@ export default class TruncatedNormalParameterConverter implements IParameterConv
         return old;
       case ParameterType.uniform:
         return new Uniform(old.name, old.metaData, old.min, old.max);
-      case ParameterType.contaminatedBuildingTypes:
-        return new ContaminatedBuildingTypes(old.name, old.metaData);
-      case ParameterType.contaminatedBuildingType:
-        return new ContaminatedBuildingType(old.name, old.metaData);
-      case ParameterType.sumFraction:
-        return new SumFraction(old.name, old.metaData);
       case ParameterType.null:
         return new NullParameter();
       default:

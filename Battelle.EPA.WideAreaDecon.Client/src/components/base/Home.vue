@@ -74,7 +74,7 @@ export default class Home extends Vue {
   }
 
   // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars,@typescript-eslint/no-explicit-any
-  itemSelected(item: IHomeOptions) {
+  itemSelected(item: IHomeOptions): void {
     if (item.action.isModal()) {
       this.modalActive = true;
       this.componentName = item.action.getNext();
@@ -83,7 +83,7 @@ export default class Home extends Vue {
     }
   }
 
-  created() {
+  created(): void {
     this.$store.commit('disableNavigationTabs');
   }
 }
