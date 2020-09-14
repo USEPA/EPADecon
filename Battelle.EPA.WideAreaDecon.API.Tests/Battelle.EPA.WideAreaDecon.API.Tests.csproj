@@ -17,6 +17,14 @@
   <ItemGroup>
     <ProjectReference Include="..\Battelle.EPA.WideAreaDecon.API\Battelle.EPA.WideAreaDecon.API.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\InputFiles\ModifyParameters.xlsx" Link="InputFiles\ModifyParameters.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\InputFiles\DefineScenario.xlsx" Link="InputFiles\DefineScenario.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="InputFiles\ParameterTests\ConstantDistribution.xlsx">

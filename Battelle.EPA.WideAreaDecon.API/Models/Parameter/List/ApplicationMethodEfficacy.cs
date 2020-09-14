@@ -15,9 +15,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
         public ParameterType Type => ParameterType.Efficacy;
         public ParameterMetaData MetaData { get; set; }
 
-        [ExcelProperty(18)] public Dictionary<SurfaceType, List<IParameter>> Parameters { get; set; }
+        [ExcelProperty(15)] public Dictionary<SurfaceType, List<IParameter>> Parameters { get; set; }
 
-        public ApplicationMethodEfficacy FromExcelSheet(ApplicationMethod method, ISheet sheet)
+        public static ApplicationMethodEfficacy FromExcelSheet(ApplicationMethod method, ISheet sheet)
         {
             var length = sheet.LastRowNum + 1;
 

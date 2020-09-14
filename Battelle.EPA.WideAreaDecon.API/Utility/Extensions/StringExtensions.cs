@@ -1,6 +1,8 @@
 ﻿#nullable enable
 using System;
 using System.Data.SqlTypes;
+using System.Linq;
+using System.Runtime.Serialization;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Battelle.EPA.WideAreaDecon.API.Utility.Extensions
@@ -16,7 +18,17 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Extensions
         /// <returns>An enum type that matches the string</returns>
         public static T ParseEnum<T>(this string value) where T : Enum
         {
-            return (T)Enum.Parse(typeof(T), value, true);
+            var enumType = typeof(T);
+            foreach (var name in Enum.GetNames(enumType))
+            {
+                var field = enumType.GetField(name);
+                if (field == null) continue;
+                var enumMemberAttribute =
+                    ((EnumMemberAttribute[]) field.GetCustomAttributes(typeof(EnumMemberAttribute), true)).SingleOrDefault();
+                if (enumMemberAttribute?.Value == value) return (T) Enum.Parse(enumType, name);
+            }
+
+            return (T) Enum.Parse(typeof(T), value, true);
         }
 
         public static T? ParseOptionalEnum<T>(this string value) where T : struct, Enum

@@ -4,9 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
+using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Providers;
+using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.API.Models.Parameter.List;
+using Microsoft.OpenApi.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
@@ -60,12 +64,28 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
                 throw new SerializationException("No file version found in Excel");
 
             int version = int.Parse(versionString);
+            var efficacyParameters = new List<IParameter>();
+            foreach (var method in Enum.GetValues(typeof(ApplicationMethod)).Cast<ApplicationMethod>())
+            {
+                var methodSheet = xssWorkbook.GetSheet(method.GetAttributeOfType<EnumMemberAttribute>()?.Value ?? method.ToString());
+                efficacyParameters.Add(ApplicationMethodEfficacy.FromExcelSheet(method, methodSheet));
+            }
+
+            var filters = GenericSheetNames.Select(genericSheetName =>
+                ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName))).ToList();
+            filters.Add(new ParameterFilter()
+            {
+                Name = "Decontamination",
+                Filters = new ParameterFilter[0],
+                Parameters = efficacyParameters.ToArray()
+            });
+
+
 
             return new ParameterList()
             {
                 Version = version,
-                Filters = GenericSheetNames.Select(genericSheetName =>
-                    ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName))).ToArray()
+                Filters = filters.ToArray()
             };
         }
     }

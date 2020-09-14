@@ -15,7 +15,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
     /// </summary>
     public interface IParameter
     {
-        [ExcelProperty(6)] public ParameterType Type { get; }
+        [ExcelProperty(5)] public ParameterType Type { get; }
 
         /// <inheritdoc cref="ParameterMetaData"/>
         ParameterMetaData MetaData { get; set; }
@@ -42,6 +42,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
                     "Cannot parse uniform XDependent from IParameter interface"),
                 ParameterType.BimodalTruncatedNormal => BimodalTruncatedNormalDistribution.FromExcel(metaData, row),
                 ParameterType.Null => throw new ApplicationException("Cannot parse parameter type Null"),
+                ParameterType.LogNormal => LogNormalDistribution.FromExcel(metaData, row),
+                ParameterType.Efficacy => throw new ApplicationException("Cannot parse efficacy from IParameter interface"),
+                ParameterType.Weibull => WeibullDistribution.FromExcel(metaData, row),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
