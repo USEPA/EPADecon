@@ -14,9 +14,7 @@
     </v-row>
     <v-row align="center" justify="center">
       <v-col>
-        <p class="text-center display-3">
-          Contaminated Building Types page under construction...
-        </p>
+        <p class="text-center display-3">Contaminated Building Types page under construction...</p>
       </v-col>
     </v-row>
   </v-container>

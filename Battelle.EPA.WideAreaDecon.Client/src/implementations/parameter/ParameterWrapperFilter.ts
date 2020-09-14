@@ -36,7 +36,11 @@ export default class ParameterWrapperFilter implements IParameterNode {
       sum += f.numberInvalidParameters();
     });
     this.parameters.forEach((p) => {
-      sum += p.current.isSet() ? 0 : 1;
+      if (p.current.isSet) {
+        sum += p.current.isSet() ? 0 : 1;
+      } else {
+        console.log(p.current);
+      }
     });
     return sum;
   }

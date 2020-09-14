@@ -24,9 +24,7 @@
     <v-tooltip bottom :color="canRun ? 'info' : 'error'">
       <template v-slot:activator="{ on }">
         <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'" :color="canRun ? 'secondary' : ''">
-          <v-btn v-on="on" :disabled="!canRun" :color="canRun ? 'secondary' : ''">
-            Run Scenario
-          </v-btn>
+          <v-btn v-on="on" :disabled="!canRun" :color="canRun ? 'secondary' : ''"> Run Scenario </v-btn>
         </div>
       </template>
       <span v-if="canRun">Runs the model and generates results</span>

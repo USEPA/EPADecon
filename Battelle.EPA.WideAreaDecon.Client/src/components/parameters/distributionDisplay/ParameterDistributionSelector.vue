@@ -15,7 +15,7 @@
           dense
         />
       </v-col>
-      <v-col style="margin-top:7px" cols="2">
+      <v-col style="margin-top: 7px" cols="2">
         <v-btn height="45" v-if="shouldIncludeTitle && parameterHasChanged" color="secondary" @click="resetParameter">
           Reset Parameter
         </v-btn>
