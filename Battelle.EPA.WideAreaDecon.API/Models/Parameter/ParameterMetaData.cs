@@ -18,8 +18,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
         [ExcelProperty(2)] public string Name { get; set; }
         [ExcelProperty(3)] public string Description { get; set; }
         [ExcelProperty(4)] public string Units { get; set; }
-        [ExcelProperty(12)] public double Min { get; set; }
-        [ExcelProperty(13)] public double Max { get; set; }
+        [ExcelProperty(12)] public double LowerLimit { get; set; }
+        [ExcelProperty(13)] public double UpperLimit { get; set; }
         [ExcelProperty(14)] public double Step { get; set; }
 
 
@@ -36,9 +36,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
                 Name = typeof(ParameterMetaData).GetCellValue(nameof(Name), row) ?? throw new ApplicationException("Parameter must have a name"),
                 Description = typeof(ParameterMetaData).GetCellValue(nameof(Description), row),
                 Units = typeof(ParameterMetaData).GetCellValue(nameof(Units), row),
-                Min = double.Parse(typeof(ParameterMetaData).GetCellValue(nameof(Min), row)
+                LowerLimit = double.Parse(typeof(ParameterMetaData).GetCellValue(nameof(LowerLimit), row)
                     ?? throw new ApplicationException("Unable to parse name for maximum")),
-                Max = double.Parse(typeof(ParameterMetaData).GetCellValue(nameof(Max), row)
+                UpperLimit = double.Parse(typeof(ParameterMetaData).GetCellValue(nameof(UpperLimit), row)
                     ?? throw new ApplicationException("Unable to parse name for maximum")),
                 Step = double.Parse(typeof(ParameterMetaData).GetCellValue(nameof(Step), row)
                     ?? throw new ApplicationException("Unable to parse name for maximum"))

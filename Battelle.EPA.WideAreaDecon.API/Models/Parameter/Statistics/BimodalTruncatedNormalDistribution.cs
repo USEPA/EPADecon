@@ -32,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         [ExcelProperty(ParameterLocationHelper.Parameter2)]
-        public double? Std1 { get; set; }
+        public double? StdDev1 { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         [ExcelProperty(ParameterLocationHelper.Parameter3)]
@@ -40,7 +40,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         [ExcelProperty(ParameterLocationHelper.Parameter4)]
-        public double? Std2 { get; set; }
+        public double? StdDev2 { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         [ExcelProperty(ParameterLocationHelper.Parameter5)]
@@ -56,9 +56,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
             {
                 MetaData = metaData,
                 Mean1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean1), information)?.ConvertToOptionalDouble(),
-                Std1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Std1), information)?.ConvertToOptionalDouble(),
+                StdDev1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(StdDev1), information)?.ConvertToOptionalDouble(),
                 Mean2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean2), information)?.ConvertToOptionalDouble(),
-                Std2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Std2), information)?.ConvertToOptionalDouble(),
+                StdDev2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(StdDev2), information)?.ConvertToOptionalDouble(),
                 Min = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Min), information)?.ConvertToOptionalDouble(),
                 Max = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Max), information)?.ConvertToOptionalDouble(),
             };

@@ -20,14 +20,14 @@ export default class BetaPERT implements IParameter {
   mode: number | undefined;
 
   get mean(): number | undefined {
-    if (this.min === undefined || this.max === undefined || this.mode === undefined) {
+    if (!(!!this.min && !!this.mode && !!this.max)) {
       return undefined;
     }
     return (this.min + 4 * this.mode + this.max) / 6.0;
   }
 
   get stdDev(): number | undefined {
-    if (this.min === undefined || this.max === undefined || this.mode === undefined) {
+    if (!(!!this.min && !!this.mode && !!this.max)) {
       return undefined;
     }
     return (this.max - this.min) / 6.0;
@@ -36,8 +36,8 @@ export default class BetaPERT implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  public isSet(): boolean {
-    return this.min !== undefined && this.max !== undefined && this.mode !== undefined;
+  public get isSet(): boolean {
+    return !!this.min && !!this.max && !!this.mode;
   }
 
   constructor(name = 'unknown', metaData = new ParameterMetaData(), min?: number, max?: number, mode?: number) {

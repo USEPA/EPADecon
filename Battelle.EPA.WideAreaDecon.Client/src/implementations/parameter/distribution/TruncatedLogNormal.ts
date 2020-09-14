@@ -41,7 +41,7 @@ export default class TruncatedLogNormal implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  public isSet(): boolean {
+  public get isSet(): boolean {
     return (
       this.logMin !== undefined &&
       this.logMax !== undefined &&

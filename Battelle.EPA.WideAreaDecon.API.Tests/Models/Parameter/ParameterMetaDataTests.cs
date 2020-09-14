@@ -21,8 +21,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
             {
                 Category = "Test",
                 Description = "Test Description 0",
-                Min = 0,
-                Max = 10,
+                LowerLimit = 0,
+                UpperLimit = 10,
                 Step = 1,
                 Name = "Test 0",
                 Units = "Units 0",
@@ -32,8 +32,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
             {
                 Category = "Test",
                 Description = "Test Description 1",
-                Min = 0,
-                Max = 10,
+                LowerLimit = 0,
+                UpperLimit = 10,
                 Step = 1,
                 Name = "Test 1",
                 Units = "Units 1",
@@ -43,8 +43,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
             {
                 Category = "Test",
                 Description = "Test Description 2",
-                Min = 0,
-                Max = 10,
+                LowerLimit = 0,
+                UpperLimit = 10,
                 Step = 1,
                 Name = "Test 2",
                 Units = "Units 2",
@@ -54,8 +54,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
             {
                 Category = "Test",
                 Description = "Test Description 3",
-                Min = 0,
-                Max = 10,
+                LowerLimit = 0,
+                UpperLimit = 10,
                 Step = 1,
                 Name = "Test 3",
                 Units = "Units 3",
@@ -65,8 +65,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
             {
                 Category = "Other",
                 Description = "Test Description 4",
-                Min = 1.5,
-                Max = 100.5,
+                LowerLimit = 1.5,
+                UpperLimit = 100.5,
                 Step = 0.01,
                 Name = "Test 4",
                 Units = "Units 4",
@@ -76,8 +76,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
             {
                 Category = "Other",
                 Description = "Test Description 5",
-                Min = 1.5,
-                Max = 100.5,
+                LowerLimit = 1.5,
+                UpperLimit = 100.5,
                 Step = 0.01,
                 Name = "Test 5",
                 Units = "Units 5",
@@ -87,8 +87,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
             {
                 Category = "Other",
                 Description = "Test Description 6",
-                Min = 1.5,
-                Max = 100.5,
+                LowerLimit = 1.5,
+                UpperLimit = 100.5,
                 Step = 0.01,
                 Name = "Test 6",
                 Units = "Units 6",
@@ -134,8 +134,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Assert.AreEqual(expected.Description, actual.Description, $"Incorrect {nameof(expected.Description)} for entry {i}");
                 Assert.AreEqual(expected.Name, actual.Name, $"Incorrect {nameof(expected.Name)} for entry {i}");
                 Assert.AreEqual(expected.Units, actual.Units, $"Incorrect {nameof(expected.Units)} for entry {i}");
-                Assert.AreEqual(expected.Min, actual.Min, 1e-3, $"Incorrect {nameof(expected.Min)} for entry {i}");
-                Assert.AreEqual(expected.Max, actual.Max, 1e-3, $"Incorrect {nameof(expected.Max)} for entry {i}");
+                Assert.AreEqual(expected.LowerLimit, actual.LowerLimit, 1e-3, $"Incorrect {nameof(expected.LowerLimit)} for entry {i}");
+                Assert.AreEqual(expected.UpperLimit, actual.UpperLimit, 1e-3, $"Incorrect {nameof(expected.UpperLimit)} for entry {i}");
                 Assert.AreEqual(expected.Step, actual.Step, 1e-3, $"Incorrect {nameof(expected.Step)} for entry {i}");
             }
 

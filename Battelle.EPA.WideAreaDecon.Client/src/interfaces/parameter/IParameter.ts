@@ -6,7 +6,7 @@ export default interface IParameter {
 
   type: ParameterType;
 
-  isSet(): boolean;
+  isSet: boolean;
 
   isEquivalent(other: IParameter): boolean;
 

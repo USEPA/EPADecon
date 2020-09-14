@@ -14,29 +14,29 @@ export default class LogUniform implements IParameter {
   logMin: number | undefined;
 
   get min(): number | undefined {
-    return this.logMin !== undefined ? 10 ** this.logMin : undefined;
+    return this.logMin ? 10 ** this.logMin : undefined;
   }
 
   @JsonProperty()
   logMax: number | undefined;
 
   get max(): number | undefined {
-    return this.logMax !== undefined ? 10 ** this.logMax : undefined;
+    return this.logMax ? 10 ** this.logMax : undefined;
   }
 
   get mean(): number | undefined {
-    return this.min !== undefined && this.max !== undefined ? (this.max + this.min) / 2.0 : undefined;
+    return !!this.min && !!this.max ? (this.max + this.min) / 2.0 : undefined;
   }
 
   get stdDev(): number | undefined {
-    return this.min !== undefined && this.max !== undefined ? (this.max - this.min) / 6.0 : undefined;
+    return !!this.min && !!this.max ? (this.max - this.min) / 6.0 : undefined;
   }
 
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  public isSet(): boolean {
-    return this.logMin !== undefined && this.logMax !== undefined;
+  public get isSet(): boolean {
+    return !!this.min && !!this.max;
   }
 
   constructor(name = 'unknown', metaData = new ParameterMetaData(), logMin?: number, logMax?: number) {

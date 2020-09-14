@@ -16,8 +16,8 @@ export default class Constant implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  public isSet(): boolean {
-    return this.value !== undefined;
+  public get isSet(): boolean {
+    return !!this.value;
   }
 
   constructor(name = 'unknown', metaData = new ParameterMetaData(), value?: number) {
