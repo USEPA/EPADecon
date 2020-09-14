@@ -25,7 +25,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Max = 10,
                 Step = 1,
                 Name = "Test 0",
-                Notes = "Note 0",
                 Units = "Units 0",
                 ValidPhases = new [] {DecontaminationPhase.Indoor}
             },
@@ -37,7 +36,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Max = 10,
                 Step = 1,
                 Name = "Test 1",
-                Notes = "Note 1",
                 Units = "Units 1",
                 ValidPhases = new [] {DecontaminationPhase.Outdoor}
             },
@@ -49,7 +47,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Max = 10,
                 Step = 1,
                 Name = "Test 2",
-                Notes = "Note 2",
                 Units = "Units 2",
                 ValidPhases = new [] {DecontaminationPhase.Indoor, DecontaminationPhase.Outdoor, DecontaminationPhase.Underground}
             },
@@ -61,7 +58,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Max = 10,
                 Step = 1,
                 Name = "Test 3",
-                Notes = "Note 3",
                 Units = "Units 3",
                 ValidPhases = new [] {DecontaminationPhase.Indoor, DecontaminationPhase.Underground}
             },
@@ -73,11 +69,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Max = 100.5,
                 Step = 0.01,
                 Name = "Test 4",
-                Notes = "Note 4",
                 Units = "Units 4",
                 ValidPhases = new [] {DecontaminationPhase.Indoor, DecontaminationPhase.Outdoor},
-                Method = ApplicationMethod.Gel,
-                Type = SurfaceType.HVAC
             },
             new ParameterMetaData()
             {
@@ -87,11 +80,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Max = 100.5,
                 Step = 0.01,
                 Name = "Test 5",
-                Notes = "Note 5",
                 Units = "Units 5",
                 ValidPhases = new [] {DecontaminationPhase.Indoor, DecontaminationPhase.Outdoor},
-                Method = ApplicationMethod.Physical,
-                Type = SurfaceType.OutdoorExterior
             },
             new ParameterMetaData()
             {
@@ -101,11 +91,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Max = 100.5,
                 Step = 0.01,
                 Name = "Test 6",
-                Notes = "Note 6",
                 Units = "Units 6",
-                ValidPhases = new [] {DecontaminationPhase.Indoor, DecontaminationPhase.Outdoor},
-                Method = ApplicationMethod.LiquidSpray,
-                Type = SurfaceType.Roofing
+                ValidPhases = new [] {DecontaminationPhase.Indoor, DecontaminationPhase.Outdoor}
             }
         };
         [SetUp]
@@ -146,13 +133,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Assert.AreEqual(expected.Category, actual.Category, $"Incorrect {nameof(expected.Category)} for entry {i}");
                 Assert.AreEqual(expected.Description, actual.Description, $"Incorrect {nameof(expected.Description)} for entry {i}");
                 Assert.AreEqual(expected.Name, actual.Name, $"Incorrect {nameof(expected.Name)} for entry {i}");
-                Assert.AreEqual(expected.Notes, actual.Notes, $"Incorrect {nameof(expected.Notes)} for entry {i}");
                 Assert.AreEqual(expected.Units, actual.Units, $"Incorrect {nameof(expected.Units)} for entry {i}");
                 Assert.AreEqual(expected.Min, actual.Min, 1e-3, $"Incorrect {nameof(expected.Min)} for entry {i}");
                 Assert.AreEqual(expected.Max, actual.Max, 1e-3, $"Incorrect {nameof(expected.Max)} for entry {i}");
                 Assert.AreEqual(expected.Step, actual.Step, 1e-3, $"Incorrect {nameof(expected.Step)} for entry {i}");
-                Assert.AreEqual(expected.Method, actual.Method, $"Incorrect {nameof(expected.Method)} for entry {i}");
-                Assert.AreEqual(expected.Type, actual.Type, $"Incorrect {nameof(expected.Method)} for entry {i}");
             }
 
 
