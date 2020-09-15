@@ -1,16 +1,16 @@
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterType from '@/enums/parameter/parameterType';
-import TruncatedNormal from '../distribution/TruncatedNormal';
+import Uniform from '../distribution/Uniform';
 
-export default class TruncatedNormalConverter implements IParameterConverter {
+export default class UniformConverter implements IParameterConverter {
   // eslint-disable-next-line class-methods-use-this
   convertToNewType(old: IParameter, newType: ParameterType): IParameter {
-    if (old.type !== ParameterType.truncatedNormal) {
-      throw new Error('Truncated Normal converter only works with Truncated Normal parameter');
+    if (old.type !== ParameterType.uniform) {
+      throw new Error('Uniform converter only works with Uniform parameter');
     }
 
-    const oldParam = <TruncatedNormal>old;
+    const oldParam = <Uniform>old;
 
 
     switch (newType) {

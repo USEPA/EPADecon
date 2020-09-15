@@ -8,14 +8,14 @@ export default class LogUniform implements IParameter {
   readonly type: ParameterType = ParameterType.logUniform;
 
   @JsonProperty()
-  logMin: number | undefined;
+  logMin?: number;
+
+  @JsonProperty()
+  logMax?: number;
 
   get min(): number | undefined {
     return this.logMin ? 10 ** this.logMin : undefined;
   }
-
-  @JsonProperty()
-  logMax: number | undefined;
 
   get max(): number | undefined {
     return this.logMax ? 10 ** this.logMax : undefined;
@@ -23,6 +23,10 @@ export default class LogUniform implements IParameter {
 
   get mean(): number | undefined {
     return !!this.min && !!this.max ? (this.max + this.min) / 2.0 : undefined;
+  }
+
+  get mode(): number | undefined {
+    return this.mean; // TODO: how to calculate
   }
 
   get stdDev(): number | undefined {

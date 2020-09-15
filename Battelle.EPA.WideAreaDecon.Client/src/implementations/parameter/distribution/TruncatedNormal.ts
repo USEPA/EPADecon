@@ -8,16 +8,20 @@ export default class TruncatedNormal implements IParameter {
   readonly type: ParameterType = ParameterType.truncatedNormal;
 
   @JsonProperty()
-  min: number | undefined;
+  min?: number;
 
   @JsonProperty()
-  max: number | undefined;
+  max?: number;
 
   @JsonProperty()
-  mean: number | undefined;
+  mean?: number;
+
+  public get mode(): number | undefined {
+    return this.mean;
+  }
 
   @JsonProperty()
-  stdDev: number | undefined;
+  stdDev?: number;
 
   @JsonProperty()
   metaData: ParameterMetaData;

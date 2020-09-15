@@ -2,16 +2,29 @@ import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
+import IUnivariateParameter from './IUnivariateParameter';
 
-export default class LogNormal implements IParameter {
+export default class LogNormal implements IParameter, IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.logNormal;
 
-  @JsonProperty()
-  mean: number | undefined;
+  public get min(): number {
+    return this.metaData.lowerLimit;
+  }
+
+  public get max(): number {
+    return this.metaData.upperLimit;
+  }
 
   @JsonProperty()
-  stdDev: number | undefined;
+  mean?: number;
+
+  get mode(): number | undefined {
+    return this.mean; // TODO: how to calculate
+  }
+
+  @JsonProperty()
+  stdDev?: number;
 
   @JsonProperty()
   metaData: ParameterMetaData;

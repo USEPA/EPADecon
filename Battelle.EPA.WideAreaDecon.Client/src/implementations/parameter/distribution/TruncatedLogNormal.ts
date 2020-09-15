@@ -8,28 +8,32 @@ export default class TruncatedLogNormal implements IParameter {
   readonly type: ParameterType = ParameterType.truncatedLogNormal;
 
   @JsonProperty()
-  logMin: number | undefined;
+  logMin?: number;
+
+  @JsonProperty()
+  logMax?: number;
+
+  @JsonProperty()
+  logMean?: number;
+
+  @JsonProperty()
+  logStdDev?: number;
 
   get min(): number | undefined {
     return this.logMin !== undefined ? 10 ** this.logMin : undefined;
   }
 
-  @JsonProperty()
-  logMax: number | undefined;
-
   get max(): number | undefined {
     return this.logMax !== undefined ? 10 ** this.logMax : undefined;
   }
-
-  @JsonProperty()
-  logMean: number | undefined;
 
   get mean(): number | undefined {
     return this.logMean !== undefined ? 10 ** this.logMean : undefined;
   }
 
-  @JsonProperty()
-  logStdDev: number | undefined;
+  get mode(): number | undefined {
+    return this.mean; // TODO: how to calculate
+  }
 
   get stdDev(): number | undefined {
     return this.logStdDev !== undefined ? 10 ** this.logStdDev : undefined;

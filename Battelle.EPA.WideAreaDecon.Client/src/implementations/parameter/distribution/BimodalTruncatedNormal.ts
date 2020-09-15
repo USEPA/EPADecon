@@ -2,28 +2,29 @@ import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
+import IUnivariateParameter from './IUnivariateParameter';
 
-export default class BimodalTruncatedNormal implements IParameter {
+export default class BimodalTruncatedNormal implements IParameter, IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.bimodalTruncatedNormal;
 
   @JsonProperty()
-  mean1: number | undefined;
+  mean1?: number;
 
   @JsonProperty()
-  stdDev1: number | undefined;
+  stdDev1?: number;
 
   @JsonProperty()
-  mean2: number | undefined;
+  mean2?: number;
 
   @JsonProperty()
-  stdDev2: number | undefined;
+  stdDev2?: number;
 
   @JsonProperty()
-  min: number | undefined;
+  min?: number;
 
   @JsonProperty()
-  max: number | undefined;
+  max?: number;
 
   get mean(): number | undefined {
     if (!(!!this.mean1 && !!this.stdDev1 && !!this.mean2 && !!this.stdDev2 && !!this.min && !!this.max)) {

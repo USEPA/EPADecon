@@ -1,18 +1,5 @@
 import ParameterType from '@/enums/parameter/parameterType';
 
-const parameterTypeNames = new Map<ParameterType, string>([
-  [ParameterType.constant, 'Constant'],
-  [ParameterType.contaminatedBuildingType, 'Contaminated Building Type'],
-  [ParameterType.contaminatedBuildingTypes, 'Contaminated Building Types'],
-  [ParameterType.logUniform, 'Log Uniform'],
-  [ParameterType.null, 'Null'],
-  [ParameterType.pert, 'BetaPERT'],
-  [ParameterType.sumFraction, 'Sum Fraction'],
-  [ParameterType.truncatedLogNormal, 'Truncated Log Normal'],
-  [ParameterType.truncatedNormal, 'Truncated Normal'],
-  [ParameterType.uniform, 'Uniform'],
-]);
-
 const changeableDistributionTypes = new Array<ParameterType>(
   ParameterType.constant,
   ParameterType.uniform,
@@ -22,4 +9,5 @@ const changeableDistributionTypes = new Array<ParameterType>(
   ParameterType.truncatedLogNormal,
 );
 
-export { parameterTypeNames, changeableDistributionTypes };
+// eslint-disable-next-line import/prefer-default-export
+export { changeableDistributionTypes };

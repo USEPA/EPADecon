@@ -2,19 +2,17 @@ import { JsonProperty } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
+import IUnivariateParameter from './IUnivariateParameter';
 
-export default class BetaPERT implements IParameter {
+export default class BetaPERT implements IParameter, IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.pert;
 
   @JsonProperty()
-  min: number | undefined;
+  min?: number;
 
   @JsonProperty()
-  max: number | undefined;
-
-  @JsonProperty()
-  mode: number | undefined;
+  max?: number;
 
   get mean(): number | undefined {
     if (!(!!this.min && !!this.mode && !!this.max)) {
@@ -22,6 +20,9 @@ export default class BetaPERT implements IParameter {
     }
     return (this.min + 4 * this.mode + this.max) / 6.0;
   }
+
+  @JsonProperty()
+  mode?: number;
 
   get stdDev(): number | undefined {
     if (!(!!this.min && !!this.mode && !!this.max)) {

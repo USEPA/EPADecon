@@ -1,26 +1,26 @@
-import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
-import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterType from '@/enums/parameter/parameterType';
-import TruncatedLogNormal from '../distribution/TruncatedLogNormal';
+import IParameter from '@/interfaces/parameter/IParameter';
+import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
+import BetaPERT from '../distribution/BetaPERT';
 import BimodalTruncatedNormal from '../distribution/BimodalTruncatedNormal';
 import Constant from '../distribution/Constant';
 import LogNormal from '../distribution/LogNormal';
 import LogUniform from '../distribution/LogUniform';
-import NullParameter from '../NullParameter';
-import BetaPERT from '../distribution/BetaPERT';
+import TruncatedLogNormal from '../distribution/TruncatedLogNormal';
 import TruncatedNormal from '../distribution/TruncatedNormal';
 import Uniform from '../distribution/Uniform';
 import UniformXDependent from '../distribution/UniformXDependent';
 import Weibull from '../distribution/Weibull';
+import NullParameter from '../NullParameter';
 
-export default class TruncatedLogNormalConverter implements IParameterConverter {
+export default class BimodalTruncatedNormalConverter implements IParameterConverter {
   // eslint-disable-next-line class-methods-use-this
   convertToNewType(old: IParameter, newType: ParameterType): IParameter {
-    if (old.type !== ParameterType.truncatedLogNormal) {
-      throw new Error('Truncated Log Normal converter only works with Truncated Log Normal parameter');
+    if (old.type !== ParameterType.bimodalTruncatedNormal) {
+      throw new Error('Bimodal Truncated Normal converter only works with Bimodal Truncated Normal parameter');
     }
 
-    const oldParam = <TruncatedLogNormal>old;
+    const oldParam = <BimodalTruncatedNormal>old;
 
     function logConverter(value?: number): number | undefined {
       return value ? Math.log(value) : undefined;
@@ -30,10 +30,10 @@ export default class TruncatedLogNormalConverter implements IParameterConverter 
       case ParameterType.bimodalTruncatedNormal:
         return new BimodalTruncatedNormal(
           old.metaData,
-          oldParam.mean,
-          oldParam.stdDev,
-          oldParam.mean,
-          oldParam.stdDev,
+          oldParam.mean1,
+          oldParam.stdDev1,
+          oldParam.mean2,
+          oldParam.stdDev2,
           oldParam.min,
           oldParam.max,
         );

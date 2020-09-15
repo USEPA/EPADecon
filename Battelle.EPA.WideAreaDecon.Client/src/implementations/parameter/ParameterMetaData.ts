@@ -10,7 +10,7 @@ export default class ParameterMetaData {
   category?: string;
 
   @JsonProperty()
-  name?: string;
+  name = 'unknown';
 
   @JsonProperty()
   description?: string;

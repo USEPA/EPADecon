@@ -8,13 +8,17 @@ export default class Uniform implements IParameter {
   readonly type: ParameterType = ParameterType.uniform;
 
   @JsonProperty()
-  min: number | undefined;
+  min?: number;
 
   @JsonProperty()
-  max: number | undefined;
+  max?: number;
 
   get mean(): number | undefined {
-    return this.min !== undefined && this.max !== undefined ? (this.min + this.max) / 2.0 : undefined;
+    return !!this.min && !!this.max ? (this.min + this.max) / 2.0 : undefined;
+  }
+
+  get mode(): number | undefined {
+    return this.mean;
   }
 
   get stdDev(): number | undefined {
