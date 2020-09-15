@@ -1,11 +1,8 @@
 import { expect } from 'chai';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,import/named
 import { nelderMead } from '@/mixin/solverMixin';
-import * as Utility from '@/mixin/mathUtilityMixin';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
 import ParameterMetaData from '@/implementations/parameter/ParameterMetaData';
-import { assert } from 'console';
-import { AsyncContainerModule } from 'inversify';
 
 describe('SolverFunctionality', function TestDefaultNavigationItemProvider() {
   it('Correct Fit to Weibull', () => {
