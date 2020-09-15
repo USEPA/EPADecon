@@ -5,10 +5,7 @@ import ParameterMetaData from '../ParameterMetaData';
 
 export default class BetaPERT implements IParameter {
   @JsonProperty()
-  name: string;
-
-  @JsonProperty()
-  type: ParameterType = ParameterType.pert;
+  readonly type: ParameterType = ParameterType.pert;
 
   @JsonProperty()
   min: number | undefined;
@@ -40,8 +37,7 @@ export default class BetaPERT implements IParameter {
     return !!this.min && !!this.max && !!this.mode;
   }
 
-  constructor(name = 'unknown', metaData = new ParameterMetaData(), min?: number, max?: number, mode?: number) {
-    this.name = name;
+  constructor(metaData = new ParameterMetaData(), min?: number, max?: number, mode?: number) {
     this.min = min;
     this.max = max;
     this.mode = mode;

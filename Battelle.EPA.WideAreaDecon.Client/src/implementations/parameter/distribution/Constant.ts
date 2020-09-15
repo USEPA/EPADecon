@@ -5,9 +5,6 @@ import ParameterMetaData from '../ParameterMetaData';
 
 export default class Constant implements IParameter {
   @JsonProperty()
-  name: string;
-
-  @JsonProperty()
   readonly type: ParameterType = ParameterType.constant;
 
   @JsonProperty()
@@ -20,8 +17,7 @@ export default class Constant implements IParameter {
     return !!this.value;
   }
 
-  constructor(name = 'unknown', metaData = new ParameterMetaData(), value?: number) {
-    this.name = name;
+  constructor(metaData = new ParameterMetaData(), value?: number) {
     this.value = value;
     this.metaData = metaData;
   }

@@ -14,7 +14,7 @@ export default class ParameterWrapper implements IParameterNode {
   }
 
   get name(): string {
-    return this.current.name;
+    return this.current.metaData.name ?? 'unknown';
   }
 
   get path(): string {

@@ -5,15 +5,12 @@ import ParameterMetaData from './ParameterMetaData';
 
 export default class NullParameter implements IParameter {
   @JsonProperty()
-  name = 'null';
-
-  @JsonProperty()
   metaData: ParameterMetaData = new ParameterMetaData();
 
   type = ParameterType.null;
 
   // eslint-disable-next-line class-methods-use-this
-  isSet(): boolean {
+  get isSet(): boolean {
     return false;
   }
 

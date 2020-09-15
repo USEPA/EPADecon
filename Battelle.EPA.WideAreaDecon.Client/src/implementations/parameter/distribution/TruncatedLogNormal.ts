@@ -5,10 +5,7 @@ import ParameterMetaData from '../ParameterMetaData';
 
 export default class TruncatedLogNormal implements IParameter {
   @JsonProperty()
-  name: string;
-
-  @JsonProperty()
-  type: ParameterType = ParameterType.truncatedLogNormal;
+  readonly type: ParameterType = ParameterType.truncatedLogNormal;
 
   @JsonProperty()
   logMin: number | undefined;
@@ -51,14 +48,12 @@ export default class TruncatedLogNormal implements IParameter {
   }
 
   constructor(
-    name = 'unknown',
     metaData = new ParameterMetaData(),
     logMin?: number,
     logMax?: number,
     logMean?: number,
     logStdDev?: number,
   ) {
-    this.name = name;
     this.logMin = logMin;
     this.logMax = logMax;
     this.logMean = logMean;

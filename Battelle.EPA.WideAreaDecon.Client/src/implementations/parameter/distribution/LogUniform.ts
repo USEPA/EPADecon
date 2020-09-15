@@ -5,10 +5,7 @@ import ParameterMetaData from '../ParameterMetaData';
 
 export default class LogUniform implements IParameter {
   @JsonProperty()
-  name: string;
-
-  @JsonProperty()
-  type: ParameterType = ParameterType.logUniform;
+  readonly type: ParameterType = ParameterType.logUniform;
 
   @JsonProperty()
   logMin: number | undefined;
@@ -39,8 +36,7 @@ export default class LogUniform implements IParameter {
     return !!this.min && !!this.max;
   }
 
-  constructor(name = 'unknown', metaData = new ParameterMetaData(), logMin?: number, logMax?: number) {
-    this.name = name;
+  constructor(metaData = new ParameterMetaData(), logMin?: number, logMax?: number) {
     this.logMin = logMin;
     this.logMax = logMax;
     this.metaData = metaData;

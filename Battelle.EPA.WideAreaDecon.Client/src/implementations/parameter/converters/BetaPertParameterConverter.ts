@@ -8,35 +8,45 @@ import TruncatedLogNormal from '../distribution/TruncatedLogNormal';
 import TruncatedNormal from '../distribution/TruncatedNormal';
 import Uniform from '../distribution/Uniform';
 import NullParameter from '../NullParameter';
+import LogNormal from '../distribution/LogNormal';
+import Weibull from '../distribution/Weibull';
 
 export default class BetaPertParameterConverter implements IParameterConverter {
   // eslint-disable-next-line class-methods-use-this
   convertToNewType(old: BetaPERT, newType: ParameterType): IParameter {
     switch (newType) {
       case ParameterType.constant:
-        return new Constant(old.name, old.metaData, old.mode);
-      case ParameterType.logUniform:
-        return new LogUniform(
-          old.name,
-          old.metaData,
-          old.min !== undefined ? Math.log10(old.min) : undefined,
-          old.max !== undefined ? Math.log10(old.max) : undefined,
-        );
+        return new Constant(old.metaData, old.mode);
+      case ParameterType.uniform:
+        return new Uniform(old.metaData, old.min, old.max);
+      case ParameterType.uniformXDependent:
+        return old;
       case ParameterType.pert:
         return old;
+      case ParameterType.truncatedNormal:
+        return new TruncatedNormal(old.metaData, old.min, old.max, old.mean, old.stdDev);
+      case ParameterType.bimodalTruncatedNormal:
+        return old;
+      case ParameterType.logUniform:
+        return new LogUniform(
+          old.metaData,
+          old.min ? Math.log10(old.min) : undefined,
+          old.max ? Math.log10(old.max) : undefined,
+        );
       case ParameterType.truncatedLogNormal:
         return new TruncatedLogNormal(
-          old.name,
           old.metaData,
-          old.min !== undefined ? Math.log10(old.min) : undefined,
-          old.max !== undefined ? Math.log10(old.max) : undefined,
-          old.mean !== undefined ? Math.log10(old.mean) : undefined,
-          old.stdDev !== undefined ? Math.log10(old.stdDev) : undefined,
+          old.min ? Math.log10(old.min) : undefined,
+          old.max ? Math.log10(old.max) : undefined,
+          old.mean,
+          old.stdDev,
         );
-      case ParameterType.truncatedNormal:
-        return new TruncatedNormal(old.name, old.metaData, old.min, old.max, old.mean, old.stdDev);
-      case ParameterType.uniform:
-        return new Uniform(old.name, old.metaData, old.min, old.max);
+      case ParameterType.logNormal:
+        return new LogNormal(old.metaData, old.mean, old.stdDev);
+      case ParameterType.efficacy:
+        return old;
+      case ParameterType.weibull:
+        return new Weibull(old.metaData, old.min, old.mode); // TODO: how to convert?
       case ParameterType.null:
         return new NullParameter();
       default:

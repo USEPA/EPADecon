@@ -5,10 +5,7 @@ import ParameterMetaData from '../ParameterMetaData';
 
 export default class LogNormal implements IParameter {
   @JsonProperty()
-  name: string;
-
-  @JsonProperty()
-  type: ParameterType = ParameterType.logNormal;
+  readonly type: ParameterType = ParameterType.logNormal;
 
   @JsonProperty()
   mean: number | undefined;
@@ -23,8 +20,7 @@ export default class LogNormal implements IParameter {
     return !!this.mean && !!this.stdDev;
   }
 
-  constructor(name = 'unknown', metaData = new ParameterMetaData(), mean?: number, stdDev?: number) {
-    this.name = name;
+  constructor(metaData = new ParameterMetaData(), mean?: number, stdDev?: number) {
     this.mean = mean;
     this.stdDev = stdDev;
     this.metaData = metaData;

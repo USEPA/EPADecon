@@ -5,10 +5,7 @@ import ParameterMetaData from '../ParameterMetaData';
 
 export default class Uniform implements IParameter {
   @JsonProperty()
-  name: string;
-
-  @JsonProperty()
-  type: ParameterType = ParameterType.uniform;
+  readonly type: ParameterType = ParameterType.uniform;
 
   @JsonProperty()
   min: number | undefined;
@@ -27,12 +24,11 @@ export default class Uniform implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  public isSet(): boolean {
+  public get isSet(): boolean {
     return this.min !== undefined && this.max !== undefined;
   }
 
-  constructor(name = 'unknown', metaData = new ParameterMetaData(), min?: number, max?: number) {
-    this.name = name;
+  constructor(metaData = new ParameterMetaData(), min?: number, max?: number) {
     this.min = min;
     this.max = max;
     this.metaData = metaData;

@@ -5,10 +5,7 @@ import ParameterMetaData from '../ParameterMetaData';
 
 export default class TruncatedNormal implements IParameter {
   @JsonProperty()
-  name: string;
-
-  @JsonProperty()
-  type: ParameterType = ParameterType.truncatedNormal;
+  readonly type: ParameterType = ParameterType.truncatedNormal;
 
   @JsonProperty()
   min: number | undefined;
@@ -25,19 +22,11 @@ export default class TruncatedNormal implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  public isSet(): boolean {
+  public get isSet(): boolean {
     return this.min !== undefined && this.max !== undefined && this.mean !== undefined && this.stdDev !== undefined;
   }
 
-  constructor(
-    name = 'unknown',
-    metaData = new ParameterMetaData(),
-    min?: number,
-    max?: number,
-    mean?: number,
-    stdDev?: number,
-  ) {
-    this.name = name;
+  constructor(metaData = new ParameterMetaData(), min?: number, max?: number, mean?: number, stdDev?: number) {
     this.min = min;
     this.max = max;
     this.mean = mean;

@@ -23,7 +23,7 @@ export default class ParameterWrapperFilter implements IParameterNode {
   }
 
   public allParametersValid(): boolean {
-    return this.filters.every((f) => f.allParametersValid()) && this.parameters.every((p) => p.current.isSet());
+    return this.filters.every((f) => f.allParametersValid()) && this.parameters.every((p) => p.current.isSet);
   }
 
   public anyParameterChanged(): boolean {
@@ -36,7 +36,7 @@ export default class ParameterWrapperFilter implements IParameterNode {
       sum += f.numberInvalidParameters();
     });
     this.parameters.forEach((p) => {
-      sum += p.current.isSet() ? 0 : 1;
+      sum += p.current.isSet ? 0 : 1;
     });
     return sum;
   }

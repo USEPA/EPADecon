@@ -5,10 +5,7 @@ import ParameterMetaData from '../ParameterMetaData';
 
 export default class BimodalTruncatedNormal implements IParameter {
   @JsonProperty()
-  name: string;
-
-  @JsonProperty()
-  type: ParameterType = ParameterType.bimodalTruncatedNormal;
+  readonly type: ParameterType = ParameterType.bimodalTruncatedNormal;
 
   @JsonProperty()
   mean1: number | undefined;
@@ -50,7 +47,6 @@ export default class BimodalTruncatedNormal implements IParameter {
   }
 
   constructor(
-    name = 'unknown',
     metaData = new ParameterMetaData(),
     mean1?: number,
     stdDev1?: number,
@@ -59,7 +55,6 @@ export default class BimodalTruncatedNormal implements IParameter {
     min?: number,
     max?: number,
   ) {
-    this.name = name;
     this.mean1 = mean1;
     this.stdDev1 = stdDev1;
     this.mean2 = mean2;
