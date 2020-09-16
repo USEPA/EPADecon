@@ -1,6 +1,6 @@
 import IParameter from '@/interfaces/parameter/IParameter';
 import deepCopy from '@/utilities/deepCopy';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import ParameterType from '@/enums/parameter/parameterType';
 import IParameterNode from '@/interfaces/parameter/IParameterNode';
 import NullParameter from './NullParameter';
 
@@ -14,7 +14,7 @@ export default class ParameterWrapper implements IParameterNode {
   }
 
   get name(): string {
-    return this.current.name;
+    return this.current.metaData.name ?? 'unknown';
   }
 
   get path(): string {
@@ -30,10 +30,13 @@ export default class ParameterWrapper implements IParameterNode {
   parent: IParameterNode | null;
 
   isChanged(): boolean {
+    if (!this.baseline.isEquivalent) {
+      return false;
+    }
     return !this.baseline.isEquivalent(this.current);
   }
 
-  reset() {
+  reset(): void {
     this.current = deepCopy(this.baseline);
   }
 

@@ -108,11 +108,15 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
 
   step = 0.1;
 
+  ignoreNextValueSliderChange = false;
+
+  ignoreNextModeSliderChange = false;
+
   get parameterValue(): BetaPERT {
     return this.selectedParameter.current as BetaPERT;
   }
 
-  vuetifyColorProps() {
+  vuetifyColorProps(): unknown {
     return {
       '--primary-color': this.$vuetify.theme.currentTheme.primary,
     };
@@ -133,7 +137,11 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
   }
 
   @Watch('sliderValue')
-  onSliderValueChanged(newValue: number[]) {
+  onSliderValueChanged(newValue: number[]): void {
+    if (this.ignoreNextValueSliderChange) {
+      this.ignoreNextValueSliderChange = false;
+      return;
+    }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
     [this.parameterValue.min, this.parameterValue.max] = newValue;
@@ -146,7 +154,12 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
   }
 
   @Watch('sliderMode')
-  onSliderModeChanged(newValue: number) {
+  onSliderModeChanged(newValue: number): void {
+    if (this.ignoreNextModeSliderChange) {
+      this.ignoreNextModeSliderChange = false;
+      return;
+    }
+
     this.textMode = newValue.toString();
     this.parameterValue.mode = newValue;
     if (newValue < this.sliderValue[0]) {
@@ -158,36 +171,44 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
   }
 
   @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper) {
+  onParameterChanged(newValue: ParameterWrapper): void {
     const cast = newValue.current as BetaPERT;
-    this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
+    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
+    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
+
+    this.ignoreNextValueSliderChange = true;
+    this.sliderValue = [this.min, this.min];
     this.sliderValue = [cast.min ?? this.min, cast.max ?? this.max];
+
+    this.ignoreNextModeSliderChange = true;
+    this.sliderMode = this.min;
+    this.sliderMode = cast.mode ?? (this.min + this.max) / 2.0;
+
     this.textMin = cast.min?.toString() ?? '';
     this.textMax = cast.max?.toString() ?? '';
     this.textMode = cast.mode?.toString() ?? '';
   }
 
-  onTextMinEnterPressed(event: KeyboardEvent) {
+  onTextMinEnterPressed(event: KeyboardEvent): void {
     if (event.keyCode === Key.Enter) {
       this.updateOnTextMinChange();
     }
   }
 
-  onTextMaxEnterPressed(event: KeyboardEvent) {
+  onTextMaxEnterPressed(event: KeyboardEvent): void {
     if (event.keyCode === Key.Enter) {
       this.updateOnTextMaxChange();
     }
   }
 
-  onTextModeEnterPressed(event: KeyboardEvent) {
+  onTextModeEnterPressed(event: KeyboardEvent): void {
     if (event.keyCode === Key.Enter) {
       this.updateOnTextModeChange();
     }
   }
 
-  updateOnTextMinChange() {
+  updateOnTextMinChange(): void {
     const value = Number(this.textMin);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -196,7 +217,7 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.min = undefined;
     } else if (value === this.sliderValue[0]) {
       this.parameterValue.min = value;
-    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
       this.textMin = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value >= this.sliderMode) {
@@ -216,7 +237,7 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
     }
   }
 
-  updateOnTextMaxChange() {
+  updateOnTextMaxChange(): void {
     const value = Number(this.textMax);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -225,7 +246,7 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.max = undefined;
     } else if (value === this.sliderValue[1]) {
       this.parameterValue.max = value;
-    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
       this.textMax = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value <= this.sliderMode) {
@@ -245,7 +266,7 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
     }
   }
 
-  updateOnTextModeChange() {
+  updateOnTextModeChange(): void {
     const value = Number(this.textMode);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -253,8 +274,8 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
     if (this.textMode === '') {
       this.parameterValue.mode = undefined;
     } else if (value === this.sliderMode) {
-      this.parameterValue.max = value;
-    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+      this.parameterValue.mode = value;
+    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
       this.textMode = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value >= this.sliderValue[1]) {
@@ -268,26 +289,33 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
     }
   }
 
-  onSliderStopped(value: number[]) {
+  onSliderStopped(value: number[]): void {
     [this.parameterValue.min, this.parameterValue.max] = value;
   }
 
-  onSliderModeStopped(value: number) {
+  onSliderModeStopped(value: number): void {
     this.parameterValue.mode = value;
   }
 
-  setValues() {
-    this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
+  setValues(): void {
+    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
+    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
+
+    this.ignoreNextValueSliderChange = true;
+    this.sliderValue = [this.min, this.min];
     this.sliderValue = [this.parameterValue.min ?? this.min, this.parameterValue.max ?? this.max];
+
+    this.ignoreNextModeSliderChange = true;
+    this.sliderMode = this.min;
     this.sliderMode = this.parameterValue.mode ?? (this.min + this.max) / 2.0;
+
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
     this.textMin = this.parameterValue.min?.toString() ?? '';
     this.textMax = this.parameterValue.max?.toString() ?? '';
     this.textMode = this.parameterValue.mode?.toString() ?? '';
   }
 
-  created() {
+  created(): void {
     this.setValues();
   }
 }
