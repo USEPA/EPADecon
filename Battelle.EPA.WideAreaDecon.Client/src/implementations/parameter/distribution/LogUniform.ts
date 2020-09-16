@@ -38,7 +38,7 @@ export default class LogUniform implements IParameter {
   metaData: ParameterMetaData;
 
   public get isSet(): boolean {
-    return !!this.min && !!this.max;
+    return this.min !== undefined && this.max !== undefined;
   }
 
   constructor(metaData = new ParameterMetaData(), logMin?: number, logMax?: number) {
