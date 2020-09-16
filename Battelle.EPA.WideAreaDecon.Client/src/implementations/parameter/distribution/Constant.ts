@@ -17,7 +17,7 @@ export default class Constant implements IParameter {
   metaData: ParameterMetaData;
 
   public get isSet(): boolean {
-    return !!this.value;
+    return this.value !== undefined;
   }
 
   public get min(): number {
