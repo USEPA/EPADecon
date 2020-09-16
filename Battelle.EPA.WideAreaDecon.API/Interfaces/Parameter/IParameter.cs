@@ -4,53 +4,54 @@ using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics;
-using Battelle.EPA.WideAreaDecon.API.Models.Parameter.Scenario;
-using Battelle.EPA.WideAreaDecon.API.Models.Parameter.List;
+using Battelle.EPA.WideAreaDecon.API.Utility.Attributes;
+using Battelle.EPA.WideAreaDecon.API.Utility.Extensions;
 using NPOI.SS.UserModel;
 
 namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
 {
+    /// <summary>
+    /// Interface for parameter objects in the model
+    /// </summary>
     public interface IParameter
     {
-        private static int TypeLocation => 5;
+        [ExcelProperty(5)] public ParameterType Type { get; }
 
-        string Name { get; set; }
-        ParameterType Type { get; }
+        /// <inheritdoc cref="ParameterMetaData"/>
         ParameterMetaData MetaData { get; set; }
 
-        static IParameter FromExcel(IRow format)
+        /// <summary>
+        /// Converts from an excel format to a parameter
+        /// </summary>
+        /// <param name="row">The input row that is being parsed</param>
+        /// <returns>The constructed IParameter object</returns>
+        /// <exception cref="SerializationException"></exception>
+        /// <exception cref="ApplicationException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static IParameter FromExcel(ParameterMetaData metaData, IRow row)
         {
-            if (!Enum.TryParse(format.GetCell(TypeLocation).ToString(), false, out ParameterType type))
+            return ParseParameterType(row) switch
             {
-                throw new SerializationException($"Could not determine parameter type for {format.GetCell(TypeLocation)}");
-            }
+                ParameterType.Constant => ConstantDistribution.FromExcel(metaData, row),
+                ParameterType.Uniform => UniformDistribution.FromExcel(metaData, row),
+                ParameterType.PERT => BetaPertDistribution.FromExcel(metaData, row),
+                ParameterType.TruncatedNormal => TruncatedNormalDistribution.FromExcel(metaData, row),
+                ParameterType.LogUniform => LogUniformDistribution.FromExcel(metaData, row),
+                ParameterType.TruncatedLogNormal => TruncatedLogNormalDistribution.FromExcel(metaData, row),
+                ParameterType.UniformXDependent => throw new ApplicationException(
+                    "Cannot parse uniform XDependent from IParameter interface"),
+                ParameterType.BimodalTruncatedNormal => BimodalTruncatedNormalDistribution.FromExcel(metaData, row),
+                ParameterType.Null => throw new ApplicationException("Cannot parse parameter type Null"),
+                ParameterType.LogNormal => LogNormalDistribution.FromExcel(metaData, row),
+                ParameterType.Efficacy => throw new ApplicationException("Cannot parse efficacy from IParameter interface"),
+                ParameterType.Weibull => WeibullDistribution.FromExcel(metaData, row),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
 
-            switch (type)
-            {
-                case ParameterType.Constant:
-                    return ConstantDistribution.FromExcel(format);
-                case ParameterType.ContaminatedBuildingType:
-                    return ContaminatedBuildingType.FromExcel(format);
-                case ParameterType.Uniform:
-                    return UniformDistribution.FromExcel(format);
-                case ParameterType.PERT:
-                    return BetaPertDistribution.FromExcel(format);
-                case ParameterType.TruncatedNormal:
-                    return TruncatedNormalDistribution.FromExcel(format);
-                case ParameterType.LogUniform:
-                    return LogUniformDistribution.FromExcel(format);
-                case ParameterType.TruncatedLogNormal:
-                    return TruncatedLogNormalDistribution.FromExcel(format);
-                case ParameterType.ContaminatedBuildingTypes:
-                    return ContaminatedBuildingTypes.FromExcel(format);
-                case ParameterType.SumFraction:
-                    return SumFraction.FromExcel(format);
-                case ParameterType.Null:
-                    throw new ApplicationException("Cannot parse parameter type Null");
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
+        public static ParameterType ParseParameterType(IRow row)
+        {
+            return typeof(IParameter).GetCellValue(nameof(Type), row).ParseEnum<ParameterType>();
         }
     }
 }

@@ -1,43 +1,37 @@
-import { JsonProperty } from 'typescript-json-serializer';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
+@Serializable()
 export default class TruncatedNormal implements IParameter {
   @JsonProperty()
-  name: string;
+  readonly type: ParameterType = ParameterType.truncatedNormal;
 
   @JsonProperty()
-  type: ParameterType = ParameterType.truncatedNormal;
+  min?: number;
 
   @JsonProperty()
-  min: number | undefined;
+  max?: number;
 
   @JsonProperty()
-  max: number | undefined;
+  mean?: number;
+
+  public get mode(): number | undefined {
+    return this.mean;
+  }
 
   @JsonProperty()
-  mean: number | undefined;
-
-  @JsonProperty()
-  stdDev: number | undefined;
+  stdDev?: number;
 
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  public isSet(): boolean {
+  public get isSet(): boolean {
     return this.min !== undefined && this.max !== undefined && this.mean !== undefined && this.stdDev !== undefined;
   }
 
-  constructor(
-    name = 'unknown',
-    metaData = new ParameterMetaData(),
-    min?: number,
-    max?: number,
-    mean?: number,
-    stdDev?: number,
-  ) {
-    this.name = name;
+  constructor(metaData = new ParameterMetaData(), min?: number, max?: number, mean?: number, stdDev?: number) {
     this.min = min;
     this.max = max;
     this.mean = mean;

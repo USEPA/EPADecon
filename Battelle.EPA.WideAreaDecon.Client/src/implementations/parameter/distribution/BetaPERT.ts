@@ -1,33 +1,32 @@
-import { JsonProperty } from 'typescript-json-serializer';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
+import IUnivariateParameter from './IUnivariateParameter';
 
-export default class BetaPERT implements IParameter {
+@Serializable()
+export default class BetaPERT implements IParameter, IUnivariateParameter {
   @JsonProperty()
-  name: string;
-
-  @JsonProperty()
-  type: ParameterType = ParameterType.pert;
-
-  @JsonProperty()
-  min: number | undefined;
+  readonly type: ParameterType = ParameterType.pert;
 
   @JsonProperty()
-  max: number | undefined;
+  min?: number;
 
   @JsonProperty()
-  mode: number | undefined;
+  max?: number;
 
   get mean(): number | undefined {
-    if (this.min === undefined || this.max === undefined || this.mode === undefined) {
+    if (!(!!this.min && !!this.mode && !!this.max)) {
       return undefined;
     }
     return (this.min + 4 * this.mode + this.max) / 6.0;
   }
 
+  @JsonProperty()
+  mode?: number;
+
   get stdDev(): number | undefined {
-    if (this.min === undefined || this.max === undefined || this.mode === undefined) {
+    if (!(!!this.min && !!this.mode && !!this.max)) {
       return undefined;
     }
     return (this.max - this.min) / 6.0;
@@ -36,12 +35,11 @@ export default class BetaPERT implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  public isSet(): boolean {
-    return this.min !== undefined && this.max !== undefined && this.mode !== undefined;
+  public get isSet(): boolean {
+    return !!this.min && !!this.max && !!this.mode;
   }
 
-  constructor(name = 'unknown', metaData = new ParameterMetaData(), min?: number, max?: number, mode?: number) {
-    this.name = name;
+  constructor(metaData = new ParameterMetaData(), min?: number, max?: number, mode?: number) {
     this.min = min;
     this.max = max;
     this.mode = mode;
