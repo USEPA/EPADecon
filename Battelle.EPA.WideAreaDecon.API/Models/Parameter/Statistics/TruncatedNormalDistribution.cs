@@ -26,19 +26,19 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
         public ParameterMetaData MetaData { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        [ExcelProperty(ParameterLocationHelper.Parameter2)]
+        [ExcelProperty(ParameterLocationHelper.Parameter1)]
         public double? Min { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        [ExcelProperty(ParameterLocationHelper.Parameter3)]
+        [ExcelProperty(ParameterLocationHelper.Parameter2)]
         public double? Max { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        [ExcelProperty(ParameterLocationHelper.Parameter4)]
+        [ExcelProperty(ParameterLocationHelper.Parameter3)]
         public double? Mean { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        [ExcelProperty(ParameterLocationHelper.Parameter5)]
+        [ExcelProperty(ParameterLocationHelper.Parameter4)]
         public double? StdDev { get; set; }
 
         public static TruncatedNormalDistribution FromExcel(ParameterMetaData metaData, IRow row)
