@@ -122,7 +122,6 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { Key } from 'ts-keycode-enum';
-import TruncatedNormal from '@/implementations/parameter/distribution/TruncatedNormal';
 import { max } from 'lodash';
 import TruncatedLogNormal from '@/implementations/parameter/distribution/TruncatedLogNormal';
 
@@ -232,7 +231,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
 
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
-    const cast = newValue.current as TruncatedNormal;
+    const cast = newValue.current as TruncatedLogNormal;
     this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);

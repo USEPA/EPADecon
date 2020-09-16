@@ -38,7 +38,9 @@ import LogUniformDisplay from '@/components/parameters/distributionDisplay/LogUn
 import BetaPertDisplay from '@/components/parameters/distributionDisplay/BetaPertDisplay.vue';
 import TruncatedLogNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedLogNormalDisplay.vue';
 import TruncatedNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedNormalDisplay.vue';
+import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNormalDisplay.vue';
 import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
+import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
@@ -55,6 +57,8 @@ import TYPES from '@/dependencyInjection/types';
     TruncatedLogNormalDisplay,
     TruncatedNormalDisplay,
     UniformDisplay,
+    LogNormalDisplay,
+    WeibullDisplay,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
@@ -87,8 +91,12 @@ export default class ParameterDistributionSelector extends Vue {
         return 'truncated-log-normal-display';
       case ParameterType.truncatedNormal:
         return 'truncated-normal-display';
+      case ParameterType.logNormal:
+        return 'log-normal-display';
       case ParameterType.uniform:
         return 'uniform-display';
+      case ParameterType.weibull:
+        return 'weibull-display';
       default:
         return 'unknown-display';
     }

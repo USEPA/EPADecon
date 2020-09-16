@@ -1,7 +1,10 @@
 ﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
 {
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ParameterType
     {
         [EnumMember(Value = "Constant")]

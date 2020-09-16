@@ -1,8 +1,9 @@
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
-import { JsonProperty } from 'typescript-json-serializer';
+import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterMetaData from './ParameterMetaData';
 
+@Serializable()
 export default class NullParameter implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData = new ParameterMetaData();

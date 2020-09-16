@@ -1,9 +1,10 @@
-import { JsonProperty } from 'typescript-json-serializer';
+import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import * as Utility from '@/mixin/mathUtilityMixin';
 import ParameterMetaData from '../ParameterMetaData';
 
+@Serializable()
 export default class Weibull implements IParameter {
   @JsonProperty()
   readonly type = ParameterType.weibull;

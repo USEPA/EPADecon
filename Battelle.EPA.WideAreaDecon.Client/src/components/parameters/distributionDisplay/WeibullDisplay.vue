@@ -2,7 +2,7 @@
   <v-container :style="vuetifyColorProps()">
     <v-row>
       <v-col>
-        <v-slider v-model="sliderMean" :max="max" :min="min" :step="step" thumb-label @change="onSliderMeanStopped">
+        <v-slider v-model="sliderLambda" :max="max" :min="min" :step="step" thumb-label @change="onSliderLambdaStopped">
           <template v-slot:prepend>
             <p class="grey--text">{{ min }}</p>
           </template>
@@ -12,19 +12,12 @@
         </v-slider>
       </v-col>
       <v-col>
-        <v-slider
-          v-model="sliderStd"
-          :max="max - min"
-          :min="(max - min) / 1000"
-          :step="stdDevStep"
-          thumb-label
-          @change="onSliderStdStopped"
-        >
+        <v-slider v-model="sliderK" :max="max" :min="min" :step="KStep" thumb-label @change="onSliderKStopped">
           <template v-slot:prepend>
-            <p class="grey--text">{{ (max - min) / 1000 }}</p>
+            <p class="grey--text">{{ min }}</p>
           </template>
           <template v-slot:append>
-            <p class="grey--text">{{ max - min }}</p>
+            <p class="grey--text">{{ max }}</p>
           </template>
         </v-slider>
       </v-col>
@@ -33,11 +26,11 @@
       <v-col cols="6" class="mr-auto">
         <v-card class="pa-2" outlined tile>
           <v-text-field
-            ref="meanValue"
-            @keydown="onTextMeamEnterPressed"
-            @blur="updateOnTextMeanChange"
-            v-model="textMean"
-            label="Mean"
+            ref="LambdaValue"
+            @keydown="onTextLambdaEnterPressed"
+            @blur="updateOnTextLambdaChange"
+            v-model="textLambda"
+            label="Lambda"
             :rules="[validationRules]"
             hide-details="auto"
           >
@@ -50,11 +43,11 @@
       <v-col cols="6" class="auto">
         <v-card class="pa-2" outlined tile>
           <v-text-field
-            ref="stdValue"
-            @keydown="onTextStdEnterPressed"
-            @blur="updateOnTextStdChange"
-            v-model="textStd"
-            label="Standard Deviation"
+            ref="KValue"
+            @keydown="onTextKEnterPressed"
+            @blur="updateOnTextKChange"
+            v-model="textK"
+            label="k"
             :rules="[validationRules]"
             hide-details="auto"
           >
@@ -76,43 +69,46 @@ import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { Key } from 'ts-keycode-enum';
 import { max } from 'lodash';
 import LogNormal from '@/implementations/parameter/distribution/LogNormal';
+import Weibull from '@/implementations/parameter/distribution/Weibull';
 
 @Component
-export default class LogNormalDisplay extends Vue implements IParameterDisplay {
+export default class WeibullDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) selectedParameter!: ParameterWrapper;
 
   sliderValue = [0, 0];
 
-  sliderMean = 0;
+  sliderLambda = 0;
 
-  sliderStd = 0;
+  sliderK = 0;
 
-  textMean = '';
+  textLambda = '';
 
-  textStd = '';
+  textK = '';
 
   step = 0.1;
 
   ignoreNextValueSliderChange = false;
 
-  ignoreNextMeanSliderChange = false;
+  ignoreNextLambdaSliderChange = false;
 
-  ignoreNextStdSliderChange = false;
+  ignoreNextKSliderChange = false;
 
-  get parameterValue(): LogNormal {
-    return this.selectedParameter.current as LogNormal;
+  get parameterValue(): Weibull {
+    return this.selectedParameter.current as Weibull;
   }
 
-  get stdDevStep(): number {
+  get KStep(): number {
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   get min(): number {
-    return this.selectedParameter.current.metaData.lowerLimit;
+    return 0.0;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   get max(): number {
-    return this.selectedParameter.current.metaData.upperLimit;
+    return 1000.0;
   }
 
   vuetifyColorProps(): unknown {
@@ -136,23 +132,23 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
       this.ignoreNextValueSliderChange = false;
       return;
     }
-    if (newValue[0] > this.sliderMean) {
-      [this.sliderMean] = newValue;
+    if (newValue[0] > this.sliderLambda) {
+      [this.sliderLambda] = newValue;
     }
-    if (newValue[1] < this.sliderMean) {
-      [, this.sliderMean] = newValue;
+    if (newValue[1] < this.sliderLambda) {
+      [, this.sliderLambda] = newValue;
     }
   }
 
-  @Watch('sliderMean')
-  onSliderMeanChanged(newValue: number): void {
-    if (this.ignoreNextMeanSliderChange) {
-      this.ignoreNextMeanSliderChange = false;
+  @Watch('sliderLambda')
+  onSliderLambdaChanged(newValue: number): void {
+    if (this.ignoreNextLambdaSliderChange) {
+      this.ignoreNextLambdaSliderChange = false;
       return;
     }
 
-    this.textMean = newValue.toString();
-    this.parameterValue.mean = newValue;
+    this.textLambda = newValue.toString();
+    this.parameterValue.lambda = newValue;
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -161,107 +157,107 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
     }
   }
 
-  @Watch('sliderStd')
-  onSliderStdChanged(newValue: number): void {
-    if (this.ignoreNextStdSliderChange) {
-      this.ignoreNextStdSliderChange = false;
+  @Watch('sliderK')
+  onSliderKChanged(newValue: number): void {
+    if (this.ignoreNextKSliderChange) {
+      this.ignoreNextKSliderChange = false;
       return;
     }
 
-    this.textStd = newValue.toString();
-    this.parameterValue.mean = newValue;
+    this.textK = newValue.toString();
+    this.parameterValue.k = newValue;
   }
 
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
-    const cast = newValue.current as LogNormal;
+    const cast = newValue.current as Weibull;
     this.step = this.parameterValue.metaData.step;
 
     this.ignoreNextValueSliderChange = true;
 
-    this.ignoreNextMeanSliderChange = true;
-    this.sliderMean = 0;
-    this.sliderMean = cast.mean ?? 1;
+    this.ignoreNextLambdaSliderChange = true;
+    this.sliderLambda = 0;
+    this.sliderLambda = cast.lambda ?? 1;
 
-    this.ignoreNextStdSliderChange = true;
-    this.sliderStd = 1;
-    this.sliderStd = cast.stdDev ?? 2;
+    this.ignoreNextKSliderChange = true;
+    this.sliderK = 1;
+    this.sliderK = cast.k ?? 2;
 
-    this.textMean = cast.mean?.toString() ?? '';
-    this.textStd = cast.stdDev?.toString() ?? '';
+    this.textLambda = cast.lambda?.toString() ?? '';
+    this.textK = cast.k?.toString() ?? '';
   }
 
-  onTextMeanEnterPressed(event: KeyboardEvent): void {
+  onTextLambdaEnterPressed(event: KeyboardEvent): void {
     if (event.keyCode === Key.Enter) {
-      this.updateOnTextMeanChange();
+      this.updateOnTextLambdaChange();
     }
   }
 
-  onTextStdEnterPressed(event: KeyboardEvent): void {
+  onTextKEnterPressed(event: KeyboardEvent): void {
     if (event.keyCode === Key.Enter) {
-      this.updateOnTextStdChange();
+      this.updateOnTextKChange();
     }
   }
 
-  updateOnTextMeanChange(): void {
-    const value = Number(this.textMean);
+  updateOnTextLambdaChange(): void {
+    const value = Number(this.textLambda);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const castComponent = this.$refs.meanValue as any;
-    if (this.textMean === '') {
-      this.parameterValue.mean = undefined;
-    } else if (value === this.sliderMean) {
-      this.parameterValue.mean = value;
+    const castComponent = this.$refs.LambdaValue as any;
+    if (this.textLambda === '') {
+      this.parameterValue.lambda = undefined;
+    } else if (value === this.sliderLambda) {
+      this.parameterValue.lambda = value;
     } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
-      this.textMean = '';
+      this.textLambda = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value >= this.sliderValue[1]) {
         this.sliderValue = [this.sliderValue[0], value];
       } else if (value <= this.sliderValue[0]) {
         this.sliderValue = [value, this.sliderValue[1]];
       }
-      this.sliderMean = value;
+      this.sliderLambda = value;
     } else {
-      this.textMean = this.sliderMean.toString();
+      this.textLambda = this.sliderLambda.toString();
     }
   }
 
-  updateOnTextStdChange(): void {
-    const value = Number(this.textStd);
+  updateOnTextKChange(): void {
+    const value = Number(this.textK);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const castComponent = this.$refs.stdValue as any;
-    if (this.textStd === '') {
-      this.parameterValue.stdDev = undefined;
-    } else if (value === this.sliderStd) {
-      this.parameterValue.stdDev = value;
+    const castComponent = this.$refs.KValue as any;
+    if (this.textK === '') {
+      this.parameterValue.k = undefined;
+    } else if (value === this.sliderK) {
+      this.parameterValue.k = value;
     } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
-      this.textStd = '';
+      this.textK = '';
     } else {
-      this.textStd = this.sliderStd.toString();
+      this.textK = this.sliderK.toString();
     }
   }
 
-  onSliderMeanStopped(value: number): void {
-    this.parameterValue.mean = Math.log10(value);
+  onSliderLambdaStopped(value: number): void {
+    this.parameterValue.lambda = Math.log10(value);
   }
 
-  onSliderStdStopped(value: number): void {
-    this.parameterValue.stdDev = Math.log10(value);
+  onSliderKStopped(value: number): void {
+    this.parameterValue.k = Math.log10(value);
   }
 
   setValues(): void {
-    this.ignoreNextMeanSliderChange = true;
-    this.sliderMean = 0;
-    this.sliderMean = this.parameterValue.mean ?? 1;
+    this.ignoreNextLambdaSliderChange = true;
+    this.sliderLambda = 0;
+    this.sliderLambda = this.parameterValue.lambda ?? 1;
 
-    this.ignoreNextStdSliderChange = true;
-    this.sliderStd = 2;
-    this.sliderStd = this.parameterValue.stdDev ?? 1;
+    this.ignoreNextKSliderChange = true;
+    this.sliderK = 2;
+    this.sliderK = this.parameterValue.k ?? 1;
 
     this.step = this.parameterValue.metaData.step;
-    this.textMean = this.parameterValue.mean?.toString() ?? '';
-    this.textStd = this.parameterValue.stdDev?.toString() ?? '';
+    this.textLambda = this.parameterValue.lambda?.toString() ?? '';
+    this.textK = this.parameterValue.k?.toString() ?? '';
   }
 
   created(): void {

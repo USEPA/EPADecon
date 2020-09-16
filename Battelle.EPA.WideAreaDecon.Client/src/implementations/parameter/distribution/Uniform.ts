@@ -1,8 +1,9 @@
-import { JsonProperty } from 'typescript-json-serializer';
+import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
+@Serializable()
 export default class Uniform implements IParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.uniform;

@@ -80,9 +80,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
             {
                 MetaData = new ParameterMetaData()
                 {
-                    Category = "Decontamination", 
-                    Description = $"Parameters driving efficacy of decontamination for {method}",
-                    Name = $"{method} Efficacy",
+                    Category = "Efficacy", 
+                    Description = $"Parameters driving efficacy of decontamination for {method.GetStringValue()}",
+                    Name = $"{method.GetStringValue()} Efficacy",
                     Units = $"Log Reduction",
                     ValidPhases = new [] {DecontaminationPhase.Indoor, DecontaminationPhase.Outdoor, DecontaminationPhase.Underground}
                 },

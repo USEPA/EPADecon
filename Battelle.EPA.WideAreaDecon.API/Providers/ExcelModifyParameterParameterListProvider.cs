@@ -10,6 +10,7 @@ using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter.List;
+using Battelle.EPA.WideAreaDecon.API.Utility.Extensions;
 using Microsoft.OpenApi.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -67,7 +68,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             var efficacyParameters = new List<IParameter>();
             foreach (var method in Enum.GetValues(typeof(ApplicationMethod)).Cast<ApplicationMethod>())
             {
-                var methodSheet = xssWorkbook.GetSheet(method.GetAttributeOfType<EnumMemberAttribute>()?.Value ?? method.ToString());
+                var methodSheet = xssWorkbook.GetSheet(method.GetStringValue());
                 efficacyParameters.Add(ApplicationMethodEfficacy.FromExcelSheet(method, methodSheet));
             }
 
@@ -75,7 +76,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
                 ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName))).ToList();
             filters.Add(new ParameterFilter()
             {
-                Name = "Decontamination",
+                Name = "Efficacy",
                 Filters = new ParameterFilter[0],
                 Parameters = efficacyParameters.ToArray()
             });
