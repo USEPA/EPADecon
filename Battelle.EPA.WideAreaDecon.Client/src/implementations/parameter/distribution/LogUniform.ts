@@ -1,46 +1,47 @@
-import { JsonProperty } from 'typescript-json-serializer';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
+@Serializable()
 export default class LogUniform implements IParameter {
   @JsonProperty()
-  name: string;
+  readonly type: ParameterType = ParameterType.logUniform;
 
   @JsonProperty()
-  type: ParameterType = ParameterType.logUniform;
+  logMin?: number;
 
   @JsonProperty()
-  logMin: number | undefined;
+  logMax?: number;
 
   get min(): number | undefined {
-    return this.logMin !== undefined ? 10 ** this.logMin : undefined;
+    return this.logMin ? 10 ** this.logMin : undefined;
   }
 
-  @JsonProperty()
-  logMax: number | undefined;
-
   get max(): number | undefined {
-    return this.logMax !== undefined ? 10 ** this.logMax : undefined;
+    return this.logMax ? 10 ** this.logMax : undefined;
   }
 
   get mean(): number | undefined {
-    return this.min !== undefined && this.max !== undefined ? (this.max + this.min) / 2.0 : undefined;
+    return !!this.min && !!this.max ? (this.max + this.min) / 2.0 : undefined;
+  }
+
+  get mode(): number | undefined {
+    return this.mean; // TODO: how to calculate
   }
 
   get stdDev(): number | undefined {
-    return this.min !== undefined && this.max !== undefined ? (this.max - this.min) / 6.0 : undefined;
+    return !!this.min && !!this.max ? (this.max - this.min) / 6.0 : undefined;
   }
 
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  public isSet(): boolean {
-    return this.logMin !== undefined && this.logMax !== undefined;
+  public get isSet(): boolean {
+    return !!this.min && !!this.max;
   }
 
-  constructor(name = 'unknown', metaData = new ParameterMetaData(), logMin?: number, logMax?: number) {
-    this.name = name;
+  constructor(metaData = new ParameterMetaData(), logMin?: number, logMax?: number) {
     this.logMin = logMin;
     this.logMax = logMax;
     this.metaData = metaData;

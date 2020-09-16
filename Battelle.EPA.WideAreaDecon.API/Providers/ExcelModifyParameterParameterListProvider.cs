@@ -4,9 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
+using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Providers;
+using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.API.Models.Parameter.List;
+using Battelle.EPA.WideAreaDecon.API.Utility.Extensions;
+using Microsoft.OpenApi.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
@@ -48,7 +53,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             }
 
             // If the file exists, open a new file stream to open the excel workbook
-            using var stream = new FileStream(FileName, FileMode.Open) { Position = 0 };
+            using var stream = new FileStream(FileName, FileMode.Open, FileAccess.Read) { Position = 0 };
             XSSFWorkbook xssWorkbook = new XSSFWorkbook(stream);
 
             // Parse version in using the specific sheet name that contains the version info
@@ -60,12 +65,28 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
                 throw new SerializationException("No file version found in Excel");
 
             int version = int.Parse(versionString);
+            var efficacyParameters = new List<IParameter>();
+            foreach (var method in Enum.GetValues(typeof(ApplicationMethod)).Cast<ApplicationMethod>())
+            {
+                var methodSheet = xssWorkbook.GetSheet(method.GetStringValue());
+                efficacyParameters.Add(ApplicationMethodEfficacy.FromExcelSheet(method, methodSheet));
+            }
+
+            var filters = GenericSheetNames.Select(genericSheetName =>
+                ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName))).ToList();
+            filters.Add(new ParameterFilter()
+            {
+                Name = "Efficacy",
+                Filters = new ParameterFilter[0],
+                Parameters = efficacyParameters.ToArray()
+            });
+
+
 
             return new ParameterList()
             {
                 Version = version,
-                Filters = GenericSheetNames.Select(genericSheetName =>
-                    ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName))).ToArray()
+                Filters = filters.ToArray()
             };
         }
     }

@@ -1,4 +1,4 @@
-import ParameterType from '@/enums/parameter/parameterTypes';
+import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from './IParameter';
 
 export default interface IParameterConverter {
