@@ -16,7 +16,7 @@ export default class BetaPERT implements IParameter, IUnivariateParameter {
   max?: number;
 
   get mean(): number | undefined {
-    if (!(!!this.min && !!this.mode && !!this.max)) {
+    if (!(this.min !== undefined && this.max !== undefined && this.mode !== undefined)) {
       return undefined;
     }
     return (this.min + 4 * this.mode + this.max) / 6.0;
@@ -26,7 +26,7 @@ export default class BetaPERT implements IParameter, IUnivariateParameter {
   mode?: number;
 
   get stdDev(): number | undefined {
-    if (!(!!this.min && !!this.mode && !!this.max)) {
+    if (!(this.min !== undefined && this.max !== undefined && this.mode !== undefined)) {
       return undefined;
     }
     return (this.max - this.min) / 6.0;
@@ -36,7 +36,7 @@ export default class BetaPERT implements IParameter, IUnivariateParameter {
   metaData: ParameterMetaData;
 
   public get isSet(): boolean {
-    return !!this.min && !!this.max && !!this.mode;
+    return this.min !== undefined && this.max !== undefined && this.mode !== undefined;
   }
 
   constructor(metaData = new ParameterMetaData(), min?: number, max?: number, mode?: number) {
