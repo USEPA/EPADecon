@@ -20,7 +20,7 @@ import ParameterWrapper from '../../implementations/parameter/ParameterWrapper';
 export default class DefineScenario extends Vue {
   @State scenarioDefinition!: ParameterList;
 
-  created() {
+  created(): void {
     this.$store.commit('changeCurrentSelectedParameter', new ParameterWrapper());
     this.$store.commit('enableNavigationTabs');
   }

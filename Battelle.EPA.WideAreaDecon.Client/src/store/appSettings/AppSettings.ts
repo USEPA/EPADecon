@@ -23,6 +23,7 @@ export default class AppSettings implements IAppSettings {
 
   runSettings: IRunSettings = new RunSettings();
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   updateSettings(other: IClientConfiguration) {
     this.applicationTitle = other.applicationTitle;
     this.applicationVersion = other.applicationVersion;
