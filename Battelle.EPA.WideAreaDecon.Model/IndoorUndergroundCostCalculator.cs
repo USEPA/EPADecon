@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Runtime.Remoting.Messaging;
 
 namespace Battelle.EPA.WideAreaDecon.Model
@@ -54,13 +55,13 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
         }
 
-        public double CalculateCharactizationSamplingCost(double SqFtToBeWiped, double SqFtToBeHEPA, double CostPerwipe, double CostPerVacuum double RoundTripDays, double PPEperTeam, double PersonnelHourlyRate, double HoursEnteringPerTeam, double HoursExitingPerTeam, double CostsPerIndvPPE)
+        public double CalculateCharactizationSamplingCost(double SqFtToBeWiped, double SqFtToBeHEPA, double CostPerwipe, double CostPerVacuum double RoundTripDays,  PPEperTeam, double PersonnelHourlyRate, double HoursEnteringPerTeam, double HoursExitingPerTeam, double CostsPerIndvPPE)
         {
             double CostSupplies = ((SqFtToBeWiped / SqFtPerWipe) * CostPerwipe) + ((SqFtToBeHEPA / SqFtPerHEPASock) * CostPerVacuum) + (((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHr * NumTeams * 8)) * HEPARentalCostPerDay);
             double WorkDays = (Math.abs(((SqFtToBeWiped / SqFtPerWipe) / (WipesPerHr * NumTeams)) / 8) + Math.Abs(((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHr * NumTeams)) / 8));
             double CostLabor = ((WorkDays + PersonnelOverhead + RoundTripDays) * 8) * NumTeams * PersonnelRequiredPerTeam * PersonnelHourlyRate;
             double CostLaborE = ((WorkDays * EntriesPerTeam * NumTeams * HoursEnteringPerTeam) + (WorkDays * EntriesPerTeam * NumTeams * HoursExitingPerTeam)) * PersonnelRequiredPerTeam * PersonnelHourlyRate;
-            double CostEntranceExit = CostLaborE + (PersonnelOSC * NumTeams * RespiratorsPerPerson * CostPerRespirator) + (WorkDays * EntriesPerTeam * NumTeams * PersonnelRequiredPerTeam * CostsPerIndvPPE);
+            double CostEntranceExit = CostLaborE + (PersonnelOSC * NumTeams * RespiratorsPerPerson * CostPerRespirator) + (EPPET * CostsPerIndvPPE);
             double CostAnalysisQuant = ((SqFtToBeWiped / SqFtPerWipe) * CostPerWipeAnalysis) + ((SqFtToBeHEPA / SqFtPerHEPASock) * CostPerHEPA_Analysis);
             return CostSupplies + CostLabor + CostEntranceExit + CostAnalysisQuant;
         }
