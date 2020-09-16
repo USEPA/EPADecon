@@ -23,7 +23,7 @@ export default class LogUniform implements IParameter {
   }
 
   get mean(): number | undefined {
-    return !!this.min && !!this.max ? (this.max + this.min) / 2.0 : undefined;
+    return this.min !== undefined && this.max !== undefined ? (this.max + this.min) / 2.0 : undefined;
   }
 
   get mode(): number | undefined {
@@ -31,14 +31,14 @@ export default class LogUniform implements IParameter {
   }
 
   get stdDev(): number | undefined {
-    return !!this.min && !!this.max ? (this.max - this.min) / 6.0 : undefined;
+    return this.min !== undefined && this.max !== undefined ? (this.max - this.min) / 6.0 : undefined;
   }
 
   @JsonProperty()
   metaData: ParameterMetaData;
 
   public get isSet(): boolean {
-    return !!this.min && !!this.max;
+    return this.min !== undefined && this.max !== undefined;
   }
 
   constructor(metaData = new ParameterMetaData(), logMin?: number, logMax?: number) {

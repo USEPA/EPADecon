@@ -28,14 +28,32 @@ export default class BimodalTruncatedNormal implements IParameter, IUnivariatePa
   max?: number;
 
   get mean(): number | undefined {
-    if (!(!!this.mean1 && !!this.stdDev1 && !!this.mean2 && !!this.stdDev2 && !!this.min && !!this.max)) {
+    if (
+      !(
+        this.mean1 !== undefined &&
+        this.stdDev1 !== undefined &&
+        this.mean2 !== undefined &&
+        this.stdDev2 !== undefined &&
+        this.min !== undefined &&
+        this.max !== undefined
+      )
+    ) {
       return undefined;
     }
     return (this.mean1 + this.mean2) / 2.0;
   }
 
   get stdDev(): number | undefined {
-    if (!(!!this.mean1 && !!this.stdDev1 && !!this.mean2 && !!this.stdDev2 && !!this.min && !!this.max)) {
+    if (
+      !(
+        this.mean1 !== undefined &&
+        this.stdDev1 !== undefined &&
+        this.mean2 !== undefined &&
+        this.stdDev2 !== undefined &&
+        this.min !== undefined &&
+        this.max !== undefined
+      )
+    ) {
       return undefined;
     }
     return (this.max - this.min) / 6.0;
@@ -45,7 +63,14 @@ export default class BimodalTruncatedNormal implements IParameter, IUnivariatePa
   metaData: ParameterMetaData;
 
   public get isSet(): boolean {
-    return !!this.mean1 && !!this.stdDev1 && !!this.mean2 && !!this.stdDev2 && !!this.min && !!this.max;
+    return (
+      this.mean1 !== undefined &&
+      this.stdDev1 !== undefined &&
+      this.mean2 !== undefined &&
+      this.stdDev2 !== undefined &&
+      this.min !== undefined &&
+      this.max !== undefined
+    );
   }
 
   constructor(

@@ -31,7 +31,7 @@ export default class LogNormal implements IParameter, IUnivariateParameter {
   metaData: ParameterMetaData;
 
   public get isSet(): boolean {
-    return !!this.mean && !!this.stdDev;
+    return this.mean !== undefined && this.stdDev !== undefined;
   }
 
   constructor(metaData = new ParameterMetaData(), mean?: number, stdDev?: number) {

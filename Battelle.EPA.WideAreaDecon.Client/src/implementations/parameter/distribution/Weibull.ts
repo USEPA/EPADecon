@@ -28,14 +28,14 @@ export default class Weibull implements IParameter {
   }
 
   get mean(): number | undefined {
-    if (!(!!this.lambda && !!this.k)) {
+    if (!(this.k !== undefined && this.lambda !== undefined)) {
       return undefined;
     }
     return this.lambda * Utility.gamma(1 + 1 / this.k);
   }
 
   get mode(): number | undefined {
-    if (!(!!this.k && !!this.lambda)) {
+    if (!(this.k !== undefined && this.lambda !== undefined)) {
       return undefined;
     }
     return this.k <= 1 ? 0 : this.lambda * ((this.k - 1) / this.k) ** (1 / this.k);
@@ -46,18 +46,18 @@ export default class Weibull implements IParameter {
   }
 
   get variance(): number | undefined {
-    if (!(!!this.k && !!this.lambda)) {
+    if (!(this.k !== undefined && this.lambda !== undefined)) {
       return undefined;
     }
     return this.lambda ** 2 * (Utility.gamma(1 + 2 / this.k) - Utility.gamma(1 + 1 / this.k) ** 2);
   }
 
   get isSet(): boolean {
-    return !!this.k && !!this.lambda;
+    return this.k !== undefined && this.lambda !== undefined;
   }
 
   isEquivalent(other: Weibull): boolean {
-    if (!(!!this.k && !!this.lambda && !!other.k && !!other.lambda)) {
+    if (!(this.k !== undefined && this.lambda !== undefined && other.k !== undefined && other.lambda !== undefined)) {
       return false;
     }
     return this.k === other.k && this.lambda === other.lambda;
