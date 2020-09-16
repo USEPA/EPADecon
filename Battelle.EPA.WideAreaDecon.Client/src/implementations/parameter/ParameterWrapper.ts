@@ -30,6 +30,9 @@ export default class ParameterWrapper implements IParameterNode {
   parent: IParameterNode | null;
 
   isChanged(): boolean {
+    if (!this.baseline.isEquivalent) {
+      return false;
+    }
     return !this.baseline.isEquivalent(this.current);
   }
 

@@ -6,12 +6,15 @@ using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics;
 using Battelle.EPA.WideAreaDecon.API.Utility.Attributes;
 using Battelle.EPA.WideAreaDecon.API.Utility.Extensions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
 {
     public class ApplicationMethodEfficacy : IParameter
     {
+        [JsonConverter(typeof(StringEnumConverter))]
         public ParameterType Type => ParameterType.Efficacy;
         public ParameterMetaData MetaData { get; set; }
 

@@ -98,8 +98,8 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
     const cast = newValue.current as Constant;
-    this.min = this.parameterValue.metaData.min ?? -100;
-    this.max = this.parameterValue.metaData.max ?? 100;
+    this.min = this.parameterValue.metaData.lowerLimit ?? -100;
+    this.max = this.parameterValue.metaData.upperLimit ?? 100;
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
 
     // this will force a value change update
@@ -129,7 +129,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
       this.parameterValue.value = undefined;
     } else if (value === this.sliderValue) {
       this.parameterValue.value = value;
-    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
       this.textValue = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       this.sliderValue = value;
@@ -141,8 +141,8 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 
   setValues(): void {
     this.textValue = this.parameterValue.value?.toString() ?? '';
-    this.min = this.parameterValue.metaData.min ?? -100 + (this.sliderValue ?? 0);
-    this.max = this.parameterValue.metaData.max ?? 100 + (this.sliderValue ?? 0);
+    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.sliderValue ?? 0);
+    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.sliderValue ?? 0);
 
     // this will force a value change update
     this.sliderValue = this.min;

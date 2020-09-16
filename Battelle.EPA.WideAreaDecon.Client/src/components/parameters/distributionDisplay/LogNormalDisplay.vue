@@ -2,18 +2,6 @@
   <v-container :style="vuetifyColorProps()">
     <v-row>
       <v-col>
-        <v-range-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">
-          <template v-slot:prepend>
-            <p class="grey--text">{{ min }}</p>
-          </template>
-          <template v-slot:append>
-            <p class="grey--text">{{ max }}</p>
-          </template>
-        </v-range-slider>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
         <v-slider v-model="sliderMean" :max="max" :min="min" :step="step" thumb-label @change="onSliderMeanStopped">
           <template v-slot:prepend>
             <p class="grey--text">{{ min }}</p>
@@ -122,12 +110,11 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { Key } from 'ts-keycode-enum';
-import TruncatedNormal from '@/implementations/parameter/distribution/TruncatedNormal';
 import { max } from 'lodash';
-import TruncatedLogNormal from '@/implementations/parameter/distribution/TruncatedLogNormal';
+import LogNormal from '@/implementations/parameter/distribution/LogNormal';
 
 @Component
-export default class TruncatedLogNormalDisplay extends Vue implements IParameterDisplay {
+export default class LogNormalDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) selectedParameter!: ParameterWrapper;
 
   sliderValue = [0, 0];
@@ -136,17 +123,9 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
 
   sliderStd = 0;
 
-  textMin = '';
-
-  textMax = '';
-
   textMean = '';
 
   textStd = '';
-
-  min = -100;
-
-  max = 10000;
 
   step = 0.1;
 
@@ -156,8 +135,8 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
 
   ignoreNextStdSliderChange = false;
 
-  get parameterValue(): TruncatedLogNormal {
-    return this.selectedParameter.current as TruncatedLogNormal;
+  get parameterValue(): LogNormal {
+    return this.selectedParameter.current as LogNormal;
   }
 
   get stdDevStep(): number {
@@ -170,16 +149,11 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     };
   }
 
+  // eslint-disable-next-line class-methods-use-this
   validationRules(value: string): boolean | string {
     const num = Number(value);
     if (Number.isNaN(num)) {
       return 'Value must be number!';
-    }
-    if (num > this.max) {
-      return `Value must be less than or equal to ${this.max}`;
-    }
-    if (num < this.min) {
-      return `Value must be greater than or equal to ${this.min}`;
     }
     return true;
   }
@@ -190,10 +164,6 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
       this.ignoreNextValueSliderChange = false;
       return;
     }
-    this.textMin = newValue[0].toString();
-    this.textMax = newValue[1].toString();
-    this.parameterValue.logMin = Math.log10(newValue[0]);
-    this.parameterValue.logMax = Math.log10(newValue[1]);
     if (newValue[0] > this.sliderMean) {
       [this.sliderMean] = newValue;
     }
@@ -210,7 +180,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
 
     this.textMean = newValue.toString();
-    this.parameterValue.logMean = Math.log10(newValue);
+    this.parameterValue.mean = newValue;
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -227,30 +197,24 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
 
     this.textStd = newValue.toString();
-    this.parameterValue.logMean = Math.log10(newValue);
+    this.parameterValue.mean = newValue;
   }
 
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
-    const cast = newValue.current as TruncatedNormal;
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
+    const cast = newValue.current as LogNormal;
+    this.step = this.parameterValue.metaData.step;
 
     this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.min];
-    this.sliderValue = [cast.min ?? this.min, cast.max ?? this.max];
 
     this.ignoreNextMeanSliderChange = true;
-    this.sliderMean = this.min;
-    this.sliderMean = cast.mean ?? (this.min + this.max) / 2.0;
+    this.sliderMean = 0;
+    this.sliderMean = cast.mean ?? 1;
 
     this.ignoreNextStdSliderChange = true;
-    this.sliderStd = this.min;
-    this.sliderStd = cast.stdDev ?? (this.min + this.max) / 2.0;
+    this.sliderStd = 1;
+    this.sliderStd = cast.stdDev ?? 2;
 
-    this.textMin = cast.min?.toString() ?? '';
-    this.textMax = cast.max?.toString() ?? '';
     this.textMean = cast.mean?.toString() ?? '';
     this.textStd = cast.stdDev?.toString() ?? '';
   }
@@ -279,73 +243,15 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
   }
 
-  updateOnTextMinChange(): void {
-    const value = Number(this.textMin);
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const castComponent = this.$refs.minValue as any;
-    if (this.textMin === '') {
-      this.parameterValue.logMin = undefined;
-    } else if (value === this.sliderValue[0]) {
-      this.parameterValue.logMin = Math.log10(value);
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
-      this.textMin = '';
-    } else if (castComponent.validate && castComponent.validate(true)) {
-      if (value >= this.sliderMean) {
-        this.sliderMean = value;
-        this.textMean = value.toString();
-      }
-      if (value >= this.sliderValue[1]) {
-        this.sliderValue = [value, value];
-        this.parameterValue.logMin = Math.log10(value);
-        this.parameterValue.logMax = Math.log10(value);
-      } else {
-        this.sliderValue = [value, this.sliderValue[1]];
-        this.parameterValue.logMin = Math.log10(value);
-      }
-    } else {
-      this.textMin = this.sliderValue[0].toString();
-    }
-  }
-
-  updateOnTextMaxChange(): void {
-    const value = Number(this.textMax);
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const castComponent = this.$refs.maxValue as any;
-    if (this.textMax === '') {
-      this.parameterValue.logMax = undefined;
-    } else if (value === this.sliderValue[1]) {
-      this.parameterValue.logMax = Math.log10(value);
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
-      this.textMax = '';
-    } else if (castComponent.validate && castComponent.validate(true)) {
-      if (value <= this.sliderMean) {
-        this.sliderMean = value;
-        this.textMean = value.toString();
-      }
-      if (value <= this.sliderValue[0]) {
-        this.sliderValue = [value, value];
-        this.parameterValue.logMin = Math.log10(value);
-        this.parameterValue.logMax = Math.log10(value);
-      } else {
-        this.sliderValue = [this.sliderValue[0], value];
-        this.parameterValue.logMax = Math.log10(value);
-      }
-    } else {
-      this.textMax = this.sliderValue[1].toString();
-    }
-  }
-
   updateOnTextMeanChange(): void {
     const value = Number(this.textMean);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.meanValue as any;
     if (this.textMean === '') {
-      this.parameterValue.logMean = undefined;
+      this.parameterValue.mean = undefined;
     } else if (value === this.sliderMean) {
-      this.parameterValue.logMean = Math.log10(value);
+      this.parameterValue.mean = value;
     } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
       this.textMean = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
@@ -366,9 +272,9 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.stdValue as any;
     if (this.textStd === '') {
-      this.parameterValue.logStdDev = undefined;
+      this.parameterValue.stdDev = undefined;
     } else if (value === this.sliderStd) {
-      this.parameterValue.logStdDev = Math.log10(value);
+      this.parameterValue.stdDev = value;
     } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
       this.textStd = '';
     } else {
@@ -376,34 +282,22 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
   }
 
-  onSliderStopped(value: number[]): void {
-    this.parameterValue.logMin = Math.log10(value[0]);
-    this.parameterValue.logMax = Math.log10(value[1]);
-  }
-
   onSliderMeanStopped(value: number): void {
-    this.parameterValue.logMean = Math.log10(value);
+    this.parameterValue.mean = Math.log10(value);
   }
 
   onSliderStdStopped(value: number): void {
-    this.parameterValue.logStdDev = Math.log10(value);
+    this.parameterValue.stdDev = Math.log10(value);
   }
 
   setValues(): void {
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-
-    this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.min];
-    this.sliderValue = [this.parameterValue.min ?? this.min, this.parameterValue.max ?? this.max];
-
     this.ignoreNextMeanSliderChange = true;
-    this.sliderMean = this.min;
-    this.sliderMean = this.parameterValue.mean ?? (this.min + this.max) / 2.0;
+    this.sliderMean = 0;
+    this.sliderMean = this.parameterValue.mean ?? 1;
 
     this.ignoreNextStdSliderChange = true;
-    this.sliderStd = this.min;
-    this.sliderStd = this.parameterValue.stdDev ?? (this.max - this.min) / 5.0;
+    this.sliderStd = 2;
+    this.sliderStd = this.parameterValue.stdDev ?? 1;
 
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
     this.textMin = this.parameterValue.min?.toString() ?? '';

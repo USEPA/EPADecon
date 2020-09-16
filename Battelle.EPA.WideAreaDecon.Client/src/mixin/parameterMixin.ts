@@ -5,8 +5,11 @@ const changeableDistributionTypes = new Array<ParameterType>(
   ParameterType.uniform,
   ParameterType.pert,
   ParameterType.truncatedNormal,
+  ParameterType.truncatedLogNormal,
+  ParameterType.logNormal,
   ParameterType.logUniform,
   ParameterType.truncatedLogNormal,
+  ParameterType.weibull,
 );
 
 // eslint-disable-next-line import/prefer-default-export

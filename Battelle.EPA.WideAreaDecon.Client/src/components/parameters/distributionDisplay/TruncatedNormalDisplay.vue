@@ -231,8 +231,8 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
     const cast = newValue.current as TruncatedNormal;
-    this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
+    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
+    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
 
     this.ignoreNextValueSliderChange = true;
@@ -286,7 +286,7 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
       this.parameterValue.min = undefined;
     } else if (value === this.sliderValue[0]) {
       this.parameterValue.min = value;
-    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
       this.textMin = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value >= this.sliderMean) {
@@ -315,7 +315,7 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
       this.parameterValue.max = undefined;
     } else if (value === this.sliderValue[1]) {
       this.parameterValue.max = value;
-    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
       this.textMax = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value <= this.sliderMean) {
@@ -344,7 +344,7 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
       this.parameterValue.mean = undefined;
     } else if (value === this.sliderMean) {
       this.parameterValue.mean = value;
-    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
       this.textMean = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value >= this.sliderValue[1]) {
@@ -367,7 +367,7 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
       this.parameterValue.stdDev = undefined;
     } else if (value === this.sliderStd) {
       this.parameterValue.stdDev = value;
-    } else if (!this.selectedParameter.current.isSet() && !castComponent.validate(true)) {
+    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
       this.textStd = '';
     } else {
       this.textStd = this.sliderStd.toString();
@@ -387,8 +387,8 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
   }
 
   setValues(): void {
-    this.min = this.parameterValue.metaData.min ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.max ?? 100 + (this.parameterValue.max ?? 0);
+    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
+    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
 
     this.ignoreNextValueSliderChange = true;
     this.sliderValue = [this.min, this.min];

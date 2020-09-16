@@ -5,7 +5,7 @@
       :key="'parameter_' + i"
       @click="setNewParameter(param)"
       active-class="secondary--text"
-      :class="param.current.isSet() ? '' : 'error lighten-2'"
+      :class="param.current.isSet ? '' : 'error lighten-2'"
     >
       <v-tooltip v-if="param.current.metaData.hasDescription" right :key="i" color="info">
         <template v-slot:activator="{ on }">
@@ -13,7 +13,7 @@
           <v-list-item-title
             v-on="on"
             :class="getParameterClass(param)"
-            v-text="param.current.name"
+            v-text="param.current.metaData.name"
           ></v-list-item-title>
           <v-list-item-icon v-on="on">
             <v-icon :class="getParameterClass(param)" v-if="param.isChanged()">fa-edit</v-icon>
@@ -25,7 +25,7 @@
       <v-list-item-title
         v-if="!param.current.metaData.hasDescription"
         :class="getParameterClass(param)"
-        v-text="param.current.name"
+        v-text="param.current.metaData.name"
       ></v-list-item-title>
       <v-list-item-icon v-if="!param.current.metaData.hasDescription">
         <v-icon :class="getParameterClass(param)" v-if="param.isChanged()">fa-edit</v-icon>
