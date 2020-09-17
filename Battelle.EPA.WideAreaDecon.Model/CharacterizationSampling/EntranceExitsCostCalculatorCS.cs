@@ -4,10 +4,10 @@
 	{
 		private double RespiratorsPerPerson { get; set; }
 		private double CostPerRespirator { get; set; }
-		private double CostPerPPE { get; set; }
+		private double[] CostPerPPE { get; set; }
 
-		public EntrancesExitsCostCalculator( double respiratorsPerPerson, double costPerRespirator, double costPerPPE)
-        {
+		public EntrancesExitsCostCalculator( double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE)
+		{
 			RespiratorsPerPerson = respiratorsPerPerson;
 			CostPerRespirator = costPerRespirator;
 			CostPerPPE = costPerPPE;
@@ -26,6 +26,8 @@
 			{
 				TotalPPE_PerLevel = TotalPPE_PerLevel + PPE_PerLevelPerTeam[i];
 			}
+
+			double Total;
 
 			SuppliesCostCalculatorCS suppliesCostCalculatorCS = new SuppliesCostCalculatorCS;
 			double WorkDays = suppliesCostCalculatorCS.CalculateWorkDays();

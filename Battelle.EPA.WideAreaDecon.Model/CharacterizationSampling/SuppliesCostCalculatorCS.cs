@@ -1,4 +1,6 @@
-﻿namespace Battelle.EPA.WideAreaDecon.Model
+﻿using System;
+
+namespace Battelle.EPA.WideAreaDecon.Model
 { 
     public class SuppliesCostCalculatorCS
     {
