@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Specialized;
-using System.Runtime.Remoting.Messaging;
-
-namespace Battelle.EPA.WideAreaDecon.Model
+﻿namespace Battelle.EPA.WideAreaDecon.Model
 {
     public class CharacterizationSamplingCalculator
     {
         private double NumTeams { get; set; }
         private double TeamsRequired { get; set; }
-        private double PersonnelRequiredPerTeam { get; set; }
+        private double[] PersonnelRequiredPerTeam { get; set; }
+        private double[] PersonnelHourlyRate { get; set; }
         private double EntriesPerTeam { get; set; }
         private double RespiratorsPerPerson { get; set; }
         private double SqFtPerWipe { get; set; }
@@ -27,14 +24,15 @@ namespace Battelle.EPA.WideAreaDecon.Model
         private double CostPerWipeAnalysis { get; set; }
         private double CostPerHEPA_Analysis { get; set; }
 
-        public CharacterizationSamplingCalculator(double numTeams, double teamsRequired, double personelRequiredPerTeam, double entriesPerTeam, 
+        public CharacterizationSamplingCalculator(double numTeams, double teamsRequired, double[] personnelRequiredPerTeam, double[] personnelHourlyRate, double entriesPerTeam, 
             double respiratorsPerPerson, double sqFtPerWipe, double sqFtPerHEPASock, double wipesPerHr, double hepaSocksPerHr,
             double personnelOSC, double hoursPerEntry, double labs, double labUptime, double throughputSample, double sqFtSampled, 
             double personnelOverhead, double HepaRentalCostPerDay, double costPerRespirator, double costPerWipeAnalysis, double costPerHEPA_Analysis)
         {
             NumTeams = numTeams;
             TeamsRequired = teamsRequired;
-            PersonnelRequiredPerTeam = personelRequiredPerTeam;
+            PersonnelRequiredPerTeam = personnelRequiredPerTeam;
+            PersonnelHourlyRate = personnelHourlyRate;
             EntriesPerTeam = entriesPerTeam;
             RespiratorsPerPerson = respiratorsPerPerson;
             SqFtPerWipe = sqFtPerWipe;
@@ -55,13 +53,27 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
         }
 
-        public double CalculateCharactizationSamplingCost(double SqFtToBeWiped, double SqFtToBeHEPA, double CostPerwipe, double CostPerVacuum double RoundTripDays,  PPEperTeam, double PersonnelHourlyRate, double HoursEnteringPerTeam, double HoursExitingPerTeam, double CostsPerIndvPPE)
+        public double CalculateCharactizationSamplingCost(double SqFtToBeWiped, double SqFtToBeHEPA, double CostPerwipe, double CostPerVacuum double RoundTripDays, double PersonnelHourlyRate, double HoursEnteringPerTeam, double HoursExitingPerTeam, double CostsPerIndvPPE, double[] PPE_EachLevelPerTeam)
         {
+            double TotalPersonnel = 0;
+            double TotalPPE_PerLevel = 0;
+            double PersonnelLaborCost = 0;
+
+            for (int i = 0; i < PersonnelRequiredPerTeam.Length; i++)
+            {
+                TotalPersonnel = TotalPersonnel + PersonnelRequiredPerTeam[i];
+                PersonnelLaborCost = PersonnelLaborCost + ()
+            }
+
+                for (int i = 0; i <  PPE_EachLevelPerTeam.Length; i++)
+            {
+                TotalPPE_PerLevel = TotalPPE_PerLevel + PPE_EachLevelPerTeam[i];
+            }
             double CostSupplies = ((SqFtToBeWiped / SqFtPerWipe) * CostPerwipe) + ((SqFtToBeHEPA / SqFtPerHEPASock) * CostPerVacuum) + (((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHr * NumTeams * 8)) * HEPARentalCostPerDay);
             double WorkDays = (Math.abs(((SqFtToBeWiped / SqFtPerWipe) / (WipesPerHr * NumTeams)) / 8) + Math.Abs(((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHr * NumTeams)) / 8));
             double CostLabor = ((WorkDays + PersonnelOverhead + RoundTripDays) * 8) * NumTeams * PersonnelRequiredPerTeam * PersonnelHourlyRate;
             double CostLaborE = ((WorkDays * EntriesPerTeam * NumTeams * HoursEnteringPerTeam) + (WorkDays * EntriesPerTeam * NumTeams * HoursExitingPerTeam)) * PersonnelRequiredPerTeam * PersonnelHourlyRate;
-            double CostEntranceExit = CostLaborE + (PersonnelOSC * NumTeams * RespiratorsPerPerson * CostPerRespirator) + (EPPET * CostsPerIndvPPE);
+            double CostEntranceExit = CostLaborE + (PersonnelOSC * NumTeams * RespiratorsPerPerson * CostPerRespirator) + (TotalPPE_PerLevel * CostsPerIndvPPE);
             double CostAnalysisQuant = ((SqFtToBeWiped / SqFtPerWipe) * CostPerWipeAnalysis) + ((SqFtToBeHEPA / SqFtPerHEPASock) * CostPerHEPA_Analysis);
             return CostSupplies + CostLabor + CostEntranceExit + CostAnalysisQuant;
         }
@@ -72,7 +84,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
         private double TeamsRequired { get; set };
         private double TonsRemovedPerHrPerTeam { get; set }
         private double NumEntriesPerTeamPerDay { get; set }
-        private double PersonnelPerTeam { get; set }
+        private double[] PersonnelPerTeam { get; set }
         private double HoursPerEntryPerTeam { get; set }
         private double RespiratorsPerPerson { get; set }
         private double PersonnelOverhead { get; set }
@@ -81,12 +93,12 @@ namespace Battelle.EPA.WideAreaDecon.Model
         private double SqFtToBeSourceReduced { get; set; }
         private double HoursPerExitPerTeam { get; set; }
         private double CostPerRespirator { get; set; }
-        private double Cost_PPE { get; set; }
+        private double CostPerPPE { get; set; }
 
-        public SourceReductionCalculator(double teamsRequired, double tonsRemovedPerHrPerTeam, double numEntriesPerTeamPerDay, double personnelPerTeam, 
+        public SourceReductionCalculator(double teamsRequired, double tonsRemovedPerHrPerTeam, double numEntriesPerTeamPerDay, double[] personnelPerTeam, 
             double hoursPerEntryPerTeam, double respiratorsPerPerson, double personnelOverhead, double tonsPerSqFt, double personnelRoundTripDays, 
             double sqFtToBeSourceReduced, double ppe_PerLevelPerTeam, double hoursPerExitPerTeam, double costPerRespirator, 
-            double cost_PPE)
+            double costPerPPE)
         {
             TeamsRequired = teamsRequired;
             TonsRemovedPerHrPerTeam = tonsRemovedPerHrPerTeam;
@@ -100,17 +112,24 @@ namespace Battelle.EPA.WideAreaDecon.Model
             SqFtToBeSourceReduced = sqFtToBeSourceReduced;
             HoursPerExitPerTeam = hoursPerExitPerTeam;
             CostPerRespirator = costPerRespirator;
-            Cost_PPE = cost_PPE;
+            CostPerPPE = costPerPPE;
 
         }
 
-        public double CalculateSourceReductionCost(double PersonnelHourlyRate, double NumTeams, double PPE_PerLevelPerTeam)
+        public double CalculateSourceReductionCost(double PersonnelHourlyRate, double NumTeams, double[] PPE_EachLevelPerTeam)
         {
-            double TotalPersonnel;
+            double TotalPersonnel = 0;
+
+            double TotalPPE_PerLevel = 0;
+
+            for (int i =  0; i <PPE_EachLevelPerTeam.Length; i++)
+            {
+                TotalPPE_PerLevel = TotalPPE_PerLevel + PPE_EachLevelPerTeam[i];
+            }
             double Workdays = ((SqFtToBeSourceReduced * TonsPerSqFt) / (8 * TonsRemovedPerHrPerTeam * TeamsRequired))
             double CostLabor = (((Workdays + PersonnelOverhead + PersonnelRoundTripDays) * 8 * TeamsRequired * PersonnelPerTeam * PersonnelHourlyRate) + (SqFtToBeSourceReduced * TonsPerSqFt * CostPerTonRemoved));
             double CostLaborEntEx = ((Workdays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (Workdays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (PersonnelPerTeam * PersonnelHourlyRate);
-            double CostEntEx = CostLaborEntEx + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + ();
+            double CostEntEx = CostLaborEntEx + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalPPE_PerLevel * CostPerPPE);
             return CostLabor + CostEntEx;
         }
 
