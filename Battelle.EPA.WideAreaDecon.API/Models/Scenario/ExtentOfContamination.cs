@@ -27,7 +27,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Scenario
         public static ExtentOfContamination FromExcel(ISheet sheet)
         {
             var rows = new List<IRow>();
-            for (var i = 0; i <= sheet.LastRowNum; i++)
+            for (var i = 1; i <= sheet.LastRowNum; i++)
             {
                 rows.Add(sheet.GetRow(i));
             }
@@ -36,20 +36,20 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Scenario
                 Area = EnumeratedParameter<DecontaminationPhase>.FromExcel(new ParameterMetaData()
                 {
                     Category = SheetName,
-                    Description = "Contaminated Area",
-                    Name = "The amount of contaminated area for each phase"
+                    Name = AreaRowName,
+                    Description = "The amount of contaminated area for each phase"
                 }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == AreaRowName)),
                 Loading = EnumeratedParameter<DecontaminationPhase>.FromExcel(new ParameterMetaData()
                 {
                     Category = SheetName,
-                    Description = "Loading",
-                    Name = "The loading of contaminate for each phase"
+                    Name = LoadingRowName,
+                    Description = "The loading of contaminate for each phase"
                 }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == LoadingRowName)),
                 IndoorBuildingBreakout = EnumeratedFraction<BuildingCategory>.FromExcel(new ParameterMetaData()
                 {
                     Category = SheetName,
-                    Description = "Building Type Breakout",
-                    Name = "The breakout of building types in model"
+                    Name = IndoorBuildingBreakoutName,
+                    Description = "The breakout of building types in model"
                 }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == IndoorBuildingBreakoutName)),
                 OutdoorSurfaceBreakout = EnumeratedFraction<SurfaceType>.FromExcel(new ParameterMetaData()
                 {

@@ -85,7 +85,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
 
             return new ParameterList()
             {
-                Version = version,
                 Filters = filters.ToArray()
             };
         }

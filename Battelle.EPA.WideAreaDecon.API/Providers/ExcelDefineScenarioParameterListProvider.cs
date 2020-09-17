@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Providers;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.API.Models.Scenario;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
@@ -18,17 +19,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterListProviderType Type => ParameterListProviderType.ExcelDefineScenario;
-        private static int VersionRowLocation => 0;
-        private static int VersionCellLocation => 1;
-
         public string FileName { get; set; }
 
         private string FullFileName => Path.Join(
             Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), FileName);
-
-        public string FileInfoSheetName { get; set; }
-
-        public string[] GenericSheetNames { get; set; }
 
         public ParameterList GetParameterList()
         {
@@ -46,25 +40,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             }
             // If the file exists, open a new file stream to open the excel workbook
             using var stream = new FileStream(FileName, FileMode.Open, FileAccess.Read) {Position = 0};
-            XSSFWorkbook xssWorkbook = new XSSFWorkbook(stream);
+            var xssWorkbook = new XSSFWorkbook(stream);
 
-            // Parse version in using the specific sheet name that contains the version info
-            // making sure it isn't null or empty
-            var sheet = xssWorkbook.GetSheet(FileInfoSheetName);
-            IRow information = sheet.GetRow(VersionRowLocation);
-            string versionString = information.GetCell(VersionCellLocation).ToString();
-            if (string.IsNullOrEmpty(versionString))
-                throw new SerializationException("No file version found in Excel");
-
-            int version = int.Parse(versionString);
-
-            return new ParameterList()
-            {
-                Version = version,
-                Filters = GenericSheetNames.Select(genericSheetName =>
-                    ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName) ?? 
-                        throw new ApplicationException($"Could not find sheet {genericSheetName}"))).ToArray()
-            };
+            return ScenarioDefinition.FromExcel(xssWorkbook).GetParameterList();
         }
     }
 }

@@ -11,6 +11,8 @@ enum ParameterType {
   logNormal = 'Log Normal',
   efficacy = 'Efficacy',
   weibull = 'Weibull',
+  enumeratedFraction = 'Enumerated Fraction',
+  enumeratedParameter = 'Enumerated Parameter',
   null = 'Null',
 }
 
