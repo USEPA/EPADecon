@@ -24,9 +24,7 @@
     <v-tooltip bottom :color="canRun ? 'info' : 'error'">
       <template v-slot:activator="{ on }">
         <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'" :color="canRun ? 'secondary' : ''">
-          <v-btn v-on="on" :disabled="!canRun" :color="canRun ? 'secondary' : ''">
-            Run Scenario
-          </v-btn>
+          <v-btn v-on="on" :disabled="!canRun" :color="canRun ? 'secondary' : ''"> Run Scenario </v-btn>
         </div>
       </template>
       <span v-if="canRun">Runs the model and generates results</span>
@@ -129,19 +127,19 @@ export default class NavigationBar extends Vue {
 
   selectedTabName!: never;
 
-  getClassName(name: string) {
+  getClassName(name: string): string {
     return this.$vuetify.theme.dark ? this.getDarkClassName(name) : this.getLightClassName(name);
   }
 
-  getLightClassName(name: string) {
+  getLightClassName(name: string): string {
     return name === this.selectedNavigationRoute ? 'secondary--text text--darken-1' : 'info--text text--lighten-2';
   }
 
-  getDarkClassName(name: string) {
+  getDarkClassName(name: string): string {
     return name === this.selectedNavigationRoute ? 'secondary--text text--lighten-3' : 'info--text text--lighten-4';
   }
 
-  mounted() {
+  mounted(): void {
     if (this.selectedNavigationRoute && this.$router.currentRoute.path !== this.selectedNavigationRoute) {
       this.$router.push(this.selectedNavigationRoute);
     }

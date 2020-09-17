@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
+using Battelle.EPA.WideAreaDecon.API.Utility.Attributes;
+using Battelle.EPA.WideAreaDecon.API.Utility.Extensions;
+using Battelle.EPA.WideAreaDecon.API.Utility.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
@@ -19,54 +22,33 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
     /// </summary>
     public class BetaPertDistribution : IParameter
     {
-        private static int NameLocation => 2;
-        private static int MinLocation => 6;
-        private static int MaxLocation => 7;
-        private static int ModeLocation => 8;
-
-        public string Name { get; set; }
-
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterType Type => ParameterType.PERT;
+        public ParameterMetaData MetaData { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [ExcelProperty(ParameterLocationHelper.Parameter1)]
         public double? Min { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [ExcelProperty(ParameterLocationHelper.Parameter2)]
         public double? Max { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [ExcelProperty(ParameterLocationHelper.Parameter3)]
         public double? Mode { get; set; }
 
-        public ParameterMetaData MetaData { get; set; }
 
-        public static BetaPertDistribution FromExcel(IRow information)
+        public static BetaPertDistribution FromExcel(ParameterMetaData metaData, IRow row)
         {
-            BetaPertDistribution betaPertDist = new BetaPertDistribution();
-
-            double? minValue = betaPertDist.ParseValueString(MinLocation, information);
-            double? maxValue = betaPertDist.ParseValueString(MaxLocation, information);
-            double? modeValue = betaPertDist.ParseValueString(ModeLocation, information);
-
             return new BetaPertDistribution()
             {
-                Name = information.GetCell(NameLocation)?.ToString() ?? throw new SerializationException("Parameter has no name associated with it in Excel"),
-                Min = minValue,
-                Max = maxValue,
-                Mode = modeValue,
-                MetaData = ParameterMetaData.FromExcel(information)
+                Min = typeof(BetaPertDistribution).GetCellValue(nameof(Min), row)?.ConvertToOptionalDouble(),
+                Max = typeof(BetaPertDistribution).GetCellValue(nameof(Max), row)?.ConvertToOptionalDouble(),
+                Mode = typeof(BetaPertDistribution).GetCellValue(nameof(Mode), row)?.ConvertToOptionalDouble(),
+                MetaData = metaData
             };
         }
 
-        private double? ParseValueString(int location, IRow information)
-        {
-            double? value = null;
-
-            var valueString = information.GetCell(location)?.ToString();
-
-            if (!string.IsNullOrWhiteSpace(valueString)) value = double.Parse(valueString);
-
-            return value;
-        }
     }
 }

@@ -5,6 +5,9 @@ using System.Runtime.Serialization;
 using System.Xml.Linq;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
+using Battelle.EPA.WideAreaDecon.API.Utility.Attributes;
+using Battelle.EPA.WideAreaDecon.API.Utility.Extensions;
+using Battelle.EPA.WideAreaDecon.API.Utility.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
@@ -16,41 +19,22 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
     /// </summary>
     public class ConstantDistribution : IParameter
     {
-        private static int NameLocation => 2;
-        private static int ValueLocation => 6;
-        public string Name { get; set; }
-
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterType Type => ParameterType.Constant;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [ExcelProperty(ParameterLocationHelper.Parameter1)]
         public double? Value { get; set; }
 
         public ParameterMetaData MetaData { get; set; }
 
-        public static ConstantDistribution FromExcel(IRow information)
+        public static ConstantDistribution FromExcel(ParameterMetaData metaData, IRow row)
         {
-            ConstantDistribution constDist = new ConstantDistribution();
-
-            double? value = constDist.ParseValueString(ValueLocation, information);
-
             return new ConstantDistribution()
             {
-                Name = information.GetCell(NameLocation)?.ToString() ?? throw new SerializationException("Parameter has no name associated with it in Excel"),
-                Value = value,
-                MetaData = ParameterMetaData.FromExcel(information)
+                Value = typeof(ConstantDistribution).GetCellValue(nameof(Value), row)?.ConvertToOptionalDouble(),
+                MetaData = metaData
             };
-        }
-
-        private double? ParseValueString(int location, IRow information)
-        {
-            double? value = null;
-
-            var valueString = information.GetCell(location)?.ToString();
-
-            if (!string.IsNullOrWhiteSpace(valueString)) value = double.Parse(valueString);
-
-            return value;
         }
     }
 }

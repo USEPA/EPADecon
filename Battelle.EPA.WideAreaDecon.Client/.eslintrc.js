@@ -8,7 +8,7 @@ module.exports = {
     '@vue/prettier/@typescript-eslint',
   ],
   rules: {
-    '@typescript-eslint/interface-name-prefix': ['error', { prefixWithI: 'always' }],
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
     // 'no-console': 'error',
     // 'no-debugger': 'error',
     // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
