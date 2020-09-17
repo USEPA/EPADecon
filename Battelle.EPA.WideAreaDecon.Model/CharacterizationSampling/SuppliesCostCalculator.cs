@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Battelle.EPA.WideAreaDecon.Model
+namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 { 
     public class SuppliesCostCalculatorCS
     {

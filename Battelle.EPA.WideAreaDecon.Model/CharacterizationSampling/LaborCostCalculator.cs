@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Remoting.Lifetime;
 
-namespace Battelle.EPA.WideAreaDecon.Model
+namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
 	public class LaborCostCalculatorCS
 	{
