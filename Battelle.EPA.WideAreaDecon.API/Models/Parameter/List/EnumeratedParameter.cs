@@ -20,13 +20,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
 
         public static EnumeratedParameter<T> FromExcel(ParameterMetaData metaData, IEnumerable<IRow> rows)
         {
-            return new EnumeratedParameter<T>()
-            {
-                MetaData = metaData,
-                Values = rows.ToDictionary(
-                    row => ParameterMetaData.FromExcel(row).Category.ParseEnum<T>(),
-                    row => IParameter.FromExcel(ParameterMetaData.FromExcel(row), row))
-            };
+            var xDependentUniform = rows
+                .Where(row => IParameter.ParseParameterType(row).Equals(ParameterType.UniformXDependent));
+            throw new NotImplementedException();
         }
     }
 }

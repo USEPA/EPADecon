@@ -43,8 +43,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
                 ParameterType.BimodalTruncatedNormal => BimodalTruncatedNormalDistribution.FromExcel(metaData, row),
                 ParameterType.Null => throw new ApplicationException("Cannot parse parameter type Null"),
                 ParameterType.LogNormal => LogNormalDistribution.FromExcel(metaData, row),
-                ParameterType.Efficacy => throw new ApplicationException("Cannot parse efficacy from IParameter interface"),
                 ParameterType.Weibull => WeibullDistribution.FromExcel(metaData, row),
+                ParameterType.EnumeratedFraction => throw new ApplicationException($"Cannot parse parameter type {row}"),
+                ParameterType.EnumeratedParameter => throw new ApplicationException($"Cannot parse parameter type {row}"),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
