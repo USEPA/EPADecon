@@ -8,7 +8,13 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Scenario
 
         public ParameterList GetParameterList()
         {
-
+            return new ParameterList()
+            {
+                Filters = new[]
+                {
+                    Contamination.GetParameterFilter()
+                }
+            };
         }
     }
 }
