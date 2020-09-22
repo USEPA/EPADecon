@@ -51,5 +51,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 			}
 			return ((Workdays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (Workdays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (LaborHoursCost);
 		}
+
+		public double CalculateLaborDays(double RoundTripDays)
+        {
+			return WorkDays + PersonnelOverhead + RoundTripDays;
+        }
 	}
 }
