@@ -36,7 +36,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
 			return (TotalWorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8 * NumTeams * PersonnelHoursCost;
         }
-	}
+
+		public double CalculateLaborDays(double PersonnelRoundTripDays)
+		{
+			double TotalWorkDays;
+			for (int j = 0; j < WorkDaysPerAppMethod.Length; j++)
+			{
+				TotalWorkDays = TotalWorkDays + WorkDaysPerAppMethod[j];
+			}
+
+			return (TotalWorkDays + PersonnelOverhead + PersonnelRoundTripDays);
+
+		}
 
 }
 
