@@ -16,13 +16,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 
 		public double CalculateOnSiteDays(double PersonnelRoundTripDays)
         {
-			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalculator laborCostCalculator = new LaborCostCalculator;
+			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalculator laborCostCalculator = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalculator();
 			double LaborDaysCS = laborCostCalculator.CalculateLaborDays(PersonnelRoundTripDays);
 
-			Battelle.EPA.WideAreaDecon.Model.SourceReduction.LaborCostCalculator laborCostCalculator = new LaborCostCalculator;
+			Battelle.EPA.WideAreaDecon.Model.SourceReduction.LaborCostCalculator laborCostCalculator = new Battelle.EPA.WideAreaDecon.Model.SourceReduction.LaborCostCalculator();
 			double LaborDaysSR = laborCostCalculator.CalculateLaborDays(PersonnelRoundTripDays);
 
-			Battelle.EPA.WideAreaDecon.Model.Decontamination.LaborCostCalculator laborCostCalculator = new LaborCostCalculator;
+			Battelle.EPA.WideAreaDecon.Model.Decontamination.LaborCostCalculator laborCostCalculator = new Battelle.EPA.WideAreaDecon.Model.Decontamination.LaborCostCalculator();
 			double LaborDaysDC = laborCostCalculator.CalculateLaborDays(PersonnelRoundTripDays);
 
 			return (LaborDaysCS + LaborDaysSR + LaborDaysDC + PersonnelOverheadDays);
@@ -39,7 +39,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 			double CostPerPersonPerHour = 0;
 			for(int j = 0; j < PersonnelRequired.Length; j++)
             {
-				CostPerPersonPerHour = CostPerPersonPerHour + (PersonnelRequired[j] * PersonnelHourlyRate[j])
+				CostPerPersonPerHour = CostPerPersonPerHour + (PersonnelRequired[j] * PersonnelHourlyRate[j]);
             }
 
 			double LaborHours = (8 * (LaborDaysCS + LaborDaysSR + LaborDaysDC + PersonnelOverheadDays + PersonnelRoundTripDays));

@@ -1,5 +1,4 @@
-﻿using System.Runtime.Remoting.Lifetime;
-
+﻿using System;
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
 	public class LaborCostCalculator
@@ -10,7 +9,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		private double NumEntriesPerTeamPerDay { get; set; }
 		private double HoursPerEntryPerTeam { get; set; }
 		private double HoursPerExitPerTeam { get; set; }
-		private double PersonnelHourlyRate { get; set; }
+		private double[] PersonnelHourlyRate { get; set; }
 
 		public LaborCostCalculator(double numTeams, double[] personnelReqPerTeam, double personnelOverhead, double numEntriesPerTeamPerDay, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate)
 		{
@@ -24,7 +23,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
 		}
 
-		Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator suppliesCostCalculator = new SuppliesCostCalculator;
+		Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator suppliesCostCalculator = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator();
 		public double WorkDays = suppliesCostCalculator.CalculateWorkDays();
 
 		public double CalculateLaborCost(double PersonnelRoundTripDays)
@@ -41,7 +40,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
 		}
 
-		public double CalculateEntExitLaborCost(double[] PersonnelReqPerTeam, double[] PersonnelHourlyRate)
+		public double CalculateEntExitLaborCost()
         {
 			double LaborHoursCost = 0;
 

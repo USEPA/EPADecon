@@ -2,6 +2,7 @@
 {
 	public class EntrancesExitsCostCalculator
 	{
+		private double[] PersonnelReqPerTeam { get; set; }
 		private double RespiratorsPerPerson { get; set; }
 		private double CostPerRespirator { get; set; }
 		private double[] CostPerPPE { get; set; }
@@ -13,7 +14,7 @@
 			CostPerPPE = costPerPPE;
         }
 
-		public double CalculateEntrancesExitsCost(double[] PersonnelReqPerTeam, double[] PersonnelHourlyRate, double[] PPE_PerLevelPerTeam)
+		public double CalculateEntrancesExitsCost(double[] PPE_PerLevelPerTeam)
 		{
 			double TotalPersonnel = 0;
 			for (int i = 0; i < PersonnelReqPerTeam.Length; i++)
@@ -29,11 +30,11 @@
 
 			double Total;
 
-			SuppliesCostCalculatorCS suppliesCostCalculatorCS = new SuppliesCostCalculatorCS;
+			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator suppliesCostCalculator = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator();
 			double WorkDays = suppliesCostCalculatorCS.CalculateWorkDays();
 
-			LaborCostCalulatorCS laborCostCalulatorCS = new LaborCostCalulatorCS;
-			double EntExitLaborCost = laborCostCalulatorCS.CalculateEntExitLaborCost(PersonnelReqPerTeam, PersonnelHourlyRate);
+			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalulator laborCostCalulatorCS = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalulator();
+			double EntExitLaborCost = laborCostCalulatorCS.CalculateEntExitLaborCost();
 
 			return EntExitLaborCost + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalPPE_PerLevel * CostPerPPE);
 		}

@@ -31,10 +31,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 				TotalPPE_PerLevel = TotalPPE_PerLevel + PPE_EachLevelPerTeam[j];
 			}
 
-			EntExitLaborCostCalculator entExitLaborCostCalculator = new EntExitLaborCostCalculator;
+			Battelle.EPA.WideAreaDecon.Model.SourceReduction.EntExitLaborCostCalculator entExitLaborCostCalculator = new Battelle.EPA.WideAreaDecon.Model.SourceReduction.EntExitLaborCostCalculator();
 			double CostLaborEntEx = entExitLaborCostCalculator.CalculateEntExitLaborCost();
 
 			return CostLaborEntEx + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalPPE_PerLevel * CostPerPPE);
 		}
 	}
 }
+

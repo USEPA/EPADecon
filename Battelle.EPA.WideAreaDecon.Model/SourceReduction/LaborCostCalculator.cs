@@ -18,7 +18,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 			TonsPerSqFt = tonsPerSqFt;
 		}
 
-		Battelle.EPA.WideAreaDecon.Model.SourceReduction.WorkDaysCalculator workDaysCalculator = new WorkDaysCalculator;
+		Battelle.EPA.WideAreaDecon.Model.SourceReduction.WorkDaysCalculator workDaysCalculator = new Battelle.EPA.WideAreaDecon.Model.SourceReduction.WorkDaysCalculator();
 		public double WorkDays = workDaysCalculator.CalculateWorkDays();
 
 		public double CalculateLaborCost(double PersonnelRoundTripDays, double SqFtToBeSourceReduced, double CostPerTonRemoved)

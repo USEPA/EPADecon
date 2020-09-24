@@ -23,8 +23,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		}
 
 		public double CalculateEntExitLaborCost()
-		{ 
-			WorkDaysCalculator workDaysCalculator = new WorkDaysCalculator;
+		{
+			Battelle.EPA.WideAreaDecon.Model.SourceReduction.WorkDaysCalculator workDaysCalculator = new Battelle.EPA.WideAreaDecon.Model.SourceReduction.WorkDaysCalculator();
 			double WorkDays = workDaysCalculator.CalculateWorkDays();
 
 			double PersonnelHoursCost = 0;

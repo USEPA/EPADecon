@@ -25,7 +25,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 			else
             {
 				double AgentNeededPerTreatment = 0;
-				for(int i = 0; i )
+				for(int i = 0; i < DeconAgentVolumeBySurface; i++)
                 {
 					AgentNeededPerTreatment = AgentNeededPerTreatment + (DeconAgentVolumeBySurface[i] * PercentOfRoomBySurface[i]);
                 }
