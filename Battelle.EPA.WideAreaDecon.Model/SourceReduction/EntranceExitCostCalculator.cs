@@ -25,7 +25,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 				TotalPersonnel = TotalPersonnel + PersonnelRequired[i];
             }
 
-			double TotalPPE_PerLevel;
+			double TotalPPE_PerLevel = 0;
 			for (int j = 0; j < PersonnelRequired.Length; j++)
 			{
 				TotalPPE_PerLevel = TotalPPE_PerLevel + PPE_EachLevelPerTeam[j];

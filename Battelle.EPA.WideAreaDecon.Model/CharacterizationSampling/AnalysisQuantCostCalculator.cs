@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
-    public class AnalysisQuantCalculatorCS
+    public class AnalysisQuantCostCalculator
     {
         private double SqFtPerWipe { get; set; }
         private double SqFtPerHEPASock { get; set; }
@@ -10,7 +10,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private double CostPerWipeAnalysis { get; set; }
         private double CostPerHEPAAnalysis { get; set; }
 
-        public AnalysisQuantCalculatorCS(double sqFtPerWipe, double sqFtPerHEPASock, double sqFtToBeWiped, double sqFtToBeHEPA, double costPerWipeAnalysis, double costPerHEPAAnalysis)
+        public AnalysisQuantCostCalculator(double sqFtPerWipe, double sqFtPerHEPASock, double sqFtToBeWiped, double sqFtToBeHEPA, double costPerWipeAnalysis, double costPerHEPAAnalysis)
         {
             SqFtPerWipe = sqFtPerWipe;
             SqFtPerHEPASock = sqFtPerHEPASock;
@@ -20,7 +20,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             CostPerHEPAAnalysis = costPerHEPAAnalysis;
         }
 
-        public double CalculateAnalysisQuant()
+        public double CalculateAnalysisQuantCost()
         {
             return ((SqFtToBeWiped / SqFtPerWipe) * CostPerWipeAnalysis) + ((SqFtToBeHEPA / SqFtPerHEPASock) * CostPerHEPAAnalysis);
         }
