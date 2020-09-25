@@ -23,11 +23,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
 		}
 
-		Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator suppliesCostCalculator = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator();
-		public double WorkDays = suppliesCostCalculator.CalculateWorkDays();
-
 		public double CalculateLaborCost(double PersonnelRoundTripDays)
 		{
+			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator suppliesCostCalculator = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator();
+			double WorkDays = suppliesCostCalculator.CalculateWorkDays();
 
 			double LaborHoursCost = 0;
 
@@ -42,17 +41,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
 		public double CalculateEntExitLaborCost()
         {
+			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator suppliesCostCalculator = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator();
+			double WorkDays = suppliesCostCalculator.CalculateWorkDays();
+
 			double LaborHoursCost = 0;
 
 			for (int i = 0; i < PersonnelReqPerTeam.Length; i++)
 			{
 				LaborHoursCost = LaborHoursCost + (PersonnelReqPerTeam[i] * PersonnelHourlyRate[i]);
 			}
-			return ((Workdays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (Workdays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (LaborHoursCost);
+			return ((WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (LaborHoursCost);
 		}
 
 		public double CalculateLaborDays(double PersonnelRoundTripDays)
         {
+			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator suppliesCostCalculator = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator();
+			double WorkDays = suppliesCostCalculator.CalculateWorkDays();
+
 			return WorkDays + PersonnelOverhead + PersonnelRoundTripDays;
         }
 	}

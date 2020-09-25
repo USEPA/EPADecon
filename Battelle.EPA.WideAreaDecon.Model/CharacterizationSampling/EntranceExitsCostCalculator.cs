@@ -1,14 +1,18 @@
-﻿namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
+﻿using System.Globalization;
+
+namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
 	public class EntrancesExitsCostCalculator
 	{
+		private double NumTeams { get; set; }
 		private double[] PersonnelReqPerTeam { get; set; }
 		private double RespiratorsPerPerson { get; set; }
 		private double CostPerRespirator { get; set; }
 		private double[] CostPerPPE { get; set; }
 
-		public EntrancesExitsCostCalculator( double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE)
+		public EntrancesExitsCostCalculator(double numTeams, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE)
 		{
+			NumTeams = numTeams;
 			RespiratorsPerPerson = respiratorsPerPerson;
 			CostPerRespirator = costPerRespirator;
 			CostPerPPE = costPerPPE;
@@ -22,21 +26,25 @@
 				TotalPersonnel = TotalPersonnel + PersonnelReqPerTeam[i];
             }
 
-			double TotalPPE_PerLevel = 0;
-			for (int i = 0; i < PPE_PerLevelPerTeam.Length; i++)
+			double[] TotalPPE_PerLevel = { 0, 0, 0, 0 };
+			for (int j = 0; j < PPE_PerLevelPerTeam.Length; j++)
 			{
-				TotalPPE_PerLevel = TotalPPE_PerLevel + PPE_PerLevelPerTeam[i];
+				TotalPPE_PerLevel[j] = PPE_PerLevelPerTeam[j] * NumTeams;
 			}
 
-			double Total;
+			double TotalCostPPE = 0;
+			for (int k = 0; k < PPE_PerLevelPerTeam.Length; k++)
+			{
+				TotalCostPPE = TotalCostPPE + (PPE_PerLevelPerTeam[k] + CostPerPPE[k]);
+			}
 
 			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator suppliesCostCalculator = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator();
-			double WorkDays = suppliesCostCalculatorCS.CalculateWorkDays();
+			double WorkDays = suppliesCostCalculator.CalculateWorkDays();
 
-			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalulator laborCostCalulatorCS = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalulator();
-			double EntExitLaborCost = laborCostCalulatorCS.CalculateEntExitLaborCost();
+			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalculator laborCostCalulator = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalculator();
+			double EntExitLaborCost = laborCostCalulator.CalculateEntExitLaborCost();
 
-			return EntExitLaborCost + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalPPE_PerLevel * CostPerPPE);
+			return EntExitLaborCost + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
 		}
 	}
 }

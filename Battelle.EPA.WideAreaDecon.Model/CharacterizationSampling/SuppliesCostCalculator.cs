@@ -7,32 +7,37 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private double NumTeams { get; set; }
         private double SqFtPerWipe { get; set; }
         private double SqFtPerHEPASock { get; set; }
+        private double WipesPerHrPerTeam { get; set; }
+        private double HEPASocksPerHrPerTeam { get; set; }
         private double CostPerWipe { get; set; }
         private double CostPerVacuum { get; set; }
         private double HEPARentalCostPerDay { get; set; }
-        private double HEPASocksPerHrPerTeam { get; set; }
         private double SqFtToBeWiped { get; set; }
         private double SqFtToBeHEPA { get; set; }
 
-        public SuppliesCostCalculator(double numTeams, double sqFtPerWipe, double sqFtPerHEPASock, double costPerWipe, double costPerVacuum, double hepaRentalCostPerDay, double hepaSocksPerHrPerTeam)
+        public SuppliesCostCalculator(double numTeams, double sqFtPerWipe, double sqFtPerHEPASock, double wipesPerHrPerTeam, double hepaSocksPerHrPerTeam,
+            double costPerWipe, double costPerVacuum, double hepaRentalCostPerDay, double sqFtToBeWiped, double sqFtToBeHEPA)
         {
             NumTeams = numTeams;
             SqFtPerWipe = sqFtPerWipe;
             SqFtPerHEPASock = sqFtPerHEPASock;
+            WipesPerHrPerTeam = wipesPerHrPerTeam;
+            HEPASocksPerHrPerTeam = hepaSocksPerHrPerTeam;
             CostPerWipe = costPerWipe;
             CostPerVacuum = costPerVacuum;
             HEPARentalCostPerDay = hepaRentalCostPerDay;
-            HEPASocksPerHrPerTeam = hepaSocksPerHrPerTeam;
+            SqFtToBeWiped = sqFtToBeWiped;
+            SqFtToBeHEPA = sqFtToBeHEPA;
         }
 
         public double CalculateSuppliesCost()
         {
-            return ((SqFtToBeWiped / SqFtPerWipe) * CostPerwipe) + ((SqFtToBeHEPA / SqFtPerHEPASock) * CostPerVacuum) + (((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHr * NumTeams * 8)) * HEPARentalCostPerDay);
+            return ((SqFtToBeWiped / SqFtPerWipe) * CostPerWipe) + ((SqFtToBeHEPA / SqFtPerHEPASock) * CostPerVacuum) + (((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams * 8)) * HEPARentalCostPerDay);
         }
 
         public double CalculateWorkDays()
         {
-            return (Math.abs(((SqFtToBeWiped / SqFtPerWipe) / (WipesPerHr * NumTeams)) / 8) + Math.Abs(((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams)) / 8));
+            return (Math.Abs(((SqFtToBeWiped / SqFtPerWipe) / (WipesPerHrPerTeam * NumTeams)) / 8) + Math.Abs(((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams)) / 8));
         }
     }
 }

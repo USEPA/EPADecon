@@ -17,13 +17,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 		public double CalculateOnSiteDays(double PersonnelRoundTripDays)
         {
 			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalculator laborCostCalculatorCS = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalculator();
-			double LaborDaysCS = laborCostCalculator.CalculateLaborDays(PersonnelRoundTripDays);
+			double LaborDaysCS = laborCostCalculatorCS.CalculateLaborDays(PersonnelRoundTripDays);
 
 			Battelle.EPA.WideAreaDecon.Model.SourceReduction.LaborCostCalculator laborCostCalculatorSR = new Battelle.EPA.WideAreaDecon.Model.SourceReduction.LaborCostCalculator();
-			double LaborDaysSR = laborCostCalculator.CalculateLaborDays(PersonnelRoundTripDays);
+			double LaborDaysSR = laborCostCalculatorSR.CalculateLaborDays(PersonnelRoundTripDays);
 
 			Battelle.EPA.WideAreaDecon.Model.Decontamination.LaborCostCalculator laborCostCalculatorDC = new Battelle.EPA.WideAreaDecon.Model.Decontamination.LaborCostCalculator();
-			double LaborDaysDC = laborCostCalculator.CalculateLaborDays(PersonnelRoundTripDays);
+			double LaborDaysDC = laborCostCalculatorDC.CalculateLaborDays(PersonnelRoundTripDays);
 
 			return (LaborDaysCS + LaborDaysSR + LaborDaysDC + PersonnelOverheadDays);
 		}
@@ -31,13 +31,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 		public double CalculateLaborCost(double PersonnelRoundTripDays)
 		{
 			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalculator laborCostCalculatorCS = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.LaborCostCalculator();
-			double LaborDaysCS = laborCostCalculator.CalculateLaborDays(PersonnelRoundTripDays);
+			double LaborDaysCS = laborCostCalculatorCS.CalculateLaborDays(PersonnelRoundTripDays);
 
 			Battelle.EPA.WideAreaDecon.Model.SourceReduction.LaborCostCalculator laborCostCalculatorSR = new Battelle.EPA.WideAreaDecon.Model.SourceReduction.LaborCostCalculator();
-			double LaborDaysSR = laborCostCalculator.CalculateLaborDays(PersonnelRoundTripDays);
+			double LaborDaysSR = laborCostCalculatorSR.CalculateLaborDays(PersonnelRoundTripDays);
 
 			Battelle.EPA.WideAreaDecon.Model.Decontamination.LaborCostCalculator laborCostCalculatorDC = new Battelle.EPA.WideAreaDecon.Model.Decontamination.LaborCostCalculator();
-			double LaborDaysDC = laborCostCalculator.CalculateLaborDays(PersonnelRoundTripDays);
+			double LaborDaysDC = laborCostCalculatorDC.CalculateLaborDays(PersonnelRoundTripDays);
 
 			double TotalPersonnel = 0;
 			for (int i = 0; i < PersonnelRequired.Length; i++)

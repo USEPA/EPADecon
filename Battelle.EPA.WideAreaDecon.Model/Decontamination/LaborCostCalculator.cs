@@ -11,7 +11,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 		private double[] WorkDaysPerAppMethod { get; set; }
 
 
-		public LaborCostCalculator(double numTeams, double personnelRequired, double personnelHourlyRate, double personnelOverhead, double[] workDaysPerAppMethod)
+		public LaborCostCalculator(double numTeams, double[] personnelRequired, double[] personnelHourlyRate, double personnelOverhead, double[] workDaysPerAppMethod)
 		{
 			NumTeams = numTeams;
 			PersonnelRequired = personnelRequired;
@@ -23,12 +23,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 		public double CalculateLaborCost(double PersonnelRoundTripDays)
 		{
 			double PersonnelHoursCost = 0;
-			for (int i = 0; i < PersonnelPerTeam.Length; i++)
+			for (int i = 0; i < PersonnelRequired.Length; i++)
 			{
-				PersonnelHoursCost = PersonnelHoursCost + (PersonnelPerTeam[i] * PersonnelHourlyRate[i]);
+				PersonnelHoursCost = PersonnelHoursCost + (PersonnelRequired[i] * PersonnelHourlyRate[i]);
 			}
 
-			double TotalWorkDays;
+			double TotalWorkDays = 0;
 			for (int j = 0; j < WorkDaysPerAppMethod.Length; j++)
 			{
 				TotalWorkDays = TotalWorkDays + WorkDaysPerAppMethod[j];
@@ -39,7 +39,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
 		public double CalculateLaborDays(double PersonnelRoundTripDays)
 		{
-			double TotalWorkDays;
+			double TotalWorkDays = 0;
 			for (int j = 0; j < WorkDaysPerAppMethod.Length; j++)
 			{
 				TotalWorkDays = TotalWorkDays + WorkDaysPerAppMethod[j];
