@@ -7,6 +7,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Other
 		private double RentalCarCostPerDay { get; set; }
 		private double PerDiemCostPerDay { get; set; }
 
+		public TransportationCostCalculator()
+        {
+
+        }
+
 		public TransportationCostCalculator(double personnelPerRentalCar, double rentalCarCostPerDay, double perDiemCostPerDay)
         {
 			PersonnelPerRentalCar = personnelPerRentalCar;
@@ -19,7 +24,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Other
 			double TotalPersonnel = 0;
 			for(int i = 0; i < PersonnelAvailableByType.Length; i ++)
             {
-				TotalPersonnel = TotalPersonnel + PersonnelAvailableByType[i];
+				TotalPersonnel += PersonnelAvailableByType[i];
             }
 
 			return (((TotalPersonnel / PersonnelPerRentalCar) * RentalCarCostPerDay) + (TotalPersonnel * CostPerRoundTripTicket) + (TotalOnSiteDays * PerDiemCostPerDay));

@@ -9,6 +9,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private double[] PersonnelHourlyRate { get; set; }
 		private double TonsPerSqFt { get; set; }
 
+		public LaborCostCalculator()
+        {
+
+        }
+
 		public LaborCostCalculator(double teamsRequired, double personnelOverhead, double[] personnelPerTeam, double[] personnelHourlyRate, double tonsPerSqFt)
 		{
 			TeamsRequired = teamsRequired;
@@ -23,21 +28,19 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 			double PersonnelHoursCost = 0;
 			for (int i = 0; i < PersonnelPerTeam.Length; i++)
             {
-				PersonnelHoursCost = PersonnelHoursCost + (PersonnelPerTeam[i] * PersonnelHourlyRate[i]);
+				PersonnelHoursCost += (PersonnelPerTeam[i] * PersonnelHourlyRate[i]);
             }
 
-			Battelle.EPA.WideAreaDecon.Model.SourceReduction.WorkDaysCalculator workDaysCalculator = new Battelle.EPA.WideAreaDecon.Model.SourceReduction.WorkDaysCalculator();
+			WorkDaysCalculator workDaysCalculator = new WorkDaysCalculator();
 			double WorkDays = workDaysCalculator.CalculateWorkDays(SqFtToBeSourceReduced);
 
-
 			return (((WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8 * TeamsRequired * PersonnelHoursCost) + (SqFtToBeSourceReduced * TonsPerSqFt * CostPerTonRemoved));
-
 		}
 
 		public double CalculateLaborDays(double PersonnelRoundTripDays, double SqFtToBeSourceReduced)
         {
 
-			Battelle.EPA.WideAreaDecon.Model.SourceReduction.WorkDaysCalculator workDaysCalculator = new Battelle.EPA.WideAreaDecon.Model.SourceReduction.WorkDaysCalculator();
+			WorkDaysCalculator workDaysCalculator = new WorkDaysCalculator();
 			double WorkDays = workDaysCalculator.CalculateWorkDays(SqFtToBeSourceReduced);
 
 			return WorkDays + PersonnelOverhead + PersonnelRoundTripDays;

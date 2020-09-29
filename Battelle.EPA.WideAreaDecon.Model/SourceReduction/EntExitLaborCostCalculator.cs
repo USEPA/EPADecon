@@ -11,6 +11,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private double HoursPerExitPerTeam { get; set; }
 		private double[] PersonnelHourlyRate { get; set; }
 
+		public EntExitLaborCostCalculator()
+        {
+
+        }
+
 		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelPerTeam, double numEntriesPerTeamPerDay, double tonsPerSqFt, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate)
 		{
 			TeamsRequired = teamsRequired;
@@ -22,15 +27,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 			PersonnelHourlyRate = personnelHourlyRate;
 		}
 
-		public double CalculateEntExitLaborCost()
+		public double CalculateEntExitLaborCost(double SqFtToBeSourceReduced)
 		{
-			Battelle.EPA.WideAreaDecon.Model.SourceReduction.WorkDaysCalculator workDaysCalculator = new Battelle.EPA.WideAreaDecon.Model.SourceReduction.WorkDaysCalculator();
-			double WorkDays = workDaysCalculator.CalculateWorkDays();
+			WorkDaysCalculator workDaysCalculator = new WorkDaysCalculator();
+			double WorkDays = workDaysCalculator.CalculateWorkDays(SqFtToBeSourceReduced);
 
 			double PersonnelHoursCost = 0;
 			for (int i = 0; i < PersonnelPerTeam.Length; i++)
 			{
-				PersonnelHoursCost = PersonnelHoursCost + (PersonnelPerTeam[i] * PersonnelHourlyRate[i]);
+				PersonnelHoursCost += (PersonnelPerTeam[i] * PersonnelHourlyRate[i]);
 			}
 
 			return ((WorkDays * NumEntriesPerTeamPerDay * TeamsRequired * HoursPerEntryPerTeam) + (WorkDays * NumEntriesPerTeamPerDay * TeamsRequired * HoursPerExitPerTeam)) * (PersonnelHoursCost);

@@ -15,6 +15,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private double SqFtToBeWiped { get; set; }
         private double SqFtToBeHEPA { get; set; }
 
+        public SuppliesCostCalculator()
+        {
+
+        }
+
         public SuppliesCostCalculator(double numTeams, double sqFtPerWipe, double sqFtPerHEPASock, double wipesPerHrPerTeam, double hepaSocksPerHrPerTeam,
             double costPerWipe, double costPerVacuum, double hepaRentalCostPerDay, double sqFtToBeWiped, double sqFtToBeHEPA)
         {

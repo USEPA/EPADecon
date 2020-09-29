@@ -10,6 +10,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private double CostPerWipeAnalysis { get; set; }
         private double CostPerHEPAAnalysis { get; set; }
 
+        public AnalysisQuantCostCalculator()
+        {
+
+        }
+
         public AnalysisQuantCostCalculator(double sqFtPerWipe, double sqFtPerHEPASock, double sqFtToBeWiped, double sqFtToBeHEPA, double costPerWipeAnalysis, double costPerHEPAAnalysis)
         {
             SqFtPerWipe = sqFtPerWipe;

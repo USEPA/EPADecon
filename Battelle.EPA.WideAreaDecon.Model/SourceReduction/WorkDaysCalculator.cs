@@ -7,6 +7,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private double TonsRemovedPerHrPerTeam { get; set; }
 		private double TonsPerSqFt { get; set; }
 
+		public WorkDaysCalculator()
+        {
+
+        }
+
 		public WorkDaysCalculator(double teamsRequired, double tonsRemovedPerHrPerTeam, double tonsPerSqFt)
 		{
 			TeamsRequired = teamsRequired;

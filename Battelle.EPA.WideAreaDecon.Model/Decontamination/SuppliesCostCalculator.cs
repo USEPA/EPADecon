@@ -8,6 +8,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 		private double DeconAgentVolume { get; set; }
 		private double[] DeconAgentVolumeBySurface{ get; set; }
 
+		public SuppliesCostCalculator()
+        {
+
+        }
+
 		public SuppliesCostCalculator(double deconAgentCostPerGallon, double deconMaterialsCost, double deconAgentVolume, double[] deconAgentVolumeBySurface)
 		{
 			DeconAgentCostPerGallon = deconAgentCostPerGallon;
@@ -27,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 				double AgentNeededPerTreatment = 0;
 				for(int i = 0; i < DeconAgentVolumeBySurface.Length; i++)
                 {
-					AgentNeededPerTreatment = AgentNeededPerTreatment + (DeconAgentVolumeBySurface[i] * PercentOfRoomBySurface[i]);
+					AgentNeededPerTreatment += (DeconAgentVolumeBySurface[i] * PercentOfRoomBySurface[i]);
                 }
 				return (DeconMaterialsCost + (AgentNeededPerTreatment * DeconAgentCostPerGallon));
 
