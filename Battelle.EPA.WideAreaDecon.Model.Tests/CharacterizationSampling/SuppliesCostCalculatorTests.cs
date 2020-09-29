@@ -15,7 +15,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         [Test]
         public void CalculateAnalysisQuantCost()
         {
-            Assert.AreEqual(30.0, Calculator.CalculateAnalysisQuantCost(), 1e-6, "Incorrect cost calculated");
+            Assert.AreEqual(19.0, Calculator.CalculateAnalysisQuantCost(), 1e-6, "Incorrect cost calculated");
         }
     }
 }
