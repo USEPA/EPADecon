@@ -12,6 +12,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 		private double[] PersonnelHourlyRate { get; set; }
 		private double[] WorkDaysPerAppMethod { get; set; }
 
+		public EntExitLaborCostCalculator()
+        {
+
+        }
+
 		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelPerTeam, double numEntriesPerTeamPerDay, double tonsPerSqFt, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate, double[] workDaysPerAppMethod)
 		{
 			NumTeams = teamsRequired;
@@ -28,13 +33,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 			double PersonnelHoursCost = 0;
 			for (int i = 0; i < PersonnelPerTeam.Length; i++)
 			{
-				PersonnelHoursCost = PersonnelHoursCost + (PersonnelPerTeam[i] * PersonnelHourlyRate[i]);
+				PersonnelHoursCost += (PersonnelPerTeam[i] * PersonnelHourlyRate[i]);
 			}
 
 			double TotalWorkDays = 0;
 			for (int j = 0; j < WorkDaysPerAppMethod.Length; j++)
 			{
-				TotalWorkDays = TotalWorkDays + WorkDaysPerAppMethod[j];
+				TotalWorkDays += WorkDaysPerAppMethod[j];
 			}
 
 			return ((TotalWorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (TotalWorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (PersonnelHoursCost);

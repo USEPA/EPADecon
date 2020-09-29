@@ -11,6 +11,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		private double HoursPerExitPerTeam { get; set; }
 		private double[] PersonnelHourlyRate { get; set; }
 
+		public LaborCostCalculator()
+        {
+
+        }
+
 		public LaborCostCalculator(double numTeams, double[] personnelReqPerTeam, double personnelOverhead, double numEntriesPerTeamPerDay, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate)
 		{
 			NumTeams = numTeams;
@@ -25,14 +30,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
 		public double CalculateLaborCost(double PersonnelRoundTripDays)
 		{
-			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator suppliesCostCalculator = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator();
+			SuppliesCostCalculator suppliesCostCalculator = new SuppliesCostCalculator();
 			double WorkDays = suppliesCostCalculator.CalculateWorkDays();
 
 			double LaborHoursCost = 0;
 
 			for (int i = 0; i < PersonnelReqPerTeam.Length; i++)
             {
-				LaborHoursCost = LaborHoursCost + (PersonnelReqPerTeam[i] * PersonnelHourlyRate[i]);
+				LaborHoursCost += (PersonnelReqPerTeam[i] * PersonnelHourlyRate[i]);
             }
 
 			return ((WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8) * NumTeams * (LaborHoursCost);
@@ -41,21 +46,21 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
 		public double CalculateEntExitLaborCost()
         {
-			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator suppliesCostCalculator = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator();
+			SuppliesCostCalculator suppliesCostCalculator = new SuppliesCostCalculator();
 			double WorkDays = suppliesCostCalculator.CalculateWorkDays();
 
 			double LaborHoursCost = 0;
 
 			for (int i = 0; i < PersonnelReqPerTeam.Length; i++)
 			{
-				LaborHoursCost = LaborHoursCost + (PersonnelReqPerTeam[i] * PersonnelHourlyRate[i]);
+				LaborHoursCost += (PersonnelReqPerTeam[i] * PersonnelHourlyRate[i]);
 			}
 			return ((WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (LaborHoursCost);
 		}
 
 		public double CalculateLaborDays(double PersonnelRoundTripDays)
         {
-			Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator suppliesCostCalculator = new Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.SuppliesCostCalculator();
+			SuppliesCostCalculator suppliesCostCalculator = new SuppliesCostCalculator();
 			double WorkDays = suppliesCostCalculator.CalculateWorkDays();
 
 			return WorkDays + PersonnelOverhead + PersonnelRoundTripDays;
