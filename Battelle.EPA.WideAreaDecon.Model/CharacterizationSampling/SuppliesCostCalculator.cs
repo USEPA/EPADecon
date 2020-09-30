@@ -14,6 +14,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private double HEPARentalCostPerDay { get; set; }
         private double SqFtToBeWiped { get; set; }
         private double SqFtToBeHEPA { get; set; }
+        public readonly double WorkDays;
 
         public SuppliesCostCalculator()
         {
@@ -40,9 +41,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             return ((SqFtToBeWiped / SqFtPerWipe) * CostPerWipe) + ((SqFtToBeHEPA / SqFtPerHEPASock) * CostPerVacuum) + (((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams * 8)) * HEPARentalCostPerDay);
         }
 
+        
         public double CalculateWorkDays()
         {
-            return (Math.Abs(((SqFtToBeWiped / SqFtPerWipe) / (WipesPerHrPerTeam * NumTeams)) / 8) + Math.Abs(((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams)) / 8));
+            public readonly double WorkDays = (Math.Abs(((SqFtToBeWiped / SqFtPerWipe) / (WipesPerHrPerTeam * NumTeams)) / 8) + Math.Abs(((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams)) / 8));
         }
     }
 }
