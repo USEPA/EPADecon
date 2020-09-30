@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {

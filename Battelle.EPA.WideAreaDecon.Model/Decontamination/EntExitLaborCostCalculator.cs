@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
 	public class EntExitLaborCostCalculator
@@ -30,17 +31,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
 		public double CalculateEntExitLaborCost()
 		{
-			double PersonnelHoursCost = 0;
-			for (int i = 0; i < PersonnelPerTeam.Length; i++)
-			{
-				PersonnelHoursCost += (PersonnelPerTeam[i] * PersonnelHourlyRate[i]);
-			}
+			var PersonnelHoursCost = PersonnelRequired.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
-			double TotalWorkDays = 0;
-			for (int j = 0; j < WorkDaysPerAppMethod.Length; j++)
-			{
-				TotalWorkDays += WorkDaysPerAppMethod[j];
-			}
+			double TotalWorkDays = WorkDaysPerAppMethod.Sum();
 
 			return ((TotalWorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (TotalWorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (PersonnelHoursCost);
 		}
