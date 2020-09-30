@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
+using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {

@@ -10,6 +10,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private double CostPerRespirator { get; set; }
 		private double[] CostPerPPE { get; set; }
 
+		EntExitLaborCostCalculator entExitLaborCostCalculator = new EntExitLaborCostCalculator();
+
 		public EntranceExitCostCalculator()
         {
 
@@ -26,29 +28,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
 		public double CalculateEntranceExitCost(double SqFtToBeSourceReduced, double[] PPE_EachLevelPerTeam)
         {
-			double TotalPersonnel = 0;
-			double[] TotalPPE_PerLevel = { 0, 0, 0, 0 };
-			double TotalCostPPE = 0;
+			double TotalPersonnel = PersonnelReqPerTeam.Sum();
 
-			for (int i = 0; i < PersonnelRequired.Length; i++)
-            {
-				TotalPersonnel += PersonnelRequired[i];
-            }
+			var TotalPPE_PerLevel = PPE_PerLevelPerTeam.Select(x => x * NumTeams);
 
-			for (int j = 0; j < PersonnelRequired.Length; j++)
-			{
-				TotalPPE_PerLevel[j] = PPE_EachLevelPerTeam[j] * NumTeams;
-			}
+			var TotalCostPPE = TotalPPE_PerLevel.Zip(CostPerPPE, (ppe, cost) => ppe * cost).Sum();
 
-			for (int k = 0; k < TotalPPE_PerLevel.Length; k++)
-            {
-				TotalCostPPE += TotalPPE_PerLevel[k];
-            }
-
-			EntExitLaborCostCalculator entExitLaborCostCalculator = new EntExitLaborCostCalculator();
-			double CostLaborEntEx = entExitLaborCostCalculator.CalculateEntExitLaborCost(SqFtToBeSourceReduced);
-
-			return CostLaborEntEx + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
+			return entExitLaborCostCalculator.CostLaborEntEx + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
 		}
 	}
 }

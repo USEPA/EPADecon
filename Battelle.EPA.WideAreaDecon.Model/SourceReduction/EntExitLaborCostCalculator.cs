@@ -6,39 +6,35 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private double TeamsRequired { get; set; }
 		private double[] PersonnelPerTeam { get; set; }
 		private double NumEntriesPerTeamPerDay { get; set; }
-		private double TonsPerSqFt { get; set; }
+		private double TonsPerSqMt { get; set; }
 		private double HoursPerEntryPerTeam { get; set; }
 		private double HoursPerExitPerTeam { get; set; }
 		private double[] PersonnelHourlyRate { get; set; }
+
+		WorkDaysCalculator workDaysCalculator = new WorkDaysCalculator();
 
 		public EntExitLaborCostCalculator()
         {
 
         }
 
-		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelPerTeam, double numEntriesPerTeamPerDay, double tonsPerSqFt, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate)
+		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelPerTeam, double[] personnelHourlyRate, double numEntriesPerTeamPerDay, double tonsPerSqMt, double hoursPerEntryPerTeam, double hoursPerExitPerTeam)
 		{
 			TeamsRequired = teamsRequired;
 			PersonnelPerTeam = personnelPerTeam;
 			NumEntriesPerTeamPerDay = numEntriesPerTeamPerDay;
-			TonsPerSqFt = tonsPerSqFt;
+			TonsPerSqMt = tonsPerSqMt;
 			HoursPerEntryPerTeam = hoursPerEntryPerTeam;
 			HoursPerExitPerTeam = hoursPerExitPerTeam;
 			PersonnelHourlyRate = personnelHourlyRate;
 		}
 
-		public double CalculateEntExitLaborCost(double SqFtToBeSourceReduced)
+		public double CalculateEntExitLaborCost(double SqMtToBeSourceReduced)
 		{
-			WorkDaysCalculator workDaysCalculator = new WorkDaysCalculator();
-			double WorkDays = workDaysCalculator.CalculateWorkDays(SqFtToBeSourceReduced);
 
-			double PersonnelHoursCost = 0;
-			for (int i = 0; i < PersonnelPerTeam.Length; i++)
-			{
-				PersonnelHoursCost += (PersonnelPerTeam[i] * PersonnelHourlyRate[i]);
-			}
+			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
-			return ((WorkDays * NumEntriesPerTeamPerDay * TeamsRequired * HoursPerEntryPerTeam) + (WorkDays * NumEntriesPerTeamPerDay * TeamsRequired * HoursPerExitPerTeam)) * (PersonnelHoursCost);
+			return ((workDaysCalculator.WorkDays * NumEntriesPerTeamPerDay * TeamsRequired * HoursPerEntryPerTeam) + (workDaysCalculator.WorkDays * NumEntriesPerTeamPerDay * TeamsRequired * HoursPerExitPerTeam)) * (PersonnelHoursCost);
 		}
 	}
 }

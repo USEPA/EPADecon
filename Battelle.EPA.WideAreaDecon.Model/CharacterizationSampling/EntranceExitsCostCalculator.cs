@@ -17,7 +17,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
         }
 
-		public EntrancesExitsCostCalculator(double numTeams, double[] personnelReqPerTeam double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE)
+		public EntrancesExitsCostCalculator(double numTeams, double[] personnelReqPerTeam, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE)
 		{
 			NumTeams = numTeams;
 			PersonnelReqPerTeam = personnelReqPerTeam;
@@ -32,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
 			var TotalPPE_PerLevel = PPE_PerLevelPerTeam.Select(x => x * NumTeams);
 
-			var TotalCostPPE = TotalPPE_PerLevel.Zip(CostPerPPE, (ppe, cost) => ppe + cost).Sum();
+			var TotalCostPPE = TotalPPE_PerLevel.Zip(CostPerPPE, (ppe, cost) => ppe * cost).Sum();
 
 			return laborCostCalulator.EntExitLaborCost + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
 		}

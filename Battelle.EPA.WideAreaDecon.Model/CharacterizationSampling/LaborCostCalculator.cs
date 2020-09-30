@@ -32,31 +32,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 			HoursPerExitPerTeam = hoursPerExitPerTeam;
 			PersonnelHourlyRate = personnelHourlyRate;
 
+
+
 		}
 
 		public double CalculateLaborCost(double PersonnelRoundTripDays)
 		{
-			double LaborHoursCost = 0;
+			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
-			for (int i = 0; i < PersonnelReqPerTeam.Length; i++)
-            {
-				LaborHoursCost += (PersonnelReqPerTeam[i] * PersonnelHourlyRate[i]);
-            }
-
-			return ((suppliesCostCalculator.WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8) * NumTeams * (LaborHoursCost);
+			return ((suppliesCostCalculator.WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8) * NumTeams * (PersonnelHoursCost);
 
 		}
 
 		public double CalculateEntExitLaborCost()
         {
-			double LaborHoursCost = 0;
+			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
-			for (int i = 0; i < PersonnelReqPerTeam.Length; i++)
-			{
-				LaborHoursCost += (PersonnelReqPerTeam[i] * PersonnelHourlyRate[i]);
-			}
-
-			EntExitLaborCost = ((suppliesCostCalculator.WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (suppliesCostCalculator.WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (LaborHoursCost);
+			EntExitLaborCost = ((suppliesCostCalculator.WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (suppliesCostCalculator.WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (PersonnelHoursCost);
 		}
 
 		public double CalculateLaborDays(double PersonnelRoundTripDays)

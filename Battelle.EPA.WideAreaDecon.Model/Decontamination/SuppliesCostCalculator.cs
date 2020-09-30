@@ -21,6 +21,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 			DeconAgentVolumeBySurface = deconAgentVolumeBySurface;
 		}
 
+		//If bool is true, cost is calculated for fogging using volume instead of surface size and breakdown
 		public double CalculateSuppliesCost(double RoomVolume, double[] PercentOfRoomBySurface, bool Fogging)
         {
 			if (Fogging)
@@ -29,11 +30,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             }
 			else
             {
-				double AgentNeededPerTreatment = 0;
-				for(int i = 0; i < DeconAgentVolumeBySurface.Length; i++)
-                {
-					AgentNeededPerTreatment += (DeconAgentVolumeBySurface[i] * PercentOfRoomBySurface[i]);
-                }
+				var AgentNeededPerTreatment = DeconAgentVolumeBySurface.Zip(PercentOfRoomBySurface, (x, y) => x * y).Sum();
 				return (DeconMaterialsCost + (AgentNeededPerTreatment * DeconAgentCostPerGallon));
 
 			}
