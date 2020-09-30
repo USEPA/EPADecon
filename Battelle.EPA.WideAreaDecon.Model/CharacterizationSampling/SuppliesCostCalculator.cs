@@ -44,7 +44,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         
         public double CalculateWorkDays()
         {
-            public readonly double WorkDays = (Math.Abs(((SqFtToBeWiped / SqFtPerWipe) / (WipesPerHrPerTeam * NumTeams)) / 8) + Math.Abs(((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams)) / 8));
+            WorkDays = (Math.Abs(((SqFtToBeWiped / SqFtPerWipe) / (WipesPerHrPerTeam * NumTeams)) / 8) + Math.Abs(((SqFtToBeHEPA / SqFtPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams)) / 8));
         }
     }
 }
