@@ -9,13 +9,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         [SetUp]
         public void Setup()
         {
-            Calculator = new EntranceExitCostCalculator(5.0, { 2.0, 4.0, 6.0, 2.0 }, 2.0, 5.0, { 2.0, 5.0, 3.0, 4.0});
+            double[] arr1 = { 2.0, 4.0, 6.0, 2.0 };
+            double[] arr2 = { 2.0, 5.0, 3.0, 4.0 };
+            Calculator = new EntranceExitCostCalculator(5.0, arr1, 2.0, 5.0, arr2);
         }
 
         [Test]
         public void CalculateCost()
         {
-            Assert.AreEqual((2331.25), Calculator.CalculateEntranceExitCost(100.0, { 1.0, 2.0, 4.0, 2.0}), 1e-6, "Incorrect cost calculated");
+            double[] arr1 = { 1.0, 2.0, 4.0, 2.0 };
+            Assert.AreEqual((2331.25), Calculator.CalculateEntranceExitCost(100.0, arr1), 1e-6, "Incorrect cost calculated");
         }
     }
 }

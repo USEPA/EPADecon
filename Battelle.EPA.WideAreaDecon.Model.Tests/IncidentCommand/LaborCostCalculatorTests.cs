@@ -9,7 +9,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         [SetUp]
         public void Setup()
         {
-            Calculator = new LaborCostCalculator({ 2.0, 4.0, 6.0, 2.0 }, 10.0, { 2.0, 5.0, 3.0, 4.0});
+            double[] arr1 = { 2.0, 4.0, 6.0, 2.0 };
+            double[] arr2 = { 2.0, 5.0, 3.0, 4.0 };
+            Calculator = new LaborCostCalculator(arr1, 10.0, arr2);
 
         }
         [Test]

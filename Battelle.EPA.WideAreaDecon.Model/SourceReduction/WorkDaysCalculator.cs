@@ -7,25 +7,22 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private double TeamsRequired { get; set; }
 		private double TonsRemovedPerHrPerTeam { get; set; }
 		private double TonsPerSqMt { get; set; }
-		public readonly double WorkDays;
 
 		public WorkDaysCalculator()
         {
 
         }
 
-		public WorkDaysCalculator(double teamsRequired, double tonsRemovedPerHrPerTeam, double tonsPerSqMt, double SqMtToBeSourceReduced)
+		public WorkDaysCalculator(double teamsRequired, double tonsRemovedPerHrPerTeam, double tonsPerSqMt)
 		{
 			TeamsRequired = teamsRequired;
 			TonsRemovedPerHrPerTeam = tonsRemovedPerHrPerTeam;
 			TonsPerSqMt = tonsPerSqMt;
-
-			WorkDays = ((SqMtToBeSourceReduced * TonsPerSqMt) / (8 * TonsRemovedPerHrPerTeam * TeamsRequired));
 		}
 
-		public void CalculateWorkDays()
+		public double CalculateWorkDays(double SqMtToBeSourceReduced)
         {
-			WorkDays = ((SqMtToBeSourceReduced * TonsPerSqMt) / (8 * TonsRemovedPerHrPerTeam * TeamsRequired));
+			return ((SqMtToBeSourceReduced * TonsPerSqMt) / (8 * TonsRemovedPerHrPerTeam * TeamsRequired));
 		}
 	}
 }

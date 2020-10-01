@@ -5,13 +5,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
 	public class EntrancesExitsCostCalculator
 	{
-		private double NumTeams { get; set; }
-		private double[] PersonnelReqPerTeam { get; set; }
-		private double RespiratorsPerPerson { get; set; }
-		private double CostPerRespirator { get; set; }
-		private double[] CostPerPPE { get; set; }
+		private readonly double NumTeams;
+		private readonly double[] PersonnelReqPerTeam;
+		private readonly double RespiratorsPerPerson;
+		private readonly double CostPerRespirator;
+		private readonly double[] CostPerPPE;
 
-		LaborCostCalculator laborCostCalulator = new LaborCostCalculator();
+		readonly LaborCostCalculator laborCostCalulator = new LaborCostCalculator();
 
 		public EntrancesExitsCostCalculator()
         {
@@ -35,7 +35,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
 			var TotalCostPPE = TotalPPE_PerLevel.Zip(CostPerPPE, (ppe, cost) => ppe * cost).Sum();
 
-			return laborCostCalulator.EntExitLaborCost + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
+			double EntExitLaborCost = laborCostCalulator.CalculateEntExitLaborCost();
+
+			return EntExitLaborCost + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
 		}
 	}
 }

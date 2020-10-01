@@ -9,7 +9,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [SetUp]
         public void Setup()
         {
-            Calculator = new LaborCostCalculator(5.0, { 2.0, 4.0, 6.0, 2.0 }, { 2.0, 5.0, 3.0, 4.0}, 10.0, { 1.0, 0.5, 0.25, 0.25});
+            double[] arr1 = { 2.0, 4.0, 6.0, 2.0 };
+            double[] arr2 = { 2.0, 5.0, 3.0, 4.0 };
+            double[] arr3 = { 1.0, 0.5, 0.25, 0.25 };
+            Calculator = new LaborCostCalculator(5.0, arr1, arr2, 10.0, arr3);
         }
 
         [Test]

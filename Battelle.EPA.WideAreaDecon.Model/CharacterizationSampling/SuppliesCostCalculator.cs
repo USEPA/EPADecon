@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
-{ 
+{
     public class SuppliesCostCalculator
     {
         private readonly double NumTeams;
@@ -14,12 +14,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private readonly double HEPARentalCostPerDay;
         private readonly double SqMtToBeWiped;
         private readonly double SqMtToBeHEPA;
-        public readonly double WorkDays;
-
-        public SuppliesCostCalculator()
-        {
-
-        }
 
         public SuppliesCostCalculator(double numTeams, double sqMtPerWipe, double sqFtPerHEPASock, double wipesPerHrPerTeam, double hepaSocksPerHrPerTeam,
             double costPerWipe, double costPerVacuum, double hepaRentalCostPerDay, double sqMtToBeWiped, double sqMtToBeHEPA)
@@ -34,7 +28,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             HEPARentalCostPerDay = hepaRentalCostPerDay;
             SqMtToBeWiped = sqMtToBeWiped;
             SqMtToBeHEPA = sqMtToBeHEPA;
-            
+
         }
 
         public double CalculateSuppliesCost()
@@ -42,10 +36,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             return ((SqMtToBeWiped / SqMtPerWipe) * CostPerWipe) + ((SqMtToBeHEPA / SqMtPerHEPASock) * CostPerVacuum) + (((SqMtToBeHEPA / SqMtPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams * 8)) * HEPARentalCostPerDay);
         }
 
-        
-        public void CalculateWorkDays()
+        public double CalculateWorkDays()
         {
-            WorkDays = (Math.Abs(((SqMtToBeWiped / SqMtPerWipe) / (WipesPerHrPerTeam * NumTeams)) / 8) + Math.Abs(((SqMtToBeHEPA / SqMtPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams)) / 8));
+            return (Math.Abs(((SqMtToBeWiped / SqMtPerWipe) / (WipesPerHrPerTeam * NumTeams)) / 8) + Math.Abs(((SqMtToBeHEPA / SqMtPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams)) / 8));
+
         }
     }
 }

@@ -6,21 +6,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
 	public class LaborCostCalculator
 	{
-		private double NumTeams { get; set; }
-		private double[] PersonnelReqPerTeam { get; set; }
-		private double PersonnelOverhead { get; set; }
-		private double NumEntriesPerTeamPerDay { get; set; }
-		private double HoursPerEntryPerTeam { get; set; }
-		private double HoursPerExitPerTeam { get; set; }
-		private double[] PersonnelHourlyRate { get; set; }
-		public readonly double EntExitLaborCost;
+		private readonly double NumTeams;
+		private readonly double[] PersonnelReqPerTeam;
+		private readonly double PersonnelOverhead;
+		private readonly double NumEntriesPerTeamPerDay;
+		private readonly double HoursPerEntryPerTeam;
+		private readonly double HoursPerExitPerTeam;
+		private readonly double[] PersonnelHourlyRate;
 
-		SuppliesCostCalculator suppliesCostCalculator = new SuppliesCostCalculator();
-
-		public LaborCostCalculator()
-        {
-
-        }
+		readonly SuppliesCostCalculator suppliesCostCalculator = new SuppliesCostCalculator();
 
 		public LaborCostCalculator(double numTeams, double[] personnelReqPerTeam, double personnelOverhead, double numEntriesPerTeamPerDay, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate)
 		{
@@ -32,27 +26,30 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 			HoursPerExitPerTeam = hoursPerExitPerTeam;
 			PersonnelHourlyRate = personnelHourlyRate;
 
+			
 		}
 
 		public double CalculateLaborCost(double PersonnelRoundTripDays)
 		{
+			double WorkDays = suppliesCostCalculator.CalculateWorkDays();
 			var PersonnelHoursCost = PersonnelReqPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
-			return ((suppliesCostCalculator.WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8) * NumTeams * (PersonnelHoursCost);
+			return ((WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8) * NumTeams * (PersonnelHoursCost);
 
 		}
 
 		//return double if Elabor cost is not longer readonly
-		public void CalculateEntExitLaborCost()
+		public double CalculateEntExitLaborCost()
         {
+			double WorkDays = suppliesCostCalculator.CalculateWorkDays();
 			var PersonnelHoursCost = PersonnelReqPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
+			return ((WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (PersonnelHoursCost);
 
-			EntExitLaborCost = ((suppliesCostCalculator.WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (suppliesCostCalculator.WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (PersonnelHoursCost);
 		}
 
 		public double CalculateLaborDays(double PersonnelRoundTripDays)
         {
-			return suppliesCostCalculator.WorkDays + PersonnelOverhead + PersonnelRoundTripDays;
+			return WorkDays + PersonnelOverhead + PersonnelRoundTripDays;
         }
 	}
 }

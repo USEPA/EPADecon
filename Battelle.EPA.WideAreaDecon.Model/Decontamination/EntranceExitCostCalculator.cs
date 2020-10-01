@@ -5,23 +5,19 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
 	public class EntranceExitCostCalculator
 	{
-		private double NumTeams { get; set; }
-		private double[] PersonnelRequired { get; set; }
-		private double RespiratorsPerPerson { get; set; }
-		private double CostPerRespirator { get; set; }
-		private double[] CostPerPPE { get; set; }
+		private readonly double NumTeams;
+		private readonly double[] PersonnelReqPerTeam;
+		private readonly double RespiratorsPerPerson;
+		private readonly double CostPerRespirator;
+		private readonly double[] CostPerPPE;
 
-		EntExitLaborCostCalculator entExitLaborCostCalculator = new EntExitLaborCostCalculator();
+		readonly EntExitLaborCostCalculator entExitLaborCostCalculator = new EntExitLaborCostCalculator();
 
-		public EntranceExitCostCalculator()
-        {
-
-        }
-
-		public EntranceExitCostCalculator(double numTeams, double[] personnelRequired, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE)
+		
+		public EntranceExitCostCalculator(double numTeams, double[] personnelReqPerTeam, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE)
 		{
 			NumTeams = numTeams;
-			PersonnelRequired = personnelRequired;
+			PersonnelReqPerTeam = personnelReqPerTeam;
 			RespiratorsPerPerson = respiratorsPerPerson;
 			CostPerRespirator = costPerRespirator;
 			CostPerPPE = costPerPPE;

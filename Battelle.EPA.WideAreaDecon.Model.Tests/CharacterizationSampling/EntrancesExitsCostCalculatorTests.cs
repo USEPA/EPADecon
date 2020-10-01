@@ -9,13 +9,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         [SetUp]
         public void Setup()
         {
-            Calculator = new EntrancesExitsCostCalculator(5.0, { 2.0, 4.0, 6.0, 2.0}, 5.0, 10.0, { 1.0, 1.5, 2.0, 2.5});
+            double[] arr1 = { 2.0, 4.0, 6.0, 2.0 };
+            double[] arr2 = { 1.0, 1.5, 2.0, 2.5 };
+            Calculator = new EntrancesExitsCostCalculator(5.0, arr1, 5.0, 10.0, arr2);
         }
 
         [Test]
         public void CalculateCost()
         {
-            Assert.AreEqual((1564), Calculator.CalculateEntrancesExitsCost({ 2.0, 4.0, 2.0, 6.0}), 1e-6, "Incorrect labor cost calculated");
+            double[] arr1 = { 2.0, 4.0, 6.0, 2.0 };
+            Assert.AreEqual((1564), Calculator.CalculateEntrancesExitsCost(arr1), 1e-6, "Incorrect labor cost calculated");
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
 		public double CalculateEntExitLaborCost()
 		{
-			var PersonnelHoursCost = PersonnelRequired.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
+			var PersonnelHoursCost = PersonnelReqPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
 			double TotalWorkDays = WorkDaysPerAppMethod.Sum();
 

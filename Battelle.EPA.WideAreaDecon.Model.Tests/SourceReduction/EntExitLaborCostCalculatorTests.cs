@@ -9,7 +9,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         [SetUp]
         public void Setup()
         {
-            Calculator = new EntExitLaborCostCalculator(5.0, { 2.0, 4.0, 6.0, 2.0 }, { 8.0, 9.0,10.0,8.0}, 2.0, 0.25, 1.0, 1.5);
+            double[] arr1 = { 2.0, 4.0, 6.0, 2.0 };
+            double[] arr2 = { 8.0, 9.0, 10.0, 8.0 };
+            Calculator = new EntExitLaborCostCalculator(5.0, arr1, arr2, 2.0, 0.25, 1.0, 1.5);
         }
 
         [Test]
