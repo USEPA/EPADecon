@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
     public class AnalysisQuantCostCalculator

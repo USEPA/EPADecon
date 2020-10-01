@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
@@ -7,6 +8,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 		private double[] PersonnelRequired { get; set; }
 		private double PersonnelOverheadDays { get; set; }
 		private double[] PersonnelHourlyRate { get; set; }
+
+		CharacterizationSampling.LaborCostCalculator laborCostCalculatorCS = new CharacterizationSampling.LaborCostCalculator();
+		SourceReduction.LaborCostCalculator laborCostCalculatorSR = new SourceReduction.LaborCostCalculator();
+		Decontamination.LaborCostCalculator laborCostCalculatorDC = new Decontamination.LaborCostCalculator();
 
 		public LaborCostCalculator()
         {
@@ -20,46 +25,28 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 			PersonnelHourlyRate = personnelHourlyRate;
 		}
 
-		public double CalculateOnSiteDays(double SqFtToBeSourceReduced, double PersonnelRoundTripDays)
+		public double CalculateOnSiteDays(double SqMtToBeSourceReduced, double PersonnelRoundTripDays)
         {
-			CharacterizationSampling.LaborCostCalculator laborCostCalculatorCS = new CharacterizationSampling.LaborCostCalculator();
 			double LaborDaysCS = laborCostCalculatorCS.CalculateLaborDays(PersonnelRoundTripDays);
-
-			SourceReduction.LaborCostCalculator laborCostCalculatorSR = new SourceReduction.LaborCostCalculator();
-			double LaborDaysSR = laborCostCalculatorSR.CalculateLaborDays(SqFtToBeSourceReduced, PersonnelRoundTripDays);
-
-			Decontamination.LaborCostCalculator laborCostCalculatorDC = new Decontamination.LaborCostCalculator();
+			double LaborDaysSR = laborCostCalculatorSR.CalculateLaborDays(SqMtToBeSourceReduced, PersonnelRoundTripDays);
 			double LaborDaysDC = laborCostCalculatorDC.CalculateLaborDays(PersonnelRoundTripDays);
 
 			return (LaborDaysCS + LaborDaysSR + LaborDaysDC + PersonnelOverheadDays);
 		}
 
-		public double CalculateLaborCost(double SqFtToBeSourceReduced, double PersonnelRoundTripDays)
+		public double CalculateLaborCost(double SqMtToBeSourceReduced, double PersonnelRoundTripDays)
 		{
-			CharacterizationSampling.LaborCostCalculator laborCostCalculatorCS = new CharacterizationSampling.LaborCostCalculator();
 			double LaborDaysCS = laborCostCalculatorCS.CalculateLaborDays(PersonnelRoundTripDays);
-
-			SourceReduction.LaborCostCalculator laborCostCalculatorSR = new SourceReduction.LaborCostCalculator();
-			double LaborDaysSR = laborCostCalculatorSR.CalculateLaborDays(SqFtToBeSourceReduced, PersonnelRoundTripDays);
-
-			Decontamination.LaborCostCalculator laborCostCalculatorDC = new Decontamination.LaborCostCalculator();
+			double LaborDaysSR = laborCostCalculatorSR.CalculateLaborDays(SqMtToBeSourceReduced, PersonnelRoundTripDays);
 			double LaborDaysDC = laborCostCalculatorDC.CalculateLaborDays(PersonnelRoundTripDays);
 
-			double TotalPersonnel = 0;
-			for (int i = 0; i < PersonnelRequired.Length; i++)
-			{
-				TotalPersonnel += PersonnelRequired[i];
-			}
+			double TotalPersonnel = PersonnelRequired.Sum();
 
-			double CostPerPersonPerHour = 0;
-			for(int j = 0; j < PersonnelRequired.Length; j++)
-            {
-				CostPerPersonPerHour += (PersonnelRequired[j] * PersonnelHourlyRate[j]);
-            }
+			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
 			double LaborHours = (8 * (LaborDaysCS + LaborDaysSR + LaborDaysDC + PersonnelOverheadDays + PersonnelRoundTripDays));
 
-			return ((8 * (CalculateOnSiteDays(SqFtToBeSourceReduced, PersonnelRoundTripDays) + PersonnelRoundTripDays)) * CostPerPersonPerHour);
+			return ((8 * (CalculateOnSiteDays(SqMtToBeSourceReduced, PersonnelRoundTripDays) + PersonnelRoundTripDays)) * PersonnelHoursCost);
 		}
 	}
 }
