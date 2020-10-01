@@ -6,7 +6,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 	public class LaborCostCalculator
 	{
 		private double NumTeams { get; set; }
-		private double[] PersonnelRequired { get; set; }
+		private double[] PersonnelReqPerTeam { get; set; }
 		private double[] PersonnelHourlyRate { get; set; }
 		private double PersonnelOverhead { get; set; }
 		private double[] WorkDaysPerAppMethod { get; set; }
@@ -16,10 +16,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
         }
 
-		public LaborCostCalculator(double numTeams, double[] personnelRequired, double[] personnelHourlyRate, double personnelOverhead, double[] workDaysPerAppMethod)
+		public LaborCostCalculator(double numTeams, double[] personnelReqPerTeam, double[] personnelHourlyRate, double personnelOverhead, double[] workDaysPerAppMethod)
 		{
 			NumTeams = numTeams;
-			PersonnelRequired = personnelRequired;
+			PersonnelReqPerTeam = personnelReqPerTeam;
 			PersonnelHourlyRate = personnelHourlyRate;
 			PersonnelOverhead = personnelOverhead;
 			WorkDaysPerAppMethod = workDaysPerAppMethod;
@@ -27,7 +27,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
 		public double CalculateLaborCost(double PersonnelRoundTripDays)
 		{
-			var PersonnelHoursCost = PersonnelRequired.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
+			var PersonnelHoursCost = PersonnelReqPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
 			double TotalWorkDays = WorkDaysPerAppMethod.Sum();
 

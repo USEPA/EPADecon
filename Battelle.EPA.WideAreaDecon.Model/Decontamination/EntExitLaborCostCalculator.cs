@@ -5,9 +5,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 	public class EntExitLaborCostCalculator
 	{
 		private double NumTeams { get; set; }
-		private double[] PersonnelPerTeam { get; set; }
+		private double[] PersonnelReqPerTeam { get; set; }
 		private double NumEntriesPerTeamPerDay { get; set; }
-		private double TonsPerSqFt { get; set; }
+		private double TonsPerSqMt { get; set; }
 		private double HoursPerEntryPerTeam { get; set; }
 		private double HoursPerExitPerTeam { get; set; }
 		private double[] PersonnelHourlyRate { get; set; }
@@ -18,11 +18,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
         }
 
-		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelPerTeam, double numEntriesPerTeamPerDay, double tonsPerSqFt, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate, double[] workDaysPerAppMethod)
+		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelReqPerTeam, double numEntriesPerTeamPerDay, double tonsPerSqMt, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate, double[] workDaysPerAppMethod)
 		{
 			NumTeams = teamsRequired;
-			PersonnelPerTeam = personnelPerTeam;
+			PersonnelReqPerTeam = personnelReqPerTeam;
 			NumEntriesPerTeamPerDay = numEntriesPerTeamPerDay;
+			TonsPerSqMt = tonsPerSqMt;
 			HoursPerEntryPerTeam = hoursPerEntryPerTeam;
 			HoursPerExitPerTeam = hoursPerExitPerTeam;
 			PersonnelHourlyRate = personnelHourlyRate;

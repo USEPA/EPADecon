@@ -5,7 +5,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
 	public class LaborCostCalculator
 	{
-		private double[] PersonnelRequired { get; set; }
+		private double[] PersonnelReqPerTeam { get; set; }
 		private double PersonnelOverheadDays { get; set; }
 		private double[] PersonnelHourlyRate { get; set; }
 
@@ -18,9 +18,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 
         }
 
-		public LaborCostCalculator(double[] personnelRequired, double personnelOverheadDays, double[] personnelHourlyRate)
+		public LaborCostCalculator(double[] personnelReqPerTeam, double personnelOverheadDays, double[] personnelHourlyRate)
 		{
-			PersonnelRequired = personnelRequired;
+			PersonnelReqPerTeam = personnelReqPerTeam;
 			PersonnelOverheadDays = personnelOverheadDays;
 			PersonnelHourlyRate = personnelHourlyRate;
 		}
@@ -40,9 +40,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 			double LaborDaysSR = laborCostCalculatorSR.CalculateLaborDays(SqMtToBeSourceReduced, PersonnelRoundTripDays);
 			double LaborDaysDC = laborCostCalculatorDC.CalculateLaborDays(PersonnelRoundTripDays);
 
-			double TotalPersonnel = PersonnelRequired.Sum();
+			double TotalPersonnel = PersonnelReqPerTeam.Sum();
 
-			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
+			var PersonnelHoursCost = PersonnelReqPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
 			double LaborHours = (8 * (LaborDaysCS + LaborDaysSR + LaborDaysDC + PersonnelOverheadDays + PersonnelRoundTripDays));
 

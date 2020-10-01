@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
-using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using System.Linq;
+using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
@@ -39,15 +38,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
 		public double CalculateLaborCost(double PersonnelRoundTripDays)
 		{
-			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
+			var PersonnelHoursCost = PersonnelReqPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
 			return ((suppliesCostCalculator.WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8) * NumTeams * (PersonnelHoursCost);
 
 		}
 
-		public double CalculateEntExitLaborCost()
+		//return double if Elabor cost is not longer readonly
+		public CalculateEntExitLaborCost()
         {
-			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
+			var PersonnelHoursCost = PersonnelReqPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
 			EntExitLaborCost = ((suppliesCostCalculator.WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (suppliesCostCalculator.WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (PersonnelHoursCost);
 		}
