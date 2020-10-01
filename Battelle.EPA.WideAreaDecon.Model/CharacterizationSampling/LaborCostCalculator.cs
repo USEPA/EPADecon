@@ -32,8 +32,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 			HoursPerExitPerTeam = hoursPerExitPerTeam;
 			PersonnelHourlyRate = personnelHourlyRate;
 
-
-
 		}
 
 		public double CalculateLaborCost(double PersonnelRoundTripDays)
@@ -45,7 +43,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		}
 
 		//return double if Elabor cost is not longer readonly
-		public CalculateEntExitLaborCost()
+		public void CalculateEntExitLaborCost()
         {
 			var PersonnelHoursCost = PersonnelReqPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 

@@ -22,5 +22,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
 			WorkDays = ((SqMtToBeSourceReduced * TonsPerSqMt) / (8 * TonsRemovedPerHrPerTeam * TeamsRequired));
 		}
+
+		public void CalculateWorkDays()
+        {
+			WorkDays = ((SqMtToBeSourceReduced * TonsPerSqMt) / (8 * TonsRemovedPerHrPerTeam * TeamsRequired));
+		}
 	}
 }
