@@ -9,15 +9,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         [SetUp]
         public void Setup()
         {
-            double[] arr1 = { 2.0, 4.0, 6.0, 2.0 };
-            double[] arr2 = { 2.0, 5.0, 3.0, 4.0 };
-            Calculator = new LaborCostCalculator(arr1, 10.0, arr2);
+            double[] personnelRequiredPerTeam = { 1.0, 0.0, 2.0, 2.0, 4.0 };
+            double personnelOverheadDays = 8.0;
+            double[] personnelHourlyRate = { 150.0, 90.0, 110.0, 130.0, 190.0 };
+            Calculator = new LaborCostCalculator(personnelRequiredPerTeam, personnelOverheadDays, personnelHourlyRate);
 
         }
         [Test]
         public void CalculateCost()
         {
-            Assert.AreEqual((75550/3), Calculator.CalculateLaborCost(100, 5.0), 1e-6, "Incorrect Labor cost calculated");
+            double sqMToBeSourceReduced = 8000.0;
+            double roundtripDays = 2.0;
+            Assert.AreEqual(60264.68, Calculator.CalculateLaborCost(sqMToBeSourceReduced, roundtripDays), 1e-6, "Incorrect Labor cost calculated");
         }
     }
 }
