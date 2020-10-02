@@ -4,7 +4,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
 	public class SuppliesCostCalculator
 	{
-		private double DeconAgentCostPerGallon { get; set; }
+		private double DeconAgentCostPerVolume { get; set; }
 		private double DeconMaterialsCost { get; set; }
 		private double DeconAgentVolume { get; set; }
 		private double[] DeconAgentVolumeBySurface{ get; set; }
@@ -14,9 +14,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
         }
 
-		public SuppliesCostCalculator(double deconAgentCostPerGallon, double deconMaterialsCost, double deconAgentVolume, double[] deconAgentVolumeBySurface)
+		public SuppliesCostCalculator(double deconAgentCostPerVolume, double deconMaterialsCost, double deconAgentVolume, double[] deconAgentVolumeBySurface)
 		{
-			DeconAgentCostPerGallon = deconAgentCostPerGallon;
+			DeconAgentCostPerVolume = deconAgentCostPerVolume;
 			DeconMaterialsCost = deconMaterialsCost;
 			DeconAgentVolume = deconAgentVolume;
 			DeconAgentVolumeBySurface = deconAgentVolumeBySurface;
@@ -27,12 +27,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         {
 			if (Fogging)
             {
-				return (DeconMaterialsCost + (RoomVolume * DeconAgentVolume * DeconAgentCostPerGallon));
+				return (DeconMaterialsCost + (RoomVolume * DeconAgentVolume * DeconAgentCostPerVolume));
             }
 			else
             {
 				var AgentNeededPerTreatment = DeconAgentVolumeBySurface.Zip(PercentOfRoomBySurface, (x, y) => x * y).Sum();
-				return (DeconMaterialsCost + (AgentNeededPerTreatment * DeconAgentCostPerGallon));
+				return (DeconMaterialsCost + (AgentNeededPerTreatment * DeconAgentCostPerVolume));
 
 			}
         }

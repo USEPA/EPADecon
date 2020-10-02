@@ -4,10 +4,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
     public class AnalysisQuantCostCalculator
     {
-        private double SqFtPerWipe { get; set; }
-        private double SqFtPerHEPASock { get; set; }
-        private double SqFtToBeWiped { get; set; }
-        private double SqFtToBeHEPA { get; set; }
+        private double SAPerWipe { get; set; }
+        private double SAPerHEPASock { get; set; }
+        private double SAToBeWiped { get; set; }
+        private double SAToBeHEPA { get; set; }
         private double CostPerWipeAnalysis { get; set; }
         private double CostPerHEPAAnalysis { get; set; }
 
@@ -16,19 +16,19 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
         }
 
-        public AnalysisQuantCostCalculator(double sqFtPerWipe, double sqFtPerHEPASock, double sqFtToBeWiped, double sqFtToBeHEPA, double costPerWipeAnalysis, double costPerHEPAAnalysis)
+        public AnalysisQuantCostCalculator(double saPerWipe, double saPerHEPASock, double saToBeWiped, double saToBeHEPA, double costPerWipeAnalysis, double costPerHEPAAnalysis)
         {
-            SqFtPerWipe = sqFtPerWipe;
-            SqFtPerHEPASock = sqFtPerHEPASock;
-            SqFtToBeWiped = sqFtToBeWiped;
-            SqFtToBeHEPA = sqFtToBeHEPA;
+            SAPerWipe = saPerWipe;
+            SAPerHEPASock = saPerHEPASock;
+            SAToBeWiped = saToBeWiped;
+            SAToBeHEPA = saToBeHEPA;
             CostPerWipeAnalysis = costPerWipeAnalysis;
             CostPerHEPAAnalysis = costPerHEPAAnalysis;
         }
 
         public double CalculateAnalysisQuantCost()
         {
-            return ((SqFtToBeWiped / SqFtPerWipe) * CostPerWipeAnalysis) + ((SqFtToBeHEPA / SqFtPerHEPASock) * CostPerHEPAAnalysis);
+            return ((SAToBeWiped / SAPerWipe) * CostPerWipeAnalysis) + ((SAToBeHEPA / SAPerHEPASock) * CostPerHEPAAnalysis);
         }
     }
 }

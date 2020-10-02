@@ -25,19 +25,19 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 			PersonnelHourlyRate = personnelHourlyRate;
 		}
 
-		public double CalculateOnSiteDays(double SqMtToBeSourceReduced, double PersonnelRoundTripDays)
+		public double CalculateOnSiteDays(double SAToBeSourceReduced, double PersonnelRoundTripDays)
         {
 			double LaborDaysCS = laborCostCalculatorCS.CalculateLaborDays(PersonnelRoundTripDays);
-			double LaborDaysSR = laborCostCalculatorSR.CalculateLaborDays(SqMtToBeSourceReduced, PersonnelRoundTripDays);
+			double LaborDaysSR = laborCostCalculatorSR.CalculateLaborDays(SAToBeSourceReduced, PersonnelRoundTripDays);
 			double LaborDaysDC = laborCostCalculatorDC.CalculateLaborDays(PersonnelRoundTripDays);
 
 			return (LaborDaysCS + LaborDaysSR + LaborDaysDC + PersonnelOverheadDays);
 		}
 
-		public double CalculateLaborCost(double SqMtToBeSourceReduced, double PersonnelRoundTripDays)
+		public double CalculateLaborCost(double SAToBeSourceReduced, double PersonnelRoundTripDays)
 		{
 			double LaborDaysCS = laborCostCalculatorCS.CalculateLaborDays(PersonnelRoundTripDays);
-			double LaborDaysSR = laborCostCalculatorSR.CalculateLaborDays(SqMtToBeSourceReduced, PersonnelRoundTripDays);
+			double LaborDaysSR = laborCostCalculatorSR.CalculateLaborDays(SAToBeSourceReduced, PersonnelRoundTripDays);
 			double LaborDaysDC = laborCostCalculatorDC.CalculateLaborDays(PersonnelRoundTripDays);
 
 			double TotalPersonnel = PersonnelReqPerTeam.Sum();
@@ -46,7 +46,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 
 			double LaborHours = (8 * (LaborDaysCS + LaborDaysSR + LaborDaysDC + PersonnelOverheadDays + PersonnelRoundTripDays));
 
-			return ((8 * (CalculateOnSiteDays(SqMtToBeSourceReduced, PersonnelRoundTripDays) + PersonnelRoundTripDays)) * PersonnelHoursCost);
+			return ((8 * (CalculateOnSiteDays(SAToBeSourceReduced, PersonnelRoundTripDays) + PersonnelRoundTripDays)) * PersonnelHoursCost);
 		}
 	}
 }

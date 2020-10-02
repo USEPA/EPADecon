@@ -15,9 +15,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 			SuppliesCostPerDay = suppliesCostPerDay;
         }
 
-		public double CalculateSuppliesCost(double SqMtToBeSourceReduced, double PersonnelRoundTripDays)
+		public double CalculateSuppliesCost(double SAToBeSourceReduced, double PersonnelRoundTripDays)
         {
-			double OnSiteDays = laborCostCalculator.CalculateOnSiteDays(SqMtToBeSourceReduced, PersonnelRoundTripDays);
+			double OnSiteDays = laborCostCalculator.CalculateOnSiteDays(SAToBeSourceReduced, PersonnelRoundTripDays);
 
 			return OnSiteDays * (EquipmentRentalCostPerDay * SuppliesCostPerDay);
 

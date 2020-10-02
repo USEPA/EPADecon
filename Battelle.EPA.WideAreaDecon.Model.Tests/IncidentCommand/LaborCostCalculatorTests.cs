@@ -18,9 +18,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         [Test]
         public void CalculateCost()
         {
-            double sqMToBeSourceReduced = 8000.0;
+            double saToBeSourceReduced = 8000.0;
             double roundtripDays = 2.0;
-            Assert.AreEqual(60264.68, Calculator.CalculateLaborCost(sqMToBeSourceReduced, roundtripDays), 1e-6, "Incorrect Labor cost calculated");
+            Assert.AreEqual(60264.68, Calculator.CalculateLaborCost(saToBeSourceReduced, roundtripDays), 1e-6, "Incorrect Labor cost calculated");
         }
     }
 }

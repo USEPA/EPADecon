@@ -27,7 +27,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 			CostPerPPE = costPerPPE;		
 		}
 
-		public double CalculateEntranceExitCost(double SqMtToBeSourceReduced, double[] PPE_EachLevelPerTeam)
+		public double CalculateEntranceExitCost(double SAToBeSourceReduced, double[] PPE_EachLevelPerTeam)
         {
 			double TotalPersonnel = PersonnelReqPerTeam.Sum();
 
@@ -35,7 +35,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
 			var TotalCostPPE = TotalPPE_PerLevel.Zip(CostPerPPE, (ppe, cost) => ppe * cost).Sum();
 
-			return entExitLaborCostCalculator.CalculateEntExitLaborCost(SqMtToBeSourceReduced) + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
+			return entExitLaborCostCalculator.CalculateEntExitLaborCost(SAToBeSourceReduced) + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
 		}
 	}
 }

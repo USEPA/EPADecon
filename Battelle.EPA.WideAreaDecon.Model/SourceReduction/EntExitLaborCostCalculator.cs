@@ -7,7 +7,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private double TeamsRequired { get; set; }
 		private double[] PersonnelPerTeam { get; set; }
 		private double NumEntriesPerTeamPerDay { get; set; }
-		private double TonsPerSqMt { get; set; }
+		private double MassPerSA { get; set; }
 		private double HoursPerEntryPerTeam { get; set; }
 		private double HoursPerExitPerTeam { get; set; }
 		private double[] PersonnelHourlyRate { get; set; }
@@ -19,18 +19,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
         }
 
-		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelPerTeam, double[] personnelHourlyRate, double numEntriesPerTeamPerDay, double tonsPerSqMt, double hoursPerEntryPerTeam, double hoursPerExitPerTeam)
+		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelPerTeam, double[] personnelHourlyRate, double numEntriesPerTeamPerDay, double massPerSA, double hoursPerEntryPerTeam, double hoursPerExitPerTeam)
 		{
 			TeamsRequired = teamsRequired;
 			PersonnelPerTeam = personnelPerTeam;
 			NumEntriesPerTeamPerDay = numEntriesPerTeamPerDay;
-			TonsPerSqMt = tonsPerSqMt;
+			MassPerSA = massPerSA;
 			HoursPerEntryPerTeam = hoursPerEntryPerTeam;
 			HoursPerExitPerTeam = hoursPerExitPerTeam;
 			PersonnelHourlyRate = personnelHourlyRate;
 		}
 
-		public double CalculateEntExitLaborCost(double SqMtToBeSourceReduced)
+		public double CalculateEntExitLaborCost(double SAToBeSourceReduced)
 		{
 
 			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();

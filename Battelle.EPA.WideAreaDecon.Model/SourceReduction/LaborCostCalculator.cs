@@ -8,7 +8,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private double PersonnelOverhead { get; set; }
 		private double[] PersonnelPerTeam { get; set; }
 		private double[] PersonnelHourlyRate { get; set; }
-		private double TonsPerSqMt { get; set; }
+		private double MassPerSA { get; set; }
 
 		WorkDaysCalculator workDaysCalculator = new WorkDaysCalculator();
 
@@ -17,23 +17,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
         }
 
-		public LaborCostCalculator(double teamsRequired, double personnelOverhead, double[] personnelPerTeam, double[] personnelHourlyRate, double tonsPerSqMt)
+		public LaborCostCalculator(double teamsRequired, double personnelOverhead, double[] personnelPerTeam, double[] personnelHourlyRate, double massPerSA)
 		{
 			TeamsRequired = teamsRequired;
 			PersonnelOverhead = personnelOverhead;
 			PersonnelPerTeam = personnelPerTeam;
 			PersonnelHourlyRate = personnelHourlyRate;
-			TonsPerSqMt = tonsPerSqMt;
+			MassPerSA = massPerSA;
 		}
 
-		public double CalculateLaborCost(double PersonnelRoundTripDays, double SqMtToBeSourceReduced, double CostPerTonRemoved)
+		public double CalculateLaborCost(double PersonnelRoundTripDays, double SAToBeSourceReduced, double CostPerTonRemoved)
 		{
 			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
-			return (((workDaysCalculator.WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8 * TeamsRequired * PersonnelHoursCost) + (SqMtToBeSourceReduced * TonsPerSqMt * CostPerTonRemoved));
+			return (((workDaysCalculator.WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8 * TeamsRequired * PersonnelHoursCost) + (SAToBeSourceReduced * MassPerSA * CostPerTonRemoved));
 		}
 
-		public double CalculateLaborDays(double PersonnelRoundTripDays, double SqMtToBeSourceReduced)
+		public double CalculateLaborDays(double PersonnelRoundTripDays, double SAToBeSourceReduced)
         {
 			return workDaysCalculator.WorkDays + PersonnelOverhead + PersonnelRoundTripDays;
         }
