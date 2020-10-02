@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 
@@ -15,6 +15,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		private readonly double[] PersonnelHourlyRate;
 
 		readonly SuppliesCostCalculator suppliesCostCalculator = new SuppliesCostCalculator();
+
+		public LaborCostCalculator()
+        {
+
+        }
 
 		public LaborCostCalculator(double numTeams, double[] personnelReqPerTeam, double personnelOverhead, double numEntriesPerTeamPerDay, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate)
 		{
