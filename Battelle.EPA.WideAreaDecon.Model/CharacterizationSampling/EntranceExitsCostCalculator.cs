@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
+using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
-	public class EntrancesExitsCostCalculator
+	public class EntrancesExitsCostCalculator : IEntrancesExitsCostCalculator
 	{
 		private readonly double NumTeams;
 		private readonly double[] PersonnelReqPerTeam;
@@ -12,11 +13,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		private readonly double[] CostPerPPE;
 
 		readonly LaborCostCalculator laborCostCalulator = new LaborCostCalculator();
-
-		public EntrancesExitsCostCalculator()
-        {
-
-        }
 
 		public EntrancesExitsCostCalculator(double numTeams, double[] personnelReqPerTeam, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE)
 		{
