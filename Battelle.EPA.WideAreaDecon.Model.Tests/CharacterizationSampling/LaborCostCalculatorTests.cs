@@ -1,17 +1,22 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
     public class LaborCostCalculatorTests
     {
-        private LaborCostCalculator Calculator { get; set; }
+        private LaborCostCalculator LaborCalculator { get; set; }
         [SetUp]
         public void Setup()
         {
-            double[] arr1 = { 4.0, 6.0, 5.0, 4.0 };
-            double[] arr2 = { 10.0, 8.0, 15.0, 20.0 };
-            Calculator = new LaborCostCalculator(5.0, arr1, 10, 2, .5, .5, arr2);
+            double numTeams = 4.0;
+            double[] personnelRequiredPerTeam = { 0.3, 0.0, 1.0, 2.0, 2.0 };
+            double personnelOverhead = 0.5;
+            double entriesPerTeam = 4.0;
+            double hoursEntering = 1.0;
+            double hoursExiting = 1.0;
+            double[] personnelHourlyRate = { 150.0, 90.0, 110.0, 130.0, 190.0 };
+            LaborCalculator = new LaborCostCalculator(numTeams, personnelRequiredPerTeam, personnelOverhead, entriesPerTeam, hoursEntering, hoursExiting, personnelHourlyRate);
         }
 
         [Test]
