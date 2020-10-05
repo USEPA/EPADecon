@@ -5,14 +5,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
 	public class WorkDaysCalculator : IWorkDaysCalculator
 	{
-		private double TeamsRequired { get; set; }
-		private double MassRemovedPerHrPerTeam { get; set; }
-		private double MassPerSA { get; set; }
+		private readonly double TeamsRequired;
+		private readonly double MassRemovedPerHrPerTeam;
+		private readonly double MassPerSA;
 
 		public WorkDaysCalculator(double teamsRequired, double massRemovedPerHrPerTeam, double massPerSA)
 		{
 			TeamsRequired = teamsRequired;
-			MassRemovedPerHrPerTeam = MassRemovedPerHrPerTeam;
+			MassRemovedPerHrPerTeam = massRemovedPerHrPerTeam;
 			MassPerSA = massPerSA;
 		}
 

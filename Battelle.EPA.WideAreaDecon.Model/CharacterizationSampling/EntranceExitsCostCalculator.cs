@@ -12,7 +12,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		private readonly double CostPerRespirator;
 		private readonly double[] CostPerPPE;
 
-		private readonly LaborCostCalculator LaborCostCalulator = new LaborCostCalculator();
+		private readonly LaborCostCalculator LaborCostCalulator;
 
 		public EntrancesExitsCostCalculator(double numTeams, double[] personnelReqPerTeam, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE)
 		{

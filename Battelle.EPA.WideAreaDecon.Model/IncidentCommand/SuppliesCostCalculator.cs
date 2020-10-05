@@ -8,7 +8,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 		private readonly double EquipmentRentalCostPerDay;
 		private readonly double SuppliesCostPerDay;
 
-		private readonly LaborCostCalculator LaborCostCalculator = new LaborCostCalculator();
+		private readonly LaborCostCalculator LaborCostCalculator;
 
 		public SuppliesCostCalculator(double equipmentRentalCostPerDay, double suppliesCostPerDay)
 		{

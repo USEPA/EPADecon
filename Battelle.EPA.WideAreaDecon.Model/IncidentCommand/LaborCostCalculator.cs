@@ -10,16 +10,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
         private readonly double[] PersonnelHourlyRate;
 
         private readonly CharacterizationSampling.ILaborCostCalculator LaborCostCalculatorCS;
-		private readonly SourceReduction.LaborCostCalculator LaborCostCalculatorSR;
-		private readonly Decontamination.LaborCostCalculator LaborCostCalculatorDC;
+		private readonly SourceReduction.ILaborCostCalculator LaborCostCalculatorSR;
+		private readonly Decontamination.ILaborCostCalculator LaborCostCalculatorDC;
 
         public LaborCostCalculator(
             double[] personnelReqPerTeam, 
             double personnelOverheadDays, 
             double[] personnelHourlyRate,
             CharacterizationSampling.ILaborCostCalculator laborCostCalculatorCs,
-            SourceReduction.LaborCostCalculator laborCostCalculatorSr,
-            Decontamination.LaborCostCalculator laborCostCalculatorDc)
+            SourceReduction.ILaborCostCalculator laborCostCalculatorSr,
+            Decontamination.ILaborCostCalculator laborCostCalculatorDc)
 		{
 			PersonnelReqPerTeam = personnelReqPerTeam;
 			PersonnelOverheadDays = personnelOverheadDays;

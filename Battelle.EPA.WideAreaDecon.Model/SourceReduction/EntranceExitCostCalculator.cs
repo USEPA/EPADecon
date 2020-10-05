@@ -12,7 +12,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private readonly double CostPerRespirator;
 		private readonly double[] CostPerPPE;
 
-		EntExitLaborCostCalculator EntExitLaborCostCalculator = new EntExitLaborCostCalculator();
+		private readonly EntExitLaborCostCalculator EntExitLaborCostCalculator;
 
 		public EntranceExitCostCalculator(double teamsRequired, double[] personnelReqPerTeam, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE )
 		{

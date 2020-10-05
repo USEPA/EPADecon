@@ -11,7 +11,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 		private readonly double CostPerRespirator;
 		private readonly double[] CostPerPPE;
 
-		readonly EntExitLaborCostCalculator EntExitLaborCostCalculator = new EntExitLaborCostCalculator();
+		private readonly EntExitLaborCostCalculator EntExitLaborCostCalculator;
 
 		
 		public EntranceExitCostCalculator(double numTeams, double[] personnelReqPerTeam, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE)

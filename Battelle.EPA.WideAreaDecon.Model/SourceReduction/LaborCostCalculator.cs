@@ -11,7 +11,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private readonly double[] PersonnelHourlyRate;
 		private readonly double MassPerSA;
 
-		WorkDaysCalculator WorkDaysCalculator = new WorkDaysCalculator();
+		private readonly WorkDaysCalculator WorkDaysCalculator;
 
 		public LaborCostCalculator(double teamsRequired, double personnelOverhead, double[] personnelPerTeam, double[] personnelHourlyRate, double massPerSA)
 		{

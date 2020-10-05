@@ -14,7 +14,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		private readonly double HoursPerExitPerTeam;
 		private readonly double[] PersonnelHourlyRate;
 
-		readonly SuppliesCostCalculator SuppliesCostCalculator = new SuppliesCostCalculator();
+		private readonly SuppliesCostCalculator SuppliesCostCalculator;
 
 		public LaborCostCalculator(double numTeams, double[] personnelReqPerTeam, double personnelOverhead, double numEntriesPerTeamPerDay, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate)
 		{

@@ -13,7 +13,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private readonly double HoursPerExitPerTeam;
 		private readonly double[] PersonnelHourlyRate;
 
-		WorkDaysCalculator WorkDaysCalculator = new WorkDaysCalculator();
+		private readonly WorkDaysCalculator WorkDaysCalculator;
 		
 		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelPerTeam, double[] personnelHourlyRate, double numEntriesPerTeamPerDay, double massPerSA, double hoursPerEntryPerTeam, double hoursPerExitPerTeam)
 		{
