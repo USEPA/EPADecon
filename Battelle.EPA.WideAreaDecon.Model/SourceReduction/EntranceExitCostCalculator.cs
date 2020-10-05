@@ -3,20 +3,15 @@ using System.Linq;
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
 
-	public class EntranceExitCostCalculator
+	public class EntranceExitCostCalculator : IEntranceExitCostCalculator 
 	{
-		private double NumTeams { get; set; }
-		private double[] PersonnelReqPerTeam { get; set; }
-		private double RespiratorsPerPerson { get; set; }
-		private double CostPerRespirator { get; set; }
-		private double[] CostPerPPE { get; set; }
+		private readonly double TeamsRequired;
+		private readonly double[] PersonnelPerTeam;
+		private readonly double RespiratorsPerPerson;
+		private readonly double CostPerRespirator;
+		private readonly double[] CostPerPPE;
 
 		EntExitLaborCostCalculator entExitLaborCostCalculator = new EntExitLaborCostCalculator();
-
-		public EntranceExitCostCalculator()
-        {
-
-        }
 
 		public EntranceExitCostCalculator(double numTeams, double[] personnelReqPerTeam, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE )
 		{
@@ -35,7 +30,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
 			var TotalCostPPE = TotalPPE_PerLevel.Zip(CostPerPPE, (ppe, cost) => ppe * cost).Sum();
 
-			return entExitLaborCostCalculator.CalculateEntExitLaborCost(SAToBeSourceReduced) + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
+			double EntExitLabor = entExitLaborCostCalculator.CalculateEntExitLaborCost(SAToBeSourceReduced);
+
+			return EntExitLabor + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
 		}
 	}
 }

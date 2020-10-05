@@ -2,23 +2,18 @@
 using System.Linq;
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
-	public class EntExitLaborCostCalculator
+	public class EntExitLaborCostCalculator : IEntExitLaborCostCalculator
 	{
-		private double TeamsRequired { get; set; }
-		private double[] PersonnelPerTeam { get; set; }
-		private double NumEntriesPerTeamPerDay { get; set; }
-		private double MassPerSA { get; set; }
-		private double HoursPerEntryPerTeam { get; set; }
-		private double HoursPerExitPerTeam { get; set; }
-		private double[] PersonnelHourlyRate { get; set; }
+		private readonly double TeamsRequired;
+		private readonly double[] PersonnelPerTeam;
+		private readonly double NumEntriesPerTeamPerDay;
+		private readonly double MassPerSA;
+		private readonly double HoursPerEntryPerTeam;
+		private readonly double HoursPerExitPerTeam;
+		private readonly double[] PersonnelHourlyRate;
 
 		WorkDaysCalculator workDaysCalculator = new WorkDaysCalculator();
-
-		public EntExitLaborCostCalculator()
-        {
-
-        }
-
+		
 		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelPerTeam, double[] personnelHourlyRate, double numEntriesPerTeamPerDay, double massPerSA, double hoursPerEntryPerTeam, double hoursPerExitPerTeam)
 		{
 			TeamsRequired = teamsRequired;
@@ -35,7 +30,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
 			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
-			return ((workDaysCalculator.WorkDays * NumEntriesPerTeamPerDay * TeamsRequired * HoursPerEntryPerTeam) + (workDaysCalculator.WorkDays * NumEntriesPerTeamPerDay * TeamsRequired * HoursPerExitPerTeam)) * (PersonnelHoursCost);
+			double WorkDays = workDaysCalculator.CalculateWorkDays(double SAToBeSourceReduced);
+
+			return ((WorkDays * NumEntriesPerTeamPerDay * TeamsRequired * HoursPerEntryPerTeam) + (workDaysCalculator.WorkDays * NumEntriesPerTeamPerDay * TeamsRequired * HoursPerExitPerTeam)) * (PersonnelHoursCost);
 		}
 	}
 }
