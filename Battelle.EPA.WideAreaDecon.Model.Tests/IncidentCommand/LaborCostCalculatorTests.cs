@@ -4,6 +4,17 @@ using LaborCostCalculator = Battelle.EPA.WideAreaDecon.Model.IncidentCommand.Lab
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {
+    class MockCsLaborCostCalculator : ILaborCostCalculator
+    {
+        public double CalculateLaborCost(double PersonnelRoundTripDays)
+        {
+            return 1.0 * PersonnelRoundTripDays;
+        }
+
+        public double CalculateEntExitLaborCost() => 1.0;
+
+        public double CalculateLaborDays(double PersonnelRoundTripDays) => 1.0;
+    }
     public class LaborCostCalculatorTests
     {
         private LaborCostCalculator Calculator { get; set; }
