@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using namespace Battelle.EPA.WideAreaDecon.Model.Decontamination;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {

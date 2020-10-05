@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction;
 
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {

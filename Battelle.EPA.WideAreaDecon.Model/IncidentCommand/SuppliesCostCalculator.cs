@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
 
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
@@ -9,7 +8,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 		private readonly double EquipmentRentalCostPerDay;
 		private readonly double SuppliesCostPerDay;
 
-		LaborCostCalculator LaborCostCalculator = new LaborCostCalculator();
+		private readonly LaborCostCalculator LaborCostCalculator = new LaborCostCalculator();
 
 		public SuppliesCostCalculator(double equipmentRentalCostPerDay, double suppliesCostPerDay)
 		{

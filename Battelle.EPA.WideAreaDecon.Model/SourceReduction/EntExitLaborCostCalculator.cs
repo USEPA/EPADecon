@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
 
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
@@ -32,7 +31,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
 			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
-			double WorkDays = WorkDaysCalculator.CalculateWorkDays(double SAToBeSourceReduced);
+			double WorkDays = WorkDaysCalculator.CalculateWorkDays(SAToBeSourceReduced);
 
 			return ((WorkDays * NumEntriesPerTeamPerDay * TeamsRequired * HoursPerEntryPerTeam) + (WorkDays * NumEntriesPerTeamPerDay * TeamsRequired * HoursPerExitPerTeam)) * (PersonnelHoursCost);
 		}

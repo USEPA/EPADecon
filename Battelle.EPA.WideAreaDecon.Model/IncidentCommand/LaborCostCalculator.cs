@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
 
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {

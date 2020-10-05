@@ -15,7 +15,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		private readonly double[] PersonnelHourlyRate;
 
 		readonly SuppliesCostCalculator SuppliesCostCalculator = new SuppliesCostCalculator();
-		private readonly double WorkDays = SuppliesCostCalculator.CalculateWorkDays();
 
 		public LaborCostCalculator(double numTeams, double[] personnelReqPerTeam, double personnelOverhead, double numEntriesPerTeamPerDay, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate)
 		{
@@ -33,6 +32,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		{
 			var PersonnelHoursCost = PersonnelReqPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
+			double WorkDays = SuppliesCostCalculator.CalculateWorkDays();
+
 			return ((WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8) * NumTeams * (PersonnelHoursCost);
 
 		}
@@ -41,12 +42,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		public double CalculateEntExitLaborCost()
         {
 			var PersonnelHoursCost = PersonnelReqPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
+
+			double WorkDays = SuppliesCostCalculator.CalculateWorkDays();
+
 			return ((WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (PersonnelHoursCost);
 
 		}
 
 		public double CalculateLaborDays(double PersonnelRoundTripDays)
         {
+			double WorkDays = SuppliesCostCalculator.CalculateWorkDays();
+
 			return WorkDays + PersonnelOverhead + PersonnelRoundTripDays;
         }
 	}

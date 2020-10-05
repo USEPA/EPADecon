@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using namespace Battelle.EPA.WideAreaDecon.Model.Decontamination;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
