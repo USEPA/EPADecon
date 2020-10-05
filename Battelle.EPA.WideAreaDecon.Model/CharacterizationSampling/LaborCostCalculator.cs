@@ -4,7 +4,7 @@ using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
-	public class LaborCostCalculator
+	public class LaborCostCalculator : ILaborCostCalculator
 	{
 		private readonly double NumTeams;
 		private readonly double[] PersonnelReqPerTeam;
@@ -13,6 +13,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		private readonly double HoursPerEntryPerTeam;
 		private readonly double HoursPerExitPerTeam;
 		private readonly double[] PersonnelHourlyRate;
+        private readonly double WorkDays;
 
 		readonly SuppliesCostCalculator suppliesCostCalculator = new SuppliesCostCalculator();
 
