@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Linq;
+
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
-	public class LaborCostCalculator 
+	public class LaborCostCalculator : ILaborCostCalculator
 	{
-		private double TeamsRequired { get; set; }
-		private double PersonnelOverhead { get; set; }
-		private double[] PersonnelPerTeam { get; set; }
-		private double[] PersonnelHourlyRate { get; set; }
-		private double MassPerSA { get; set; }
+		private readonly double TeamsRequired;
+		private readonly double PersonnelOverhead;
+		private readonly double[] PersonnelPerTeam;
+		private readonly double[] PersonnelHourlyRate;
+		private readonly double MassPerSA;
 
-		WorkDaysCalculator workDaysCalculator = new WorkDaysCalculator();
-
-		public LaborCostCalculator()
-        {
-
-        }
+		private readonly WorkDaysCalculator WorkDaysCalculator;
 
 		public LaborCostCalculator(double teamsRequired, double personnelOverhead, double[] personnelPerTeam, double[] personnelHourlyRate, double massPerSA)
 		{
@@ -28,14 +24,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
 		public double CalculateLaborCost(double PersonnelRoundTripDays, double SAToBeSourceReduced, double CostPerTonRemoved)
 		{
+			double WorkDays = WorkDaysCalculator.CalculateWorkDays(SAToBeSourceReduced); 
+
 			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
-			return (((workDaysCalculator.WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8 * TeamsRequired * PersonnelHoursCost) + (SAToBeSourceReduced * MassPerSA * CostPerTonRemoved));
+			return (((WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8 * TeamsRequired * PersonnelHoursCost) + (SAToBeSourceReduced * MassPerSA * CostPerTonRemoved));
 		}
 
 		public double CalculateLaborDays(double PersonnelRoundTripDays, double SAToBeSourceReduced)
         {
-			return workDaysCalculator.WorkDays + PersonnelOverhead + PersonnelRoundTripDays;
+			double WorkDays = WorkDaysCalculator.CalculateWorkDays(SAToBeSourceReduced);
+
+			return WorkDays + PersonnelOverhead + PersonnelRoundTripDays;
         }
 	}
 }

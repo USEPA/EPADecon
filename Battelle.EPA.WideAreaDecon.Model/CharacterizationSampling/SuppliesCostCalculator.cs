@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
+using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
-    public class SuppliesCostCalculator
+    public class SuppliesCostCalculator : ISuppliesCostCalculator
     {
         private readonly double NumTeams;
         private readonly double SAPerWipe;
@@ -14,11 +16,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private readonly double HEPARentalCostPerDay;
         private readonly double SAToBeWiped;
         private readonly double SAToBeHEPA;
-
-        public SuppliesCostCalculator()
-        {
-
-        }
 
         public SuppliesCostCalculator(double numTeams, double saPerWipe, double saPerHEPASock, double wipesPerHrPerTeam, double hepaSocksPerHrPerTeam,
             double costPerWipe, double costPerVacuum, double hepaRentalCostPerDay, double saToBeWiped, double saToBeHEPA)

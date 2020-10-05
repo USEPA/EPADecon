@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
+
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
-	public class SuppliesCostCalculator
+	public class SuppliesCostCalculator : ISuppliesCostCalculator
 	{
-		private double EquipmentRentalCostPerDay { get; set; }
-		private double SuppliesCostPerDay { get; set; }
+		private readonly double EquipmentRentalCostPerDay;
+		private readonly double SuppliesCostPerDay;
 
-		LaborCostCalculator laborCostCalculator = new LaborCostCalculator();
+		private readonly LaborCostCalculator LaborCostCalculator;
 
 		public SuppliesCostCalculator(double equipmentRentalCostPerDay, double suppliesCostPerDay)
 		{
@@ -17,7 +18,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 
 		public double CalculateSuppliesCost(double SAToBeSourceReduced, double PersonnelRoundTripDays)
         {
-			double OnSiteDays = laborCostCalculator.CalculateOnSiteDays(SAToBeSourceReduced, PersonnelRoundTripDays);
+			double OnSiteDays = LaborCostCalculator.CalculateOnSiteDays(SAToBeSourceReduced, PersonnelRoundTripDays);
 
 			return OnSiteDays * (EquipmentRentalCostPerDay * SuppliesCostPerDay);
 

@@ -1,26 +1,22 @@
 ﻿using System;
 using System.Linq;
+
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
 
-	public class EntranceExitCostCalculator
+	public class EntranceExitCostCalculator : IEntranceExitCostCalculator 
 	{
-		private double NumTeams { get; set; }
-		private double[] PersonnelReqPerTeam { get; set; }
-		private double RespiratorsPerPerson { get; set; }
-		private double CostPerRespirator { get; set; }
-		private double[] CostPerPPE { get; set; }
+		private readonly double TeamsRequired;
+		private readonly double[] PersonnelReqPerTeam;
+		private readonly double RespiratorsPerPerson;
+		private readonly double CostPerRespirator;
+		private readonly double[] CostPerPPE;
 
-		EntExitLaborCostCalculator entExitLaborCostCalculator = new EntExitLaborCostCalculator();
+		private readonly EntExitLaborCostCalculator EntExitLaborCostCalculator;
 
-		public EntranceExitCostCalculator()
-        {
-
-        }
-
-		public EntranceExitCostCalculator(double numTeams, double[] personnelReqPerTeam, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE )
+		public EntranceExitCostCalculator(double teamsRequired, double[] personnelReqPerTeam, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE )
 		{
-			NumTeams = numTeams;
+			TeamsRequired = teamsRequired;
 			PersonnelReqPerTeam = personnelReqPerTeam;
 			RespiratorsPerPerson = respiratorsPerPerson;
 			CostPerRespirator = costPerRespirator;
@@ -31,11 +27,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         {
 			double TotalPersonnel = PersonnelReqPerTeam.Sum();
 
-			var TotalPPE_PerLevel = PPE_EachLevelPerTeam.Select(x => x * NumTeams);
+			var TotalPPE_PerLevel = PPE_EachLevelPerTeam.Select(x => x * TeamsRequired);
 
 			var TotalCostPPE = TotalPPE_PerLevel.Zip(CostPerPPE, (ppe, cost) => ppe * cost).Sum();
 
-			return entExitLaborCostCalculator.CalculateEntExitLaborCost(SAToBeSourceReduced) + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
+			//EntExitLabor declared as local double as input is needed to calculate
+			double EntExitLabor = EntExitLaborCostCalculator.CalculateEntExitLaborCost(SAToBeSourceReduced);
+
+			return EntExitLabor + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
 		}
 	}
 }

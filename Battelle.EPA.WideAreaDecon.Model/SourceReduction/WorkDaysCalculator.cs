@@ -1,25 +1,19 @@
 ﻿using System;
 using System.Linq;
+
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
-	public class WorkDaysCalculator
+	public class WorkDaysCalculator : IWorkDaysCalculator
 	{
-		private double TeamsRequired { get; set; }
-		private double MassRemovedPerHrPerTeam { get; set; }
-		private double MassPerSA { get; set; }
-		public double WorkDays { get; set; }
+		private readonly double TeamsRequired;
+		private readonly double MassRemovedPerHrPerTeam;
+		private readonly double MassPerSA;
 
-		public WorkDaysCalculator()
-        {
-
-        }
-
-		public WorkDaysCalculator(double teamsRequired, double massRemovedPerHrPerTeam, double massPerSA, double workdays)
+		public WorkDaysCalculator(double teamsRequired, double massRemovedPerHrPerTeam, double massPerSA)
 		{
 			TeamsRequired = teamsRequired;
-			MassRemovedPerHrPerTeam = MassRemovedPerHrPerTeam;
+			MassRemovedPerHrPerTeam = massRemovedPerHrPerTeam;
 			MassPerSA = massPerSA;
-			WorkDays = workdays;
 		}
 
 		public double CalculateWorkDays(double SAToBeSourceReduced)
