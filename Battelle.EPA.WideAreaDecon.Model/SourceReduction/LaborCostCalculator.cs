@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction;
+
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
 	public class LaborCostCalculator : ILaborCostCalculator
@@ -10,7 +12,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private readonly double[] PersonnelHourlyRate;
 		private readonly double MassPerSA;
 
-		WorkDaysCalculator workDaysCalculator = new WorkDaysCalculator();
+		WorkDaysCalculator WorkDaysCalculator = new WorkDaysCalculator();
 
 		public LaborCostCalculator(double teamsRequired, double personnelOverhead, double[] personnelPerTeam, double[] personnelHourlyRate, double massPerSA)
 		{
@@ -23,16 +25,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
 		public double CalculateLaborCost(double PersonnelRoundTripDays, double SAToBeSourceReduced, double CostPerTonRemoved)
 		{
-			double WorkDays = workDaysCalculator.CalculateWorkDays(double SAToBeSourceReduced); 
+			double WorkDays = WorkDaysCalculator.CalculateWorkDays(double SAToBeSourceReduced); 
 
 			var PersonnelHoursCost = PersonnelPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
 
-			return (((workDaysCalculator.WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8 * TeamsRequired * PersonnelHoursCost) + (SAToBeSourceReduced * MassPerSA * CostPerTonRemoved));
+			return (((WorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8 * TeamsRequired * PersonnelHoursCost) + (SAToBeSourceReduced * MassPerSA * CostPerTonRemoved));
 		}
 
 		public double CalculateLaborDays(double PersonnelRoundTripDays, double SAToBeSourceReduced)
         {
-			double WorkDays = workDaysCalculator.CalculateWorkDays(double SAToBeSourceReduced);
+			double WorkDays = WorkDaysCalculator.CalculateWorkDays(double SAToBeSourceReduced);
 
 			return WorkDays + PersonnelOverhead + PersonnelRoundTripDays;
         }

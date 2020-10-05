@@ -1,16 +1,14 @@
 ﻿using System;
+using System.Linq;
+using namespace Battelle.EPA.WideAreaDecon.Model.Other;
+
 namespace Battelle.EPA.WideAreaDecon.Model.Other
 {
 	public class TransportationCostCalculator
 	{
-		private double PersonnelPerRentalCar { get; set; }
-		private double RentalCarCostPerDay { get; set; }
-		private double PerDiemCostPerDay { get; set; }
-
-		public TransportationCostCalculator()
-        {
-
-        }
+		private readonly double PersonnelPerRentalCar;
+		private readonly double RentalCarCostPerDay;
+		private readonly double PerDiemCostPerDay;
 
 		public TransportationCostCalculator(double personnelPerRentalCar, double rentalCarCostPerDay, double perDiemCostPerDay)
         {
@@ -21,11 +19,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Other
 
 		public double CalculateTransportationCost(double[] PersonnelAvailableByType, double CostPerRoundTripTicket, double TotalOnSiteDays)
         {
-			double TotalPersonnel = 0;
-			for(int i = 0; i < PersonnelAvailableByType.Length; i ++)
-            {
-				TotalPersonnel += PersonnelAvailableByType[i];
-            }
+			double TotalPersonnel = ITransportationCostCalculator.Sum();
 
 			return (((TotalPersonnel / PersonnelPerRentalCar) * RentalCarCostPerDay) + (TotalPersonnel * CostPerRoundTripTicket) + (TotalOnSiteDays * PerDiemCostPerDay));
         }

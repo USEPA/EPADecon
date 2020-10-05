@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Linq;
+using namespace Battelle.EPA.WideAreaDecon.Model.Decontamination;
+
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-	public class SuppliesCostCalculator
+	public class SuppliesCostCalculator : ISuppliesCostCalculator
 	{
-		private double DeconAgentCostPerVolume { get; set; }
-		private double DeconMaterialsCost { get; set; }
-		private double DeconAgentVolume { get; set; }
-		private double[] DeconAgentVolumeBySurface{ get; set; }
-
-		public SuppliesCostCalculator()
-        {
-
-        }
+		private readonly double DeconAgentCostPerVolume;
+		private readonly double DeconMaterialsCost;
+		private readonly double DeconAgentVolume;
+		private readonly double[] DeconAgentVolumeBySurface;
 
 		public SuppliesCostCalculator(double deconAgentCostPerVolume, double deconMaterialsCost, double deconAgentVolume, double[] deconAgentVolumeBySurface)
 		{

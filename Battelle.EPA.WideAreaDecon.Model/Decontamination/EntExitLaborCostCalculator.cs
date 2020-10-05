@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Linq;
+using namespace Battelle.EPA.WideAreaDecon.Model.Decontamination;
+
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-	public class EntExitLaborCostCalculator
+	public class EntExitLaborCostCalculator : IEntExitLaborCostCalculator
 	{
-		private double NumTeams { get; set; }
-		private double[] PersonnelReqPerTeam { get; set; }
-		private double NumEntriesPerTeamPerDay { get; set; }
-		private double MassPerSA { get; set; }
-		private double HoursPerEntryPerTeam { get; set; }
-		private double HoursPerExitPerTeam { get; set; }
-		private double[] PersonnelHourlyRate { get; set; }
-		private double[] WorkDaysPerAppMethod { get; set; }
+		private readonly double TeamsRequired;
+		private readonly double[] PersonnelPerTeam;
+		private readonly double NumEntriesPerTeamPerDay;
+		private readonly double MassPerSA;
+		private readonly double HoursPerEntryPerTeam;
+		private readonly double HoursPerExitPerTeam;
+		private readonly double[] PersonnelHourlyRate;
+		private readonly double[] WorkDaysPerAppMethod;
 
-		public EntExitLaborCostCalculator()
-        {
-
-        }
 
 		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelReqPerTeam, double numEntriesPerTeamPerDay, double massPerSA, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate, double[] workDaysPerAppMethod)
 		{

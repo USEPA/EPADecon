@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
+using namespace Battelle.EPA.WideAreaDecon.Model.Decontamination;
+
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-
-	public class EntranceExitCostCalculator
+	public class EntranceExitCostCalculator : IEntranceExitCostCalculator
 	{
 		private readonly double NumTeams;
 		private readonly double[] PersonnelReqPerTeam;
@@ -11,7 +12,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 		private readonly double CostPerRespirator;
 		private readonly double[] CostPerPPE;
 
-		readonly EntExitLaborCostCalculator entExitLaborCostCalculator = new EntExitLaborCostCalculator();
+		readonly EntExitLaborCostCalculator EntExitLaborCostCalculator = new EntExitLaborCostCalculator();
 
 		
 		public EntranceExitCostCalculator(double numTeams, double[] personnelReqPerTeam, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE)
@@ -31,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
 			var TotalCostPPE = TotalPPE_PerLevel.Zip(CostPerPPE, (ppe, cost) => ppe * cost).Sum();
 
-			double CostLaborEntEx = entExitLaborCostCalculator.CalculateEntExitLaborCost();
+			double CostLaborEntEx = EntExitLaborCostCalculator.CalculateEntExitLaborCost();
 
 			return CostLaborEntEx + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
 		}

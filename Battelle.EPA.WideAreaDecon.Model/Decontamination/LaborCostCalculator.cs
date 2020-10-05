@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Linq;
+using namespace Battelle.EPA.WideAreaDecon.Model.Decontamination;
+
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-
-	public class LaborCostCalculator
+	public class LaborCostCalculator : ILaborCostCalculator
 	{
-		private double NumTeams { get; set; }
-		private double[] PersonnelReqPerTeam { get; set; }
-		private double[] PersonnelHourlyRate { get; set; }
-		private double PersonnelOverhead { get; set; }
-		private double[] WorkDaysPerAppMethod { get; set; }
-
-		public LaborCostCalculator()
-        {
-
-        }
+		private readonly double NumTeams;
+		private readonly double[] PersonnelReqPerTeam;
+		private readonly double[] PersonnelHourlyRate;
+		private readonly double PersonnelOverhead;
+		private readonly double[] WorkDaysPerAppMethod;
 
 		public LaborCostCalculator(double numTeams, double[] personnelReqPerTeam, double[] personnelHourlyRate, double personnelOverhead, double[] workDaysPerAppMethod)
 		{

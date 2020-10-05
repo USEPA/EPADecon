@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
+using namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
 
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
-	public class LaborCostCalculator
+	public class LaborCostCalculator : ILaborCostCalculator 
     {
         private readonly double[] PersonnelReqPerTeam;
         private readonly double PersonnelOverheadDays;
