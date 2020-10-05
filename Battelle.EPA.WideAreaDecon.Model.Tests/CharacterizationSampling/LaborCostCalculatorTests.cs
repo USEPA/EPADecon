@@ -5,7 +5,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
     public class LaborCostCalculatorTests
     {
-        private LaborCostCalculator LaborCalculator { get; set; }
+        private LaborCostCalculator Calculator { get; set; }
         [SetUp]
         public void Setup()
         {
@@ -16,7 +16,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             double hoursEntering = 1.0;
             double hoursExiting = 1.0;
             double[] personnelHourlyRate = { 150.0, 90.0, 110.0, 130.0, 190.0 };
-            LaborCalculator = new LaborCostCalculator(numTeams, personnelRequiredPerTeam, personnelOverhead, entriesPerTeam, hoursEntering, hoursExiting, personnelHourlyRate);
+            Calculator = new LaborCostCalculator(numTeams, personnelRequiredPerTeam, personnelOverhead, entriesPerTeam, hoursEntering, hoursExiting, personnelHourlyRate);
         }
 
         [Test]
