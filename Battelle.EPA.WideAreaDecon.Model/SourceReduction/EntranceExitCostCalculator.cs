@@ -6,7 +6,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
 	public class EntranceExitCostCalculator : IEntranceExitCostCalculator 
 	{
-		private readonly double TeamsRequired;
+		private readonly double NumTeams;
 		private readonly double[] PersonnelReqPerTeam;
 		private readonly double RespiratorsPerPerson;
 		private readonly double CostPerRespirator;
@@ -15,14 +15,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private readonly IEntExitLaborCostCalculator EntExitLaborCostCalculator;
 
 		public EntranceExitCostCalculator(
-			double teamsRequired, 
+			double numTeams, 
 			double[] personnelReqPerTeam, 
 			double respiratorsPerPerson, 
 			double costPerRespirator, 
 			double[] costPerPPE,
 			IEntExitLaborCostCalculator entExitLaborCostCalculator)
 		{
-			TeamsRequired = teamsRequired;
+			NumTeams = numTeams;
 			PersonnelReqPerTeam = personnelReqPerTeam;
 			RespiratorsPerPerson = respiratorsPerPerson;
 			CostPerRespirator = costPerRespirator;
@@ -32,9 +32,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
 		public double CalculateEntranceExitCost(double SAToBeSourceReduced, double[] PPE_EachLevelPerTeam)
         {
-			double TotalPersonnel = PersonnelReqPerTeam.Sum();
+			double TotalPersonnel = PersonnelReqPerTeam.Sum() * NumTeams;
 
-			var TotalPPE_PerLevel = PPE_EachLevelPerTeam.Select(x => x * TeamsRequired);
+			var TotalPPE_PerLevel = PPE_EachLevelPerTeam.Select(x => x * NumTeams);
 
 			var TotalCostPPE = TotalPPE_PerLevel.Zip(CostPerPPE, (ppe, cost) => ppe * cost).Sum();
 
