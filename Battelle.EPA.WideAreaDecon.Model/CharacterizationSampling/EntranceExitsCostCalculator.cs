@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
@@ -12,15 +11,22 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		private readonly double CostPerRespirator;
 		private readonly double[] CostPerPPE;
 
-		private readonly LaborCostCalculator LaborCostCalulator;
+		private readonly ILaborCostCalculator LaborCostCalculator;
 
-		public EntrancesExitsCostCalculator(double numTeams, double[] personnelReqPerTeam, double respiratorsPerPerson, double costPerRespirator, double[] costPerPPE)
+		public EntrancesExitsCostCalculator(
+			double numTeams, 
+			double[] personnelReqPerTeam, 
+			double respiratorsPerPerson, 
+			double costPerRespirator, 
+			double[] costPerPPE, 
+			ILaborCostCalculator laborCostCalculator)
 		{
 			NumTeams = numTeams;
 			PersonnelReqPerTeam = personnelReqPerTeam;
 			RespiratorsPerPerson = respiratorsPerPerson;
 			CostPerRespirator = costPerRespirator;
 			CostPerPPE = costPerPPE;
+			LaborCostCalculator = laborCostCalculator;
         }
 
 		public double CalculateEntrancesExitsCost(double[] PPE_PerLevelPerTeam)
@@ -31,7 +37,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
 			var TotalCostPPE = TotalPPE_PerLevel.Zip(CostPerPPE, (ppe, cost) => ppe * cost).Sum();
 
-			double EntExitLaborCost = LaborCostCalulator.CalculateEntExitLaborCost();
+			double EntExitLaborCost = LaborCostCalculator.CalculateEntExitLaborCost();
 
 			return EntExitLaborCost + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
 		}

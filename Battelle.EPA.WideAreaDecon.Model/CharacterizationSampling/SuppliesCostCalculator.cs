@@ -17,8 +17,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private readonly double SAToBeWiped;
         private readonly double SAToBeHEPA;
 
-        public SuppliesCostCalculator(double numTeams, double saPerWipe, double saPerHEPASock, double wipesPerHrPerTeam, double hepaSocksPerHrPerTeam,
-            double costPerWipe, double costPerVacuum, double hepaRentalCostPerDay, double saToBeWiped, double saToBeHEPA)
+        public SuppliesCostCalculator(
+            double numTeams, 
+            double saPerWipe, 
+            double saPerHEPASock, 
+            double wipesPerHrPerTeam, 
+            double hepaSocksPerHrPerTeam,
+            double costPerWipe, 
+            double costPerVacuum, 
+            double hepaRentalCostPerDay, 
+            double saToBeWiped, 
+            double saToBeHEPA)
         {
             NumTeams = numTeams;
             SAPerWipe = saPerWipe;

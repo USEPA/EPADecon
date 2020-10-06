@@ -8,12 +8,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 		private readonly double EquipmentRentalCostPerDay;
 		private readonly double SuppliesCostPerDay;
 
-		private readonly LaborCostCalculator LaborCostCalculator;
+		private readonly ILaborCostCalculator LaborCostCalculator;
 
-		public SuppliesCostCalculator(double equipmentRentalCostPerDay, double suppliesCostPerDay)
+		public SuppliesCostCalculator(
+			double equipmentRentalCostPerDay, 
+			double suppliesCostPerDay,
+			ILaborCostCalculator laborCostCalculator)
 		{
 			EquipmentRentalCostPerDay = equipmentRentalCostPerDay;
 			SuppliesCostPerDay = suppliesCostPerDay;
+			LaborCostCalculator = laborCostCalculator;
         }
 
 		public double CalculateSuppliesCost(double SAToBeSourceReduced, double PersonnelRoundTripDays)

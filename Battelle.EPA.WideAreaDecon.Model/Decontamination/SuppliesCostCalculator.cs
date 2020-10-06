@@ -10,7 +10,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 		private readonly double DeconAgentVolume;
 		private readonly double[] DeconAgentVolumeBySurface;
 
-		public SuppliesCostCalculator(double deconAgentCostPerVolume, double deconMaterialsCost, double deconAgentVolume, double[] deconAgentVolumeBySurface)
+		public SuppliesCostCalculator(
+			double deconAgentCostPerVolume, 
+			double deconMaterialsCost, 
+			double deconAgentVolume, 
+			double[] deconAgentVolumeBySurface)
 		{
 			DeconAgentCostPerVolume = deconAgentCostPerVolume;
 			DeconMaterialsCost = deconMaterialsCost;

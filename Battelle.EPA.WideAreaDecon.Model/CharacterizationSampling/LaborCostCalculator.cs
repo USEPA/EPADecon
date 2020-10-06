@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
@@ -14,9 +13,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 		private readonly double HoursPerExitPerTeam;
 		private readonly double[] PersonnelHourlyRate;
 
-		private readonly SuppliesCostCalculator SuppliesCostCalculator;
+		private readonly ISuppliesCostCalculator SuppliesCostCalculator;
 
-		public LaborCostCalculator(double numTeams, double[] personnelReqPerTeam, double personnelOverhead, double numEntriesPerTeamPerDay, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate)
+		public LaborCostCalculator(
+			double numTeams, 
+			double[] personnelReqPerTeam, 
+			double personnelOverhead, 
+			double numEntriesPerTeamPerDay, 
+			double hoursPerEntryPerTeam, 
+			double hoursPerExitPerTeam, 
+			double[] personnelHourlyRate,
+			ISuppliesCostCalculator suppliesCostCalculator)
 		{
 			NumTeams = numTeams;
 			PersonnelReqPerTeam = personnelReqPerTeam;
@@ -25,6 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 			HoursPerEntryPerTeam = hoursPerEntryPerTeam;
 			HoursPerExitPerTeam = hoursPerExitPerTeam;
 			PersonnelHourlyRate = personnelHourlyRate;
+			SuppliesCostCalculator = suppliesCostCalculator;
 
 		}
 

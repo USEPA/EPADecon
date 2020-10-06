@@ -13,9 +13,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private readonly double HoursPerExitPerTeam;
 		private readonly double[] PersonnelHourlyRate;
 
-		private readonly WorkDaysCalculator WorkDaysCalculator;
+		private readonly IWorkDaysCalculator WorkDaysCalculator;
 		
-		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelPerTeam, double[] personnelHourlyRate, double numEntriesPerTeamPerDay, double massPerSA, double hoursPerEntryPerTeam, double hoursPerExitPerTeam)
+		public EntExitLaborCostCalculator(
+			double teamsRequired, 
+			double[] personnelPerTeam, 
+			double[] personnelHourlyRate, 
+			double numEntriesPerTeamPerDay, 
+			double massPerSA, 
+			double hoursPerEntryPerTeam, 
+			double hoursPerExitPerTeam,
+			IWorkDaysCalculator workDaysCalculator)
 		{
 			TeamsRequired = teamsRequired;
 			PersonnelPerTeam = personnelPerTeam;
@@ -24,6 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 			HoursPerEntryPerTeam = hoursPerEntryPerTeam;
 			HoursPerExitPerTeam = hoursPerExitPerTeam;
 			PersonnelHourlyRate = personnelHourlyRate;
+			WorkDaysCalculator = workDaysCalculator;
 		}
 
 		public double CalculateEntExitLaborCost(double SAToBeSourceReduced)

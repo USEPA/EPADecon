@@ -11,15 +11,22 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private readonly double[] PersonnelHourlyRate;
 		private readonly double MassPerSA;
 
-		private readonly WorkDaysCalculator WorkDaysCalculator;
+		private readonly IWorkDaysCalculator WorkDaysCalculator;
 
-		public LaborCostCalculator(double teamsRequired, double personnelOverhead, double[] personnelPerTeam, double[] personnelHourlyRate, double massPerSA)
+		public LaborCostCalculator(
+			double teamsRequired, 
+			double personnelOverhead, 
+			double[] personnelPerTeam, 
+			double[] personnelHourlyRate, 
+			double massPerSA,
+			IWorkDaysCalculator workDaysCalculator)
 		{
 			TeamsRequired = teamsRequired;
 			PersonnelOverhead = personnelOverhead;
 			PersonnelPerTeam = personnelPerTeam;
 			PersonnelHourlyRate = personnelHourlyRate;
 			MassPerSA = massPerSA;
+			WorkDaysCalculator = workDaysCalculator;
 		}
 
 		public double CalculateLaborCost(double PersonnelRoundTripDays, double SAToBeSourceReduced, double CostPerTonRemoved)

@@ -15,7 +15,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 		private readonly double[] WorkDaysPerAppMethod;
 
 
-		public EntExitLaborCostCalculator(double teamsRequired, double[] personnelReqPerTeam, double numEntriesPerTeamPerDay, double massPerSA, double hoursPerEntryPerTeam, double hoursPerExitPerTeam, double[] personnelHourlyRate, double[] workDaysPerAppMethod)
+		public EntExitLaborCostCalculator(
+			double teamsRequired, 
+			double[] personnelReqPerTeam, 
+			double numEntriesPerTeamPerDay, 
+			double massPerSA, 
+			double hoursPerEntryPerTeam, 
+			double hoursPerExitPerTeam, 
+			double[] personnelHourlyRate, 
+			double[] workDaysPerAppMethod)
 		{
 			TeamsRequired = teamsRequired;
 			PersonnelReqPerTeam = personnelReqPerTeam;

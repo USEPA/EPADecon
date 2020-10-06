@@ -12,7 +12,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly double[] DesiredSporeThreshold;
         private readonly double[] TreatmentDaysPerAM;
 
-        public EfficacyCalculator(double[] initialSporeLoading, string[] surfaceTypes, string[] applicationMethods, double[] desiredSporeThreshold, double[] treatmentDaysPerAM)
+        public EfficacyCalculator(
+            double[] initialSporeLoading, 
+            string[] surfaceTypes, 
+            string[] applicationMethods, 
+            double[] desiredSporeThreshold, 
+            double[] treatmentDaysPerAM)
         {
             InitialSporeLoading = initialSporeLoading;
             SurfaceTypes = surfaceTypes;

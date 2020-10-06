@@ -9,7 +9,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 		private readonly double MassRemovedPerHrPerTeam;
 		private readonly double MassPerSA;
 
-		public WorkDaysCalculator(double teamsRequired, double massRemovedPerHrPerTeam, double massPerSA)
+		public WorkDaysCalculator(
+			double teamsRequired, 
+			double massRemovedPerHrPerTeam, 
+			double massPerSA)
 		{
 			TeamsRequired = teamsRequired;
 			MassRemovedPerHrPerTeam = massRemovedPerHrPerTeam;

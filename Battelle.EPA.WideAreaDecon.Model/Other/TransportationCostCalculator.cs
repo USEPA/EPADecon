@@ -9,7 +9,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Other
 		private readonly double RentalCarCostPerDay;
 		private readonly double PerDiemCostPerDay;
 
-		public TransportationCostCalculator(double personnelPerRentalCar, double rentalCarCostPerDay, double perDiemCostPerDay)
+		public TransportationCostCalculator(
+			double personnelPerRentalCar, 
+			double rentalCarCostPerDay, 
+			double perDiemCostPerDay)
         {
 			PersonnelPerRentalCar = personnelPerRentalCar;
 			RentalCarCostPerDay = rentalCarCostPerDay;

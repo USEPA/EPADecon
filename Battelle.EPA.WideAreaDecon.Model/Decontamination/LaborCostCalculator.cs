@@ -11,7 +11,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 		private readonly double PersonnelOverhead;
 		private readonly double[] WorkDaysPerAppMethod;
 
-		public LaborCostCalculator(double numTeams, double[] personnelReqPerTeam, double[] personnelHourlyRate, double personnelOverhead, double[] workDaysPerAppMethod)
+		public LaborCostCalculator(
+			double numTeams, 
+			double[] personnelReqPerTeam, 
+			double[] personnelHourlyRate, 
+			double personnelOverhead, 
+			double[] workDaysPerAppMethod)
 		{
 			NumTeams = numTeams;
 			PersonnelReqPerTeam = personnelReqPerTeam;
