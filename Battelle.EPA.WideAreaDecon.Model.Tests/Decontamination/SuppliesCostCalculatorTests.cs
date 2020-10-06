@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Battelle.EPA.WideAreaDecon.Model.Decontamination;
+using SuppliesCostCalculator = Battelle.EPA.WideAreaDecon.Model.Decontamination.SuppliesCostCalculator;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
@@ -9,16 +10,28 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [SetUp]
         public void Setup()
         {
-            double[] arr1 = { 2.0, 5.0, 3.0, 4.0 };
-            Calculator = new SuppliesCostCalculator(5.0, 7.5, 1.0, arr1);
+            double deconAgentCostPerVolume = 0.52306056;
+            double deconMaterialsCost = 1.53612754751869;
+            double totalRoomSA = 100;
+            double deconAgentVolume = 0.3342015463;
+            double[] deconAgentVolumeBySurface = { 0.0 };
+            Calculator = new SuppliesCostCalculator(
+                deconAgentCostPerVolume,
+                deconMaterialsCost,
+                totalRoomSA,
+                deconAgentVolume,
+                deconAgentVolumeBySurface
+                );
         }
 
         [Test]
         public void CalculateCost()
         {
-            double[] arr1 = { 0.75, 0.125, 0.125, 0.0 };
-            Assert.AreEqual((82.5), Calculator.CalculateSuppliesCost(15.0, arr1, true), 1e-6, "Incorrect cost calculated(fogging)");
-            Assert.AreEqual((20.0), Calculator.CalculateSuppliesCost(0.0, arr1, false), 1e-6, "Incorrect cost calculated(surface)");
+            double RoomVolume = 25000;
+            double[] PercentOfRoomBySurface = { 0.0 };
+
+            Assert.AreEqual((4523.80395376547), Calculator.CalculateSuppliesCost(RoomVolume, PercentOfRoomBySurface, true), 1e-6, "Incorrect cost calculated(fogging)");
+            Assert.AreEqual((153.612754751869), Calculator.CalculateSuppliesCost(RoomVolume, PercentOfRoomBySurface, false), 1e-6, "Incorrect cost calculated(surface)");
         }
     }
 }

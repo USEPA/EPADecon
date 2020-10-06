@@ -7,17 +7,20 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 	{
 		private readonly double DeconAgentCostPerVolume;
 		private readonly double DeconMaterialsCost;
+		private readonly double TotalRoomSA;
 		private readonly double DeconAgentVolume;
 		private readonly double[] DeconAgentVolumeBySurface;
 
 		public SuppliesCostCalculator(
 			double deconAgentCostPerVolume, 
 			double deconMaterialsCost, 
+			double totalRoomSA,
 			double deconAgentVolume, 
 			double[] deconAgentVolumeBySurface)
 		{
 			DeconAgentCostPerVolume = deconAgentCostPerVolume;
 			DeconMaterialsCost = deconMaterialsCost;
+			TotalRoomSA = totalRoomSA;
 			DeconAgentVolume = deconAgentVolume;
 			DeconAgentVolumeBySurface = deconAgentVolumeBySurface;
 		}
@@ -27,12 +30,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         {
 			if (Fogging)
             {
-				return (DeconMaterialsCost + (RoomVolume * DeconAgentVolume * DeconAgentCostPerVolume));
+				return ((DeconMaterialsCost * TotalRoomSA) + (RoomVolume * DeconAgentVolume * DeconAgentCostPerVolume));
             }
 			else
             {
 				var AgentNeededPerTreatment = DeconAgentVolumeBySurface.Zip(PercentOfRoomBySurface, (x, y) => x * y).Sum();
-				return (DeconMaterialsCost + (AgentNeededPerTreatment * DeconAgentCostPerVolume));
+				return ((DeconMaterialsCost * TotalRoomSA) + (AgentNeededPerTreatment * DeconAgentCostPerVolume));
 
 			}
         }

@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Battelle.EPA.WideAreaDecon.Model.Decontamination;
+using EntExitLaborCostCalculator = Battelle.EPA.WideAreaDecon.Model.Decontamination.EntExitLaborCostCalculator;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
@@ -9,16 +9,27 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [SetUp]
         public void Setup()
         {
-            double[] arr1 = { 2.0, 4.0, 6.0, 2.0 };
-            double[] arr2 = { 1.0, 4.0, 3.0, 1.0 };
-            double[] arr3 = { 2.0, 5.0, 3.0, 4.0 };
-            Calculator = new EntExitLaborCostCalculator(5.0, arr1, 2.0, 0.25, 1.0, 1.5, arr2, arr3);
+            double numTeams = 2.0;
+            double[] personnelReqPerTeam = { 0.3, 0.0, 0.0, 5.0, 2.0 };
+            double numEntriesPerTeamPerDay = 2.0;
+            double hoursPerEntryPerTeam = 1.5;
+            double hoursPerExitPerTeam = 1.5;
+            double[] personnelHourlyRate = { 150.0, 90.0, 110.0, 130.0, 190.0 };
+            double[] workDaysPerAppMethod = { 1.0, 2.0 };
+            Calculator = new EntExitLaborCostCalculator(
+                numTeams,
+                personnelReqPerTeam,
+                numEntriesPerTeamPerDay,
+                hoursPerEntryPerTeam,
+                hoursPerExitPerTeam,
+                personnelHourlyRate,
+                workDaysPerAppMethod);
         }
 
         [Test]
         public void CalculateCost()
         {
-            Assert.AreEqual((13300), Calculator.CalculateEntExitLaborCost(), 1e-6, "Incorrect cost calculated");
+            Assert.AreEqual((38700.0), Calculator.CalculateEntExitLaborCost(), 1e-6, "Incorrect cost calculated");
         }
     }
 }
