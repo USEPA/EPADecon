@@ -1,19 +1,27 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using LaborCostCalculator = Battelle.EPA.WideAreaDecon.Model.IncidentCommand.LaborCostCalculator;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {
-    class MockCsLaborCostCalculator : ILaborCostCalculator
+    class MockCsLaborCostCalculator : Model.CharacterizationSampling.ILaborCostCalculator
     {
-        public double CalculateLaborCost(double PersonnelRoundTripDays)
-        {
-            return 1.0 * PersonnelRoundTripDays;
-        }
+        public double CalculateLaborCost(double PersonnelRoundTripDays) => 84993.281164225;
 
-        public double CalculateEntExitLaborCost() => 1.0;
+        public double CalculateEntExitLaborCost() => 21393.2811642251;
 
-        public double CalculateLaborDays(double PersonnelRoundTripDays) => 1.0;
+        public double CalculateLaborDays(double PersonnelRoundTripDays) => 1.34093086337363;
+    }
+    class MockSrLaborCostCalculator : Model.SourceReduction.ILaborCostCalculator
+    {
+        public double CalculateLaborCost(double PersonnelRoundTripDays, double SAToBeSourceReduced, double CostPerTonRemoved) => 137654.447803312;
+        
+        public double CalculateLaborDays(double PersonnelRoundTripDays, double SAToBeSourceReduced) => 4.07855517733999;
+    }
+    class MockDLaborCostCalculator : Model.Decontamination.ILaborCostCalculator
+    {
+        public double CalculateLaborCost(double PersonnelRoundTripDays) => 120400.0;
+        
+        public double CalculateLaborDays(double PersonnelRoundTripDays) => 5.0;
     }
     public class LaborCostCalculatorTests
     {
@@ -29,8 +37,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
                 personnelOverheadDays, 
                 personnelHourlyRate,
                 new MockCsLaborCostCalculator(),
-                new Model.SourceReduction.LaborCostCalculator(1.0, 1.0, new []{1.0}, new []{1.0}, 1.0),
-                new Model.Decontamination.LaborCostCalculator(1.0, new []{1.0}, new []{1.0}, 1.0, new []{1.0})
+                new MockSrLaborCostCalculator(),
+                new MockDLaborCostCalculator()
                 );
 
         }
@@ -39,7 +47,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         {
             double saToBeSourceReduced = 8000.0;
             double roundtripDays = 2.0;
-            Assert.AreEqual(60264.68, Calculator.CalculateLaborCost(saToBeSourceReduced, roundtripDays), 1e-6, "Incorrect Labor cost calculated");
+
+            Assert.AreEqual((18.4194860407136), Calculator.CalculateOnSiteDays(saToBeSourceReduced, roundtripDays), 1e-6, "Incorrect onsite days calculated");
+            Assert.AreEqual((227064.684772735), Calculator.CalculateLaborCost(saToBeSourceReduced, roundtripDays), 1e-6, "Incorrect Labor cost calculated");
         }
     }
 }
