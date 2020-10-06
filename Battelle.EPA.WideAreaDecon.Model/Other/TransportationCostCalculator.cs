@@ -19,11 +19,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Other
 			PerDiemCostPerDay = perDiemCostPerDay;
         }
 
-		public double CalculateTransportationCost(double[] PersonnelAvailableByType, double CostPerRoundTripTicket, double TotalOnSiteDays)
+		public double CalculateTransportationCost(double[] PersonnelAvailableByType, double PersonnelRoundTripDays, double CostPerRoundTripTicket, double TotalOnSiteDays)
         {
 			double TotalPersonnel = PersonnelAvailableByType.Sum();
 
-			return (((TotalPersonnel / PersonnelPerRentalCar) * RentalCarCostPerDay) + (TotalPersonnel * CostPerRoundTripTicket) + (TotalOnSiteDays * PerDiemCostPerDay));
+			return (((TotalPersonnel / PersonnelPerRentalCar) * RentalCarCostPerDay * PersonnelRoundTripDays) + (TotalPersonnel * CostPerRoundTripTicket) + (TotalOnSiteDays * PerDiemCostPerDay));
         }
 	}
 

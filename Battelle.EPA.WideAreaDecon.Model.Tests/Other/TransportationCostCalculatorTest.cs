@@ -1,8 +1,6 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Battelle.EPA.WideAreaDecon.Model.Other;
+using TransportationCostCalculator = Battelle.EPA.WideAreaDecon.Model.Other.TransportationCostCalculator;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Other
 {
@@ -12,14 +10,25 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Other
         [SetUp]
         public void Setup()
         {
-            Calculator = new TransportationCostCalculator(4.0, 3.0, 2.0);
+            double personnelPerRentalCar = 3.0;
+            double rentalCarCostPerDay = 225.0;
+            double perDiemCostPerDay = 250.0;
+            Calculator = new TransportationCostCalculator(
+                personnelPerRentalCar,
+                rentalCarCostPerDay,
+                perDiemCostPerDay
+                );
         }
 
         [Test]
         public void CalculateCost()
         {
-            double[] arr1 = { 1.0, 2.0, 4.0, 2.0 };
-            Assert.AreEqual((1738.75), Calculator.CalculateTransportationCost(arr1, 5.0, 30), 1e-6, "Incorrect cost calculated");
+            double[] PersonnelAvailableByType = { 4.0, 0.0, 15.0, 30.0, 20.0 };
+            double roundtripDays = 2.0;
+            double CostPerRoundTripTicket = 350.0;
+            double TotalOnSiteDays = 5.41948604071361;
+
+            Assert.AreEqual((35854.8715101784), Calculator.CalculateTransportationCost(PersonnelAvailableByType, roundtripDays, CostPerRoundTripTicket, TotalOnSiteDays), 1e-6, "Incorrect cost calculated");
         }
     }
 }
