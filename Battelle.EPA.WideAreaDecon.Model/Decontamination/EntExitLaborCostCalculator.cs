@@ -8,7 +8,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 		private readonly double TeamsRequired;
 		private readonly double[] PersonnelReqPerTeam;
 		private readonly double NumEntriesPerTeamPerDay;
-		private readonly double MassPerSA;
 		private readonly double HoursPerEntryPerTeam;
 		private readonly double HoursPerExitPerTeam;
 		private readonly double[] PersonnelHourlyRate;
@@ -19,7 +18,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 			double teamsRequired, 
 			double[] personnelReqPerTeam, 
 			double numEntriesPerTeamPerDay, 
-			double massPerSA, 
 			double hoursPerEntryPerTeam, 
 			double hoursPerExitPerTeam, 
 			double[] personnelHourlyRate, 
@@ -28,7 +26,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 			TeamsRequired = teamsRequired;
 			PersonnelReqPerTeam = personnelReqPerTeam;
 			NumEntriesPerTeamPerDay = numEntriesPerTeamPerDay;
-			MassPerSA = massPerSA;
 			HoursPerEntryPerTeam = hoursPerEntryPerTeam;
 			HoursPerExitPerTeam = hoursPerExitPerTeam;
 			PersonnelHourlyRate = personnelHourlyRate;
