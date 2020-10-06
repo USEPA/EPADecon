@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
+using AnalysisQuantCostCalculator = Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.AnalysisQuantCostCalculator;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
@@ -17,7 +17,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             double surfaceAreaToBeHEPA = 500.0;
             double costPerWipeAnalysis = 520.0;
             double costPerHEPAAnalysis = 290.0;
-            Calculator = new AnalysisQuantCostCalculator(surfaceAreaPerWipe, surfaceAreaPerHEPA, surfaceAreaToBeWiped, surfaceAreaToBeHEPA, costPerWipeAnalysis, costPerHEPAAnalysis);
+            Calculator = new AnalysisQuantCostCalculator(
+                surfaceAreaPerWipe, 
+                surfaceAreaPerHEPA, 
+                surfaceAreaToBeWiped, 
+                surfaceAreaToBeHEPA, 
+                costPerWipeAnalysis, 
+                costPerHEPAAnalysis
+                );
         }
 
         [Test]

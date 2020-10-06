@@ -54,7 +54,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 			double WorkDays = SuppliesCostCalculator.CalculateWorkDays();
 
 			return ((WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerEntryPerTeam) + (WorkDays * NumEntriesPerTeamPerDay * NumTeams * HoursPerExitPerTeam)) * (PersonnelHoursCost);
-
 		}
 
 		public double CalculateLaborDays(double PersonnelRoundTripDays)

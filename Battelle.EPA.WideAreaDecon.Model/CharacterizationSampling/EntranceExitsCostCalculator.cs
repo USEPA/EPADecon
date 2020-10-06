@@ -31,7 +31,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
 		public double CalculateEntrancesExitsCost(double[] PPE_PerLevelPerTeam)
 		{
-			double TotalPersonnel = PersonnelReqPerTeam.Sum();
+			double TotalPersonnel = PersonnelReqPerTeam.Sum() * NumTeams;
 
 			var TotalPPE_PerLevel = PPE_PerLevelPerTeam.Select(x => x * NumTeams);
 
