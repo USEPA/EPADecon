@@ -3,25 +3,32 @@ using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
+    public enum PpeLevel
+    {
+
+    }
+
+    public enum PersonnelLevel
+    {
+
+    }
+
     public class EntrancesExitsCostCalculator : IEntrancesExitsCostCalculator
     {
-        private readonly double[] _costPerPpe;
+        private readonly Dictionary<PpeLevel, double> _costPerPpe;
         private readonly double _costPerRespirator;
 
         private readonly ILaborCostCalculator _laborCostCalculator;
-        private readonly double _numberTeams;
-        private readonly double[] _personnelRequiredPerTeam;
+        private readonly Dictionary<PersonnelLevel, double> _personnelRequiredPerTeam;
         private readonly double _respiratorsPerPerson;
 
         public EntrancesExitsCostCalculator(
-            double numberTeams,
-            double[] personnelRequiredPerTeam,
+            Dictionary<PpeLevel, double> personnelRequiredPerTeam,
             double respiratorsPerPerson,
             double costPerRespirator,
-            double[] costPerPpe,
+            Dictionary<PersonnelLevel, double> costPerPpe,
             ILaborCostCalculator laborCostCalculator)
         {
-            _numberTeams = numberTeams;
             _personnelRequiredPerTeam = personnelRequiredPerTeam;
             _respiratorsPerPerson = respiratorsPerPerson;
             _costPerRespirator = costPerRespirator;
@@ -29,7 +36,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _laborCostCalculator = laborCostCalculator;
         }
 
-        public double CalculateEntrancesExitsCost(IEnumerable<double> ppePerLevelPerTeam)
+        public double CalculateEntrancesExitsCost(double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
             var totalPersonnel = _personnelRequiredPerTeam.Sum() * _numberTeams;
 

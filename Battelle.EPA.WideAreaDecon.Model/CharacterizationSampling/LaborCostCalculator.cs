@@ -2,29 +2,31 @@ using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
+    public enum PersonnelLevel
+    {
+
+    }
+
     public class LaborCostCalculator : ILaborCostCalculator
     {
         private readonly double _hoursPerEntryPerTeam;
         private readonly double _hoursPerExitPerTeam;
         private readonly double _numberEntriesPerTeamPerDay;
-        private readonly double _numberTeams;
-        private readonly double[] _personnelHourlyRate;
+        private readonly Dictionary<PersonnelLevel, double> _personnelHourlyRate;
         private readonly double _personnelOverhead;
-        private readonly double[] _personnelRequiredPerTeam;
+        private readonly Dictionary<PersonnelLevel, double> _personnelRequiredPerTeam;
 
         private readonly ISuppliesCostCalculator _suppliesCostCalculator;
 
         public LaborCostCalculator(
-            double numberTeams,
-            double[] personnelRequiredPerTeam,
+            Dictionary<PersonnelLevel, double> _personnelRequiredPerTeam,
             double personnelOverhead,
             double numberEntriesPerTeamPerDay,
             double hoursPerEntryPerTeam,
             double hoursPerExitPerTeam,
-            double[] personnelHourlyRate,
+            Dictionary<PersonnelLevel, double> _personnelHourlyRate,
             ISuppliesCostCalculator suppliesCostCalculator)
         {
-            _numberTeams = numberTeams;
             _personnelRequiredPerTeam = personnelRequiredPerTeam;
             _personnelOverhead = personnelOverhead;
             _numberEntriesPerTeamPerDay = numberEntriesPerTeamPerDay;
@@ -33,8 +35,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _personnelHourlyRate = personnelHourlyRate;
             _suppliesCostCalculator = suppliesCostCalculator;
         }
-
-        public double CalculateLaborCost(double personnelRoundTripDays)
+        
+        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays)
         {
             var personnelHoursCost = _personnelRequiredPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
 
@@ -44,7 +46,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         }
 
         //return double if Elabor cost is not longer readonly
-        public double CalculateEntExitLaborCost()
+        public double CalculateEntExitLaborCost(double _numberTeams)
         {
             var personnelHoursCost = _personnelRequiredPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
 
@@ -54,7 +56,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
                 workDays * _numberEntriesPerTeamPerDay * _numberTeams * _hoursPerExitPerTeam) * personnelHoursCost;
         }
 
-        public double CalculateLaborDays(double personnelRoundTripDays)
+        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays)
         {
             var workDays = _suppliesCostCalculator.CalculateWorkDays();
 
