@@ -4,23 +4,20 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
     public class EntranceExitCostCalculator : IEntranceExitCostCalculator
     {
-        private readonly double[] _costPerPpe;
+        private readonly IEnumerable<double> _costPerPpe;
         private readonly double _costPerRespirator;
 
         private readonly IEntExitLaborCostCalculator _entExitLaborCostCalculator;
-        private readonly double _numTeams;
-        private readonly double[] _personnelReqPerTeam;
+        private readonly IEnumerable<double> _personnelReqPerTeam;
         private readonly double _respiratorsPerPerson;
 
         public EntranceExitCostCalculator(
-            double numTeams,
-            double[] personnelReqPerTeam,
+            IEnumerable<double> personnelReqPerTeam,
             double respiratorsPerPerson,
             double costPerRespirator,
-            double[] costPerPpe,
+            IEnumerable<double> costPerPpe,
             IEntExitLaborCostCalculator entExitLaborCostCalculator)
         {
-            _numTeams = numTeams;
             _personnelReqPerTeam = personnelReqPerTeam;
             _respiratorsPerPerson = respiratorsPerPerson;
             _costPerRespirator = costPerRespirator;
@@ -28,11 +25,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
             _entExitLaborCostCalculator = entExitLaborCostCalculator;
         }
 
-        public double CalculateEntranceExitCost(double saToBeSourceReduced, double[] ppeEachLevelPerTeam)
+        public double CalculateEntranceExitCost(double _numberOfTeams, double saToBeSourceReduced, double[] ppeEachLevelPerTeam)
         {
-            var totalPersonnel = _personnelReqPerTeam.Sum() * _numTeams;
+            var totalPersonnel = _personnelReqPerTeam.Sum() * _numberOfTeams;
 
-            var totalPpePerLevel = ppeEachLevelPerTeam.Select(x => x * _numTeams);
+            var totalPpePerLevel = ppeEachLevelPerTeam.Select(x => x * _numberOfTeams);
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe, (ppe, cost) => ppe * cost).Sum();
 
