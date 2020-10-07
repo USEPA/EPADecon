@@ -18,7 +18,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
         [EnumMember(Value = "Indoor Non-Carpet")]
         IndoorNonCarpet,
         [EnumMember(Value = "HVAC")]
-        HVAC,
+        Hvac,
         [EnumMember(Value = "Indoor Miscellaneous")]
         IndoorMisc,
         [EnumMember(Value = "Outdoor Exterior")]

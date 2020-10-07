@@ -8,9 +8,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
     {
         class MockLaborCostCalculator : ILaborCostCalculator
         {
-            public double CalculateOnSiteDays(double SAToBeSourceReduced, double PersonnelRoundTripDays) => 18.4194860407136;
+            public double CalculateOnSiteDays(double saToBeSourceReduced, double personnelRoundTripDays) => 18.4194860407136;
             
-            public double CalculateLaborCost(double SAToBeSourceReduced, double PersonnelRoundTripDays) => 227064.684772735;
+            public double CalculateLaborCost(double saToBeSourceReduced, double personnelRoundTripDays) => 227064.684772735;
         }
         private SuppliesCostCalculator Calculator { get; set; }
         [SetUp]
@@ -28,10 +28,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         [Test]
         public void CalculateCost()
         {
-            double SAToBeSourceReduced = 8000.0;
+            double saToBeSourceReduced = 8000.0;
             double roundtripDays = 2.0;
 
-            Assert.AreEqual((22886.2482445587), Calculator.CalculateSuppliesCost(SAToBeSourceReduced, roundtripDays), 1e-6, "Incorrect cost calculated");
+            Assert.AreEqual((22886.2482445587), Calculator.CalculateSuppliesCost(saToBeSourceReduced, roundtripDays), 1e-6, "Incorrect cost calculated");
         }
     }
 }

@@ -11,25 +11,25 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         {
             double numTeams = 4.0;
             double saPerWipe = 4.64515;
-            double saPerHEPASock = 9.2903;
+            double saPerHepaSock = 9.2903;
             double wipesPerHrPerTeam = 6.0;
             double hepaSocksPerHrPerTeam = 6.0;
             double costPerWipe = 19.0;
             double costPerVacuum = 29.0;
             double hepaRentalCostPerDay = 15.0;
             double saToBeWiped = 500.0;
-            double saToBeHEPA = 500.0;
+            double saToBeHepa = 500.0;
             Calculator = new SuppliesCostCalculator(
                 numTeams,
                 saPerWipe,
-                saPerHEPASock,
+                saPerHepaSock,
                 wipesPerHrPerTeam, 
                 hepaSocksPerHrPerTeam,
                 costPerWipe,
                 costPerVacuum,
                 hepaRentalCostPerDay,
                 saToBeWiped,
-                saToBeHEPA
+                saToBeHepa
                 );
         }
 

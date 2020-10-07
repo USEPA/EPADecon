@@ -5,13 +5,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
 	public class EntranceExitCostCalculator : IEntranceExitCostCalculator
 	{
-		private readonly double NumTeams;
-		private readonly double[] PersonnelReqPerTeam;
-		private readonly double RespiratorsPerPerson;
-		private readonly double CostPerRespirator;
-		private readonly double[] CostPerPPE;
+		private readonly double _numTeams;
+		private readonly double[] _personnelReqPerTeam;
+		private readonly double _respiratorsPerPerson;
+		private readonly double _costPerRespirator;
+		private readonly double[] _costPerPpe;
 
-		private readonly IEntExitLaborCostCalculator EntExitLaborCostCalculator;
+		private readonly IEntExitLaborCostCalculator _entExitLaborCostCalculator;
 
 		
 		public EntranceExitCostCalculator(
@@ -19,28 +19,28 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 			double[] personnelReqPerTeam, 
 			double respiratorsPerPerson, 
 			double costPerRespirator, 
-			double[] costPerPPE,
+			double[] costPerPpe,
 			IEntExitLaborCostCalculator entExitLaborCostCalculator)
 		{
-			NumTeams = numTeams;
-			PersonnelReqPerTeam = personnelReqPerTeam;
-			RespiratorsPerPerson = respiratorsPerPerson;
-			CostPerRespirator = costPerRespirator;
-			CostPerPPE = costPerPPE;
-			EntExitLaborCostCalculator = entExitLaborCostCalculator;
+			_numTeams = numTeams;
+			_personnelReqPerTeam = personnelReqPerTeam;
+			_respiratorsPerPerson = respiratorsPerPerson;
+			_costPerRespirator = costPerRespirator;
+			_costPerPpe = costPerPpe;
+			_entExitLaborCostCalculator = entExitLaborCostCalculator;
 		}
 
-		public double CalculateEntranceExitCost(double[] PPE_PerLevelPerTeam)
+		public double CalculateEntranceExitCost(double[] ppePerLevelPerTeam)
 		{
-			double TotalPersonnel = PersonnelReqPerTeam.Sum() * NumTeams;
+			double totalPersonnel = _personnelReqPerTeam.Sum() * _numTeams;
 
-			var TotalPPE_PerLevel = PPE_PerLevelPerTeam.Select(x => x * NumTeams);
+			var totalPpePerLevel = ppePerLevelPerTeam.Select(x => x * _numTeams);
 
-			var TotalCostPPE = TotalPPE_PerLevel.Zip(CostPerPPE, (ppe, cost) => ppe * cost).Sum();
+			var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe, (ppe, cost) => ppe * cost).Sum();
 
-			double CostLaborEntEx = EntExitLaborCostCalculator.CalculateEntExitLaborCost();
+			double costLaborEntEx = _entExitLaborCostCalculator.CalculateEntExitLaborCost();
 
-			return CostLaborEntEx + ((TotalPersonnel * RespiratorsPerPerson) * CostPerRespirator) + (TotalCostPPE);
+			return costLaborEntEx + ((totalPersonnel * _respiratorsPerPerson) * _costPerRespirator) + (totalCostPpe);
 		}
 	}
 }

@@ -12,20 +12,20 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         {
             double teamsRequired = 4.0;
             double massRemovedPerHrPerTeam = 453.592;
-            double massPerSA = 7.4;
+            double massPerSa = 7.4;
             Calculator = new WorkDaysCalculator(
                 teamsRequired,
                 massRemovedPerHrPerTeam,
-                massPerSA
+                massPerSa
                 );
         }
 
         [Test]
         public void CalculateCost()
         {
-            double SAToBeSourceReduced = 8000.0;
+            double saToBeSourceReduced = 8000.0;
 
-            Assert.AreEqual((4.07855517733999), Calculator.CalculateWorkDays(SAToBeSourceReduced), 1e-6, "Incorrect labor cost calculated");
+            Assert.AreEqual((4.07855517733999), Calculator.CalculateWorkDays(saToBeSourceReduced), 1e-6, "Incorrect labor cost calculated");
         }
     }
 }

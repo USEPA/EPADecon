@@ -6,26 +6,26 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
     public class AnalysisQuantCostCalculator : IAnalysisQuantCostCalculator
     {
-        private readonly double SAPerWipe;
-        private readonly double SAPerHEPASock;
-        private readonly double SAToBeWiped;
-        private readonly double SAToBeHEPA;
-        private readonly double CostPerWipeAnalysis;
-        private readonly double CostPerHEPAAnalysis;
+        private readonly double _saPerWipe;
+        private readonly double _saPerHepaSock;
+        private readonly double _saToBeWiped;
+        private readonly double _saToBeHepa;
+        private readonly double _costPerWipeAnalysis;
+        private readonly double _costPerHepaAnalysis;
 
-        public AnalysisQuantCostCalculator(double saPerWipe, double saPerHEPASock, double saToBeWiped, double saToBeHEPA, double costPerWipeAnalysis, double costPerHEPAAnalysis)
+        public AnalysisQuantCostCalculator(double saPerWipe, double saPerHepaSock, double saToBeWiped, double saToBeHepa, double costPerWipeAnalysis, double costPerHepaAnalysis)
         {
-            SAPerWipe = saPerWipe;
-            SAPerHEPASock = saPerHEPASock;
-            SAToBeWiped = saToBeWiped;
-            SAToBeHEPA = saToBeHEPA;
-            CostPerWipeAnalysis = costPerWipeAnalysis;
-            CostPerHEPAAnalysis = costPerHEPAAnalysis;
+            _saPerWipe = saPerWipe;
+            _saPerHepaSock = saPerHepaSock;
+            _saToBeWiped = saToBeWiped;
+            _saToBeHepa = saToBeHepa;
+            _costPerWipeAnalysis = costPerWipeAnalysis;
+            _costPerHepaAnalysis = costPerHepaAnalysis;
         }
 
         public double CalculateAnalysisQuantCost()
         {
-            return ((SAToBeWiped / SAPerWipe) * CostPerWipeAnalysis) + ((SAToBeHEPA / SAPerHEPASock) * CostPerHEPAAnalysis);
+            return ((_saToBeWiped / _saPerWipe) * _costPerWipeAnalysis) + ((_saToBeHepa / _saPerHepaSock) * _costPerHepaAnalysis);
         }
     }
 }

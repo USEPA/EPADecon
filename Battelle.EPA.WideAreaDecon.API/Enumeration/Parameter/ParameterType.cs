@@ -17,7 +17,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
         UniformXDependent,
 
         [EnumMember(Value = "Beta PERT")]
-        PERT,
+        Pert,
 
         [EnumMember(Value = "Truncated Normal")]
         TruncatedNormal,

@@ -5,37 +5,37 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
 	public class SuppliesCostCalculator : ISuppliesCostCalculator
 	{
-		private readonly double DeconAgentCostPerVolume;
-		private readonly double DeconMaterialsCost;
-		private readonly double TotalRoomSA;
-		private readonly double DeconAgentVolume;
-		private readonly double[] DeconAgentVolumeBySurface;
+		private readonly double _deconAgentCostPerVolume;
+		private readonly double _deconMaterialsCost;
+		private readonly double _totalRoomSa;
+		private readonly double _deconAgentVolume;
+		private readonly double[] _deconAgentVolumeBySurface;
 
 		public SuppliesCostCalculator(
 			double deconAgentCostPerVolume, 
 			double deconMaterialsCost, 
-			double totalRoomSA,
+			double totalRoomSa,
 			double deconAgentVolume, 
 			double[] deconAgentVolumeBySurface)
 		{
-			DeconAgentCostPerVolume = deconAgentCostPerVolume;
-			DeconMaterialsCost = deconMaterialsCost;
-			TotalRoomSA = totalRoomSA;
-			DeconAgentVolume = deconAgentVolume;
-			DeconAgentVolumeBySurface = deconAgentVolumeBySurface;
+			_deconAgentCostPerVolume = deconAgentCostPerVolume;
+			_deconMaterialsCost = deconMaterialsCost;
+			_totalRoomSa = totalRoomSa;
+			_deconAgentVolume = deconAgentVolume;
+			_deconAgentVolumeBySurface = deconAgentVolumeBySurface;
 		}
 
 		//If bool is true, cost is calculated for fogging using volume instead of surface size and breakdown
-		public double CalculateSuppliesCost(double RoomVolume, double[] PercentOfRoomBySurface, bool Fogging)
+		public double CalculateSuppliesCost(double roomVolume, double[] percentOfRoomBySurface, bool fogging)
         {
-			if (Fogging)
+			if (fogging)
             {
-				return ((DeconMaterialsCost * TotalRoomSA) + (RoomVolume * DeconAgentVolume * DeconAgentCostPerVolume));
+				return ((_deconMaterialsCost * _totalRoomSa) + (roomVolume * _deconAgentVolume * _deconAgentCostPerVolume));
             }
 			else
             {
-				var AgentNeededPerTreatment = DeconAgentVolumeBySurface.Zip(PercentOfRoomBySurface, (x, y) => x * y).Sum();
-				return ((DeconMaterialsCost * TotalRoomSA) + (AgentNeededPerTreatment * DeconAgentCostPerVolume));
+				var agentNeededPerTreatment = _deconAgentVolumeBySurface.Zip(percentOfRoomBySurface, (x, y) => x * y).Sum();
+				return ((_deconMaterialsCost * _totalRoomSa) + (agentNeededPerTreatment * _deconAgentCostPerVolume));
 
 			}
         }

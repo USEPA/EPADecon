@@ -22,7 +22,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
     {
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public ParameterType Type => ParameterType.PERT;
+        public ParameterType Type => ParameterType.Pert;
 
         public ParameterMetaData MetaData { get; set; }
 

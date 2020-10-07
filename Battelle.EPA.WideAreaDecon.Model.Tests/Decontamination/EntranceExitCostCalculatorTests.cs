@@ -18,13 +18,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             double[] personnelReqPerTeam = { 0.3, 0.0, 0.0, 5.0, 2.0 };
             double respiratorsPerPerson = 1.0;
             double costPerRespirator = 238.0;
-            double[] costPerPPE = { 3322.0, 3023.8, 1897.68, 260.09 };
+            double[] costPerPpe = { 3322.0, 3023.8, 1897.68, 260.09 };
             Calculator = new EntranceExitCostCalculator(
                 numTeams,
                 personnelReqPerTeam,
                 respiratorsPerPerson,
                 costPerRespirator,
-                costPerPPE,
+                costPerPpe,
                 new MockEntExitLaborCostCalculator()
                 );
         }
@@ -32,9 +32,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [Test]
         public void CalculateCost()
         {
-            double[] PPE_PerLevelPerTeam = { 0.0, 4.0, 4.0, 0.0 };
+            double[] ppePerLevelPerTeam = { 0.0, 4.0, 4.0, 0.0 };
 
-            Assert.AreEqual((81546.64), Calculator.CalculateEntranceExitCost(PPE_PerLevelPerTeam), 1e-6, "Incorrect cost calculated");
+            Assert.AreEqual((81546.64), Calculator.CalculateEntranceExitCost(ppePerLevelPerTeam), 1e-6, "Incorrect cost calculated");
         }
     }
 }

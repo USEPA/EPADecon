@@ -23,7 +23,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
     public class BetaPertDistribution : IParameter
     {
         [JsonConverter(typeof(StringEnumConverter))]
-        public ParameterType Type => ParameterType.PERT;
+        public ParameterType Type => ParameterType.Pert;
         public ParameterMetaData MetaData { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

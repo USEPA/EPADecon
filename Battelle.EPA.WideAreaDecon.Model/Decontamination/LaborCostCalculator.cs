@@ -5,11 +5,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
 	public class LaborCostCalculator : ILaborCostCalculator
 	{
-		private readonly double NumTeams;
-		private readonly double[] PersonnelReqPerTeam;
-		private readonly double[] PersonnelHourlyRate;
-		private readonly double PersonnelOverhead;
-		private readonly double[] WorkDaysPerAppMethod;
+		private readonly double _numTeams;
+		private readonly double[] _personnelReqPerTeam;
+		private readonly double[] _personnelHourlyRate;
+		private readonly double _personnelOverhead;
+		private readonly double[] _workDaysPerAppMethod;
 
 		public LaborCostCalculator(
 			double numTeams, 
@@ -18,27 +18,27 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 			double personnelOverhead, 
 			double[] workDaysPerAppMethod)
 		{
-			NumTeams = numTeams;
-			PersonnelReqPerTeam = personnelReqPerTeam;
-			PersonnelHourlyRate = personnelHourlyRate;
-			PersonnelOverhead = personnelOverhead;
-			WorkDaysPerAppMethod = workDaysPerAppMethod;
+			_numTeams = numTeams;
+			_personnelReqPerTeam = personnelReqPerTeam;
+			_personnelHourlyRate = personnelHourlyRate;
+			_personnelOverhead = personnelOverhead;
+			_workDaysPerAppMethod = workDaysPerAppMethod;
 		}
 
-		public double CalculateLaborCost(double PersonnelRoundTripDays)
+		public double CalculateLaborCost(double personnelRoundTripDays)
 		{
-			var PersonnelHoursCost = PersonnelReqPerTeam.Zip(PersonnelHourlyRate, (x, y) => x * y).Sum();
+			var personnelHoursCost = _personnelReqPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
 
-			double TotalWorkDays = WorkDaysPerAppMethod.Sum();
+			double totalWorkDays = _workDaysPerAppMethod.Sum();
 
-			return (TotalWorkDays + PersonnelOverhead + PersonnelRoundTripDays) * 8 * NumTeams * PersonnelHoursCost;
+			return (totalWorkDays + _personnelOverhead + personnelRoundTripDays) * 8 * _numTeams * personnelHoursCost;
 		}
 
-		public double CalculateLaborDays(double PersonnelRoundTripDays)
+		public double CalculateLaborDays(double personnelRoundTripDays)
 		{
-			double TotalWorkDays = WorkDaysPerAppMethod.Sum();
+			double totalWorkDays = _workDaysPerAppMethod.Sum();
 
-			return (TotalWorkDays + PersonnelOverhead + PersonnelRoundTripDays);
+			return (totalWorkDays + _personnelOverhead + personnelRoundTripDays);
 
 		}
 

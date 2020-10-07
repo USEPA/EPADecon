@@ -34,7 +34,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
             {
                 ParameterType.Constant => ConstantDistribution.FromExcel(metaData, row),
                 ParameterType.Uniform => UniformDistribution.FromExcel(metaData, row),
-                ParameterType.PERT => BetaPertDistribution.FromExcel(metaData, row),
+                ParameterType.Pert => BetaPertDistribution.FromExcel(metaData, row),
                 ParameterType.TruncatedNormal => TruncatedNormalDistribution.FromExcel(metaData, row),
                 ParameterType.LogUniform => LogUniformDistribution.FromExcel(metaData, row),
                 ParameterType.TruncatedLogNormal => TruncatedLogNormalDistribution.FromExcel(metaData, row),

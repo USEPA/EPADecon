@@ -8,7 +8,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
     {
         class MockEntExitLaborCostCalculator : IEntExitLaborCostCalculator
         {
-            public double CalculateEntExitLaborCost(double SAToBeSourceReduced) => 132585.671704968;
+            public double CalculateEntExitLaborCost(double saToBeSourceReduced) => 132585.671704968;
         }
         private EntranceExitCostCalculator Calculator { get; set; }
         [SetUp]
@@ -18,13 +18,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
             double[] personnelReqPerTeam = { 0.333, 0.0, 1.0, 3.0, 0.67 };
             double respiratorsPerPerson = 1.0;
             double costPerRespirator = 238.0;
-            double[] costPerPPE = { 3322.0, 3023.8, 1897.68, 260.09 };
+            double[] costPerPpe = { 3322.0, 3023.8, 1897.68, 260.09 };
             Calculator = new EntranceExitCostCalculator(
                 numTeams,
                 personnelReqPerTeam,
                 respiratorsPerPerson,
                 costPerRespirator,
-                costPerPPE,
+                costPerPpe,
                 new MockEntExitLaborCostCalculator()
                 );
         }
@@ -32,10 +32,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         [Test]
         public void CalculateCost()
         {
-            double SAToBeSourceReduced = 8000.0;
-            double[] PPE_EachLevelPerTeam = { 0.0, 3.0, 3.0, 0.0 };
+            double saToBeSourceReduced = 8000.0;
+            double[] ppeEachLevelPerTeam = { 0.0, 3.0, 3.0, 0.0 };
 
-            Assert.AreEqual((196406.287704968), Calculator.CalculateEntranceExitCost(SAToBeSourceReduced, PPE_EachLevelPerTeam), 1e-6, "Incorrect cost calculated");
+            Assert.AreEqual((196406.287704968), Calculator.CalculateEntranceExitCost(saToBeSourceReduced, ppeEachLevelPerTeam), 1e-6, "Incorrect cost calculated");
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
 
         private static string TestFileName => @"InputFiles\ParameterTests\ParameterMetaDataTests.xlsx";
 
-        private readonly ParameterMetaData[] Expected =
+        private readonly ParameterMetaData[] _expected =
         {
             new ParameterMetaData()
             {
@@ -116,12 +116,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
 
             var sheet = xssWorkbook.GetSheetAt(0);
             
-            if(sheet.PhysicalNumberOfRows != Expected.Length + 1)
+            if(sheet.PhysicalNumberOfRows != _expected.Length + 1)
                 Assert.Fail($"Incorrect number of rows for: {TestFileName}");
 
             for (var i = 1; i < sheet.PhysicalNumberOfRows; i++)
             {
-                var expected = Expected[i - 1];
+                var expected = _expected[i - 1];
                 var actual = ParameterMetaData.FromExcel(sheet.GetRow(i));
 
                 Assert.AreEqual(expected.ValidPhases.Length, actual.ValidPhases.Length, $"Incorrect number of valid phases for entry {i}");

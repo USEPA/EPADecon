@@ -12,18 +12,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         public void Setup()
         {
             double surfaceAreaPerWipe = 4.64515;
-            double surfaceAreaPerHEPA = 9.2903;
+            double surfaceAreaPerHepa = 9.2903;
             double surfaceAreaToBeWiped = 500.0;
-            double surfaceAreaToBeHEPA = 500.0;
+            double surfaceAreaToBeHepa = 500.0;
             double costPerWipeAnalysis = 520.0;
-            double costPerHEPAAnalysis = 290.0;
+            double costPerHepaAnalysis = 290.0;
             Calculator = new AnalysisQuantCostCalculator(
                 surfaceAreaPerWipe, 
-                surfaceAreaPerHEPA, 
+                surfaceAreaPerHepa, 
                 surfaceAreaToBeWiped, 
-                surfaceAreaToBeHEPA, 
+                surfaceAreaToBeHepa, 
                 costPerWipeAnalysis, 
-                costPerHEPAAnalysis
+                costPerHepaAnalysis
                 );
         }
 

@@ -6,50 +6,50 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
     public class SuppliesCostCalculator : ISuppliesCostCalculator
     {
-        private readonly double NumTeams;
-        private readonly double SAPerWipe;
-        private readonly double SAPerHEPASock;
-        private readonly double WipesPerHrPerTeam;
-        private readonly double HEPASocksPerHrPerTeam;
-        private readonly double CostPerWipe;
-        private readonly double CostPerVacuum;
-        private readonly double HEPARentalCostPerDay;
-        private readonly double SAToBeWiped;
-        private readonly double SAToBeHEPA;
+        private readonly double _numTeams;
+        private readonly double _saPerWipe;
+        private readonly double _saPerHepaSock;
+        private readonly double _wipesPerHrPerTeam;
+        private readonly double _hepaSocksPerHrPerTeam;
+        private readonly double _costPerWipe;
+        private readonly double _costPerVacuum;
+        private readonly double _hepaRentalCostPerDay;
+        private readonly double _saToBeWiped;
+        private readonly double _saToBeHepa;
 
         public SuppliesCostCalculator(
             double numTeams, 
             double saPerWipe, 
-            double saPerHEPASock, 
+            double saPerHepaSock, 
             double wipesPerHrPerTeam, 
             double hepaSocksPerHrPerTeam,
             double costPerWipe, 
             double costPerVacuum, 
             double hepaRentalCostPerDay, 
             double saToBeWiped, 
-            double saToBeHEPA)
+            double saToBeHepa)
         {
-            NumTeams = numTeams;
-            SAPerWipe = saPerWipe;
-            SAPerHEPASock = saPerHEPASock;
-            WipesPerHrPerTeam = wipesPerHrPerTeam;
-            HEPASocksPerHrPerTeam = hepaSocksPerHrPerTeam;
-            CostPerWipe = costPerWipe;
-            CostPerVacuum = costPerVacuum;
-            HEPARentalCostPerDay = hepaRentalCostPerDay;
-            SAToBeWiped = saToBeWiped;
-            SAToBeHEPA = saToBeHEPA;
+            _numTeams = numTeams;
+            _saPerWipe = saPerWipe;
+            _saPerHepaSock = saPerHepaSock;
+            _wipesPerHrPerTeam = wipesPerHrPerTeam;
+            _hepaSocksPerHrPerTeam = hepaSocksPerHrPerTeam;
+            _costPerWipe = costPerWipe;
+            _costPerVacuum = costPerVacuum;
+            _hepaRentalCostPerDay = hepaRentalCostPerDay;
+            _saToBeWiped = saToBeWiped;
+            _saToBeHepa = saToBeHepa;
 
         }
 
         public double CalculateSuppliesCost()
         {
-            return ((SAToBeWiped / SAPerWipe) * CostPerWipe) + ((SAToBeHEPA / SAPerHEPASock) * CostPerVacuum) + (((SAToBeHEPA / SAPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams * 8)) * HEPARentalCostPerDay);
+            return ((_saToBeWiped / _saPerWipe) * _costPerWipe) + ((_saToBeHepa / _saPerHepaSock) * _costPerVacuum) + (((_saToBeHepa / _saPerHepaSock) / (_hepaSocksPerHrPerTeam * _numTeams * 8)) * _hepaRentalCostPerDay);
         }
 
         public double CalculateWorkDays()
         {
-            return (Math.Abs(((SAToBeWiped / SAPerWipe) / (WipesPerHrPerTeam * NumTeams)) / 8) + Math.Abs(((SAToBeHEPA / SAPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams)) / 8));
+            return (Math.Abs(((_saToBeWiped / _saPerWipe) / (_wipesPerHrPerTeam * _numTeams)) / 8) + Math.Abs(((_saToBeHepa / _saPerHepaSock) / (_hepaSocksPerHrPerTeam * _numTeams)) / 8));
 
         }
     }

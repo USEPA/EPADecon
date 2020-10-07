@@ -5,23 +5,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {
     class MockCsLaborCostCalculator : Model.CharacterizationSampling.ILaborCostCalculator
     {
-        public double CalculateLaborCost(double PersonnelRoundTripDays) => 84993.281164225;
+        public double CalculateLaborCost(double personnelRoundTripDays) => 84993.281164225;
 
         public double CalculateEntExitLaborCost() => 21393.2811642251;
 
-        public double CalculateLaborDays(double PersonnelRoundTripDays) => 1.34093086337363;
+        public double CalculateLaborDays(double personnelRoundTripDays) => 1.34093086337363;
     }
     class MockSrLaborCostCalculator : Model.SourceReduction.ILaborCostCalculator
     {
-        public double CalculateLaborCost(double PersonnelRoundTripDays, double SAToBeSourceReduced, double CostPerTonRemoved) => 137654.447803312;
+        public double CalculateLaborCost(double personnelRoundTripDays, double saToBeSourceReduced, double costPerTonRemoved) => 137654.447803312;
         
-        public double CalculateLaborDays(double PersonnelRoundTripDays, double SAToBeSourceReduced) => 4.07855517733999;
+        public double CalculateLaborDays(double personnelRoundTripDays, double saToBeSourceReduced) => 4.07855517733999;
     }
     class MockDLaborCostCalculator : Model.Decontamination.ILaborCostCalculator
     {
-        public double CalculateLaborCost(double PersonnelRoundTripDays) => 120400.0;
+        public double CalculateLaborCost(double personnelRoundTripDays) => 120400.0;
         
-        public double CalculateLaborDays(double PersonnelRoundTripDays) => 5.0;
+        public double CalculateLaborDays(double personnelRoundTripDays) => 5.0;
     }
     public class LaborCostCalculatorTests
     {
