@@ -2,10 +2,10 @@
 {
     public interface ILaborCostCalculator
     {
-        public double CalculateLaborCost(double PersonnelRoundTripDays);
+        public double CalculateLaborCost(double personnelRoundTripDays);
 
         public double CalculateEntExitLaborCost();
 
-        public double CalculateLaborDays(double PersonnelRoundTripDays);
+        public double CalculateLaborDays(double personnelRoundTripDays);
     }
 }

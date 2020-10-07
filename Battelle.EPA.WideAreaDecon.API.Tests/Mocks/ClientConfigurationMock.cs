@@ -7,15 +7,15 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Mocks
     {
         public static ClientConfiguration GetDefaultConfiguration()
         {
-            return new ClientConfiguration()
+            return new ClientConfiguration
             {
-                VuetifySettings = new VuetifyTheme()
+                VuetifySettings = new VuetifyTheme
                 {
                     DarkModeEnabled = true,
                     DisableThemes = true,
-                    ColorSchemes = new VuetifyColorSchemeMap()
+                    ColorSchemes = new VuetifyColorSchemeMap
                     {
-                        DarkScheme = new VuetifyColorScheme()
+                        DarkScheme = new VuetifyColorScheme
                         {
                             Accent = Color.Red,
                             Anchor = Color.Red,
@@ -24,7 +24,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Mocks
                             Primary = Color.Red,
                             Secondary = Color.Red,
                             Success = Color.Red,
-                            Warning = Color.Red,
+                            Warning = Color.Red
                         }
                     }
                 }

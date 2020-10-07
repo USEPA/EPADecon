@@ -10,10 +10,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Controllers
     [TestFixture]
     public class ClientConfigurationControllerTests
     {
-        private ClientConfiguration TestClientConfiguration { get; set; }
-        private IClientConfigurationService TestClientConfigurationProvider { get; set; }
-
-            [SetUp]
+        [SetUp]
         public void SetUp()
         {
             TestClientConfiguration = ClientConfigurationMocker.GetDefaultConfiguration();
@@ -25,20 +22,23 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Controllers
             TestClientConfigurationProvider = mock.Object;
         }
 
+        private ClientConfiguration TestClientConfiguration { get; set; }
+        private IClientConfigurationService TestClientConfigurationProvider { get; set; }
+
         [Test]
         public void ControllerProvidesCorrectConfiguration()
         {
             // Setup
             var testController = new ClientConfigurationController(
                 TestClientConfigurationProvider);
-            
+
 
             // SUT
             var retrievedConfiguration = testController.Get();
 
             // Assert
             Assert.AreEqual(
-                TestClientConfiguration, 
+                TestClientConfiguration,
                 retrievedConfiguration);
         }
     }

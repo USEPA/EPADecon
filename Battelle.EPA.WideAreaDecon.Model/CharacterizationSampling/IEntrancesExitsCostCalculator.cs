@@ -1,7 +1,9 @@
-﻿namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
+﻿using System.Collections.Generic;
+
+namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
     public interface IEntrancesExitsCostCalculator
     {
-        public double CalculateEntrancesExitsCost(double[] PPE_PerLevelPerTeam);
+        public double CalculateEntrancesExitsCost(IEnumerable<double> ppePerLevelPerTeam);
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IWorkDaysCalculator
     {
-        public double CalculateWorkDays(double SAToBeSourceReduced);
+        public double CalculateWorkDays(double saToBeSourceReduced);
     }
 }

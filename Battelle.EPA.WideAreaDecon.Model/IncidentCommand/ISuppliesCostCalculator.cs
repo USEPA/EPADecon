@@ -2,6 +2,6 @@
 {
     public interface ISuppliesCostCalculator
     {
-        public double CalculateSuppliesCost(double SAToBeSourceReduced, double PersonnelRoundTripDays);
+        public double CalculateSuppliesCost(double saToBeSourceReduced, double personnelRoundTripDays);
     }
 }

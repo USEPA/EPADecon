@@ -1,32 +1,27 @@
-﻿using System;
-using System.Linq;
-
-namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
+﻿namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
-	public class SuppliesCostCalculator : ISuppliesCostCalculator
-	{
-		private readonly double EquipmentRentalCostPerDay;
-		private readonly double SuppliesCostPerDay;
+    public class SuppliesCostCalculator : ISuppliesCostCalculator
+    {
+        private readonly double _equipmentRentalCostPerDay;
 
-		private readonly ILaborCostCalculator LaborCostCalculator;
+        private readonly ILaborCostCalculator _laborCostCalculator;
+        private readonly double _suppliesCostPerDay;
 
-		public SuppliesCostCalculator(
-			double equipmentRentalCostPerDay, 
-			double suppliesCostPerDay,
-			ILaborCostCalculator laborCostCalculator)
-		{
-			EquipmentRentalCostPerDay = equipmentRentalCostPerDay;
-			SuppliesCostPerDay = suppliesCostPerDay;
-			LaborCostCalculator = laborCostCalculator;
+        public SuppliesCostCalculator(
+            double equipmentRentalCostPerDay,
+            double suppliesCostPerDay,
+            ILaborCostCalculator laborCostCalculator)
+        {
+            _equipmentRentalCostPerDay = equipmentRentalCostPerDay;
+            _suppliesCostPerDay = suppliesCostPerDay;
+            _laborCostCalculator = laborCostCalculator;
         }
 
-		public double CalculateSuppliesCost(double SAToBeSourceReduced, double PersonnelRoundTripDays)
+        public double CalculateSuppliesCost(double saToBeSourceReduced, double personnelRoundTripDays)
         {
-			double OnSiteDays = LaborCostCalculator.CalculateOnSiteDays(SAToBeSourceReduced, PersonnelRoundTripDays);
+            var onSiteDays = _laborCostCalculator.CalculateOnSiteDays(saToBeSourceReduced, personnelRoundTripDays);
 
-			return OnSiteDays * (EquipmentRentalCostPerDay + SuppliesCostPerDay);
-
-		}
-	}
-
+            return onSiteDays * (_equipmentRentalCostPerDay + _suppliesCostPerDay);
+        }
+    }
 }

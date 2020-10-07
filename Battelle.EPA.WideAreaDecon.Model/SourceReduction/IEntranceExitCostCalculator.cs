@@ -2,6 +2,6 @@
 {
     public interface IEntranceExitCostCalculator
     {
-        public double CalculateEntranceExitCost(double SAToBeSourceReduced, double[] PPE_EachLevelPerTeam);
+        public double CalculateEntranceExitCost(double saToBeSourceReduced, double[] ppeEachLevelPerTeam);
     }
 }

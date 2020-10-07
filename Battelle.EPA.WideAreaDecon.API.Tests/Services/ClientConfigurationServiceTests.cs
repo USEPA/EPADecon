@@ -11,8 +11,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Services
     [TestFixture]
     public class ClientConfigurationServiceTests
     {
-        private IConfiguration TestConfiguration { get; set; }
-
         [SetUp]
         public void SetUp()
         {
@@ -21,6 +19,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Services
                 .AddJsonFile($"Services\\{nameof(ClientConfigurationServiceTests)}.json")
                 .Build();
         }
+
+        private IConfiguration TestConfiguration { get; set; }
 
         [Test]
         public void ServiceProvidesCorrectConfiguration()

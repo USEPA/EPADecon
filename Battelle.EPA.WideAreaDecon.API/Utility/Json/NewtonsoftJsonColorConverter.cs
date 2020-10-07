@@ -22,6 +22,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Json
             {
                 throw new ArgumentException("Color converter can only handle Color types!");
             }
+
             JToken
                 .FromObject($"#{castColor.R:X2}{castColor.G:X2}{castColor.B:X2}")
                 .WriteTo(writer);

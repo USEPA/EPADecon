@@ -10,11 +10,11 @@ using NPOI.SS.UserModel;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
 {
-    public class WeibullDistribution: IParameter
+    public class WeibullDistribution : IParameter
     {
-
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterType Type => ParameterType.Weibull;
+
         public ParameterMetaData MetaData { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

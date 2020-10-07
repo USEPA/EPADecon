@@ -2,6 +2,7 @@
 {
     public interface ITransportationCostCalculator
     {
-        public double CalculateTransportationCost(double[] PersonnelAvailableByType, double CostPerRoundTripTicket, double TotalOnSiteDays);
+        public double CalculateTransportationCost(double[] personnelAvailableByType, double costPerRoundTripTicket,
+            double totalOnSiteDays);
     }
 }

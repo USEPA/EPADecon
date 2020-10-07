@@ -20,7 +20,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
     /// </summary>
     public class BimodalTruncatedNormalDistribution : IParameter
     {
-
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterType Type => ParameterType.Pert;
 
@@ -55,12 +54,18 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
             return new BimodalTruncatedNormalDistribution()
             {
                 MetaData = metaData,
-                Mean1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean1), information)?.ConvertToOptionalDouble(),
-                StdDev1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(StdDev1), information)?.ConvertToOptionalDouble(),
-                Mean2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean2), information)?.ConvertToOptionalDouble(),
-                StdDev2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(StdDev2), information)?.ConvertToOptionalDouble(),
-                Min = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Min), information)?.ConvertToOptionalDouble(),
-                Max = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Max), information)?.ConvertToOptionalDouble(),
+                Mean1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean1), information)
+                    ?.ConvertToOptionalDouble(),
+                StdDev1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(StdDev1), information)
+                    ?.ConvertToOptionalDouble(),
+                Mean2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean2), information)
+                    ?.ConvertToOptionalDouble(),
+                StdDev2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(StdDev2), information)
+                    ?.ConvertToOptionalDouble(),
+                Min = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Min), information)
+                    ?.ConvertToOptionalDouble(),
+                Max = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Max), information)
+                    ?.ConvertToOptionalDouble(),
             };
         }
     }

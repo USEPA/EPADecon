@@ -24,6 +24,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterType Type => ParameterType.LogUniform;
+
         public ParameterMetaData MetaData { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -43,6 +44,5 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
                 Max = typeof(LogUniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToOptionalDouble()
             };
         }
-
     }
 }

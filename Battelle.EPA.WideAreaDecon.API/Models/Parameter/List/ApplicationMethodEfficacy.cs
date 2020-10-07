@@ -16,6 +16,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterType Type => ParameterType.Efficacy;
+
         public ParameterMetaData MetaData { get; set; }
 
         [ExcelProperty(15)] public Dictionary<SurfaceType, List<IParameter>> Parameters { get; set; }
@@ -56,6 +57,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
                 {
                     xDependent[surfaceType].Add(dependentParam, new List<IRow>());
                 }
+
                 xDependent[surfaceType][dependentParam].Add(row);
             }
 
@@ -69,8 +71,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
                     }
 
                     var xDependentRows = xDependent[surfaceType][dependentParam];
-                    if(xDependentRows.Count < 1)
-                        throw new ApplicationException($"Incorrect number of parameters found for {surfaceType} : {dependentParam}");
+                    if (xDependentRows.Count < 1)
+                        throw new ApplicationException(
+                            $"Incorrect number of parameters found for {surfaceType} : {dependentParam}");
                     parameters[surfaceType].Add(UniformXDependentDistribution.FromExcel(
                         ParameterMetaData.FromExcel(xDependentRows[0]), dependentParam, xDependentRows));
                 }
@@ -80,11 +83,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
             {
                 MetaData = new ParameterMetaData()
                 {
-                    Category = "Efficacy", 
+                    Category = "Efficacy",
                     Description = $"Parameters driving efficacy of decontamination for {method.GetStringValue()}",
                     Name = $"{method.GetStringValue()} Efficacy",
                     Units = $"Log Reduction",
-                    ValidPhases = new [] {DecontaminationPhase.Indoor, DecontaminationPhase.Outdoor, DecontaminationPhase.Underground}
+                    ValidPhases = new[]
+                        {DecontaminationPhase.Indoor, DecontaminationPhase.Outdoor, DecontaminationPhase.Underground}
                 },
                 Parameters = parameters
             };

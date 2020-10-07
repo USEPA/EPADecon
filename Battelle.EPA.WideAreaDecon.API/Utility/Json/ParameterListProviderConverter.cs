@@ -69,8 +69,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Json
             return type switch
             {
                 ParameterListProviderType.Empty => jsonObject.ToObject<EmptyParameterListProvider>(serializer),
-                ParameterListProviderType.ExcelDefineScenario => jsonObject.ToObject<ExcelDefineScenarioParameterListProvider>(serializer),
-                ParameterListProviderType.ExcelModifyParameter => jsonObject.ToObject<ExcelModifyParameterParameterListProvider>(serializer),
+                ParameterListProviderType.ExcelDefineScenario => jsonObject
+                    .ToObject<ExcelDefineScenarioParameterListProvider>(serializer),
+                ParameterListProviderType.ExcelModifyParameter => jsonObject
+                    .ToObject<ExcelModifyParameterParameterListProvider>(serializer),
                 _ => throw new SerializationException($"Unknown type {type} found")
             };
         }

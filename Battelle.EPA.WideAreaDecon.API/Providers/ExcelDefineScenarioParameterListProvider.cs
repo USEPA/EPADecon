@@ -18,6 +18,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterListProviderType Type => ParameterListProviderType.ExcelDefineScenario;
+
         private static int VersionRowLocation => 0;
         private static int VersionCellLocation => 1;
 
@@ -38,12 +39,13 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             if (!File.Exists(FileName))
             {
                 FileName = FullFileName;
-                if(!File.Exists(FileName))
+                if (!File.Exists(FileName))
                 {
                     throw new ApplicationException(
                         $"Could not find {nameof(ExcelDefineScenarioParameterListProvider)} filename: {FileName}");
                 }
             }
+
             // If the file exists, open a new file stream to open the excel workbook
             using var stream = new FileStream(FileName, FileMode.Open, FileAccess.Read) {Position = 0};
             XSSFWorkbook xssWorkbook = new XSSFWorkbook(stream);
@@ -62,7 +64,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             {
                 Version = version,
                 Filters = GenericSheetNames.Select(genericSheetName =>
-                    ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName) ?? 
+                    ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName) ??
                         throw new ApplicationException($"Could not find sheet {genericSheetName}"))).ToArray()
             };
         }

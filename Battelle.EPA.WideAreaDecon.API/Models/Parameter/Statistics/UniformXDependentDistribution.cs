@@ -48,6 +48,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
             {
                 throw new ArgumentException($"Input {nameof(rows)} must be more than 0 row");
             }
+
             return new UniformXDependentDistribution()
             {
                 MetaData = metaData,

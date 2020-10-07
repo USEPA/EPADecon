@@ -10,6 +10,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Extensions
         {
             return ExcelPropertyAttribute.GetCell(type, propertyName, row);
         }
+
         public static string GetCellValue(this Type type, string propertyName, IRow row)
         {
             return ExcelPropertyAttribute.GetCellValue(type, propertyName, row);

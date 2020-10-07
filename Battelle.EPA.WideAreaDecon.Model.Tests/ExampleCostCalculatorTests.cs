@@ -5,6 +5,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
     public class ExampleCostCalculatorTests
     {
         private ExampleCostCalculator Calculator { get; set; }
+
         [SetUp]
         public void Setup()
         {
