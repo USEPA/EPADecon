@@ -2,19 +2,24 @@
 
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
+    public enum PersonnelLevel
+    {
+
+    }
+
     public class LaborCostCalculator : ILaborCostCalculator
     {
         private readonly CharacterizationSampling.ILaborCostCalculator _laborCostCalculatorCs;
         private readonly Decontamination.ILaborCostCalculator _laborCostCalculatorDc;
         private readonly SourceReduction.ILaborCostCalculator _laborCostCalculatorSr;
-        private readonly double[] _personnelHourlyRate;
+        private readonly Dictionary<PersonnelLevel, double> _personnelHourlyRate;
         private readonly double _personnelOverheadDays;
-        private readonly double[] _personnelReqPerTeam;
+        private readonly Dictionary<PersonnelLevel, double> _personnelReqPerTeam;
 
         public LaborCostCalculator(
-            double[] personnelReqPerTeam,
+            Dictionary<PersonnelLevel, double> personnelReqPerTeam,
             double personnelOverheadDays,
-            double[] personnelHourlyRate,
+            Dictionary<PersonnelLevel, double> personnelHourlyRate,
             CharacterizationSampling.ILaborCostCalculator laborCostCalculatorCs,
             SourceReduction.ILaborCostCalculator laborCostCalculatorSr,
             Decontamination.ILaborCostCalculator laborCostCalculatorDc)

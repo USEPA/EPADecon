@@ -2,20 +2,35 @@
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
+    public enum ApplicationMethodType
+    {
+
+    }
+
+    public enum SporesLevel
+    {
+
+    }
+
+    public enum SurfaceType
+    {
+
+    }
+
     internal class EfficacyCalculator : IEfficacyCalculator
     {
-        private readonly string[] _appMethodBySurfaceType;
-        private readonly double[] _desiredSporeThreshold;
-        private readonly double[] _initialSporeLoading;
-        private readonly string[] _surfaceTypes;
-        private readonly double[] _treatmentDaysPerAm;
+        private readonly Dictionary<ApplicationMethodType, string> _appMethodBySurfaceType;
+        private readonly Dictionary<SporesLevel, double> _desiredSporeThreshold;
+        private readonly Dictionary<SporesLevel, double> _initialSporeLoading;
+        private readonly Dictionary<SurfaceType, string> _surfaceTypes;
+        private readonly Dictionary<ApplicationMethodType, double> _treatmentDaysPerAm;
 
         public EfficacyCalculator(
-            double[] initialSporeLoading,
-            string[] surfaceTypes,
-            string[] applicationMethods,
-            double[] desiredSporeThreshold,
-            double[] treatmentDaysPerAm)
+            Dictionary<SporesLevel, double> initialSporeLoading,
+            Dictionary<SurfaceType, string> surfaceTypes,
+            Dictionary<ApplicationMethodType, string> applicationMethods,
+            Dictionary<SporesLevel, double> desiredSporeThreshold,
+            Dictionary<ApplicationMethodType, double> treatmentDaysPerAm)
         {
             _initialSporeLoading = initialSporeLoading;
             _surfaceTypes = surfaceTypes;

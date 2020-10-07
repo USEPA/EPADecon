@@ -2,38 +2,42 @@
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
+    public enum SurfaceType
+    {
+
+    }
+
     public class SuppliesCostCalculator : ISuppliesCostCalculator
     {
         private readonly double _deconAgentCostPerVolume;
         private readonly double _deconAgentVolume;
-        private readonly double[] _deconAgentVolumeBySurface;
+        private readonly Dictionary<SurfaceType, double> _deconAgentVolumeBySurface;
         private readonly double _deconMaterialsCost;
-        private readonly double _totalRoomSa;
+        private readonly double _totalRoomSurfaceArea;
 
         public SuppliesCostCalculator(
             double deconAgentCostPerVolume,
             double deconMaterialsCost,
             double totalRoomSa,
             double deconAgentVolume,
-            double[] deconAgentVolumeBySurface)
+            Dictionary<SurfaceType, double> deconAgentVolumeBySurface)
         {
             _deconAgentCostPerVolume = deconAgentCostPerVolume;
             _deconMaterialsCost = deconMaterialsCost;
-            _totalRoomSa = totalRoomSa;
+            _totalRoomSurfaceArea = totalRoomSurfaceArea;
             _deconAgentVolume = deconAgentVolume;
             _deconAgentVolumeBySurface = deconAgentVolumeBySurface;
         }
 
-        //If bool is true, cost is calculated for fogging using volume instead of surface size and breakdown
-        public double CalculateSuppliesCost(double roomVolume, double[] percentOfRoomBySurface, bool fogging)
+        public double NonFoggingSuppliesCostCalculator (Dictionary<SurfaceType, double> percentOfRoomBySurface)
         {
-            if (fogging)
-            {
-                return _deconMaterialsCost * _totalRoomSa + roomVolume * _deconAgentVolume * _deconAgentCostPerVolume;
-            }
-
             var agentNeededPerTreatment = _deconAgentVolumeBySurface.Zip(percentOfRoomBySurface, (x, y) => x * y).Sum();
-            return _deconMaterialsCost * _totalRoomSa + agentNeededPerTreatment * _deconAgentCostPerVolume;
+            return _deconMaterialsCost * _totalRoomSurfaceArea + agentNeededPerTreatment * _deconAgentCostPerVolume;
+        }
+
+        public double FoggingSuppliesCostCalculator (double roomVolume)
+        {
+            return _deconMaterialsCost * _totalRoomSurfaceArea + roomVolume * _deconAgentVolume * _deconAgentCostPerVolume;
         }
     }
 }
