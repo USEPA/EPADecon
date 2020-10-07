@@ -2,8 +2,8 @@
 {
     public interface ISuppliesCostCalculator
     {
-        public double CalculateSuppliesCost();
+        public double CalculateSuppliesCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped);
 
-        public double CalculateWorkDays();
+        public double CalculateWorkDays(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped);
     }
 }

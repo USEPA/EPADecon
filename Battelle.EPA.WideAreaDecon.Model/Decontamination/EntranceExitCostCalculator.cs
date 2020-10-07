@@ -1,12 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-    public enum PersonnelLevel
-    {
-
-    }
-
     public enum PpeLevel
     {
 
@@ -36,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _entExitLaborCostCalculator = entExitLaborCostCalculator;
         }
 
-        public double CalculateEntranceExitCost(double _numberTeams, double[] ppePerLevelPerTeam)
+        public double CalculateEntranceExitCost(double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
             var totalPersonnel = _personnelReqPerTeam.Sum() * _numberTeams;
 
@@ -44,7 +40,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe, (ppe, cost) => ppe * cost).Sum();
 
-            var costLaborEntEx = _entExitLaborCostCalculator.CalculateEntExitLaborCost();
+            var costLaborEntEx = _entExitLaborCostCalculator.CalculateEntExitLaborCost(_numberTeams);
 
             return costLaborEntEx + totalPersonnel * _respiratorsPerPerson * _costPerRespirator + totalCostPpe;
         }

@@ -3,16 +3,6 @@ using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-    public enum PersonnelLevel
-    {
-
-    }
-
-    public enum ApplicationMethodType
-    {
-
-    }
-
     public class LaborCostCalculator : ILaborCostCalculator
     {
         private readonly Dictionary<PersonnelLevel, double> _personnelHourlyRate;
@@ -21,10 +11,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly Dictionary<ApplicationMethodType, double> _workDaysPerAppMethod;
 
         public LaborCostCalculator(
-            Dictionary<PersonnelLevel, double> personnelReqPerTeam;
-            Dictionary<PersonnelLevel, double> personnelHourlyRate;
+            Dictionary<PersonnelLevel, double> personnelReqPerTeam,
+            Dictionary<PersonnelLevel, double> personnelHourlyRate,
             double personnelOverhead,
-            Dictionary<ApplicationMethodType, double> workDaysPerAppMethodd)
+            Dictionary<ApplicationMethodType, double> workDaysPerAppMethod)
         {
             _personnelReqPerTeam = personnelReqPerTeam;
             _personnelHourlyRate = personnelHourlyRate;
@@ -38,7 +28,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
             var totalWorkDays = _workDaysPerAppMethod.Sum();
 
-            return (totalWorkDays + _personnelOverhead + personnelRoundTripDays) * 8 * _numberTeams * personnelHoursCost;
+            return (totalWorkDays + _personnelOverhead + personnelRoundTripDays) * GlobalConsants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
         }
 
         public double CalculateLaborDays(double personnelRoundTripDays)

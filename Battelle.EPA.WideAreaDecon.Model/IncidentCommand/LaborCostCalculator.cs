@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
@@ -32,30 +33,30 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
             _laborCostCalculatorDc = laborCostCalculatorDc;
         }
 
-        public double CalculateOnSiteDays(double saToBeSourceReduced, double personnelRoundTripDays)
+        public double CalculateOnSiteDays(double _numberTeams, double saToBeSourceReduced, double personnelRoundTripDays)
         {
-            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays(personnelRoundTripDays);
-            var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays(saToBeSourceReduced, personnelRoundTripDays);
+            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays( _numberTeams, personnelRoundTripDays);
+            var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays( _numberTeams, personnelRoundTripDays, saToBeSourceReduced);
             var laborDaysDc = _laborCostCalculatorDc.CalculateLaborDays(personnelRoundTripDays);
 
             return laborDaysCs + laborDaysSr + laborDaysDc + _personnelOverheadDays;
         }
 
-        public double CalculateLaborCost(double saToBeSourceReduced, double personnelRoundTripDays)
+        public double CalculateLaborCost(double _numberDays, double saToBeSourceReduced, double personnelRoundTripDays,double _surfaceAreaToBeHepa,double _surfaceAreaToBeWiped)
         {
-            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays(personnelRoundTripDays);
-            var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays(saToBeSourceReduced, personnelRoundTripDays);
+            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays( _numberTeams, personnelRoundTripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
+            var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays( _numberDays,  saToBeSourceReduced, personnelRoundTripDays);
             var laborDaysDc = _laborCostCalculatorDc.CalculateLaborDays(personnelRoundTripDays);
 
             var totalPersonnel = _personnelReqPerTeam.Sum();
 
             var personnelHoursCost = _personnelReqPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
 
-            var laborHours = 8 * (laborDaysCs + laborDaysSr + laborDaysDc + _personnelOverheadDays +
+            var laborHours = GlobalConsants.HoursPerWorkDay * (laborDaysCs + laborDaysSr + laborDaysDc + _personnelOverheadDays +
                 personnelRoundTripDays);
 
-            return 8 * (CalculateOnSiteDays(saToBeSourceReduced, personnelRoundTripDays) + personnelRoundTripDays) *
-                personnelHoursCost;
+            return(GlobalConsants.HoursPerWorkDay * (CalculateOnSiteDays(_numberDays,saToBeSourceReduced, personnelRoundTripDays) + personnelRoundTripDays) *
+                personnelHoursCost);
         }
     }
 }

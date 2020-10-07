@@ -19,7 +19,7 @@
         public double CalculateAnalysisQuantityCost(double _surfaceAreaToBeHep, double _surfaceAreaToBeWiped)
         {
             return _surfaceAreaToBeWiped / _surfaceAreaPerWipe * _costPerWipeAnalysis +
-                _surfaceAreaToBeHepa / _surfaceAreaPerHepaSock * _costPerHepaAnalysis;
+                _surfaceAreaToBeHep / _surfaceAreaPerHepaSock * _costPerHepaAnalysis;
         }
     }
 }

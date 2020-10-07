@@ -2,6 +2,6 @@
 {
     public interface IAnalysisQuantityCostCalculator
     {
-        public double CalculateAnalysisQuantityCost();
+        public double CalculateAnalysisQuantityCost(double _surfaceAreaToBeHep, double _surfaceAreaToBeWiped);
     }
 }

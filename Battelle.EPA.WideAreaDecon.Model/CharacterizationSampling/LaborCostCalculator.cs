@@ -1,12 +1,8 @@
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
-    public enum PersonnelLevel
-    {
-
-    }
-
     public class LaborCostCalculator : ILaborCostCalculator
     {
         private readonly double _hoursPerEntryPerTeam;
@@ -19,12 +15,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private readonly ISuppliesCostCalculator _suppliesCostCalculator;
 
         public LaborCostCalculator(
-            Dictionary<PersonnelLevel, double> _personnelRequiredPerTeam,
+            Dictionary<PersonnelLevel, double> personnelRequiredPerTeam,
             double personnelOverhead,
             double numberEntriesPerTeamPerDay,
             double hoursPerEntryPerTeam,
             double hoursPerExitPerTeam,
-            Dictionary<PersonnelLevel, double> _personnelHourlyRate,
+            Dictionary<PersonnelLevel, double> personnelHourlyRate,
             ISuppliesCostCalculator suppliesCostCalculator)
         {
             _personnelRequiredPerTeam = personnelRequiredPerTeam;
@@ -36,29 +32,29 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _suppliesCostCalculator = suppliesCostCalculator;
         }
         
-        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays)
+        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             var personnelHoursCost = _personnelRequiredPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
 
-            var workDays = _suppliesCostCalculator.CalculateWorkDays();
+            var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
 
-            return (workDays + _personnelOverhead + personnelRoundTripDays) * 8 * _numberTeams * personnelHoursCost;
+            return (workDays + _personnelOverhead + personnelRoundTripDays) * GlobalConsants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
         }
 
         //return double if Elabor cost is not longer readonly
-        public double CalculateEntExitLaborCost(double _numberTeams)
+        public double CalculateEntExitLaborCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             var personnelHoursCost = _personnelRequiredPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
 
-            var workDays = _suppliesCostCalculator.CalculateWorkDays();
+            var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
 
             return (workDays * _numberEntriesPerTeamPerDay * _numberTeams * _hoursPerEntryPerTeam +
                 workDays * _numberEntriesPerTeamPerDay * _numberTeams * _hoursPerExitPerTeam) * personnelHoursCost;
         }
 
-        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays)
+        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
-            var workDays = _suppliesCostCalculator.CalculateWorkDays();
+            var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
 
             return workDays + _personnelOverhead + personnelRoundTripDays;
         }

@@ -1,13 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
     public enum PpeLevel
-    {
-
-    }
-
-    public enum PersonnelLevel
     {
 
     }
@@ -28,23 +24,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
             Dictionary<PpeLevel, double> costPerPpe,
             IEntExitLaborCostCalculator entExitLaborCostCalculator)
         {
-            _personnelReqPerTeam = personnelReqPerTeam;
+            _personnelRequiredPerTeam = personnelRequiredPerTeam;
             _respiratorsPerPerson = respiratorsPerPerson;
             _costPerRespirator = costPerRespirator;
             _costPerPpe = costPerPpe;
             _entExitLaborCostCalculator = entExitLaborCostCalculator;
         }
 
-        public double CalculateEntranceExitCost(double _numberTeams, double saToBeSourceReduced, double[] ppeEachLevelPerTeam)
+        public double CalculateEntranceExitCost(double _numberTeams, double saToBeSourceReduced, Dictionary<PpeLevel, double> ppeEachLevelPerTeam)
         {
-            var totalPersonnel = _personnelReqPerTeam.Sum() * _numberTeams;
+            var totalPersonnel = _personnelRequiredPerTeam.Sum() * _numberTeams;
 
             var totalPpePerLevel = ppeEachLevelPerTeam.Select(x => x * _numberTeams);
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe, (ppe, cost) => ppe * cost).Sum();
 
             //EntExitLabor declared as local double as input is needed to calculate
-            var entExitLabor = _entExitLaborCostCalculator.CalculateEntExitLaborCost(saToBeSourceReduced);
+            var entExitLabor = _entExitLaborCostCalculator.CalculateEntExitLaborCost(_numberTeams, saToBeSourceReduced);
 
             return entExitLabor + totalPersonnel * _respiratorsPerPerson * _costPerRespirator + totalCostPpe;
         }

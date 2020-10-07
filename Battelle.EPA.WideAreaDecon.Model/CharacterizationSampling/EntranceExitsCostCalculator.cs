@@ -23,10 +23,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private readonly double _respiratorsPerPerson;
 
         public EntrancesExitsCostCalculator(
-            Dictionary<PpeLevel, double> personnelRequiredPerTeam,
+            Dictionary<PersonnelLevel, double> personnelRequiredPerTeam,
             double respiratorsPerPerson,
             double costPerRespirator,
-            Dictionary<PersonnelLevel, double> costPerPpe,
+            Dictionary<PpeLevel, double> costPerPpe,
             ILaborCostCalculator laborCostCalculator)
         {
             _personnelRequiredPerTeam = personnelRequiredPerTeam;
@@ -36,7 +36,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _laborCostCalculator = laborCostCalculator;
         }
 
-        public double CalculateEntrancesExitsCost(double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
+        public double CalculateEntrancesExitsCost(double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             var totalPersonnel = _personnelRequiredPerTeam.Sum() * _numberTeams;
 
@@ -44,7 +44,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe, (ppe, cost) => ppe * cost).Sum();
 
-            var entExitLaborCost = _laborCostCalculator.CalculateEntExitLaborCost();
+            var entExitLaborCost = _laborCostCalculator.CalculateEntExitLaborCost( _numberTeams,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
 
             return entExitLaborCost + totalPersonnel * _respiratorsPerPerson * _costPerRespirator + totalCostPpe;
         }

@@ -1,4 +1,6 @@
-﻿namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
+﻿using System.Collections.Generic;
+
+namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
     public interface ISuppliesCostCalculator
     {

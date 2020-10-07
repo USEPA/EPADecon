@@ -1,13 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
     public enum PersonnelLevel
-    {
-
-    }
-
-    public enum ApplicationMethodType
     {
 
     }

@@ -1,12 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-    public enum SurfaceType
-    {
-
-    }
-
     public class SuppliesCostCalculator : ISuppliesCostCalculator
     {
         private readonly double _deconAgentCostPerVolume;
@@ -18,7 +14,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         public SuppliesCostCalculator(
             double deconAgentCostPerVolume,
             double deconMaterialsCost,
-            double totalRoomSa,
+            double totalRoomSurfaceArea,
             double deconAgentVolume,
             Dictionary<SurfaceType, double> deconAgentVolumeBySurface)
         {
