@@ -2,6 +2,6 @@
 {
     public interface IEntExitLaborCostCalculator
     {
-        public double CalculateEntExitLaborCost(double SAToBeSourceReduced);
+        public double CalculateEntExitLaborCost(double saToBeSourceReduced);
     }
 }

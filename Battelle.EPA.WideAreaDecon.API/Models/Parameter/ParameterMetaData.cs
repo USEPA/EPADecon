@@ -25,7 +25,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
 
         public static ParameterMetaData FromExcel(IRow row)
         {
-
             return new ParameterMetaData()
             {
                 ValidPhases = typeof(ParameterMetaData).GetCellValue(nameof(ValidPhases), row)
@@ -33,7 +32,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
                         .Select(Enum.Parse<DecontaminationPhase>).ToArray() ??
                     throw new ApplicationException("Error determining Valid Phases"),
                 Category = typeof(ParameterMetaData).GetCellValue(nameof(Category), row),
-                Name = typeof(ParameterMetaData).GetCellValue(nameof(Name), row) ?? throw new ApplicationException("Parameter must have a name"),
+                Name = typeof(ParameterMetaData).GetCellValue(nameof(Name), row) ??
+                    throw new ApplicationException("Parameter must have a name"),
                 Description = typeof(ParameterMetaData).GetCellValue(nameof(Description), row),
                 Units = typeof(ParameterMetaData).GetCellValue(nameof(Units), row),
                 LowerLimit = double.Parse(typeof(ParameterMetaData).GetCellValue(nameof(LowerLimit), row)

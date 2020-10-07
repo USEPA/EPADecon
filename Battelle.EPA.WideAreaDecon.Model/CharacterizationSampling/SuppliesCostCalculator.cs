@@ -1,56 +1,56 @@
 ﻿using System;
-using System.Linq;
-using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
     public class SuppliesCostCalculator : ISuppliesCostCalculator
     {
-        private readonly double NumTeams;
-        private readonly double SAPerWipe;
-        private readonly double SAPerHEPASock;
-        private readonly double WipesPerHrPerTeam;
-        private readonly double HEPASocksPerHrPerTeam;
-        private readonly double CostPerWipe;
-        private readonly double CostPerVacuum;
-        private readonly double HEPARentalCostPerDay;
-        private readonly double SAToBeWiped;
-        private readonly double SAToBeHEPA;
+        private readonly double _costPerVacuum;
+        private readonly double _costPerWipe;
+        private readonly double _hepaRentalCostPerDay;
+        private readonly double _hepaSocksPerHourPerTeam;
+        private readonly double _numberTeams;
+        private readonly double _surfaceAreaPerHepaSock;
+        private readonly double _surfaceAreaPerWipe;
+        private readonly double _surfaceAreaToBeHepa;
+        private readonly double _surfaceAreaToBeWiped;
+        private readonly double _wipesPerHourPerTeam;
 
         public SuppliesCostCalculator(
-            double numTeams, 
-            double saPerWipe, 
-            double saPerHEPASock, 
-            double wipesPerHrPerTeam, 
-            double hepaSocksPerHrPerTeam,
-            double costPerWipe, 
-            double costPerVacuum, 
-            double hepaRentalCostPerDay, 
-            double saToBeWiped, 
-            double saToBeHEPA)
+            double numberTeams,
+            double surfaceAreaPerWipe,
+            double surfaceAreaPerHepaSock,
+            double wipesPerHourPerTeam,
+            double hepaSocksPerHourPerTeam,
+            double costPerWipe,
+            double costPerVacuum,
+            double hepaRentalCostPerDay,
+            double surfaceAreaToBeWiped,
+            double surfaceAreaToBeHepa)
         {
-            NumTeams = numTeams;
-            SAPerWipe = saPerWipe;
-            SAPerHEPASock = saPerHEPASock;
-            WipesPerHrPerTeam = wipesPerHrPerTeam;
-            HEPASocksPerHrPerTeam = hepaSocksPerHrPerTeam;
-            CostPerWipe = costPerWipe;
-            CostPerVacuum = costPerVacuum;
-            HEPARentalCostPerDay = hepaRentalCostPerDay;
-            SAToBeWiped = saToBeWiped;
-            SAToBeHEPA = saToBeHEPA;
-
+            _numberTeams = numberTeams;
+            _surfaceAreaPerWipe = surfaceAreaPerWipe;
+            _surfaceAreaPerHepaSock = surfaceAreaPerHepaSock;
+            _wipesPerHourPerTeam = wipesPerHourPerTeam;
+            _hepaSocksPerHourPerTeam = hepaSocksPerHourPerTeam;
+            _costPerWipe = costPerWipe;
+            _costPerVacuum = costPerVacuum;
+            _hepaRentalCostPerDay = hepaRentalCostPerDay;
+            _surfaceAreaToBeWiped = surfaceAreaToBeWiped;
+            _surfaceAreaToBeHepa = surfaceAreaToBeHepa;
         }
 
         public double CalculateSuppliesCost()
         {
-            return ((SAToBeWiped / SAPerWipe) * CostPerWipe) + ((SAToBeHEPA / SAPerHEPASock) * CostPerVacuum) + (((SAToBeHEPA / SAPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams * 8)) * HEPARentalCostPerDay);
+            return _surfaceAreaToBeWiped / _surfaceAreaPerWipe * _costPerWipe +
+                _surfaceAreaToBeHepa / _surfaceAreaPerHepaSock * _costPerVacuum + _surfaceAreaToBeHepa /
+                _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams * 8) * _hepaRentalCostPerDay;
         }
 
         public double CalculateWorkDays()
         {
-            return (Math.Abs(((SAToBeWiped / SAPerWipe) / (WipesPerHrPerTeam * NumTeams)) / 8) + Math.Abs(((SAToBeHEPA / SAPerHEPASock) / (HEPASocksPerHrPerTeam * NumTeams)) / 8));
-
+            return Math.Abs(_surfaceAreaToBeWiped / _surfaceAreaPerWipe / (_wipesPerHourPerTeam * _numberTeams) / 8) +
+                Math.Abs(_surfaceAreaToBeHepa / _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams) /
+                    8);
         }
     }
 }

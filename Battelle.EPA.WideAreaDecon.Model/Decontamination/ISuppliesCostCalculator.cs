@@ -2,6 +2,6 @@
 {
     public interface ISuppliesCostCalculator
     {
-        public double CalculateSuppliesCost(double RoomVolume, double[] PercentOfRoomBySurface, bool Fogging);
+        public double CalculateSuppliesCost(double roomVolume, double[] percentOfRoomBySurface, bool fogging);
     }
 }

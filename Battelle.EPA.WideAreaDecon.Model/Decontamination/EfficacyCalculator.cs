@@ -1,29 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-    class EfficacyCalculator : IEfficacyCalculator
+    internal class EfficacyCalculator : IEfficacyCalculator
     {
-        private readonly double[] InitialSporeLoading;
-        private readonly string[] SurfaceTypes;
-        private readonly string[] AppMethodBySurfaceType;
-        private readonly double[] DesiredSporeThreshold;
-        private readonly double[] TreatmentDaysPerAM;
+        private readonly string[] _appMethodBySurfaceType;
+        private readonly double[] _desiredSporeThreshold;
+        private readonly double[] _initialSporeLoading;
+        private readonly string[] _surfaceTypes;
+        private readonly double[] _treatmentDaysPerAm;
 
         public EfficacyCalculator(
-            double[] initialSporeLoading, 
-            string[] surfaceTypes, 
-            string[] applicationMethods, 
-            double[] desiredSporeThreshold, 
-            double[] treatmentDaysPerAM)
+            double[] initialSporeLoading,
+            string[] surfaceTypes,
+            string[] applicationMethods,
+            double[] desiredSporeThreshold,
+            double[] treatmentDaysPerAm)
         {
-            InitialSporeLoading = initialSporeLoading;
-            SurfaceTypes = surfaceTypes;
-            AppMethodBySurfaceType = applicationMethods;
-            DesiredSporeThreshold = desiredSporeThreshold;
-            TreatmentDaysPerAM = treatmentDaysPerAM;
+            _initialSporeLoading = initialSporeLoading;
+            _surfaceTypes = surfaceTypes;
+            _appMethodBySurfaceType = applicationMethods;
+            _desiredSporeThreshold = desiredSporeThreshold;
+            _treatmentDaysPerAm = treatmentDaysPerAm;
         }
 
         public double CalculateEfficacy()

@@ -1,31 +1,22 @@
-﻿using System.IO;
-using System;
-using System.Runtime.Serialization;
-using Battelle.EPA.WideAreaDecon.API.Providers;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using NPOI.XSSF.UserModel;
+﻿using Battelle.EPA.WideAreaDecon.API.Providers;
 using NUnit.Framework;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using NPOI.SS.UserModel;
 
 namespace Battelle.EPA.WideAreaDecon.API.Tests.Providers
 {
     [TestFixture]
-    class ExcelDefineScenarioParameterListProviderTest
+    internal class ExcelDefineScenarioParameterListProviderTest
     {
-        private static string TestFileName => @"InputFiles\DefineScenario.xlsx";
         [SetUp]
         public void SetUp()
         {
-
         }
+
+        private static string TestFileName => @"InputFiles\DefineScenario.xlsx";
 
         [Test]
         public void ReadFromExcel()
         {
-            ExcelDefineScenarioParameterListProvider defineScenario = new ExcelDefineScenarioParameterListProvider
+            var defineScenario = new ExcelDefineScenarioParameterListProvider
             {
                 FileName = TestFileName
             };

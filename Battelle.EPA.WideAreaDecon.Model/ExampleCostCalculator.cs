@@ -2,14 +2,14 @@
 {
     public class ExampleCostCalculator
     {
-        private double SomeParameter1 { get; set; }
-        private double SomeParameter2 { get; set; }
-
         public ExampleCostCalculator(double someParameter1, double someParameter2)
         {
             SomeParameter1 = someParameter1;
             SomeParameter2 = someParameter2;
         }
+
+        private double SomeParameter1 { get; }
+        private double SomeParameter2 { get; }
 
         public double CalculateCost(double someOtherInput1)
         {

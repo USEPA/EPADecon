@@ -32,12 +32,13 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             if (!File.Exists(FileName))
             {
                 FileName = FullFileName;
-                if(!File.Exists(FileName))
+                if (!File.Exists(FileName))
                 {
                     throw new ApplicationException(
                         $"Could not find {nameof(ExcelDefineScenarioParameterListProvider)} filename: {FileName}");
                 }
             }
+
             // If the file exists, open a new file stream to open the excel workbook
             using var stream = new FileStream(FileName, FileMode.Open, FileAccess.Read) {Position = 0};
             var xssWorkbook = new XSSFWorkbook(stream);

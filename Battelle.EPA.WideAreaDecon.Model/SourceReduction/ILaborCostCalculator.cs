@@ -2,7 +2,9 @@
 {
     public interface ILaborCostCalculator
     {
-        public double CalculateLaborCost(double PersonnelRoundTripDays, double SAToBeSourceReduced, double CostPerTonRemoved);
-        public double CalculateLaborDays(double PersonnelRoundTripDays, double SAToBeSourceReduced);
+        public double CalculateLaborCost(double personnelRoundTripDays, double saToBeSourceReduced,
+            double costPerTonRemoved);
+
+        public double CalculateLaborDays(double personnelRoundTripDays, double saToBeSourceReduced);
     }
 }

@@ -24,7 +24,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Extensions
                 var field = enumType.GetField(name);
                 if (field == null) continue;
                 var enumMemberAttribute =
-                    ((EnumMemberAttribute[]) field.GetCustomAttributes(typeof(EnumMemberAttribute), true)).SingleOrDefault();
+                    ((EnumMemberAttribute[]) field.GetCustomAttributes(typeof(EnumMemberAttribute), true))
+                    .SingleOrDefault();
                 if (enumMemberAttribute?.Value == value) return (T) Enum.Parse(enumType, name);
             }
 

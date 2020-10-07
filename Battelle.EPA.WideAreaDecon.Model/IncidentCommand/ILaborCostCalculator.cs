@@ -2,7 +2,7 @@
 {
     public interface ILaborCostCalculator
     {
-        public double CalculateOnSiteDays(double SAToBeSourceReduced, double PersonnelRoundTripDays);
-        public double CalculateLaborCost(double SAToBeSourceReduced, double PersonnelRoundTripDays);
+        public double CalculateOnSiteDays(double saToBeSourceReduced, double personnelRoundTripDays);
+        public double CalculateLaborCost(double saToBeSourceReduced, double personnelRoundTripDays);
     }
 }

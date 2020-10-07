@@ -49,9 +49,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
                 Min = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Min), row)?.ConvertToOptionalDouble(),
                 Max = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Max), row)?.ConvertToOptionalDouble(),
                 Mean = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Mean), row)?.ConvertToOptionalDouble(),
-                StdDev = typeof(TruncatedNormalDistribution).GetCellValue(nameof(StdDev), row)?.ConvertToOptionalDouble()
+                StdDev = typeof(TruncatedNormalDistribution).GetCellValue(nameof(StdDev), row)
+                    ?.ConvertToOptionalDouble()
             };
         }
-
     }
 }

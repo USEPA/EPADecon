@@ -49,6 +49,5 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
                 Parameters = rows.Select(row => IParameter.FromExcel(ParameterMetaData.FromExcel(row), row)).ToArray()
             };
         }
-
     }
 }

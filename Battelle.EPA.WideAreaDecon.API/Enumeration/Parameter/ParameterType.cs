@@ -14,7 +14,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
         [EnumMember(Value = "Uniform X Dependent")]
         UniformXDependent,
 
-        [EnumMember(Value = "Beta PERT")] PERT,
+        [EnumMember(Value = "Beta PERT")] Pert,
 
         [EnumMember(Value = "Truncated Normal")]
         TruncatedNormal,
@@ -29,13 +29,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
 
         [EnumMember(Value = "Log Normal")] LogNormal,
 
+        [EnumMember(Value = "Efficacy")] Efficacy,
+
         [EnumMember(Value = "Weibull")] Weibull,
-
-        [EnumMember(Value = "Enumerated Fraction")]
-        EnumeratedFraction,
-
-        [EnumMember(Value = "Enumerated Parameter")]
-        EnumeratedParameter,
 
         [EnumMember(Value = "Null")] Null
     }
