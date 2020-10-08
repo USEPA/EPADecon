@@ -38,11 +38,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
         public double CalculateEntrancesExitsCost(double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
-            var totalPersonnel = _personnelRequiredPerTeam.Sum() * _numberTeams;
+            var totalPersonnel = _personnelRequiredPerTeam.Values.Sum() * _numberTeams;
 
-            var totalPpePerLevel = ppePerLevelPerTeam.Select(x => x * _numberTeams);
+            var totalPpePerLevel = ppePerLevelPerTeam.Values.Select(x => x * _numberTeams);
 
-            var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe, (ppe, cost) => ppe * cost).Sum();
+            var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
             var entExitLaborCost = _laborCostCalculator.CalculateEntExitLaborCost( _numberTeams,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
 

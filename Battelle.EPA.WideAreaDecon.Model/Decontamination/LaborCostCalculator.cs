@@ -24,16 +24,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
         public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays)
         {
-            var personnelHoursCost = _personnelReqPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
+            var personnelHoursCost = _personnelReqPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
-            var totalWorkDays = _workDaysPerAppMethod.Sum();
+            var totalWorkDays = _workDaysPerAppMethod.Values.Sum();
 
-            return (totalWorkDays + _personnelOverhead + personnelRoundTripDays) * GlobalConsants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
+            return (totalWorkDays + _personnelOverhead + personnelRoundTripDays) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
         }
 
         public double CalculateLaborDays(double personnelRoundTripDays)
         {
-            var totalWorkDays = _workDaysPerAppMethod.Sum();
+            var totalWorkDays = _workDaysPerAppMethod.Values.Sum();
 
             return totalWorkDays + _personnelOverhead + personnelRoundTripDays;
         }

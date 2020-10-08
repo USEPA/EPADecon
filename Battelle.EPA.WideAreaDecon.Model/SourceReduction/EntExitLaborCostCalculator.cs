@@ -13,7 +13,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         private readonly Dictionary<PersonnelLevel, double> _personnelRequiredPerTeam;
         private readonly double _hoursPerEntryPerTeam;
         private readonly double _hoursPerExitPerTeam;
-        private readonly double _massPerSa;
+        private readonly double _massPerSurfaceArea;
         private readonly double _numEntriesPerTeamPerDay;
         private readonly Dictionary<PersonnelLevel, double> _personnelHourlyRate;
 
@@ -23,25 +23,25 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
             Dictionary<PersonnelLevel, double> personnelHourlyRate,
             Dictionary<PersonnelLevel, double> personnelRequiredPerTeam,
             double numEntriesPerTeamPerDay,
-            double massPerSa,
+            double massPerSurfaceArea,
             double hoursPerEntryPerTeam,
             double hoursPerExitPerTeam,
             IWorkDaysCalculator workDaysCalculator)
         {
             _personnelRequiredPerTeam = personnelRequiredPerTeam;
             _numEntriesPerTeamPerDay = numEntriesPerTeamPerDay;
-            _massPerSa = massPerSa;
+            _massPerSurfaceArea = massPerSurfaceArea;
             _hoursPerEntryPerTeam = hoursPerEntryPerTeam;
             _hoursPerExitPerTeam = hoursPerExitPerTeam;
             _personnelHourlyRate = personnelHourlyRate;
             _workDaysCalculator = workDaysCalculator;
         }
         
-        public double CalculateEntExitLaborCost(double _numberTeams, double saToBeSourceReduced)
+        public double CalculateEntExitLaborCost(double _numberTeams, double surfaceAreaToBeSourceReduced)
         {
-            var personnelHoursCost = _personnelRequiredPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
+            var personnelHoursCost = _personnelRequiredPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
-            var workDays = _workDaysCalculator.CalculateWorkDays( _numberTeams,  saToBeSourceReduced);
+            var workDays = _workDaysCalculator.CalculateWorkDays( _numberTeams,  surfaceAreaToBeSourceReduced);
 
             return (workDays * _numEntriesPerTeamPerDay * _numberTeams * _hoursPerEntryPerTeam +
                 workDays * _numEntriesPerTeamPerDay * _numberTeams * _hoursPerExitPerTeam) * personnelHoursCost;

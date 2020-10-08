@@ -34,11 +34,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
         public double CalculateEntranceExitCost(double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
-            var totalPersonnel = _personnelReqPerTeam.Sum() * _numberTeams;
+            var totalPersonnel = _personnelReqPerTeam.Values.Sum() * _numberTeams;
 
-            var totalPpePerLevel = ppePerLevelPerTeam.Select(x => x * _numberTeams);
+            var totalPpePerLevel = ppePerLevelPerTeam.Values.Select(x => x * _numberTeams);
 
-            var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe, (ppe, cost) => ppe * cost).Sum();
+            var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
             var costLaborEntEx = _entExitLaborCostCalculator.CalculateEntExitLaborCost(_numberTeams);
 

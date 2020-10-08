@@ -32,30 +32,30 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
             _laborCostCalculatorSr = laborCostCalculatorSr;
             _laborCostCalculatorDc = laborCostCalculatorDc;
         }
-
-        public double CalculateOnSiteDays(double _numberTeams, double saToBeSourceReduced, double personnelRoundTripDays)
+        
+        public double CalculateOnSiteDays(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,double _surfaceAreaToBeHepa,double _surfaceAreaToBeWiped)
         {
-            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays( _numberTeams, personnelRoundTripDays);
-            var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays( _numberTeams, personnelRoundTripDays, saToBeSourceReduced);
+            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays( _numberTeams, personnelRoundTripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
+            var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays( _numberTeams, personnelRoundTripDays, surfaceAreaToBeSourceReduced);
             var laborDaysDc = _laborCostCalculatorDc.CalculateLaborDays(personnelRoundTripDays);
 
             return laborDaysCs + laborDaysSr + laborDaysDc + _personnelOverheadDays;
         }
 
-        public double CalculateLaborCost(double _numberDays, double saToBeSourceReduced, double personnelRoundTripDays,double _surfaceAreaToBeHepa,double _surfaceAreaToBeWiped)
+        public double CalculateLaborCost(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,double _surfaceAreaToBeHepa,double _surfaceAreaToBeWiped)
         {
             var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays( _numberTeams, personnelRoundTripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
-            var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays( _numberDays,  saToBeSourceReduced, personnelRoundTripDays);
+            var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays( _numberTeams,  surfaceAreaToBeSourceReduced, personnelRoundTripDays);
             var laborDaysDc = _laborCostCalculatorDc.CalculateLaborDays(personnelRoundTripDays);
 
-            var totalPersonnel = _personnelReqPerTeam.Sum();
+            var totalPersonnel = _personnelReqPerTeam.Values.Sum();
 
-            var personnelHoursCost = _personnelReqPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
+            var personnelHoursCost = _personnelReqPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
-            var laborHours = GlobalConsants.HoursPerWorkDay * (laborDaysCs + laborDaysSr + laborDaysDc + _personnelOverheadDays +
+            var laborHours = GlobalConstants.HoursPerWorkDay * (laborDaysCs + laborDaysSr + laborDaysDc + _personnelOverheadDays +
                 personnelRoundTripDays);
 
-            return(GlobalConsants.HoursPerWorkDay * (CalculateOnSiteDays(_numberDays,saToBeSourceReduced, personnelRoundTripDays) + personnelRoundTripDays) *
+            return(GlobalConstants.HoursPerWorkDay * (CalculateOnSiteDays(_numberTeams,surfaceAreaToBeSourceReduced, personnelRoundTripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped) + personnelRoundTripDays) *
                 personnelHoursCost);
         }
     }

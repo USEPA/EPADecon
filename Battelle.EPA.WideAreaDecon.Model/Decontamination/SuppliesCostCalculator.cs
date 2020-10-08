@@ -27,7 +27,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
         public double NonFoggingSuppliesCostCalculator (Dictionary<SurfaceType, double> percentOfRoomBySurface)
         {
-            var agentNeededPerTreatment = _deconAgentVolumeBySurface.Zip(percentOfRoomBySurface, (x, y) => x * y).Sum();
+            var agentNeededPerTreatment = _deconAgentVolumeBySurface.Values.Zip(percentOfRoomBySurface.Values, (x, y) => x * y).Sum();
             return _deconMaterialsCost * _totalRoomSurfaceArea + agentNeededPerTreatment * _deconAgentCostPerVolume;
         }
 

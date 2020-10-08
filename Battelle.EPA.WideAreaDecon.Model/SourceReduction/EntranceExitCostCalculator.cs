@@ -33,11 +33,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
         public double CalculateEntranceExitCost(double _numberTeams, double saToBeSourceReduced, Dictionary<PpeLevel, double> ppeEachLevelPerTeam)
         {
-            var totalPersonnel = _personnelRequiredPerTeam.Sum() * _numberTeams;
+            var totalPersonnel = _personnelRequiredPerTeam.Values.Sum() * _numberTeams;
+            
+            var totalPpePerLevel = ppeEachLevelPerTeam.Values.Select(x => x * _numberTeams);
 
-            var totalPpePerLevel = ppeEachLevelPerTeam.Select(x => x * _numberTeams);
-
-            var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe, (ppe, cost) => ppe * cost).Sum();
+            var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
             //EntExitLabor declared as local double as input is needed to calculate
             var entExitLabor = _entExitLaborCostCalculator.CalculateEntExitLaborCost(_numberTeams, saToBeSourceReduced);

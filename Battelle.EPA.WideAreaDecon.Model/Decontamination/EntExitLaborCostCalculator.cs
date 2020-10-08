@@ -36,9 +36,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
         public double CalculateEntExitLaborCost(double _numberTeams)
         {
-            var personnelHoursCost = _personnelReqPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
+            var personnelHoursCost = _personnelReqPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
-            var totalWorkDays = _workDaysPerAppMethod.Sum();
+            var totalWorkDays = _workDaysPerAppMethod.Values.Sum();
 
             return (totalWorkDays * _numEntriesPerTeamPerDay * _numberTeams * _hoursPerEntryPerTeam +
                 totalWorkDays * _numEntriesPerTeamPerDay * _numberTeams * _hoursPerExitPerTeam) * personnelHoursCost;

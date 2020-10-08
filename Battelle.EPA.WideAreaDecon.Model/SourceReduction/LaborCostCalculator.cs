@@ -31,9 +31,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         {
             var workDays = _workDaysCalculator.CalculateWorkDays( _numberTeams, saToBeSourceReduced);
 
-            var personnelHoursCost = _personnelPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
+            var personnelHoursCost = _personnelPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
-            return (workDays + _personnelOverhead + personnelRoundTripDays) * GlobalConsants.HoursPerWorkDay * _numberTeams * personnelHoursCost +
+            return (workDays + _personnelOverhead + personnelRoundTripDays) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost +
                 saToBeSourceReduced * _massPerSa * costPerTonRemoved;
         }
 

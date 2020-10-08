@@ -15,7 +15,7 @@
 
         public double CalculateWorkDays(double _numberTeams, double saToBeSourceReduced)
         {
-            return saToBeSourceReduced * _massPerSa / (GlobalConsants.HoursPerWorkDay * _massRemovedPerHrPerTeam * _numberTeams);
+            return saToBeSourceReduced * _massPerSa / (GlobalConstants.HoursPerWorkDay * _massRemovedPerHrPerTeam * _numberTeams);
         }
     }
 }

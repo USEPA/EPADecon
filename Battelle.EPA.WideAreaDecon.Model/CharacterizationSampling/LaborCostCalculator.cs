@@ -34,17 +34,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         
         public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
-            var personnelHoursCost = _personnelRequiredPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
+            var personnelHoursCost = _personnelRequiredPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
             var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
 
-            return (workDays + _personnelOverhead + personnelRoundTripDays) * GlobalConsants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
+            return (workDays + _personnelOverhead + personnelRoundTripDays) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
         }
-
+        
         //return double if Elabor cost is not longer readonly
         public double CalculateEntExitLaborCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
-            var personnelHoursCost = _personnelRequiredPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
+            var personnelHoursCost = _personnelRequiredPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
             var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
 

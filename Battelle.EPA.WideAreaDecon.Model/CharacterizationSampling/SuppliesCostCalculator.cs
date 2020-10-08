@@ -34,14 +34,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         {
             return _surfaceAreaToBeWiped / _surfaceAreaPerWipe * _costPerWipe +
                 _surfaceAreaToBeHepa / _surfaceAreaPerHepaSock * _costPerVacuum + _surfaceAreaToBeHepa /
-                _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams * GlobalConsants.HoursPerWorkDay) * _hepaRentalCostPerDay;
+                _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams * GlobalConstants.HoursPerWorkDay) * _hepaRentalCostPerDay;
         }
 
         public double CalculateWorkDays(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
-            return Math.Abs(_surfaceAreaToBeWiped / _surfaceAreaPerWipe / (_wipesPerHourPerTeam * _numberTeams) / GlobalConsants.HoursPerWorkDay) +
+            return Math.Abs(_surfaceAreaToBeWiped / _surfaceAreaPerWipe / (_wipesPerHourPerTeam * _numberTeams) / GlobalConstants.HoursPerWorkDay) +
                 Math.Abs(_surfaceAreaToBeHepa / _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams) /
-                    GlobalConsants.HoursPerWorkDay);
+                    GlobalConstants.HoursPerWorkDay);
         }
     }
 }
