@@ -12,11 +12,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
     {
         private readonly Dictionary<PpeLevel, double> _costPerPpe;
         private readonly double _costPerRespirator;
-
-        private readonly IEntExitLaborCostCalculator _entExitLaborCostCalculator;
         private readonly Dictionary<PersonnelLevel, double> _personnelReqPerTeam;
         private readonly double _respiratorsPerPerson;
 
+        private readonly IEntExitLaborCostCalculator _entExitLaborCostCalculator;
 
         public EntranceExitCostCalculator(
             Dictionary<PersonnelLevel, double> personnelReqPerTeam,

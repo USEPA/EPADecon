@@ -38,7 +38,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
 
         private class MockEntExitLaborCostCalculator : IEntExitLaborCostCalculator
         {
-            public double CalculateEntExitLaborCost(double saToBeSourceReduced)
+            public double CalculateEntExitLaborCost(double _numberTeams, double saToBeSourceReduced)
             {
                 return 132585.671704968;
             }

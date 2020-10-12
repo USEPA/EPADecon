@@ -10,18 +10,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         [SetUp]
         public void Setup()
         {
-            var teamsRequired = 4.0;
             var massRemovedPerHrPerTeam = 453.592;
             var massPerSa = 7.4;
             Calculator = new WorkDaysCalculator(
-                teamsRequired,
                 massRemovedPerHrPerTeam,
                 massPerSa
             );
         }
 
         [Test]
-        public void CalculateCost()
+        public void CalculateCost(4.0)
         {
             var saToBeSourceReduced = 8000.0;
 

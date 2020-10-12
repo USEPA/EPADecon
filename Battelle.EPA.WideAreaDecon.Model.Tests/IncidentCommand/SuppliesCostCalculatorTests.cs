@@ -31,12 +31,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 
         private class MockLaborCostCalculator : ILaborCostCalculator
         {
-            public double CalculateOnSiteDays(double saToBeSourceReduced, double personnelRoundTripDays)
+            public double CalculateOnSiteDays(double _numberTeams, double saToBeSourceReduced, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
             {
                 return 18.4194860407136;
             }
 
-            public double CalculateLaborCost(double saToBeSourceReduced, double personnelRoundTripDays)
+            public double CalculateLaborCost(double _numberDays, double saToBeSourceReduced, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
             {
                 return 227064.684772735;
             }

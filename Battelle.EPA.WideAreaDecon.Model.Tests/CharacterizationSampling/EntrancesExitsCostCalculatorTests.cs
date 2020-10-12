@@ -5,17 +5,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
     internal class MockLaborCostCalculator : ILaborCostCalculator
     {
-        public double CalculateLaborCost(double personnelRoundTripDays)
+        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             return 84993.28;
         }
 
-        public double CalculateEntExitLaborCost()
+        public double CalculateEntExitLaborCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             return 21393.28;
         }
 
-        public double CalculateLaborDays(double personnelRoundTripDays)
+        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             return 3.340930863;
         }

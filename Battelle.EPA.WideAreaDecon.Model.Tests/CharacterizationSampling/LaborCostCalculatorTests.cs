@@ -5,12 +5,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
     internal class MockSuppliesCostCalculator : ISuppliesCostCalculator
     {
-        public double CalculateSuppliesCost()
+        public double CalculateSuppliesCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             return 3610.12;
         }
 
-        public double CalculateWorkDays()
+        public double CalculateWorkDays(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             return 0.840930863;
         }

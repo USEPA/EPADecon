@@ -5,7 +5,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
 {
     internal class MockWorkDaysCalculator : IWorkDaysCalculator
     {
-        public double CalculateWorkDays(double saToBeSourceReduced)
+        public double CalculateWorkDays(double _numberTeams, double saToBeSourceReduced)
         {
             return 4.07855517733999;
         }

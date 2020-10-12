@@ -10,13 +10,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [SetUp]
         public void Setup()
         {
-            var numTeams = 2.0;
             double[] personnelReqPerTeam = {0.3, 0.0, 0.0, 5.0, 2.0};
             double[] personnelHourlyRate = {150.0, 90.0, 110.0, 130.0, 190.0};
             var personnelOverhead = 2.0;
             double[] workDaysPerAppMethod = {1.0, 2.0};
             Calculator = new LaborCostCalculator(
-                numTeams,
                 personnelReqPerTeam,
                 personnelHourlyRate,
                 personnelOverhead,
@@ -27,9 +25,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [Test]
         public void CalculateCost()
         {
+            var numTeams = 2.0;
             var roundtripDays = 2.0;
-
-            Assert.AreEqual(120400.0, Calculator.CalculateLaborCost(roundtripDays), 1e-6, "Incorrect cost calculated");
+             
+            Assert.AreEqual(120400.0, Calculator.CalculateLaborCost(numTeams, roundtripDays), 1e-6, "Incorrect cost calculated");
         }
     }
 }

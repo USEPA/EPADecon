@@ -6,17 +6,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {
     internal class MockCsLaborCostCalculator : ILaborCostCalculator
     {
-        public double CalculateLaborCost(double personnelRoundTripDays)
+        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             return 84993.281164225;
         }
 
-        public double CalculateEntExitLaborCost()
+        public double CalculateEntExitLaborCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             return 21393.2811642251;
         }
 
-        public double CalculateLaborDays(double personnelRoundTripDays)
+        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             return 1.34093086337363;
         }
@@ -24,13 +24,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 
     internal class MockSrLaborCostCalculator : Model.SourceReduction.ILaborCostCalculator
     {
-        public double CalculateLaborCost(double personnelRoundTripDays, double saToBeSourceReduced,
+        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double saToBeSourceReduced,
             double costPerTonRemoved)
         {
             return 137654.447803312;
         }
 
-        public double CalculateLaborDays(double personnelRoundTripDays, double saToBeSourceReduced)
+        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double saToBeSourceReduced)
         {
             return 4.07855517733999;
         }
@@ -38,7 +38,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 
     internal class MockDLaborCostCalculator : Model.Decontamination.ILaborCostCalculator
     {
-        public double CalculateLaborCost(double personnelRoundTripDays)
+        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays)
         {
             return 120400.0;
         }
