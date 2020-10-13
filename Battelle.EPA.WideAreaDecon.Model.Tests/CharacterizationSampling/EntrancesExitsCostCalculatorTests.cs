@@ -1,5 +1,6 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
@@ -28,13 +29,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         [SetUp]
         public void Setup()
         {
-            var numTeams = 4.0;
-            double[] personnelReqPerTeam = {0.3, 0.0, 1.0, 2.0, 2.0};
+            Dictionary<PersonnelLevel, double> personnelReqPerTeam = {0.3, 0.0, 1.0, 2.0, 2.0};
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            double[] costPerPpe = {3322.0, 3023.8, 1897.68, 260.09};
+            Dictionary<PpeLevel, double> costPerPpe = {3322.0, 3023.8, 1897.68, 260.09};
             Calculator = new EntrancesExitsCostCalculator(
-                numTeams,
                 personnelReqPerTeam,
                 respiratorsPerPerson,
                 costPerRespirator,
@@ -46,8 +45,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         [Test]
         public void CalculateCost()
         {
-            double[] ppePerLevelPerTeam = {0.0, 3.0, 3.0, 0.0};
-            Assert.AreEqual(85496.64, Calculator.CalculateEntrancesExitsCost(ppePerLevelPerTeam), 1e-6,
+            var _numberTeams = 4.0;
+            Dictionary<PpeLevel, double> ppePerLevelPerTeam = {0.0, 3.0, 3.0, 0.0};
+            var _surfaceAreaToBeHepa = 500.0;
+            var _surfaceAreaToBeWiped = 500.0;
+            Assert.AreEqual(85496.64, Calculator.CalculateEntrancesExitsCost( _numberTeams, ppePerLevelPerTeam,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped), 1e-6,
                 "Incorrect labor cost calculated");
         }
     }

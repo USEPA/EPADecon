@@ -1,5 +1,6 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
@@ -18,7 +19,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [SetUp]
         public void Setup()
         {
-            
             Dictionary<PersonnelLevel, double> _personnelReqPerTeam = {0.3, 0.0, 0.0, 5.0, 2.0};
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;

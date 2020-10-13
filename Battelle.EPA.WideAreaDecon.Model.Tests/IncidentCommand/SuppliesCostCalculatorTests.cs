@@ -22,10 +22,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         [Test]
         public void CalculateCost()
         {
+            var _numberTeams = 4.0;
             var saToBeSourceReduced = 8000.0;
             var roundtripDays = 2.0;
+            var _surfaceAreaToBeWiped = 500.0;
+            var _surfaceAreaToBeHepa = 500.0;
 
-            Assert.AreEqual(22886.2482445587, Calculator.CalculateSuppliesCost(saToBeSourceReduced, roundtripDays),
+            Assert.AreEqual(22886.2482445587, Calculator.CalculateSuppliesCost( _numberTeams,  saToBeSourceReduced,  roundtripDays,_surfaceAreaToBeHepa, _surfaceAreaToBeWiped),
                 1e-6, "Incorrect cost calculated");
         }
 

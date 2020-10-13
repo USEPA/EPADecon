@@ -1,5 +1,6 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
@@ -10,10 +11,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [SetUp]
         public void Setup()
         {
-            double[] personnelReqPerTeam = {0.3, 0.0, 0.0, 5.0, 2.0};
-            double[] personnelHourlyRate = {150.0, 90.0, 110.0, 130.0, 190.0};
+            Dictionary<PersonnelLevel, double> personnelReqPerTeam = {0.3, 0.0, 0.0, 5.0, 2.0};
+            Dictionary<PersonnelLevel, double> personnelHourlyRate = {150.0, 90.0, 110.0, 130.0, 190.0};
             var personnelOverhead = 2.0;
-            double[] workDaysPerAppMethod = {1.0, 2.0};
+            Dictionary<ApplicationMethodType, double> workDaysPerAppMethod = {1.0, 2.0};
             Calculator = new LaborCostCalculator(
                 personnelReqPerTeam,
                 personnelHourlyRate,
@@ -29,6 +30,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             var roundtripDays = 2.0;
              
             Assert.AreEqual(120400.0, Calculator.CalculateLaborCost(numTeams, roundtripDays), 1e-6, "Incorrect cost calculated");
+
         }
     }
 }

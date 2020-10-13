@@ -1,5 +1,6 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
 {
