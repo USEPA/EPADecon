@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
     public enum PpeLevel
     {
-
+        [EnumMember(Value = "A")] A,
+        [EnumMember(Value = "B")] B,
+        [EnumMember(Value = "C")] C,
+        [EnumMember(Value = "D")] D
     }
 
     public class EntranceExitCostCalculator : IEntranceExitCostCalculator

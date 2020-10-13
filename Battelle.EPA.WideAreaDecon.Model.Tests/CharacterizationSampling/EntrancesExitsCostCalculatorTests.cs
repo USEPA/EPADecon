@@ -29,10 +29,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         [SetUp]
         public void Setup()
         {
-            Dictionary<PersonnelLevel, double> personnelReqPerTeam = {0.3, 0.0, 1.0, 2.0, 2.0};
+            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>()
+            {
+                { PersonnelLevel.OSC, 0.3 },
+                { PersonnelLevel.PL1, 0.0 },
+                { PersonnelLevel.PL2, 1.0 },
+                { PersonnelLevel.PL3, 2.0 },
+                { PersonnelLevel.PL4, 2.0 }
+            };
+            var costPerPpe = new Dictionary<PpeLevel, double>()
+            {
+                { PpeLevel.A, 3322.0 },
+                { PpeLevel.B, 3023.8 },
+                { PpeLevel.C, 1897.68 },
+                { PpeLevel.D, 260.09 }
+            };
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            Dictionary<PpeLevel, double> costPerPpe = {3322.0, 3023.8, 1897.68, 260.09};
             Calculator = new EntrancesExitsCostCalculator(
                 personnelReqPerTeam,
                 respiratorsPerPerson,
@@ -45,8 +58,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         [Test]
         public void CalculateCost()
         {
+            var ppePerLevelPerTeam = new Dictionary<PpeLevel, double>()
+            {
+                { PpeLevel.A, 0.0 },
+                { PpeLevel.B, 3.0 },
+                { PpeLevel.C, 3.0 },
+                { PpeLevel.D, 0.0 }
+            };
             var _numberTeams = 4.0;
-            Dictionary<PpeLevel, double> ppePerLevelPerTeam = {0.0, 3.0, 3.0, 0.0};
             var _surfaceAreaToBeHepa = 500.0;
             var _surfaceAreaToBeWiped = 500.0;
             Assert.AreEqual(85496.64, Calculator.CalculateEntrancesExitsCost( _numberTeams, ppePerLevelPerTeam,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped), 1e-6,

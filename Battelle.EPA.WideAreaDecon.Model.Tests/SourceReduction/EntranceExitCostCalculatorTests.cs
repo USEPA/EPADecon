@@ -11,11 +11,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         [SetUp]
         public void Setup()
         {
-            
-            Dictionary<PersonnelLevel, double> personnelReqPerTeam = {0.333, 0.0, 1.0, 3.0, 0.67};
+            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>()
+            {
+                { PersonnelLevel.OSC, 0.333 },
+                { PersonnelLevel.PL1, 0.0 },
+                { PersonnelLevel.PL2, 1.0 },
+                { PersonnelLevel.PL3, 3.0 },
+                { PersonnelLevel.PL4, 0.67 }
+            };
+            var costPerPpe = new Dictionary<PpeLevel, double>()
+            {
+                { PpeLevel.A, 3322.0 },
+                { PpeLevel.B, 3023.8 },
+                { PpeLevel.C, 1897.68 },
+                { PpeLevel.D, 260.09 }
+            };
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            Dictionary<PpeLevel, double> costPerPpe = {3322.0, 3023.8, 1897.68, 260.09};
             Calculator = new EntranceExitCostCalculator(
                 personnelReqPerTeam,
                 respiratorsPerPerson,
@@ -28,10 +40,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         [Test]
         public void CalculateCost()
         {
+            var ppeEachLevelPerTeam = new Dictionary<PpeLevel, double>()
+            {
+                { PpeLevel.A, 0.0 },
+                { PpeLevel.B, 3.0 },
+                { PpeLevel.C, 3.0 },
+                { PpeLevel.D, 0.0 }
+            };
             var _numberTeams = 4.0;
             var saToBeSourceReduced = 8000.0;
-            Dictionary<PpeLevel, double> ppeEachLevelPerTeam = {0.0, 3.0, 3.0, 0.0};
-
             Assert.AreEqual(196406.287704968,
                 Calculator.CalculateEntranceExitCost( _numberTeams,  saToBeSourceReduced,  ppeEachLevelPerTeam), 1e-6,
                 "Incorrect cost calculated");

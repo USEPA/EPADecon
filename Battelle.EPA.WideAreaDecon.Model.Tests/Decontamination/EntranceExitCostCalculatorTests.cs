@@ -19,15 +19,28 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [SetUp]
         public void Setup()
         {
-            Dictionary<PersonnelLevel, double> _personnelReqPerTeam = {0.3, 0.0, 0.0, 5.0, 2.0};
+            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>()
+            {
+                { PersonnelLevel.OSC, 0.3 },
+                { PersonnelLevel.PL1, 0.0 },
+                { PersonnelLevel.PL2, 0.0 },
+                { PersonnelLevel.PL3, 5.0 },
+                { PersonnelLevel.PL4, 2.0 }
+            };
+            var costPerPpe = new Dictionary<PpeLevel, double>()
+            {
+                { PpeLevel.A, 3322.0 },
+                { PpeLevel.B, 3023.8 },
+                { PpeLevel.C, 1897.68 },
+                { PpeLevel.D, 260.09 }
+            };
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            Dictionary<PpeLevel, double> _costPerPpe = {3322.0, 3023.8, 1897.68, 260.09};
             Calculator = new EntranceExitCostCalculator(
-                _personnelReqPerTeam,
+                personnelReqPerTeam,
                 respiratorsPerPerson,
                 costPerRespirator,
-                _costPerPpe,
+                costPerPpe,
                 new MockEntExitLaborCostCalculator()
             );
         }
@@ -35,8 +48,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [Test]
         public void CalculateCost()
         {
+            var ppePerLevelPerTeam = new Dictionary<PpeLevel, double>()
+            {
+                { PpeLevel.A, 0.0 },
+                { PpeLevel.B, 4.0 },
+                { PpeLevel.C, 4.0 },
+                { PpeLevel.D, 0.0 }
+            };
             var numTeams = 2.0;
-            Dictionary<PpeLevel, double> ppePerLevelPerTeam = {0.0, 4.0, 4.0, 0.0};
             
             Assert.AreEqual(81546.64, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam), 1e-6,
                 "Incorrect cost calculated");

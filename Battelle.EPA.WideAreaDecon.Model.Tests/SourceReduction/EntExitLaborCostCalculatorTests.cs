@@ -19,7 +19,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
                 { PersonnelLevel.PL3, 3.0 },
                 { PersonnelLevel.PL4, 0.67 }
             };
-            Dictionary<PersonnelLevel, double> personnelHourlyRate = {150.0, 90.0, 110.0, 130.0, 190.0};
+            var personnelHourlyRate = new Dictionary<PersonnelLevel, double>()
+            {
+                { PersonnelLevel.OSC, 150.0 },
+                { PersonnelLevel.PL1, 90.0 },
+                { PersonnelLevel.PL2, 110.0 },
+                { PersonnelLevel.PL3, 130.0 },
+                { PersonnelLevel.PL4, 190.0 }
+            };
             var numEntriesPerTeamPerDay = 3.0;
             var hoursPerEntryPerTeam = 2.0;
             var hoursPerExitPerTeam = 2.0;

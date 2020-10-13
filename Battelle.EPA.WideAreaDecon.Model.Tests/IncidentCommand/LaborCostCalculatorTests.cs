@@ -57,11 +57,25 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         [SetUp]
         public void Setup()
         {
-            Dictionary<PersonnelLevel, double> personnelRequiredPerTeam = {1.0, 0.0, 2.0, 2.0, 4.0};
+            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>()
+            {
+                { PersonnelLevel.OSC, 1.0 },
+                { PersonnelLevel.PL1, 0.0 },
+                { PersonnelLevel.PL2, 2.0 },
+                { PersonnelLevel.PL3, 2.0 },
+                { PersonnelLevel.PL4, 4.0 }
+            };
+            var personnelHourlyRate = new Dictionary<PersonnelLevel, double>()
+            {
+                { PersonnelLevel.OSC, 150.0 },
+                { PersonnelLevel.PL1, 90.0 },
+                { PersonnelLevel.PL2, 110.0 },
+                { PersonnelLevel.PL3, 130.0 },
+                { PersonnelLevel.PL4, 190.0 }
+            };
             var personnelOverheadDays = 8.0;
-            Dictionary<PersonnelLevel, double> personnelHourlyRate = {150.0, 90.0, 110.0, 130.0, 190.0};
             Calculator = new LaborCostCalculator(
-                personnelRequiredPerTeam,
+                personnelReqPerTeam,
                 personnelOverheadDays,
                 personnelHourlyRate,
                 new MockCsLaborCostCalculator(),
