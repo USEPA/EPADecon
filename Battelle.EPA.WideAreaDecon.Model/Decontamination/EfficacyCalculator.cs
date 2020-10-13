@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using static Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {internal class EfficacyCalculator : IEfficacyCalculator
     {
-        private readonly Dictionary<ApplicationMethodType, string> _appMethodBySurfaceType;
-        private readonly Dictionary<SporesLevel, double> _desiredSporeThreshold;
-        private readonly Dictionary<SporesLevel, double> _initialSporeLoading;
+        private readonly Dictionary<SurfaceType, string> _appMethodBySurfaceType;
+        private readonly double _desiredSporeThreshold;
+        private readonly double _initialSporeLoading;
         private readonly Dictionary<SurfaceType, string> _surfaceTypes;
-        private readonly Dictionary<ApplicationMethodType, double> _treatmentDaysPerAm;
+        private readonly Dictionary<ApplicationMethod, double> _treatmentDaysPerAm;
 
         public EfficacyCalculator(
-            Dictionary<SporesLevel, double> initialSporeLoading,
+            double initialSporeLoading,
             Dictionary<SurfaceType, string> surfaceTypes,
-            Dictionary<ApplicationMethodType, string> applicationMethods,
-            Dictionary<SporesLevel, double> desiredSporeThreshold,
-            Dictionary<ApplicationMethodType, double> treatmentDaysPerAm)
+            Dictionary<SurfaceType, string> applicationMethods,
+            double desiredSporeThreshold,
+            Dictionary<ApplicationMethod, double> treatmentDaysPerAm)
         {
             _initialSporeLoading = initialSporeLoading;
             _surfaceTypes = surfaceTypes;

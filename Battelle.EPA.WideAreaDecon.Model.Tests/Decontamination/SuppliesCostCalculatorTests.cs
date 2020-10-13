@@ -1,7 +1,7 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
 using System.Collections.Generic;
-using static Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
@@ -14,7 +14,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         {
             var deconAgentVolumeBySurface = new Dictionary<SurfaceType, double>()
             {
-                { SurfaceType.S1, 1.0 }
+                { SurfaceType.Hvac, 1.0 }
             };
             var deconAgentCostPerVolume = 0.52306056;
             var deconMaterialsCost = 1.53612754751869;
@@ -32,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         {
             var percentOfRoomBySurface = new Dictionary<SurfaceType, double>()
             {
-                { SurfaceType.S1, 1.0 }
+                { SurfaceType.Hvac, 1.0 }
             };
             double roomVolume = 25000;
 

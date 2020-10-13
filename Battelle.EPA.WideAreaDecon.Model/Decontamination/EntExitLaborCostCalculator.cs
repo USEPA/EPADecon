@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using static Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
@@ -11,7 +11,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly double _numEntriesPerTeamPerDay;
         private readonly Dictionary<PersonnelLevel, double> _personnelHourlyRate;
         private readonly Dictionary<PersonnelLevel, double> _personnelReqPerTeam;
-        private readonly Dictionary<ApplicationMethodType, double> _workDaysPerAppMethod;
+        private readonly Dictionary<ApplicationMethod, double> _workDaysPerAppMethod;
 
 
         public EntExitLaborCostCalculator(
@@ -20,7 +20,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             double hoursPerEntryPerTeam,
             double hoursPerExitPerTeam,
             Dictionary<PersonnelLevel, double> personnelHourlyRate,
-            Dictionary<ApplicationMethodType, double> workDaysPerAppMethod)
+            Dictionary<ApplicationMethod, double> workDaysPerAppMethod)
         {
             _personnelReqPerTeam = personnelReqPerTeam;
             _numEntriesPerTeamPerDay = numEntriesPerTeamPerDay;

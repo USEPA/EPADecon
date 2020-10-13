@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using static Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
@@ -9,13 +9,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly Dictionary<PersonnelLevel, double> _personnelHourlyRate;
         private readonly double _personnelOverhead;
         private readonly Dictionary<PersonnelLevel, double> _personnelReqPerTeam;
-        private readonly Dictionary<ApplicationMethodType, double> _workDaysPerAppMethod;
+        private readonly Dictionary<ApplicationMethod, double> _workDaysPerAppMethod;
 
         public LaborCostCalculator(
             Dictionary<PersonnelLevel, double> personnelReqPerTeam,
             Dictionary<PersonnelLevel, double> personnelHourlyRate,
             double personnelOverhead,
-            Dictionary<ApplicationMethodType, double> workDaysPerAppMethod)
+            Dictionary<ApplicationMethod, double> workDaysPerAppMethod)
         {
             _personnelReqPerTeam = personnelReqPerTeam;
             _personnelHourlyRate = personnelHourlyRate;

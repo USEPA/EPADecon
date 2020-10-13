@@ -1,7 +1,7 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
 using System.Collections.Generic;
-using static Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
@@ -28,10 +28,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 { PersonnelLevel.PL3, 130.0 },
                 { PersonnelLevel.PL4, 190.0 }
             };
-            var workDaysPerAppMethod = new Dictionary<ApplicationMethodType, double>()
+            var workDaysPerAppMethod = new Dictionary<ApplicationMethod, double>()
             {
-                { ApplicationMethodType.AMT1, 1.0 },
-                { ApplicationMethodType.AMT2, 2.0 }
+                { ApplicationMethod.Aerosol, 1.0 },
+                { ApplicationMethod.Fogging, 2.0 }
             };
             var numEntriesPerTeamPerDay = 2.0;
             var hoursPerEntryPerTeam = 1.5;

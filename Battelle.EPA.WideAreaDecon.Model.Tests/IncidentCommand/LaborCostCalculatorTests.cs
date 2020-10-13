@@ -1,8 +1,8 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
 using NUnit.Framework;
 using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 using LaborCostCalculator = Battelle.EPA.WideAreaDecon.Model.IncidentCommand.LaborCostCalculator;
-using static Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {

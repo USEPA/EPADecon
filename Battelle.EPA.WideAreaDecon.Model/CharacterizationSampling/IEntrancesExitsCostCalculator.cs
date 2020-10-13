@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using static Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
