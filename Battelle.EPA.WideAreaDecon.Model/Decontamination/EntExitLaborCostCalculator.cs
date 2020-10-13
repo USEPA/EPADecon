@@ -1,18 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
+using static Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-    public enum PersonnelLevel
-    {
-        [EnumMember(Value = "OSC")] OSC,
-        [EnumMember(Value = "PL-1")] PL1,
-        [EnumMember(Value = "PL-2")] PL2,
-        [EnumMember(Value = "PL-3")] PL3,
-        [EnumMember(Value = "PL-4")] PL4
-    }
-
     public class EntExitLaborCostCalculator : IEntExitLaborCostCalculator
     {
         private readonly double _hoursPerEntryPerTeam;

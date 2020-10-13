@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using LaborCostCalculator = Battelle.EPA.WideAreaDecon.Model.IncidentCommand.LaborCostCalculator;
+using static Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {

@@ -1,17 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
+using static Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
-    public enum PpeLevel
-    {
-        [EnumMember(Value = "A")] A,
-        [EnumMember(Value = "B")] B,
-        [EnumMember(Value = "C")] C,
-        [EnumMember(Value = "D")] D
-    }
-
     public class EntranceExitCostCalculator : IEntranceExitCostCalculator
     {
         private readonly Dictionary<PpeLevel, double> _costPerPpe;
