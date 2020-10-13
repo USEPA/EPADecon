@@ -13,16 +13,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         {
             var deconAgentVolumeBySurface = new Dictionary<SurfaceType, double>()
             {
-                { SurfaceType.S1, 0.0 }
+                { SurfaceType.S1, 1.0 }
             };
             var deconAgentCostPerVolume = 0.52306056;
             var deconMaterialsCost = 1.53612754751869;
-            double totalRoomSa = 100;
             var deconAgentVolume = 0.3342015463;
             Calculator = new SuppliesCostCalculator(
                 deconAgentCostPerVolume,
                 deconMaterialsCost,
-                totalRoomSa,
                 deconAgentVolume,
                 deconAgentVolumeBySurface
             );
@@ -33,16 +31,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         {
             var percentOfRoomBySurface = new Dictionary<SurfaceType, double>()
             {
-                { SurfaceType.S1, 0.0 }
+                { SurfaceType.S1, 1.0 }
             };
             double roomVolume = 25000;
 
-            Assert.AreEqual(4523.80395376547,
+            Assert.AreEqual(2.059188108,
                 Calculator.NonFoggingSuppliesCostCalculator(percentOfRoomBySurface), 1e-6,
-                "Incorrect cost calculated(fogging)");
-            Assert.AreEqual(153.612754751869,
+                "Incorrect cost calculated(non fog)");
+            Assert.AreEqual(4371.727327,
                 Calculator.FoggingSuppliesCostCalculator(roomVolume), 1e-6,
-                "Incorrect cost calculated(surface)");
+                "Incorrect cost calculated(fogging)");
         }
     }
 }
