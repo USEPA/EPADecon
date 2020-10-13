@@ -1,11 +1,11 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
+﻿using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
 using NUnit.Framework;
 using System.Collections.Generic;
 using LaborCostCalculator = Battelle.EPA.WideAreaDecon.Model.IncidentCommand.LaborCostCalculator;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {
-    internal class MockCsLaborCostCalculator : ILaborCostCalculator
+    internal class MockCsLaborCostCalculator : Model.CharacterizationSampling.ILaborCostCalculator
     {
         public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
