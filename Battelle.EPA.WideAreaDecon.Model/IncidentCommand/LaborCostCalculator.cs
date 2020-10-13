@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
