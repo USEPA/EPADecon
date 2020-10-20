@@ -12,6 +12,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly Dictionary<SurfaceType, string> _surfaceTypes;
         private readonly Dictionary<ApplicationMethod, double> _treatmentDaysPerAm;
         private readonly Dictionary<SurfaceType, double> efficacyValues;
+        private readonly Dictionary<SurfaceType, double> _numberOfTreatmentsBySurfaceType;
         private readonly double totalDeconDays;
         private readonly string currentMethod;
         private readonly double sporeLoadingAfterTreatment;
@@ -34,12 +35,24 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         {
             for (int i = 0; i < _surfaceTypes.Values.Length(); i++)
             {
+                double treatmentCount = 0;
                 currentMethod = _appMethodBySurfaceType.Values[i];
                 sporeLoadingAfterTreatment = _initialSporeLoading.Values[i];
                 while (sporeLoadingAfterTreatment > _desiredSporeThreshold)
                 {
                     sporeLoadingAfterTreatment -= efficacyValues.Values[i];
                     totalDeconDays += _treatmentDaysPerAm.currentMethod;
+                    treatmentCount += 1;
+                }
+
+                _numberOfTreatmentsBySurfaceType.Values[i] = treatmentCount;
+
+                for (int j = 0; j < _surfaceTypes.Values.Length(); j++)
+                {
+                    if ((i != j) & (_appMethodBySurfaceType.Values[i] == _appMethodBySurfaceType.Values[j])
+                    {
+                        totalDeconDays -= (_treatmentDaysPerAm.currentMethod * _numberOfTreatmentsBySurfaceType.Values[j]);
+                    }
                 }
             }
             throw new NotImplementedException();
