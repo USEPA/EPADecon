@@ -49,7 +49,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
                 for (int j = 0; j < _surfaceTypes.Values.Length(); j++)
                 {
-                    if ((i != j) & (_appMethodBySurfaceType.Values[i] == _appMethodBySurfaceType.Values[j])
+                    if ((i != j) & (_appMethodBySurfaceType.Values[i] == _appMethodBySurfaceType.Values[j]))
                     {
                         totalDeconDays -= (_treatmentDaysPerAm.currentMethod * _numberOfTreatmentsBySurfaceType.Values[j]);
                     }

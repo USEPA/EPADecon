@@ -15,6 +15,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
         private readonly ISuppliesCostCalculator _suppliesCostCalculator;
 
+        private readonly IPhaseLagCalculator _phaseLagCalculator;
+
         public LaborCostCalculator(
             Dictionary<PersonnelLevel, double> personnelRequiredPerTeam,
             double personnelOverhead,
@@ -22,7 +24,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             double hoursPerEntryPerTeam,
             double hoursPerExitPerTeam,
             Dictionary<PersonnelLevel, double> personnelHourlyRate,
-            ISuppliesCostCalculator suppliesCostCalculator)
+            ISuppliesCostCalculator suppliesCostCalculator,
+            IPhaseLagCalculator phaseLagCalculator)
         {
             _personnelRequiredPerTeam = personnelRequiredPerTeam;
             _personnelOverhead = personnelOverhead;
@@ -31,6 +34,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _hoursPerExitPerTeam = hoursPerExitPerTeam;
             _personnelHourlyRate = personnelHourlyRate;
             _suppliesCostCalculator = suppliesCostCalculator;
+            _phaseLagCalculator = phaseLagCalculator;
         }
         
         public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
@@ -49,13 +53,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
             var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
 
-            return (workDays * _numberEntriesPerTeamPerDay * _numberTeams * _hoursPerEntryPerTeam +
-                workDays * _numberEntriesPerTeamPerDay * _numberTeams * _hoursPerExitPerTeam) * personnelHoursCost;
+            var totalEntries = workDays * _numberEntriesPerTeamPerDay * _numberTeams;
+
+            return ((totalEntries * _hoursPerEntryPerTeam) +
+                (totalEntries * _hoursPerExitPerTeam)) * personnelHoursCost;
         }
 
-        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, 
+            double _surfaceAreaToBeWiped, double numberLabs, double sampleTimeTransmitted)
         {
             var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
+
+            var phaseLag = _phaseLagCalculator.CalculatePhaseLagTime(double numberLabs, double sampleTimeTransmitted, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
 
             return workDays + _personnelOverhead + personnelRoundTripDays;
         }
