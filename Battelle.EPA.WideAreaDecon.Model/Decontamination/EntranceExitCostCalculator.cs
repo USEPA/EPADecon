@@ -10,34 +10,45 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly double _costPerRespirator;
         private readonly Dictionary<PersonnelLevel, double> _personnelReqPerTeam;
         private readonly double _respiratorsPerPerson;
+        private readonly double _numberEntriesPerTeamPerDay;
+        private readonly Dictionary<PersonnelLevel, double> _workDaysPerAppMethod;
 
         private readonly IEntExitLaborCostCalculator _entExitLaborCostCalculator;
 
         public EntranceExitCostCalculator(
             Dictionary<PersonnelLevel, double> personnelReqPerTeam,
+            double numberEntriesPerTeamPerDay,
+            Dictionary<PersonnelLevel, double> workDaysPerAppMethod,
             double respiratorsPerPerson,
             double costPerRespirator,
             Dictionary<PpeLevel, double> costPerPpe,
-            IEntExitLaborCostCalculator entExitLaborCostCalculator)
+            IEntExitLaborCostCalculator entExitLaborCostCalculator
+            )
         {
             _personnelReqPerTeam = personnelReqPerTeam;
             _respiratorsPerPerson = respiratorsPerPerson;
             _costPerRespirator = costPerRespirator;
             _costPerPpe = costPerPpe;
             _entExitLaborCostCalculator = entExitLaborCostCalculator;
+            _numberEntriesPerTeamPerDay = numberEntriesPerTeamPerDay;
+            _workDaysPerAppMethod = workDaysPerAppMethod;
         }
 
         public double CalculateEntranceExitCost(double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
             var totalPersonnel = _personnelReqPerTeam.Values.Sum() * _numberTeams;
 
-            var totalPpePerLevel = ppePerLevelPerTeam.Values.Select(x => x * _numberTeams);
+            var totalWorkDays = _workDaysPerAppMethod.Values.Sum();
+            
+            var totalEntries = totalWorkDays * _numberEntriesPerTeamPerDay * _numberTeams;
+
+            var totalPpePerLevel = ppePerLevelPerTeam.Values.Select(x => x * _numberTeams * totalEntries);
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
             var costLaborEntEx = _entExitLaborCostCalculator.CalculateEntExitLaborCost(_numberTeams);
 
-            return costLaborEntEx + totalPersonnel * _respiratorsPerPerson * _costPerRespirator + totalCostPpe;
+            return costLaborEntEx + (totalPersonnel * _respiratorsPerPerson * _costPerRespirator) + totalCostPpe;
         }
     }
 }

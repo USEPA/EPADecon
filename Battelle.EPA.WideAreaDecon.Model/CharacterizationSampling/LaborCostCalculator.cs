@@ -64,7 +64,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         {
             var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
 
-            var phaseLag = _phaseLagCalculator.CalculatePhaseLagTime(double numberLabs, double sampleTimeTransmitted, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+            var phaseLag = _phaseLagCalculator.CalculatePhaseLagTime( numberLabs,  sampleTimeTransmitted,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
 
             return workDays + _personnelOverhead + personnelRoundTripDays;
         }

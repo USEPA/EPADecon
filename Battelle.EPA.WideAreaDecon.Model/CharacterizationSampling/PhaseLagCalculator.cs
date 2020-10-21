@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
@@ -10,11 +11,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private readonly double _samplePackageTime;
         private readonly double _wipeAnalysisTime;
         private readonly double _hepaAnalysisTime;
-        private readonly double _fractionOfWipeToEachLab;
-        private readonly double _fractionOfHepaToEachLab;
+        private readonly Dictionary<Labs, double> _fractionOfWipeToEachLab;
+        private readonly Dictionary<Labs, double> _fractionOfHepaToEachLab;
         private readonly Dictionary<Labs, double> _labUptimesHours;
+        private readonly Dictionary<Labs, double> _labDistanceFromSite;
 
-        public PhaseLagCalculator(double surfaceAreaPerWipe, double surfaceAreaPerHepa, Dictionary<Labs, double> labUptimesHours, double samplePackageTime, double wipeAnalyisTime, double hepaAnalysisTime, double fractionOfWipeToEachLab, double fracitonOfHepaToEachLab)
+        public PhaseLagCalculator(double surfaceAreaPerWipe, Dictionary<Labs, double> labDistanceFromSite, double surfaceAreaPerHepa, Dictionary<Labs, double> labUptimesHours, double samplePackageTime, double wipeAnalyisTime, double hepaAnalysisTime, Dictionary<Labs, double> fractionOfWipeToEachLab, Dictionary<Labs, double> fracitonOfHepaToEachLab)
         {
             _surfaceAreaPerWipe = surfaceAreaPerWipe;
             _surfaceAreaPerHepa = surfaceAreaPerHepa;
@@ -24,28 +26,36 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _hepaAnalysisTime = hepaAnalysisTime;
             _fractionOfWipeToEachLab = fractionOfWipeToEachLab;
             _fractionOfHepaToEachLab = fracitonOfHepaToEachLab;
+            _labDistanceFromSite = labDistanceFromSite;
         }
 
         public double CalculatePhaseLagTime(double numberLabs, double sampleTimeTransmitted, double surfaceAreaToBeWiped, double surfaceAreaToBeHepa)
         {
-            double[] AnalysisTimePerLab;
+            double[] analysisTimePerLab;
+
+            double[] shippingTimePerLab;
             
             double totalWipes = (surfaceAreaToBeWiped / _surfaceAreaPerWipe) ;
 
             double totalHepa = (surfaceAreaToBeHepa / _surfaceAreaPerHepa);
 
-            double maxAnalysisTime = 0;
+            double maxLabTime = 0;
 
             for (int i = 0; i < numberLabs; i++)
             {
-                AnalysisTimePerLab[i] = Math.Abs((totalWipes * _fractionOfWipeToEachLab * _wipeAnalysisTime) + (totalHepa * _fractionOfHepaToEachLab * _hepaAnalysisTime)) / _labUptimesHours[i];
-                if (AnalysisTimePerLab > maxAnalysisTime)
+                shippingTimePerLab[i] = _labDistanceFromSite.Values[i] / (GlobalConstants.HoursPerWorkDay * GlobalConstants.AssumedDriverSpeed);
+                
+                analysisTimePerLab[i] = Math.Abs((totalWipes * _fractionOfWipeToEachLab.Values[i] * _wipeAnalysisTime) + (totalHepa * _fractionOfHepaToEachLab.Values[i] * _hepaAnalysisTime)) / _labUptimesHours[i];
+
+                if ((analysisTimePerLab[i] + shippingTimePerLab[i]) > maxLabTime)
                 {
-                    maxAnalysisTime = AnalysisTimePerLab[i];
+                    maxLabTime = (analysisTimePerLab[i] + shippingTimePerLab[i]);
                 }
             }
 
-            return (sampleTimeTransmitted * (totalHepa + totalWipes)) + maxAnalysisTime + sampleTimeTransmitted;
+            double totalPackagingTime = (sampleTimeTransmitted * (totalHepa + totalWipes)) / (GlobalConstants.HoursPerWorkDay * GlobalConstants.AssumedDriverSpeed);
+
+            return totalPackagingTime + maxLabTime + sampleTimeTransmitted;
         }
     }
 }

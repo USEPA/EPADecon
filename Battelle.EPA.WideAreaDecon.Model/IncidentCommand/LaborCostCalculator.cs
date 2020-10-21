@@ -30,9 +30,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
         }
         
         public double CalculateOnSiteDays(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
-            double _surfaceAreaToBeHepa,double _surfaceAreaToBeWiped)
+            double _surfaceAreaToBeHepa,double _surfaceAreaToBeWiped, double numberLabs, double sampleTimeTransmitted)
         {
-            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays( _numberTeams, personnelRoundTripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
+            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays( _numberTeams, personnelRoundTripDays, _surfaceAreaToBeHepa,
+                _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted);
             var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays( _numberTeams, personnelRoundTripDays, surfaceAreaToBeSourceReduced);
             var laborDaysDc = _laborCostCalculatorDc.CalculateLaborDays(personnelRoundTripDays);
 
