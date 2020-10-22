@@ -12,9 +12,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly Dictionary<SurfaceType, string> _surfaceTypes;
         private readonly Dictionary<ApplicationMethod, double> _treatmentDaysPerAm;
         private readonly Dictionary<SurfaceType, double> efficacyValues;
-        private readonly Dictionary<SurfaceType, double> _numberOfTreatmentsBySurfaceType;
-        private readonly double totalDeconDays;
-        private readonly double sporeLoadingAfterTreatment;
 
         public EfficacyCalculator(
             Dictionary<SurfaceType, double> initialSporeLoading,
@@ -32,7 +29,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
         public double CalculateEfficacy()
         {
-            for (int i = 0; i < _surfaceTypes.Length(); i++)
+/*            for (int i = 0; i < _surfaceTypes.Length(); i++)
             {
                 double treatmentCount = 0;
                 string currentMethod = _appMethodBySurfaceType.Values[i];
@@ -51,6 +48,34 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
                     if ((i != j) & (_appMethodBySurfaceType.Values[i] == _appMethodBySurfaceType.Values[j]))
                     {
                         totalDeconDays -= (_treatmentDaysPerAm.currentMethod * _numberOfTreatmentsBySurfaceType.Values[j]);
+                    }
+                }
+            }
+            throw new NotImplementedException();
+*/
+            double totalDeconDays = 0;
+
+            double[] _numberOfTreatmentsBySurfaceType;
+
+            for (int i = 0; i < _surfaceTypes.Length(); i++)
+            {
+                double treatmentCount = 0;
+                string currentMethod = Karta._appMethodBySurfaceType.ElementAt(i);
+                double sporeLoadingAfterTreatment = Karta._initialSporeLoading.ElementAt(i);
+                while (sporeLoadingAfterTreatment > _desiredSporeThreshold)
+                {
+                    sporeLoadingAfterTreatment -= Karta.efficacyValues.ElementAt(i);
+                    totalDeconDays += _treatmentDaysPerAm.currentMethod;
+                    treatmentCount += 1;
+                }
+
+                _numberOfTreatmentsBySurfaceType.ElementAt(i) = treatmentCount;
+
+                for (int j = 0; j < _surfaceTypes.Values.Length(); j++)
+                {
+                    if ((i != j) & (Karta._appMethodBySurfaceType.ElementAt(i) == Karta._appMethodBySurfaceType.ElementAt(j)))
+                    {
+                        totalDeconDays -= (_treatmentDaysPerAm.currentMethod * _numberOfTreatmentsBySurfaceType[j]);
                     }
                 }
             }

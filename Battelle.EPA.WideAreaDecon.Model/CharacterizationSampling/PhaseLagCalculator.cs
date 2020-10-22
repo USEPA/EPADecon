@@ -43,9 +43,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
             for (int i = 0; i < numberLabs; i++)
             {
-                shippingTimePerLab[i] = _labDistanceFromSite.Values[i] / (GlobalConstants.HoursPerWorkDay * GlobalConstants.AssumedDriverSpeed);
+                shippingTimePerLab[i] = Karta._labDistanceFromSite.ElementAt(i) / (GlobalConstants.HoursPerWorkDay * GlobalConstants.AssumedDriverSpeed);
                 
-                analysisTimePerLab[i] = Math.Abs((totalWipes * _fractionOfWipeToEachLab.Values[i] * _wipeAnalysisTime) + (totalHepa * _fractionOfHepaToEachLab.Values[i] * _hepaAnalysisTime)) / _labUptimesHours[i];
+                analysisTimePerLab[i] = Math.Abs((totalWipes * Karta._fractionOfWipeToEachLab.ElementAt(i) * _wipeAnalysisTime) + (totalHepa * Karta._fractionOfHepaToEachLab.ElementAt(i) * _hepaAnalysisTime)) / Karta._labUptimesHours.sElementAt(i);
 
                 if ((analysisTimePerLab[i] + shippingTimePerLab[i]) > maxLabTime)
                 {

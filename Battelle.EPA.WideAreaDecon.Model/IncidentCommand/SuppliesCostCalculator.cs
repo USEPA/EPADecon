@@ -17,9 +17,11 @@
             _laborCostCalculator = laborCostCalculator;
         }
 
-        public double CalculateSuppliesCost(double _numberTeams, double saToBeSourceReduced, double personnelRoundTripDays,double _surfaceAreaToBeHepa,double _surfaceAreaToBeWiped)
+        public double CalculateSuppliesCost(double _numberTeams,  double personnelRoundTripDays, double _surfaceAreaToBeHepa
+            ,double _surfaceAreaToBeWiped, double numberLabs, double sampleTimeTransmitted)
         {
-            var onSiteDays = _laborCostCalculator.CalculateOnSiteDays( _numberTeams,  saToBeSourceReduced,  personnelRoundTripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
+            var onSiteDays = _laborCostCalculator.CalculateOnSiteDays(  _numberTeams,  personnelRoundTripDays,  _surfaceAreaToBeHepa, 
+             _surfaceAreaToBeWiped,  numberLabs,  sampleTimeTransmitted);
 
             return onSiteDays * (_equipmentRentalCostPerDay + _suppliesCostPerDay);
         }
