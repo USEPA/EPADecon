@@ -75,7 +75,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
                 {
                     if ((i != j) & (Karta._appMethodBySurfaceType.ElementAt(i) == Karta._appMethodBySurfaceType.ElementAt(j)))
                     {
-                        totalDeconDays -= (_treatmentDaysPerAm.currentMethod * _numberOfTreatmentsBySurfaceType[j]);
+                        if (_numberOfTreatmentsBySurfaceType[j] < _numberOfTreatmentsBySurfaceType[i])
+                        {
+                            totalDeconDays -= (_treatmentDaysPerAm.currentMethod * _numberOfTreatmentsBySurfaceType[j]);
+                        }
+                        else
+                        {
+                            totalDeconDays -= (_treatmentDaysPerAm.currentMethod * _numberOfTreatmentsBySurfaceType[i]);
+                        }
                     }
                 }
             }
