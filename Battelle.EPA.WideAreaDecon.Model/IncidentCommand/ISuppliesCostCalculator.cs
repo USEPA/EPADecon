@@ -2,6 +2,7 @@
 {
     public interface ISuppliesCostCalculator
     {
-        public double CalculateSuppliesCost(double _numberTeams, double saToBeSourceReduced, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped);
+        public double CalculateSuppliesCost(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays, double _surfaceAreaToBeHepa
+            , double _surfaceAreaToBeWiped, double numberLabs, double sampleTimeTransmitted);
     }
 }
