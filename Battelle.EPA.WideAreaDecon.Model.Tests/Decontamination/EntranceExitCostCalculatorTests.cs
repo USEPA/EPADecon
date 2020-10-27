@@ -1,11 +1,13 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
+using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
     internal class MockEntExitLaborCostCalculator : IEntExitLaborCostCalculator
     {
-        public double CalculateEntExitLaborCost()
+        public double CalculateEntExitLaborCost(double _numberTeams)
         {
             return 38700.0;
         }
@@ -18,13 +20,24 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [SetUp]
         public void Setup()
         {
-            var numTeams = 2.0;
-            double[] personnelReqPerTeam = {0.3, 0.0, 0.0, 5.0, 2.0};
+            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>()
+            {
+                { PersonnelLevel.OSC, 0.3 },
+                { PersonnelLevel.PL1, 0.0 },
+                { PersonnelLevel.PL2, 0.0 },
+                { PersonnelLevel.PL3, 5.0 },
+                { PersonnelLevel.PL4, 2.0 }
+            };
+            var costPerPpe = new Dictionary<PpeLevel, double>()
+            {
+                { PpeLevel.A, 3322.0 },
+                { PpeLevel.B, 3023.8 },
+                { PpeLevel.C, 1897.68 },
+                { PpeLevel.D, 260.09 }
+            };
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            double[] costPerPpe = {3322.0, 3023.8, 1897.68, 260.09};
             Calculator = new EntranceExitCostCalculator(
-                numTeams,
                 personnelReqPerTeam,
                 respiratorsPerPerson,
                 costPerRespirator,
@@ -36,9 +49,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [Test]
         public void CalculateCost()
         {
-            double[] ppePerLevelPerTeam = {0.0, 4.0, 4.0, 0.0};
-
-            Assert.AreEqual(81546.64, Calculator.CalculateEntranceExitCost(ppePerLevelPerTeam), 1e-6,
+            var ppePerLevelPerTeam = new Dictionary<PpeLevel, double>()
+            {
+                { PpeLevel.A, 0.0 },
+                { PpeLevel.B, 4.0 },
+                { PpeLevel.C, 4.0 },
+                { PpeLevel.D, 0.0 }
+            };
+            var numTeams = 2.0;
+            
+            Assert.AreEqual(81546.64, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam), 1e-6,
                 "Incorrect cost calculated");
         }
     }

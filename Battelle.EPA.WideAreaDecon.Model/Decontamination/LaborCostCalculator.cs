@@ -1,41 +1,41 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
     public class LaborCostCalculator : ILaborCostCalculator
     {
-        private readonly double _numTeams;
-        private readonly double[] _personnelHourlyRate;
+        private readonly Dictionary<PersonnelLevel, double> _personnelHourlyRate;
         private readonly double _personnelOverhead;
-        private readonly double[] _personnelReqPerTeam;
-        private readonly double[] _workDaysPerAppMethod;
+        private readonly Dictionary<PersonnelLevel, double> _personnelReqPerTeam;
+        private readonly Dictionary<ApplicationMethod, double> _workDaysPerAppMethod;
+        private readonly IEfficacyCalculator _efficacyCalculator;
 
         public LaborCostCalculator(
-            double numTeams,
-            double[] personnelReqPerTeam,
-            double[] personnelHourlyRate,
+            Dictionary<PersonnelLevel, double> personnelReqPerTeam,
+            Dictionary<PersonnelLevel, double> personnelHourlyRate,
             double personnelOverhead,
-            double[] workDaysPerAppMethod)
+            IEfficacyCalculator efficacyCalculator)
         {
-            _numTeams = numTeams;
             _personnelReqPerTeam = personnelReqPerTeam;
             _personnelHourlyRate = personnelHourlyRate;
             _personnelOverhead = personnelOverhead;
-            _workDaysPerAppMethod = workDaysPerAppMethod;
+            _efficacyCalculator = efficacyCalculator;
         }
 
-        public double CalculateLaborCost(double personnelRoundTripDays)
+        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays)
         {
-            var personnelHoursCost = _personnelReqPerTeam.Zip(_personnelHourlyRate, (x, y) => x * y).Sum();
+            var personnelHoursCost = _personnelReqPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
+            
+            var totalWorkDays = _efficacyCalculator.CalculateEfficacy();
 
-            var totalWorkDays = _workDaysPerAppMethod.Sum();
-
-            return (totalWorkDays + _personnelOverhead + personnelRoundTripDays) * 8 * _numTeams * personnelHoursCost;
+            return (totalWorkDays + _personnelOverhead + personnelRoundTripDays) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
         }
 
         public double CalculateLaborDays(double personnelRoundTripDays)
         {
-            var totalWorkDays = _workDaysPerAppMethod.Sum();
+            var totalWorkDays = _efficacyCalculator.CalculateEfficacy();
 
             return totalWorkDays + _personnelOverhead + personnelRoundTripDays;
         }

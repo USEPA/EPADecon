@@ -8,26 +8,19 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private readonly double _costPerWipe;
         private readonly double _hepaRentalCostPerDay;
         private readonly double _hepaSocksPerHourPerTeam;
-        private readonly double _numberTeams;
         private readonly double _surfaceAreaPerHepaSock;
         private readonly double _surfaceAreaPerWipe;
-        private readonly double _surfaceAreaToBeHepa;
-        private readonly double _surfaceAreaToBeWiped;
         private readonly double _wipesPerHourPerTeam;
 
         public SuppliesCostCalculator(
-            double numberTeams,
             double surfaceAreaPerWipe,
             double surfaceAreaPerHepaSock,
             double wipesPerHourPerTeam,
             double hepaSocksPerHourPerTeam,
             double costPerWipe,
             double costPerVacuum,
-            double hepaRentalCostPerDay,
-            double surfaceAreaToBeWiped,
-            double surfaceAreaToBeHepa)
+            double hepaRentalCostPerDay)
         {
-            _numberTeams = numberTeams;
             _surfaceAreaPerWipe = surfaceAreaPerWipe;
             _surfaceAreaPerHepaSock = surfaceAreaPerHepaSock;
             _wipesPerHourPerTeam = wipesPerHourPerTeam;
@@ -35,22 +28,20 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _costPerWipe = costPerWipe;
             _costPerVacuum = costPerVacuum;
             _hepaRentalCostPerDay = hepaRentalCostPerDay;
-            _surfaceAreaToBeWiped = surfaceAreaToBeWiped;
-            _surfaceAreaToBeHepa = surfaceAreaToBeHepa;
         }
 
-        public double CalculateSuppliesCost()
+        public double CalculateSuppliesCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             return _surfaceAreaToBeWiped / _surfaceAreaPerWipe * _costPerWipe +
                 _surfaceAreaToBeHepa / _surfaceAreaPerHepaSock * _costPerVacuum + _surfaceAreaToBeHepa /
-                _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams * 8) * _hepaRentalCostPerDay;
+                _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams * GlobalConstants.HoursPerWorkDay) * _hepaRentalCostPerDay;
         }
 
-        public double CalculateWorkDays()
+        public double CalculateWorkDays(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
-            return Math.Abs(_surfaceAreaToBeWiped / _surfaceAreaPerWipe / (_wipesPerHourPerTeam * _numberTeams) / 8) +
+            return Math.Abs(_surfaceAreaToBeWiped / _surfaceAreaPerWipe / (_wipesPerHourPerTeam * _numberTeams) / GlobalConstants.HoursPerWorkDay) +
                 Math.Abs(_surfaceAreaToBeHepa / _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams) /
-                    8);
+                    GlobalConstants.HoursPerWorkDay);
         }
     }
 }

@@ -1,7 +1,13 @@
-﻿namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
+﻿using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+
+namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
     public interface ISuppliesCostCalculator
     {
-        public double CalculateSuppliesCost(double roomVolume, double[] percentOfRoomBySurface, bool fogging);
+        public double NonFoggingSuppliesCostCalculator(Dictionary<SurfaceType, double> percentOfRoomBySurface);
+
+        public double FoggingSuppliesCostCalculator(double roomVolume);
+        
     }
 }

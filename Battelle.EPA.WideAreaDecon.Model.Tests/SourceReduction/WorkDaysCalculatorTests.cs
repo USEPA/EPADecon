@@ -10,11 +10,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         [SetUp]
         public void Setup()
         {
-            var teamsRequired = 4.0;
             var massRemovedPerHrPerTeam = 453.592;
             var massPerSa = 7.4;
             Calculator = new WorkDaysCalculator(
-                teamsRequired,
                 massRemovedPerHrPerTeam,
                 massPerSa
             );
@@ -23,9 +21,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         [Test]
         public void CalculateCost()
         {
+            var _numberTeams = 4.0;
             var saToBeSourceReduced = 8000.0;
 
-            Assert.AreEqual(4.07855517733999, Calculator.CalculateWorkDays(saToBeSourceReduced), 1e-6,
+            Assert.AreEqual(4.07855517733999, Calculator.CalculateWorkDays(_numberTeams, saToBeSourceReduced), 1e-6,
                 "Incorrect labor cost calculated");
         }
     }

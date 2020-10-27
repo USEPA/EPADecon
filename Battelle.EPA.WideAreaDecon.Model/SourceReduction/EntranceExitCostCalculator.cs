@@ -1,43 +1,54 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
     public class EntranceExitCostCalculator : IEntranceExitCostCalculator
     {
-        private readonly double[] _costPerPpe;
+        private readonly Dictionary<PpeLevel, double> _costPerPpe;
         private readonly double _costPerRespirator;
+        private readonly double _numberEntriesPerTeamPerDay;
 
         private readonly IEntExitLaborCostCalculator _entExitLaborCostCalculator;
-        private readonly double _numTeams;
-        private readonly double[] _personnelReqPerTeam;
+
+        private readonly IWorkDaysCalculator _workDaysCalculator;
+
+        private readonly Dictionary<PersonnelLevel, double> _personnelRequiredPerTeam;
         private readonly double _respiratorsPerPerson;
 
         public EntranceExitCostCalculator(
-            double numTeams,
-            double[] personnelReqPerTeam,
+            Dictionary<PersonnelLevel, double> personnelRequiredPerTeam,
+            double numberEntriesPerTeamPerDay,
             double respiratorsPerPerson,
             double costPerRespirator,
-            double[] costPerPpe,
-            IEntExitLaborCostCalculator entExitLaborCostCalculator)
+            Dictionary<PpeLevel, double> costPerPpe,
+            IEntExitLaborCostCalculator entExitLaborCostCalculator,
+            IWorkDaysCalculator workDaysCalculator)
         {
-            _numTeams = numTeams;
-            _personnelReqPerTeam = personnelReqPerTeam;
+            _personnelRequiredPerTeam = personnelRequiredPerTeam;
+            _numberEntriesPerTeamPerDay = numberEntriesPerTeamPerDay;
             _respiratorsPerPerson = respiratorsPerPerson;
             _costPerRespirator = costPerRespirator;
             _costPerPpe = costPerPpe;
             _entExitLaborCostCalculator = entExitLaborCostCalculator;
+            _workDaysCalculator= workDaysCalculator;
         }
 
-        public double CalculateEntranceExitCost(double saToBeSourceReduced, double[] ppeEachLevelPerTeam)
+        public double CalculateEntranceExitCost(double _numberTeams, double saToBeSourceReduced, Dictionary<PpeLevel, double> ppeEachLevelPerTeam)
         {
-            var totalPersonnel = _personnelReqPerTeam.Sum() * _numTeams;
+            var totalPersonnel = _personnelRequiredPerTeam.Values.Sum() * _numberTeams;
 
-            var totalPpePerLevel = ppeEachLevelPerTeam.Select(x => x * _numTeams);
+            var workDays = _workDaysCalculator.CalculateWorkDays( _numberTeams, saToBeSourceReduced);
+            
+            var totalEntries = workDays * _numberEntriesPerTeamPerDay * _numberTeams;
 
-            var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe, (ppe, cost) => ppe * cost).Sum();
+            var totalPpePerLevel = ppeEachLevelPerTeam.Values.Select(x => x * _numberTeams);
+
+            var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
             //EntExitLabor declared as local double as input is needed to calculate
-            var entExitLabor = _entExitLaborCostCalculator.CalculateEntExitLaborCost(saToBeSourceReduced);
+            var entExitLabor = _entExitLaborCostCalculator.CalculateEntExitLaborCost(_numberTeams, saToBeSourceReduced);
 
             return entExitLabor + totalPersonnel * _respiratorsPerPerson * _costPerRespirator + totalCostPpe;
         }

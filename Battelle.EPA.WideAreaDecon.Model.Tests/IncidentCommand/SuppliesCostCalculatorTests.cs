@@ -22,21 +22,24 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         [Test]
         public void CalculateCost()
         {
+            var _numberTeams = 4.0;
             var saToBeSourceReduced = 8000.0;
             var roundtripDays = 2.0;
+            var _surfaceAreaToBeWiped = 500.0;
+            var _surfaceAreaToBeHepa = 500.0;
 
-            Assert.AreEqual(22886.2482445587, Calculator.CalculateSuppliesCost(saToBeSourceReduced, roundtripDays),
+            Assert.AreEqual(22886.2482445587, Calculator.CalculateSuppliesCost( _numberTeams,  saToBeSourceReduced,  roundtripDays,_surfaceAreaToBeHepa, _surfaceAreaToBeWiped),
                 1e-6, "Incorrect cost calculated");
         }
 
         private class MockLaborCostCalculator : ILaborCostCalculator
         {
-            public double CalculateOnSiteDays(double saToBeSourceReduced, double personnelRoundTripDays)
+            public double CalculateOnSiteDays(double _numberTeams, double saToBeSourceReduced, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
             {
                 return 18.4194860407136;
             }
 
-            public double CalculateLaborCost(double saToBeSourceReduced, double personnelRoundTripDays)
+            public double CalculateLaborCost(double _numberDays, double saToBeSourceReduced, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
             {
                 return 227064.684772735;
             }

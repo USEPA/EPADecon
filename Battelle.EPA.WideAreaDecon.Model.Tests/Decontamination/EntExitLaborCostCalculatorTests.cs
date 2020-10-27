@@ -1,5 +1,7 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
+using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
@@ -10,15 +12,31 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [SetUp]
         public void Setup()
         {
-            var numTeams = 2.0;
-            double[] personnelReqPerTeam = {0.3, 0.0, 0.0, 5.0, 2.0};
+            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>()
+            {
+                { PersonnelLevel.OSC, 0.3 },
+                { PersonnelLevel.PL1, 0.0 },
+                { PersonnelLevel.PL2, 0.0 },
+                { PersonnelLevel.PL3, 5.0 },
+                { PersonnelLevel.PL4, 2.0 }
+            };
+            var personnelHourlyRate = new Dictionary<PersonnelLevel, double>()
+            {
+                { PersonnelLevel.OSC, 150.0 },
+                { PersonnelLevel.PL1, 90.0 },
+                { PersonnelLevel.PL2, 110.0 },
+                { PersonnelLevel.PL3, 130.0 },
+                { PersonnelLevel.PL4, 190.0 }
+            };
+            var workDaysPerAppMethod = new Dictionary<ApplicationMethod, double>()
+            {
+                { ApplicationMethod.Aerosol, 1.0 },
+                { ApplicationMethod.Fogging, 2.0 }
+            };
             var numEntriesPerTeamPerDay = 2.0;
             var hoursPerEntryPerTeam = 1.5;
             var hoursPerExitPerTeam = 1.5;
-            double[] personnelHourlyRate = {150.0, 90.0, 110.0, 130.0, 190.0};
-            double[] workDaysPerAppMethod = {1.0, 2.0};
             Calculator = new EntExitLaborCostCalculator(
-                numTeams,
                 personnelReqPerTeam,
                 numEntriesPerTeamPerDay,
                 hoursPerEntryPerTeam,
@@ -30,7 +48,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [Test]
         public void CalculateCost()
         {
-            Assert.AreEqual(38700.0, Calculator.CalculateEntExitLaborCost(), 1e-6, "Incorrect cost calculated");
+            var _numberTeams= 2.0;
+            Assert.AreEqual(38700.0, Calculator.CalculateEntExitLaborCost(_numberTeams), 1e-6, "Incorrect cost calculated");
         }
     }
 }
