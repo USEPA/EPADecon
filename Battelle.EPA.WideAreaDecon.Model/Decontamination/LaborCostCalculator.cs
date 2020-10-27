@@ -9,7 +9,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly Dictionary<PersonnelLevel, double> _personnelHourlyRate;
         private readonly double _personnelOverhead;
         private readonly Dictionary<PersonnelLevel, double> _personnelReqPerTeam;
-        private readonly Dictionary<ApplicationMethod, double> _workDaysPerAppMethod;
         private readonly IEfficacyCalculator _efficacyCalculator;
 
         public LaborCostCalculator(

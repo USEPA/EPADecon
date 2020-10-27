@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
@@ -40,15 +41,20 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
                 string currentMethod = _appMethodBySurfaceType.ElementAt(i).Value;
                 double currentTreatmentDays;
 
-                //geting days per treatment for app method for current surface type
-                for (int k = 0; k < _treatmentDaysPerAm.Count; k++)
-                {   
-                    if (_treatmentDaysPerAm.ElementAt(k) == currentMethod)
+                //geting days per treatment for app method for current surface type FIX
+                for (int j = 0; j < _treatmentDaysPerAm.Count; j++)
+                {
+                    if (_treatmentDaysPerAm.ElementAt(j) == currentMethod)
                     {
-                        currentTreatmentDays = _treatmentDaysPerAm.ElementAt(k).Value;
+                        currentTreatmentDays = _treatmentDaysPerAm.ElementAt(j).Value;
+                    }
+                    else
+                    {
+
                     }
                 }
 
+                //currentTreatmentDays = EnumMemberAttribute.Equals(currentMethod);
                 //counts number of treatments for spore loading to be before threshold
                 double sporeLoadingAfterTreatment = _initialSporeLoading.ElementAt(i).Value;
                 while (sporeLoadingAfterTreatment > _desiredSporeThreshold)
@@ -59,8 +65,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
                 }
 
                 _numberOfTreatmentsBySurfaceType[i] = treatmentCount;
-
-                //subtracts count for overlapping methods
+            }
+            //subtracts count for overlapping methods
+            for (int i = 0; i < _surfaceTypes.Count(); i++)
+            {
                 for (int j = 0; j < _surfaceTypes.Values.Count; j++)
                 {
                     if ((i != j) & (_appMethodBySurfaceType.ElementAt(i).Value == _appMethodBySurfaceType.ElementAt(j).Value))

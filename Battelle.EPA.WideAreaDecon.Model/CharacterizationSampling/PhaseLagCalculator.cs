@@ -32,20 +32,22 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
         public double CalculatePhaseLagTime(double numberLabs, double sampleTimeTransmitted, double surfaceAreaToBeWiped, double surfaceAreaToBeHepa)
         {
-            double[] analysisTimePerLab;
-
-            double[] shippingTimePerLab;
-            
-            double totalWipes = (surfaceAreaToBeWiped / _surfaceAreaPerWipe) ;
+            double totalWipes = (surfaceAreaToBeWiped / _surfaceAreaPerWipe);
 
             double totalHepa = (surfaceAreaToBeHepa / _surfaceAreaPerHepa);
 
             double maxLabTime = 0;
 
+            double[] shippingTimePerLab;
+
+            double[] analysisTimePerLab;
+
             for (int i = 0; i < numberLabs; i++)
             {
-                shippingTimePerLab[i] = _labDistanceFromSite.ElementAt(i).Value / (GlobalConstants.HoursPerWorkDay * GlobalConstants.AssumedDriverSpeed);
+
                 
+                shippingTimePerLab[i] = _labDistanceFromSite.ElementAt(i).Value / (GlobalConstants.HoursPerWorkDay * GlobalConstants.AssumedDriverSpeed);
+
                 analysisTimePerLab[i] = Math.Abs((totalWipes * _fractionOfWipeToEachLab.ElementAt(i).Value * _wipeAnalysisTime) + (totalHepa * _fractionOfHepaToEachLab.ElementAt(i).Value * _hepaAnalysisTime)) / _labUptimesHours.ElementAt(i).Value;
 
                 if ((analysisTimePerLab[i] + shippingTimePerLab[i]) > maxLabTime)
