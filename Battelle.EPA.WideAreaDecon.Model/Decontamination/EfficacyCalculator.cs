@@ -7,7 +7,7 @@ using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {internal class EfficacyCalculator : IEfficacyCalculator
     {
-        private readonly Dictionary<SurfaceType, string> _appMethodBySurfaceType;
+        private readonly Dictionary<SurfaceType, ApplicationMethod> _appMethodBySurfaceType;
         private readonly double _desiredSporeThreshold;
         private readonly Dictionary<SurfaceType, double> _initialSporeLoading;
         private readonly Dictionary<SurfaceType, string> _surfaceTypes;
@@ -17,7 +17,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         public EfficacyCalculator(
             Dictionary<SurfaceType, double> initialSporeLoading,
             Dictionary<SurfaceType, string> surfaceTypes,
-            Dictionary<SurfaceType, string> applicationMethods,
+            Dictionary<SurfaceType, ApplicationMethod> applicationMethods,
             double desiredSporeThreshold,
             Dictionary<ApplicationMethod, double> treatmentDaysPerAm)
         {
@@ -32,49 +32,43 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         {
             double totalDeconDays = 0;
 
-            double[] _numberOfTreatmentsBySurfaceType;
+            var _numberOfTreatmentsBySurfaceType = new Dictionary<SurfaceType, double>();
 
-            for (int i = 0; i < _surfaceTypes.Count(); i++)
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
                 double treatmentCount = 0;
-                string currentMethod = _appMethodBySurfaceType.ElementAt(i).Value;
-                double currentTreatmentDays;
+                var currentMethod = _appMethodBySurfaceType[surface];
 
-                //geting days per treatment for app method for current surface type
-                for (int k = 0; k < _treatmentDaysPerAm.Count; k++)
-                {   
-                    if (_treatmentDaysPerAm.ElementAt(k) == currentMethod)
-                    {
-                        currentTreatmentDays = _treatmentDaysPerAm.ElementAt(k).Value;
-                    }
-                }
+                var currentTreatmentDays = _treatmentDaysPerAm
+                    .First(appMethod => appMethod.Key == currentMethod)
+                    .Value;
 
                 //counts number of treatments for spore loading to be before threshold
-                double sporeLoadingAfterTreatment = _initialSporeLoading.ElementAt(i).Value;
+                double sporeLoadingAfterTreatment = _initialSporeLoading[surface];
                 while (sporeLoadingAfterTreatment > _desiredSporeThreshold)
                 {
-                    sporeLoadingAfterTreatment -= efficacyValues.ElementAt(i).Value;
+                    sporeLoadingAfterTreatment -= efficacyValues[surface];
                     totalDeconDays += currentTreatmentDays;
                     treatmentCount += 1;
                 }
 
-                _numberOfTreatmentsBySurfaceType[i] = treatmentCount;
-
+                _numberOfTreatmentsBySurfaceType[surface] = treatmentCount;
+                throw new NotImplementedException();
                 //subtracts count for overlapping methods
-                for (int j = 0; j < _surfaceTypes.Values.Count; j++)
-                {
-                    if ((i != j) & (_appMethodBySurfaceType.ElementAt(i).Value == _appMethodBySurfaceType.ElementAt(j).Value))
-                    {
-                        if (_numberOfTreatmentsBySurfaceType[j] < _numberOfTreatmentsBySurfaceType[i])
-                        {
-                            totalDeconDays -= (currentTreatmentDays * _numberOfTreatmentsBySurfaceType[j]);
-                        }
-                        else
-                        {
-                            totalDeconDays -= (currentTreatmentDays * _numberOfTreatmentsBySurfaceType[i]);
-                        }
-                    }
-                }
+                //for (int j = 0; j < _surfaceTypes.Values.Count; j++)
+                //{
+                //    if ((i != j) && (_appMethodBySurfaceType.ElementAt(i).Value == _appMethodBySurfaceType.ElementAt(j).Value))
+                //    {
+                //        if (_numberOfTreatmentsBySurfaceType[j] < _numberOfTreatmentsBySurfaceType[i])
+                //        {
+                //            totalDeconDays -= (currentTreatmentDays * _numberOfTreatmentsBySurfaceType[j]);
+                //        }
+                //        else
+                //        {
+                //            totalDeconDays -= (currentTreatmentDays * _numberOfTreatmentsBySurfaceType[i]);
+                //        }
+                //    }
+                //}
             }
             return totalDeconDays;
         }

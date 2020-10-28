@@ -60,7 +60,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         }
 
         public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, 
-            double _surfaceAreaToBeWiped, double numberLabs, double sampleTimeTransmitted)
+            double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
         {
             var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
 

@@ -1,7 +1,7 @@
+using System;
 using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
 using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
@@ -45,22 +45,24 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var entriesPerTeam = 4.0;
             var hoursEntering = 1.0;
             var hoursExiting = 1.0;
-            Calculator = new LaborCostCalculator(
-                personnelReqPerTeam,
-                personnelOverhead,
-                entriesPerTeam,
-                hoursEntering,
-                hoursExiting,
-                personnelHourlyRate,
-                new MockSuppliesCostCalculator()
-            );
+            throw new NotImplementedException();
+            //Calculator = new LaborCostCalculator(
+            //    personnelReqPerTeam,
+            //    personnelOverhead,
+            //    entriesPerTeam,
+            //    hoursEntering,
+            //    hoursExiting,
+            //    personnelHourlyRate,
+            //    new MockSuppliesCostCalculator(),
+            //    new PhaseLagCalculator(1.0)
+            //);
         }
 
         [Test]
         public void CalculateCost()
         {
             
-            var _numberTeams = 4.0;
+            var _numberTeams = 4;
             var roundtripDays = 2.0;
             var _surfaceAreaToBeHepa = 500.0;
             var _surfaceAreaToBeWiped = 500.0;
@@ -69,8 +71,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 "Incorrect labor cost calculated");
             Assert.AreEqual(21393.2811, Calculator.CalculateEntExitLaborCost(_numberTeams, _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped), 1e-4,
                 "Incorrect ent/exit labor cost calculated");
-            Assert.AreEqual(3.340930863, Calculator.CalculateLaborDays(_numberTeams,  roundtripDays,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped), 1e-4,
-                "Incorrect labor days calculated");
+            throw new NotImplementedException();
+            //Assert.AreEqual(3.340930863, Calculator.CalculateLaborDays(_numberTeams,  roundtripDays,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped), 1e-4,
+            //    "Incorrect labor days calculated");
         }
     }
 }

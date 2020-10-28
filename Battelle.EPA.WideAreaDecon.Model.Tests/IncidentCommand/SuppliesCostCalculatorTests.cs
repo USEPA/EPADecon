@@ -1,4 +1,5 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
+﻿using System;
+using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
 using NUnit.Framework;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
@@ -27,21 +28,29 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             var roundtripDays = 2.0;
             var _surfaceAreaToBeWiped = 500.0;
             var _surfaceAreaToBeHepa = 500.0;
-
-            Assert.AreEqual(22886.2482445587, Calculator.CalculateSuppliesCost( _numberTeams,  saToBeSourceReduced,  roundtripDays,_surfaceAreaToBeHepa, _surfaceAreaToBeWiped),
-                1e-6, "Incorrect cost calculated");
+            throw new NotImplementedException();
+            //Assert.AreEqual(22886.2482445587, Calculator.CalculateSuppliesCost( _numberTeams,  saToBeSourceReduced,  roundtripDays,_surfaceAreaToBeHepa, _surfaceAreaToBeWiped),
+            //    1e-6, "Incorrect cost calculated");
         }
 
         private class MockLaborCostCalculator : ILaborCostCalculator
         {
-            public double CalculateOnSiteDays(double _numberTeams, double saToBeSourceReduced, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
-            {
-                return 18.4194860407136;
-            }
 
             public double CalculateLaborCost(double _numberDays, double saToBeSourceReduced, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
             {
                 return 227064.684772735;
+            }
+
+            public double CalculateOnSiteDays(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
+                double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
+            {
+                return 18.4194860407136;
+            }
+
+            public double CalculateLaborCost(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
+                double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
+            {
+                throw new NotImplementedException();
             }
         }
     }

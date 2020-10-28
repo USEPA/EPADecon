@@ -7,6 +7,6 @@
         public double CalculateEntExitLaborCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped);
 
         public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, 
-            double _surfaceAreaToBeWiped, double numberLabs, double sampleTimeTransmitted);
+            double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted);
     }
 }

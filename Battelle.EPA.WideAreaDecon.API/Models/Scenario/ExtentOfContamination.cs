@@ -4,7 +4,6 @@ using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter.List;
-using Battelle.EPA.WideAreaDecon.API.Utility.Extensions;
 using NPOI.SS.UserModel;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.Scenario

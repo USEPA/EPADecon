@@ -74,12 +74,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
                 }
 
                 var nonCat = rows.Where(row => !Enum.TryParse(typeof(SurfaceType),
-                    ParameterMetaData.FromExcel(row).Category,
+                    ParameterMetaData.FromExcel(row.Key).Category,
                     true,
                     out var tmp)).ToArray();
                 if (nonCat.Any())
                     efficacyParameters.AddRange(nonCat.Select(row =>
-                        IParameter.FromExcel(ParameterMetaData.FromExcel(row), row)));
+                        IParameter.FromExcel(ParameterMetaData.FromExcel(row.Key), row.Key)));
             }
 
             var filters = GenericSheetNames.Select(genericSheetName =>

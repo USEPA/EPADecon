@@ -1,4 +1,5 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
+﻿using System;
+using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.Model.Enumeration;
@@ -17,7 +18,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             return 21393.28;
         }
 
-        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa,
+            double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
         {
             return 3.340930863;
         }
@@ -47,13 +49,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             };
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            Calculator = new EntrancesExitsCostCalculator(
-                personnelReqPerTeam,
-                respiratorsPerPerson,
-                costPerRespirator,
-                costPerPpe,
-                new MockLaborCostCalculator()
-            );
+            throw new NotImplementedException();
+            //Calculator = new EntrancesExitsCostCalculator(
+            //    personnelReqPerTeam,
+            //    respiratorsPerPerson,
+            //    costPerRespirator,
+            //    costPerPpe,
+            //    new MockLaborCostCalculator()
+            //);
         }
 
         [Test]

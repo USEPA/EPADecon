@@ -11,7 +11,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
 {
     public class EnumeratedParameter<T> : IParameter where T: Enum
     {
-        public ParameterType Type => ParameterType.EnumeratedFraction;
+        public ParameterType Type => ParameterType.EnumeratedParameter;
         public string TypeName => typeof(T).Name;
         public ParameterMetaData MetaData { get; set; }
 

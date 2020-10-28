@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -30,13 +31,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
             };
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            Calculator = new EntranceExitCostCalculator(
-                personnelReqPerTeam,
-                respiratorsPerPerson,
-                costPerRespirator,
-                costPerPpe,
-                new MockEntExitLaborCostCalculator()
-            );
+            throw new NotImplementedException();
+            //Calculator = new EntranceExitCostCalculator(
+            //    personnelReqPerTeam,
+            //    respiratorsPerPerson,
+            //    costPerRespirator,
+            //    costPerPpe,
+            //    new MockEntExitLaborCostCalculator()
+            //);
         }
 
         [Test]

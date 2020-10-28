@@ -1,4 +1,5 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.Decontamination;
+﻿using System;
+using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.Model.Enumeration;
@@ -34,12 +35,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 { ApplicationMethod.Fogging, 2.0 }
             };
             var personnelOverhead = 2.0;
-            Calculator = new LaborCostCalculator(
-                personnelReqPerTeam,
-                personnelHourlyRate,
-                personnelOverhead,
-                workDaysPerAppMethod
-            );
+            throw new NotImplementedException();
+            //Calculator = new LaborCostCalculator(
+            //    personnelReqPerTeam,
+            //    personnelHourlyRate,
+            //    personnelOverhead,
+            //    workDaysPerAppMethod
+            //);
         }
 
         [Test]

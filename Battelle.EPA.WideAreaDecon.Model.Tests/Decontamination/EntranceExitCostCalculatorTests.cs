@@ -1,4 +1,5 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.Decontamination;
+﻿using System;
+using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.Model.Enumeration;
@@ -37,13 +38,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             };
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            Calculator = new EntranceExitCostCalculator(
-                personnelReqPerTeam,
-                respiratorsPerPerson,
-                costPerRespirator,
-                costPerPpe,
-                new MockEntExitLaborCostCalculator()
-            );
+            throw new NotImplementedException();
+            //Calculator = new EntranceExitCostCalculator(
+            //    personnelReqPerTeam,
+            //    respiratorsPerPerson,
+            //    costPerRespirator,
+            //    costPerPpe,
+            //    new MockEntExitLaborCostCalculator()
+            //);
         }
 
         [Test]

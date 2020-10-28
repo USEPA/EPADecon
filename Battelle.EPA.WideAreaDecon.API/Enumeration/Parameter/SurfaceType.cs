@@ -57,7 +57,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
             SurfaceType.IndoorCeilings,
             SurfaceType.IndoorCarpet,
             SurfaceType.IndoorNonCarpet,
-            SurfaceType.HVAC,
+            SurfaceType.Hvac,
             SurfaceType.IndoorMisc,
         };
 
@@ -78,7 +78,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
             SurfaceType.UndergroundCarpet,
             SurfaceType.UndergroundNonCarpet,
             SurfaceType.UndergroundMisc,
-            SurfaceType.HVAC,
+            SurfaceType.Hvac,
         };
     }
 }

@@ -44,8 +44,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
                 ParameterType.Null => throw new ApplicationException("Cannot parse parameter type Null"),
                 ParameterType.LogNormal => LogNormalDistribution.FromExcel(metaData, row),
                 ParameterType.Weibull => WeibullDistribution.FromExcel(metaData, row),
-                ParameterType.EnumeratedFraction => throw new ApplicationException($"Cannot parse parameter type {row}"),
-                ParameterType.EnumeratedParameter => throw new ApplicationException($"Cannot parse parameter type {row}"),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
