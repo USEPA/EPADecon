@@ -18,6 +18,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         }
     }
 
+    internal class MockPhaseLagCostCalculator : IPhaseLagCostCalculator
+    {
+        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double surfaceAreaToBeWiped, double surfaceAreaToBeHepa)
+        {
+            return 9.095465;
+        }
+    }
+
     public class LaborCostCalculatorTests
     {
         private LaborCostCalculator Calculator { get; set; }
@@ -53,6 +61,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 hoursExiting,
                 personnelHourlyRate,
                 new MockSuppliesCostCalculator()
+                new MockPhaseLagCostCalculator()
             );
         }
 
@@ -64,12 +73,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var roundtripDays = 2.0;
             var _surfaceAreaToBeHepa = 500.0;
             var _surfaceAreaToBeWiped = 500.0;
+            var numberLabs = 3;
+            var sampleTimeTransmitted = 24.0;
 
             Assert.AreEqual(84993.2811, Calculator.CalculateLaborCost(_numberTeams,  roundtripDays,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped), 1e-4,
                 "Incorrect labor cost calculated");
             Assert.AreEqual(21393.2811, Calculator.CalculateEntExitLaborCost(_numberTeams, _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped), 1e-4,
                 "Incorrect ent/exit labor cost calculated");
-            Assert.AreEqual(3.340930863, Calculator.CalculateLaborDays(_numberTeams,  roundtripDays,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped), 1e-4,
+            Assert.AreEqual(3.340930863, Calculator.CalculateLaborDays(_numberTeams, roundtripDays, _surfaceAreaToBeHepa, 
+             _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted), 1e-4,
                 "Incorrect labor days calculated");
         }
     }

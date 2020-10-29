@@ -17,16 +17,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private readonly Dictionary<Labs, double> _labUptimesHours;
         private readonly Dictionary<Labs, double> _labDistanceFromSite;
 
-        public PhaseLagCalculator(double surfaceAreaPerWipe, Dictionary<Labs, double> labDistanceFromSite, double surfaceAreaPerHepa, Dictionary<Labs, double> labUptimesHours, double samplePackageTime, double wipeAnalyisTime, double hepaAnalysisTime, Dictionary<Labs, double> fractionOfWipeToEachLab, Dictionary<Labs, double> fracitonOfHepaToEachLab)
+        public PhaseLagCalculator(double surfaceAreaPerWipe, Dictionary<Labs, double> labDistanceFromSite, double surfaceAreaPerHepa, Dictionary<Labs, double> labUptimesHours, double samplePackageTime, double wipeAnalysisTime, double hepaAnalysisTime, Dictionary<Labs, double> fractionOfWipeToEachLab, Dictionary<Labs, double> fractionOfHepaToEachLab)
         {
             _surfaceAreaPerWipe = surfaceAreaPerWipe;
             _surfaceAreaPerHepa = surfaceAreaPerHepa;
             _labUptimesHours = labUptimesHours;
             _samplePackageTime = samplePackageTime;
-            _wipeAnalysisTime = wipeAnalyisTime;
+            _wipeAnalysisTime = wipeAnalysisTime;
             _hepaAnalysisTime = hepaAnalysisTime;
             _fractionOfWipeToEachLab = fractionOfWipeToEachLab;
-            _fractionOfHepaToEachLab = fracitonOfHepaToEachLab;
+            _fractionOfHepaToEachLab = fractionOfHepaToEachLab;
             _labDistanceFromSite = labDistanceFromSite;
         }
 

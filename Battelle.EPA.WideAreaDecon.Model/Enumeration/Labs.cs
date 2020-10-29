@@ -9,6 +9,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Enumeration
         Lab1,
 
         [EnumMember(Value = "Lab 2")]
-        Lab2
+        Lab2,
+
+        [EnumMember(Value = "Lab 3")]
+        Lab3
     }
 }
