@@ -30,7 +30,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _labDistanceFromSite = labDistanceFromSite;
         }
 
-        public double CalculatePhaseLagTime(double numberLabs, double sampleTimeTransmitted, double surfaceAreaToBeWiped, double surfaceAreaToBeHepa)
+        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double surfaceAreaToBeWiped, double surfaceAreaToBeHepa)
         {
             double totalWipes = (surfaceAreaToBeWiped / _surfaceAreaPerWipe);
 
@@ -38,9 +38,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
             double maxLabTime = 0;
 
-            double[] shippingTimePerLab;
-
-            double[] analysisTimePerLab;
+            double[] shippingTimePerLab = new double[numberLabs], analysisTimePerLab = new double[numberLabs];
 
             for (int i = 0; i < numberLabs; i++)
             {
