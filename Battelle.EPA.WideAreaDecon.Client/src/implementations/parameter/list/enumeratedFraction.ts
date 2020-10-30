@@ -1,10 +1,13 @@
+import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import Constant from '../distribution/Constant';
 import ParameterMetaData from '../ParameterMetaData';
 
+@Serializable()
 export default class EnumeratedFraction implements IParameter {
-  type = ParameterType.enumeratedFraction;
+  @JsonProperty()
+  readonly type = ParameterType.enumeratedFraction;
 
   isSet = false;
 
@@ -12,15 +15,18 @@ export default class EnumeratedFraction implements IParameter {
     return other.type === this.type;
   }
 
+  @JsonProperty()
   metaData: ParameterMetaData;
 
-  parameters?: Record<string, Constant>;
+  @JsonProperty()
+  values: Record<string, Constant>;
 
-  typeName?: string;
+  @JsonProperty()
+  typeName: string;
 
-  constructor(metaData = new ParameterMetaData(), typeName?: string, parameters?: Record<string, Constant>) {
+  constructor(metaData = new ParameterMetaData(), typeName?: string, values?: Record<string, Constant>) {
     this.metaData = metaData;
-    this.typeName = typeName;
-    this.parameters = parameters;
+    this.typeName = typeName ?? 'unknown';
+    this.values = values ?? {};
   }
 }

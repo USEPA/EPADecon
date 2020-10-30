@@ -41,6 +41,8 @@ import TruncatedNormalDisplay from '@/components/parameters/distributionDisplay/
 import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNormalDisplay.vue';
 import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
 import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
+import EnumeratedFractionDisplay from '@/components/parameters/distributionDisplay/EnumeratedFractionDisplay.vue';
+import EnumeratedParameterDisplay from '@/components/parameters/distributionDisplay/EnumeratedParameterDisplay.vue';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
@@ -59,6 +61,8 @@ import TYPES from '@/dependencyInjection/types';
     UniformDisplay,
     LogNormalDisplay,
     WeibullDisplay,
+    EnumeratedFractionDisplay,
+    EnumeratedParameterDisplay,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
@@ -97,6 +101,10 @@ export default class ParameterDistributionSelector extends Vue {
         return 'uniform-display';
       case ParameterType.weibull:
         return 'weibull-display';
+      case ParameterType.enumeratedFraction:
+        return 'enumerated-fraction-display';
+      case ParameterType.enumeratedParameter:
+        return 'enumerated-parameter-display';
       default:
         return 'unknown-display';
     }
