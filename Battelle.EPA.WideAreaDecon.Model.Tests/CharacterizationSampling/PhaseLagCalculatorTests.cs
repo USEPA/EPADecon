@@ -1,5 +1,7 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
+using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
@@ -39,7 +41,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 { Labs.Lab2, 20.0 },
                 { Labs.Lab3, 90.0 }
             };
-            Calculator = new PhaseLagCostCalculator(
+            Calculator = new PhaseLagCalculator(
                 surfaceAreaPerWipe,
                 surfaceAreaPerHepa,
                 labUptimesHours,
@@ -60,7 +62,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var surfaceAreaToBeWiped = 500.0;
             var surfaceAreaToBeHepa = 500.0;
 
-            Assert.AreEqual(9.095465, Calculator.CalculateSuppliesCost( numberLabs, sampleTimeTransmitted, surfaceAreaToBeWiped, surfaceAreaToBeHepa), 1e-6,
+            Assert.AreEqual(9.095465, Calculator.CalculatePhaseLag( numberLabs, sampleTimeTransmitted, surfaceAreaToBeWiped, surfaceAreaToBeHepa), 1e-6,
                 "Incorrect phase lag cost calculated");
         }
     }

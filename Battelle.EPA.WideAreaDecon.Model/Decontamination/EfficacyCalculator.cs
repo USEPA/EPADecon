@@ -8,37 +8,49 @@ using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {internal class EfficacyCalculator : IEfficacyCalculator
     {
-        private readonly Dictionary<SurfaceType, ApplicationMethod> _appMethodBySurfaceType;
+        /*private readonly Dictionary<SurfaceType, ApplicationMethod> _appMethodBySurfaceType;
         private readonly double _desiredSporeThreshold;
-        private readonly Dictionary<SurfaceType, double> _initialSporeLoading;
         private readonly Dictionary<SurfaceType, string> _surfaceTypes;
-        private readonly Dictionary<ApplicationMethod, double> _treatmentDaysPerAm;
+        private readonly Dictionary<ApplicationMethod, double> _treatmentDaysPerAm; */
         private readonly Dictionary<SurfaceType, double> _efficacyValues;
 
         public EfficacyCalculator(
-            Dictionary<SurfaceType, double> initialSporeLoading,
-            Dictionary<SurfaceType, string> surfaceTypes,
+            /*Dictionary<SurfaceType, string> surfaceTypes,
             Dictionary<SurfaceType, ApplicationMethod> applicationMethods,
             double desiredSporeThreshold,
-            Dictionary<ApplicationMethod, double> treatmentDaysPerAm,
+            Dictionary<ApplicationMethod, double> treatmentDaysPerAm, */
             Dictionary<SurfaceType, double> efficacyValues)
         {
-            _initialSporeLoading = initialSporeLoading;
-            _surfaceTypes = surfaceTypes;
+            /*_surfaceTypes = surfaceTypes;
             _appMethodBySurfaceType = applicationMethods;
             _desiredSporeThreshold = desiredSporeThreshold;
-            _treatmentDaysPerAm = treatmentDaysPerAm;
+            _treatmentDaysPerAm = treatmentDaysPerAm;*/
             _efficacyValues = efficacyValues;
         }
 
-        public double CalculateEfficacy()
+        public Dictionary<SurfaceType,double> CalculateEfficacy(Dictionary<SurfaceType, double> _initialSporeLoading)
         {
+            
+
+            Dictionary<SurfaceType,double> _newSporeLoading;
+            for (int i = 0; i < _initialSporeLoading.Count(); i++)
+            {
+                void _newSporeLoading.Add(SurfaceType, (_initialSporeLoading.ElementAt(i).Value - _efficacyValues.ElementAt(i).Value));
+            }
+            //_newSporeLoading.Values = _initialSporeLoading.Values.Zip(_efficacyValues.Values, (x, y) => x - y);
+
+            return _newSporeLoading;
+
+            /*
             double totalDeconDays = 0;
 
             double[] _numberOfTreatmentsBySurfaceType = new double [_surfaceTypes.Count];
 
+            double[] _newSporeLoading = new double [_surfaceTypes.Count];
+
             double treatmentCount;
 
+            
             for (int i = 0; i < _surfaceTypes.Count(); i++)
             {
                 treatmentCount = 0;
@@ -51,20 +63,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
                 {
                     currentTreatmentDays = _treatmentDaysPerAm[entry.Value];
                 }
+                */
 
                 //counts number of treatments for spore loading to be before threshold
-                double sporeLoadingAfterTreatment = _initialSporeLoading.ElementAt(i).Value;
+                /*double sporeLoadingAfterTreatment = _initialSporeLoading.ElementAt(i).Value;
                 while (sporeLoadingAfterTreatment > _desiredSporeThreshold)
                 {
                     sporeLoadingAfterTreatment -= _efficacyValues.ElementAt(i).Value;
                     totalDeconDays += currentTreatmentDays;
                     treatmentCount += 1;
                 }
-
+                
                 _numberOfTreatmentsBySurfaceType[i] = treatmentCount;
+                
             }
+                */
             //subtracts count for overlapping methods
-            for (int i = 0; i < _surfaceTypes.Count(); i++)
+            /*for (int i = 0; i < _surfaceTypes.Count(); i++)
             {
                 double treatmentDays = 0;
                 for (int j = 0; j < _surfaceTypes.Values.Count; j++)
@@ -87,7 +102,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
                     }
                 }
             }
+            
             return totalDeconDays;
+            */
         }
     }
 }

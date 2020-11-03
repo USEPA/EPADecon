@@ -27,8 +27,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             var roundtripDays = 2.0;
             var _surfaceAreaToBeWiped = 500.0;
             var _surfaceAreaToBeHepa = 500.0;
+            var numberLabs = 3;
+            var sampleTimeTransmitted =24.0;
 
-            Assert.AreEqual(22886.2482445587, Calculator.CalculateSuppliesCost( _numberTeams,  saToBeSourceReduced,  roundtripDays,_surfaceAreaToBeHepa, _surfaceAreaToBeWiped),
+            Assert.AreEqual(22886.2482445587, Calculator.CalculateSuppliesCost( _numberTeams,  saToBeSourceReduced,  roundtripDays,_surfaceAreaToBeHepa, _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted),
                 1e-6, "Incorrect cost calculated");
         }
 

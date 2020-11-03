@@ -3,8 +3,8 @@ using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-    public interface IEfficacyCalculator
+    public interface IWorkDaysCalculator
     {
-        public Dictionary<SurfaceType, double> CalculateEfficacy(Dictionary<SurfaceType, double> _initialSporeLoading);
+        public double CalculateWorkDays(Dictionary<SurfaceType, double> _initialSporeLoading);
     }
 }
