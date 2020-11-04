@@ -7,7 +7,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
     internal class MockWorkDaysCalculator : IWorkDaysCalculator
     {
-        public double CalculateWorkDays(Dictionary<SurfaceType,double> _initialSporeLoading)
+        public double CalculateWorkDays()
         {
             return 38700.0;
         }

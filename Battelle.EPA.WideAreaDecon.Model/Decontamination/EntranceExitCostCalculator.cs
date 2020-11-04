@@ -11,18 +11,21 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly Dictionary<PersonnelLevel, double> _personnelReqPerTeam;
         private readonly double _respiratorsPerPerson;
         private readonly double _numberEntriesPerTeamPerDay;
-        private readonly Dictionary<PersonnelLevel, double> _workDaysPerAppMethod;
+        private readonly Dictionary<SurfaceType, double> _initialSporeLoading;
 
         private readonly IEntExitLaborCostCalculator _entExitLaborCostCalculator;
+
+        private readonly IWorkDaysCalculator _workDaysCalculator;
 
         public EntranceExitCostCalculator(
             Dictionary<PersonnelLevel, double> personnelReqPerTeam,
             double numberEntriesPerTeamPerDay,
-            Dictionary<PersonnelLevel, double> workDaysPerAppMethod,
             double respiratorsPerPerson,
             double costPerRespirator,
             Dictionary<PpeLevel, double> costPerPpe,
-            IEntExitLaborCostCalculator entExitLaborCostCalculator
+            Dictionary<SurfaceType,double> initialSporeLoading,
+            IEntExitLaborCostCalculator entExitLaborCostCalculator,
+            IWorkDaysCalculator workDaysCalculator
             )
         {
             _personnelReqPerTeam = personnelReqPerTeam;
@@ -31,14 +34,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _costPerPpe = costPerPpe;
             _entExitLaborCostCalculator = entExitLaborCostCalculator;
             _numberEntriesPerTeamPerDay = numberEntriesPerTeamPerDay;
-            _workDaysPerAppMethod = workDaysPerAppMethod;
+            _initialSporeLoading = initialSporeLoading;
+            _workDaysCalculator = workDaysCalculator;
         }
 
         public double CalculateEntranceExitCost(double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
             var totalPersonnel = _personnelReqPerTeam.Values.Sum() * _numberTeams;
 
-            var totalWorkDays = _workDaysPerAppMethod.Values.Sum();
+            double totalWorkDays = _workDaysCalculator.CalculateWorkDays();
             
             var totalEntries = totalWorkDays * _numberEntriesPerTeamPerDay * _numberTeams;
 

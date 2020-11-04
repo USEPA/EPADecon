@@ -94,10 +94,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             var roundtripDays = 2.0;
             var _surfaceAreaToBeHepa = 500.0;
             var _surfaceAreaToBeWiped = 500.0;
+            int numberLabs = 3;
+            double sampleTimeTransmitted = 24.0;
 
-            Assert.AreEqual(18.4194860407136, Calculator.CalculateOnSiteDays( _numberTeams,  saToBeSourceReduced,  roundtripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped), 1e-6,
+            Assert.AreEqual(18.4194860407136, Calculator.CalculateOnSiteDays( _numberTeams,  saToBeSourceReduced,  roundtripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted), 1e-6,
                 "Incorrect onsite days calculated");
-            Assert.AreEqual(227064.684772735, Calculator.CalculateLaborCost(_numberTeams,  saToBeSourceReduced,  roundtripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped), 1e-6,
+            Assert.AreEqual(227064.684772735, Calculator.CalculateLaborCost(_numberTeams,  saToBeSourceReduced,  roundtripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted), 1e-6,
                 "Incorrect Labor cost calculated");
         }
     }

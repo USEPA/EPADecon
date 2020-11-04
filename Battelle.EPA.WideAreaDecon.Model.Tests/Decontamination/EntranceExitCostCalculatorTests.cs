@@ -28,6 +28,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 { PersonnelLevel.PL3, 5.0 },
                 { PersonnelLevel.PL4, 2.0 }
             };
+
             var costPerPpe = new Dictionary<PpeLevel, double>()
             {
                 { PpeLevel.A, 3322.0 },
@@ -35,14 +36,41 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 { PpeLevel.C, 1897.68 },
                 { PpeLevel.D, 260.09 }
             };
+
+            var initialSporeLoading = new Dictionary<SurfaceType,double>()
+            {
+                { SurfaceType.IndoorInterior, 0.0},
+                { SurfaceType.IndoorExterior, 0.0},
+                { SurfaceType.IndoorCeilings, 0.0},
+                { SurfaceType.IndoorCarpet, 0.0},
+                { SurfaceType.IndoorNonCarpet, 0.0},
+                { SurfaceType.IndoorCeilings, 0.0},
+                { SurfaceType.IndoorMisc, 0.0},
+                { SurfaceType.OutdoorExterior, 0.0},
+                { SurfaceType.Pavement, 0.0},
+                { SurfaceType.Roofing, 0.0},
+                { SurfaceType.Water, 0.0},
+                { SurfaceType.Soil, 0.0},
+                { SurfaceType.OutdoorMisc, 0.0},
+                { SurfaceType.UndergroundInterior, 0.0},
+                { SurfaceType.UndergroundCeilings, 0.0},
+                { SurfaceType.UndergroundCarpet, 0.0},
+                { SurfaceType.UndergroundNonCarpet, 0.0},
+                { SurfaceType.UndergroundMisc, 0.0}
+            };
+
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
+            var numberEntriesPerTeamPerDay = 4.0;
             Calculator = new EntranceExitCostCalculator(
                 personnelReqPerTeam,
+                numberEntriesPerTeamPerDay,
                 respiratorsPerPerson,
                 costPerRespirator,
                 costPerPpe,
-                new MockEntExitLaborCostCalculator()
+                initialSporeLoading,
+                new MockEntExitLaborCostCalculator(),
+                new MockWorkDaysCalculator()
             );
         }
 

@@ -14,10 +14,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly Dictionary<SurfaceType, string> _surfaceTypes;
         private readonly Dictionary<ApplicationMethod, double> _treatmentDaysPerAm;
         private readonly EfficacyCalculator _efficacyCalculator;
+        private readonly Dictionary<SurfaceType, double> _initialSporeLoading;
 
         public WorkDaysCalculator(
             Dictionary<SurfaceType, string> surfaceTypes,
             Dictionary<SurfaceType, ApplicationMethod> applicationMethods,
+            Dictionary<SurfaceType, double> initialSporeLoading,
             double desiredSporeThreshold,
             Dictionary<ApplicationMethod, double> treatmentDaysPerAm,
             EfficacyCalculator efficacyCalculator)
@@ -27,13 +29,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _desiredSporeThreshold = desiredSporeThreshold;
             _treatmentDaysPerAm = treatmentDaysPerAm;
             _efficacyCalculator = efficacyCalculator;
+            _initialSporeLoading = initialSporeLoading;
         }
 
-        public double CalculateWorkDays(Dictionary<SurfaceType, double> _initialSporeLoading)
+        public double CalculateWorkDays()
         {
             double[] _numberOfTreatmentDaysBySurfaceType = new double [_surfaceTypes.Count];
 
-            Dictionary<SurfaceType, double> _newSporeLoading;
+            double[] _newSporeLoading = new double[_surfaceTypes.Count];
 
             //mark surfaces that are already below threshold, -99 marks types with an undefined treatment number
             for (int i = 0; i < _surfaceTypes.Count(); i++)
@@ -46,14 +49,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
                 {
                     _numberOfTreatmentDaysBySurfaceType[i] = -99.0;
                 }
+                _newSporeLoading[i] = _initialSporeLoading.ElementAt(i).Value;
             }
 
-            _newSporeLoading = _efficacyCalculator.CalculateEfficacy(_initialSporeLoading);
+            _newSporeLoading = _efficacyCalculator.CalculateEfficacy(_newSporeLoading);
 
             double treatmentCount = 0.0;
 
             //while spore loading is below threshold, treatments are counted by surface type
-            while (_newSporeLoading.Values.Max() < _desiredSporeThreshold)
+            while (_newSporeLoading.Max() < _desiredSporeThreshold)
             {
                 treatmentCount += 1;
                 for (int i = 0; i < _surfaceTypes.Count(); i++)
@@ -65,13 +69,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
                         currentTreatmentDays = _treatmentDaysPerAm[entry.Value];
                     }
 
-                    if ((_initialSporeLoading.ElementAt(i).Value < _desiredSporeThreshold) && (_numberOfTreatmentDaysBySurfaceType[i] != -99))
+                    if ((_newSporeLoading[i] < _desiredSporeThreshold) && (_numberOfTreatmentDaysBySurfaceType[i] != -99))
                     {
                         _numberOfTreatmentDaysBySurfaceType[i] = treatmentCount * currentTreatmentDays;
                     }
                 }
 
-                _newSporeLoading = _efficacyCalculator.CalculateEfficacy(_initialSporeLoading);
+                _newSporeLoading = _efficacyCalculator.CalculateEfficacy(_newSporeLoading);
             }
 
             return _numberOfTreatmentDaysBySurfaceType.Max();

@@ -42,19 +42,19 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 { Labs.Lab3, 90.0 }
             };
             Calculator = new PhaseLagCalculator(
-                surfaceAreaPerWipe,
-                surfaceAreaPerHepa,
-                labUptimesHours,
-                samplePackageTime,
-                wipeAnalysisTime,
-                hepaAnalysisTime,
-                fractionOfWipeToEachLab,
-                fractionOfHepaToEachLab,
+                surfaceAreaPerWipe, 
+                surfaceAreaPerHepa, 
+                labUptimesHours, 
+                samplePackageTime, 
+                wipeAnalysisTime, 
+                hepaAnalysisTime, 
+                fractionOfWipeToEachLab, 
+                fractionOfHepaToEachLab, 
                 labDistanceFromSite
             );
         }
 
-        [Test]
+            [Test]
         public void CalculateCost()
         {
             var numberLabs = 3;
