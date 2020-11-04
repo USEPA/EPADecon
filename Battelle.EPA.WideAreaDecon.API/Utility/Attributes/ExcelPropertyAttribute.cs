@@ -25,6 +25,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Attributes
         {
             return GetCell(type, propertyName, row)?.ToString();
         }
+
         /// <summary>
         /// Constructor requiring specification of location
         /// </summary>

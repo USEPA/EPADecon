@@ -19,6 +19,8 @@ import NullParameter from '../NullParameter';
 import UniformXDependent from '../distribution/UniformXDependent';
 import Weibull from '../distribution/Weibull';
 import ParameterMetaData from '../ParameterMetaData';
+import EnumeratedFraction from '../list/enumeratedFraction';
+import EnumeratedParameter from '../list/enumeratedParameter';
 
 @injectable()
 export default class ParameterConverter implements IParameterConverter {
@@ -37,8 +39,6 @@ export default class ParameterConverter implements IParameterConverter {
         return new BimodalTruncatedNormal(old.metaData, old.mean, old.stdDev, old.mean, old.stdDev, old.min, old.max);
       case ParameterType.constant:
         return new Constant(old.metaData, old.mean);
-      case ParameterType.efficacy:
-        throw new Error('Not implemented yet'); // TODO: fix upon implementation
       case ParameterType.logNormal:
         return new LogNormal(old.metaData, old.mean, old.stdDev);
       case ParameterType.logUniform:
@@ -82,8 +82,10 @@ export default class ParameterConverter implements IParameterConverter {
         const sln = nelderMead(minimize, guess);
         return new Weibull(old.metaData, sln.Input[0], sln.Input[1]);
       }
+      case ParameterType.enumeratedFraction:
+      case ParameterType.enumeratedParameter:
       default:
-        throw new Error('New type not recognized');
+        throw new Error('Cannot convert to requested type');
     }
   }
 
@@ -93,8 +95,6 @@ export default class ParameterConverter implements IParameterConverter {
         return new BimodalTruncatedNormal(old.metaData);
       case ParameterType.constant:
         return new Constant(old.metaData);
-      case ParameterType.efficacy:
-        throw new Error('Not implemented yet'); // TODO: fix upon implementation
       case ParameterType.logNormal:
         return new LogNormal(old.metaData);
       case ParameterType.logUniform:
@@ -113,6 +113,10 @@ export default class ParameterConverter implements IParameterConverter {
         return new UniformXDependent(old.metaData);
       case ParameterType.weibull:
         return new Weibull(old.metaData);
+      case ParameterType.enumeratedFraction:
+        return new EnumeratedFraction(old.metaData);
+      case ParameterType.enumeratedParameter:
+        return new EnumeratedParameter(old.metaData);
       default:
         throw new Error('New Type not recognized');
     }

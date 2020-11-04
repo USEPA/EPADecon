@@ -147,8 +147,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             }
 
             var inputFileConfiguration =
-                    JsonConvert.DeserializeObject<InputFileConfiguration>(File.ReadAllText(inputFile)) ??
-                    throw new ApplicationException("Failed to deserialize to input file configuration");
+                JsonConvert.DeserializeObject<InputFileConfiguration>(File.ReadAllText(inputFile)) ??
+                throw new ApplicationException("Failed to deserialize to input file configuration");
 
             services.AddSingleton(inputFileConfiguration.ScenarioParameters);
             services.AddSingleton(inputFileConfiguration.BaselineParameters);

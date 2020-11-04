@@ -35,8 +35,6 @@ function isUnivariateDistribution(param: IParameter): boolean {
       return true;
     case ParameterType.null:
     case ParameterType.uniformXDependent:
-    case ParameterType.efficacy:
-      return false;
     default:
       throw new Error('Unrecognized Parameter Type');
   }

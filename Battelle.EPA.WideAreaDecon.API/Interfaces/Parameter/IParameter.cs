@@ -34,7 +34,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
             {
                 ParameterType.Constant => ConstantDistribution.FromExcel(metaData, row),
                 ParameterType.Uniform => UniformDistribution.FromExcel(metaData, row),
-                ParameterType.PERT => BetaPertDistribution.FromExcel(metaData, row),
+                ParameterType.Pert => BetaPertDistribution.FromExcel(metaData, row),
                 ParameterType.TruncatedNormal => TruncatedNormalDistribution.FromExcel(metaData, row),
                 ParameterType.LogUniform => LogUniformDistribution.FromExcel(metaData, row),
                 ParameterType.TruncatedLogNormal => TruncatedLogNormalDistribution.FromExcel(metaData, row),
@@ -43,7 +43,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter
                 ParameterType.BimodalTruncatedNormal => BimodalTruncatedNormalDistribution.FromExcel(metaData, row),
                 ParameterType.Null => throw new ApplicationException("Cannot parse parameter type Null"),
                 ParameterType.LogNormal => LogNormalDistribution.FromExcel(metaData, row),
-                ParameterType.Efficacy => throw new ApplicationException("Cannot parse efficacy from IParameter interface"),
                 ParameterType.Weibull => WeibullDistribution.FromExcel(metaData, row),
                 _ => throw new ArgumentOutOfRangeException()
             };

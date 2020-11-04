@@ -7,25 +7,19 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ApplicationMethod
     {
-        [EnumMember(Value = "Aerosol")]
-        Aerosol,
-        [EnumMember(Value = "Foam Spray")]
-        FoamSpray,
-        [EnumMember(Value = "Fogging")]
-        Fogging,
-        [EnumMember(Value = "Fumigation")]
-        Fumigation,
-        [EnumMember(Value = "Gel")]
-        Gel,
+        [EnumMember(Value = "Aerosol")] Aerosol,
+        [EnumMember(Value = "Foam Spray")] FoamSpray,
+        [EnumMember(Value = "Fogging")] Fogging,
+        [EnumMember(Value = "Fumigation")] Fumigation,
+        [EnumMember(Value = "Gel")] Gel,
+
         [EnumMember(Value = "Liquid Immersion")]
         LiquidImmersion,
-        [EnumMember(Value = "Liquid Spray")]
-        LiquidSpray,
+        [EnumMember(Value = "Liquid Spray")] LiquidSpray,
+
         [EnumMember(Value = "Liquid Suspension")]
         LiquidSuspension,
-        [EnumMember(Value = "Liquid Wipe")]
-        LiquidWipe,
-        [EnumMember(Value = "Physical")]
-        Physical
+        [EnumMember(Value = "Liquid Wipe")] LiquidWipe,
+        [EnumMember(Value = "Physical")] Physical
     }
 }

@@ -68,7 +68,6 @@ import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { Key } from 'ts-keycode-enum';
 import { max } from 'lodash';
-import LogNormal from '@/implementations/parameter/distribution/LogNormal';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
 
 @Component

@@ -30,7 +30,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
             {
                 MetaData = metaData,
                 Mean = typeof(LogNormalDistribution).GetCellValue(nameof(Mean), information)?.ConvertToOptionalDouble(),
-                StdDev = typeof(LogNormalDistribution).GetCellValue(nameof(StdDev), information)?.ConvertToOptionalDouble(),
+                StdDev = typeof(LogNormalDistribution).GetCellValue(nameof(StdDev), information)
+                    ?.ConvertToOptionalDouble(),
             };
         }
     }

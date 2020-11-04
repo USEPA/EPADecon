@@ -68,6 +68,10 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Battelle.EPA.WideAreaDecon.Model\Battelle.EPA.WideAreaDecon.Model.csproj" />
+  </ItemGroup>
   <ItemGroup>
     <Content Update="appsettings.Development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

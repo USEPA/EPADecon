@@ -55,12 +55,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Json
             Type objectType, object existingValue,
             JsonSerializer serializer)
         {
-            var JsonObject = JObject.Load(reader);
+            var jsonObject = JObject.Load(reader);
 
 
             //NOTE(quinton): Code here removes case sensitivity;
             //a solution from: https://stackoverflow.com/questions/12055743/json-net-jobject-key-comparison-case-insensitive
-            var type = JsonObject
+            var type = jsonObject
                     .GetValue(nameof(IParameterListProvider.Type), StringComparison.OrdinalIgnoreCase)
                     ?.Value<string>()
                     .ParseEnum<ParameterListProviderType>() ??
@@ -68,9 +68,11 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Json
 
             return type switch
             {
-                ParameterListProviderType.Empty => JsonObject.ToObject<EmptyParameterListProvider>(serializer),
-                ParameterListProviderType.ExcelDefineScenario => JsonObject.ToObject<ExcelDefineScenarioParameterListProvider>(serializer),
-                ParameterListProviderType.ExcelModifyParameter => JsonObject.ToObject<ExcelModifyParameterParameterListProvider>(serializer),
+                ParameterListProviderType.Empty => jsonObject.ToObject<EmptyParameterListProvider>(serializer),
+                ParameterListProviderType.ExcelDefineScenario => jsonObject
+                    .ToObject<ExcelDefineScenarioParameterListProvider>(serializer),
+                ParameterListProviderType.ExcelModifyParameter => jsonObject
+                    .ToObject<ExcelModifyParameterParameterListProvider>(serializer),
                 _ => throw new SerializationException($"Unknown type {type} found")
             };
         }

@@ -10,9 +10,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterListProviderType Type => ParameterListProviderType.Empty;
+
         public ParameterList GetParameterList()
         {
-            return new ParameterList(){Version = 1, Filters = new ParameterFilter[0]};
+            return new ParameterList(){Filters = new ParameterFilter[0]};
         }
     }
 }
