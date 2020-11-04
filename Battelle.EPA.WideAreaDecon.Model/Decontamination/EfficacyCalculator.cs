@@ -30,16 +30,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
         public Dictionary<SurfaceType,double> CalculateEfficacy(Dictionary<SurfaceType, double> _initialSporeLoading)
         {
-            
 
-            Dictionary<SurfaceType,double> _newSporeLoading;
-            for (int i = 0; i < _initialSporeLoading.Count(); i++)
-            {
-                void _newSporeLoading.Add(SurfaceType, (_initialSporeLoading.ElementAt(i).Value - _efficacyValues.ElementAt(i).Value));
-            }
-            //_newSporeLoading.Values = _initialSporeLoading.Values.Zip(_efficacyValues.Values, (x, y) => x - y);
+            throw new NotImplementedException();
+            //Dictionary<SurfaceType,double> _newSporeLoading;
+            //for (int i = 0; i < _initialSporeLoading.Count(); i++)
+            //{
+            //    void _newSporeLoading.Add(SurfaceType, (_initialSporeLoading.ElementAt(i).Value - _efficacyValues.ElementAt(i).Value));
+            //}
+            ////_newSporeLoading.Values = _initialSporeLoading.Values.Zip(_efficacyValues.Values, (x, y) => x - y);
 
-            return _newSporeLoading;
+            //return _newSporeLoading;
 
             /*
             double totalDeconDays = 0;
