@@ -29,16 +29,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
                 { PpeLevel.C, 1897.68 },
                 { PpeLevel.D, 260.09 }
             };
+            var numberEntriesPerTeamPerDay = 4.0;
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            throw new NotImplementedException();
-            //Calculator = new EntranceExitCostCalculator(
-            //    personnelReqPerTeam,
-            //    respiratorsPerPerson,
-            //    costPerRespirator,
-            //    costPerPpe,
-            //    new MockEntExitLaborCostCalculator()
-            //);
+            Calculator = new EntranceExitCostCalculator(
+                personnelReqPerTeam,
+                numberEntriesPerTeamPerDay,
+                respiratorsPerPerson,
+                costPerRespirator,
+                costPerPpe,
+                new MockEntExitLaborCostCalculator(),
+                new MockWorkDaysCalculator()
+            );
         }
 
         [Test]

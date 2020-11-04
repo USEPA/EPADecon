@@ -21,8 +21,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             return 21393.2811642251;
         }
 
-        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays,
-            double _surfaceAreaToBeHepa,
+        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, 
             double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
         {
             return 1.34093086337363;

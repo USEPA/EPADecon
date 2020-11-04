@@ -18,10 +18,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             return 21393.28;
         }
 
-        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa,
+        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, 
             double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
         {
             return 3.340930863;
+        }
+    }
+
+    internal class MockSuppliesCostCalculator : ISuppliesCostCalculator
+    {
+        public double CalculateSuppliesCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        {
+            return 3610.12;
+        }
+
+        public double CalculateWorkDays(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        {
+            return 0.840930863;
         }
     }
 
@@ -47,16 +60,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 { PpeLevel.C, 1897.68 },
                 { PpeLevel.D, 260.09 }
             };
+            var numberEntriesPerPerson = 4.0;
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            throw new NotImplementedException();
-            //Calculator = new EntrancesExitsCostCalculator(
-            //    personnelReqPerTeam,
-            //    respiratorsPerPerson,
-            //    costPerRespirator,
-            //    costPerPpe,
-            //    new MockLaborCostCalculator()
-            //);
+            Calculator = new EntrancesExitsCostCalculator(
+                personnelReqPerTeam,
+                numberEntriesPerPerson,
+                respiratorsPerPerson,
+                costPerRespirator,
+                costPerPpe,
+                new MockLaborCostCalculator(),
+                new MockSuppliesCostCalculator()
+            );
         }
 
         [Test]

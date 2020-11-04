@@ -5,16 +5,11 @@ using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
-    internal class MockSuppliesCostCalculator : ISuppliesCostCalculator
+    internal class MockPhaseLagCalculator : IPhaseLagCalculator
     {
-        public double CalculateSuppliesCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double surfaceAreaToBeWiped, double surfaceAreaToBeHepa)
         {
-            return 3610.12;
-        }
-
-        public double CalculateWorkDays(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
-        {
-            return 0.840930863;
+            return 9.095465;
         }
     }
 
@@ -45,17 +40,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var entriesPerTeam = 4.0;
             var hoursEntering = 1.0;
             var hoursExiting = 1.0;
-            throw new NotImplementedException();
-            //Calculator = new LaborCostCalculator(
-            //    personnelReqPerTeam,
-            //    personnelOverhead,
-            //    entriesPerTeam,
-            //    hoursEntering,
-            //    hoursExiting,
-            //    personnelHourlyRate,
-            //    new MockSuppliesCostCalculator(),
-            //    new PhaseLagCalculator(1.0)
-            //);
+            Calculator = new LaborCostCalculator(
+                personnelReqPerTeam,
+                personnelOverhead,
+                entriesPerTeam,
+                hoursEntering,
+                hoursExiting,
+                personnelHourlyRate,
+                new MockSuppliesCostCalculator(),
+                new MockPhaseLagCalculator()
+            );
         }
 
         [Test]
@@ -66,14 +60,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var roundtripDays = 2.0;
             var _surfaceAreaToBeHepa = 500.0;
             var _surfaceAreaToBeWiped = 500.0;
+            var numberLabs = 3;
+            var sampleTimeTransmitted = 24.0;
 
             Assert.AreEqual(84993.2811, Calculator.CalculateLaborCost(_numberTeams,  roundtripDays,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped), 1e-4,
                 "Incorrect labor cost calculated");
             Assert.AreEqual(21393.2811, Calculator.CalculateEntExitLaborCost(_numberTeams, _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped), 1e-4,
                 "Incorrect ent/exit labor cost calculated");
-            throw new NotImplementedException();
-            //Assert.AreEqual(3.340930863, Calculator.CalculateLaborDays(_numberTeams,  roundtripDays,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped), 1e-4,
-            //    "Incorrect labor days calculated");
+            Assert.AreEqual(3.340930863, Calculator.CalculateLaborDays(_numberTeams, roundtripDays, _surfaceAreaToBeHepa, 
+             _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted), 1e-4,
+                "Incorrect labor days calculated");
         }
     }
 }

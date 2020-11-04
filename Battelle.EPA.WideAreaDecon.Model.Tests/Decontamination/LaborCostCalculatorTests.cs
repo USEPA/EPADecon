@@ -6,6 +6,14 @@ using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
+    internal class MockWorkDaysCalculator : IWorkDaysCalculator
+    {
+        public double CalculateWorkDays(Dictionary<SurfaceType,double> _initialSporeLoading)
+        {
+            return 38700.0;
+        }
+    }
+
     public class LaborCostCalculatorTests
     {
         private LaborCostCalculator Calculator { get; set; }
@@ -29,19 +37,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 { PersonnelLevel.PL3, 130.0 },
                 { PersonnelLevel.PL4, 190.0 }
             };
-            var workDaysPerAppMethod = new Dictionary<ApplicationMethod, double>()
-            {
-                { ApplicationMethod.Aerosol, 1.0 },
-                { ApplicationMethod.Fogging, 2.0 }
-            };
             var personnelOverhead = 2.0;
-            throw new NotImplementedException();
-            //Calculator = new LaborCostCalculator(
-            //    personnelReqPerTeam,
-            //    personnelHourlyRate,
-            //    personnelOverhead,
-            //    workDaysPerAppMethod
-            //);
+            Calculator = new LaborCostCalculator(
+                personnelReqPerTeam,
+                personnelHourlyRate,
+                personnelOverhead,
+                new MockWorkDaysCalculator()
+            );
         }
 
         [Test]
