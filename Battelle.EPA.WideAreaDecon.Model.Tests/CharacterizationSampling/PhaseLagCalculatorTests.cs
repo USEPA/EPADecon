@@ -62,7 +62,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var surfaceAreaToBeWiped = 500.0;
             var surfaceAreaToBeHepa = 500.0;
 
-            Assert.AreEqual(9.095465, Calculator.CalculatePhaseLag( numberLabs, sampleTimeTransmitted, surfaceAreaToBeWiped, surfaceAreaToBeHepa), 1e-6,
+            Assert.AreEqual(9.095465, Calculator.CalculatePhaseLagTime( numberLabs, sampleTimeTransmitted, surfaceAreaToBeWiped, surfaceAreaToBeHepa), 1e-6,
                 "Incorrect phase lag cost calculated");
         }
     }
