@@ -44,7 +44,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 { SurfaceType.IndoorCeilings, 0.0},
                 { SurfaceType.IndoorCarpet, 0.0},
                 { SurfaceType.IndoorNonCarpet, 0.0},
-                { SurfaceType.IndoorCeilings, 0.0},
                 { SurfaceType.IndoorMisc, 0.0},
                 { SurfaceType.OutdoorExterior, 0.0},
                 { SurfaceType.Pavement, 0.0},
