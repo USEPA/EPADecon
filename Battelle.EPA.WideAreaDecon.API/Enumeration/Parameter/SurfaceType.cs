@@ -49,4 +49,36 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
         [EnumMember(Value = "Underground Miscellaneous")]
         UndergroundMisc
     }
+    public static class SurfaceTypeHelper
+    {
+        public static readonly SurfaceType[] IndoorSurfaceTypes = {
+            SurfaceType.IndoorInterior,
+            SurfaceType.IndoorExterior,
+            SurfaceType.IndoorCeilings,
+            SurfaceType.IndoorCarpet,
+            SurfaceType.IndoorNonCarpet,
+            SurfaceType.Hvac,
+            SurfaceType.IndoorMisc,
+        };
+
+
+        public static readonly SurfaceType[] OutdoorSurfaceTypes = {
+            SurfaceType.OutdoorExterior,
+            SurfaceType.Pavement,
+            SurfaceType.Roofing,
+            SurfaceType.Water,
+            SurfaceType.Soil,
+            SurfaceType.OutdoorMisc,
+        };
+
+
+        public static readonly SurfaceType[] UndergroundSurfaceTypes = {
+            SurfaceType.UndergroundInterior,
+            SurfaceType.UndergroundCeilings,
+            SurfaceType.UndergroundCarpet,
+            SurfaceType.UndergroundNonCarpet,
+            SurfaceType.UndergroundMisc,
+            SurfaceType.Hvac,
+        };
+    }
 }

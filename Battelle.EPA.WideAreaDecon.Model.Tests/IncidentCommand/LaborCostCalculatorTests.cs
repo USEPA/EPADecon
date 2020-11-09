@@ -1,4 +1,5 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
+﻿using System;
+using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.Model.Enumeration;
@@ -8,12 +9,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {
     internal class MockCsLaborCostCalculator : Model.CharacterizationSampling.ILaborCostCalculator
     {
-        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays,
+            double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
             return 84993.281164225;
         }
 
-        public double CalculateEntExitLaborCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateEntExitLaborCost(double _numberTeams, double _surfaceAreaToBeHepa,
+            double _surfaceAreaToBeWiped)
         {
             return 21393.2811642251;
         }
@@ -41,12 +44,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 
     internal class MockDLaborCostCalculator : Model.Decontamination.ILaborCostCalculator
     {
-        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays)
+
+        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, Dictionary<SurfaceType, double> _initialSporeLoading)
         {
             return 120400.0;
         }
 
-        public double CalculateLaborDays(double personnelRoundTripDays)
+        public double CalculateLaborDays(double personnelRoundTripDays, Dictionary<SurfaceType, double> _initialSporeLoading)
         {
             return 5.0;
         }
@@ -61,19 +65,19 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         {
             var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>()
             {
-                { PersonnelLevel.OSC, 1.0 },
-                { PersonnelLevel.PL1, 0.0 },
-                { PersonnelLevel.PL2, 2.0 },
-                { PersonnelLevel.PL3, 2.0 },
-                { PersonnelLevel.PL4, 4.0 }
+                {PersonnelLevel.OSC, 1.0},
+                {PersonnelLevel.PL1, 0.0},
+                {PersonnelLevel.PL2, 2.0},
+                {PersonnelLevel.PL3, 2.0},
+                {PersonnelLevel.PL4, 4.0}
             };
             var personnelHourlyRate = new Dictionary<PersonnelLevel, double>()
             {
-                { PersonnelLevel.OSC, 150.0 },
-                { PersonnelLevel.PL1, 90.0 },
-                { PersonnelLevel.PL2, 110.0 },
-                { PersonnelLevel.PL3, 130.0 },
-                { PersonnelLevel.PL4, 190.0 }
+                {PersonnelLevel.OSC, 150.0},
+                {PersonnelLevel.PL1, 90.0},
+                {PersonnelLevel.PL2, 110.0},
+                {PersonnelLevel.PL3, 130.0},
+                {PersonnelLevel.PL4, 190.0}
             };
             var personnelOverheadDays = 8.0;
             Calculator = new LaborCostCalculator(
@@ -89,7 +93,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         [Test]
         public void CalculateCost()
         {
-            var _numberTeams = 4.0;
+            var _numberTeams = 4;
             var saToBeSourceReduced = 8000.0;
             var roundtripDays = 2.0;
             var _surfaceAreaToBeHepa = 500.0;

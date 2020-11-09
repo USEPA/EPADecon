@@ -18,18 +18,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Providers
         {
             var defineScenario = new ExcelDefineScenarioParameterListProvider
             {
-                FileName = TestFileName,
-                FileInfoSheetName = "Internal - File Info",
-                GenericSheetNames = new[]
-                {
-                    "Extent of Contamination",
-                    "Indoor Contamination",
-                    "Incident Command",
-                    "Characterization Sampling",
-                    "Source Reduction",
-                    "Decontamination",
-                    "Cost per Parameter"
-                }
+                FileName = TestFileName
             };
 
             var paramList = defineScenario.GetParameterList();

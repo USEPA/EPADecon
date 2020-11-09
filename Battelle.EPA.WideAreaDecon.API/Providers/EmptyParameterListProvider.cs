@@ -13,7 +13,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
 
         public ParameterList GetParameterList()
         {
-            return new ParameterList() {Version = 1, Filters = new ParameterFilter[0]};
+            return new ParameterList(){Filters = new ParameterFilter[0]};
         }
     }
 }

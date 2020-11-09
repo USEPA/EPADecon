@@ -24,15 +24,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
         [JsonConverter(typeof(StringEnumConverter))]
         public ParameterListProviderType Type => ParameterListProviderType.ExcelModifyParameter;
 
-        private static int VersionRowLocation => 0;
-        private static int VersionCellLocation => 1;
-
         public string FileName { get; set; }
 
         private string FullFileName => Path.Join(
             Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), FileName);
-
-        public string FileInfoSheetName { get; set; }
 
         public string[] GenericSheetNames { get; set; }
 
@@ -56,20 +51,35 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
             using var stream = new FileStream(FileName, FileMode.Open, FileAccess.Read) {Position = 0};
             XSSFWorkbook xssWorkbook = new XSSFWorkbook(stream);
 
-            // Parse version in using the specific sheet name that contains the version info
-            // making sure it isn't null or empty
-            var sheet = xssWorkbook.GetSheet(FileInfoSheetName);
-            IRow information = sheet.GetRow(VersionRowLocation);
-            string versionString = information.GetCell(VersionCellLocation).ToString();
-            if (string.IsNullOrEmpty(versionString))
-                throw new SerializationException("No file version found in Excel");
-
-            int version = int.Parse(versionString);
             var efficacyParameters = new List<IParameter>();
             foreach (var method in Enum.GetValues(typeof(ApplicationMethod)).Cast<ApplicationMethod>())
             {
                 var methodSheet = xssWorkbook.GetSheet(method.GetStringValue());
-                efficacyParameters.Add(ApplicationMethodEfficacy.FromExcelSheet(method, methodSheet));
+                var rows = new Dictionary<IRow, ParameterMetaData>();
+                for (var i = 1; i <= methodSheet.LastRowNum; i++)
+                {
+                    rows.Add(methodSheet.GetRow(i), ParameterMetaData.FromExcel(methodSheet.GetRow(i)));
+                }
+
+                var cat = rows.Where(row =>
+                    Enum.TryParse(typeof(SurfaceType), row.Value.Category, true, out var tmp)).ToArray();
+                if (cat.Any())
+                {
+                    efficacyParameters.Add(EnumeratedParameter<SurfaceType>.FromExcel(new ParameterMetaData()
+                    {
+                        Name = $"{method} Efficacy by Surface",
+                        Description = $"The Efficacy of {method} based on the surface it is applied to",
+                        Units = "log reduction",
+                    }, cat.Select(row => row.Key)));
+                }
+
+                var nonCat = rows.Where(row => !Enum.TryParse(typeof(SurfaceType),
+                    ParameterMetaData.FromExcel(row.Key).Category,
+                    true,
+                    out var tmp)).ToArray();
+                if (nonCat.Any())
+                    efficacyParameters.AddRange(nonCat.Select(row =>
+                        IParameter.FromExcel(ParameterMetaData.FromExcel(row.Key), row.Key)));
             }
 
             var filters = GenericSheetNames.Select(genericSheetName =>
@@ -84,7 +94,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
 
             return new ParameterList()
             {
-                Version = version,
                 Filters = filters.ToArray()
             };
         }

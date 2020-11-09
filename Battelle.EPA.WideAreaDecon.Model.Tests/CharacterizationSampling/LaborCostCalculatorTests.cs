@@ -1,7 +1,7 @@
+using System;
 using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
 using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
@@ -56,7 +56,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         public void CalculateCost()
         {
             
-            var _numberTeams = 4.0;
+            var _numberTeams = 4;
             var roundtripDays = 2.0;
             var _surfaceAreaToBeHepa = 500.0;
             var _surfaceAreaToBeWiped = 500.0;

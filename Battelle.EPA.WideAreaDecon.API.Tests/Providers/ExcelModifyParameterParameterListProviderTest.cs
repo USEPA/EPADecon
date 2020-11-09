@@ -19,8 +19,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Providers
             var modifyParameter = new ExcelModifyParameterParameterListProvider
             {
                 FileName = TestFileName,
-                FileInfoSheetName = "Internal - File Info",
-                GenericSheetNames = new[]
+                GenericSheetNames = new []
                 {
                     "Incident Command",
                     "Characterization Sampling",

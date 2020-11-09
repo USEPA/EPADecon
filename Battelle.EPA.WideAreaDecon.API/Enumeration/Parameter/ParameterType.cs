@@ -32,6 +32,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter
         [EnumMember(Value = "Efficacy")] Efficacy,
 
         [EnumMember(Value = "Weibull")] Weibull,
+        [EnumMember(Value = "Enumerated Fraction")] EnumeratedFraction,
+        [EnumMember(Value = "Enumerated Parameter")] EnumeratedParameter,
 
         [EnumMember(Value = "Null")] Null
     }
