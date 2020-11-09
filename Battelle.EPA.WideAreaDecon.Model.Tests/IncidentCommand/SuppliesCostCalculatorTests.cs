@@ -35,25 +35,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             var numberLabs = 3;
             var sampleTimeTransmitted = 24.0;
 
-            //Assert.AreEqual(22886.2482445587,
-            //    Calculator.CalculateSuppliesCost(_numberTeams, saToBeSourceReduced, roundtripDays, _surfaceAreaToBeHepa,
-            //        _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted, new Dictionary<SurfaceType, double>()),
-            //    1e-6, "Incorrect cost calculated");
+            Assert.AreEqual(22886.2482445587,
+                Calculator.CalculateSuppliesCost(_numberTeams, saToBeSourceReduced, roundtripDays, _surfaceAreaToBeHepa,
+                    _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted),
+                1e-6, "Incorrect cost calculated");
         }
 
         private class MockLaborCostCalculator : ILaborCostCalculator
         {
 
             public double CalculateOnSiteDays(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
-                double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted,
-                Dictionary<SurfaceType, double> _initialSporeLoading)
+                double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
             {
                 return 227064.684772735;
             }
 
             public double CalculateLaborCost(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
-                double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted,
-                Dictionary<SurfaceType, double> _initialSporeLoading)
+                double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
             {
                 return 18.4194860407136;
             }

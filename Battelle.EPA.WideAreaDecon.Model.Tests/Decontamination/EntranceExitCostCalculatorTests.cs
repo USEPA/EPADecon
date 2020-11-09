@@ -86,8 +86,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             };
             var numTeams = 2.0;
             
-            //Assert.AreEqual(81546.64, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam), 1e-6,
-            //    "Incorrect cost calculated");
+            Assert.AreEqual(81546.64, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam), 
+                1e-6, "Incorrect cost calculated");
         }
     }
 }

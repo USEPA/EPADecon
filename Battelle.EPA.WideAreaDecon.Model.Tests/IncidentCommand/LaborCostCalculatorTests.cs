@@ -45,12 +45,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
     internal class MockDLaborCostCalculator : Model.Decontamination.ILaborCostCalculator
     {
 
-        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, Dictionary<SurfaceType, double> _initialSporeLoading)
+        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays)
         {
             return 120400.0;
         }
 
-        public double CalculateLaborDays(double personnelRoundTripDays, Dictionary<SurfaceType, double> _initialSporeLoading)
+        public double CalculateLaborDays(double personnelRoundTripDays)
         {
             return 5.0;
         }
