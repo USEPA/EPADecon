@@ -23,7 +23,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
         public double CalculateSuppliesCost(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays, double _surfaceAreaToBeHepa
             ,double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
         {
-            var onSiteDays = _laborCostCalculator.CalculateOnSiteDays(   _numberTeams,  surfaceAreaToBeSourceReduced,  personnelRoundTripDays,
+            var onSiteDays = _laborCostCalculator.CalculateOnSiteDays( _numberTeams, surfaceAreaToBeSourceReduced, personnelRoundTripDays,
              _surfaceAreaToBeHepa, _surfaceAreaToBeWiped,  numberLabs,  sampleTimeTransmitted);
 
             return onSiteDays * (_equipmentRentalCostPerDay + _suppliesCostPerDay);
