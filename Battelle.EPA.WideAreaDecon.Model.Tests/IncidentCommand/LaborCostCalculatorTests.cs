@@ -28,6 +28,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         }
     }
 
+    internal class MockPhaseLagTimeCalculator : Model.CharacterizationSampling.IPhaseLagCalculator
+    {
+        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double surfaceAreaToBeWiped, double surfaceAreaToBeHepa)
+        {
+            return 10.6739875612766;
+        }
+    }
+
     internal class MockSrLaborCostCalculator : Model.SourceReduction.ILaborCostCalculator
     {
         public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double saToBeSourceReduced,
@@ -85,6 +93,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
                 personnelOverheadDays,
                 personnelHourlyRate,
                 new MockCsLaborCostCalculator(),
+                new MockPhaseLagTimeCalculator(),
                 new MockSrLaborCostCalculator(),
                 new MockDLaborCostCalculator()
             );
@@ -101,9 +110,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             int numberLabs = 3;
             double sampleTimeTransmitted = 24.0;
 
-            Assert.AreEqual(18.4194860407136, Calculator.CalculateOnSiteDays( _numberTeams,  saToBeSourceReduced,  roundtripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted), 1e-6,
+            Assert.AreEqual(29.0934736019902, Calculator.CalculateOnSiteDays( _numberTeams,  saToBeSourceReduced,  roundtripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted), 1e-6,
                 "Incorrect onsite days calculated");
-            Assert.AreEqual(227064.684772735, Calculator.CalculateLaborCost(_numberTeams,  saToBeSourceReduced,  roundtripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted), 1e-6,
+            Assert.AreEqual(345759.426454131, Calculator.CalculateLaborCost(_numberTeams,  saToBeSourceReduced,  roundtripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted), 1e-6,
                 "Incorrect Labor cost calculated");
         }
     }
