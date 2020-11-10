@@ -23,10 +23,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _deconAgentVolumeBySurface = deconAgentVolumeBySurface;
         }
 
-        public double NonFoggingSuppliesCostCalculator (Dictionary<SurfaceType, double> percentOfRoomBySurface)
+        public double NonFoggingSuppliesCostCalculator (Dictionary<SurfaceType, double> percentOfRoomBySurface, double roomSurfaceArea)
         {
-            var agentNeededPerTreatment = _deconAgentVolumeBySurface.Values.Zip(percentOfRoomBySurface.Values, (x, y) => x * y).Sum();
-            return _deconMaterialsCost + ((agentNeededPerTreatment) * _deconAgentCostPerVolume);
+            var agentNeededPerTreatment = _deconAgentVolumeBySurface.Values.Zip(percentOfRoomBySurface.Values, (x, y) => x * y).Sum() * roomSurfaceArea;
+            return (_deconMaterialsCost * roomSurfaceArea) + ((agentNeededPerTreatment) * _deconAgentCostPerVolume);
         }
 
         public double FoggingSuppliesCostCalculator (double roomVolume)
