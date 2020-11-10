@@ -34,10 +34,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             {
                 { SurfaceType.Hvac, 1.0 }
             };
-            double roomVolume = 25000;
+            double roomVolume = 2500;
+            double roomSurfaceArea = 100;
 
             Assert.AreEqual(2.059188108,
-                Calculator.NonFoggingSuppliesCostCalculator(percentOfRoomBySurface), 1e-6,
+                Calculator.NonFoggingSuppliesCostCalculator(percentOfRoomBySurface, roomSurfaceArea), 1e-6,
                 "Incorrect cost calculated(non fog)");
             Assert.AreEqual(4371.727327,
                 Calculator.FoggingSuppliesCostCalculator(roomVolume), 1e-6,
