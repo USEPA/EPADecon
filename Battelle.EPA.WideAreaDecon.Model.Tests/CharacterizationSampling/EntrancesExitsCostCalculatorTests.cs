@@ -10,12 +10,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
     {
         public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
-            return 84993.28;
+            return 84993.281164225;
         }
 
         public double CalculateEntExitLaborCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
-            return 21393.28;
+            return 21393.2811642251;
         }
 
         public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, 
@@ -29,12 +29,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
     {
         public double CalculateSuppliesCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
-            return 3610.12;
+            return 3610.11619646298;
         }
 
         public double CalculateWorkDays(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
         {
-            return 0.840930863;
+            return 0.840930863373626;
         }
     }
 
@@ -88,7 +88,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var _surfaceAreaToBeHepa = 500.0;
             var _surfaceAreaToBeWiped = 500.0;
             
-            Assert.AreEqual(85496.64, Calculator.CalculateEntrancesExitsCost( _numberTeams, ppePerLevelPerTeam,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped),
+            Assert.AreEqual(821054.770855624, Calculator.CalculateEntrancesExitsCost( _numberTeams, ppePerLevelPerTeam,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped),
                 1e-6, "Incorrect labor cost calculated");
         }
     }

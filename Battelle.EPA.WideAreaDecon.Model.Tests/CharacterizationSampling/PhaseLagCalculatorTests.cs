@@ -14,9 +14,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         {
             var surfaceAreaPerWipe = 4.64515;
             var surfaceAreaPerHepa = 9.2903;
-            var samplePackageTime = 6.0;
-            var wipeAnalysisTime = 6.0;
-            var hepaAnalysisTime = 19.0;
+            var samplePackageTime = 1.63;
+            var wipeAnalysisTime = 0.79;
+            var hepaAnalysisTime = 1.0;
             var fractionOfWipeToEachLab = new Dictionary<Labs, double>()
             {
                 { Labs.Lab1, 0.2 },
@@ -55,15 +55,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         }
 
             [Test]
-        public void CalculateCost()
+        public void CalculateCSPhaseLagTime()
         {
             var numberLabs = 3;
             var sampleTimeTransmitted = 24.0;
             var surfaceAreaToBeWiped = 500.0;
             var surfaceAreaToBeHepa = 500.0;
 
-            Assert.AreEqual(9.095465, Calculator.CalculatePhaseLagTime( numberLabs, sampleTimeTransmitted, surfaceAreaToBeWiped, surfaceAreaToBeHepa), 1e-6,
-                "Incorrect phase lag cost calculated");
+            Assert.AreEqual(10.6739875612766, Calculator.CalculatePhaseLagTime( numberLabs, sampleTimeTransmitted, surfaceAreaToBeWiped, surfaceAreaToBeHepa), 
+                1e-6, "Incorrect phase lag cost calculated");
         }
     }
 }
