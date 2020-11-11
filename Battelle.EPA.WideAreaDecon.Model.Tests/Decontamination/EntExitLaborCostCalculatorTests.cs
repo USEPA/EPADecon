@@ -28,11 +28,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 { PersonnelLevel.PL3, 130.0 },
                 { PersonnelLevel.PL4, 190.0 }
             };
-            var workDaysPerAppMethod = new Dictionary<ApplicationMethod, double>()
-            {
-                { ApplicationMethod.Aerosol, 1.0 },
-                { ApplicationMethod.Fogging, 2.0 }
-            };
             var numEntriesPerTeamPerDay = 2.0;
             var hoursPerEntryPerTeam = 1.5;
             var hoursPerExitPerTeam = 1.5;
@@ -42,7 +37,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 hoursPerEntryPerTeam,
                 hoursPerExitPerTeam,
                 personnelHourlyRate,
-                workDaysPerAppMethod);
+                new MockWorkDaysCalculator()
+                );
         }
 
         [Test]
