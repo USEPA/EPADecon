@@ -7,13 +7,13 @@ using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-    internal class WorkDaysCalculator : IWorkDaysCalculator 
+    public class WorkDaysCalculator : IWorkDaysCalculator 
     {
         private readonly Dictionary<SurfaceType, ApplicationMethod> _appMethodBySurfaceType;
         private readonly double _desiredSporeThreshold;
         private readonly Dictionary<SurfaceType, string> _surfaceTypes;
         private readonly Dictionary<ApplicationMethod, double> _treatmentDaysPerAm;
-        private readonly EfficacyCalculator _efficacyCalculator;
+        private readonly IEfficacyCalculator _efficacyCalculator;
         private readonly Dictionary<SurfaceType, double> _initialSporeLoading;
 
         public WorkDaysCalculator(
@@ -22,7 +22,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             Dictionary<SurfaceType, double> initialSporeLoading,
             double desiredSporeThreshold,
             Dictionary<ApplicationMethod, double> treatmentDaysPerAm,
-            EfficacyCalculator efficacyCalculator)
+            IEfficacyCalculator efficacyCalculator)
         {
             _surfaceTypes = surfaceTypes;
             _appMethodBySurfaceType = applicationMethods;
@@ -41,7 +41,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             //mark surfaces that are already below threshold, -99 marks types with an undefined treatment number
             for (int i = 0; i < _surfaceTypes.Count(); i++)
             {
-                if (_initialSporeLoading.ElementAt(i).Value < _desiredSporeThreshold)
+                if (_initialSporeLoading.ElementAt(i).Value <= _desiredSporeThreshold)
                 {
                     _numberOfTreatmentDaysBySurfaceType[i] = -1.0;
                 }

@@ -7,7 +7,7 @@ using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-    internal class EfficacyCalculator : IEfficacyCalculator
+    public class EfficacyCalculator : IEfficacyCalculator
     {
         /*private readonly Dictionary<SurfaceType, ApplicationMethod> _appMethodBySurfaceType;
         private readonly double _desiredSporeThreshold;
@@ -36,7 +36,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             //Dictionary<SurfaceType,double> _newSporeLoading;
             for (int i = 0; i < _initialSporeLoading.Count(); i++)
             {
-                 _newSporeLoading[i] = (_initialSporeLoading[i] - _efficacyValues.ElementAt(i).Value);
+                if ((_initialSporeLoading[i] - _efficacyValues.ElementAt(i).Value) > 0)
+                {
+                    _newSporeLoading[i] = (_initialSporeLoading[i] - _efficacyValues.ElementAt(i).Value);
+                }
+                else
+                {
+                    _newSporeLoading[i] = 0.0;
+                }
             }
             //_newSporeLoading.Values = _initialSporeLoading.Values.Zip(_efficacyValues.Values, (x, y) => x - y);
 

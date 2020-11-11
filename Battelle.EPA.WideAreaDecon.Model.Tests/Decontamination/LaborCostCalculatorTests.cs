@@ -10,7 +10,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
     {
         public double CalculateWorkDays()
         {
-            return 38700.0;
+            return 3.0;
         }
     }
 

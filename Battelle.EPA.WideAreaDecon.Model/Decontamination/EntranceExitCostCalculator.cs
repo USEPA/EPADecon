@@ -11,7 +11,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly Dictionary<PersonnelLevel, double> _personnelReqPerTeam;
         private readonly double _respiratorsPerPerson;
         private readonly double _numberEntriesPerTeamPerDay;
-        private readonly Dictionary<SurfaceType, double> _initialSporeLoading;
 
         private readonly IEntExitLaborCostCalculator _entExitLaborCostCalculator;
 
@@ -23,7 +22,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             double respiratorsPerPerson,
             double costPerRespirator,
             Dictionary<PpeLevel, double> costPerPpe,
-            Dictionary<SurfaceType,double> initialSporeLoading,
             IEntExitLaborCostCalculator entExitLaborCostCalculator,
             IWorkDaysCalculator workDaysCalculator
             )
@@ -34,7 +32,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _costPerPpe = costPerPpe;
             _entExitLaborCostCalculator = entExitLaborCostCalculator;
             _numberEntriesPerTeamPerDay = numberEntriesPerTeamPerDay;
-            _initialSporeLoading = initialSporeLoading;
             _workDaysCalculator = workDaysCalculator;
         }
 

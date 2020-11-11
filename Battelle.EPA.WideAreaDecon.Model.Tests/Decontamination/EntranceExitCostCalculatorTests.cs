@@ -38,27 +38,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 { PpeLevel.D, 260.09 }
             };
 
-            var initialSporeLoading = new Dictionary<SurfaceType,double>()
-            {
-                { SurfaceType.IndoorInterior, 0.0},
-                { SurfaceType.IndoorExterior, 0.0},
-                { SurfaceType.IndoorCeilings, 0.0},
-                { SurfaceType.IndoorCarpet, 0.0},
-                { SurfaceType.IndoorNonCarpet, 0.0},
-                { SurfaceType.IndoorMisc, 0.0},
-                { SurfaceType.OutdoorExterior, 0.0},
-                { SurfaceType.Pavement, 0.0},
-                { SurfaceType.Roofing, 0.0},
-                { SurfaceType.Water, 0.0},
-                { SurfaceType.Soil, 0.0},
-                { SurfaceType.OutdoorMisc, 0.0},
-                { SurfaceType.UndergroundInterior, 0.0},
-                { SurfaceType.UndergroundCeilings, 0.0},
-                { SurfaceType.UndergroundCarpet, 0.0},
-                { SurfaceType.UndergroundNonCarpet, 0.0},
-                { SurfaceType.UndergroundMisc, 0.0}
-            };
-
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
             var numberEntriesPerTeamPerDay = 4.0;
@@ -68,7 +47,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 respiratorsPerPerson,
                 costPerRespirator,
                 costPerPpe,
-                initialSporeLoading,
                 new MockEntExitLaborCostCalculator(),
                 new MockWorkDaysCalculator()
             );

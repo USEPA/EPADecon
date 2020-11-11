@@ -37,10 +37,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             double roomVolume = 2500;
             double roomSurfaceArea = 100;
 
-            Assert.AreEqual(2.059188108,
+            Assert.AreEqual(205.918810751869,
                 Calculator.NonFoggingSuppliesCostCalculator(percentOfRoomBySurface, roomSurfaceArea), 1e-6,
                 "Incorrect cost calculated(non fog)");
-            Assert.AreEqual(4371.727327,
+            Assert.AreEqual(438.5552474488785,
                 Calculator.FoggingSuppliesCostCalculator(roomVolume), 1e-6,
                 "Incorrect cost calculated(fogging)");
         }
