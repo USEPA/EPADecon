@@ -50,7 +50,11 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   @Prop({ required: true }) selectedParameter!: ParameterWrapper;
 
   get parameterValue(): Constant {
-    return this.selectedParameter.current as Constant;
+    if (this.selectedParameter.current !== undefined) {
+      return this.selectedParameter.current as Constant;
+    }
+
+    return (this.selectedParameter as unknown) as Constant;
   }
 
   vuetifyColorProps(): unknown {
@@ -90,6 +94,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     if (!this.ignoreNextSliderChange) {
       this.textValue = newValue.toString();
       this.parameterValue.value = newValue;
+      this.$emit('valueChanged', newValue);
     } else {
       this.ignoreNextSliderChange = false;
     }
@@ -97,7 +102,13 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
-    const cast = newValue.current as Constant;
+    let cast;
+    if (newValue.current !== undefined) {
+      cast = newValue.current as Constant;
+    } else {
+      cast = (newValue as unknown) as Constant;
+    }
+
     this.min = this.parameterValue.metaData.lowerLimit ?? -100;
     this.max = this.parameterValue.metaData.upperLimit ?? 100;
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
@@ -129,7 +140,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
       this.parameterValue.value = undefined;
     } else if (value === this.sliderValue) {
       this.parameterValue.value = value;
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textValue = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       this.sliderValue = value;
