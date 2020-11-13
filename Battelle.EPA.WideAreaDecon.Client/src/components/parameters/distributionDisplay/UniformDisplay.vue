@@ -78,7 +78,10 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
   ignoreNextValueSliderChange = false;
 
   get parameterValue(): Uniform {
-    return this.selectedParameter.current as Uniform;
+    if (this.selectedParameter.current !== undefined) {
+      return this.selectedParameter.current as Uniform;
+    }
+    return (this.selectedParameter as unknown) as Uniform;
   }
 
   vuetifyColorProps(): unknown {
@@ -114,7 +117,13 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
 
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
-    const cast = newValue.current as Uniform;
+    let cast;
+    if (newValue.current !== undefined) {
+      cast = newValue.current as Uniform;
+    } else {
+      cast = (newValue as unknown) as Uniform;
+    }
+
     this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
 
@@ -148,7 +157,7 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.min = undefined;
     } else if (value === this.sliderValue[0]) {
       this.parameterValue.min = value;
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMin = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (this.sliderValue[1] <= value) {
@@ -173,7 +182,7 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.max = undefined;
     } else if (value === this.sliderValue[1]) {
       this.parameterValue.max = value;
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMax = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (this.sliderValue[0] >= value) {

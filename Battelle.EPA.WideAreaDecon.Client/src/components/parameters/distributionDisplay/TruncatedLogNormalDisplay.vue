@@ -82,7 +82,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="meanValue"
-            @keydown="onTextMeamEnterPressed"
+            @keydown="onTextMeanEnterPressed"
             @blur="updateOnTextMeanChange"
             v-model="textMean"
             label="Mean"
@@ -156,7 +156,10 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
   ignoreNextStdSliderChange = false;
 
   get parameterValue(): TruncatedLogNormal {
-    return this.selectedParameter.current as TruncatedLogNormal;
+    if (this.selectedParameter.current !== undefined) {
+      return this.selectedParameter.current as TruncatedLogNormal;
+    }
+    return (this.selectedParameter as unknown) as TruncatedLogNormal;
   }
 
   get stdDevStep(): number {
@@ -231,7 +234,13 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
 
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
-    const cast = newValue.current as TruncatedLogNormal;
+    let cast;
+    if (newValue.current !== undefined) {
+      cast = newValue.current as TruncatedLogNormal;
+    } else {
+      cast = (newValue as unknown) as TruncatedLogNormal;
+    }
+
     this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
@@ -287,7 +296,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
       this.parameterValue.logMin = undefined;
     } else if (value === this.sliderValue[0]) {
       this.parameterValue.logMin = Math.log10(value);
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMin = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value >= this.sliderMean) {
@@ -316,7 +325,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
       this.parameterValue.logMax = undefined;
     } else if (value === this.sliderValue[1]) {
       this.parameterValue.logMax = Math.log10(value);
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMax = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value <= this.sliderMean) {
@@ -345,7 +354,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
       this.parameterValue.logMean = undefined;
     } else if (value === this.sliderMean) {
       this.parameterValue.logMean = Math.log10(value);
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMean = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value >= this.sliderValue[1]) {
@@ -368,7 +377,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
       this.parameterValue.logStdDev = undefined;
     } else if (value === this.sliderStd) {
       this.parameterValue.logStdDev = Math.log10(value);
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textStd = '';
     } else {
       this.textStd = this.sliderStd.toString();
