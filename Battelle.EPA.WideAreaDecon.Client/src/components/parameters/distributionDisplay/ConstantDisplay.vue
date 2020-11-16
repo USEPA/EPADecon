@@ -5,7 +5,15 @@
     ></v-row>
     <v-row>
       <v-col>
-        <v-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">
+        <v-slider
+          v-model="sliderValue"
+          :max="max"
+          :min="min"
+          :step="step"
+          thumb-label
+          @end="test"
+          @change="onSliderStopped"
+        >
           <template v-slot:prepend>
             <p class="grey--text">{{ min }}</p>
           </template>
@@ -63,6 +71,10 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     };
   }
 
+  test(value): void {
+    this.$emit('valueChanged', value);
+  }
+
   validationRules(value: string): boolean | string {
     const num = Number(value);
     if (Number.isNaN(num)) {
@@ -94,7 +106,6 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     if (!this.ignoreNextSliderChange) {
       this.textValue = newValue.toString();
       this.parameterValue.value = newValue;
-      this.$emit('valueChanged', newValue);
     } else {
       this.ignoreNextSliderChange = false;
     }
