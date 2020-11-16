@@ -5,15 +5,7 @@
     ></v-row>
     <v-row>
       <v-col>
-        <v-slider
-          v-model="sliderValue"
-          :max="max"
-          :min="min"
-          :step="step"
-          thumb-label
-          @end="test"
-          @change="onSliderStopped"
-        >
+        <v-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">
           <template v-slot:prepend>
             <p class="grey--text">{{ min }}</p>
           </template>
@@ -69,10 +61,6 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     return {
       '--primary-color': this.$vuetify.theme.currentTheme.primary,
     };
-  }
-
-  test(value): void {
-    this.$emit('valueChanged', value);
   }
 
   validationRules(value: string): boolean | string {
@@ -141,6 +129,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 
   onSliderStopped(): void {
     this.parameterValue.value = this.sliderValue;
+    this.$emit('valueChanged', this.sliderValue);
   }
 
   updateOnTextChange(): void {
@@ -156,6 +145,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     } else if (castComponent.validate && castComponent.validate(true)) {
       this.sliderValue = value;
       this.parameterValue.value = value;
+      this.$emit('valueChanged', this.sliderValue);
     } else {
       this.textValue = this.sliderValue.toString();
     }
