@@ -3,8 +3,6 @@
     <v-row align="center" justify="center">
       <v-col>
         <p class="text-center display-3">Sum: {{ sumOfFractions }}</p>
-        <!-- <p>Difference = {{ difference }}</p>
-        <p>Adjustments = {{ adjustments }}</p> -->
       </v-col>
     </v-row>
     <v-row v-for="([key, value], index) in list" :key="key">
@@ -45,21 +43,22 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     return this.selectedParameter.current as EnumeratedFraction;
   }
 
-  // values = this.parameterValue.values;
-
   fractions: number[] = [];
 
-  get list() {
+  maxValue = 1;
+
+  minValue = 0;
+
+  get list(): [string, any][] {
     return Object.entries(this.parameterValue.values);
   }
-  // parameterType = '';
 
   get sumOfFractions(): number {
     return this.fractions.reduce((acc, cur) => acc + cur);
   }
 
   get difference(): number {
-    return 1 - this.sumOfFractions;
+    return this.maxValue - this.sumOfFractions;
   }
 
   get adjustments(): number {
@@ -67,74 +66,16 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
   }
 
   updateValue(newValue: number, index: number): void {
-    // first way doesn't update computed fractions property, one of the others need to be used
-    // see https://vuejs.org/v2/guide/reactivity.html#For-Arrays
-
-    // this.fractions[index] = newValue;
-    // Vue.set(this.fractions, index, newValue);
     this.fractions.splice(index, 1, newValue);
-    // this.adjustedFractions[index] = newValue;
     this.makeAdjustments(index);
-    // this.fractions = this.makeAdjustments(this.fractions, index, 0, 1, 1);
-    // this.fractions = this.makeAdjustments(index, newValue);
   }
 
-  // makeAdjustments(
-  //   array: number[],
-  //   selectedRowIndex: number,
-  //   minValue: number,
-  //   maxValue: number,
-  //   arraySum: number,
-  // ): number[] {
-  //   const sum = array.reduce((acc, cur) => acc + cur);
-  //   if (sum === arraySum) return array;
-
-  //   const adjust =
-  //     (arraySum - sum) /
-  //     array.reduce((carry, fraction, index) => {
-  //       if (index === selectedRowIndex) {
-  //         return carry;
-  //       }
-  //       if (this.sumOfFractions > 1) {
-  //         return carry + (fraction < 1 ? 1 : 0);
-  //       }
-  //       return carry + (fraction > 0 ? 1 : 0);
-  //     });
-
-  //   const newArray = array.map((fraction, index) =>
-  //     index === selectedRowIndex
-  //       ? fraction
-  //       : Math.round(+Math.max(minValue, Math.min(maxValue, fraction + adjust)).toFixed(4)),
-  //   );
-
-  //   return this.makeAdjustments(newArray, selectedRowIndex, minValue, maxValue, arraySum);
-  // }
-  //   if (this.difference !== 0) {
-  //     const adjust =
-  //       this.difference /
-  //       this.fractions.reduce((carry, fraction, index) => {
-  //         if (index === selectedRowIndex) {
-  //           return carry;
-  //         } else {
-  //           if (this.sumOfFractions > 1) {
-  //             return carry + (fraction < 1 ? 1 : 0);
-  //           } else {
-  //             return carry + (fraction > 0 ? 1 : 0);
-  //           }
-  //         }
-  //       });
-  //   }
-
-  //   this.fractions = this.fractions.map((fraction, index) =>
-  //     index === selectedRowIndex ? fraction : fraction - this.adjustments,
-  //   );
-  // }
-
   makeAdjustments(rowIndex: number): void {
-    let flag = 100;
-    while (this.sumOfFractions !== 1 && flag > 0) {
+    let flag = 15;
+    while (this.sumOfFractions !== this.maxValue && flag) {
       this.fractions.map((fraction, index) => {
-        const shouldAdjust = fraction && fraction + this.adjustments >= 0 && fraction + this.adjustments <= 1;
+        const shouldAdjust =
+          fraction && fraction + this.adjustments >= this.minValue && fraction + this.adjustments <= this.maxValue;
         if (index !== rowIndex && shouldAdjust) {
           this.fractions.splice(index, 1, fraction + this.adjustments);
         }
@@ -142,23 +83,6 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
       });
       flag -= 1;
     }
-    // }
-
-    // let flag = 2;
-    // while (this.sumOfFractions !== 100 && flag > 0) {
-    //   // this.fractions.forEach((fraction, index) => {
-    //   //   if (index !== rowIndex && fraction < 100 && fraction > 0) {
-    //   //     this.fractions.splice(index, 1, fraction - this.adjustments);
-    //   //   }
-    //   // });
-    //   this.fractions.map((fraction, index) => {
-    //     if (index !== rowIndex && fraction < 100 && fraction > 0) {
-    //       this.fractions.splice(index, 1, fraction + this.adjustments);
-    //     }
-    //     return fraction;
-    //   });
-    //   flag -= 1;
-    // }
   }
 
   // distComponent(type: string) {
