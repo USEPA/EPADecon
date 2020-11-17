@@ -20,8 +20,8 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import EnumeratedFraction from '@/implementations/parameter/list/enumeratedFraction';
-
 import ConstantDisplay from '@/components/parameters/distributionDisplay/ConstantDisplay.vue';
+// import Constant from '@/implementations/parameter/distribution/Constant';
 
 @Component({
   components: {
@@ -59,25 +59,25 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     return this.difference / (this.fractions.length - 1);
   }
 
-  updateValue(newValue: number, key: string, index: number): void {
-    this.fractions.splice(index, 1, newValue);
-    this.makeAdjustments(index);
+  updateValue(newValue: number, key: string, changedIndex: number): void {
+    this.fractions.splice(changedIndex, 1, newValue);
+    this.makeAdjustments(changedIndex);
 
     // update parameter value passed to child components
-    Object.entries(this.parameterValue.values).forEach((el, i) => {
-      [, this.currentValue] = el;
-      this.currentValue.value = this.fractions[i];
+    Object.entries(this.parameterValue.values).forEach((value, index) => {
+      [, this.currentValue] = value;
+      this.currentValue.value = this.fractions[index];
     });
   }
 
-  makeAdjustments(rowIndex: number): void {
+  makeAdjustments(changedIndex: number): void {
     let counter = 50;
     while (this.sumOfFractions !== this.maxValue && counter) {
       this.fractions.forEach((fraction, index) => {
-        const shouldAdjust =
-          fraction && fraction + this.adjustments >= this.minValue && fraction + this.adjustments <= this.maxValue;
-        if (index !== rowIndex && shouldAdjust) {
-          this.fractions.splice(index, 1, fraction + this.adjustments);
+        const adjustedFraction = fraction + this.adjustments;
+        const shouldAdjust = fraction && adjustedFraction >= this.minValue && adjustedFraction <= this.maxValue;
+        if (index !== changedIndex && shouldAdjust) {
+          this.fractions.splice(index, 1, adjustedFraction);
         }
       });
       counter -= 1;
@@ -86,13 +86,14 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 
   @Watch('selectedParameter')
   onSelectedParameterChanged(): void {
+    // reset fractions array
     this.fractions = [];
     this.setValues();
   }
 
   setValues(): void {
     // add values to fractions array
-    Object.values(this.parameterValue.values).forEach((el: any) => this.fractions.push(el.value));
+    Object.values(this.parameterValue.values).forEach((value: any) => this.fractions.push(value.value));
   }
 
   created(): void {
