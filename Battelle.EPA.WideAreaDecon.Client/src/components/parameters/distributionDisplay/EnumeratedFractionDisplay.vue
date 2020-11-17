@@ -64,7 +64,6 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     this.makeAdjustments(index);
 
     // update parameter value passed to child components
-    this.currentValue = this.parameterValue.values[key];
     Object.entries(this.parameterValue.values).forEach((el, i) => {
       [, this.currentValue] = el;
       this.currentValue.value = this.fractions[i];
@@ -93,7 +92,7 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 
   setValues(): void {
     // add values to fractions array
-    Object.values(this.parameterValue.values).map((el: any) => this.fractions.push(el.value));
+    Object.values(this.parameterValue.values).forEach((el: any) => this.fractions.push(el.value));
   }
 
   created(): void {

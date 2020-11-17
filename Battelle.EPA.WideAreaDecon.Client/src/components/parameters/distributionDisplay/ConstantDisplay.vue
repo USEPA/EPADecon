@@ -77,7 +77,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     return true;
   }
 
-  get value(): number | undefined {
+  get valueFromParent(): number | undefined {
     return this.parameterValue.value;
   }
 
@@ -93,9 +93,9 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 
   ignoreNextSliderChange = false;
 
-  @Watch('value')
+  @Watch('valueFromParent')
   onValueChangedByParent(newValue: number): void {
-    if (!this.ignoreNextSliderChange) {
+    if (!this.ignoreNextSliderChange && newValue) {
       this.sliderValue = newValue;
       this.textValue = newValue.toString();
     } else {
