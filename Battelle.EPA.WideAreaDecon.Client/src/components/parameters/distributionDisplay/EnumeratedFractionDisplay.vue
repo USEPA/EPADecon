@@ -1,19 +1,14 @@
 <template>
   <v-container>
-    <v-row align="center" justify="center">
+    <!-- <v-row align="center" justify="center">
       <v-col>
         <p class="text-center display-3">Sum: {{ sumOfFractions }}</p>
       </v-col>
-    </v-row>
+    </v-row> -->
     <v-row v-for="([key, value], index) in list" :key="key">
       <v-col>
         <p>{{ key }} - {{ value.value }}</p>
-        <!-- <component
-          @valueChanged="updateValue($event, i)"
-          :is="distComponent(value.type)"
-          :selected-parameter="value"
-        ></component> -->
-        <constant-display @valueChanged="updateValue($event, index)" :selected-parameter="value" />
+        <constant-display @valueChanged="updateValue($event, key, index)" :selected-parameter="value" />
       </v-col>
     </v-row>
   </v-container>
@@ -25,15 +20,12 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import EnumeratedFraction from '@/implementations/parameter/list/enumeratedFraction';
-import ParameterType from '@/enums/parameter/parameterType';
 
 import ConstantDisplay from '@/components/parameters/distributionDisplay/ConstantDisplay.vue';
-import BetaPertDisplay from '@/components/parameters/distributionDisplay/BetaPertDisplay.vue';
 
 @Component({
   components: {
     ConstantDisplay,
-    BetaPertDisplay,
   },
 })
 export default class EnumeratedFractionDisplay extends Vue implements IParameterDisplay {
@@ -48,6 +40,8 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
   maxValue = 1;
 
   minValue = 0;
+
+  currentValue: any = Object.values(this.parameterValue.values)[0];
 
   get list(): [string, any][] {
     return Object.entries(this.parameterValue.values);
@@ -65,14 +59,21 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     return this.difference / (this.fractions.length - 1);
   }
 
-  updateValue(newValue: number, index: number): void {
+  updateValue(newValue: number, key: string, index: number): void {
     this.fractions.splice(index, 1, newValue);
     this.makeAdjustments(index);
+
+    // update parameter value passed to child components
+    this.currentValue = this.parameterValue.values[key];
+    Object.entries(this.parameterValue.values).forEach((el, i) => {
+      [, this.currentValue] = el;
+      this.currentValue.value = this.fractions[i];
+    });
   }
 
   makeAdjustments(rowIndex: number): void {
-    let flag = 15;
-    while (this.sumOfFractions !== this.maxValue && flag) {
+    let counter = 50;
+    while (this.sumOfFractions !== this.maxValue && counter) {
       this.fractions.map((fraction, index) => {
         const shouldAdjust =
           fraction && fraction + this.adjustments >= this.minValue && fraction + this.adjustments <= this.maxValue;
@@ -81,26 +82,12 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
         }
         return fraction;
       });
-      flag -= 1;
+      counter -= 1;
     }
   }
 
-  // distComponent(type: string) {
-  //   // get around es-lint error
-  //   this.parameterType = type;
-  //   switch (this.parameterType) {
-  //     case ParameterType.constant:
-  //       return 'constant-display';
-  //     case ParameterType.pert:
-  //       return 'beta-pert-display';
-  //     default:
-  //       return null;
-  //   }
-  // }
-
   @Watch('selectedParameter')
   onSelectedParameterChanged(): void {
-    // reset fractions on param change
     this.fractions = [];
     this.setValues();
   }
