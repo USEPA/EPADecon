@@ -72,15 +72,14 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
   }
 
   makeAdjustments(rowIndex: number): void {
-    let counter = 30;
+    let counter = 50;
     while (this.sumOfFractions !== this.maxValue && counter) {
-      this.fractions.map((fraction, index) => {
+      this.fractions.forEach((fraction, index) => {
         const shouldAdjust =
           fraction && fraction + this.adjustments >= this.minValue && fraction + this.adjustments <= this.maxValue;
         if (index !== rowIndex && shouldAdjust) {
           this.fractions.splice(index, 1, fraction + this.adjustments);
         }
-        return fraction;
       });
       counter -= 1;
     }
