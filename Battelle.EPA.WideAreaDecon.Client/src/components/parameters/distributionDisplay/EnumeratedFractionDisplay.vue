@@ -3,7 +3,7 @@
     <v-row v-for="([key, value], index) in list" :key="key">
       <v-col>
         <p>{{ key }} - {{ value.value }}</p>
-        <constant-display @valueChanged="updateValue($event, key, index)" :selected-parameter="value" />
+        <constant-display @valueChanged="updateValue($event, key, index)" :parameter-value="value" />
       </v-col>
     </v-row>
   </v-container>
@@ -13,7 +13,6 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import EnumeratedFraction from '@/implementations/parameter/list/enumeratedFraction';
 import ConstantDisplay from '@/components/parameters/distributionDisplay/ConstantDisplay.vue';
 import Constant from '@/implementations/parameter/distribution/Constant';
@@ -24,11 +23,7 @@ import Constant from '@/implementations/parameter/distribution/Constant';
   },
 })
 export default class EnumeratedFractionDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
-
-  get parameterValue(): EnumeratedFraction {
-    return this.selectedParameter.current as EnumeratedFraction;
-  }
+  @Prop({ required: true }) parameterValue!: EnumeratedFraction;
 
   fractions: number[] = [];
 
@@ -80,8 +75,8 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     }
   }
 
-  @Watch('selectedParameter')
-  onSelectedParameterChanged(): void {
+  @Watch('parameterValue')
+  onParameterChanged(): void {
     // reset fractions array
     this.fractions = [];
     this.setValues();

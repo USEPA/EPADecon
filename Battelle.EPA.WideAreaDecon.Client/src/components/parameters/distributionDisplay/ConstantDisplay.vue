@@ -41,21 +41,12 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import Constant from '@/implementations/parameter/distribution/Constant';
 import { Key } from 'ts-keycode-enum';
 
 @Component
 export default class ConstantParameterDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
-
-  get parameterValue(): Constant {
-    if (this.selectedParameter.current !== undefined) {
-      return this.selectedParameter.current as Constant;
-    }
-
-    return (this.selectedParameter as unknown) as Constant;
-  }
+  @Prop({ required: true }) parameterValue!: Constant;
 
   vuetifyColorProps(): unknown {
     return {
@@ -113,14 +104,14 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     }
   }
 
-  @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper): void {
-    let cast;
-    if (newValue.current !== undefined) {
-      cast = newValue.current as Constant;
-    } else {
-      cast = (newValue as unknown) as Constant;
-    }
+  @Watch('parameterValue')
+  onParameterChanged(newValue: Constant): void {
+    // let cast;
+    // if (newValue.current !== undefined) {
+    //   cast = newValue.current as Constant;
+    // } else {
+    //   cast = (newValue as unknown) as Constant;
+    // }
 
     this.min = this.parameterValue.metaData.lowerLimit ?? -100;
     this.max = this.parameterValue.metaData.upperLimit ?? 100;
@@ -132,7 +123,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 
     this.ignoreNextSliderChange = true;
 
-    this.textValue = cast.value?.toString() ?? '';
+    this.textValue = newValue.value?.toString() ?? '';
   }
 
   onTextEnterPressed(event: KeyboardEvent): void {

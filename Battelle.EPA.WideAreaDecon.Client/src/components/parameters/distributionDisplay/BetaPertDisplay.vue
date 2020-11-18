@@ -84,13 +84,12 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import BetaPERT from '@/implementations/parameter/distribution/BetaPERT';
 import { Key } from 'ts-keycode-enum';
 
 @Component
 export default class BetaPertDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
+  @Prop({ required: true }) parameterValue!: BetaPERT;
 
   sliderValue = [0, 0];
 
@@ -111,14 +110,6 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
   ignoreNextValueSliderChange = false;
 
   ignoreNextModeSliderChange = false;
-
-  get parameterValue(): BetaPERT {
-    if (this.selectedParameter.current !== undefined) {
-      return this.selectedParameter.current as BetaPERT;
-    }
-
-    return (this.selectedParameter as unknown) as BetaPERT;
-  }
 
   vuetifyColorProps(): unknown {
     return {
@@ -174,29 +165,23 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
     }
   }
 
-  @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper): void {
-    let cast;
-    if (newValue.current !== undefined) {
-      cast = newValue.current as BetaPERT;
-    } else {
-      cast = (newValue as unknown) as BetaPERT;
-    }
+  @Watch('parameterValue')
+  onParameterChanged(newValue: BetaPERT): void {
     this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
 
     this.ignoreNextValueSliderChange = true;
     this.sliderValue = [this.min, this.min];
-    this.sliderValue = [cast.min ?? this.min, cast.max ?? this.max];
+    this.sliderValue = [newValue.min ?? this.min, newValue.max ?? this.max];
 
     this.ignoreNextModeSliderChange = true;
     this.sliderMode = this.min;
-    this.sliderMode = cast.mode ?? (this.min + this.max) / 2.0;
+    this.sliderMode = newValue.mode ?? (this.min + this.max) / 2.0;
 
-    this.textMin = cast.min?.toString() ?? '';
-    this.textMax = cast.max?.toString() ?? '';
-    this.textMode = cast.mode?.toString() ?? '';
+    this.textMin = newValue.min?.toString() ?? '';
+    this.textMax = newValue.max?.toString() ?? '';
+    this.textMode = newValue.mode?.toString() ?? '';
   }
 
   onTextMinEnterPressed(event: KeyboardEvent): void {

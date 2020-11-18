@@ -120,14 +120,13 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { Key } from 'ts-keycode-enum';
 import { max } from 'lodash';
 import TruncatedLogNormal from '@/implementations/parameter/distribution/TruncatedLogNormal';
 
 @Component
 export default class TruncatedLogNormalDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
+  @Prop({ required: true }) parameterValue!: TruncatedLogNormal;
 
   sliderValue = [0, 0];
 
@@ -154,13 +153,6 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
   ignoreNextMeanSliderChange = false;
 
   ignoreNextStdSliderChange = false;
-
-  get parameterValue(): TruncatedLogNormal {
-    if (this.selectedParameter.current !== undefined) {
-      return this.selectedParameter.current as TruncatedLogNormal;
-    }
-    return (this.selectedParameter as unknown) as TruncatedLogNormal;
-  }
 
   get stdDevStep(): number {
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
@@ -232,35 +224,28 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     this.parameterValue.logMean = Math.log10(newValue);
   }
 
-  @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper): void {
-    let cast;
-    if (newValue.current !== undefined) {
-      cast = newValue.current as TruncatedLogNormal;
-    } else {
-      cast = (newValue as unknown) as TruncatedLogNormal;
-    }
-
+  @Watch('parameterValue')
+  onParameterChanged(newValue: TruncatedLogNormal): void {
     this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
 
     this.ignoreNextValueSliderChange = true;
     this.sliderValue = [this.min, this.min];
-    this.sliderValue = [cast.min ?? this.min, cast.max ?? this.max];
+    this.sliderValue = [newValue.min ?? this.min, newValue.max ?? this.max];
 
     this.ignoreNextMeanSliderChange = true;
     this.sliderMean = this.min;
-    this.sliderMean = cast.mean ?? (this.min + this.max) / 2.0;
+    this.sliderMean = newValue.mean ?? (this.min + this.max) / 2.0;
 
     this.ignoreNextStdSliderChange = true;
     this.sliderStd = this.min;
-    this.sliderStd = cast.stdDev ?? (this.min + this.max) / 2.0;
+    this.sliderStd = newValue.stdDev ?? (this.min + this.max) / 2.0;
 
-    this.textMin = cast.min?.toString() ?? '';
-    this.textMax = cast.max?.toString() ?? '';
-    this.textMean = cast.mean?.toString() ?? '';
-    this.textStd = cast.stdDev?.toString() ?? '';
+    this.textMin = newValue.min?.toString() ?? '';
+    this.textMax = newValue.max?.toString() ?? '';
+    this.textMean = newValue.mean?.toString() ?? '';
+    this.textStd = newValue.stdDev?.toString() ?? '';
   }
 
   onTextMinEnterPressed(event: KeyboardEvent): void {

@@ -65,14 +65,13 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { Key } from 'ts-keycode-enum';
 import { max } from 'lodash';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
 
 @Component
 export default class WeibullDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
+  @Prop({ required: true }) parameterValue!: Weibull;
 
   sliderValue = [0, 0];
 
@@ -91,13 +90,6 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
   ignoreNextLambdaSliderChange = false;
 
   ignoreNextKSliderChange = false;
-
-  get parameterValue(): Weibull {
-    if (this.selectedParameter.current !== undefined) {
-      return this.selectedParameter.current as Weibull;
-    }
-    return (this.selectedParameter as unknown) as Weibull;
-  }
 
   get KStep(): number {
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
@@ -172,28 +164,22 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     this.parameterValue.k = newValue;
   }
 
-  @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper): void {
-    let cast;
-    if (newValue.current !== undefined) {
-      cast = newValue.current as Weibull;
-    } else {
-      cast = (newValue as unknown) as Weibull;
-    }
+  @Watch('parameterValue')
+  onParameterChanged(newValue: Weibull): void {
     this.step = this.parameterValue.metaData.step;
 
     this.ignoreNextValueSliderChange = true;
 
     this.ignoreNextLambdaSliderChange = true;
     this.sliderLambda = 0;
-    this.sliderLambda = cast.lambda ?? 1;
+    this.sliderLambda = newValue.lambda ?? 1;
 
     this.ignoreNextKSliderChange = true;
     this.sliderK = 1;
-    this.sliderK = cast.k ?? 2;
+    this.sliderK = newValue.k ?? 2;
 
-    this.textLambda = cast.lambda?.toString() ?? '';
-    this.textK = cast.k?.toString() ?? '';
+    this.textLambda = newValue.lambda?.toString() ?? '';
+    this.textK = newValue.k?.toString() ?? '';
   }
 
   onTextLambdaEnterPressed(event: KeyboardEvent): void {

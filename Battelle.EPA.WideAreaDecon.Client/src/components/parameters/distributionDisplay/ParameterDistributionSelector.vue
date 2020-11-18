@@ -22,7 +22,7 @@
       </v-col>
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
-    <component :key="componentKey" :is="distComponent" :selected-parameter="currentSelectedParameter"> </component>
+    <component :key="componentKey" :is="distComponent" :parameter-value="currentSelectedParameter.current"> </component>
   </v-card>
 </template>
 
