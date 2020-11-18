@@ -1,10 +1,5 @@
 <template>
   <v-container>
-    <!-- <v-row align="center" justify="center">
-      <v-col>
-        <p class="text-center display-3">Sum: {{ sumOfFractions }}</p>
-      </v-col>
-    </v-row> -->
     <v-row v-for="([key, value], index) in list" :key="key">
       <v-col>
         <p>{{ key }} - {{ value.value }}</p>
@@ -21,7 +16,7 @@ import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import EnumeratedFraction from '@/implementations/parameter/list/enumeratedFraction';
 import ConstantDisplay from '@/components/parameters/distributionDisplay/ConstantDisplay.vue';
-// import Constant from '@/implementations/parameter/distribution/Constant';
+import Constant from '@/implementations/parameter/distribution/Constant';
 
 @Component({
   components: {
@@ -41,9 +36,9 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 
   minValue = 0;
 
-  currentValue: any = Object.values(this.parameterValue.values)[0];
+  currentValue: Constant = Object.values(this.parameterValue.values)[0];
 
-  get list(): [string, any][] {
+  get list(): [string, Constant][] {
     return Object.entries(this.parameterValue.values);
   }
 
@@ -55,6 +50,7 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     return this.maxValue - this.sumOfFractions;
   }
 
+  // the amount each fraction will need to be modified by
   get adjustments(): number {
     return this.difference / (this.fractions.length - 1);
   }
@@ -71,7 +67,7 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
   }
 
   makeAdjustments(changedIndex: number): void {
-    let counter = 50;
+    let counter = 50; // loop at most 50 times
     while (this.sumOfFractions !== this.maxValue && counter) {
       this.fractions.forEach((fraction, index) => {
         const adjustedFraction = fraction + this.adjustments;
@@ -93,7 +89,7 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 
   setValues(): void {
     // add values to fractions array
-    Object.values(this.parameterValue.values).forEach((value: any) => this.fractions.push(value.value));
+    Object.values(this.parameterValue.values).forEach((constant: Constant) => this.fractions.push(constant.value ?? 0));
   }
 
   created(): void {
