@@ -9,7 +9,7 @@ export default class EnumeratedFraction implements IParameter {
   @JsonProperty()
   readonly type = ParameterType.enumeratedFraction;
 
-  isSet = false;
+  isSet = true;
 
   isEquivalent(other: IParameter): boolean {
     return other.type === this.type;
