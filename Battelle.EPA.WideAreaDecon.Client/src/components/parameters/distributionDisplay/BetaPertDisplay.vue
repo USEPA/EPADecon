@@ -176,7 +176,6 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
 
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
-    // const cast = newValue.current as BetaPERT;
     let cast;
     if (newValue.current !== undefined) {
       cast = newValue.current as BetaPERT;
