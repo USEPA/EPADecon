@@ -68,10 +68,6 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     return true;
   }
 
-  get valueFromParent(): number | undefined {
-    return this.parameterValue.value;
-  }
-
   sliderValue = 0;
 
   textValue = '';
@@ -83,16 +79,6 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   step = 0.1;
 
   ignoreNextSliderChange = false;
-
-  @Watch('valueFromParent')
-  onValueChangedByParent(newValue: number): void {
-    if (!this.ignoreNextSliderChange && newValue) {
-      this.sliderValue = newValue;
-      this.textValue = newValue.toString();
-    } else {
-      this.ignoreNextSliderChange = false;
-    }
-  }
 
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number): void {
@@ -106,13 +92,6 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 
   @Watch('parameterValue')
   onParameterChanged(newValue: Constant): void {
-    // let cast;
-    // if (newValue.current !== undefined) {
-    //   cast = newValue.current as Constant;
-    // } else {
-    //   cast = (newValue as unknown) as Constant;
-    // }
-
     this.min = this.parameterValue.metaData.lowerLimit ?? -100;
     this.max = this.parameterValue.metaData.upperLimit ?? 100;
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
@@ -134,7 +113,6 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 
   onSliderStopped(): void {
     this.parameterValue.value = this.sliderValue;
-    this.$emit('valueChanged', this.sliderValue);
   }
 
   updateOnTextChange(): void {
@@ -150,7 +128,6 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     } else if (castComponent.validate && castComponent.validate(true)) {
       this.sliderValue = value;
       this.parameterValue.value = value;
-      this.$emit('valueChanged', this.sliderValue);
     } else {
       this.textValue = this.sliderValue.toString();
     }
