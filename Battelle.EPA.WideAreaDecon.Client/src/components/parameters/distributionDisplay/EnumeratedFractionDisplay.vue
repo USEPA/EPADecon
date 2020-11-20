@@ -1,23 +1,15 @@
 <template>
   <v-container>
-    <!-- <v-row v-for="([key, value], index) in list" :key="key">
-      <v-col>
-        <p>{{ key }} - {{ value.value }}</p>
-        <constant-display @valueChanged="updateValue($event, key, index)" :parameter-value="value" />
-      </v-col>
-    </v-row> -->
     <v-row>
       <v-simple-table style="width: 100%">
         <template v-slot:default>
           <thead></thead>
           <tbody>
-            <tr v-for="([key, value], index) in list" :key="key">
-              <td style="width: 10%">
-                <v-checkbox :value="lockedRows[index]" :ripple="false" @click="lockRow(index)"> </v-checkbox>
-              </td>
-              <td style="width: 20%">{{ key }} - {{ value.value }}</td>
+            <tr v-for="([key, value], index) in listOfParameterValues" :key="key">
+              <td style="width: 20%" class="text-subtitle-1 text-center font-weight-medium">{{ key }}</td>
               <td style="width: 50%">
                 <v-slider
+                  class="large-slider"
                   v-model="value.value"
                   :disabled="lockedRows[index]"
                   :max="max"
@@ -45,6 +37,18 @@
                     </template>
                   </v-text-field>
                 </v-card>
+              </td>
+              <td style="width: 10%">
+                <v-checkbox
+                  v-model="value.locked"
+                  off-icon="fa-lock-open"
+                  on-icon="fa-lock"
+                  color="grey"
+                  :value="lockedRows[index]"
+                  :ripple="false"
+                  @click="lockRow(lockedRows[index], index)"
+                >
+                </v-checkbox>
               </td>
             </tr>
           </tbody>
@@ -78,16 +82,14 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 
   textValues: string[] = [];
 
-  currentValue: Constant = Object.values(this.parameterValue.values)[0];
-
   adjustmentsMade = false;
 
-  get list(): [string, Constant][] {
+  get listOfParameterValues(): [string, Constant][] {
     return Object.entries(this.parameterValue.values);
   }
 
   get sumOfFractions(): number {
-    return this.fractions.reduce((acc, cur) => acc + cur);
+    return this.fractions.reduce((acc, cur) => acc + cur, 0);
   }
 
   get difference(): number {
@@ -132,10 +134,10 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     this.fractions.splice(changedIndex, 1, val);
     this.makeAdjustments(changedIndex);
 
+    // update parameter and slider values
     Object.entries(this.parameterValue.values).forEach((value, index) => {
-      // update slider value
-      [, this.currentValue] = value;
-      this.currentValue.value = this.fractions[index];
+      const [valueName] = value;
+      this.parameterValue.values[valueName].value = this.fractions[index];
       // update text value
       this.textValues.splice(index, 1, this.fractions[index].toFixed(2));
     });
@@ -167,9 +169,9 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 
       // force an adjustment if needed
       if (!this.adjustmentsMade) {
-        const fallback =
-          this.lockedRowCount === this.list.length - 1
-            ? changedIndex
+        const fallback = // holds index to force change on
+          this.lockedRowCount === this.listOfParameterValues.length - 1
+            ? changedIndex // the only unlocked row will be changed
             : this.fractions.findIndex((fraction, index) => index !== changedIndex && !this.lockedRows[index]);
 
         this.fractions.splice(fallback, 1, this.fractions[fallback] + this.difference);
@@ -180,7 +182,10 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     }
   }
 
-  lockRow(index: number): void {
+  lockRow(lockValue: boolean, index: number): void {
+    // toggle lock on row
+    const valueName = this.listOfParameterValues[index][0];
+    this.parameterValue.values[valueName].locked = !lockValue;
     this.lockedRows.splice(index, 1, !this.lockedRows[index]);
   }
 
@@ -198,7 +203,7 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     Object.values(this.parameterValue.values).forEach((constant: Constant) => {
       this.fractions.push(constant.value ?? 0);
       this.textValues.push(constant.value?.toString() ?? '');
-      this.lockedRows.push(false);
+      this.lockedRows.push(constant.locked ?? false);
     });
   }
 
@@ -209,14 +214,17 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 </script>
 
 <style lang="scss">
-.v-slider__track-container {
-  height: 8px !important;
+.large-slider .v-slider__track-container {
+  height: 20px !important;
 }
-.v-slider__track-fill {
-  border-radius: 5px !important;
+.large-slider .v-slider__track-fill {
+  border-radius: 15px !important;
 }
-.v-slider__track-background {
-  border-radius: 5px !important;
+.large-slider .v-slider__track-background {
+  border-radius: 15px !important;
+}
+.v-messages {
+  display: none;
 }
 .v-slider__thumb {
   width: 24px !important;
