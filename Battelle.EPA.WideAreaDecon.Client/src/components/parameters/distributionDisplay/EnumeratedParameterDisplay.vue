@@ -5,7 +5,20 @@
     </v-row>
     <v-row>
       <v-col align-self="center" cols="3">
-        Category:
+        <v-overflow-btn
+          @change="onDistributionTypeChange"
+          class="my-2"
+          v-model="currentDistType"
+          :items="distNames"
+          filled
+          dense
+        >
+          <template v-slot:prepend>
+            <p>Distribution:</p>
+          </template>
+        </v-overflow-btn>
+      </v-col>
+      <v-col offset="5" cols="3">
         <v-overflow-btn
           @change="onSelectChanged"
           class="my-2"
@@ -15,21 +28,13 @@
           v-model="selectedValue"
           filled
           dense
-        />
-      </v-col>
-      <v-col align-self="center" cols="3">
-        Distribution:
-        <v-overflow-btn
-          @change="onDistributionTypeChange"
-          class="my-2"
-          v-model="currentDistType"
-          :items="distNames"
-          filled
-          dense
-        />
+        >
+          <template v-slot:prepend>
+            <p>Category:</p>
+          </template>
+        </v-overflow-btn>
       </v-col>
     </v-row>
-    <!-- <v-divider color="grey"></v-divider> -->
     <component :key="componentKey" :is="distComponent" :parameter-value="selectedValue"> </component>
   </v-container>
 </template>
@@ -68,12 +73,7 @@ import { changeableDistributionTypes } from '@/mixin/parameterMixin';
   },
 })
 export default class EnumeratedParameterDisplay extends Vue implements IParameterDisplay {
-  // @Prop({ required: true }) selectedParameter!: ParameterWrapper;
   @Prop({ required: true }) parameterValue!: EnumeratedParameter;
-
-  // get parameterValue(): EnumeratedParameter {
-  //   return this.selectedParameter.current as EnumeratedParameter;
-  // }
 
   selectedValue: IParameter = Object.values(this.parameterValue.values)[0];
 
@@ -103,22 +103,10 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
         return 'uniform-display';
       case ParameterType.weibull:
         return 'weibull-display';
-      // case ParameterType.enumeratedFraction:
-      //   return 'enumerated-fraction-display';
-      // case ParameterType.enumeratedParameter:
-      //   return 'enumerated-parameter-display';
       default:
         return 'unknown-display';
     }
   }
-
-  // get isChangeableDist(): boolean {
-  //   return changeableDistributionTypes.find((p) => p === this.selectedValue.type) !== undefined;
-  // }
-
-  // get parameterHasChanged(): boolean {
-  //   return this.selectedParameter.isChanged();
-  // }
 
   get selectableValues(): [string, IParameter][] {
     return Object.entries(this.parameterValue.values);
@@ -129,19 +117,11 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   }
 
   onDistributionTypeChange(): void {
-    // remove dist specific properties from selected value
-    // Object.keys(this.selectedValue).map((key) => {
-    //   if (key !== 'metaData' && key !== 'type') {
-    //     delete this.selectedValue[key];
-    //   }
-    //   return key;
-    // });
     this.selectedValue.type = this.currentDistType;
   }
 
   @Watch('parameterValue')
   onParameterChanged(newValue: EnumeratedParameter): void {
-    // const cast = newValue as EnumeratedParameter;
     [this.selectedValue] = Object.values(newValue.values);
     this.currentDistType = this.selectedValue.type ?? ParameterType.constant;
   }

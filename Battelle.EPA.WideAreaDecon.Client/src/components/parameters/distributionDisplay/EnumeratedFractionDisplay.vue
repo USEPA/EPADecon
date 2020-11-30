@@ -202,7 +202,7 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     // add values to arrays
     Object.values(this.parameterValue.values).forEach((constant: Constant) => {
       this.fractions.push(constant.value ?? 0);
-      this.textValues.push(constant.value?.toString() ?? '');
+      this.textValues.push(constant.value?.toFixed(2) ?? '');
       this.lockedRows.push(constant.locked ?? false);
     });
   }
