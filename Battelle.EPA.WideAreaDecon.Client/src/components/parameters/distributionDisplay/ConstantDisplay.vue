@@ -84,7 +84,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   onSliderValueChanged(newValue: number): void {
     if (!this.ignoreNextSliderChange) {
       this.textValue = newValue.toString();
-      this.parameterValue.value = newValue;
+      Vue.set(this.parameterValue, 'value', newValue);
     } else {
       this.ignoreNextSliderChange = false;
     }
@@ -112,7 +112,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   }
 
   onSliderStopped(): void {
-    this.parameterValue.value = this.sliderValue;
+    Vue.set(this.parameterValue, 'value', this.sliderValue);
   }
 
   updateOnTextChange(): void {
@@ -120,14 +120,14 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.value as any;
     if (this.textValue === '') {
-      this.parameterValue.value = undefined;
+      Vue.set(this.parameterValue, 'value', undefined);
     } else if (value === this.sliderValue) {
-      this.parameterValue.value = value;
+      Vue.set(this.parameterValue, 'value', value);
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textValue = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       this.sliderValue = value;
-      this.parameterValue.value = value;
+      Vue.set(this.parameterValue, 'value', value);
     } else {
       this.textValue = this.sliderValue.toString();
     }
