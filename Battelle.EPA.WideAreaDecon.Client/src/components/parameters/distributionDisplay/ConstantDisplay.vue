@@ -41,21 +41,12 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import Constant from '@/implementations/parameter/distribution/Constant';
 import { Key } from 'ts-keycode-enum';
 
 @Component
 export default class ConstantParameterDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
-
-  get parameterValue(): Constant {
-    if (this.selectedParameter.current !== undefined) {
-      return this.selectedParameter.current as Constant;
-    }
-
-    return (this.selectedParameter as unknown) as Constant;
-  }
+  @Prop({ required: true }) parameterValue!: Constant;
 
   vuetifyColorProps(): unknown {
     return {
@@ -93,22 +84,14 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   onSliderValueChanged(newValue: number): void {
     if (!this.ignoreNextSliderChange) {
       this.textValue = newValue.toString();
-      this.parameterValue.value = newValue;
-      this.$emit('valueChanged', newValue);
+      Vue.set(this.parameterValue, 'value', newValue);
     } else {
       this.ignoreNextSliderChange = false;
     }
   }
 
-  @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper): void {
-    let cast;
-    if (newValue.current !== undefined) {
-      cast = newValue.current as Constant;
-    } else {
-      cast = (newValue as unknown) as Constant;
-    }
-
+  @Watch('parameterValue')
+  onParameterChanged(newValue: Constant): void {
     this.min = this.parameterValue.metaData.lowerLimit ?? -100;
     this.max = this.parameterValue.metaData.upperLimit ?? 100;
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
@@ -119,7 +102,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 
     this.ignoreNextSliderChange = true;
 
-    this.textValue = cast.value?.toString() ?? '';
+    this.textValue = newValue.value?.toString() ?? '';
   }
 
   onTextEnterPressed(event: KeyboardEvent): void {
@@ -129,7 +112,7 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
   }
 
   onSliderStopped(): void {
-    this.parameterValue.value = this.sliderValue;
+    Vue.set(this.parameterValue, 'value', this.sliderValue);
   }
 
   updateOnTextChange(): void {
@@ -137,14 +120,14 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.value as any;
     if (this.textValue === '') {
-      this.parameterValue.value = undefined;
+      Vue.set(this.parameterValue, 'value', undefined);
     } else if (value === this.sliderValue) {
-      this.parameterValue.value = value;
+      Vue.set(this.parameterValue, 'value', value);
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textValue = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       this.sliderValue = value;
-      this.parameterValue.value = value;
+      Vue.set(this.parameterValue, 'value', value);
     } else {
       this.textValue = this.sliderValue.toString();
     }

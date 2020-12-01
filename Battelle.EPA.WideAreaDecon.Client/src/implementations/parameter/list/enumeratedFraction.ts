@@ -1,4 +1,5 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import { isEqual } from 'lodash';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import Constant from '../distribution/Constant';
@@ -9,10 +10,10 @@ export default class EnumeratedFraction implements IParameter {
   @JsonProperty()
   readonly type = ParameterType.enumeratedFraction;
 
-  isSet = false;
+  isSet = true;
 
   isEquivalent(other: IParameter): boolean {
-    return other.type === this.type;
+    return isEqual(this, other);
   }
 
   @JsonProperty()

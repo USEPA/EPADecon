@@ -1,4 +1,5 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import { isEqual } from 'lodash';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
@@ -8,10 +9,18 @@ export default class EnumeratedParameter implements IParameter {
   @JsonProperty()
   readonly type = ParameterType.enumeratedParameter;
 
-  isSet = false;
+  get isSet(): boolean {
+    if (this.type === undefined) {
+      return false;
+    }
+    if (this.values[this.type] === undefined) {
+      return false;
+    }
+    return !this.values[this.type].isSet;
+  }
 
   isEquivalent(other: IParameter): boolean {
-    return other.type === this.type;
+    return isEqual(this, other);
   }
 
   @JsonProperty()
@@ -21,11 +30,11 @@ export default class EnumeratedParameter implements IParameter {
   values: Record<string, IParameter>;
 
   @JsonProperty()
-  typeName: string;
+  typeName?: string;
 
   constructor(metaData = new ParameterMetaData(), typeName?: string, values?: Record<string, IParameter>) {
     this.metaData = metaData;
-    this.typeName = typeName ?? 'unknown';
+    this.typeName = typeName;
     this.values = values ?? {};
   }
 }

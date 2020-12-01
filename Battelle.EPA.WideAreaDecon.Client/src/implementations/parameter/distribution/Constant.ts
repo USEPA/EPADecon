@@ -16,6 +16,8 @@ export default class Constant implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
+  locked?: boolean;
+
   public get isSet(): boolean {
     return this.value !== undefined;
   }

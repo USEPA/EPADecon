@@ -72,14 +72,13 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { Key } from 'ts-keycode-enum';
 import { max } from 'lodash';
 import LogNormal from '@/implementations/parameter/distribution/LogNormal';
 
 @Component
 export default class LogNormalDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
+  @Prop({ required: true }) parameterValue!: LogNormal;
 
   sliderValue = [0, 0];
 
@@ -98,14 +97,6 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
   ignoreNextMeanSliderChange = false;
 
   ignoreNextStdSliderChange = false;
-
-  get parameterValue(): LogNormal {
-    if (this.selectedParameter.current !== undefined) {
-      return this.selectedParameter.current as LogNormal;
-    }
-
-    return (this.selectedParameter as unknown) as LogNormal;
-  }
 
   get stdDevStep(): number {
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
@@ -176,30 +167,22 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
     this.parameterValue.mean = newValue;
   }
 
-  @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper): void {
-    // const cast = newValue.current as LogNormal;
-    let cast;
-    if (newValue.current !== undefined) {
-      cast = newValue.current as LogNormal;
-    } else {
-      cast = (newValue as unknown) as LogNormal;
-    }
-
+  @Watch('parameterValue')
+  onParameterChanged(newValue: LogNormal): void {
     this.step = this.parameterValue.metaData.step;
 
     this.ignoreNextValueSliderChange = true;
 
     this.ignoreNextMeanSliderChange = true;
     this.sliderMean = 0;
-    this.sliderMean = cast.mean ?? 1;
+    this.sliderMean = newValue.mean ?? 1;
 
     this.ignoreNextStdSliderChange = true;
     this.sliderStd = 1;
-    this.sliderStd = cast.stdDev ?? 2;
+    this.sliderStd = newValue.stdDev ?? 2;
 
-    this.textMean = cast.mean?.toString() ?? '';
-    this.textStd = cast.stdDev?.toString() ?? '';
+    this.textMean = newValue.mean?.toString() ?? '';
+    this.textStd = newValue.stdDev?.toString() ?? '';
   }
 
   onTextMeanEnterPressed(event: KeyboardEvent): void {
