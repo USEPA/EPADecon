@@ -79,7 +79,10 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
   ignoreNextValueSliderChange = false;
 
   get parameterValue(): LogUniform {
-    return this.selectedParameter.current as LogUniform;
+    if (this.selectedParameter.current !== undefined) {
+      return this.selectedParameter.current as LogUniform;
+    }
+    return (this.selectedParameter as unknown) as LogUniform;
   }
 
   vuetifyColorProps(): unknown {
@@ -116,7 +119,12 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
 
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
-    const cast = newValue.current as Uniform;
+    let cast;
+    if (newValue.current !== undefined) {
+      cast = newValue.current as LogUniform;
+    } else {
+      cast = (newValue as unknown) as LogUniform;
+    }
     this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
 
@@ -150,7 +158,7 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
       this.parameterValue.logMin = undefined;
     } else if (value === this.sliderValue[0]) {
       this.parameterValue.logMin = Math.log10(value);
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMin = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (this.sliderValue[1] <= value) {
@@ -175,7 +183,7 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
       this.parameterValue.logMax = undefined;
     } else if (value === this.sliderValue[1]) {
       this.parameterValue.logMax = Math.log10(value);
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMax = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (this.sliderValue[0] >= value) {

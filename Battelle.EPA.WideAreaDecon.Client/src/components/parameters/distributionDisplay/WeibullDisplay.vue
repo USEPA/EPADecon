@@ -93,7 +93,10 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
   ignoreNextKSliderChange = false;
 
   get parameterValue(): Weibull {
-    return this.selectedParameter.current as Weibull;
+    if (this.selectedParameter.current !== undefined) {
+      return this.selectedParameter.current as Weibull;
+    }
+    return (this.selectedParameter as unknown) as Weibull;
   }
 
   get KStep(): number {
@@ -102,12 +105,14 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
 
   // eslint-disable-next-line class-methods-use-this
   get min(): number {
-    return 0.0;
+    // return 0.0;
+    return this.parameterValue.metaData.lowerLimit;
   }
 
   // eslint-disable-next-line class-methods-use-this
   get max(): number {
-    return 1000.0;
+    // return 1000.0;
+    return this.parameterValue.metaData.upperLimit;
   }
 
   vuetifyColorProps(): unknown {
@@ -169,7 +174,12 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
 
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
-    const cast = newValue.current as Weibull;
+    let cast;
+    if (newValue.current !== undefined) {
+      cast = newValue.current as Weibull;
+    } else {
+      cast = (newValue as unknown) as Weibull;
+    }
     this.step = this.parameterValue.metaData.step;
 
     this.ignoreNextValueSliderChange = true;
@@ -207,7 +217,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.lambda = undefined;
     } else if (value === this.sliderLambda) {
       this.parameterValue.lambda = value;
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textLambda = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value >= this.sliderValue[1]) {
@@ -230,7 +240,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.k = undefined;
     } else if (value === this.sliderK) {
       this.parameterValue.k = value;
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textK = '';
     } else {
       this.textK = this.sliderK.toString();

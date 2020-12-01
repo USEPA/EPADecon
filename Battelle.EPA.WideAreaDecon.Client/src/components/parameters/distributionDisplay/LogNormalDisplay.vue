@@ -34,7 +34,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="meanValue"
-            @keydown="onTextMeamEnterPressed"
+            @keydown="onTextMeanEnterPressed"
             @blur="updateOnTextMeanChange"
             v-model="textMean"
             label="Mean"
@@ -100,7 +100,11 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
   ignoreNextStdSliderChange = false;
 
   get parameterValue(): LogNormal {
-    return this.selectedParameter.current as LogNormal;
+    if (this.selectedParameter.current !== undefined) {
+      return this.selectedParameter.current as LogNormal;
+    }
+
+    return (this.selectedParameter as unknown) as LogNormal;
   }
 
   get stdDevStep(): number {
@@ -108,11 +112,11 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
   }
 
   get min(): number {
-    return this.selectedParameter.current.metaData.lowerLimit;
+    return this.parameterValue.metaData.lowerLimit;
   }
 
   get max(): number {
-    return this.selectedParameter.current.metaData.upperLimit;
+    return this.parameterValue.metaData.upperLimit;
   }
 
   vuetifyColorProps(): unknown {
@@ -174,7 +178,14 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
 
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
-    const cast = newValue.current as LogNormal;
+    // const cast = newValue.current as LogNormal;
+    let cast;
+    if (newValue.current !== undefined) {
+      cast = newValue.current as LogNormal;
+    } else {
+      cast = (newValue as unknown) as LogNormal;
+    }
+
     this.step = this.parameterValue.metaData.step;
 
     this.ignoreNextValueSliderChange = true;
@@ -212,7 +223,7 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.mean = undefined;
     } else if (value === this.sliderMean) {
       this.parameterValue.mean = value;
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMean = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value >= this.sliderValue[1]) {
@@ -235,7 +246,7 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.stdDev = undefined;
     } else if (value === this.sliderStd) {
       this.parameterValue.stdDev = value;
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textStd = '';
     } else {
       this.textStd = this.sliderStd.toString();

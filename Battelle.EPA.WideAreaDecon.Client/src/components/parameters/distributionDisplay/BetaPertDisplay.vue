@@ -113,7 +113,11 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
   ignoreNextModeSliderChange = false;
 
   get parameterValue(): BetaPERT {
-    return this.selectedParameter.current as BetaPERT;
+    if (this.selectedParameter.current !== undefined) {
+      return this.selectedParameter.current as BetaPERT;
+    }
+
+    return (this.selectedParameter as unknown) as BetaPERT;
   }
 
   vuetifyColorProps(): unknown {
@@ -172,7 +176,13 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
 
   @Watch('selectedParameter')
   onParameterChanged(newValue: ParameterWrapper): void {
-    const cast = newValue.current as BetaPERT;
+    // const cast = newValue.current as BetaPERT;
+    let cast;
+    if (newValue.current !== undefined) {
+      cast = newValue.current as BetaPERT;
+    } else {
+      cast = (newValue as unknown) as BetaPERT;
+    }
     this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
@@ -217,7 +227,7 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.min = undefined;
     } else if (value === this.sliderValue[0]) {
       this.parameterValue.min = value;
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMin = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value >= this.sliderMode) {
@@ -246,7 +256,7 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.max = undefined;
     } else if (value === this.sliderValue[1]) {
       this.parameterValue.max = value;
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMax = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value <= this.sliderMode) {
@@ -275,7 +285,7 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.mode = undefined;
     } else if (value === this.sliderMode) {
       this.parameterValue.mode = value;
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMode = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value >= this.sliderValue[1]) {
