@@ -1,4 +1,5 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import { isEqual } from 'lodash';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
@@ -11,7 +12,7 @@ export default class EnumeratedParameter implements IParameter {
   isSet = false;
 
   isEquivalent(other: IParameter): boolean {
-    return other.type === this.type;
+    return isEqual(this, other);
   }
 
   @JsonProperty()

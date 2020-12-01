@@ -65,14 +65,13 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { Key } from 'ts-keycode-enum';
 import { max } from 'lodash';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
 
 @Component
 export default class WeibullDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
+  @Prop({ required: true }) parameterValue!: Weibull;
 
   sliderValue = [0, 0];
 
@@ -92,22 +91,20 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
 
   ignoreNextKSliderChange = false;
 
-  get parameterValue(): Weibull {
-    return this.selectedParameter.current as Weibull;
-  }
-
   get KStep(): number {
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
   }
 
   // eslint-disable-next-line class-methods-use-this
   get min(): number {
-    return 0.0;
+    // return 0.0;
+    return this.parameterValue.metaData.lowerLimit;
   }
 
   // eslint-disable-next-line class-methods-use-this
   get max(): number {
-    return 1000.0;
+    // return 1000.0;
+    return this.parameterValue.metaData.upperLimit;
   }
 
   vuetifyColorProps(): unknown {
@@ -167,23 +164,22 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     this.parameterValue.k = newValue;
   }
 
-  @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper): void {
-    const cast = newValue.current as Weibull;
+  @Watch('parameterValue')
+  onParameterChanged(newValue: Weibull): void {
     this.step = this.parameterValue.metaData.step;
 
     this.ignoreNextValueSliderChange = true;
 
     this.ignoreNextLambdaSliderChange = true;
     this.sliderLambda = 0;
-    this.sliderLambda = cast.lambda ?? 1;
+    this.sliderLambda = newValue.lambda ?? 1;
 
     this.ignoreNextKSliderChange = true;
     this.sliderK = 1;
-    this.sliderK = cast.k ?? 2;
+    this.sliderK = newValue.k ?? 2;
 
-    this.textLambda = cast.lambda?.toString() ?? '';
-    this.textK = cast.k?.toString() ?? '';
+    this.textLambda = newValue.lambda?.toString() ?? '';
+    this.textK = newValue.k?.toString() ?? '';
   }
 
   onTextLambdaEnterPressed(event: KeyboardEvent): void {
@@ -207,7 +203,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.lambda = undefined;
     } else if (value === this.sliderLambda) {
       this.parameterValue.lambda = value;
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textLambda = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (value >= this.sliderValue[1]) {
@@ -230,7 +226,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
       this.parameterValue.k = undefined;
     } else if (value === this.sliderK) {
       this.parameterValue.k = value;
-    } else if (!this.selectedParameter.current.isSet && !castComponent.validate(true)) {
+    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textK = '';
     } else {
       this.textK = this.sliderK.toString();

@@ -14,12 +14,14 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Scenario
         private const string AreaRowName = "Area Contaminated";
         private const string LoadingRowName = "Loading";
         private const string IndoorBuildingBreakoutName = "Indoor Contamination Breakout";
+        private const string IndoorSurfaceBreakoutName = "Indoor Surface Type Breakout";
         private const string OutdoorSurfaceBreakoutName = "Outdoor Surface Type Breakout";
         private const string UndergroundSurfaceBreakoutName = "Underground Surface Type Breakout";
 
         public EnumeratedParameter<DecontaminationPhase> Area { get; set; }
         public EnumeratedParameter<DecontaminationPhase> Loading { get; set; }
         public EnumeratedFraction<BuildingCategory> IndoorBuildingBreakout { get; set; }
+        public EnumeratedFraction<SurfaceType> IndoorSurfaceBreakout { get; set; }
         public EnumeratedFraction<SurfaceType> OutdoorSurfaceBreakout { get; set; }
         public EnumeratedFraction<SurfaceType> UndergroundSurfaceBreakout { get; set; }
 
@@ -50,6 +52,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Scenario
                     Name = IndoorBuildingBreakoutName,
                     Description = "The breakout of building types in model"
                 }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == IndoorBuildingBreakoutName)),
+                IndoorSurfaceBreakout = EnumeratedFraction<SurfaceType>.FromExcel(new ParameterMetaData()
+                {
+                    Category = SheetName,
+                    Description = "The breakout of indoor surfaces in the model",
+                    Name = IndoorSurfaceBreakoutName
+                }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == IndoorSurfaceBreakoutName)),
                 OutdoorSurfaceBreakout = EnumeratedFraction<SurfaceType>.FromExcel(new ParameterMetaData()
                 {
                     Category = SheetName,
@@ -76,6 +84,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Scenario
                     Area,
                     Loading,
                     IndoorBuildingBreakout,
+                    IndoorSurfaceBreakout,
                     OutdoorSurfaceBreakout,
                     UndergroundSurfaceBreakout
                 }
