@@ -58,6 +58,20 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col cols="6">
+        <v-card class="pa-2" outlined tile>
+          <v-card-title class="grey--text">Baseline</v-card-title>
+          <scatter-plot-wrapper :data="data" :type="'scatter'" :width="400" :height="150" />
+        </v-card>
+      </v-col>
+      <v-col cols="6">
+        <v-card class="pa-2" outlined tile>
+          <v-card-title class="grey--text">Current</v-card-title>
+          <scatter-plot-wrapper :data="data" :type="'scatter'" :width="400" :height="150" />
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -69,9 +83,43 @@ import { Key } from 'ts-keycode-enum';
 import { max } from 'lodash';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
 
-@Component
+import { ChartData } from 'chart.js';
+import {
+  DefaultChartData,
+  ScatterPlotWrapper,
+  DefaultChartOptions,
+  ChartPoint2D,
+  CycleColorProvider,
+  ScatterChartDataset,
+} from 'battelle-common-vue-charting/src/index';
+
+import { WeibullDistribution } from 'battelle-common-typescript-statistics';
+
+// Example points just to get a visual
+const wDist = new WeibullDistribution(0.1, 0.1);
+const x: number[] = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
+
+const points: number[][] = x.map((item) => {
+  return [item, wDist.PDF(item)];
+});
+
+const dataPoints = points.map((p) => {
+  return new ChartPoint2D(p[0], p[1]);
+});
+const colorProvider = new CycleColorProvider();
+const set = new ScatterChartDataset(dataPoints, 'Example', colorProvider);
+const chartData = new DefaultChartData([set]);
+
+@Component({ components: { ScatterPlotWrapper } })
 export default class WeibullDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: Weibull;
+
+  @Prop({
+    default: () => {
+      return chartData;
+    },
+  })
+  data!: ChartData;
 
   sliderValue = [0, 0];
 
