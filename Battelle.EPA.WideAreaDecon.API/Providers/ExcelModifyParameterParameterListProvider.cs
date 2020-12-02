@@ -67,8 +67,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
                 {
                     efficacyParameters.Add(EnumeratedParameter<SurfaceType>.FromExcel(new ParameterMetaData()
                     {
-                        Name = $"{method} Efficacy by Surface",
-                        Description = $"The Efficacy of {method} based on the surface it is applied to",
+                        Name = $"{method.GetStringValue()} Efficacy by Surface",
+                        Description = $"The Efficacy of {method.GetStringValue()} based on the surface it is applied to",
                         Units = "log reduction",
                     }, cat.Select(row => row.Key)));
                 }
