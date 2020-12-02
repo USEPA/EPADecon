@@ -17,7 +17,7 @@ export default class Weibull extends WeibullDistribution implements IParameter {
 
   set k(newVal: number | undefined) {
     if (newVal) {
-      this.Shape = newVal ?? 0; // using super.Shape results in an error
+      this.Shape = newVal; // using super.Shape results in an error
     }
   }
 

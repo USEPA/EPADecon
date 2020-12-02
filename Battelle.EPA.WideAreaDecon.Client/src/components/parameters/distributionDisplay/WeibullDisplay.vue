@@ -62,13 +62,13 @@
       <v-col cols="6">
         <v-card class="pa-2" outlined tile>
           <v-card-title class="grey--text">Baseline</v-card-title>
-          <scatter-plot-wrapper :data="dataBaseline" :type="'scatter'" :width="400" :height="150" />
+          <scatter-plot-wrapper :data="baselineCharData" :type="'scatter'" :width="400" :height="150" />
         </v-card>
       </v-col>
       <v-col cols="6">
         <v-card class="pa-2" outlined tile>
           <v-card-title class="grey--text">Current</v-card-title>
-          <scatter-plot-wrapper :data="dataCurrent" :type="'scatter'" :width="400" :height="150" />
+          <scatter-plot-wrapper :data="currentChartData" :type="'scatter'" :width="400" :height="150" />
         </v-card>
       </v-col>
     </v-row>
@@ -97,9 +97,11 @@ import {
 export default class WeibullDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: Weibull;
 
-  dataBaseline: ChartData = this.getChartData();
+  baselineCharData: ChartData = this.getChartData();
 
-  dataCurrent: ChartData = this.getChartData();
+  currentChartData: ChartData = this.getChartData();
+
+  // options: ChartOptions = new DefaultChartOptions(); // in progress
 
   sliderValue = [0, 0];
 
@@ -139,7 +141,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     const x: number[] = range(0.00001, 2.5, 0.025);
     const points: number[][] = this.parameterValue.pdf(x[0])
       ? x.map((item) => {
-          return [item, this.parameterValue.pdf(item)!]; // don't know if there is a better way to do this
+          return [item, this.parameterValue.pdf(item)!]; // don't know if there is a better way to do this without the ! operator
         })
       : [[0, 0]];
     const dataPoints = points.map((p) => {
@@ -179,7 +181,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     if (newValue[1] < this.sliderLambda) {
       [, this.sliderLambda] = newValue;
     }
-    this.dataCurrent = this.getChartData();
+    this.currentChartData = this.getChartData();
   }
 
   @Watch('sliderLambda')
@@ -197,7 +199,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     if (newValue > this.sliderValue[1]) {
       this.sliderValue = [this.sliderValue[0], newValue];
     }
-    this.dataCurrent = this.getChartData();
+    this.currentChartData = this.getChartData();
   }
 
   @Watch('sliderK')
@@ -209,7 +211,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
 
     this.textK = newValue.toString();
     this.parameterValue.k = newValue;
-    this.dataCurrent = this.getChartData();
+    this.currentChartData = this.getChartData();
   }
 
   @Watch('parameterValue')
@@ -228,7 +230,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
 
     this.textLambda = newValue.lambda?.toString() ?? '';
     this.textK = newValue.k?.toString() ?? '';
-    this.dataCurrent = this.getChartData();
+    this.currentChartData = this.getChartData();
   }
 
   onTextLambdaEnterPressed(event: KeyboardEvent): void {
@@ -264,7 +266,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     } else {
       this.textLambda = this.sliderLambda.toString();
     }
-    this.dataCurrent = this.getChartData();
+    this.currentChartData = this.getChartData();
   }
 
   updateOnTextKChange(): void {
@@ -281,7 +283,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     } else {
       this.textK = this.sliderK.toString();
     }
-    this.dataCurrent = this.getChartData();
+    this.currentChartData = this.getChartData();
   }
 
   onSliderLambdaStopped(value: number): void {
@@ -305,8 +307,8 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     this.textLambda = this.parameterValue.lambda?.toString() ?? '';
     this.textK = this.parameterValue.k?.toString() ?? '';
 
-    this.dataCurrent = this.getChartData();
-    this.dataBaseline = this.getChartData();
+    this.currentChartData = this.getChartData();
+    this.baselineCharData = this.getChartData();
   }
 
   created(): void {
