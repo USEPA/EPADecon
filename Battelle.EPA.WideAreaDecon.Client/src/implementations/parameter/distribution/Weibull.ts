@@ -10,11 +10,27 @@ export default class Weibull extends WeibullDistribution implements IParameter {
   @JsonProperty()
   readonly type = ParameterType.weibull;
 
-  @JsonProperty()
-  k?: number;
+  @JsonProperty('k')
+  get k(): number | undefined {
+    return this.Shape === Number.POSITIVE_INFINITY ? this.Shape : undefined;
+  }
 
-  @JsonProperty()
-  lambda?: number;
+  set k(newVal: number | undefined) {
+    if (newVal) {
+      this.Shape = newVal ?? 0; // using super.Shape results in an error
+    }
+  }
+
+  @JsonProperty('lambda')
+  get lambda(): number | undefined {
+    return this.Scale;
+  }
+
+  set lambda(newVal: number | undefined) {
+    if (newVal) {
+      this.Scale = newVal;
+    }
+  }
 
   get min(): number {
     return this.metaData.lowerLimit;
@@ -24,7 +40,7 @@ export default class Weibull extends WeibullDistribution implements IParameter {
     return this.metaData.lowerLimit;
   }
 
-  // What is the difference between calculateMean and get mean()
+  // What is the difference between calculateMean and the mean member getter
   static calculateMean(lambda: number, k: number): number {
     return lambda * Utility.gamma(1 + 1 / k);
   }
