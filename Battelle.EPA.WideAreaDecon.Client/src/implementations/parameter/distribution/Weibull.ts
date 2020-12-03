@@ -97,6 +97,10 @@ export default class Weibull extends WeibullDistribution implements IParameter {
     return this.k === other.k && this.lambda === other.lambda;
   }
 
+  probabilityFunction(value: number): number {
+    return this.PDF(value);
+  }
+
   @JsonProperty()
   metaData: ParameterMetaData;
 

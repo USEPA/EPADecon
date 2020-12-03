@@ -57,7 +57,19 @@ import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
-import { ScatterPlotWrapper } from 'battelle-common-vue-charting/src/index';
+
+import { ChartData, ChartOptions, ChartLegendOptions, ChartDataSets } from 'chart.js';
+import {
+  DefaultChartData,
+  ScatterPlotWrapper,
+  DefaultChartOptions,
+  ChartPoint2D,
+  CycleColorProvider,
+  ScatterChartDataset,
+  EmptyChartData,
+  EmptyChartOptions,
+  DefaultChartLegendOptions,
+} from 'battelle-common-vue-charting/src/index';
 
 @Component({
   components: {
@@ -131,6 +143,13 @@ export default class ParameterDistributionSelector extends Vue {
 
   get parameterHasChanged(): boolean {
     return this.currentSelectedParameter.isChanged();
+  }
+
+  get chartData(): ChartData {
+    if (this.currentSelectedParameter.current.probabilityFunction) {
+      // chart data generation using the probabilityFunction will go here
+    }
+    return new EmptyChartData();
   }
 
   resetParameter(): void {
