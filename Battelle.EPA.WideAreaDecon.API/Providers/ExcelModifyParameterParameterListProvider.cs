@@ -61,25 +61,31 @@ namespace Battelle.EPA.WideAreaDecon.API.Providers
                     rows.Add(methodSheet.GetRow(i), ParameterMetaData.FromExcel(methodSheet.GetRow(i)));
                 }
 
-                var cat = rows.Where(row =>
+                var surfaceCat = rows.Where(row =>
                     Enum.TryParse(typeof(SurfaceType), row.Value.Category, true, out var tmp)).ToArray();
-                if (cat.Any())
+                if (surfaceCat.Any())
                 {
                     efficacyParameters.Add(EnumeratedParameter<SurfaceType>.FromExcel(new ParameterMetaData()
                     {
                         Name = $"{method.GetStringValue()} Efficacy by Surface",
                         Description = $"The Efficacy of {method.GetStringValue()} based on the surface it is applied to",
                         Units = "log reduction",
-                    }, cat.Select(row => row.Key)));
+                    }, surfaceCat.Select(row => row.Key)));
                 }
 
-                var nonCat = rows.Where(row => !Enum.TryParse(typeof(SurfaceType),
+                var methodCat = rows.Where(row => Enum.TryParse(typeof(ApplicationMethod),
                     ParameterMetaData.FromExcel(row.Key).Category,
                     true,
                     out var tmp)).ToArray();
-                if (nonCat.Any())
-                    efficacyParameters.AddRange(nonCat.Select(row =>
-                        IParameter.FromExcel(ParameterMetaData.FromExcel(row.Key), row.Key)));
+                if (methodCat.Any())
+                {
+                    efficacyParameters.Add(EnumeratedParameter<ApplicationMethod>.FromExcel(new ParameterMetaData()
+                    {
+                        Name = $"{method.GetStringValue()} Efficacy",
+                        Description = $"The Efficacy of {method.GetStringValue()} independent of the surface it is applied to",
+                        Units = "log reduction",
+                    }, methodCat.Select(row => row.Key)));
+                }
             }
 
             var filters = GenericSheetNames.Select(genericSheetName =>

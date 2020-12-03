@@ -35,7 +35,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
                 {
                     values[val] = IParameter.FromExcel(ParameterMetaData.FromExcel(tRows[0]), tRows[0]);
                 }
-                else
+                else if (tRows.Count() > 1)
                 {
                     values[val] =
                         UniformXDependentDistribution.FromExcel(ParameterMetaData.FromExcel(tRows[0]), "", tRows); //TODO:: need to figure out name
