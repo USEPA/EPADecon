@@ -13,9 +13,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
         private PhaseLagCalculator Calculator { get; set; }
 
-        public void Setup()
+        public void Setup(double[] csParameters)
         {
-            //temp values from unit tests until input format decided
+            //values temp until input/parameter format determined
             var surfaceAreaPerWipe = 4.64515;
             var surfaceAreaPerHepa = 9.2903;
             var wipesPerHrPerTeam = 6.0;
@@ -54,7 +54,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             };
             var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>()
             {
-                { PersonnelLevel.OSC, 0.3 },
+                { PersonnelLevel.OSC, csParameters[0] },
                 { PersonnelLevel.PL1, 0.0 },
                 { PersonnelLevel.PL2, 1.0 },
                 { PersonnelLevel.PL3, 2.0 },
@@ -131,7 +131,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             );
         }
 
-        public double CalculateCost()
+        public double CalculateCost(double[] csInputs)
         {
             return (Calculator_supplies.CalculateSuppliesCost + Calculator_labor.CalculateLaborCost + Calculator_entEx.CalculateEntrancesExitsCost + Calculator_analysis.CalculateAnalysisQuantityCost);
         }
