@@ -91,15 +91,16 @@ import {
   ChartPoint2D,
   CycleColorProvider,
   ScatterChartDataset,
+  EmptyChartData,
 } from 'battelle-common-vue-charting/src/index';
 
 @Component({ components: { ScatterPlotWrapper } })
 export default class WeibullDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: Weibull;
 
-  baselineCharData: ChartData = this.getChartData();
+  baselineCharData: ChartData = new EmptyChartData();
 
-  currentChartData: ChartData = this.getChartData();
+  currentChartData: ChartData = new EmptyChartData();
 
   // options: ChartOptions = new DefaultChartOptions(); // in progress
 
@@ -211,6 +212,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
 
     this.textK = newValue.toString();
     this.parameterValue.k = newValue;
+
     this.currentChartData = this.getChartData();
   }
 
@@ -230,6 +232,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
 
     this.textLambda = newValue.lambda?.toString() ?? '';
     this.textK = newValue.k?.toString() ?? '';
+
     this.currentChartData = this.getChartData();
   }
 
@@ -287,11 +290,11 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
   }
 
   onSliderLambdaStopped(value: number): void {
-    this.parameterValue.lambda = Math.log10(value);
+    this.parameterValue.lambda = value;
   }
 
   onSliderKStopped(value: number): void {
-    this.parameterValue.k = Math.log10(value);
+    this.parameterValue.k = value;
   }
 
   setValues(): void {

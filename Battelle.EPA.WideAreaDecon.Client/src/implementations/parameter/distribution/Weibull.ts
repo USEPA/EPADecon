@@ -100,7 +100,7 @@ export default class Weibull extends WeibullDistribution implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  constructor(metaData: ParameterMetaData, k?: number, lambda?: number) {
+  constructor(metaData: ParameterMetaData = new ParameterMetaData(), k?: number, lambda?: number) {
     super(k ?? Infinity, lambda ?? Infinity);
     this.metaData = metaData;
     this.k = k;
