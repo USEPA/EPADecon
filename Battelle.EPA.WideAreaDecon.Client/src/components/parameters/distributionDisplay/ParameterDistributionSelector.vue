@@ -23,6 +23,15 @@
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
     <component :key="componentKey" :is="distComponent" :parameter-value="currentSelectedParameter.current"> </component>
+    <v-container>
+      <v-row>
+        <v-col cols="12">
+          <v-card class="pa-2" outlined tile>
+            <scatter-plot-wrapper :data="currentSelectedParameter.current.chartData" :width="400" :height="150" />
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </v-card>
 </template>
 
@@ -48,6 +57,7 @@ import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
+import { ScatterPlotWrapper } from 'battelle-common-vue-charting/src/index';
 
 @Component({
   components: {
@@ -63,6 +73,7 @@ import TYPES from '@/dependencyInjection/types';
     WeibullDisplay,
     EnumeratedFractionDisplay,
     EnumeratedParameterDisplay,
+    ScatterPlotWrapper,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
