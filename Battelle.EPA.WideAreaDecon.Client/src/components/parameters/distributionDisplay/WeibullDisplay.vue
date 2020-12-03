@@ -59,16 +59,15 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="6">
+      <v-col cols="12">
         <v-card class="pa-2" outlined tile>
-          <v-card-title class="grey--text">Baseline</v-card-title>
-          <scatter-plot-wrapper :data="baselineCharData" :type="'scatter'" :width="400" :height="150" />
-        </v-card>
-      </v-col>
-      <v-col cols="6">
-        <v-card class="pa-2" outlined tile>
-          <v-card-title class="grey--text">Current</v-card-title>
-          <scatter-plot-wrapper :data="currentChartData" :type="'scatter'" :width="400" :height="150" />
+          <scatter-plot-wrapper
+            :options="chartOptions"
+            :data="chartData"
+            :type="'scatter'"
+            :width="400"
+            :height="150"
+          />
         </v-card>
       </v-col>
     </v-row>
@@ -83,7 +82,7 @@ import { Key } from 'ts-keycode-enum';
 import { max, range } from 'lodash';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
 
-import { ChartData } from 'chart.js';
+import { ChartData, ChartOptions, ChartLegendOptions, ChartDataSets } from 'chart.js';
 import {
   DefaultChartData,
   ScatterPlotWrapper,
@@ -92,17 +91,19 @@ import {
   CycleColorProvider,
   ScatterChartDataset,
   EmptyChartData,
+  EmptyChartOptions,
+  DefaultChartLegendOptions,
 } from 'battelle-common-vue-charting/src/index';
 
 @Component({ components: { ScatterPlotWrapper } })
 export default class WeibullDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: Weibull;
 
-  baselineCharData: ChartData = new EmptyChartData();
+  chartData: ChartData = new EmptyChartData();
 
-  currentChartData: ChartData = new EmptyChartData();
+  baselineChartData: ChartDataSets = new EmptyChartData();
 
-  // options: ChartOptions = new DefaultChartOptions(); // in progress
+  chartOptions: ChartOptions = new EmptyChartOptions();
 
   sliderValue = [0, 0];
 
@@ -139,6 +140,12 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
   }
 
   getChartData(): ChartData {
+    const set = this.getChartDataset('Current');
+    const chartData = new DefaultChartData([set, this.baselineChartData]);
+    return chartData;
+  }
+
+  getChartDataset(name: string, colorChoices?: string[]): ChartDataSets {
     const x: number[] = range(0.00001, 2.5, 0.025);
     const points: number[][] = this.parameterValue.pdf(x[0])
       ? x.map((item) => {
@@ -148,11 +155,15 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     const dataPoints = points.map((p) => {
       return new ChartPoint2D(p[0], p[1]);
     });
-    const colorProvider = new CycleColorProvider();
-    const set = new ScatterChartDataset(dataPoints, 'Example', colorProvider);
-    set.pointRadius = 0; // should be a better way to hide the points
-    const chartData = new DefaultChartData([set]);
-    return chartData;
+    const colorProvider: CycleColorProvider = new CycleColorProvider(colorChoices);
+    const set: ChartDataSets = new ScatterChartDataset(dataPoints, name, colorProvider);
+    set.pointRadius = 0;
+    return set;
+  }
+
+  setChartOptions(): void {
+    this.chartOptions = new DefaultChartOptions();
+    // if (this.chartOptions.legend) this.chartOptions.legend.display = false;
   }
 
   vuetifyColorProps(): unknown {
@@ -182,7 +193,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     if (newValue[1] < this.sliderLambda) {
       [, this.sliderLambda] = newValue;
     }
-    this.currentChartData = this.getChartData();
+    this.chartData = this.getChartData();
   }
 
   @Watch('sliderLambda')
@@ -200,7 +211,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     if (newValue > this.sliderValue[1]) {
       this.sliderValue = [this.sliderValue[0], newValue];
     }
-    this.currentChartData = this.getChartData();
+    this.chartData = this.getChartData();
   }
 
   @Watch('sliderK')
@@ -213,7 +224,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     this.textK = newValue.toString();
     this.parameterValue.k = newValue;
 
-    this.currentChartData = this.getChartData();
+    this.chartData = this.getChartData();
   }
 
   @Watch('parameterValue')
@@ -233,7 +244,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     this.textLambda = newValue.lambda?.toString() ?? '';
     this.textK = newValue.k?.toString() ?? '';
 
-    this.currentChartData = this.getChartData();
+    this.chartData = this.getChartData();
   }
 
   onTextLambdaEnterPressed(event: KeyboardEvent): void {
@@ -269,7 +280,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     } else {
       this.textLambda = this.sliderLambda.toString();
     }
-    this.currentChartData = this.getChartData();
+    this.chartData = this.getChartData();
   }
 
   updateOnTextKChange(): void {
@@ -286,7 +297,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     } else {
       this.textK = this.sliderK.toString();
     }
-    this.currentChartData = this.getChartData();
+    this.chartData = this.getChartData();
   }
 
   onSliderLambdaStopped(value: number): void {
@@ -310,8 +321,9 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     this.textLambda = this.parameterValue.lambda?.toString() ?? '';
     this.textK = this.parameterValue.k?.toString() ?? '';
 
-    this.currentChartData = this.getChartData();
-    this.baselineCharData = this.getChartData();
+    this.baselineChartData = this.getChartDataset('Baseline', ['#FF7F50']);
+    this.chartData = this.getChartData();
+    this.setChartOptions();
   }
 
   created(): void {
