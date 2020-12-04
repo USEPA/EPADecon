@@ -2,138 +2,31 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.Model.Services;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
-    public class CharacterizationSamplingCostCalculator
+    public class CharacterizationSamplingCostCalculator : ICharacterizationSamplingCalculatorFactory
     {
         private LaborCostCalculator Calculator_labor { get; set; }
         private SuppliesCostCalculator Calculator_supplies { get; set; }
         private EntrancesExitsCostCalculator Calculator_entEx { get; set; }
         private AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
-        private PhaseLagCalculator Calculator { get; set; }
+        private PhaseLagCalculator Calculator_phaseLag { get; set; }
 
-        public void Setup(double[] csParameters)
+        public double CalculateCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
+             Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
-            //values temp until input/parameter format determined
-            var surfaceAreaPerWipe = 4.64515;
-            var surfaceAreaPerHepa = 9.2903;
-            var wipesPerHrPerTeam = 6.0;
-            var hepaSocksPerHrPerTeam = 6.0;
-            var costPerWipe = 19.0;
-            var costPerVacuum = 29.0;
-            var hepaRentalCostPerDay = 15.0;
-            var costPerWipeAnalysis = 520.0;
-            var costPerHepaAnalysis = 290.0;
-            var samplePackageTime = 1.63;
-            var wipeAnalysisTime = 0.79;
-            var hepaAnalysisTime = 1.0;
-            var fractionOfWipeToEachLab = new Dictionary<Labs, double>()
-            {
-                { Labs.Lab1, 0.2 },
-                { Labs.Lab2, 0.6 },
-                { Labs.Lab3, 0.2 }
-            };
-            var fractionOfHepaToEachLab = new Dictionary<Labs, double>()
-            {
-                { Labs.Lab1, 0.5 },
-                { Labs.Lab2, 0.3 },
-                { Labs.Lab3, 0.2 }
-            };
-            var labUptimesHours = new Dictionary<Labs, double>()
-            {
-                { Labs.Lab1, 8.0 },
-                { Labs.Lab2, 9.0 },
-                { Labs.Lab3, 10.0 }
-            };
-            var labDistanceFromSite = new Dictionary<Labs, double>()
-            {
-                { Labs.Lab1, 48.0 },
-                { Labs.Lab2, 20.0 },
-                { Labs.Lab3, 90.0 }
-            };
-            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>()
-            {
-                { PersonnelLevel.OSC, csParameters[0] },
-                { PersonnelLevel.PL1, 0.0 },
-                { PersonnelLevel.PL2, 1.0 },
-                { PersonnelLevel.PL3, 2.0 },
-                { PersonnelLevel.PL4, 2.0 }
-            };
-            var personnelHourlyRate = new Dictionary<PersonnelLevel, double>()
-            {
-                { PersonnelLevel.OSC, 150.0 },
-                { PersonnelLevel.PL1, 90.0 },
-                { PersonnelLevel.PL2, 110.0 },
-                { PersonnelLevel.PL3, 130.0 },
-                { PersonnelLevel.PL4, 190.0 }
-            };
-            var personnelOverhead = 0.5;
-            var entriesPerTeam = 4.0;
-            var hoursEntering = 1.0;
-            var hoursExiting = 1.0;
-            var costPerPpe = new Dictionary<PpeLevel, double>()
-            {
-                { PpeLevel.A, 3322.0 },
-                { PpeLevel.B, 3023.8 },
-                { PpeLevel.C, 1897.68 },
-                { PpeLevel.D, 260.09 }
-            };
-            var numberEntriesPerPerson = 4.0;
-            var respiratorsPerPerson = 1.0;
-            var costPerRespirator = 238.0;
-
-            Calculator_supplies = new SuppliesCostCalculator(
-                surfaceAreaPerWipe,
-                surfaceAreaPerHepa,
-                wipesPerHrPerTeam,
-                hepaSocksPerHrPerTeam,
-                costPerWipe,
-                costPerVacuum,
-                hepaRentalCostPerDay
-            );
-            Calculator_PhaseLag = new PhaseLagCalculator(
-                surfaceAreaPerWipe,
-                surfaceAreaPerHepa,
-                labUptimesHours,
-                samplePackageTime,
-                wipeAnalysisTime,
-                hepaAnalysisTime,
-                fractionOfWipeToEachLab,
-                fractionOfHepaToEachLab,
-                labDistanceFromSite
-            );
-
-            Calculator_labor = new LaborCostCalculator(
-                personnelReqPerTeam,
-                personnelOverhead,
-                entriesPerTeam,
-                hoursEntering,
-                hoursExiting,
-                personnelHourlyRate,
-                SuppliesCostCalculator(),
-                PhaseLagCalculator()
-            );
-            Calculator_analysis = new AnalysisQuantityCostCalculator(
-                surfaceAreaPerWipe,
-                surfaceAreaPerHepa,
-                costPerWipeAnalysis,
-                costPerHepaAnalysis
-            );
-            Calculator_entEx = new EntrancesExitsCostCalculator(
-                personnelReqPerTeam,
-                numberEntriesPerPerson,
-                respiratorsPerPerson,
-                costPerRespirator,
-                costPerPpe,
-                LaborCostCalculator(),
-                SuppliesCostCalculator()
-            );
+            var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(_numberTeams, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
+            var laborCosts = Calculator_labor.CalculateLaborCost(_numberTeams, personnelRoundTripDays, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
+            var entExCosts = Calculator_entEx.CalculateEntrancesExitsCost(_numberTeams, ppePerLevelPerTeam, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
+            var analysisCosts = Calculator_analysis.CalculateAnalysisQuantityCost(_surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
+            return (  suppliesCosts + laborCosts + entExCosts + analysisCosts);
         }
 
-        public double CalculateCost(double[] csInputs)
+        public CharacterizationSamplingCostCalculator GetCalculator()
         {
-            return (Calculator_supplies.CalculateSuppliesCost + Calculator_labor.CalculateLaborCost + Calculator_entEx.CalculateEntrancesExitsCost + Calculator_analysis.CalculateAnalysisQuantityCost);
+            throw new System.NotImplementedException();
         }
     }
 }
