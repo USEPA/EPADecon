@@ -14,7 +14,6 @@ export default class EnumeratedParameter implements IParameter {
     const valueEntries = Object.values(this.values);
 
     const result = valueEntries.every((val: IParameter) => {
-      console.log(val.isSet === undefined);
       return val.isSet;
     });
 
