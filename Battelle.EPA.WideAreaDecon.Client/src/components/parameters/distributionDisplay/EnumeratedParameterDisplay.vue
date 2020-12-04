@@ -56,6 +56,7 @@ import TruncatedNormalDisplay from '@/components/parameters/distributionDisplay/
 import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNormalDisplay.vue';
 import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
 import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
+import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 
 @Component({
@@ -70,6 +71,7 @@ import { changeableDistributionTypes } from '@/mixin/parameterMixin';
     UniformDisplay,
     LogNormalDisplay,
     WeibullDisplay,
+    BimodalTruncatedNormalDisplay,
   },
 })
 export default class EnumeratedParameterDisplay extends Vue implements IParameterDisplay {
@@ -103,6 +105,8 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
         return 'uniform-display';
       case ParameterType.weibull:
         return 'weibull-display';
+      case ParameterType.bimodalTruncatedNormal:
+        return 'bimodal-truncated-normal-display';
       default:
         return 'unknown-display';
     }
