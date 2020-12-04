@@ -23,6 +23,9 @@
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
     <component :key="componentKey" :is="distComponent" :parameter-value="currentSelectedParameter.current"> </component>
+    <v-card v-if="shouldIncludeTitle" class="pa-2" outlined tile>
+      <scatter-plot-wrapper :data="chartData" :type="'scatter'" :height="1500" :width="400" />
+    </v-card>
   </v-card>
 </template>
 
@@ -48,6 +51,17 @@ import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
+import {
+  ChartPoint2D,
+  CycleColorProvider,
+  DefaultChartData,
+  // DefaultChartOptions,
+  // EmptyChartData,
+  ScatterChartDataset,
+  ScatterPlotWrapper,
+} from 'battelle-common-vue-charting/src/index';
+import { range } from 'lodash';
+import getDistribution from '@/implementations/parameter/distribution/Utilities';
 
 @Component({
   components: {
@@ -63,6 +77,7 @@ import TYPES from '@/dependencyInjection/types';
     WeibullDisplay,
     EnumeratedFractionDisplay,
     EnumeratedParameterDisplay,
+    ScatterPlotWrapper,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
@@ -80,6 +95,26 @@ export default class ParameterDistributionSelector extends Vue {
   currentDistType = ParameterType.constant;
 
   distNames = changeableDistributionTypes;
+
+  get currentDist() {
+    const dist = getDistribution(this.currentDistType, this.currentSelectedParameter.current as any);
+    return dist;
+  }
+
+  get baselineDist() {
+    const { type } = this.currentSelectedParameter.baseline;
+    const dist = getDistribution(type, this.currentSelectedParameter.baseline as any);
+    return dist;
+  }
+
+  get chartData(): DefaultChartData {
+    const colorProvider = new CycleColorProvider();
+    const current = this.createDataset('Current', colorProvider);
+    const baseline = this.createDataset('Baseline', colorProvider);
+
+    const chartData = new DefaultChartData([baseline, current]);
+    return chartData;
+  }
 
   get distComponent(): string {
     switch (this.currentSelectedParameter.current.type) {
@@ -120,6 +155,31 @@ export default class ParameterDistributionSelector extends Vue {
 
   get parameterHasChanged(): boolean {
     return this.currentSelectedParameter.isChanged();
+  }
+
+  createDataset(label: string, colorProvider: CycleColorProvider): ScatterChartDataset {
+    const data = label === 'Baseline' ? this.getDataPoints(true) : this.getDataPoints();
+
+    const dataset = new ScatterChartDataset(data, label, colorProvider);
+
+    dataset.fill = true;
+    dataset.pointRadius = 0;
+    dataset.borderColor = 'transparent';
+
+    return dataset;
+  }
+
+  getDataPoints(isBaseline = false): ChartPoint2D[] {
+    const dist = isBaseline ? this.baselineDist : this.currentDist;
+    const min = this.currentSelectedParameter.current.metaData.lowerLimit;
+    const max = this.currentSelectedParameter.current.metaData.upperLimit;
+
+    const step = (max - min) / 99; // # points = 50
+    const xValues = [...range(min, max, step), max];
+    const xyPairs = Number.isNaN(dist?.PDF(xValues[0])) ? [[0, 0]] : xValues.map((x) => [x, dist?.PDF(x)]);
+
+    const dataPoints = xyPairs.map(([x, y]) => new ChartPoint2D(x, y));
+    return dataPoints;
   }
 
   resetParameter(): void {
