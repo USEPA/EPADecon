@@ -1,19 +1,36 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import { WeibullDistribution } from 'battelle-common-typescript-statistics';
 import * as Utility from '@/mixin/mathUtilityMixin';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
-export default class Weibull implements IParameter {
+export default class Weibull extends WeibullDistribution implements IParameter {
   @JsonProperty()
   readonly type = ParameterType.weibull;
 
-  @JsonProperty()
-  k?: number;
+  @JsonProperty('k')
+  get k(): number | undefined {
+    return this.Shape;
+  }
 
-  @JsonProperty()
-  lambda?: number;
+  set k(newVal: number | undefined) {
+    if (newVal) {
+      this.Shape = newVal;
+    }
+  }
+
+  @JsonProperty('lambda')
+  get lambda(): number | undefined {
+    return this.Scale;
+  }
+
+  set lambda(newVal: number | undefined) {
+    if (newVal) {
+      this.Scale = newVal;
+    }
+  }
 
   get min(): number {
     return this.metaData.lowerLimit;
@@ -66,7 +83,8 @@ export default class Weibull implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  constructor(metaData: ParameterMetaData, k?: number, lambda?: number) {
+  constructor(metaData: ParameterMetaData = new ParameterMetaData(), k?: number, lambda?: number) {
+    super(k ?? Infinity, lambda ?? Infinity);
     this.metaData = metaData;
     this.k = k;
     this.lambda = lambda;
