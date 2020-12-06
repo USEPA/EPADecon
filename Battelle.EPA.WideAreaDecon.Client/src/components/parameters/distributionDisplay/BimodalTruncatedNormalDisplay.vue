@@ -304,7 +304,7 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
 
     this.textMean2 = newValue.toString();
-    this.parameterValue.mean1 = newValue;
+    this.parameterValue.mean2 = newValue;
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -332,7 +332,7 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
 
     this.textStd2 = newValue.toString();
-    this.parameterValue.mean1 = newValue;
+    this.parameterValue.mean2 = newValue;
   }
 
   @Watch('parameterValue')
