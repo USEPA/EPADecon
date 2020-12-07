@@ -1,8 +1,8 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
-import * as Utility from '@/mixin/mathUtilityMixin';
 import { WeibullDistribution } from 'battelle-common-typescript-statistics';
+import * as Utility from '@/mixin/mathUtilityMixin';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()

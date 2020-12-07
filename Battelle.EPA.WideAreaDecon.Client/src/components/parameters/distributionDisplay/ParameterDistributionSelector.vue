@@ -62,6 +62,8 @@ import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
+import { range } from 'lodash';
+import getDistribution from '@/implementations/parameter/distribution/Utilities';
 
 import Distribution from 'battelle-common-typescript-statistics';
 
@@ -118,12 +120,31 @@ export default class ParameterDistributionSelector extends Vue {
 
   distNames = changeableDistributionTypes;
 
-  distDataSeries: Distribution[] = [
-    this.currentSelectedParameter.baseline.super,
-    this.currentSelectedParameter.current.super,
-  ];
+  // distDataSeries: Distribution[] = [
+  //   this.currentSelectedParameter.baseline.super,
+  //   this.currentSelectedParameter.current.super,
+  // ];
 
   distributionGen: DistributionDataGenerator = new DistributionDataGenerator(1000, 0.0001, 2.5);
+  get currentDist() {
+    const dist = getDistribution(this.currentDistType, this.currentSelectedParameter.current as any);
+    return dist;
+  }
+
+  get baselineDist() {
+    const { type } = this.currentSelectedParameter.baseline;
+    const dist = getDistribution(type, this.currentSelectedParameter.baseline as any);
+    return dist;
+  }
+
+  get chartData(): DefaultChartData {
+    const colorProvider = new CycleColorProvider();
+    const current = this.createDataset('Current', colorProvider);
+    const baseline = this.createDataset('Baseline', colorProvider);
+
+    const chartData = new DefaultChartData([baseline, current]);
+    return chartData;
+  }
 
   get distComponent(): string {
     switch (this.currentSelectedParameter.current.type) {
@@ -164,6 +185,31 @@ export default class ParameterDistributionSelector extends Vue {
 
   get parameterHasChanged(): boolean {
     return this.currentSelectedParameter.isChanged();
+  }
+
+  createDataset(label: string, colorProvider: CycleColorProvider): ScatterChartDataset {
+    const data = label === 'Baseline' ? this.getDataPoints(true) : this.getDataPoints();
+
+    const dataset = new ScatterChartDataset(data, label, colorProvider);
+
+    dataset.fill = true;
+    dataset.pointRadius = 0;
+    dataset.borderColor = 'transparent';
+
+    return dataset;
+  }
+
+  getDataPoints(isBaseline = false): ChartPoint2D[] {
+    const dist = isBaseline ? this.baselineDist : this.currentDist;
+    const min = this.currentSelectedParameter.current.metaData.lowerLimit;
+    const max = this.currentSelectedParameter.current.metaData.upperLimit;
+
+    const step = (max - min) / 99; // # points = 50
+    const xValues = [...range(min, max, step), max];
+    const xyPairs = Number.isNaN(dist?.PDF(xValues[0])) ? [[0, 0]] : xValues.map((x) => [x, dist?.PDF(x)]);
+
+    const dataPoints = xyPairs.map(([x, y]) => new ChartPoint2D(x, y));
+    return dataPoints;
   }
 
   resetParameter(): void {
