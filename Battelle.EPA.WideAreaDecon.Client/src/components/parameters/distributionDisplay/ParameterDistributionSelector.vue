@@ -23,11 +23,16 @@
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
     <component :key="componentKey" :is="distComponent" :parameter-value="currentSelectedParameter.current"> </component>
-    <v-container>
+    <v-container v-show="plottable">
       <v-row>
         <v-col cols="12">
-          <v-card class="pa-2" outlined tile>
-            <scatter-plot-wrapper :data="currentSelectedParameter.current.chartData" :width="400" :height="150" />
+          <v-card v-if="shouldIncludeTitle" class="pa-2" outlined tile>
+            <distribution-chart
+              :distribution-series="distDataSeries"
+              :xAxisLabel="'X-data'"
+              yAxisLabel="'Example PDF'"
+              :data-generator="distributionGen"
+            />
           </v-card>
         </v-col>
       </v-row>
@@ -58,6 +63,8 @@ import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
 
+import Distribution from 'battelle-common-typescript-statistics';
+
 import { ChartData, ChartOptions, ChartLegendOptions, ChartDataSets } from 'chart.js';
 import {
   DefaultChartData,
@@ -69,7 +76,11 @@ import {
   EmptyChartData,
   EmptyChartOptions,
   DefaultChartLegendOptions,
+  DistributionChart,
 } from 'battelle-common-vue-charting/src/index';
+import IParameter from '@/interfaces/parameter/IParameter';
+
+import DistributionDataGenerator from '../../../../../../Statistics/src/DistributionDataGenerator';
 
 @Component({
   components: {
@@ -86,6 +97,7 @@ import {
     EnumeratedFractionDisplay,
     EnumeratedParameterDisplay,
     ScatterPlotWrapper,
+    DistributionChart,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
@@ -98,11 +110,20 @@ export default class ParameterDistributionSelector extends Vue {
     this.currentDistType = this.currentSelectedParameter.type;
   }
 
+  plottable = false;
+
   componentKey = 0;
 
   currentDistType = ParameterType.constant;
 
   distNames = changeableDistributionTypes;
+
+  distDataSeries: Distribution[] = [
+    this.currentSelectedParameter.baseline.super,
+    this.currentSelectedParameter.current.super,
+  ];
+
+  distributionGen: DistributionDataGenerator = new DistributionDataGenerator(1000, 0.0001, 2.5);
 
   get distComponent(): string {
     switch (this.currentSelectedParameter.current.type) {
@@ -143,13 +164,6 @@ export default class ParameterDistributionSelector extends Vue {
 
   get parameterHasChanged(): boolean {
     return this.currentSelectedParameter.isChanged();
-  }
-
-  get chartData(): ChartData {
-    if (this.currentSelectedParameter.current.probabilityFunction) {
-      // chart data generation using the probabilityFunction will go here
-    }
-    return new EmptyChartData();
   }
 
   resetParameter(): void {
