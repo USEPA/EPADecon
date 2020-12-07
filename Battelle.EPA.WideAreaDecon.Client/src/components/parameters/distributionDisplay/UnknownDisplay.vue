@@ -27,11 +27,11 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
+import IParameter from '@/interfaces/parameter/IParameter';
 
 @Component
 export default class UnknownParameterDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
+  @Prop({ required: true }) parameterValue!: IParameter;
 }
 </script>
 

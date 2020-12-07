@@ -55,14 +55,12 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
-import Uniform from '@/implementations/parameter/distribution/Uniform';
 import { Key } from 'ts-keycode-enum';
 import LogUniform from '@/implementations/parameter/distribution/LogUniform';
 
 @Component
 export default class LogUniformDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
+  @Prop({ required: true }) parameterValue!: LogUniform;
 
   sliderValue = [0, 0];
 
@@ -77,13 +75,6 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
   step = 0.1;
 
   ignoreNextValueSliderChange = false;
-
-  get parameterValue(): LogUniform {
-    if (this.selectedParameter.current !== undefined) {
-      return this.selectedParameter.current as LogUniform;
-    }
-    return (this.selectedParameter as unknown) as LogUniform;
-  }
 
   vuetifyColorProps(): unknown {
     return {
@@ -117,23 +108,17 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
     this.parameterValue.logMax = Math.log10(newValue[1]);
   }
 
-  @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper): void {
-    let cast;
-    if (newValue.current !== undefined) {
-      cast = newValue.current as LogUniform;
-    } else {
-      cast = (newValue as unknown) as LogUniform;
-    }
+  @Watch('parameterValue')
+  onParameterChanged(newValue: LogUniform): void {
     this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
 
     this.ignoreNextValueSliderChange = true;
     this.sliderValue = [this.min, this.min];
-    this.sliderValue = [cast.min ?? this.min, cast.max ?? this.max];
+    this.sliderValue = [newValue.min ?? this.min, newValue.max ?? this.max];
 
-    this.textMin = cast.min?.toString() ?? '';
-    this.textMax = cast.max?.toString() ?? '';
+    this.textMin = newValue.min?.toString() ?? '';
+    this.textMax = newValue.max?.toString() ?? '';
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
   }
 

@@ -5,7 +5,20 @@
     </v-row>
     <v-row>
       <v-col align-self="center" cols="3">
-        Parameter:
+        <v-overflow-btn
+          @change="onDistributionTypeChange"
+          class="my-2"
+          v-model="currentDistType"
+          :items="distNames"
+          filled
+          dense
+        >
+          <template v-slot:prepend>
+            <p>Distribution:</p>
+          </template>
+        </v-overflow-btn>
+      </v-col>
+      <v-col offset="5" cols="3">
         <v-overflow-btn
           @change="onSelectChanged"
           class="my-2"
@@ -15,21 +28,14 @@
           v-model="selectedValue"
           filled
           dense
-        />
-      </v-col>
-      <v-col align-self="center" cols="3">
-        Distribution:
-        <v-overflow-btn
-          @change="onDistributionTypeChange"
-          class="my-2"
-          v-model="currentDistType"
-          :items="distNames"
-          filled
-          dense
-        />
+        >
+          <template v-slot:prepend>
+            <p>Category:</p>
+          </template>
+        </v-overflow-btn>
       </v-col>
     </v-row>
-    <component :key="componentKey" :is="distComponent" :selected-parameter="selectedValue"> </component>
+    <component :key="componentKey" :is="distComponent" :parameter-value="selectedValue"> </component>
   </v-container>
 </template>
 
@@ -38,7 +44,6 @@ import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import IParameter from '@/interfaces/parameter/IParameter';
-import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
 import ParameterType from '@/enums/parameter/parameterType';
 import NullDisplay from '@/components/parameters/distributionDisplay/NullDisplay.vue';
@@ -52,9 +57,6 @@ import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNor
 import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
 import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
-import container from '@/dependencyInjection/config';
-import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
-import TYPES from '@/dependencyInjection/types';
 
 @Component({
   components: {
@@ -71,11 +73,7 @@ import TYPES from '@/dependencyInjection/types';
   },
 })
 export default class EnumeratedParameterDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) selectedParameter!: ParameterWrapper;
-
-  get parameterValue(): EnumeratedParameter {
-    return this.selectedParameter.current as EnumeratedParameter;
-  }
+  @Prop({ required: true }) parameterValue!: EnumeratedParameter;
 
   selectedValue: IParameter = Object.values(this.parameterValue.values)[0];
 
@@ -119,20 +117,12 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   }
 
   onDistributionTypeChange(): void {
-    // // remove dist specific properties from selected value
-    // Object.keys(this.selectedValue).map((key) => {
-    //   if (key !== 'metaData' && key !== 'type') {
-    //     delete this.selectedValue[key];
-    //   }
-    //   return key;
-    // });
     this.selectedValue.type = this.currentDistType;
   }
 
-  @Watch('selectedParameter')
-  onParameterChanged(newValue: ParameterWrapper): void {
-    const cast = newValue.current as EnumeratedParameter;
-    [this.selectedValue] = Object.values(cast.values);
+  @Watch('parameterValue')
+  onParameterChanged(newValue: EnumeratedParameter): void {
+    [this.selectedValue] = Object.values(newValue.values);
     this.currentDistType = this.selectedValue.type ?? ParameterType.constant;
   }
 
