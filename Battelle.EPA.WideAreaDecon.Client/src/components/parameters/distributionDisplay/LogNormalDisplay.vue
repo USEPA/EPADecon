@@ -164,7 +164,7 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textStd = newValue.toString();
-    this.parameterValue.mean = newValue;
+    this.parameterValue.stdDev = newValue;
   }
 
   @Watch('parameterValue')
