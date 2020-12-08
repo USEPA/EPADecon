@@ -1,28 +1,61 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import { TruncatedNormalDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
-export default class TruncatedNormal implements IParameter {
+export default class TruncatedNormal extends TruncatedNormalDistribution implements IParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.truncatedNormal;
 
-  @JsonProperty()
-  min?: number;
+  @JsonProperty('min')
+  get min(): number | undefined {
+    return this.Min;
+  }
 
-  @JsonProperty()
-  max?: number;
+  set min(newValue: number | undefined) {
+    if (newValue) {
+      this.Min = newValue;
+    }
+  }
 
-  @JsonProperty()
-  mean?: number;
+  @JsonProperty('max')
+  get max(): number | undefined {
+    return this.Max;
+  }
+
+  set max(newValue: number | undefined) {
+    if (newValue) {
+      this.Max = newValue;
+    }
+  }
+
+  @JsonProperty('mean')
+  get mean(): number | undefined {
+    return this.Mean;
+  }
+
+  set mean(newValue: number | undefined) {
+    if (newValue) {
+      this.Mean = newValue;
+    }
+  }
 
   public get mode(): number | undefined {
     return this.mean;
   }
 
-  @JsonProperty()
-  stdDev?: number;
+  @JsonProperty('stdDev')
+  get stdDev(): number | undefined {
+    return this.StdDev;
+  }
+
+  set stdDev(newValue: number | undefined) {
+    if (newValue) {
+      this.StdDev = newValue;
+    }
+  }
 
   @JsonProperty()
   metaData: ParameterMetaData;
@@ -32,6 +65,7 @@ export default class TruncatedNormal implements IParameter {
   }
 
   constructor(metaData = new ParameterMetaData(), min?: number, max?: number, mean?: number, stdDev?: number) {
+    super(mean ?? Infinity, stdDev ?? Infinity, min ?? Infinity, max ?? Infinity);
     this.min = min;
     this.max = max;
     this.mean = mean;
