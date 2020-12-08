@@ -117,7 +117,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 Calculator_workDays
             );
 
-            return new DecontaminationCostCalculator;
+            return new DecontaminationCostCalculator();
         }
     }
 }

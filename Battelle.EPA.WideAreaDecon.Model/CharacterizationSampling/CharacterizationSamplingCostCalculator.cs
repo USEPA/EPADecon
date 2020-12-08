@@ -1,5 +1,4 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
-using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 using Battelle.EPA.WideAreaDecon.Model.Services;
@@ -12,9 +11,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private SuppliesCostCalculator Calculator_supplies { get; set; }
         private EntrancesExitsCostCalculator Calculator_entEx { get; set; }
         private AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
-        private PhaseLagCalculator Calculator_phaseLag { get; set; }
 
-        public double CalculateCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
+        public double CalculateCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped, double personnelRoundTripDays,
              Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(_numberTeams, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);

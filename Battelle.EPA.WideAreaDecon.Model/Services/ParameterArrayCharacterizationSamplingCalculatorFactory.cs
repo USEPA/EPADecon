@@ -122,8 +122,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 hoursEntering,
                 hoursExiting,
                 personnelHourlyRate,
-                Calculator_supplies.CalculateWorkDays(),
-                Calculator_phaseLag.CalculatePhaseLagTime()
+                Calculator_supplies,
+                Calculator_phaseLag
             );
             Calculator_analysis = new AnalysisQuantityCostCalculator(
                 surfaceAreaPerWipe,
@@ -137,8 +137,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 respiratorsPerPerson,
                 costPerRespirator,
                 costPerPpe,
-                Calculator_labor.CalculateEntExitLaborCost(),
-                Calculator_supplies.CalculateWorkDays()
+                Calculator_labor,
+                Calculator_supplies
             );
             return new CharacterizationSamplingCostCalculator();
         }
