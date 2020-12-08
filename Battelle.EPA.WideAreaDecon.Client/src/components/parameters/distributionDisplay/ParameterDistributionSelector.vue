@@ -23,7 +23,7 @@
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
     <component :key="componentKey" :is="distComponent" :parameter-value="currentSelectedParameter.current"> </component>
-    <v-card v-if="shouldIncludeTitle && chartData.length" class="pa-2" outlined tile>
+    <v-card v-if="shouldIncludeTitle" flat class="pa-5" tile width="100%" height="400">
       <distribution-chart
         :distribution-series="chartData"
         :xAxisLabel="xAxisLabel"

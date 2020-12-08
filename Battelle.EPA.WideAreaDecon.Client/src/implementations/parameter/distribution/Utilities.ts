@@ -23,7 +23,7 @@ export default function getDistribution(
     k = undefined,
     metaData: { lowerLimit = undefined, upperLimit = undefined },
   },
-): BetaPERT | Constant | LogNormal | LogUniform | TruncatedLogNormal | TruncatedNormal | Uniform | Weibull {
+): BetaPERT | Constant | LogNormal | LogUniform | TruncatedLogNormal | TruncatedNormal | Uniform | Weibull | undefined {
   switch (type) {
     // case ParameterType.bimodalTruncatedNormal: {
     //     const dist = new BimodalTruncatedNormal(undefined, )
@@ -56,13 +56,17 @@ export default function getDistribution(
       const dist = new Uniform(undefined, min, max);
       return dist;
     }
+    // case ParameterType.uniformXDependent: {
+    //   const dist = new UniformXDependent();
+    //   return dist;
+    // }
     case ParameterType.weibull: {
       const dist = new Weibull(undefined, k, lambda);
       return dist;
     }
     default: {
-      const dist = new Constant();
-      return dist;
+      //   const dist = new Constant();
+      return undefined;
     }
   }
 }
