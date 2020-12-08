@@ -23,6 +23,14 @@
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
     <component :key="componentKey" :is="distComponent" :parameter-value="currentSelectedParameter.current"> </component>
+    <v-card v-if="shouldIncludeTitle" flat class="pa-5" tile width="100%" height="400">
+      <distribution-chart
+        :distribution-series="chartData"
+        :xAxisLabel="xAxisLabel"
+        :yAxisLabel="'Probability of Selection'"
+        :data-generator="distributionGen"
+      ></distribution-chart>
+    </v-card>
   </v-card>
 </template>
 
@@ -48,6 +56,9 @@ import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
+import { DistributionChart, DefaultChartOptions } from 'battelle-common-vue-charting/src/index';
+import Distribution, { DistributionDataGenerator } from 'battelle-common-typescript-statistics';
+import getDistribution from '@/implementations/parameter/distribution/Utilities';
 
 @Component({
   components: {
@@ -63,6 +74,7 @@ import TYPES from '@/dependencyInjection/types';
     WeibullDisplay,
     EnumeratedFractionDisplay,
     EnumeratedParameterDisplay,
+    DistributionChart,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
@@ -80,6 +92,28 @@ export default class ParameterDistributionSelector extends Vue {
   currentDistType = ParameterType.constant;
 
   distNames = changeableDistributionTypes;
+
+  get xAxisLabel(): string | undefined {
+    const baseline = this.currentSelectedParameter.baseline.metaData;
+    return baseline.hasDescription ? baseline.description : '';
+  }
+
+  get chartData(): Distribution[] {
+    const baselineType = this.currentSelectedParameter.baseline.type;
+    const currentType = this.currentSelectedParameter.current.type;
+
+    const baselineDist = getDistribution(baselineType, this.currentSelectedParameter.baseline as any) as Distribution;
+    const currentDist = getDistribution(currentType, this.currentSelectedParameter.current as any) as Distribution;
+
+    return [baselineDist, currentDist];
+  }
+
+  get distributionGen(): DistributionDataGenerator {
+    const min = this.currentSelectedParameter.baseline.metaData.lowerLimit;
+    const max = this.currentSelectedParameter.baseline.metaData.upperLimit;
+    const gen = new DistributionDataGenerator(1000, min, max);
+    return gen;
+  }
 
   get distComponent(): string {
     switch (this.currentSelectedParameter.current.type) {

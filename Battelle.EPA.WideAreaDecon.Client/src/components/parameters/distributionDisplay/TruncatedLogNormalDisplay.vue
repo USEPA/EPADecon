@@ -221,7 +221,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
 
     this.textStd = newValue.toString();
-    this.parameterValue.logMean = Math.log10(newValue);
+    this.parameterValue.logStdDev = Math.log10(newValue);
   }
 
   @Watch('parameterValue')

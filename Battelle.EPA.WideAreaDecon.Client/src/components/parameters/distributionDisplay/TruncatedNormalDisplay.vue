@@ -220,7 +220,7 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
     }
 
     this.textStd = newValue.toString();
-    this.parameterValue.mean = newValue;
+    this.parameterValue.stdDev = newValue;
   }
 
   @Watch('parameterValue')
