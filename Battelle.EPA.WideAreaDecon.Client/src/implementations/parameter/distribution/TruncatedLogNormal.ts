@@ -1,24 +1,57 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import { TruncatedLogNormalDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
-export default class TruncatedLogNormal implements IParameter {
+export default class TruncatedLogNormal extends TruncatedLogNormalDistribution implements IParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.truncatedLogNormal;
 
-  @JsonProperty()
-  logMin?: number;
+  @JsonProperty('logMin')
+  get logMin(): number | undefined {
+    return this.Min;
+  }
 
-  @JsonProperty()
-  logMax?: number;
+  set logMin(newValue: number | undefined) {
+    if (newValue) {
+      this.Min = newValue;
+    }
+  }
 
-  @JsonProperty()
-  logMean?: number;
+  @JsonProperty('logMax')
+  get logMax(): number | undefined {
+    return this.Max;
+  }
 
-  @JsonProperty()
-  logStdDev?: number;
+  set logMax(newValue: number | undefined) {
+    if (newValue) {
+      this.Max = newValue;
+    }
+  }
+
+  @JsonProperty('logMean')
+  get logMean(): number | undefined {
+    return this.LogMean;
+  }
+
+  set logMean(newValue: number | undefined) {
+    if (newValue) {
+      this.LogMean = newValue;
+    }
+  }
+
+  @JsonProperty('logStdDev')
+  get logStdDev(): number | undefined {
+    return this.LogStdDev;
+  }
+
+  set logStdDev(newValue: number | undefined) {
+    if (newValue) {
+      this.LogStdDev = newValue;
+    }
+  }
 
   get min(): number | undefined {
     return this.logMin !== undefined ? 10 ** this.logMin : undefined;
@@ -59,6 +92,7 @@ export default class TruncatedLogNormal implements IParameter {
     logMean?: number,
     logStdDev?: number,
   ) {
+    super(logMean ?? Infinity, logStdDev ?? Infinity, logMin ?? Infinity, logMax ?? Infinity);
     this.logMin = logMin;
     this.logMax = logMax;
     this.logMean = logMean;
