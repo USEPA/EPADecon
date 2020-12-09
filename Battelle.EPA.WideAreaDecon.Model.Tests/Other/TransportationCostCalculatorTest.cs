@@ -1,5 +1,6 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.Other;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Other
 {
@@ -23,7 +24,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Other
         [Test]
         public void CalculateCost()
         {
-            double[] personnelAvailableByType = {4.0, 0.0, 15.0, 30.0, 20.0};
+            var personnelAvailableByType = new Dictionary<PersonnelLevel, double>()
+            {
+                { PersonnelLevel.OSC, 4.0 },
+                { PersonnelLevel.PL1, 0.0 },
+                { PersonnelLevel.PL2, 15.0 },
+                { PersonnelLevel.PL3, 30.0 },
+                { PersonnelLevel.PL4, 20.0 }
+            };
             var roundtripDays = 2.0;
             var costPerRoundTripTicket = 350.0;
             var totalOnSiteDays = 5.41948604071361;

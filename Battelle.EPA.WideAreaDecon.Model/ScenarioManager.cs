@@ -13,11 +13,19 @@ namespace Battelle.EPA.WideAreaDecon.Model
         private readonly Dictionary<string, IParameter> _scenarioDefinition;
         private readonly Dictionary<string, IParameter> _scenarioParameters;
         private readonly Services.ICharacterizationSamplingCalculatorFactory _characterizationSamplingFactory;
+        private readonly Services.ISourceReductionCalculatorFactory _sourceReductionFactory;
+        private readonly Services.IDecontaminationCalculatorFactory _decontaminationFactory;
+        private readonly Services.IIncidentCommandCalculatorFactory _incidentCommandFactory;
+        private readonly Services.IOtherCalculatorFactory _otherFactory;
         public ScenarioManager(Dictionary<string, IParameter> scenarioDefinition, Dictionary<string, IParameter> scenarioParameters)
         {
             _scenarioDefinition = scenarioDefinition;
             _scenarioParameters = scenarioParameters;
             _characterizationSamplingFactory = new Services.ParameterArrayCharacterizationSamplingCalculatorFactory(_scenarioParameters);
+            _sourceReductionFactory = new Services.ParameterArraySourceReductionCalculatorFactory(_scenarioParameters);
+            _decontaminationFactory = new Services.ParameterArrayDecontaminationCalculatorFactory(_scenarioParameters);
+            _incidentCommandFactory = new Services.ParameterArrayIncidentCommandCalculatorFactory(_scenarioParameters);
+            _otherFactory = new Services.ParameterArrayOtherCalculatorFactory(_scenarioParameters);
         }
 
 
@@ -28,9 +36,14 @@ namespace Battelle.EPA.WideAreaDecon.Model
             // Take scenario parameters and construct calculators
 
             var cs = _characterizationSamplingFactory.GetCalculator();
+            var sr = _sourceReductionFactory.GetCalculator();
+            var dc = _decontaminationFactory.GetCalculator();
+            var ic = _incidentCommandFactory.GetCalculator();
 
 
             // Hook up and execute calculator to create results
+
+
 
             // Return results
 

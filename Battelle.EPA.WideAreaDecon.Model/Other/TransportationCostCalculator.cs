@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Other
 {
@@ -18,10 +19,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Other
             _perDiemCostPerDay = perDiemCostPerDay;
         }
 
-        public double CalculateTransportationCost(double[] personnelAvailableByType, double personnelRoundTripDays,
+        public double CalculateTransportationCost(Dictionary<PersonnelLevel,double> personnelAvailableByType, double personnelRoundTripDays,
             double costPerRoundTripTicket, double totalOnSiteDays)
         {
-            var totalPersonnel = personnelAvailableByType.Sum();
+            var totalPersonnel = personnelAvailableByType.Values.Sum();
 
             return totalPersonnel / _personnelPerRentalCar * _rentalCarCostPerDay * personnelRoundTripDays +
                 totalPersonnel * costPerRoundTripTicket + totalOnSiteDays * _perDiemCostPerDay;
