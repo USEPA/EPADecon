@@ -13,7 +13,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col align="center">
+      <v-col align="center" v-if="false">
         <v-btn-toggle dense background-color="primary" multiple>
           <v-btn @click="toggleLoading">Loading </v-btn>
           <v-btn @click="toggleTemp">Temp </v-btn>
