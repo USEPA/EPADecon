@@ -38,10 +38,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
         public double[] YMaximumValues { get; set; }
 
         [ExcelProperty(ParameterLocationHelper.Parameter4)]
-        public string DependentVariable { get; set; }
+        public string[] DependentVariable { get; set; }
 
-        public static UniformXDependentDistribution FromExcel(ParameterMetaData metaData, string dependentVariable,
-            IEnumerable<IRow> rows)
+        public static UniformXDependentDistribution FromExcel(ParameterMetaData metaData, IEnumerable<IRow> rows)
         {
             var enhancedRows = rows as IRow[] ?? rows.ToArray();
             if (!enhancedRows.Any())
@@ -64,7 +63,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics
                         row => typeof(UniformXDependentDistribution).GetCellValue(nameof(YMaximumValues), row)
                             .ConvertToDouble())
                     .ToArray(),
-                DependentVariable = dependentVariable
+                DependentVariable = enhancedRows.Select(
+                        row => typeof(UniformXDependentDistribution).GetCellValue(nameof(DependentVariable), row)).ToArray()
             };
         }
     }
