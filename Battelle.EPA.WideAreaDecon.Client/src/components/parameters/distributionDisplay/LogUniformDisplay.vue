@@ -104,8 +104,8 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
     }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
-    this.parameterValue.logMin = Math.log10(newValue[0]);
-    this.parameterValue.logMax = Math.log10(newValue[1]);
+    Vue.set(this.parameterValue, 'logMin', Math.log10(newValue[0]));
+    Vue.set(this.parameterValue, 'logMax', Math.log10(newValue[1]));
   }
 
   @Watch('parameterValue')
@@ -185,8 +185,8 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
   }
 
   onSliderStopped(value: number[]): void {
-    this.parameterValue.logMin = Math.log10(value[0]);
-    this.parameterValue.logMax = Math.log10(value[1]);
+    Vue.set(this.parameterValue, 'logMin', Math.log10(value[0]));
+    Vue.set(this.parameterValue, 'logMax', Math.log10(value[1]));
   }
 
   setValues(): void {
