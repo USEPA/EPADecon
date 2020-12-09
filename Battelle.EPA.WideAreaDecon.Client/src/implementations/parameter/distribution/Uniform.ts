@@ -30,7 +30,6 @@ export default class Uniform extends UniformDistribution implements IParameter {
       this.Max = newValue;
     }
   }
-  // max?: number;
 
   get mean(): number | undefined {
     return !!this.min && !!this.max ? (this.min + this.max) / 2.0 : undefined;
