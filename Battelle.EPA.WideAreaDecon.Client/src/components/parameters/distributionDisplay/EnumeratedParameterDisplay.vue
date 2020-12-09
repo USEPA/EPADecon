@@ -57,6 +57,9 @@ import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNor
 import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
 import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
+import container from '@/dependencyInjection/config';
+import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
+import TYPES from '@/dependencyInjection/types';
 
 @Component({
   components: {
@@ -82,6 +85,8 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   distNames: ParameterType[] = changeableDistributionTypes;
 
   componentKey = 0;
+
+  parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
   get distComponent(): string {
     switch (this.currentDistType) {
@@ -117,7 +122,11 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   }
 
   onDistributionTypeChange(): void {
-    this.selectedValue.type = this.currentDistType;
+    const { category } = this.selectedValue.metaData;
+    this.selectedValue = this.parameterConverter.convertToNewType(this.selectedValue, this.currentDistType);
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    Vue.set(this.parameterValue.values, category!, this.selectedValue);
   }
 
   @Watch('selectedValue')
