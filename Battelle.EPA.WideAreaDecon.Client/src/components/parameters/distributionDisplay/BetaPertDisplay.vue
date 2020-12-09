@@ -139,7 +139,8 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
     }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
-    [this.parameterValue.min, this.parameterValue.max] = newValue;
+    Vue.set(this.parameterValue, 'min', newValue[0]);
+    Vue.set(this.parameterValue, 'max', newValue[1]);
     if (newValue[0] > this.sliderMode) {
       [this.sliderMode] = newValue;
     }
@@ -156,7 +157,7 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textMode = newValue.toString();
-    this.parameterValue.mode = newValue;
+    Vue.set(this.parameterValue, 'mode', newValue);
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -284,11 +285,12 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
   }
 
   onSliderStopped(value: number[]): void {
-    [this.parameterValue.min, this.parameterValue.max] = value;
+    Vue.set(this.parameterValue, 'min', value[0]);
+    Vue.set(this.parameterValue, 'max', value[1]);
   }
 
   onSliderModeStopped(value: number): void {
-    this.parameterValue.mode = value;
+    Vue.set(this.parameterValue, 'mode', value);
   }
 
   setValues(): void {
