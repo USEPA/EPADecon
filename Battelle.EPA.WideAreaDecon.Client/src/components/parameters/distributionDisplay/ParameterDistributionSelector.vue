@@ -23,7 +23,7 @@
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
     <component :key="componentKey" :is="distComponent" :parameter-value="currentSelectedParameter.current"> </component>
-    <v-card v-if="shouldIncludeTitle" flat class="pa-5" tile width="100%" height="400">
+    <v-card v-if="showDefaultChart" flat class="pa-5" tile width="100%" height="400">
       <distribution-chart
         :distribution-series="chartData"
         :xAxisLabel="xAxisLabel"
@@ -48,6 +48,7 @@ import TruncatedLogNormalDisplay from '@/components/parameters/distributionDispl
 import TruncatedNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedNormalDisplay.vue';
 import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNormalDisplay.vue';
 import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
+import UniformXDependentDisplay from '@/components/parameters/distributionDisplay/UniformXDependentDisplay.vue';
 import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
 import EnumeratedFractionDisplay from '@/components/parameters/distributionDisplay/EnumeratedFractionDisplay.vue';
 import EnumeratedParameterDisplay from '@/components/parameters/distributionDisplay/EnumeratedParameterDisplay.vue';
@@ -69,6 +70,7 @@ import getDistribution from '@/implementations/parameter/distribution/Utilities'
     BetaPertDisplay,
     TruncatedLogNormalDisplay,
     TruncatedNormalDisplay,
+    UniformXDependentDisplay,
     UniformDisplay,
     LogNormalDisplay,
     WeibullDisplay,
@@ -133,6 +135,8 @@ export default class ParameterDistributionSelector extends Vue {
         return 'log-normal-display';
       case ParameterType.uniform:
         return 'uniform-display';
+      case ParameterType.uniformXDependent:
+        return 'uniform-x-dependent-display';
       case ParameterType.weibull:
         return 'weibull-display';
       case ParameterType.enumeratedFraction:
@@ -146,6 +150,10 @@ export default class ParameterDistributionSelector extends Vue {
 
   get isChangeableDist(): boolean {
     return changeableDistributionTypes.find((p) => p === this.currentSelectedParameter.type) !== undefined;
+  }
+
+  get showDefaultChart(): boolean {
+    return this.shouldIncludeTitle && this.currentSelectedParameter.type !== ParameterType.uniformXDependent;
   }
 
   get shouldIncludeTitle(): boolean {
