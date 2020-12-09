@@ -120,6 +120,12 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     this.selectedValue.type = this.currentDistType;
   }
 
+  @Watch('selectedValue')
+  emitSelectedCategory(): void {
+    const { category } = this.selectedValue.metaData;
+    this.$emit('enumeratedParameterCategory', category);
+  }
+
   @Watch('parameterValue')
   onParameterChanged(newValue: EnumeratedParameter): void {
     [this.selectedValue] = Object.values(newValue.values);
@@ -128,6 +134,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   created(): void {
     this.currentDistType = this.selectedValue.type;
+    this.emitSelectedCategory();
   }
 }
 </script>

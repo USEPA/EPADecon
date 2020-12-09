@@ -22,8 +22,14 @@
       </v-col>
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
-    <component :key="componentKey" :is="distComponent" :parameter-value="currentSelectedParameter.current"> </component>
-    <v-card v-if="shouldIncludeTitle" flat class="pa-5" tile width="100%" height="400">
+    <component
+      :key="componentKey"
+      :is="distComponent"
+      :parameter-value="currentSelectedParameter.current"
+      @enumeratedParameterCategory="setEnumeratedParameterCategory"
+    >
+    </component>
+    <v-card v-if="shouldIncludeTitle && chartData.length" flat class="pa-5" tile width="100%" height="400">
       <distribution-chart
         :distribution-series="chartData"
         :xAxisLabel="xAxisLabel"
@@ -59,6 +65,7 @@ import TYPES from '@/dependencyInjection/types';
 import { DistributionChart, DefaultChartOptions } from 'battelle-common-vue-charting/src/index';
 import Distribution, { DistributionDataGenerator } from 'battelle-common-typescript-statistics';
 import getDistribution from '@/implementations/parameter/distribution/Utilities';
+import { get } from 'lodash';
 
 @Component({
   components: {
@@ -93,24 +100,65 @@ export default class ParameterDistributionSelector extends Vue {
 
   distNames = changeableDistributionTypes;
 
-  get xAxisLabel(): string | undefined {
-    const baseline = this.currentSelectedParameter.baseline.metaData;
-    return baseline.hasDescription ? baseline.description : '';
+  enumeratedParameterCategory = '';
+
+  get isEnumeratedParameter(): boolean {
+    return this.currentDistType === ParameterType.enumeratedParameter;
+  }
+
+  get xAxisLabel(): string {
+    const baseline =
+      this.isEnumeratedParameter && this.enumeratedParameterCategory.length
+        ? get(this.currentSelectedParameter.current, `values.${this.enumeratedParameterCategory}.metaData`)
+        : this.currentSelectedParameter.baseline.metaData;
+
+    return baseline.description ?? '';
   }
 
   get chartData(): Distribution[] {
-    const baselineType = this.currentSelectedParameter.baseline.type;
-    const currentType = this.currentSelectedParameter.current.type;
+    const distributions: Distribution[] = [];
 
-    const baselineDist = getDistribution(baselineType, this.currentSelectedParameter.baseline as any) as Distribution;
-    const currentDist = getDistribution(currentType, this.currentSelectedParameter.current as any) as Distribution;
+    if (this.currentDistType === ParameterType.null) {
+      return distributions;
+    }
 
-    return [baselineDist, currentDist];
+    if (!this.isEnumeratedParameter) {
+      // create baseline distribution (if needed)
+      const { baseline }: any = this.currentSelectedParameter;
+      const baselineType = baseline.type;
+      const baselineDist = getDistribution(baselineType, baseline) as Distribution;
+      distributions.push(baselineDist);
+    }
+
+    // create current distribution
+    const current: any = this.isEnumeratedParameter
+      ? get(
+          this.currentSelectedParameter.current,
+          `values.${
+            this.enumeratedParameterCategory.length
+              ? this.enumeratedParameterCategory
+              : Object.keys(this.currentSelectedParameter.current.values)[0]
+          }`,
+        )
+      : this.currentSelectedParameter.current;
+
+    const currentType = current.type;
+    const currentDist = getDistribution(currentType, current) as Distribution;
+
+    distributions.push(currentDist);
+
+    return distributions;
   }
 
   get distributionGen(): DistributionDataGenerator {
-    const min = this.currentSelectedParameter.baseline.metaData.lowerLimit;
-    const max = this.currentSelectedParameter.baseline.metaData.upperLimit;
+    const min = this.isEnumeratedParameter
+      ? get(this.currentSelectedParameter.baseline, `values.${this.enumeratedParameterCategory}.metaData.lowerLimit`)
+      : this.currentSelectedParameter.baseline.metaData.lowerLimit;
+
+    const max = this.isEnumeratedParameter
+      ? get(this.currentSelectedParameter.baseline, `values.${this.enumeratedParameterCategory}.metaData.upperLimit`)
+      : this.currentSelectedParameter.baseline.metaData.upperLimit;
+
     const gen = new DistributionDataGenerator(1000, min, max);
     return gen;
   }
@@ -167,6 +215,10 @@ export default class ParameterDistributionSelector extends Vue {
       'changeCurrentParameterType',
       this.parameterConverter.convertToNewType(this.currentSelectedParameter.current, this.currentDistType),
     );
+  }
+
+  setEnumeratedParameterCategory(value: string): void {
+    this.enumeratedParameterCategory = value;
   }
 
   created(): void {
