@@ -29,7 +29,7 @@
       @enumeratedParameterCategory="setEnumeratedParameterCategory"
     >
     </component>
-    <v-card v-if="shouldIncludeTitle && chartData.length" flat class="pa-5" tile width="100%" height="400">
+    <v-card v-if="showDefaultChart" flat class="pa-5" tile width="100%" height="400">
       <distribution-chart
         :distribution-series="chartData"
         :xAxisLabel="xAxisLabel"
@@ -56,6 +56,7 @@ import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNor
 import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
 import UniformXDependentDisplay from '@/components/parameters/distributionDisplay/UniformXDependentDisplay.vue';
 import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
+import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
 import EnumeratedFractionDisplay from '@/components/parameters/distributionDisplay/EnumeratedFractionDisplay.vue';
 import EnumeratedParameterDisplay from '@/components/parameters/distributionDisplay/EnumeratedParameterDisplay.vue';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
@@ -81,6 +82,7 @@ import { get } from 'lodash';
     UniformDisplay,
     LogNormalDisplay,
     WeibullDisplay,
+    BimodalTruncatedNormalDisplay,
     EnumeratedFractionDisplay,
     EnumeratedParameterDisplay,
     DistributionChart,
@@ -187,6 +189,8 @@ export default class ParameterDistributionSelector extends Vue {
         return 'uniform-x-dependent-display';
       case ParameterType.weibull:
         return 'weibull-display';
+      case ParameterType.bimodalTruncatedNormal:
+        return 'bimodal-truncated-normal-display';
       case ParameterType.enumeratedFraction:
         return 'enumerated-fraction-display';
       case ParameterType.enumeratedParameter:
@@ -201,7 +205,11 @@ export default class ParameterDistributionSelector extends Vue {
   }
 
   get showDefaultChart(): boolean {
-    return this.shouldIncludeTitle && this.currentSelectedParameter.type !== ParameterType.uniformXDependent;
+    return (
+      this.shouldIncludeTitle &&
+      this.currentSelectedParameter.type !== ParameterType.uniformXDependent &&
+      this.chartData.length !== 0
+    );
   }
 
   get shouldIncludeTitle(): boolean {
