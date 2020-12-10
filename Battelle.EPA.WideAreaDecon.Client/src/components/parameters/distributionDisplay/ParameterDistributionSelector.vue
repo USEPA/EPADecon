@@ -141,7 +141,7 @@ export default class ParameterDistributionSelector extends Vue {
           `values.${
             this.enumeratedParameterCategory.length
               ? this.enumeratedParameterCategory
-              : Object.keys(!this.currentSelectedParameter.current.values)[0]
+              : Object.keys(this.currentSelectedParameter.current.values!)[0]
           }`,
         )
       : this.currentSelectedParameter.current;
