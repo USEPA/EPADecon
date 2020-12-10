@@ -186,7 +186,8 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
     }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
-    [this.parameterValue.min, this.parameterValue.max] = newValue;
+    Vue.set(this.parameterValue, 'min', newValue[0]);
+    Vue.set(this.parameterValue, 'max', newValue[1]);
     if (newValue[0] > this.sliderMean) {
       [this.sliderMean] = newValue;
     }
@@ -203,7 +204,7 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
     }
 
     this.textMean = newValue.toString();
-    this.parameterValue.mean = newValue;
+    Vue.set(this.parameterValue, 'mean', newValue);
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -220,7 +221,7 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
     }
 
     this.textStd = newValue.toString();
-    this.parameterValue.stdDev = newValue;
+    Vue.set(this.parameterValue, 'stdDev', newValue);
   }
 
   @Watch('parameterValue')
@@ -369,15 +370,16 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
   }
 
   onSliderStopped(value: number[]): void {
-    [this.parameterValue.min, this.parameterValue.max] = value;
+    Vue.set(this.parameterValue, 'min', value[0]);
+    Vue.set(this.parameterValue, 'max', value[1]);
   }
 
   onSliderMeanStopped(value: number): void {
-    this.parameterValue.mean = value;
+    Vue.set(this.parameterValue, 'mean', value);
   }
 
   onSliderStdStopped(value: number): void {
-    this.parameterValue.stdDev = value;
+    Vue.set(this.parameterValue, 'stdDev', value);
   }
 
   setValues(): void {

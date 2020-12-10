@@ -186,8 +186,8 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
-    this.parameterValue.logMin = Math.log10(newValue[0]);
-    this.parameterValue.logMax = Math.log10(newValue[1]);
+    Vue.set(this.parameterValue, 'logMin', Math.log10(newValue[0]));
+    Vue.set(this.parameterValue, 'logMax', Math.log10(newValue[1]));
     if (newValue[0] > this.sliderMean) {
       [this.sliderMean] = newValue;
     }
@@ -204,7 +204,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
 
     this.textMean = newValue.toString();
-    this.parameterValue.logMean = Math.log10(newValue);
+    Vue.set(this.parameterValue, 'logMean', Math.log10(newValue));
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -221,7 +221,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
 
     this.textStd = newValue.toString();
-    this.parameterValue.logStdDev = Math.log10(newValue);
+    Vue.set(this.parameterValue, 'logStdDev', Math.log10(newValue));
   }
 
   @Watch('parameterValue')
@@ -370,16 +370,16 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
   }
 
   onSliderStopped(value: number[]): void {
-    this.parameterValue.logMin = Math.log10(value[0]);
-    this.parameterValue.logMax = Math.log10(value[1]);
+    Vue.set(this.parameterValue, 'logMin', Math.log10(value[0]));
+    Vue.set(this.parameterValue, 'logMax', Math.log10(value[1]));
   }
 
   onSliderMeanStopped(value: number): void {
-    this.parameterValue.logMean = Math.log10(value);
+    Vue.set(this.parameterValue, 'logMean', Math.log10(value));
   }
 
   onSliderStdStopped(value: number): void {
-    this.parameterValue.logStdDev = Math.log10(value);
+    Vue.set(this.parameterValue, 'logStdDev', Math.log10(value));
   }
 
   setValues(): void {
