@@ -28,18 +28,16 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop, Watch } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 // import { Uniform } from 'battelle-common-typescript-external-rmath';
-import { UniformDistribution } from 'battelle-common-typescript-statistics';
+// import { UniformDistribution } from 'battelle-common-typescript-statistics';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import UniformXDependent from '@/implementations/parameter/distribution/UniformXDependent';
-import { Key } from 'ts-keycode-enum';
 import {
   ScatterPlotWrapper,
   ChartPoint2D,
   CycleColorProvider,
   ScatterChartDataset,
-  ScatterChartDatasetDefaultSettings,
   DefaultChartOptions,
   DefaultChartData,
 } from 'battelle-common-vue-charting/src';
@@ -62,7 +60,7 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
 
   temp = false;
 
-  get exampleData() {
+  get exampleData(): DefaultChartData {
     const x = [this.min, 4, 5, 6, this.max];
     const ymin = [1, 4, 0.6, 0.8, 1];
     const ymax = [1, 8, 10, 7, 5];

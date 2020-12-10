@@ -64,7 +64,7 @@ import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
-import { DistributionChart, DefaultChartOptions } from 'battelle-common-vue-charting/src/index';
+import { DistributionChart } from 'battelle-common-vue-charting/src/index';
 import Distribution, { DistributionDataGenerator } from 'battelle-common-typescript-statistics';
 import getDistribution from '@/implementations/parameter/distribution/Utilities';
 import { get } from 'lodash';
@@ -141,7 +141,7 @@ export default class ParameterDistributionSelector extends Vue {
           `values.${
             this.enumeratedParameterCategory.length
               ? this.enumeratedParameterCategory
-              : Object.keys(this.currentSelectedParameter.current.values)[0]
+              : Object.keys(!this.currentSelectedParameter.current.values)[0]
           }`,
         )
       : this.currentSelectedParameter.current;
