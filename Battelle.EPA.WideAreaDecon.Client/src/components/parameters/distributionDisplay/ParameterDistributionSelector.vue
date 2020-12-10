@@ -68,6 +68,7 @@ import { DistributionChart } from 'battelle-common-vue-charting/src/index';
 import Distribution, { DistributionDataGenerator } from 'battelle-common-typescript-statistics';
 import getDistribution from '@/implementations/parameter/distribution/Utilities';
 import { get } from 'lodash';
+import IParameter from '@/interfaces/parameter/IParameter';
 
 @Component({
   components: {
@@ -122,33 +123,17 @@ export default class ParameterDistributionSelector extends Vue {
   get chartData(): Distribution[] {
     const distributions: Distribution[] = [];
 
-    if (this.currentDistType === ParameterType.null) {
-      return distributions;
-    }
-
-    if (!this.isEnumeratedParameter) {
-      // create baseline distribution (if needed)
-      const { baseline }: any = this.currentSelectedParameter;
-      const baselineType = baseline.type;
-      const baselineDist = getDistribution(baselineType, baseline) as Distribution;
-      distributions.push(baselineDist);
-    }
+    // create baseline distribution
+    const [baseline, baselineType] = this.getDistInfo(this.currentSelectedParameter.baseline);
+    const baselineDist = getDistribution(baselineType, baseline as any) as Distribution;
 
     // create current distribution
-    const current: any = this.isEnumeratedParameter
-      ? get(
-          this.currentSelectedParameter.current,
-          `values.${
-            this.enumeratedParameterCategory.length
-              ? this.enumeratedParameterCategory
-              : Object.keys(this.currentSelectedParameter.current.values!)[0]
-          }`,
-        )
-      : this.currentSelectedParameter.current;
+    const [current, currentType] = this.getDistInfo(this.currentSelectedParameter.current);
+    const currentDist = getDistribution(currentType, current as any) as Distribution;
 
-    const currentType = current.type;
-    const currentDist = getDistribution(currentType, current) as Distribution;
-
+    if (this.currentSelectedParameter.parent?.name !== 'Extent of Contamination') {
+      distributions.push(baselineDist);
+    }
     distributions.push(currentDist);
 
     return distributions;
@@ -205,11 +190,13 @@ export default class ParameterDistributionSelector extends Vue {
   }
 
   get showDefaultChart(): boolean {
-    return (
-      this.shouldIncludeTitle &&
-      this.currentSelectedParameter.type !== ParameterType.uniformXDependent &&
-      this.chartData.length !== 0
-    );
+    const [, currentParamType] = this.getDistInfo(this.currentSelectedParameter.current);
+    const showForParamType =
+      currentParamType !== ParameterType.uniformXDependent &&
+      currentParamType !== ParameterType.enumeratedFraction &&
+      currentParamType !== ParameterType.null;
+
+    return this.shouldIncludeTitle && showForParamType && this.chartData.length !== 0;
   }
 
   get shouldIncludeTitle(): boolean {
@@ -218,6 +205,19 @@ export default class ParameterDistributionSelector extends Vue {
 
   get parameterHasChanged(): boolean {
     return this.currentSelectedParameter.isChanged();
+  }
+
+  getDistInfo(param: IParameter): [IParameter, ParameterType] {
+    const dist: IParameter = this.isEnumeratedParameter
+      ? get(
+          param,
+          `values.${
+            this.enumeratedParameterCategory.length ? this.enumeratedParameterCategory : Object.keys(param.values!)[0]
+          }`,
+        )
+      : param;
+
+    return [dist, dist.type];
   }
 
   resetParameter(): void {
