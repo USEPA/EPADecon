@@ -1,11 +1,12 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import { LogNormalDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
 import IUnivariateParameter from './IUnivariateParameter';
 
 @Serializable()
-export default class LogNormal implements IParameter, IUnivariateParameter {
+export default class LogNormal extends LogNormalDistribution implements IParameter, IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.logNormal;
 
@@ -17,15 +18,31 @@ export default class LogNormal implements IParameter, IUnivariateParameter {
     return this.metaData.upperLimit;
   }
 
-  @JsonProperty()
-  mean?: number;
+  @JsonProperty('mean')
+  get mean(): number | undefined {
+    return this.LogMean;
+  }
+
+  set mean(newValue: number | undefined) {
+    if (newValue) {
+      this.LogMean = newValue;
+    }
+  }
 
   get mode(): number | undefined {
     return this.mean; // TODO: how to calculate
   }
 
-  @JsonProperty()
-  stdDev?: number;
+  @JsonProperty('stdDev')
+  get stdDev(): number | undefined {
+    return this.LogStdDev;
+  }
+
+  set stdDev(newValue: number | undefined) {
+    if (newValue) {
+      this.LogStdDev = newValue;
+    }
+  }
 
   @JsonProperty()
   metaData: ParameterMetaData;
@@ -35,6 +52,7 @@ export default class LogNormal implements IParameter, IUnivariateParameter {
   }
 
   constructor(metaData = new ParameterMetaData(), mean?: number, stdDev?: number) {
+    super(mean ?? Infinity, stdDev ?? Infinity);
     this.mean = mean;
     this.stdDev = stdDev;
     this.metaData = metaData;

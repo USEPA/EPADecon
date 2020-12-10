@@ -23,7 +23,7 @@ export default class UniformXDependent implements IParameter {
   yMaximumValues?: number[];
 
   @JsonProperty()
-  dependentVariable?: string;
+  dependentVariable?: string[];
 
   @JsonProperty()
   metaData: ParameterMetaData;
@@ -33,7 +33,7 @@ export default class UniformXDependent implements IParameter {
     xValues?: number[],
     yMinimumValues?: number[],
     yMaximumValues?: number[],
-    dependentVariable?: string,
+    dependentVariable?: string[],
   ) {
     this.metaData = metaData;
     this.xValues = xValues;

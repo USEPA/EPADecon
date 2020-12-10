@@ -56,7 +56,11 @@ import TruncatedNormalDisplay from '@/components/parameters/distributionDisplay/
 import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNormalDisplay.vue';
 import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
 import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
+import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
+import container from '@/dependencyInjection/config';
+import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
+import TYPES from '@/dependencyInjection/types';
 
 @Component({
   components: {
@@ -70,6 +74,7 @@ import { changeableDistributionTypes } from '@/mixin/parameterMixin';
     UniformDisplay,
     LogNormalDisplay,
     WeibullDisplay,
+    BimodalTruncatedNormalDisplay,
   },
 })
 export default class EnumeratedParameterDisplay extends Vue implements IParameterDisplay {
@@ -82,6 +87,8 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   distNames: ParameterType[] = changeableDistributionTypes;
 
   componentKey = 0;
+
+  parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
   get distComponent(): string {
     switch (this.currentDistType) {
@@ -103,6 +110,8 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
         return 'uniform-display';
       case ParameterType.weibull:
         return 'weibull-display';
+      case ParameterType.bimodalTruncatedNormal:
+        return 'bimodal-truncated-normal-display';
       default:
         return 'unknown-display';
     }
@@ -117,7 +126,17 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   }
 
   onDistributionTypeChange(): void {
-    this.selectedValue.type = this.currentDistType;
+    const { category } = this.selectedValue.metaData;
+    this.selectedValue = this.parameterConverter.convertToNewType(this.selectedValue, this.currentDistType);
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    Vue.set(this.parameterValue.values, category!, this.selectedValue);
+  }
+
+  @Watch('selectedValue')
+  emitSelectedCategory(): void {
+    const { category } = this.selectedValue.metaData;
+    this.$emit('enumeratedParameterCategory', category);
   }
 
   @Watch('parameterValue')
@@ -128,6 +147,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   created(): void {
     this.currentDistType = this.selectedValue.type;
+    this.emitSelectedCategory();
   }
 }
 </script>

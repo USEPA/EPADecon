@@ -22,21 +22,21 @@
       </v-col>
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
-    <component :key="componentKey" :is="distComponent" :parameter-value="currentSelectedParameter.current"> </component>
-    <v-container v-show="plottable">
-      <v-row>
-        <v-col cols="12">
-          <v-card v-if="shouldIncludeTitle" class="pa-2" outlined tile>
-            <distribution-chart
-              :distribution-series="distDataSeries"
-              :xAxisLabel="'X-data'"
-              yAxisLabel="'Example PDF'"
-              :data-generator="distributionGen"
-            />
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+    <component
+      :key="componentKey"
+      :is="distComponent"
+      :parameter-value="currentSelectedParameter.current"
+      @enumeratedParameterCategory="setEnumeratedParameterCategory"
+    >
+    </component>
+    <v-card v-if="showDefaultChart" flat class="pa-5" tile width="100%" height="400">
+      <distribution-chart
+        :distribution-series="chartData"
+        :xAxisLabel="xAxisLabel"
+        :yAxisLabel="'Probability of Selection'"
+        :data-generator="distributionGen"
+      ></distribution-chart>
+    </v-card>
   </v-card>
 </template>
 
@@ -54,7 +54,9 @@ import TruncatedLogNormalDisplay from '@/components/parameters/distributionDispl
 import TruncatedNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedNormalDisplay.vue';
 import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNormalDisplay.vue';
 import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
+import UniformXDependentDisplay from '@/components/parameters/distributionDisplay/UniformXDependentDisplay.vue';
 import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
+import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
 import EnumeratedFractionDisplay from '@/components/parameters/distributionDisplay/EnumeratedFractionDisplay.vue';
 import EnumeratedParameterDisplay from '@/components/parameters/distributionDisplay/EnumeratedParameterDisplay.vue';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
@@ -62,27 +64,10 @@ import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
-import { range } from 'lodash';
+import { DistributionChart, DefaultChartOptions } from 'battelle-common-vue-charting/src/index';
+import Distribution, { DistributionDataGenerator } from 'battelle-common-typescript-statistics';
 import getDistribution from '@/implementations/parameter/distribution/Utilities';
-
-import Distribution from 'battelle-common-typescript-statistics';
-
-import { ChartData, ChartOptions, ChartLegendOptions, ChartDataSets } from 'chart.js';
-import {
-  DefaultChartData,
-  ScatterPlotWrapper,
-  DefaultChartOptions,
-  ChartPoint2D,
-  CycleColorProvider,
-  ScatterChartDataset,
-  EmptyChartData,
-  EmptyChartOptions,
-  DefaultChartLegendOptions,
-  DistributionChart,
-} from 'battelle-common-vue-charting/src/index';
-import IParameter from '@/interfaces/parameter/IParameter';
-
-import DistributionDataGenerator from '../../../../../../Statistics/src/DistributionDataGenerator';
+import { get } from 'lodash';
 
 @Component({
   components: {
@@ -93,12 +78,13 @@ import DistributionDataGenerator from '../../../../../../Statistics/src/Distribu
     BetaPertDisplay,
     TruncatedLogNormalDisplay,
     TruncatedNormalDisplay,
+    UniformXDependentDisplay,
     UniformDisplay,
     LogNormalDisplay,
     WeibullDisplay,
+    BimodalTruncatedNormalDisplay,
     EnumeratedFractionDisplay,
     EnumeratedParameterDisplay,
-    ScatterPlotWrapper,
     DistributionChart,
   },
 })
@@ -120,30 +106,67 @@ export default class ParameterDistributionSelector extends Vue {
 
   distNames = changeableDistributionTypes;
 
-  // distDataSeries: Distribution[] = [
-  //   this.currentSelectedParameter.baseline.super,
-  //   this.currentSelectedParameter.current.super,
-  // ];
+  enumeratedParameterCategory = '';
 
-  distributionGen: DistributionDataGenerator = new DistributionDataGenerator(1000, 0.0001, 2.5);
-  get currentDist() {
-    const dist = getDistribution(this.currentDistType, this.currentSelectedParameter.current as any);
-    return dist;
+  get isEnumeratedParameter(): boolean {
+    return this.currentDistType === ParameterType.enumeratedParameter;
   }
 
-  get baselineDist() {
-    const { type } = this.currentSelectedParameter.baseline;
-    const dist = getDistribution(type, this.currentSelectedParameter.baseline as any);
-    return dist;
+  get xAxisLabel(): string {
+    const baseline =
+      this.isEnumeratedParameter && this.enumeratedParameterCategory.length
+        ? get(this.currentSelectedParameter.current, `values.${this.enumeratedParameterCategory}.metaData`)
+        : this.currentSelectedParameter.baseline.metaData;
+
+    return baseline.description ?? '';
   }
 
-  get chartData(): DefaultChartData {
-    const colorProvider = new CycleColorProvider();
-    const current = this.createDataset('Current', colorProvider);
-    const baseline = this.createDataset('Baseline', colorProvider);
+  get chartData(): Distribution[] {
+    const distributions: Distribution[] = [];
 
-    const chartData = new DefaultChartData([baseline, current]);
-    return chartData;
+    if (this.currentDistType === ParameterType.null) {
+      return distributions;
+    }
+
+    if (!this.isEnumeratedParameter) {
+      // create baseline distribution (if needed)
+      const { baseline }: any = this.currentSelectedParameter;
+      const baselineType = baseline.type;
+      const baselineDist = getDistribution(baselineType, baseline) as Distribution;
+      distributions.push(baselineDist);
+    }
+
+    // create current distribution
+    const current: any = this.isEnumeratedParameter
+      ? get(
+          this.currentSelectedParameter.current,
+          `values.${
+            this.enumeratedParameterCategory.length
+              ? this.enumeratedParameterCategory
+              : Object.keys(this.currentSelectedParameter.current.values)[0]
+          }`,
+        )
+      : this.currentSelectedParameter.current;
+
+    const currentType = current.type;
+    const currentDist = getDistribution(currentType, current) as Distribution;
+
+    distributions.push(currentDist);
+
+    return distributions;
+  }
+
+  get distributionGen(): DistributionDataGenerator {
+    const min = this.isEnumeratedParameter
+      ? get(this.currentSelectedParameter.baseline, `values.${this.enumeratedParameterCategory}.metaData.lowerLimit`)
+      : this.currentSelectedParameter.baseline.metaData.lowerLimit;
+
+    const max = this.isEnumeratedParameter
+      ? get(this.currentSelectedParameter.baseline, `values.${this.enumeratedParameterCategory}.metaData.upperLimit`)
+      : this.currentSelectedParameter.baseline.metaData.upperLimit;
+
+    const gen = new DistributionDataGenerator(1000, min, max);
+    return gen;
   }
 
   get distComponent(): string {
@@ -164,8 +187,12 @@ export default class ParameterDistributionSelector extends Vue {
         return 'log-normal-display';
       case ParameterType.uniform:
         return 'uniform-display';
+      case ParameterType.uniformXDependent:
+        return 'uniform-x-dependent-display';
       case ParameterType.weibull:
         return 'weibull-display';
+      case ParameterType.bimodalTruncatedNormal:
+        return 'bimodal-truncated-normal-display';
       case ParameterType.enumeratedFraction:
         return 'enumerated-fraction-display';
       case ParameterType.enumeratedParameter:
@@ -179,37 +206,20 @@ export default class ParameterDistributionSelector extends Vue {
     return changeableDistributionTypes.find((p) => p === this.currentSelectedParameter.type) !== undefined;
   }
 
+  get showDefaultChart(): boolean {
+    return (
+      this.shouldIncludeTitle &&
+      this.currentSelectedParameter.type !== ParameterType.uniformXDependent &&
+      this.chartData.length !== 0
+    );
+  }
+
   get shouldIncludeTitle(): boolean {
     return this.currentSelectedParameter.type !== ParameterType.null;
   }
 
   get parameterHasChanged(): boolean {
     return this.currentSelectedParameter.isChanged();
-  }
-
-  createDataset(label: string, colorProvider: CycleColorProvider): ScatterChartDataset {
-    const data = label === 'Baseline' ? this.getDataPoints(true) : this.getDataPoints();
-
-    const dataset = new ScatterChartDataset(data, label, colorProvider);
-
-    dataset.fill = true;
-    dataset.pointRadius = 0;
-    dataset.borderColor = 'transparent';
-
-    return dataset;
-  }
-
-  getDataPoints(isBaseline = false): ChartPoint2D[] {
-    const dist = isBaseline ? this.baselineDist : this.currentDist;
-    const min = this.currentSelectedParameter.current.metaData.lowerLimit;
-    const max = this.currentSelectedParameter.current.metaData.upperLimit;
-
-    const step = (max - min) / 99; // # points = 50
-    const xValues = [...range(min, max, step), max];
-    const xyPairs = Number.isNaN(dist?.PDF(xValues[0])) ? [[0, 0]] : xValues.map((x) => [x, dist?.PDF(x)]);
-
-    const dataPoints = xyPairs.map(([x, y]) => new ChartPoint2D(x, y));
-    return dataPoints;
   }
 
   resetParameter(): void {
@@ -223,6 +233,10 @@ export default class ParameterDistributionSelector extends Vue {
       'changeCurrentParameterType',
       this.parameterConverter.convertToNewType(this.currentSelectedParameter.current, this.currentDistType),
     );
+  }
+
+  setEnumeratedParameterCategory(value: string): void {
+    this.enumeratedParameterCategory = value;
   }
 
   created(): void {
