@@ -1,57 +1,26 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
-import { TruncatedLogNormalDistribution } from 'battelle-common-typescript-statistics';
+import Distribution, { TruncatedLogNormalDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
-export default class TruncatedLogNormal extends TruncatedLogNormalDistribution implements IParameter {
+export default class TruncatedLogNormal implements IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.truncatedLogNormal;
 
-  @JsonProperty('logMin')
-  get logMin(): number | undefined {
-    return this.Min;
-  }
+  @JsonProperty()
+  logMin?: number;
 
-  set logMin(newValue: number | undefined) {
-    if (newValue) {
-      this.Min = newValue;
-    }
-  }
+  @JsonProperty()
+  logMax?: number;
 
-  @JsonProperty('logMax')
-  get logMax(): number | undefined {
-    return this.Max;
-  }
+  @JsonProperty()
+  logMean?: number;
 
-  set logMax(newValue: number | undefined) {
-    if (newValue) {
-      this.Max = newValue;
-    }
-  }
-
-  @JsonProperty('logMean')
-  get logMean(): number | undefined {
-    return this.LogMean;
-  }
-
-  set logMean(newValue: number | undefined) {
-    if (newValue) {
-      this.LogMean = newValue;
-    }
-  }
-
-  @JsonProperty('logStdDev')
-  get logStdDev(): number | undefined {
-    return this.LogStdDev;
-  }
-
-  set logStdDev(newValue: number | undefined) {
-    if (newValue) {
-      this.LogStdDev = newValue;
-    }
-  }
+  @JsonProperty()
+  logStdDev?: number;
 
   get min(): number | undefined {
     return this.logMin !== undefined ? 10 ** this.logMin : undefined;
@@ -92,7 +61,6 @@ export default class TruncatedLogNormal extends TruncatedLogNormalDistribution i
     logMean?: number,
     logStdDev?: number,
   ) {
-    super(logMean ?? Infinity, logStdDev ?? Infinity, logMin ?? Infinity, logMax ?? Infinity);
     this.logMin = logMin;
     this.logMax = logMax;
     this.logMean = logMean;
@@ -112,5 +80,17 @@ export default class TruncatedLogNormal extends TruncatedLogNormalDistribution i
           this.logMean === other.logMean &&
           this.logStdDev === other.logStdDev
       : false;
+  }
+
+  get distribution(): Distribution | undefined {
+    if (
+      this.min === undefined ||
+      this.max === undefined ||
+      this.logMean === undefined ||
+      this.logStdDev === undefined
+    ) {
+      return undefined;
+    }
+    return new TruncatedLogNormalDistribution(this.logMean, this.logStdDev, this.min, this.max);
   }
 }

@@ -1,36 +1,20 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
-import IParameter from '@/interfaces/parameter/IParameter';
-import { WeibullDistribution } from 'battelle-common-typescript-statistics';
+import Distribution, { WeibullDistribution } from 'battelle-common-typescript-statistics';
 import * as Utility from '@/mixin/mathUtilityMixin';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
-export default class Weibull extends WeibullDistribution implements IParameter {
+export default class Weibull implements IUnivariateParameter {
   @JsonProperty()
   readonly type = ParameterType.weibull;
 
-  @JsonProperty('k')
-  get k(): number | undefined {
-    return this.Shape === Number.POSITIVE_INFINITY ? this.Shape : undefined;
-  }
+  @JsonProperty()
+  k?: number;
 
-  set k(newVal: number | undefined) {
-    if (newVal) {
-      this.Shape = newVal; // using super.Shape results in an error
-    }
-  }
-
-  @JsonProperty('lambda')
-  get lambda(): number | undefined {
-    return this.Scale;
-  }
-
-  set lambda(newVal: number | undefined) {
-    if (newVal) {
-      this.Scale = newVal;
-    }
-  }
+  @JsonProperty()
+  lambda?: number;
 
   get min(): number {
     return this.metaData.lowerLimit;
@@ -46,48 +30,35 @@ export default class Weibull extends WeibullDistribution implements IParameter {
   }
 
   get mean(): number | undefined {
-    if (!this.isSet) {
+    if (this.k === undefined || this.lambda === undefined) {
       return undefined;
     }
-    return this.Mean; // this.lambda * Utility.gamma(1 + 1 / this.k);
+    return Weibull.calculateMean(this.lambda, this.k); // this.lambda * Utility.gamma(1 + 1 / this.k);
   }
 
   get mode(): number | undefined {
-    if (!this.isSet) {
+    if (this.k === undefined || this.lambda === undefined) {
       return undefined;
     }
-    return this.Mode; // this.k <= 1 ? 0 : this.lambda * ((this.k - 1) / this.k) ** (1 / this.k);
+    return this.k <= 1 ? 0 : this.lambda * ((this.k - 1) / this.k) ** (1 / this.k);
   }
 
   get stdDev(): number | undefined {
     if (!this.isSet) {
       return undefined;
     }
-    return this.StdDev; // this.variance ? Math.sqrt(this.variance) : undefined;
+    return this.variance ? Math.sqrt(this.variance) : undefined;
   }
 
   get variance(): number | undefined {
-    /* if (!(this.k !== undefined && this.lambda !== undefined)) {
+    if (!(this.k !== undefined && this.lambda !== undefined)) {
       return undefined;
-    } */
-    // this.lambda ** 2 * (Utility.gamma(1 + 2 / this.k) - Utility.gamma(1 + 1 / this.k) ** 2);
-    return this.stdDev ? this.stdDev ** 2 : undefined;
+    }
+    return this.lambda ** 2 * (Utility.gamma(1 + 2 / this.k) - Utility.gamma(1 + 1 / this.k) ** 2);
   }
 
   get isSet(): boolean {
-    return this.k !== undefined && this.lambda !== undefined && this.IsValid;
-  }
-
-  pdf(x?: number): number | undefined {
-    return x ? this.PDF(x) : undefined;
-  }
-
-  cdf(x?: number): number | undefined {
-    return x ? this.CDF(x) : undefined;
-  }
-
-  ppf(percentile?: number): number | undefined {
-    return percentile ? this.PPF(percentile) : undefined;
+    return this.k !== undefined && this.lambda !== undefined;
   }
 
   isEquivalent(other: Weibull): boolean {
@@ -97,17 +68,19 @@ export default class Weibull extends WeibullDistribution implements IParameter {
     return this.k === other.k && this.lambda === other.lambda;
   }
 
-  probabilityFunction(value: number): number {
-    return this.PDF(value);
-  }
-
   @JsonProperty()
   metaData: ParameterMetaData;
 
   constructor(metaData: ParameterMetaData = new ParameterMetaData(), k?: number, lambda?: number) {
-    super(k ?? Infinity, lambda ?? Infinity);
     this.metaData = metaData;
     this.k = k;
     this.lambda = lambda;
+  }
+
+  get distribution(): Distribution | undefined {
+    if (this.k === undefined || this.lambda === undefined) {
+      return undefined;
+    }
+    return new WeibullDistribution(this.k, this.lambda);
   }
 }

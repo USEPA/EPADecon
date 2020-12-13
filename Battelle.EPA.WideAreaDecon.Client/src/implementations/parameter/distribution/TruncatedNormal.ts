@@ -1,61 +1,30 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
-import { TruncatedNormalDistribution } from 'battelle-common-typescript-statistics';
+import Distribution, { TruncatedNormalDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
-export default class TruncatedNormal extends TruncatedNormalDistribution implements IParameter {
+export default class TruncatedNormal implements IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.truncatedNormal;
 
-  @JsonProperty('min')
-  get min(): number | undefined {
-    return this.Min;
-  }
+  @JsonProperty()
+  min?: number;
 
-  set min(newValue: number | undefined) {
-    if (newValue) {
-      this.Min = newValue;
-    }
-  }
+  @JsonProperty()
+  max?: number;
 
-  @JsonProperty('max')
-  get max(): number | undefined {
-    return this.Max;
-  }
-
-  set max(newValue: number | undefined) {
-    if (newValue) {
-      this.Max = newValue;
-    }
-  }
-
-  @JsonProperty('mean')
-  get mean(): number | undefined {
-    return this.Mean;
-  }
-
-  set mean(newValue: number | undefined) {
-    if (newValue) {
-      this.Mean = newValue;
-    }
-  }
+  @JsonProperty()
+  mean?: number;
 
   public get mode(): number | undefined {
     return this.mean;
   }
 
-  @JsonProperty('stdDev')
-  get stdDev(): number | undefined {
-    return this.StdDev;
-  }
-
-  set stdDev(newValue: number | undefined) {
-    if (newValue) {
-      this.StdDev = newValue;
-    }
-  }
+  @JsonProperty()
+  stdDev?: number;
 
   @JsonProperty()
   metaData: ParameterMetaData;
@@ -65,12 +34,18 @@ export default class TruncatedNormal extends TruncatedNormalDistribution impleme
   }
 
   constructor(metaData = new ParameterMetaData(), min?: number, max?: number, mean?: number, stdDev?: number) {
-    super(mean ?? Infinity, stdDev ?? Infinity, min ?? Infinity, max ?? Infinity);
     this.min = min;
     this.max = max;
     this.mean = mean;
     this.stdDev = stdDev;
     this.metaData = metaData;
+  }
+
+  get distribution(): Distribution | undefined {
+    if (this.min === undefined || this.max === undefined || this.mean === undefined || this.stdDev === undefined) {
+      return undefined;
+    }
+    return new TruncatedNormalDistribution(this.mean, this.stdDev, this.min, this.max);
   }
 
   isEquivalent(other: IParameter): boolean {
