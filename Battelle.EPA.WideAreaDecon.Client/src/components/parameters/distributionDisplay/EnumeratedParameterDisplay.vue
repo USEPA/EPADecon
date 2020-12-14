@@ -94,13 +94,16 @@ import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 export default class EnumeratedParameterDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: EnumeratedParameter;
 
+  baseline: EnumeratedParameter = this.$store.state.currentSelectedParameter.baseline;
+
   selectedCategory: IParameter = Object.values(this.parameterValue.values)[0];
+
+  // baseline value of selected category
+  baselineCategory: IParameter = Object.values(this.baseline.values)[0];
 
   currentDistType: ParameterType = ParameterType.constant;
 
   distNames: ParameterType[] = changeableDistributionTypes;
-
-  componentKey = 0;
 
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
@@ -132,11 +135,10 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   get chartData(): Distribution[] {
     const distributions: Distribution[] = [];
 
-    // TODO Implement Baseline logic
-    // const baselineDist = (this.selectedValue as IUnivariateParameter).distribution;
-    // if (baselineDist !== undefined) {
-    //   distributions.push(baselineDist);
-    // }
+    const baselineDist = (this.baselineCategory as IUnivariateParameter).distribution;
+    if (baselineDist !== undefined) {
+      distributions.push(baselineDist);
+    }
 
     const currentDist = (this.selectedCategory as IUnivariateParameter).distribution;
     if (currentDist !== undefined) {
@@ -190,6 +192,9 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   onCategoryChanged(): void {
     this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
+
+    const category = this.getSelectedCategory();
+    this.baselineCategory = this.baseline.values[category];
   }
 
   onDistributionTypeChange(): void {
@@ -208,8 +213,10 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   @Watch('parameterValue')
   onParameterChanged(): void {
+    // update selected category, current dist type, and baseline values
     [[, this.selectedCategory]] = this.categories;
     this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
+    this.baseline = this.$store.state.currentSelectedParameter.baseline;
   }
 
   created(): void {
