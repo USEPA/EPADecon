@@ -1,10 +1,12 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import Distribution, { LogUniformDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
-export default class LogUniform implements IParameter {
+export default class LogUniform implements IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.logUniform;
 
@@ -49,6 +51,13 @@ export default class LogUniform implements IParameter {
 
   isEquivalent(other: IParameter): boolean {
     return this.compareValues(other as LogUniform);
+  }
+
+  get distribution(): Distribution | undefined {
+    if (this.min === undefined || this.max === undefined) {
+      return undefined;
+    }
+    return new LogUniformDistribution(this.min, this.max);
   }
 
   compareValues(other?: LogUniform): boolean {

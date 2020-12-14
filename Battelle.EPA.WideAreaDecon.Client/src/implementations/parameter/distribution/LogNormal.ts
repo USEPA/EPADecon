@@ -1,11 +1,12 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import Distribution, { LogNormalDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
-import IUnivariateParameter from './IUnivariateParameter';
 
 @Serializable()
-export default class LogNormal implements IParameter, IUnivariateParameter {
+export default class LogNormal implements IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.logNormal;
 
@@ -32,6 +33,13 @@ export default class LogNormal implements IParameter, IUnivariateParameter {
 
   public get isSet(): boolean {
     return this.mean !== undefined && this.stdDev !== undefined;
+  }
+
+  public get distribution(): Distribution | undefined {
+    if (this.mean === undefined || this.stdDev === undefined) {
+      return undefined;
+    }
+    return new LogNormalDistribution(this.mean, this.stdDev);
   }
 
   constructor(metaData = new ParameterMetaData(), mean?: number, stdDev?: number) {

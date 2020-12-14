@@ -31,10 +31,10 @@ function isUnivariateDistribution(param: IParameter): boolean {
     case ParameterType.truncatedLogNormal:
     case ParameterType.truncatedNormal:
     case ParameterType.uniform:
+    case ParameterType.uniformXDependent:
     case ParameterType.weibull:
       return true;
     case ParameterType.null:
-    case ParameterType.uniformXDependent:
     default:
       throw new Error('Unrecognized Parameter Type');
   }
