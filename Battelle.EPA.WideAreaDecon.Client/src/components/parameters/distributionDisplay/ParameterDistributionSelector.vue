@@ -22,13 +22,7 @@
       </v-col>
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
-    <component
-      :key="componentKey"
-      :is="distComponent"
-      :parameter-value="currentSelectedParameter.current"
-      @enumeratedParameterCategory="setEnumeratedParameterCategory"
-    >
-    </component>
+    <component :key="componentKey" :is="distComponent" :parameter-value="currentSelectedParameter.current"> </component>
     <v-card v-if="displayChart" flat class="pa-5" tile width="100%" height="400">
       <distribution-chart
         :distribution-series="chartData"
@@ -104,12 +98,6 @@ export default class ParameterDistributionSelector extends Vue {
   currentDistType = ParameterType.constant;
 
   distNames = changeableDistributionTypes;
-
-  enumeratedParameterCategory = '';
-
-  get isEnumeratedParameter(): boolean {
-    return this.currentDistType === ParameterType.enumeratedParameter;
-  }
 
   get xAxisLabel(): string {
     return this.currentSelectedParameter.baseline.metaData.description ?? '';
@@ -217,10 +205,6 @@ export default class ParameterDistributionSelector extends Vue {
       'changeCurrentParameterType',
       this.parameterConverter.convertToNewType(this.currentSelectedParameter.current, this.currentDistType),
     );
-  }
-
-  setEnumeratedParameterCategory(value: string): void {
-    this.enumeratedParameterCategory = value;
   }
 
   created(): void {

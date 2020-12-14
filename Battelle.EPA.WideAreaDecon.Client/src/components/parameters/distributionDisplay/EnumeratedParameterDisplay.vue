@@ -20,12 +20,12 @@
       </v-col>
       <v-col offset="5" cols="3">
         <v-overflow-btn
-          @change="onSelectChanged"
+          @change="onCategoryChanged"
           class="my-2"
-          :items="selectableValues"
+          :items="categories"
           :item-text="[0]"
           :item-value="[1]"
-          v-model="selectedValue"
+          v-model="selectedCategory"
           filled
           dense
         >
@@ -35,7 +35,15 @@
         </v-overflow-btn>
       </v-col>
     </v-row>
-    <component :key="componentKey" :is="distComponent" :parameter-value="selectedValue"> </component>
+    <component :key="getSelectedCategory()" :is="distComponent" :parameter-value="selectedCategory"> </component>
+    <v-card v-if="displayChart && chartData.length" flat class="pa-5" tile width="100%" height="400">
+      <distribution-chart
+        :distribution-series="chartData"
+        :xAxisLabel="xAxisLabel"
+        :yAxisLabel="'Probability of Selection'"
+        :data-generator="distributionGen"
+      ></distribution-chart>
+    </v-card>
   </v-container>
 </template>
 
@@ -58,10 +66,13 @@ import UniformDisplay from '@/components/parameters/distributionDisplay/UniformD
 import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
 import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
 import UniformXDependentDisplay from '@/components/parameters/distributionDisplay/UniformXDependentDisplay.vue';
+import { DistributionChart } from 'battelle-common-vue-charting/src/index';
+import Distribution, { DistributionDataGenerator } from 'battelle-common-typescript-statistics';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 
 @Component({
   components: {
@@ -77,12 +88,13 @@ import TYPES from '@/dependencyInjection/types';
     WeibullDisplay,
     BimodalTruncatedNormalDisplay,
     UniformXDependentDisplay,
+    DistributionChart,
   },
 })
 export default class EnumeratedParameterDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: EnumeratedParameter;
 
-  selectedValue: IParameter = Object.values(this.parameterValue.values)[0];
+  selectedCategory: IParameter = Object.values(this.parameterValue.values)[0];
 
   currentDistType: ParameterType = ParameterType.constant;
 
@@ -91,6 +103,57 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   componentKey = 0;
 
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
+
+  get xAxisLabel(): string {
+    return this.selectedCategory.metaData.description ?? '';
+  }
+
+  get displayChart(): boolean {
+    switch (this.currentDistType) {
+      case ParameterType.uniform:
+      case ParameterType.pert:
+      case ParameterType.truncatedNormal:
+      case ParameterType.bimodalTruncatedNormal:
+      case ParameterType.logUniform:
+      case ParameterType.truncatedLogNormal:
+      case ParameterType.logNormal:
+      case ParameterType.weibull:
+        return true;
+      case ParameterType.constant:
+      case ParameterType.enumeratedFraction:
+      case ParameterType.enumeratedParameter:
+      case ParameterType.uniformXDependent:
+      case ParameterType.null:
+      default:
+        return false;
+    }
+  }
+
+  get chartData(): Distribution[] {
+    const distributions: Distribution[] = [];
+
+    // TODO Implement Baseline logic
+    // const baselineDist = (this.selectedValue as IUnivariateParameter).distribution;
+    // if (baselineDist !== undefined) {
+    //   distributions.push(baselineDist);
+    // }
+
+    const currentDist = (this.selectedCategory as IUnivariateParameter).distribution;
+    if (currentDist !== undefined) {
+      distributions.push(currentDist);
+    }
+
+    return distributions;
+  }
+
+  get distributionGen(): DistributionDataGenerator {
+    const gen = new DistributionDataGenerator(
+      1000,
+      this.selectedCategory.metaData.lowerLimit,
+      this.selectedCategory.metaData.upperLimit,
+    );
+    return gen;
+  }
 
   get distComponent(): string {
     switch (this.currentDistType) {
@@ -121,44 +184,36 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     }
   }
 
-  get selectableValues(): [string, IParameter][] {
+  get categories(): [string, IParameter][] {
     return Object.entries(this.parameterValue.values);
   }
 
-  onSelectChanged(): void {
-    this.currentDistType = this.selectedValue.type ?? ParameterType.constant;
+  onCategoryChanged(): void {
+    this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
   }
 
   onDistributionTypeChange(): void {
     const category = this.getSelectedCategory();
-    this.selectedValue = this.parameterConverter.convertToNewType(this.selectedValue, this.currentDistType);
+    this.selectedCategory = this.parameterConverter.convertToNewType(this.selectedCategory, this.currentDistType);
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    Vue.set(this.parameterValue.values, category!, this.selectedValue);
+    this.parameterValue.values[category] = this.selectedCategory;
   }
 
   getSelectedCategory(): string {
     const values = Object.entries(this.parameterValue.values);
-    const [[category]] = values.filter(([, value]) => value === this.selectedValue);
+    const [[category]] = values.filter(([, value]) => value === this.selectedCategory);
 
     return category;
   }
 
-  @Watch('selectedValue')
-  emitSelectedCategory(): void {
-    const category = this.getSelectedCategory();
-    this.$emit('enumeratedParameterCategory', category);
-  }
-
   @Watch('parameterValue')
-  onParameterChanged(newValue: EnumeratedParameter): void {
-    [this.selectedValue] = Object.values(newValue.values);
-    this.currentDistType = this.selectedValue.type ?? ParameterType.constant;
+  onParameterChanged(): void {
+    [[, this.selectedCategory]] = this.categories;
+    this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
   }
 
   created(): void {
-    this.currentDistType = this.selectedValue.type;
-    this.emitSelectedCategory();
+    this.currentDistType = this.selectedCategory.type;
   }
 }
 </script>
