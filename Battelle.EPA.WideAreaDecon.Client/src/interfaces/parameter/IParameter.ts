@@ -9,6 +9,4 @@ export default interface IParameter {
   isEquivalent(other: IParameter): boolean;
 
   metaData: ParameterMetaData;
-
-  values?: Record<string, IParameter>;
 }
