@@ -113,7 +113,7 @@ export default class ParameterDistributionSelector extends Vue {
       case ParameterType.truncatedLogNormal:
       case ParameterType.logNormal:
       case ParameterType.weibull:
-        return true;
+        return this.chartData.length > 0;
       case ParameterType.constant:
       case ParameterType.enumeratedFraction:
       case ParameterType.enumeratedParameter:
@@ -136,7 +136,7 @@ export default class ParameterDistributionSelector extends Vue {
     if (currentDist !== undefined) {
       distributions.push(currentDist);
     }
-    console.log(distributions);
+
     return distributions;
   }
 

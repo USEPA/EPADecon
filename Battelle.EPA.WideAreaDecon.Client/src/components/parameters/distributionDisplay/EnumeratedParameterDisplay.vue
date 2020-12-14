@@ -121,7 +121,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
       case ParameterType.truncatedLogNormal:
       case ParameterType.logNormal:
       case ParameterType.weibull:
-        return true;
+        return this.chartData.length > 0;
       case ParameterType.constant:
       case ParameterType.enumeratedFraction:
       case ParameterType.enumeratedParameter:
@@ -151,8 +151,8 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   get distributionGen(): DistributionDataGenerator {
     const gen = new DistributionDataGenerator(
       1000,
-      this.selectedCategory.metaData.lowerLimit,
-      this.selectedCategory.metaData.upperLimit,
+      this.baselineCategory.metaData.lowerLimit,
+      this.baselineCategory.metaData.upperLimit,
     );
     return gen;
   }
