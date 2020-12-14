@@ -1,4 +1,5 @@
-import IParameter from '@/interfaces/parameter/IParameter';
+import Distribution from 'battelle-common-typescript-statistics';
+import IParameter from './IParameter';
 
 export default interface IUnivariateParameter extends IParameter {
   min?: number;
@@ -6,4 +7,5 @@ export default interface IUnivariateParameter extends IParameter {
   mean?: number;
   mode?: number;
   stdDev?: number;
+  distribution?: Distribution;
 }

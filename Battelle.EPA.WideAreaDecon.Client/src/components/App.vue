@@ -23,13 +23,7 @@ import FooterBar from '@/components/base/FooterBar.vue';
     FooterBar,
   },
 })
-export default class App extends Vue {
-  // eslint-disable-next-line class-methods-use-this
-  mounted(): void {
-    // eslint-disable-next-line no-console
-    console.log('APP MOUNTED');
-  }
-}
+export default class App extends Vue {}
 </script>
 <style scoped lang="scss">
 .disabled-tool-tip {

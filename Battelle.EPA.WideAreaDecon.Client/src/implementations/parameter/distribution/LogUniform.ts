@@ -1,35 +1,20 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
-import { LogUniformDistribution } from 'battelle-common-typescript-statistics';
+import Distribution, { LogUniformDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
-export default class LogUniform extends LogUniformDistribution implements IParameter {
+export default class LogUniform implements IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.logUniform;
 
-  @JsonProperty('logMin')
-  get logMin(): number | undefined {
-    return this.Min;
-  }
+  @JsonProperty()
+  logMin?: number;
 
-  set logMin(newValue: number | undefined) {
-    if (newValue) {
-      this.Min = newValue;
-    }
-  }
-
-  @JsonProperty('logMax')
-  get logMax(): number | undefined {
-    return this.Max;
-  }
-
-  set logMax(newValue: number | undefined) {
-    if (newValue) {
-      this.Max = newValue;
-    }
-  }
+  @JsonProperty()
+  logMax?: number;
 
   get min(): number | undefined {
     return this.logMin ? 10 ** this.logMin : undefined;
@@ -59,7 +44,6 @@ export default class LogUniform extends LogUniformDistribution implements IParam
   }
 
   constructor(metaData = new ParameterMetaData(), logMin?: number, logMax?: number) {
-    super(logMin ?? Infinity, logMax ?? Infinity);
     this.logMin = logMin;
     this.logMax = logMax;
     this.metaData = metaData;
@@ -67,6 +51,13 @@ export default class LogUniform extends LogUniformDistribution implements IParam
 
   isEquivalent(other: IParameter): boolean {
     return this.compareValues(other as LogUniform);
+  }
+
+  get distribution(): Distribution | undefined {
+    if (this.min === undefined || this.max === undefined) {
+      return undefined;
+    }
+    return new LogUniformDistribution(this.min, this.max);
   }
 
   compareValues(other?: LogUniform): boolean {

@@ -15,7 +15,7 @@
     <v-row align="center" justify="center">
       <v-col>
         <p class="text-center display-3">
-          Unknown parameter type <b>{{ selectedParameter.type }}</b
+          Unknown parameter type <b>{{ parameterValue.type }}</b
           >...
         </p>
       </v-col>

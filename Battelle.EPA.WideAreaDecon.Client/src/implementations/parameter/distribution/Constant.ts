@@ -1,11 +1,12 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
-import { ConstantDistribution } from 'battelle-common-typescript-statistics';
+import Distribution, { ConstantDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
-export default class Constant extends ConstantDistribution implements IParameter {
+export default class Constant implements IUnivariateParameter {
   private readonly numStdDevs = 5;
 
   @JsonProperty()
@@ -19,6 +20,9 @@ export default class Constant extends ConstantDistribution implements IParameter
   public get isSet(): boolean {
     return this.value !== undefined;
   }
+
+  @JsonProperty()
+  public value?: number;
 
   public get min(): number {
     return this.metaData.lowerLimit;
@@ -41,7 +45,7 @@ export default class Constant extends ConstantDistribution implements IParameter
   }
 
   constructor(metaData = new ParameterMetaData(), value?: number) {
-    super(value ?? Infinity);
+    this.value = value;
     this.metaData = metaData;
   }
 
