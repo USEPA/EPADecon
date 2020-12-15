@@ -17,11 +17,11 @@ export default class LogUniform implements IUnivariateParameter {
   logMax?: number;
 
   get min(): number | undefined {
-    return this.logMin ? 10 ** this.logMin : undefined;
+    return this.logMin !== undefined ? 10 ** this.logMin : undefined;
   }
 
   get max(): number | undefined {
-    return this.logMax ? 10 ** this.logMax : undefined;
+    return this.logMax !== undefined ? 10 ** this.logMax : undefined;
   }
 
   get mean(): number | undefined {
