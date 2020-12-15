@@ -108,7 +108,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
   get xAxisLabel(): string {
-    return this.selectedCategory.metaData.description ?? '';
+    return this.baselineCategory.metaData.description ?? '';
   }
 
   get displayChart(): boolean {
