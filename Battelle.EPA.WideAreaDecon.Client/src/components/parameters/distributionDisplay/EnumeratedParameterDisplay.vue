@@ -216,7 +216,9 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     // update selected category, current dist type, and baseline values
     [[, this.selectedCategory]] = this.categories;
     this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
+
     this.baseline = this.$store.state.currentSelectedParameter.baseline;
+    [this.baselineCategory] = Object.values(this.baseline.values);
   }
 
   created(): void {
