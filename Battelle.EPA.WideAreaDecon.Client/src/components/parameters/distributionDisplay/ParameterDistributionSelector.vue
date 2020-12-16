@@ -23,14 +23,16 @@
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
     <component :key="componentKey" :is="distComponent" :parameter-value="currentSelectedParameter.current"> </component>
-    <v-card v-if="displayChart" flat class="pa-5" tile width="100%" height="400">
-      <distribution-chart
-        :distribution-series="chartData"
-        :xAxisLabel="xAxisLabel"
-        :yAxisLabel="'Probability of Selection'"
-        :data-generator="distributionGen"
-      ></distribution-chart>
-    </v-card>
+    <v-container>
+      <v-card v-if="displayChart" flat class="pa-5" tile width="100%" height="400">
+        <distribution-chart
+          :distribution-series="chartData"
+          :xAxisLabel="xAxisLabel"
+          :yAxisLabel="'Probability of Selection'"
+          :data-generator="distributionGen"
+        ></distribution-chart>
+      </v-card>
+    </v-container>
   </v-card>
 </template>
 
