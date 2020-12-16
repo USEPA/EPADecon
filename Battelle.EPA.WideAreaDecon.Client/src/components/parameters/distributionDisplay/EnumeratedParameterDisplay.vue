@@ -36,7 +36,7 @@
       </v-col>
     </v-row>
     <component :key="getSelectedCategory()" :is="distComponent" :parameter-value="selectedCategory"> </component>
-    <v-card v-if="displayChart && chartData.length" flat class="pa-5" tile width="100%" height="400">
+    <v-card v-if="displayChart" flat class="pa-5" tile width="100%" height="400">
       <distribution-chart
         :distribution-series="chartData"
         :xAxisLabel="xAxisLabel"
@@ -205,7 +205,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   }
 
   getSelectedCategory(): string {
-    const values = Object.entries(this.parameterValue.values);
+    const values = this.categories;
     const [[category]] = values.filter(([, value]) => value === this.selectedCategory);
 
     return category;
