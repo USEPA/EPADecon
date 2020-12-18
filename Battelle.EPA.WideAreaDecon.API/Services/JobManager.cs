@@ -16,7 +16,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         private JobRequest Running { get; set; }
         private ConcurrentBag<JobRequest> Finished { get; }
 
-        private CancellationTokenSource canclCancellationTokenSource;
+        private CancellationTokenSource cancelCancellationTokenSource;
 
         public JobManager()
         {
@@ -47,7 +47,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                 return;
             }
 
-            canclCancellationTokenSource = new CancellationTokenSource();
+            cancelCancellationTokenSource = new CancellationTokenSource();
             if (Running != null)
             {
                 throw new ApplicationException($"Trying to run new job while currently running job {Running.Id}");
@@ -59,7 +59,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
             Running = newRun;
 
-            Task.Run(ConvertAndExecuteJob, canclCancellationTokenSource.Token).ContinueWith(task => RunNextJob());
+            Task.Run(ConvertAndExecuteJob, cancelCancellationTokenSource.Token).ContinueWith(task => RunNextJob());
 
         }
 
