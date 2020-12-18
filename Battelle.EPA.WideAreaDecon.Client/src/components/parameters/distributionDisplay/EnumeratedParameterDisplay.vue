@@ -35,13 +35,14 @@
         </v-overflow-btn>
       </v-col>
     </v-row>
-    <component :key="getSelectedCategory()" :is="distComponent" :parameter-value="selectedCategory"> </component>
-    <v-card v-if="displayChart" flat class="pa-5" tile width="100%" height="400">
+    <component :key="getSelectedCategory()" :is="display.distComponent" :parameter-value="selectedCategory">
+    </component>
+    <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
       <distribution-chart
-        :distribution-series="chartData"
-        :xAxisLabel="xAxisLabel"
+        :distribution-series="display.chartData"
+        :xAxisLabel="display.xAxisLabel"
         :yAxisLabel="'Probability of Selection'"
-        :data-generator="distributionGen"
+        :data-generator="display.dataGenerator"
       ></distribution-chart>
     </v-card>
   </v-container>
@@ -67,12 +68,12 @@ import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullD
 import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
 import UniformXDependentDisplay from '@/components/parameters/distributionDisplay/UniformXDependentDisplay.vue';
 import { DistributionChart } from 'battelle-common-vue-charting/src/index';
-import Distribution, { DistributionDataGenerator } from 'battelle-common-typescript-statistics';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
-import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
+import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
+import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
 
 @Component({
   components: {
@@ -107,83 +108,10 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
-  get xAxisLabel(): string {
-    return this.baselineCategory.metaData.description ?? '';
-  }
-
-  get displayChart(): boolean {
-    switch (this.currentDistType) {
-      case ParameterType.uniform:
-      case ParameterType.pert:
-      case ParameterType.truncatedNormal:
-      case ParameterType.bimodalTruncatedNormal:
-      case ParameterType.logUniform:
-      case ParameterType.truncatedLogNormal:
-      case ParameterType.logNormal:
-      case ParameterType.weibull:
-        return this.chartData.length > 0;
-      case ParameterType.constant:
-      case ParameterType.enumeratedFraction:
-      case ParameterType.enumeratedParameter:
-      case ParameterType.uniformXDependent:
-      case ParameterType.null:
-      default:
-        return false;
-    }
-  }
-
-  get chartData(): Distribution[] {
-    const distributions: Distribution[] = [];
-
-    const baselineDist = (this.baselineCategory as IUnivariateParameter).distribution;
-    if (baselineDist !== undefined) {
-      distributions.push(baselineDist);
-    }
-
-    const currentDist = (this.selectedCategory as IUnivariateParameter).distribution;
-    if (currentDist !== undefined) {
-      distributions.push(currentDist);
-    }
-
-    return distributions;
-  }
-
-  get distributionGen(): DistributionDataGenerator {
-    const gen = new DistributionDataGenerator(
-      1000,
-      this.baselineCategory.metaData.lowerLimit,
-      this.baselineCategory.metaData.upperLimit,
-    );
-    return gen;
-  }
-
-  get distComponent(): string {
-    switch (this.currentDistType) {
-      case ParameterType.null:
-        return 'null-display';
-      case ParameterType.constant:
-        return 'constant-display';
-      case ParameterType.logUniform:
-        return 'log-uniform-display';
-      case ParameterType.pert:
-        return 'beta-pert-display';
-      case ParameterType.truncatedLogNormal:
-        return 'truncated-log-normal-display';
-      case ParameterType.truncatedNormal:
-        return 'truncated-normal-display';
-      case ParameterType.logNormal:
-        return 'log-normal-display';
-      case ParameterType.uniform:
-        return 'uniform-display';
-      case ParameterType.weibull:
-        return 'weibull-display';
-      case ParameterType.bimodalTruncatedNormal:
-        return 'bimodal-truncated-normal-display';
-      case ParameterType.uniformXDependent:
-        return 'uniform-x-dependent-display';
-      default:
-        return 'unknown-display';
-    }
+  get display(): DistributionDisplay {
+    return container
+      .get<IDistributionDisplayProvider>(TYPES.DistributionDisplayProvider)
+      .getDistributionDisplay(this.baselineCategory, this.selectedCategory);
   }
 
   get categories(): [string, IParameter][] {

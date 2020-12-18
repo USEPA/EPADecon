@@ -22,14 +22,15 @@
       </v-col>
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
-    <component :key="componentKey" :is="distComponent" :parameter-value="currentSelectedParameter.current"> </component>
+    <component :key="componentKey" :is="display.distComponent" :parameter-value="currentSelectedParameter.current">
+    </component>
     <v-container>
-      <v-card v-if="displayChart" flat class="pa-5" tile width="100%" height="400">
+      <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
         <distribution-chart
-          :distribution-series="chartData"
-          :xAxisLabel="xAxisLabel"
+          :distribution-series="display.chartData"
+          :xAxisLabel="display.xAxisLabel"
           :yAxisLabel="'Probability of Selection'"
-          :data-generator="distributionGen"
+          :data-generator="display.dataGenerator"
         ></distribution-chart>
       </v-card>
     </v-container>
@@ -61,8 +62,8 @@ import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
 import { DistributionChart } from 'battelle-common-vue-charting/src/index';
-import Distribution, { DistributionDataGenerator } from 'battelle-common-typescript-statistics';
-import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
+import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
+import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
 
 @Component({
   components: {
@@ -93,95 +94,16 @@ export default class ParameterDistributionSelector extends Vue {
     this.currentDistType = this.currentSelectedParameter.type;
   }
 
-  plottable = false;
-
   componentKey = 0;
 
   currentDistType = ParameterType.constant;
 
   distNames = changeableDistributionTypes;
 
-  get xAxisLabel(): string {
-    return this.currentSelectedParameter.baseline.metaData.description ?? '';
-  }
-
-  get displayChart(): boolean {
-    switch (this.currentSelectedParameter.type) {
-      case ParameterType.uniform:
-      case ParameterType.pert:
-      case ParameterType.truncatedNormal:
-      case ParameterType.bimodalTruncatedNormal:
-      case ParameterType.logUniform:
-      case ParameterType.truncatedLogNormal:
-      case ParameterType.logNormal:
-      case ParameterType.weibull:
-        return this.chartData.length > 0;
-      case ParameterType.constant:
-      case ParameterType.enumeratedFraction:
-      case ParameterType.enumeratedParameter:
-      case ParameterType.uniformXDependent:
-      case ParameterType.null:
-      default:
-        return false;
-    }
-  }
-
-  get chartData(): Distribution[] {
-    const distributions: Distribution[] = [];
-
-    const baselineDist = (this.currentSelectedParameter.baseline as IUnivariateParameter).distribution;
-    if (baselineDist !== undefined) {
-      distributions.push(baselineDist);
-    }
-
-    const currentDist = (this.currentSelectedParameter.current as IUnivariateParameter).distribution;
-    if (currentDist !== undefined) {
-      distributions.push(currentDist);
-    }
-
-    return distributions;
-  }
-
-  get distributionGen(): DistributionDataGenerator {
-    const gen = new DistributionDataGenerator(
-      1000,
-      this.currentSelectedParameter.baseline.metaData.lowerLimit,
-      this.currentSelectedParameter.baseline.metaData.upperLimit,
-    );
-    return gen;
-  }
-
-  get distComponent(): string {
-    switch (this.currentSelectedParameter.current.type) {
-      case ParameterType.null:
-        return 'null-display';
-      case ParameterType.constant:
-        return 'constant-display';
-      case ParameterType.logUniform:
-        return 'log-uniform-display';
-      case ParameterType.pert:
-        return 'beta-pert-display';
-      case ParameterType.truncatedLogNormal:
-        return 'truncated-log-normal-display';
-      case ParameterType.truncatedNormal:
-        return 'truncated-normal-display';
-      case ParameterType.logNormal:
-        return 'log-normal-display';
-      case ParameterType.uniform:
-        return 'uniform-display';
-      case ParameterType.uniformXDependent:
-        return 'uniform-x-dependent-display';
-      case ParameterType.weibull:
-        return 'weibull-display';
-      case ParameterType.bimodalTruncatedNormal:
-        return 'bimodal-truncated-normal-display';
-      case ParameterType.enumeratedFraction:
-        return 'enumerated-fraction-display';
-      case ParameterType.enumeratedParameter:
-        return 'enumerated-parameter-display';
-      default:
-        return 'unknown-display';
-    }
+  get display(): DistributionDisplay {
+    return container
+      .get<IDistributionDisplayProvider>(TYPES.DistributionDisplayProvider)
+      .getDistributionDisplay(this.currentSelectedParameter.baseline, this.currentSelectedParameter.current);
   }
 
   get isChangeableDist(): boolean {

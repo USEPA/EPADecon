@@ -8,7 +8,7 @@ export default class DistributionDisplay {
 
   current: IUnivariateParameter;
 
-  get data(): Distribution[] {
+  get chartData(): Distribution[] {
     const distributions: Distribution[] = [];
 
     if (this.baseline.distribution !== undefined) {
@@ -22,7 +22,7 @@ export default class DistributionDisplay {
     return distributions;
   }
 
-  get shouldDisplay(): boolean {
+  get displayChart(): boolean {
     switch (this.current.type) {
       case ParameterType.uniform:
       case ParameterType.pert:
@@ -32,7 +32,7 @@ export default class DistributionDisplay {
       case ParameterType.truncatedLogNormal:
       case ParameterType.logNormal:
       case ParameterType.weibull:
-        return this.data.length > 0;
+        return this.chartData.length > 0;
       case ParameterType.constant:
       case ParameterType.enumeratedFraction:
       case ParameterType.enumeratedParameter:
@@ -43,7 +43,7 @@ export default class DistributionDisplay {
     }
   }
 
-  get distGenerator(): DistributionDataGenerator {
+  get dataGenerator(): DistributionDataGenerator {
     const gen = new DistributionDataGenerator(
       1000,
       this.baseline.metaData.lowerLimit,
