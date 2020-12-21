@@ -35,7 +35,7 @@
         </v-overflow-btn>
       </v-col>
     </v-row>
-    <component :key="getSelectedCategory()" :is="display.distComponent" :parameter-value="selectedCategory">
+    <component :key="getSelectedCategoryName()" :is="display.distComponent" :parameter-value="selectedCategory">
     </component>
     <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
       <distribution-chart
@@ -121,18 +121,18 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   onCategoryChanged(): void {
     this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
 
-    const category = this.getSelectedCategory();
+    const category = this.getSelectedCategoryName();
     this.baselineCategory = this.baseline.values[category];
   }
 
   onDistributionTypeChange(): void {
-    const category = this.getSelectedCategory();
+    const category = this.getSelectedCategoryName();
     this.selectedCategory = this.parameterConverter.convertToNewType(this.selectedCategory, this.currentDistType);
 
     this.parameterValue.values[category] = this.selectedCategory;
   }
 
-  getSelectedCategory(): string {
+  getSelectedCategoryName(): string {
     const values = this.categories;
     const [[category]] = values.filter(([, value]) => value === this.selectedCategory);
 
