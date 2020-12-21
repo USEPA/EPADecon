@@ -1,5 +1,4 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
-import Distribution, { ConstantDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
