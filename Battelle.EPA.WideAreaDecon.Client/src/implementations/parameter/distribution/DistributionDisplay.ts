@@ -44,11 +44,18 @@ export default class DistributionDisplay {
   }
 
   get dataGenerator(): DistributionDataGenerator {
-    const gen = new DistributionDataGenerator(
-      1000,
-      this.baseline.metaData.lowerLimit,
-      this.baseline.metaData.upperLimit,
-    );
+    let min = this.baseline.metaData.lowerLimit;
+    let max = this.baseline.metaData.upperLimit;
+
+    if (this.current.min !== undefined && this.baseline.min !== undefined) {
+      min = this.current.min < this.baseline.min ? this.current.min : this.baseline.min;
+    }
+
+    if (this.current.max !== undefined && this.baseline.max !== undefined) {
+      max = this.current.max > this.baseline.max ? this.current.max : this.baseline.max;
+    }
+
+    const gen = new DistributionDataGenerator(1000, min, max);
     return gen;
   }
 
