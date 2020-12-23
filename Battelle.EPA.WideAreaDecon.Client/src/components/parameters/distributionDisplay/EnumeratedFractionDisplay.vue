@@ -182,8 +182,8 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     }
   }
 
+  // toggle lock on a row
   lockRow(lockValue: boolean, index: number): void {
-    // toggle lock on row
     const valueName = this.listOfParameterValues[index][0];
     this.parameterValue.values[valueName].locked = !lockValue;
     this.lockedRows.splice(index, 1, !this.lockedRows[index]);
@@ -222,6 +222,9 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 }
 .large-slider .v-slider__track-background {
   border-radius: 15px !important;
+}
+.v-data-table__wrapper {
+  overflow: visible !important;
 }
 .v-messages {
   display: none;
