@@ -144,7 +144,7 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
   }
 
   onTextEnterPressed(event: KeyboardEvent, index: number): void {
-    if (event.keyCode === Key.Enter) {
+    if (event.keyCode === Key.Enter && this.validationRules(this.textValues[index]) === true) {
       this.onSliderStopped(+this.textValues[index], index);
     }
   }
@@ -225,9 +225,6 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 }
 .v-data-table__wrapper {
   overflow: visible !important;
-}
-.v-messages {
-  display: none;
 }
 .v-slider__thumb {
   width: 24px !important;
