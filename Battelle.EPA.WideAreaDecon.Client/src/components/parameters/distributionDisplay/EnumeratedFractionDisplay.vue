@@ -98,14 +98,13 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
   }
 
   renormalize(newValue: number, changedIndex: number): void {
-    Vue.set(this.values[changedIndex], 'value', newValue);
-    const normalizedFractions = this.normalize(changedIndex, newValue);
+    this.values[changedIndex].value = newValue;
+    const normalizedFractions = this.normalize(changedIndex);
 
     // update values array w/ normalized values
     Object.entries(this.parameterValue.values).forEach(([category], i) => {
-      Vue.set(this.values[i], 'value', normalizedFractions[i]);
-      Vue.set(this.values[i], 'text', normalizedFractions[i].toFixed(2));
-
+      this.values[i].value = normalizedFractions[i];
+      this.values[i].text = normalizedFractions[i].toFixed(2);
       this.parameterValue.values[category].value = normalizedFractions[i];
     });
   }
@@ -126,9 +125,9 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     }
   }
 
-  normalize(changedIndex: number, newValue: number): number[] {
+  normalize(changedIndex: number): number[] {
     const changedRow = this.values[changedIndex];
-    // get probability of locked rows
+    // probability of locked rows
     const probLocked = sumBy(
       this.values.filter((v) => v.locked),
       (v) => v.value,
@@ -140,7 +139,7 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     const probUnlocked = sumBy(unlockedRows, (row) => row.value);
 
     const change = probUnlocked - probLeft;
-    const otherUnlockProb = probUnlocked - newValue;
+    const otherUnlockProb = probUnlocked - changedRow.value;
     const numRowsToDisperse = this.values.filter((value) => !value.locked).length - 1;
 
     const normalizeFunc = this.getNormalizeFunc(change, otherUnlockProb, numRowsToDisperse);
@@ -168,7 +167,7 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
   lockRow(lockValue: boolean, index: number): void {
     const valueName = this.listOfParameterValues[index][0];
     this.parameterValue.values[valueName].locked = !lockValue;
-    Vue.set(this.values[index], 'locked', !lockValue);
+    this.values[index].locked = !lockValue;
   }
 
   @Watch('parameterValue')
