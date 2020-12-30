@@ -93,7 +93,7 @@ export default class DistributionDisplay {
   }
 
   get xAxisLabel(): string {
-    return this.baseline.metaData.description ?? '';
+    return `${this.baseline.metaData.description} (${this.baseline.metaData.units})` ?? '';
   }
 
   constructor(baseline: IParameter, current: IParameter) {
