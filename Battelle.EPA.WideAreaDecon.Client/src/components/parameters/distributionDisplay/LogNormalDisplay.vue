@@ -147,7 +147,7 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textMean = newValue.toString();
-    Vue.set(this.parameterValue, 'mean', newValue);
+    Vue.set(this.parameterValue, 'mean', Math.log10(newValue));
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -164,7 +164,7 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textStd = newValue.toString();
-    Vue.set(this.parameterValue, 'stdDev', newValue);
+    Vue.set(this.parameterValue, 'stdDev', Math.log10(newValue));
   }
 
   @Watch('parameterValue')
