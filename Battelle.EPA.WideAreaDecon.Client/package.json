@@ -14,7 +14,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/vue-fontawesome": "^2.0.0",
     "@mdi/font": "^5.5.55",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "clone": "^2.1.2",
     "comment-json": "^4.0.6",
     "core-js": "^3.6.5",
