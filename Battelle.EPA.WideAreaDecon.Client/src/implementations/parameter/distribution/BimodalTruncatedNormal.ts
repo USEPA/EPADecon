@@ -1,11 +1,11 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
-import IUnivariateParameter from './IUnivariateParameter';
 
 @Serializable()
-export default class BimodalTruncatedNormal implements IParameter, IUnivariateParameter {
+export default class BimodalTruncatedNormal implements IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.bimodalTruncatedNormal;
 

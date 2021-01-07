@@ -25,11 +25,11 @@ function gamma(z: number): number {
 }
 
 function convertToLog10(value?: number): number | undefined {
-  return value ? Math.log10(value) : undefined;
+  return value && value > 0 ? Math.log10(value) : undefined;
 }
 
 function convertToLog(value?: number): number | undefined {
-  return value ? Math.log(value) : undefined;
+  return value && value > 0 ? Math.log(value) : undefined;
 }
 
 // eslint-disable-next-line import/prefer-default-export

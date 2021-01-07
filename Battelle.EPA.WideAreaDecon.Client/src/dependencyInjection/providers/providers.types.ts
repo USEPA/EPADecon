@@ -9,6 +9,7 @@ const PROVIDER_TYPES = {
   ScenarioParameterProvider: Symbol('IScenarioParameterProvider'),
   BackendScenarioDefinitionProvider: Symbol('BackendScenarioDefinitionProvider'),
   BackendScenarioParameterProvider: Symbol('BackendScenarioParameterProvider'),
+  DistributionDisplayProvider: Symbol('DistributionDisplayProvider'),
 };
 
 export default PROVIDER_TYPES;

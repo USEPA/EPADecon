@@ -104,7 +104,8 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
     }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
-    [this.parameterValue.min, this.parameterValue.max] = newValue;
+    Vue.set(this.parameterValue, 'min', newValue[0]);
+    Vue.set(this.parameterValue, 'max', newValue[1]);
   }
 
   @Watch('parameterValue')
@@ -184,7 +185,8 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
   }
 
   onSliderStopped(value: number[]): void {
-    [this.parameterValue.min, this.parameterValue.max] = value;
+    Vue.set(this.parameterValue, 'min', value[0]);
+    Vue.set(this.parameterValue, 'max', value[1]);
   }
 
   setValues(): void {
