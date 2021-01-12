@@ -11,23 +11,23 @@
                 <v-slider
                   class="large-slider"
                   v-model="value.value"
-                  :disabled="lockedRows[index]"
+                  :disabled="values[index].locked"
                   :max="max"
                   :min="min"
                   :step="step"
                   thumb-label
-                  @change="onSliderStopped(value.value, index)"
+                  @change="renormalize(value.value, index)"
                 >
                 </v-slider>
               </td>
               <td style="width: 20%">
                 <v-card class="pa-2" outlined tile>
                   <v-text-field
-                    ref="value"
-                    :disabled="lockedRows[index]"
+                    :ref="`value-${index}`"
+                    :disabled="values[index].locked"
                     @keydown="onTextEnterPressed($event, index)"
                     @blur="updateOnTextChange(index)"
-                    v-model="textValues[index]"
+                    v-model="values[index].text"
                     label="Value"
                     :rules="[validationRules]"
                     hide-details="auto"
@@ -44,9 +44,9 @@
                   off-icon="fa-lock-open"
                   on-icon="fa-lock"
                   color="grey"
-                  :value="lockedRows[index]"
+                  :value="values[index].locked"
                   :ripple="false"
-                  @click="lockRow(lockedRows[index], index)"
+                  @click="lockRow(values[index].locked, index)"
                 >
                 </v-checkbox>
               </td>
@@ -65,14 +65,13 @@ import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import EnumeratedFraction from '@/implementations/parameter/list/enumeratedFraction';
 import Constant from '@/implementations/parameter/distribution/Constant';
 import { Key } from 'ts-keycode-enum';
+import { clamp, sumBy } from 'lodash';
 
 @Component
 export default class EnumeratedFractionDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: EnumeratedFraction;
 
-  fractions: number[] = [];
-
-  lockedRows: boolean[] = [];
+  values: { value: number; locked: boolean; text: string }[] = [];
 
   max = 1;
 
@@ -80,38 +79,8 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 
   step = 0.01;
 
-  textValues: string[] = [];
-
-  adjustmentsMade = false;
-
   get listOfParameterValues(): [string, Constant][] {
     return Object.entries(this.parameterValue.values);
-  }
-
-  get sumOfFractions(): number {
-    return this.fractions.reduce((acc, cur) => acc + cur, 0);
-  }
-
-  get difference(): number {
-    return this.max - this.sumOfFractions;
-  }
-
-  // the amount each fraction will need to be modified by
-  get adjustments(): number {
-    return this.difference / (this.fractions.length - 1);
-  }
-
-  get lockedRowsSum(): number {
-    return this.fractions.reduce((acc, cur, index) => {
-      if (this.lockedRows[index]) {
-        return acc + cur;
-      }
-      return acc;
-    }, 0);
-  }
-
-  get lockedRowCount(): number {
-    return this.lockedRows.filter((row) => row).length;
   }
 
   validationRules(value: string): boolean | string {
@@ -128,82 +97,91 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     return true;
   }
 
-  onSliderStopped(newValue: number, changedIndex: number): void {
-    const val = newValue + this.lockedRowsSum > this.max ? this.max - this.lockedRowsSum : newValue;
+  renormalize(newValue: number, changedIndex: number): void {
+    this.values[changedIndex].value = newValue;
+    const normalizedFractions = this.normalize(changedIndex);
 
-    this.fractions.splice(changedIndex, 1, val);
-    this.makeAdjustments(changedIndex);
-
-    // update parameter and slider values
-    Object.entries(this.parameterValue.values).forEach((value, index) => {
-      const [valueName] = value;
-      this.parameterValue.values[valueName].value = this.fractions[index];
-      // update text value
-      this.textValues.splice(index, 1, this.fractions[index].toFixed(2));
+    // update values array w/ normalized values
+    Object.entries(this.parameterValue.values).forEach(([category], i) => {
+      this.values[i].value = normalizedFractions[i];
+      this.values[i].text = normalizedFractions[i].toFixed(2);
+      this.parameterValue.values[category].value = normalizedFractions[i];
     });
   }
 
   onTextEnterPressed(event: KeyboardEvent, index: number): void {
     if (event.keyCode === Key.Enter) {
-      this.onSliderStopped(+this.textValues[index], index);
+      this.updateOnTextChange(index);
     }
   }
 
   updateOnTextChange(index: number): void {
-    this.onSliderStopped(+this.textValues[index], index);
-  }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [castComponent] = this.$refs[`value-${index}`] as any;
 
-  makeAdjustments(changedIndex: number): void {
-    this.adjustmentsMade = false;
-    let counter = 50; // loop at most 50 times
-
-    while (this.sumOfFractions !== this.max && counter) {
-      this.fractions.forEach((fraction, index) => {
-        const adjustedFraction = fraction + this.adjustments;
-        const shouldAdjust = fraction && adjustedFraction >= this.min && adjustedFraction <= this.max;
-        if (index !== changedIndex && shouldAdjust && !this.lockedRows[index]) {
-          this.fractions.splice(index, 1, adjustedFraction);
-          this.adjustmentsMade = true;
-        }
-      });
-
-      // force an adjustment if needed
-      if (!this.adjustmentsMade) {
-        const fallback = // holds index to force change on
-          this.lockedRowCount === this.listOfParameterValues.length - 1
-            ? changedIndex // the only unlocked row will be changed
-            : this.fractions.findIndex((fraction, index) => index !== changedIndex && !this.lockedRows[index]);
-
-        this.fractions.splice(fallback, 1, this.fractions[fallback] + this.difference);
-        this.adjustmentsMade = true;
-      }
-
-      counter -= 1;
+    if (castComponent.validate && castComponent.validate(true)) {
+      const value = +this.values[index].text;
+      this.renormalize(value, index);
     }
   }
 
+  normalize(changedIndex: number): number[] {
+    const changedRow = this.values[changedIndex];
+    // probability of locked rows
+    const probLocked = sumBy(
+      this.values.filter((v) => v.locked),
+      (v) => v.value,
+    );
+
+    const unlockedRows = this.values.filter((v) => !v.locked);
+    const probLeft = 1 - probLocked;
+    changedRow.value = clamp(changedRow.value, unlockedRows.length > 1 ? 0 : probLeft, probLeft);
+    const probUnlocked = sumBy(unlockedRows, (row) => row.value);
+
+    const change = probUnlocked - probLeft;
+    const otherUnlockProb = probUnlocked - changedRow.value;
+    const numRowsToDisperse = this.values.filter((value) => !value.locked).length - 1;
+
+    const normalizeFunc = this.getNormalizeFunc(change, otherUnlockProb, numRowsToDisperse);
+
+    return this.values.map((v, i) => {
+      if (v.locked || i === changedIndex) {
+        return v.value;
+      }
+
+      return normalizeFunc(v.value);
+    });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getNormalizeFunc(change: number, otherUnlockProb: number, numRowsToDisperse: number): (x: number) => number {
+    if (change === 0) {
+      return (x) => x;
+    }
+
+    return change < 0
+      ? (x) => x - change / numRowsToDisperse
+      : (x) => x * ((otherUnlockProb - change) / otherUnlockProb);
+  }
+
   lockRow(lockValue: boolean, index: number): void {
-    // toggle lock on row
     const valueName = this.listOfParameterValues[index][0];
     this.parameterValue.values[valueName].locked = !lockValue;
-    this.lockedRows.splice(index, 1, !this.lockedRows[index]);
+    this.values[index].locked = !lockValue;
   }
 
   @Watch('parameterValue')
   onParameterChanged(): void {
-    // reset arrays
-    this.fractions = [];
-    this.textValues = [];
-    this.lockedRows = [];
+    this.values = [];
     this.setValues();
   }
 
   setValues(): void {
-    // add values to arrays
     Object.values(this.parameterValue.values).forEach((constant: Constant) => {
-      this.fractions.push(constant.value ?? 0);
-      this.textValues.push(constant.value?.toFixed(2) ?? '');
-      this.lockedRows.push(constant.locked ?? false);
+      const value = constant.value ?? 0;
+      const locked = constant.locked ?? false;
+      const text = constant.value?.toFixed(2) ?? '';
+      this.values.push({ value, locked, text });
     });
   }
 
@@ -223,8 +201,8 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 .large-slider .v-slider__track-background {
   border-radius: 15px !important;
 }
-.v-messages {
-  display: none;
+.v-data-table__wrapper {
+  overflow: visible !important;
 }
 .v-slider__thumb {
   width: 24px !important;

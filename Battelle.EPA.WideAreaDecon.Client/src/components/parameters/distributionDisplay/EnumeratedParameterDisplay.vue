@@ -20,12 +20,12 @@
       </v-col>
       <v-col offset="5" cols="3">
         <v-overflow-btn
-          @change="onSelectChanged"
+          @change="onCategoryChanged"
           class="my-2"
-          :items="selectableValues"
+          :items="categories"
           :item-text="[0]"
           :item-value="[1]"
-          v-model="selectedValue"
+          v-model="selectedCategory"
           filled
           dense
         >
@@ -35,7 +35,16 @@
         </v-overflow-btn>
       </v-col>
     </v-row>
-    <component :key="componentKey" :is="distComponent" :parameter-value="selectedValue"> </component>
+    <component :key="getSelectedCategoryName()" :is="display.distComponent" :parameter-value="selectedCategory">
+    </component>
+    <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
+      <distribution-chart
+        :distribution-series="display.chartData"
+        :xAxisLabel="display.xAxisLabel"
+        :yAxisLabel="'Probability of Selection'"
+        :data-generator="display.dataGenerator"
+      ></distribution-chart>
+    </v-card>
   </v-container>
 </template>
 
@@ -56,7 +65,15 @@ import TruncatedNormalDisplay from '@/components/parameters/distributionDisplay/
 import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNormalDisplay.vue';
 import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
 import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
+import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
+import UniformXDependentDisplay from '@/components/parameters/distributionDisplay/UniformXDependentDisplay.vue';
+import { DistributionChart } from 'battelle-common-vue-charting/src/index';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
+import container from '@/dependencyInjection/config';
+import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
+import TYPES from '@/dependencyInjection/types';
+import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
+import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
 
 @Component({
   components: {
@@ -70,64 +87,70 @@ import { changeableDistributionTypes } from '@/mixin/parameterMixin';
     UniformDisplay,
     LogNormalDisplay,
     WeibullDisplay,
+    BimodalTruncatedNormalDisplay,
+    UniformXDependentDisplay,
+    DistributionChart,
   },
 })
 export default class EnumeratedParameterDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: EnumeratedParameter;
 
-  selectedValue: IParameter = Object.values(this.parameterValue.values)[0];
+  baseline: EnumeratedParameter = this.$store.state.currentSelectedParameter.baseline;
+
+  selectedCategory: IParameter = Object.values(this.parameterValue.values)[0];
+
+  // baseline value of selected category
+  baselineCategory: IParameter = Object.values(this.baseline.values)[0];
 
   currentDistType: ParameterType = ParameterType.constant;
 
   distNames: ParameterType[] = changeableDistributionTypes;
 
-  componentKey = 0;
+  parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
-  get distComponent(): string {
-    switch (this.currentDistType) {
-      case ParameterType.null:
-        return 'null-display';
-      case ParameterType.constant:
-        return 'constant-display';
-      case ParameterType.logUniform:
-        return 'log-uniform-display';
-      case ParameterType.pert:
-        return 'beta-pert-display';
-      case ParameterType.truncatedLogNormal:
-        return 'truncated-log-normal-display';
-      case ParameterType.truncatedNormal:
-        return 'truncated-normal-display';
-      case ParameterType.logNormal:
-        return 'log-normal-display';
-      case ParameterType.uniform:
-        return 'uniform-display';
-      case ParameterType.weibull:
-        return 'weibull-display';
-      default:
-        return 'unknown-display';
-    }
+  get display(): DistributionDisplay {
+    return container
+      .get<IDistributionDisplayProvider>(TYPES.DistributionDisplayProvider)
+      .getDistributionDisplay(this.baselineCategory, this.selectedCategory);
   }
 
-  get selectableValues(): [string, IParameter][] {
+  get categories(): [string, IParameter][] {
     return Object.entries(this.parameterValue.values);
   }
 
-  onSelectChanged(): void {
-    this.currentDistType = this.selectedValue.type ?? ParameterType.constant;
+  onCategoryChanged(): void {
+    this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
+
+    const category = this.getSelectedCategoryName();
+    this.baselineCategory = this.baseline.values[category];
   }
 
   onDistributionTypeChange(): void {
-    this.selectedValue.type = this.currentDistType;
+    const category = this.getSelectedCategoryName();
+    this.selectedCategory = this.parameterConverter.convertToNewType(this.selectedCategory, this.currentDistType);
+
+    this.parameterValue.values[category] = this.selectedCategory;
+  }
+
+  getSelectedCategoryName(): string {
+    const values = this.categories;
+    const [[category]] = values.filter(([, value]) => value === this.selectedCategory);
+
+    return category;
   }
 
   @Watch('parameterValue')
-  onParameterChanged(newValue: EnumeratedParameter): void {
-    [this.selectedValue] = Object.values(newValue.values);
-    this.currentDistType = this.selectedValue.type ?? ParameterType.constant;
+  onParameterChanged(): void {
+    // update selected category, current dist type, and baseline values
+    [[, this.selectedCategory]] = this.categories;
+    this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
+
+    this.baseline = this.$store.state.currentSelectedParameter.baseline;
+    [this.baselineCategory] = Object.values(this.baseline.values);
   }
 
   created(): void {
-    this.currentDistType = this.selectedValue.type;
+    this.currentDistType = this.selectedCategory.type;
   }
 }
 </script>

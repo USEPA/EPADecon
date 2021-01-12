@@ -26,19 +26,18 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
                 var tRows = rows
                     .Where(row => Enum.Parse<T>(ParameterMetaData.FromExcel(row).Category, true).Equals(val))
                     .ToArray();
-                if (!tRows.Any())
+                
+                if (tRows.Any())
                 {
-                    values[val] = null;
-                }
-
-                if (tRows.Count() == 1)
-                {
-                    values[val] = IParameter.FromExcel(ParameterMetaData.FromExcel(tRows[0]), tRows[0]);
-                }
-                else
-                {
-                    values[val] =
-                        UniformXDependentDistribution.FromExcel(ParameterMetaData.FromExcel(tRows[0]), "", tRows); //TODO:: need to figure out name
+                    if (tRows.Count() == 1)
+                    {
+                        values[val] = IParameter.FromExcel(ParameterMetaData.FromExcel(tRows[0]), tRows[0]);
+                    }
+                    else if (tRows.Count() > 1)
+                    {
+                        values[val] =
+                            UniformXDependentDistribution.FromExcel(ParameterMetaData.FromExcel(tRows[0]), tRows); //TODO:: need to figure out name
+                    }
                 }
             }
 

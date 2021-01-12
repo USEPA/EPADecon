@@ -12,7 +12,7 @@ import BetaPERT from '../distribution/BetaPERT';
 import LogUniform from '../distribution/LogUniform';
 import Constant from '../distribution/Constant';
 import { isUnivariateDistribution } from '../distribution/UnivariateDistributionType';
-import IUnivariateParameter from '../distribution/IUnivariateParameter';
+import IUnivariateParameter from '../../../interfaces/parameter/IUnivariateParameter';
 import BimodalTruncatedNormal from '../distribution/BimodalTruncatedNormal';
 import LogNormal from '../distribution/LogNormal';
 import NullParameter from '../NullParameter';

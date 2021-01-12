@@ -2,6 +2,7 @@ import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import { isEqual } from 'lodash';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import EnumeratedParameterDeserializer from '@/serialization/parameter/EnumeratedParameterDeserializer';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
@@ -9,14 +10,14 @@ export default class EnumeratedParameter implements IParameter {
   @JsonProperty()
   readonly type = ParameterType.enumeratedParameter;
 
-  get isSet(): boolean {
-    if (this.type === undefined) {
-      return false;
-    }
-    if (this.values[this.type] === undefined) {
-      return false;
-    }
-    return !this.values[this.type].isSet;
+  public get isSet(): boolean {
+    const valueEntries = Object.values(this.values);
+
+    const result = valueEntries.every((val: IParameter) => {
+      return val.isSet;
+    });
+
+    return result;
   }
 
   isEquivalent(other: IParameter): boolean {
@@ -26,7 +27,7 @@ export default class EnumeratedParameter implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  @JsonProperty()
+  @JsonProperty({ ...{ isDictionary: true }, ...EnumeratedParameterDeserializer })
   values: Record<string, IParameter>;
 
   @JsonProperty()
