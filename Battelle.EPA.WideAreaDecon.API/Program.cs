@@ -5,6 +5,9 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Battelle.EPA.WideAreaDecon.API.Services;
 
 namespace Battelle.EPA.WideAreaDecon.API
 {
@@ -21,6 +24,7 @@ namespace Battelle.EPA.WideAreaDecon.API
                 .CreateDefaultBuilder<Startup>(args)
                 .ConfigureAppConfiguration(ConfigureIfElectron)
                 .ConfigureKestrel(ConfigureConfigureKestrelSettings)
+                .ConfigureServices(ConfigureServices)
                 .UseElectron(args)
                 .Build()
                 .Run();
@@ -43,6 +47,11 @@ namespace Battelle.EPA.WideAreaDecon.API
             context.HostingEnvironment.EnvironmentName = "Electron";
             builder.AddJsonFile($"appsettings.Electron.json", true);
             Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Electron", EnvironmentVariableTarget.Process);
+        }
+
+        private static void ConfigureServices(WebHostBuilderContext context, IServiceCollection services)
+        {
+            services.AddSingleton<IJobManager, JobManager>();
         }
     }
 }

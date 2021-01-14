@@ -1,12 +1,13 @@
 ﻿using System;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
-using Battelle.EPA.WideAreaDecon.API.Interfaces;
-using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
-using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
+//using Battelle.EPA.WideAreaDecon.API.Interfaces;
+//using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
+//using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
 using Battelle.EPA.WideAreaDecon.API.Models.Job;
-using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
-using Battelle.EPA.WideAreaDecon.API.Providers;
+//using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
+//using Battelle.EPA.WideAreaDecon.API.Providers;
 using Battelle.EPA.WideAreaDecon.API.Services;
+using Battelle.EPA.WideAreaDecon.API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Battelle.EPA.WideAreaDecon.API.Controllers
@@ -16,13 +17,13 @@ namespace Battelle.EPA.WideAreaDecon.API.Controllers
     public class JobRequestController : ControllerBase
     {
 
-        private readonly JobManager _jobManager;
+        private readonly IJobManager _jobManager;
 
         /// <summary>
         /// Default constructor, requires a non-null provider
         /// </summary>
         /// <param name="configProvider"></param>
-        public JobRequestController(JobManager jobManager)
+        public JobRequestController(IJobManager jobManager)
         {
             _jobManager = jobManager;
         }
