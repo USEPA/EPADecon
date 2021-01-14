@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Battelle.EPA.WideAreaDecon.API\Battelle.EPA.WideAreaDecon.API.csproj" />
+  </ItemGroup>
+
 </Project>
