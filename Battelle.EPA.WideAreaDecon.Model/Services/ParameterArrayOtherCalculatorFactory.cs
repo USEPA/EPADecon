@@ -2,6 +2,8 @@
 using Battelle.EPA.WideAreaDecon.Model.Parameter;
 using System;
 using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
+
 namespace Battelle.EPA.WideAreaDecon.Model.Services
 {
     /// <summary>
@@ -11,10 +13,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
     /// </summary>
     class ParameterArrayOtherCalculatorFactory : IOtherCalculatorFactory
     {
-        private readonly Dictionary<string, IParameter> _parameters;
+        private readonly ParameterList _parameters;
         private TransportationCostCalculator Calculator { get; set; }
 
-        public ParameterArrayOtherCalculatorFactory(Dictionary<string, IParameter> parameters)
+        public ParameterArrayOtherCalculatorFactory(ParameterList parameters)
         {
             _parameters = parameters;
         }

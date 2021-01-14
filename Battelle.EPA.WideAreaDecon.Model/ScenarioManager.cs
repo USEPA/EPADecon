@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Battelle.EPA.WideAreaDecon.Model.Parameter;
+using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
@@ -10,14 +11,14 @@ namespace Battelle.EPA.WideAreaDecon.Model
     /// </summary>
     class ScenarioManager
     {
-        private readonly Dictionary<string, IParameter> _scenarioDefinition;
-        private readonly Dictionary<string, IParameter> _scenarioParameters;
+        private readonly ParameterList _scenarioDefinition;
+        private readonly ParameterList _scenarioParameters;
         private readonly Services.ICharacterizationSamplingCalculatorFactory _characterizationSamplingFactory;
         private readonly Services.ISourceReductionCalculatorFactory _sourceReductionFactory;
         private readonly Services.IDecontaminationCalculatorFactory _decontaminationFactory;
         private readonly Services.IOtherCalculatorFactory _otherFactory;
         private readonly Services.IIncidentCommandCalculatorFactory _incidentCommandFactory;
-        public ScenarioManager(Dictionary<string, IParameter> scenarioDefinition, Dictionary<string, IParameter> scenarioParameters)
+        public ScenarioManager(ParameterList scenarioDefinition, ParameterList scenarioParameters)
         {
             _scenarioDefinition = scenarioDefinition;
             _scenarioParameters = scenarioParameters;
@@ -34,7 +35,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
             // Take scenario definition and construct scenario
 
             // Take scenario parameters and construct calculators
-
             var cs = _characterizationSamplingFactory.GetCalculator();
             var sr = _sourceReductionFactory.GetCalculator();
             var dc = _decontaminationFactory.GetCalculator();

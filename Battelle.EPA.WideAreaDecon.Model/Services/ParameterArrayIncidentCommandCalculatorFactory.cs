@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Services
 {
@@ -14,7 +15,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
     /// </summary>
     class ParameterArrayIncidentCommandCalculatorFactory : IIncidentCommandCalculatorFactory
     {
-        private readonly Dictionary<string, IParameter> _parameters;
+        private readonly ParameterList _parameters;
         private LaborCostCalculator Calculator_labor { get; set; }
         private SuppliesCostCalculator Calculator_supplies { get; set; }
 
@@ -34,7 +35,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
 
         private Decontamination.WorkDaysCalculator Calculator_workDaysDc { get; set; }
 
-        public ParameterArrayIncidentCommandCalculatorFactory(Dictionary<string, IParameter> parameters)
+        public ParameterArrayIncidentCommandCalculatorFactory(ParameterList parameters)
         {
             _parameters = parameters;
         }
