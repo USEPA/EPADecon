@@ -1,7 +1,7 @@
 import JobRequest from '@/implementations/jobs/JobRequest';
-import ParameterList from '@/implementations/parameter/ParameterList';
+import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 
 export default interface IJobProvider {
-  createJobRequest(scenarioDefinition: ParameterList, scenarioParameters: ParameterList): JobRequest;
+  createJobRequest(scenarioDefinition: ParameterWrapperList, scenarioParameters: ParameterWrapperList): JobRequest;
   postJobRequest(job: JobRequest): Promise<boolean>;
 }

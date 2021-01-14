@@ -1,7 +1,7 @@
 import JobStatus from '@/enums/jobs/jobStatus';
 import IJobRequest from '@/interfaces/jobs/IJobRequest';
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
-import ParameterList from '@/implementations/parameter/ParameterList';
+import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 
 @Serializable()
 export default class JobRequest implements IJobRequest {
@@ -11,18 +11,18 @@ export default class JobRequest implements IJobRequest {
   status: JobStatus;
 
   @JsonProperty()
-  scenarioDefinition: ParameterList;
+  scenarioDefinition: ParameterWrapperList;
 
   @JsonProperty()
-  scenarioParameters: ParameterList;
+  scenarioParameters: ParameterWrapperList;
 
   results?: any;
 
   constructor(
     id: number,
     status: JobStatus = JobStatus.new,
-    scenarioDefinition: ParameterList,
-    scenarioParameters: ParameterList,
+    scenarioDefinition: ParameterWrapperList,
+    scenarioParameters: ParameterWrapperList,
     results?: any,
   ) {
     this.id = id;

@@ -1,13 +1,15 @@
+import { injectable } from 'inversify';
 import JobStatus from '@/enums/jobs/jobStatus';
 import IJobProvider from '@/interfaces/providers/IJobProvider';
 import Axios from 'axios';
 import { serialize } from 'typescript-json-serializer';
 import JobRequest from '../jobs/JobRequest';
-import ParameterList from '../parameter/ParameterList';
+import ParameterWrapperList from '../parameter/ParameterWrapperList';
 
+@injectable()
 export default class JobProvider implements IJobProvider {
   // eslint-disable-next-line class-methods-use-this
-  createJobRequest(scenarioDefinition: ParameterList, scenarioParameters: ParameterList): JobRequest {
+  createJobRequest(scenarioDefinition: ParameterWrapperList, scenarioParameters: ParameterWrapperList): JobRequest {
     const job = new JobRequest(1, JobStatus.new, scenarioDefinition, scenarioParameters);
     return job;
   }
