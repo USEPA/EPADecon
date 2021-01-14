@@ -13,6 +13,7 @@ import NavigationSettings from './navigationSettings/NavigationSettings';
 import navigationSettingsMutations from './navigationSettings/mutations';
 import parameterSelectionMutations from './parameterSelection/mutations';
 import ParameterSelection from './parameterSelection/ParameterSelection';
+import jobActions from './jobs/actions';
 
 Vue.use(Vuex);
 
@@ -34,6 +35,9 @@ const store: StoreOptions<IRootState> = {
     ...runSettingsMutations,
     ...parameterSelectionMutations,
     ...navigationSettingsMutations,
+  },
+  actions: {
+    ...jobActions,
   },
 };
 

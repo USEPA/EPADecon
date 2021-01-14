@@ -24,7 +24,9 @@
     <v-tooltip bottom :color="canRun ? 'info' : 'error'">
       <template v-slot:activator="{ on }">
         <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'" :color="canRun ? 'secondary' : ''">
-          <v-btn v-on="on" :disabled="!canRun" :color="canRun ? 'secondary' : ''"> Run Scenario </v-btn>
+          <v-btn v-on="on" @click="runScenario()" :disabled="!canRun" :color="canRun ? 'secondary' : ''">
+            Run Scenario
+          </v-btn>
         </div>
       </template>
       <span v-if="canRun">Runs the model and generates results</span>
@@ -99,13 +101,13 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { State, Getter } from 'vuex-class';
+import { State, Getter, Action } from 'vuex-class';
 import { Component } from 'vue-property-decorator';
 import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
 import INavigationItem from '@/interfaces/configuration/INavigationItem';
 import container from '@/dependencyInjection/config';
-import IImageProvider from '../../interfaces/providers/IImageProvider';
-import TYPES from '../../dependencyInjection/types';
+import IImageProvider from '@/interfaces/providers/IImageProvider';
+import TYPES from '@/dependencyInjection/types';
 
 @Component
 export default class NavigationBar extends Vue {
@@ -120,6 +122,8 @@ export default class NavigationBar extends Vue {
   @State navigationItems!: INavigationItem[];
 
   @State enableNavigationTabs!: boolean;
+
+  @Action runScenario!: () => void;
 
   imageProvider = container.get<IImageProvider>(TYPES.ImageProvider);
 
