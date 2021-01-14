@@ -19,6 +19,8 @@ import DefaultScenarioParameterProvider from '@/implementations/providers/Defaul
 import BackendScenarioParameterProvider from '@/implementations/providers/BackendScenarioParameterProvider';
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
 import DistributionDisplayProvider from '@/implementations/providers/DistributionDisplayProvider';
+import IJobProvider from '@/interfaces/providers/IJobProvider';
+import JobProvider from '@/implementations/providers/JobProvider';
 import PROVIDER_TYPES from './providers.types';
 
 const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => {
@@ -55,6 +57,8 @@ const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => 
   );
 
   bind<IDistributionDisplayProvider>(PROVIDER_TYPES.DistributionDisplayProvider).to(DistributionDisplayProvider);
+
+  bind<IJobProvider>(PROVIDER_TYPES.JobProvider).to(JobProvider);
 });
 
 export default providersContainerModule;
