@@ -4,7 +4,7 @@ import JobStatus from '@/enums/jobs/jobStatus';
 export default interface IJobRequest {
   id: number;
   status: JobStatus;
-  scenarioDefinition: ParameterWrapperList;
-  scenarioParameters: ParameterWrapperList;
+  defineScenario: ParameterWrapperList;
+  modifyParameter: ParameterWrapperList;
   results?: any; // TODO update type
 }

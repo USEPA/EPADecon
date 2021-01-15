@@ -7,7 +7,6 @@ import NullParameter from './NullParameter';
 
 @Serializable()
 export default class ParameterWrapper implements IParameterNode {
-  @JsonProperty()
   baseline: IParameter;
 
   @JsonProperty()

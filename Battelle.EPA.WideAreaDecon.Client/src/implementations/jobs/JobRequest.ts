@@ -5,30 +5,30 @@ import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperLi
 
 @Serializable()
 export default class JobRequest implements IJobRequest {
-  @JsonProperty()
+  // @JsonProperty()
   id: number;
 
   status: JobStatus;
 
   @JsonProperty()
-  scenarioDefinition: ParameterWrapperList;
+  defineScenario: ParameterWrapperList;
 
   @JsonProperty()
-  scenarioParameters: ParameterWrapperList;
+  modifyParameter: ParameterWrapperList;
 
   results?: any;
 
   constructor(
     id: number,
     status: JobStatus = JobStatus.new,
-    scenarioDefinition: ParameterWrapperList,
-    scenarioParameters: ParameterWrapperList,
+    defineScenario: ParameterWrapperList,
+    modifyParameter: ParameterWrapperList,
     results?: any,
   ) {
     this.id = id;
     this.status = status;
-    this.scenarioDefinition = scenarioDefinition;
-    this.scenarioParameters = scenarioParameters;
+    this.defineScenario = defineScenario;
+    this.modifyParameter = modifyParameter;
     this.results = results;
   }
 }
