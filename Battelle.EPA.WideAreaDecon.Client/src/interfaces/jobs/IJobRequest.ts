@@ -1,10 +1,10 @@
-import ParameterList from '@/implementations/parameter/ParameterList';
+import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 import JobStatus from '@/enums/jobs/jobStatus';
 
 export default interface IJobRequest {
   id: number;
   status: JobStatus;
-  scenarioDefinition: ParameterList;
-  scenarioParameters: ParameterList;
+  defineScenario: ParameterWrapperList;
+  modifyParameter: ParameterWrapperList;
   results?: any; // TODO update type
 }

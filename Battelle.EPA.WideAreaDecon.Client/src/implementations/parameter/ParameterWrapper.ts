@@ -2,15 +2,11 @@ import IParameter from '@/interfaces/parameter/IParameter';
 import deepCopy from '@/utilities/deepCopy';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameterNode from '@/interfaces/parameter/IParameterNode';
-import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import NullParameter from './NullParameter';
 
-@Serializable()
 export default class ParameterWrapper implements IParameterNode {
-  @JsonProperty()
   baseline: IParameter;
 
-  @JsonProperty()
   current: IParameter;
 
   get type(): ParameterType {

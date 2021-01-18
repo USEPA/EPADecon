@@ -10,15 +10,15 @@ export default class ParameterWrapperFilter implements IParameterNode {
   parent: IParameterNode | null;
 
   @JsonProperty({
-    predicate: (p: ParameterWrapperFilter) => {
-      return p.filters ? ParameterWrapperFilter : null;
-    },
+    predicate: () => ParameterWrapperFilter,
   })
   public filters: Array<ParameterWrapperFilter>;
 
   @JsonProperty({
-    predicate: (p: ParameterWrapper) => {
-      return { ...p.baseline, ...p.current };
+    predicate: () => ParameterWrapper,
+    onSerialize: (params: Array<ParameterWrapper>) => {
+      // only need current
+      return params.map((param) => param.current);
     },
   })
   public parameters: Array<ParameterWrapper>;

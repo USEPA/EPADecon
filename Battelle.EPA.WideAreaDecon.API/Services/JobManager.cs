@@ -6,10 +6,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
 using Battelle.EPA.WideAreaDecon.API.Models.Job;
+using Battelle.EPA.WideAreaDecon.API.Interfaces;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
-    public class JobManager
+    public class JobManager : IJobManager
     {
         private List<JobRequest> AllJobs { get; }
         private ConcurrentQueue<JobRequest> Queued { get; }
