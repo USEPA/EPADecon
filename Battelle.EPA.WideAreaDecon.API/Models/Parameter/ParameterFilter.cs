@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Utility.Extensions;
+using Battelle.EPA.WideAreaDecon.API.Utility.Json;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using Newtonsoft.Json;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
 {
@@ -15,6 +17,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter
     {
         public string Name { get; set; }
         public ParameterFilter[] Filters { get; set; }
+        [JsonProperty(ItemConverterType = typeof(ParameterConverter))]
         public IParameter[] Parameters { get; set; } // IParameter[]
 
 

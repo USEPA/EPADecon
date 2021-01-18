@@ -4,8 +4,9 @@ using System.Linq;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Models.Parameter.Statistics;
-using Battelle.EPA.WideAreaDecon.API.Utility.Extensions;
 using NPOI.SS.UserModel;
+using Newtonsoft.Json;
+using Battelle.EPA.WideAreaDecon.API.Utility.Json;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
 {
@@ -14,7 +15,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
         public ParameterType Type => ParameterType.EnumeratedParameter;
         public string TypeName => typeof(T).Name;
         public ParameterMetaData MetaData { get; set; }
-
+        [JsonProperty(ItemConverterType = typeof(EnumeratedParameterConverter))]
         public Dictionary<T, IParameter> Values;
 
 
