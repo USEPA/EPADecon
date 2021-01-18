@@ -7,9 +7,7 @@ export default class ParameterWrapperList {
   version: number;
 
   @JsonProperty({
-    predicate: () => {
-      return ParameterWrapperFilter;
-    },
+    predicate: () => ParameterWrapperFilter,
   })
   filters: Array<ParameterWrapperFilter>;
 
