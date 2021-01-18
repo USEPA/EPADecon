@@ -16,6 +16,10 @@ export default class ParameterWrapperFilter implements IParameterNode {
 
   @JsonProperty({
     predicate: () => ParameterWrapper,
+    onSerialize: (params: Array<ParameterWrapper>) => {
+      // only need current
+      return params.map((param) => param.current);
+    },
   })
   public parameters: Array<ParameterWrapper>;
 

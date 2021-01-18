@@ -15,7 +15,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Parameter.List
         public ParameterType Type => ParameterType.EnumeratedParameter;
         public string TypeName => typeof(T).Name;
         public ParameterMetaData MetaData { get; set; }
-        [JsonProperty(ItemConverterType = typeof(EnumeratedParameterConverter))]
+        [JsonProperty(ItemConverterType = typeof(ParameterConverter))]
         public Dictionary<T, IParameter> Values;
 
 

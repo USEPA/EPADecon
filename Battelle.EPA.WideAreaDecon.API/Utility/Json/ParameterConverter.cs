@@ -56,9 +56,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Utility.Json
             Type objectType, object existingValue,
             JsonSerializer serializer)
         {
-            var JsonObject = JObject.Load(reader)
-                    .GetValue("current")   // TODO work on removing need for this line and next
-                    ?.Value<JObject>();
+            var JsonObject = JObject.Load(reader);
 
             //NOTE(quinton): Code here removes case sensitivity;
             //a solution from: https://stackoverflow.com/questions/12055743/json-net-jobject-key-comparison-case-insensitive
