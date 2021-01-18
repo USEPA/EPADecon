@@ -154,6 +154,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             services.AddSingleton(inputFileConfiguration.BaselineParameters);
 
             services.AddSingleton<IParameterListProvider>(new EmptyParameterListProvider());
+
+            services.AddSingleton<IJobManager, JobManager>();
         }
 
         private void ConfigureEndpoints(IEndpointRouteBuilder endpoints)
