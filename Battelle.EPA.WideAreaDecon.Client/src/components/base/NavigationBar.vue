@@ -24,7 +24,7 @@
     <v-tooltip bottom :color="canRun ? 'info' : 'error'">
       <template v-slot:activator="{ on }">
         <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'" :color="canRun ? 'secondary' : ''">
-          <v-btn v-on="on" @click="runScenario()" :disabled="!canRun" :color="canRun ? 'secondary' : ''">
+          <v-btn v-on="on" @click="runScenario(jobProvider)" :disabled="!canRun" :color="canRun ? 'secondary' : ''">
             Run Scenario
           </v-btn>
         </div>
@@ -108,6 +108,7 @@ import INavigationItem from '@/interfaces/configuration/INavigationItem';
 import container from '@/dependencyInjection/config';
 import IImageProvider from '@/interfaces/providers/IImageProvider';
 import TYPES from '@/dependencyInjection/types';
+import IJobProvider from '@/interfaces/providers/IJobProvider';
 
 @Component
 export default class NavigationBar extends Vue {
@@ -123,9 +124,11 @@ export default class NavigationBar extends Vue {
 
   @State enableNavigationTabs!: boolean;
 
-  @Action runScenario!: () => void;
+  @Action runScenario!: (jobProvider: IJobProvider) => void;
 
   imageProvider = container.get<IImageProvider>(TYPES.ImageProvider);
+
+  jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
 
   selectedNavigationRoute: string | null = null;
 
