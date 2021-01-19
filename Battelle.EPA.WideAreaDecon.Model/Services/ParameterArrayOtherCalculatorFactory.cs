@@ -2,7 +2,7 @@
 using Battelle.EPA.WideAreaDecon.Model.Parameter;
 using System;
 using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Services
 {

@@ -1,6 +1,6 @@
 ﻿using System.IO;
-using Battelle.EPA.WideAreaDecon.API.Enumeration.Parameter;
-using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using NPOI.XSSF.UserModel;
 using NUnit.Framework;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
-using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Newtonsoft.Json;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.Job

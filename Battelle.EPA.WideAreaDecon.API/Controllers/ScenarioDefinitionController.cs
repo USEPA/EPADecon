@@ -1,9 +1,6 @@
 ﻿using System;
-using Battelle.EPA.WideAreaDecon.API.Interfaces;
-using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
-using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
-using Battelle.EPA.WideAreaDecon.API.Providers;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Services;
 using Microsoft.AspNetCore.Mvc;
 

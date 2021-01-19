@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Battelle.EPA.WideAreaDecon.API\Battelle.EPA.WideAreaDecon.API.csproj" />
+    <ProjectReference Include="..\Battelle.EPA.WideAreaDecon.InterfaceData\Battelle.EPA.WideAreaDecon.InterfaceData.csproj" />
   </ItemGroup>
 
 </Project>

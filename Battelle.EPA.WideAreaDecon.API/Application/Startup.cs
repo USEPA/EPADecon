@@ -1,9 +1,10 @@
 using System;
 using System.IO;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
-using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
-using Battelle.EPA.WideAreaDecon.API.Providers;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
 using Battelle.EPA.WideAreaDecon.API.Services;
 using ElectronNET.API;
 using Microsoft.AspNetCore.Builder;

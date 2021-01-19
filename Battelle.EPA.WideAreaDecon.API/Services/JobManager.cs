@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
 using Battelle.EPA.WideAreaDecon.API.Models.Job;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {

@@ -11,9 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{62AC01E4-98C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{92DF6F8B-654C-46B7-B329-C2B57F98C991}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battelle.EPA.WideAreaDecon.Model", "Battelle.EPA.WideAreaDecon.Model\Battelle.EPA.WideAreaDecon.Model.csproj", "{58FDA0D4-AC36-40A5-8F28-3E3E41EB7AC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battelle.EPA.WideAreaDecon.Model", "Battelle.EPA.WideAreaDecon.Model\Battelle.EPA.WideAreaDecon.Model.csproj", "{58FDA0D4-AC36-40A5-8F28-3E3E41EB7AC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battelle.EPA.WideAreaDecon.Model.Tests", "Battelle.EPA.WideAreaDecon.Model.Tests\Battelle.EPA.WideAreaDecon.Model.Tests.csproj", "{C1D8C528-5DD9-4833-BBBA-F8757D2911B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battelle.EPA.WideAreaDecon.Model.Tests", "Battelle.EPA.WideAreaDecon.Model.Tests\Battelle.EPA.WideAreaDecon.Model.Tests.csproj", "{C1D8C528-5DD9-4833-BBBA-F8757D2911B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InterfaceData", "InterfaceData", "{6C84D944-AC59-4E23-96B4-0FA2E458BBEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battelle.EPA.WideAreaDecon.InterfaceData", "Battelle.EPA.WideAreaDecon.InterfaceData\Battelle.EPA.WideAreaDecon.InterfaceData.csproj", "{CE942654-D31D-4E23-A84A-5AF99DF1B017}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +77,18 @@ Global
 		{C1D8C528-5DD9-4833-BBBA-F8757D2911B9}.Release|x64.Build.0 = Release|Any CPU
 		{C1D8C528-5DD9-4833-BBBA-F8757D2911B9}.Release|x86.ActiveCfg = Release|Any CPU
 		{C1D8C528-5DD9-4833-BBBA-F8757D2911B9}.Release|x86.Build.0 = Release|Any CPU
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017}.Debug|x64.Build.0 = Debug|Any CPU
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017}.Debug|x86.Build.0 = Debug|Any CPU
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017}.Release|x64.ActiveCfg = Release|Any CPU
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017}.Release|x64.Build.0 = Release|Any CPU
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017}.Release|x86.ActiveCfg = Release|Any CPU
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +98,7 @@ Global
 		{12562CE2-45EA-4FFD-BF5B-D7EDD369555C} = {62AC01E4-98C0-4531-9296-478A460D1DFE}
 		{58FDA0D4-AC36-40A5-8F28-3E3E41EB7AC0} = {92DF6F8B-654C-46B7-B329-C2B57F98C991}
 		{C1D8C528-5DD9-4833-BBBA-F8757D2911B9} = {92DF6F8B-654C-46B7-B329-C2B57F98C991}
+		{CE942654-D31D-4E23-A84A-5AF99DF1B017} = {6C84D944-AC59-4E23-96B4-0FA2E458BBEA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2F933AD-7DAC-40EC-B46E-C5C70B50B40F}
