@@ -80,10 +80,6 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
 
   chartOptions = new DefaultChartOptions();
 
-  loading = false;
-
-  temp = false;
-
   xValues: number[] = [];
 
   yMaxValues: number[] = [];
@@ -91,6 +87,8 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
   yMinValues: number[] = [];
 
   dependentVariables?: string[] = [];
+
+  selectedSetName = '';
 
   get variableSets(): VariableSet[] {
     const uniqueVariables = [...new Set(this.dependentVariables)];
@@ -121,8 +119,6 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
   get selectedSet(): VariableSet {
     return this.variableSets.filter((set) => set.name === this.selectedSetName)[0];
   }
-
-  selectedSetName = '';
 
   get min(): number {
     return this.selectedSet.points.sort((a, b) => a - b)[0];
@@ -260,9 +256,6 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
 
     this.ignoreNextSliderChange = true;
-    // this.sliderValue = this.min;
-
-    // this.textValue = this.sliderValue.toString();
 
     this.xValues = this.parameterValue.xValues ?? [];
     this.yMinValues = this.parameterValue.yMinimumValues ?? [];
@@ -270,6 +263,8 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     this.dependentVariables = this.parameterValue.dependentVariable;
 
     this.selectedSetName = this.variableSets[0].name;
+    this.sliderValue = this.selectedSet.value ?? this.min;
+    this.textValue = this.sliderValue.toString();
   }
 
   created(): void {
