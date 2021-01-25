@@ -11,7 +11,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
     /// 
     /// Contains information on how to take dictionary and obtain correct parameters
     /// </summary>
-    class ParameterArrayOtherCalculatorFactory : IOtherCalculatorFactory
+    public class ParameterArrayOtherCalculatorFactory : IOtherCalculatorFactory
     {
         private readonly ParameterList _parameters;
         private TransportationCostCalculator Calculator { get; set; }

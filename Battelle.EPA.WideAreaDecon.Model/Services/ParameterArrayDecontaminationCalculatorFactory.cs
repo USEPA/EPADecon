@@ -13,7 +13,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
     /// 
     /// Contains information on how to take dictionary and obtain correct parameters
     /// </summary>
-    class ParameterArrayDecontaminationCalculatorFactory : IDecontaminationCalculatorFactory
+    public class ParameterArrayDecontaminationCalculatorFactory : IDecontaminationCalculatorFactory
     {
         private readonly ParameterList _parameters;
         private SuppliesCostCalculator Calculator_supplies { get; set; }

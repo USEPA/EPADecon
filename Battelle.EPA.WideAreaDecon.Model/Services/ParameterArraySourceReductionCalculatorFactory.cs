@@ -13,7 +13,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
     /// 
     /// Contains information on how to take dictionary and obtain correct parameters
     /// </summary>
-    class ParameterArraySourceReductionCalculatorFactory : ISourceReductionCalculatorFactory
+    public class ParameterArraySourceReductionCalculatorFactory : ISourceReductionCalculatorFactory
     {
         private readonly ParameterList _parameters;
         private LaborCostCalculator Calculator_labor { get; set; }

@@ -13,7 +13,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
     /// 
     /// Contains information on how to take dictionary and obtain correct parameters
     /// </summary>
-    class ParameterArrayCharacterizationSamplingCalculatorFactory : ICharacterizationSamplingCalculatorFactory
+    public class ParameterArrayCharacterizationSamplingCalculatorFactory : ICharacterizationSamplingCalculatorFactory
     {
         private readonly ParameterList _parameters;
         private LaborCostCalculator Calculator_labor { get; set; }
