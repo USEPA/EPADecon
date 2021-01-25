@@ -1,4 +1,4 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
+using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using Battelle.EPA.WideAreaDecon.Model.Parameter;
 using System;
 using System.Collections.Generic;
@@ -29,6 +29,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
         public CharacterizationSamplingCostCalculator GetCalculator()
         {
             //values temp until index of _parameters dictionary is set
+            
             var surfaceAreaPerWipe = 4.64515;
             var surfaceAreaPerHepa = 9.2903;
             var wipesPerHrPerTeam = 6.0;
@@ -92,7 +93,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 { PpeLevel.C, 1897.68 },
                 { PpeLevel.D, 260.09 }
             };
-            var numberEntriesPerPerson = 4.0;
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
 
@@ -135,7 +135,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
             );
             Calculator_entEx = new EntrancesExitsCostCalculator(
                 personnelReqPerTeam,
-                numberEntriesPerPerson,
+                entriesPerTeam,
                 respiratorsPerPerson,
                 costPerRespirator,
                 costPerPpe,

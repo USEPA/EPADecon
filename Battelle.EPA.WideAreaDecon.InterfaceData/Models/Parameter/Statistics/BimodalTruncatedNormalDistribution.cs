@@ -21,7 +21,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
     public class BimodalTruncatedNormalDistribution : IParameter
     {
         [JsonConverter(typeof(StringEnumConverter))]
-        public ParameterType Type => ParameterType.Pert;
+        public ParameterType Type => ParameterType.BimodalTruncatedNormal;
 
         public ParameterMetaData MetaData { get; set; }
 

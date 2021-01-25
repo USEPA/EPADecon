@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
 using Battelle.EPA.WideAreaDecon.API.Models.Job;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.Model;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
@@ -38,7 +38,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
 
         private void RunNextJob()
-        {
+        {            
             if (Queued.IsEmpty)
             {
                 Task.Run(() =>
@@ -68,7 +68,14 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         private Task ConvertAndExecuteJob() => Task.Run(() =>
             {
                 //TODO:: Convert to format known by model
+
                 //TODO:: Run model
+                ScenarioManager scenarioDetails = new ScenarioManager(
+                    Running.DefineScenario,
+                    Running.ModifyParameter);
+
+                Running.Results = scenarioDetails.ExecuteScenario();
+
                 //TODO:: Store results of model in job
                 Running.Status = JobStatus.Completed;
                 Finished.Add(Running);

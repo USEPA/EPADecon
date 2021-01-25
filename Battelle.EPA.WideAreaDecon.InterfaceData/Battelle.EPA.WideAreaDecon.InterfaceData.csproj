@@ -10,6 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="InputFiles\**" />
+    <EmbeddedResource Remove="InputFiles\**" />
+    <None Remove="InputFiles\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DotNetCore.NPOI" Version="1.2.2" />
     <PackageReference Include="ElectronNET.API" Version="7.30.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
