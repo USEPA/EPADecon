@@ -6,7 +6,15 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Attributes;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
+using Battelle.RiskAssessment.Common.Statistics;
 using NPOI.SS.UserModel;
+using ConstantDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.ConstantDistribution;
+using LogNormalDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.LogNormalDistribution;
+using LogUniformDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.LogUniformDistribution;
+using TruncatedLogNormalDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.TruncatedLogNormalDistribution;
+using TruncatedNormalDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.TruncatedNormalDistribution;
+using UniformDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.UniformDistribution;
+using WeibullDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.WeibullDistribution;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter
 {
@@ -52,5 +60,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter
         {
             return typeof(IParameter).GetCellValue(nameof(Type), row).ParseEnum<ParameterType>();
         }
+
+        public IDistribution CreateDistribution();
     }
 }
