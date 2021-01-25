@@ -11,6 +11,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
+using Battelle.EPA.WideAreaDecon.Model.Services;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
@@ -90,6 +91,42 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                     scenarios.Add(scenarioCreator.CreateRealizationScenario());
                 }
 
+                // Construct calculators
+                var characterizationSamplingParameters = Running.ModifyParameter.Filters
+                    .First(f => f.Name == "Characterization Sampling").Filters;
+                var sourceReductionParameters = Running.ModifyParameter.Filters
+                    .First(f => f.Name == "Source Reduction").Filters;
+                var decontaminationParameters = Running.ModifyParameter.Filters
+                    .First(f => f.Name == "Decontamination").Filters;
+                var incidentCommandParameters = Running.ModifyParameter.Filters
+                    .First(f => f.Name == "Incident Command").Filters;
+                var costParameters = Running.ModifyParameter.Filters
+                    .First(f => f.Name == "Cost per Parameter").Filters;
+                var efficacyParameters = Running.ModifyParameter.Filters
+                    .First(f => f.Name == "Efficacy").Filters;
+
+                ParameterArrayCharacterizationSamplingCalculatorFactory csCalculatorFactory = new ParameterArrayCharacterizationSamplingCalculatorFactory(
+                    characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)"),
+                    characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Personnel Overhead Days"),
+                    characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Number of Entries per Team per Day"),
+                    characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Hours per Entry, per Team"),
+                    characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Hours per Entry, per Team"),
+                    costParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Hourly wage for OSC personnel")
+                    );
+                
+                
+                
+                ParameterArraySourceReductionCalculatorFactory srCalculatorFactory = new ParameterArraySourceReductionCalculatorFactory();
+                ParameterArrayDecontaminationCalculatorFactory dcCalculatorFactory = new ParameterArrayDecontaminationCalculatorFactory();
+                ParameterArrayOtherCalculatorFactory otCalculatorFactory = new ParameterArrayOtherCalculatorFactory();
+                ParameterArrayIncidentCommandCalculatorFactory icCalculatorFactory = new ParameterArrayIncidentCommandCalculatorFactory();
+
+                var calculatorCreator = new CalculatorCreator(
+                    csCalculatorFactory,
+                    srCalculatorFactory,
+                    dcCalculatorFactory,
+                    otCalculatorFactory,
+                    icCalculatorFactory);
 
                 //TODO:: Run model
                 ScenarioManager scenarioDetails = new ScenarioManager(
