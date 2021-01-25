@@ -12,7 +12,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
         private readonly Services.IOtherCalculatorFactory _otherFactory;
         private readonly Services.IIncidentCommandCalculatorFactory _incidentCommandFactory;
 
-        public CalculatorCreator(Services.ParameterArrayCharacterizationSamplingCalculatorFactory csCalculatorFactory,
+        public CalculatorCreator(
+            Services.ParameterArrayCharacterizationSamplingCalculatorFactory csCalculatorFactory,
             Services.ParameterArraySourceReductionCalculatorFactory srCalculatorFactory,
             Services.ParameterArrayDecontaminationCalculatorFactory dcCalculatorFactory,
             Services.ParameterArrayOtherCalculatorFactory otCalculatorFactory,
