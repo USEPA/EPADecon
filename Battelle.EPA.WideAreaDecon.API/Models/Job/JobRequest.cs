@@ -18,6 +18,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Job
         [JsonProperty(Required = Required.Always)]
         public ParameterList ModifyParameter { get; set; }
 
+        [JsonProperty(Required = Required.Always)]
+        public int NumberRealizations { get; set; }
+
         public object Results { get; set; }
     }
 }

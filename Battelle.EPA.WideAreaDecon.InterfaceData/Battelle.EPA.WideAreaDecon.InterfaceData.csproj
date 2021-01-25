@@ -24,5 +24,12 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
   </ItemGroup>
+  
+  <ItemGroup Condition="'$(Configuration)'!='Debug'">
+    <PackageReference Include="Battelle.RiskAssessment.Common.Statistics" Version="1.0.7" PrivateAssets="NONE" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Debug'">
+    <PackageReference Include="Battelle.RiskAssessment.Common.Statistics" Version="1.0.7-Debug" PrivateAssets="NONE" />
+  </ItemGroup>
 
 </Project>
