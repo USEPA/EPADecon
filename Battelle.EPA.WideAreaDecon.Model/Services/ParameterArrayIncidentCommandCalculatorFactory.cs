@@ -22,86 +22,20 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
         private Decontamination.WorkDaysCalculator Calculator_workDaysDc { get; set; }
 
         public ParameterArrayIncidentCommandCalculatorFactory(
-            CharacterizationSamplingParameters csParameters,
-            SourceReductionParameters srParameters,
-            DecontaminationParameters dcParameters,
             IncidentCommandParameters icParameters,
-            CostParameters costParameters)
+            CostParameters costParameters,
+            ParameterArrayCharacterizationSamplingCalculatorFactory csParameterArray,
+            ParameterArraySourceReductionCalculatorFactory srParameterArray,
+            ParameterArrayDecontaminationCalculatorFactory dcParameterArray)
         {
-            Calculator_phaseLag = new CharacterizationSampling.PhaseLagCalculator(
-                csParameters.surfaceAreaPerWipe,
-                csParameters.surfaceAreaPerHepa,
-                csParameters.labUptimesHours,
-                csParameters.samplePackageTime,
-                csParameters.wipeAnalysisTime,
-                csParameters.hepaAnalysisTime,
-                csParameters.fractionOfWipeToEachLab,
-                csParameters.fractionOfHepaToEachLab,
-                csParameters.labDistanceFromSite
-                );
-
-            Calculator_suppliesCs = new CharacterizationSampling.SuppliesCostCalculator(
-                csParameters.surfaceAreaPerWipe,
-                csParameters.surfaceAreaPerHepa,
-                csParameters.wipesPerHrPerTeam,
-                csParameters.hepaSocksPerHrPerTeam,
-                costParameters.wipeCost,
-                costParameters.hepaCost,
-                costParameters.vacuumRentalCostPerDay
-            );
-
-            Calculator_laborCs = new CharacterizationSampling.LaborCostCalculator(
-                csParameters.personnelReqPerTeam,
-                csParameters.personnelOverheadDays,
-                csParameters.entriesPerTeam,
-                csParameters.hoursEntering,
-                csParameters.hoursExiting,
-                costParameters.hourlyRate,
-                Calculator_suppliesCs,
-                Calculator_phaseLag
-            );
-
-            Calculator_workDaysSr = new SourceReduction.WorkDaysCalculator(
-                srParameters.massRemovedPerHourPerTeam,
-                srParameters.massPerSurfaceArea
-            );
-
-            Calculator_laborSr = new SourceReduction.LaborCostCalculator(
-                srParameters.personnelOverheadDays,
-                srParameters.personnelReqPerTeam,
-                costParameters.hourlyRate,
-                srParameters.massPerSurfaceArea,
-                Calculator_workDaysSr
-            );
-
-            Calculator_efficacy = new Decontamination.EfficacyCalculator(
-                dcParameters.efficacyValues
-            );
-
-            Calculator_workDaysDc = new Decontamination.WorkDaysCalculator(
-                dcParameters.surfaceTypes,
-                dcParameters.applicationMethods,
-                dcParameters.initialSporeLoading,
-                dcParameters.desiredSporeThreshold,
-                dcParameters.treatmentDaysPerAm,
-                Calculator_efficacy
-            );
-
-            Calculator_laborDc = new Decontamination.LaborCostCalculator(
-                dcParameters.personnelReqPerTeam,
-                costParameters.hourlyRate,
-                dcParameters.personnelOverhead,
-                Calculator_workDaysDc
-            );
-
             Calculator_labor = new LaborCostCalculator(
                 icParameters.personnelReqPerTeam,
                 icParameters.personnelOverheadDays,
                 costParameters.hourlyRate,
-                Calculator_laborCs,
-                Calculator_phaseLag,
-                Calculator_laborSr,
-                Calculator_laborDc
+                csParameterArray.Calculator_labor,
+                csParameterArray.Calculator_phaseLag,
+                srParameterArray.Calculator_labor,
+                dcParameterArray.Calculator_labor
             );
 
             Calculator_supplies = new SuppliesCostCalculator(
