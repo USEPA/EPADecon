@@ -23,7 +23,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         private readonly double[] labDistanceFromSite;
         private readonly double resultTransmissionToIC;
         private readonly Dictionary<PersonnelLevel, double> personnelReqPerTeam;
-        private readonly double personnelOverhead;
+        private readonly double personnelOverheadDays;
         private readonly double personnelRoundtripDays;
         private readonly double entriesPerTeam;
         private readonly double hoursEntering;
