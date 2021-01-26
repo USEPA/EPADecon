@@ -2,6 +2,9 @@
   <v-container :style="vuetifyColorProps()">
     <v-row>
       <v-col align="center">
+        <v-btn v-if="selectedSet.points.length <= 6" @click="addPoint">Add Point</v-btn>
+      </v-col>
+      <v-col align="center">
         <v-btn-toggle v-model="selectedSetName" dense mandatory background-color="primary">
           <v-btn v-for="set in variableSets" :key="set.name" :value="set.name">{{ set.name }}</v-btn>
         </v-btn-toggle>
@@ -184,33 +187,40 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     this.editPoint = false;
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  interpolate(Y: number[], X: number[], val: number): number {
-    let minIndex = 0;
-    let maxIndex = X.length - 1;
-    // there has got to be a better way to loop through X
-    for (let i = 0; i < X.length; i += 1) {
-      if (X[i] <= val) {
-        minIndex = i;
-      } else if (X[i] >= val) {
-        maxIndex = i;
-        break;
-      }
+  addPoint(): void {
+    if (this.selectedSet.points.length > 6) {
+      return;
     }
-    const slope = (Y[maxIndex] - Y[minIndex]) / (X[maxIndex] - X[minIndex]);
-    const yDelta = slope * (val - X[minIndex]);
-    return yDelta + Y[minIndex];
+    // Insert new point at median of existing points
+    const index = Math.floor(this.selectedSet.points.length / 2);
+
+    // Choose point halfway between median points
+    const point = (this.selectedSet.points[index - 1] + this.selectedSet.points[index]) / 2;
+
+    // Interpolate to choose efficacy
+    const minEfficacy = (this.selectedSet.mins[index - 1] + this.selectedSet.mins[index]) / 2;
+    const maxEfficacy = (this.selectedSet.maxs[index - 1] + this.selectedSet.maxs[index]) / 2;
+
+    if (this.parameterValue.dependentVariable !== undefined && this.dependentVariables !== undefined) {
+      this.dependentVariables.splice(index, 0, this.selectedSetName);
+    }
+    if (this.parameterValue.xValues !== undefined) {
+      this.xValues.splice(index, 0, point);
+    }
+    if (this.parameterValue.yMinimumValues !== undefined) {
+      this.yMinValues.splice(index, 0, minEfficacy);
+    }
+    if (this.parameterValue.yMaximumValues !== undefined) {
+      this.yMaxValues.splice(index, 0, maxEfficacy);
+    }
   }
 
   updateOnTextChange(value: string, maxOrMin: string, index: number): void {
     const newValue = Number(value);
-
-    if (maxOrMin === 'max' && this.parameterValue.yMaximumValues !== undefined) {
-      Vue.set(this.yMaxValues, index, newValue);
-      Vue.set(this.parameterValue.yMaximumValues, index, newValue);
-    } else if (maxOrMin === 'min' && this.parameterValue.yMinimumValues !== undefined) {
-      Vue.set(this.yMinValues, index, newValue);
-      Vue.set(this.parameterValue.yMinimumValues, index, newValue);
+    if (maxOrMin === 'max') {
+      this.yMaxValues.splice(index, 1, newValue);
+    } else if (maxOrMin === 'min') {
+      this.yMinValues.splice(index, 1, newValue);
     }
   }
 
