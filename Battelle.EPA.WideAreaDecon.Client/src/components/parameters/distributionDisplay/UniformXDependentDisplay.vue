@@ -1,40 +1,6 @@
 <template>
   <v-container :style="vuetifyColorProps()">
-    <!-- <v-row>
-      <v-col>
-        <v-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">
-          <template v-slot:prepend>
-            <p class="grey--text">{{ min }}</p>
-          </template>
-          <template v-slot:append>
-            <p class="grey--text">{{ max }}</p>
-          </template>
-        </v-slider>
-      </v-col>
-    </v-row>
     <v-row>
-      <v-col cols="4" class="mr-auto">
-        <v-card class="pa-2" outlined tile>
-          <v-text-field
-            ref="value"
-            @keydown="onTextEnterPressed"
-            @blur="updateOnTextChange"
-            v-model="textValue"
-            label="Value"
-            :rules="[validationRules]"
-            hide-details="auto"
-          >
-            <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
-            </template>
-          </v-text-field>
-        </v-card>
-      </v-col>
-    </v-row> -->
-    <v-row justify="space-between">
-      <v-col align="center">
-        <v-btn @click="showModal = true">Edit Chart Data</v-btn>
-      </v-col>
       <v-col align="center">
         <v-btn-toggle v-model="selectedSetName" dense mandatory background-color="primary">
           <v-btn v-for="set in variableSets" :key="set.name" :value="set.name">{{ set.name }}</v-btn>
@@ -42,73 +8,45 @@
       </v-col>
     </v-row>
     <v-card v-if="displayChart" flat class="pa-5" tile width="100%" height="400">
-      <scatter-plot-wrapper :options="chartOptions" :data="chartData" type="scatter" :width="400" :height="150" />
+      <scatter-plot-wrapper :options="chartOptions" :data="chartData" :type="'scatter'" :width="400" :height="150" />
     </v-card>
-    <v-container>
-      <v-dialog v-model="showModal" width="unset">
-        <v-card>
-          <v-system-bar color="primary" height="60">
-            <v-toolbar-title class="title white--text">Edit Chart Data</v-toolbar-title>
-            <v-spacer />
-            <v-icon @click="showModal = false" size="45">mdi-close</v-icon>
-          </v-system-bar>
-          <v-simple-table>
-            <template v-slot:default>
-              <thead>
-                <tr>
-                  <th class="text--primary text-subtitle-2">
-                    {{ parameterValue.metaData.description }}
-                  </th>
-                  <th class="text--primary text-subtitle-2">
-                    Min {{ parameterValue.metaData.name }} ({{ parameterValue.metaData.units }})
-                  </th>
-                  <th class="text--primary text-subtitle-2">
-                    Max {{ parameterValue.metaData.name }} ({{ parameterValue.metaData.units }})
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="i in selectedSet.indices" :key="i">
-                  <td>{{ xValues[i] }}</td>
-                  <td>
-                    <v-edit-dialog :return-value.sync="yMinValues[i]">
-                      {{ yMinValues[i] }}
-                      <template v-slot:input>
-                        <v-text-field
-                          :ref="`min-${i}`"
-                          v-model.number="yMinValues[i]"
-                          type="number"
-                          :rules="[validationRulesMin(yMinValues[i], i)]"
-                          label="Edit"
-                          single-line
-                          :placeholder="`${yMinValues[i]}`"
-                        ></v-text-field>
-                      </template>
-                    </v-edit-dialog>
-                  </td>
-                  <td>
-                    <v-edit-dialog :return-value.sync="yMaxValues[i]">
-                      {{ yMaxValues[i] }}
-                      <template v-slot:input>
-                        <v-text-field
-                          :ref="`max-${i}`"
-                          v-model.number="yMaxValues[i]"
-                          type="number"
-                          :rules="[validationRulesMax(yMaxValues[i], i)]"
-                          label="Edit"
-                          single-line
-                          :placeholder="`${yMaxValues[i]}`"
-                        ></v-text-field>
-                      </template>
-                    </v-edit-dialog>
-                  </td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
+    <v-row v-if="editPoint">
+      <v-col>
+        <v-card class="pa-2" outlined tile>
+          <v-text-field
+            type="number"
+            disabled
+            v-model.number="selectedSet.points[selectedIndex]"
+            :label="selectedSetName"
+            hide-details="auto"
+          ></v-text-field>
         </v-card>
-      </v-dialog>
-    </v-container>
+      </v-col>
+      <v-col>
+        <v-card class="pa-2" outlined tile>
+          <v-text-field
+            @input="updateOnTextChange($event, 'min', yMinValues.indexOf(selectedSet.mins[selectedIndex]))"
+            :rules="[validationRulesMin]"
+            type="number"
+            :value="selectedSet.mins[selectedIndex]"
+            :label="`Min ${parameterValue.metaData.name}`"
+            hide-details="auto"
+          ></v-text-field>
+        </v-card>
+      </v-col>
+      <v-col>
+        <v-card class="pa-2" outlined tile>
+          <v-text-field
+            @input="updateOnTextChange($event, 'max', yMaxValues.indexOf(selectedSet.maxs[selectedIndex]))"
+            :rules="[validationRulesMax]"
+            type="number"
+            :value="selectedSet.maxs[selectedIndex]"
+            :label="`Max ${parameterValue.metaData.name}`"
+            hide-details="auto"
+          ></v-text-field>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -125,30 +63,24 @@ import {
   DefaultChartOptions,
   DefaultChartData,
 } from 'battelle-common-vue-charting/src';
-import { Key } from 'ts-keycode-enum';
 
 interface IVariableSet {
   name: string;
   indices: number[];
   points: number[];
-  value: number | undefined;
+  maxs: number[];
+  mins: number[];
 }
 
 @Component({ components: { ScatterPlotWrapper } })
 export default class UniformXDependentDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: UniformXDependent;
 
-  showModal = false;
+  editPoint = false;
 
-  sliderValue = 0;
+  selectedIndex = -1;
 
-  textValue = '';
-
-  step = 0.1;
-
-  ignoreNextSliderChange = false;
-
-  chartOptions = new DefaultChartOptions();
+  chartOptions: DefaultChartOptions = new DefaultChartOptions();
 
   xValues: number[] = [];
 
@@ -165,11 +97,15 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     const sets = uniqueVariables.map((name) => {
       const indices: number[] = [];
       const points: number[] = [];
+      const mins: number[] = [];
+      const maxs: number[] = [];
+
       return {
         name,
         indices,
         points,
-        value: undefined,
+        mins,
+        maxs,
       };
     });
 
@@ -180,6 +116,8 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
         const setIndex = sets.map((set) => set.name).indexOf(currentSet);
         sets[setIndex].points.push(x);
         sets[setIndex].indices.push(i);
+        sets[setIndex].mins.push(this.yMinValues[i]);
+        sets[setIndex].maxs.push(this.yMaxValues[i]);
       }
     });
 
@@ -205,24 +143,19 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
   get chartData(): DefaultChartData {
     const dataSets: ScatterChartDataset[] = [];
     const colorProvider = new CycleColorProvider();
+    const color = colorProvider.getNextColor();
 
-    const selectedXValues = this.selectedSet.points.sort((a, b) => a - b);
-
-    const selectedYMins = this.yMinValues.filter((y, i) => this.selectedSet.indices.includes(i));
-    const selectedYMaxs = this.yMaxValues.filter((y, i) => this.selectedSet.indices.includes(i));
-
-    const mins: ChartPoint2D[] = selectedXValues.map((x, i) => new ChartPoint2D(x, selectedYMins[i]));
-    const maxs: ChartPoint2D[] = selectedXValues.map((x, i) => new ChartPoint2D(x, selectedYMaxs[i]));
+    const mins: ChartPoint2D[] = this.selectedSet.points.map((x, i) => new ChartPoint2D(x, this.selectedSet.mins[i]));
+    const maxs: ChartPoint2D[] = this.selectedSet.points.map((x, i) => new ChartPoint2D(x, this.selectedSet.maxs[i]));
 
     if (mins.length) {
-      const minScatter = new ScatterChartDataset(mins, 'Min', colorProvider);
-      // minScatter.pointRadius = 0;
+      const minScatter = new ScatterChartDataset(mins, 'Min', colorProvider, undefined, color);
+      // minScatter.fill = 1; // TODO update charting library to support numbers here
       dataSets.push(minScatter);
     }
 
     if (maxs.length) {
-      const maxScatter = new ScatterChartDataset(maxs, 'Max', colorProvider);
-      // maxScatter.pointRadius = 0;
+      const maxScatter = new ScatterChartDataset(maxs, 'Max', colorProvider, undefined, color);
       dataSets.push(maxScatter);
     }
 
@@ -241,23 +174,14 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     return new DefaultChartData(dataSets);
   }
 
-  @Watch('sliderValue')
-  onSliderValueChanged(newValue: number): void {
-    if (!this.ignoreNextSliderChange) {
-      this.textValue = newValue.toString();
-      this.selectedSet.value = newValue;
-    } else {
-      this.ignoreNextSliderChange = false;
-    }
-  }
-
   @Watch('parameterValue')
   onParameterChanged(): void {
     this.setValues();
   }
 
-  onSliderStopped(): void {
-    this.parameterValue.set = this.selectedSet;
+  @Watch('selectedSetName')
+  onSelectedSetChanged(): void {
+    this.editPoint = false;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -278,51 +202,48 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     return yDelta + Y[minIndex];
   }
 
-  onTextEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextChange();
+  updateOnTextChange(value: string, maxOrMin: string, index: number): void {
+    const newValue = Number(value);
+
+    if (maxOrMin === 'max' && this.parameterValue.yMaximumValues !== undefined) {
+      Vue.set(this.yMaxValues, index, newValue);
+      Vue.set(this.parameterValue.yMaximumValues, index, newValue);
+    } else if (maxOrMin === 'min' && this.parameterValue.yMinimumValues !== undefined) {
+      Vue.set(this.yMinValues, index, newValue);
+      Vue.set(this.parameterValue.yMinimumValues, index, newValue);
     }
   }
 
-  updateOnTextChange(): void {
-    const value = Number(this.textValue);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const castComponent = this.$refs.value as any;
-    if (this.textValue === '') {
-      this.selectedSet.value = undefined;
-    } else if (value === this.sliderValue) {
-      this.selectedSet.value = value;
-    } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
-      this.textValue = '';
-    } else if (castComponent.validate && castComponent.validate(true)) {
-      this.sliderValue = value;
-      this.selectedSet.value = value;
-    } else {
-      this.textValue = this.sliderValue.toString();
-    }
-  }
-
-  validationRulesMin(value: number, index: number): boolean | string {
-    if (value > this.yMaxValues[index]) {
-      return `Value must be less than maximum value: ${this.yMaxValues[index]}`;
-    }
-    if (value < 0) {
-      return 'Value must be greater than or equal to zero';
-    }
-    if (value === undefined) {
-      return 'Value must be set';
+  validationRulesMin(value: number): boolean | string {
+    if (value > this.yMaxValues[this.selectedSet.indices[this.selectedIndex]]) {
+      return `Value must be less than or equal to max: ${
+        this.yMaxValues[this.selectedSet.indices[this.selectedIndex]]
+      }`;
     }
     return true;
   }
 
-  validationRulesMax(value: number, index: number): boolean | string {
-    if (value < this.yMinValues[index]) {
-      return `Value must be greater than minimum value: ${this.yMinValues[index]}`;
-    }
-    if (value < 0) {
-      return 'Value must be greater than zero';
+  validationRulesMax(value: number): boolean | string {
+    if (value < this.yMinValues[this.selectedSet.indices[this.selectedIndex]]) {
+      return `Value must be greater than or equal to min: ${
+        this.yMinValues[this.selectedSet.indices[this.selectedIndex]]
+      }`;
     }
     return true;
+  }
+
+  onHover(event: MouseEvent, elements: any[]): void {
+    if (elements.length !== 0) {
+      // eslint-disable-next-line no-underscore-dangle
+      this.selectedIndex = elements[0]._index;
+    }
+  }
+
+  onClick(event: MouseEvent, elements: any[]): void {
+    if (elements.length === 0) {
+      this.selectedIndex = -1;
+    }
+    this.editPoint = this.selectedIndex >= 0;
   }
 
   vuetifyColorProps(): unknown {
@@ -332,19 +253,20 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
   }
 
   setValues(): void {
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
-
-    this.ignoreNextSliderChange = true;
-
     this.xValues = this.parameterValue.xValues ?? [];
     this.yMinValues = this.parameterValue.yMinimumValues ?? [];
     this.yMaxValues = this.parameterValue.yMaximumValues ?? [];
     this.dependentVariables = this.parameterValue.dependentVariable;
 
-    this.selectedSetName = this.parameterValue.set?.name ?? this.variableSets[0].name;
-    this.sliderValue = this.parameterValue.set?.value ?? this.selectedSet.value ?? this.min;
+    // hide chart legend
+    this.chartOptions.legend.display = false;
 
-    this.textValue = this.sliderValue.toString();
+    // set chart event callbacks
+    this.chartOptions.onClick = this.onClick;
+    this.chartOptions.onHover = this.onHover;
+
+    // this.selectedSetName = this.parameterValue.set?.name ?? this.variableSets[0].name;
+    this.selectedSetName = this.variableSets[0].name;
   }
 
   created(): void {
