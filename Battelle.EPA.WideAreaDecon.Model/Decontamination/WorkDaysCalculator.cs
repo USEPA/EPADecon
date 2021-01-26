@@ -11,20 +11,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
     {
         private readonly Dictionary<SurfaceType, ApplicationMethod> _appMethodBySurfaceType;
         private readonly double _desiredSporeThreshold;
-        private readonly Dictionary<SurfaceType, string> _surfaceTypes;
         private readonly Dictionary<ApplicationMethod, double> _treatmentDaysPerAm;
         private readonly IEfficacyCalculator _efficacyCalculator;
         private readonly Dictionary<SurfaceType, double> _initialSporeLoading;
 
         public WorkDaysCalculator(
-            Dictionary<SurfaceType, string> surfaceTypes,
             Dictionary<SurfaceType, ApplicationMethod> applicationMethods,
             Dictionary<SurfaceType, double> initialSporeLoading,
             double desiredSporeThreshold,
             Dictionary<ApplicationMethod, double> treatmentDaysPerAm,
             IEfficacyCalculator efficacyCalculator)
         {
-            _surfaceTypes = surfaceTypes;
             _appMethodBySurfaceType = applicationMethods;
             _desiredSporeThreshold = desiredSporeThreshold;
             _treatmentDaysPerAm = treatmentDaysPerAm;

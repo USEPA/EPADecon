@@ -25,7 +25,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
             );
 
             Calculator_workDays = new WorkDaysCalculator(
-                dcParameters.surfaceTypes,
                 dcParameters.applicationMethods,
                 dcParameters.initialSporeLoading,
                 dcParameters.desiredSporeThreshold,
