@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
@@ -17,10 +17,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double wipeAnalysisTime;
         public double hepaAnalysisTime;
         public double numLabs;
-        public double[] fractionOfWipeToEachLab;
-        public double[] fractionOfHepaToEachLab;
-        public double[] labUptimesHours;
-        public double[] labDistanceFromSite;
+        public List<double> fractionOfWipeToEachLab;
+        public List<double> fractionOfHepaToEachLab;
+        public List<double> labUptimesHours;
+        public List<double> labDistanceFromSite;
         public double resultTransmissionToIC;
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
         public double personnelOverheadDays;

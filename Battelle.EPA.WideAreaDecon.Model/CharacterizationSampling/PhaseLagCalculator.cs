@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
@@ -12,12 +11,21 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private readonly double _samplePackageTime;
         private readonly double _wipeAnalysisTime;
         private readonly double _hepaAnalysisTime;
-        private readonly double[] _fractionOfWipeToEachLab;
-        private readonly double[] _fractionOfHepaToEachLab;
-        private readonly double[] _labUptimesHours;
-        private readonly double[] _labDistanceFromSite;
+        private readonly List<double> _fractionOfWipeToEachLab;
+        private readonly List<double> _fractionOfHepaToEachLab;
+        private readonly List<double> _labUptimesHours;
+        private readonly List<double> _labDistanceFromSite;
 
-        public PhaseLagCalculator(double surfaceAreaPerWipe,  double surfaceAreaPerHepa, double[] labUptimesHours, double samplePackageTime, double wipeAnalysisTime, double hepaAnalysisTime, double[] fractionOfWipeToEachLab, double[] fractionOfHepaToEachLab, double[] labDistanceFromSite)
+        public PhaseLagCalculator(
+            double surfaceAreaPerWipe,  
+            double surfaceAreaPerHepa, 
+            List<double> labUptimesHours, 
+            double samplePackageTime, 
+            double wipeAnalysisTime, 
+            double hepaAnalysisTime,
+            List<double> fractionOfWipeToEachLab,
+            List<double> fractionOfHepaToEachLab,
+            List<double> labDistanceFromSite)
         {
             _surfaceAreaPerWipe = surfaceAreaPerWipe;
             _surfaceAreaPerHepa = surfaceAreaPerHepa;
