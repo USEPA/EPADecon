@@ -29,20 +29,20 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _efficacyValues = efficacyValues;
         }
 
-        public double[] CalculateEfficacy(double[] _initialSporeLoading)
+        public Dictionary<SurfaceType, double> CalculateEfficacy(Dictionary<SurfaceType, double> _initialSporeLoading)
         {
-            double[] _newSporeLoading = new double [_initialSporeLoading.Count()];
+            Dictionary<SurfaceType, double> _newSporeLoading = new Dictionary<SurfaceType, double>();
 
             //Dictionary<SurfaceType,double> _newSporeLoading;
-            for (int i = 0; i < _initialSporeLoading.Count(); i++)
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
-                if ((_initialSporeLoading[i] - _efficacyValues.ElementAt(i).Value) > 0)
+                if ((_initialSporeLoading[surface] - _efficacyValues[surface]) > 0)
                 {
-                    _newSporeLoading[i] = (_initialSporeLoading[i] - _efficacyValues.ElementAt(i).Value);
+                    _newSporeLoading[surface] = (_initialSporeLoading[surface] - _efficacyValues[surface]);
                 }
                 else
                 {
-                    _newSporeLoading[i] = 0.0;
+                    _newSporeLoading[surface] = 0.0;
                 }
             }
             //_newSporeLoading.Values = _initialSporeLoading.Values.Zip(_efficacyValues.Values, (x, y) => x - y);

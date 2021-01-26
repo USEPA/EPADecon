@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
     public interface IEfficacyCalculator
     {
-        public double[] CalculateEfficacy(double[] _initialSporeLoading);
+        public Dictionary<SurfaceType, double> CalculateEfficacy(Dictionary<SurfaceType, double> _initialSporeLoading);
     }
 }
