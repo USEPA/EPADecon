@@ -6,26 +6,26 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
     public class DecontaminationParameters
     {
-        private readonly Dictionary<SurfaceType, double> efficacyValues;
-        private readonly Dictionary<SurfaceType, string> surfaceTypes;
-        private readonly Dictionary<SurfaceType, ApplicationMethod> applicationMethods;
-        private readonly Dictionary<SurfaceType, double> initialSporeLoading;
-        private readonly double desiredSporeThreshold;
-        private readonly Dictionary<ApplicationMethod, double> treatmentDaysPerAm;
-        private readonly Dictionary<PersonnelLevel, double> personnelReqPerTeam;
-        private readonly double personnelOverhead;
-        private readonly double numEntriesPerTeamPerDay;
-        private readonly double hoursPerEntryPerTeam;
-        private readonly double hoursPerExitPerTeam;
-        private readonly double respiratorsPerPerson;
-        private readonly double numTeams;
-        private readonly Dictionary<PpeLevel, double> ppeRequired;
-        private readonly double roomVolume;
-        private readonly Dictionary<SurfaceType, double> roomBreakdown;
-        private readonly double fumigationAgentVolume;
-        private readonly double agentVolume;
+        public Dictionary<SurfaceType, double> efficacyValues;
+        public Dictionary<SurfaceType, string> surfaceTypes;
+        public Dictionary<SurfaceType, ApplicationMethod> applicationMethods;
+        public Dictionary<SurfaceType, double> initialSporeLoading;
+        public double desiredSporeThreshold;
+        public Dictionary<ApplicationMethod, double> treatmentDaysPerAm;
+        public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
+        public double personnelOverhead;
+        public double numEntriesPerTeamPerDay;
+        public double hoursPerEntryPerTeam;
+        public double hoursPerExitPerTeam;
+        public double respiratorsPerPerson;
+        public double numTeams;
+        public Dictionary<PpeLevel, double> ppeRequired;
+        public double roomVolume;
+        public Dictionary<SurfaceType, double> roomBreakdown;
+        public double fumigationAgentVolume;
+        public double agentVolume;
 
-        public DecontaminationParameters(ParameterFilter[] parameters)
+        public DecontaminationParameters(ParameterFilter[] dcParameters, ParameterFilter[] effParameters)
         {
 
         }

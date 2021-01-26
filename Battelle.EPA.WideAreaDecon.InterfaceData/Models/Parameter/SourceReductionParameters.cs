@@ -6,18 +6,18 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
     public class SourceReductionParameters
     {
-        private readonly double surfaceAreaToBeSourceReduced;
-        private readonly double massPerSurfaceArea;
-        private readonly double massRemovedPerHourPerTeam;
-        private readonly double numEntriesPerDay;
-        private readonly double respiratorsPerPerson;
-        private readonly double hoursEntering;
-        private readonly double hoursExiting;
-        private readonly double numTeams;
-        private readonly Dictionary<PersonnelLevel, double> personnelReqPerTeam;
-        private readonly double personnelOverheadDays;
-        private readonly double personnelRoundtripDays;
-        private readonly Dictionary<PpeLevel, double> ppeRequired;
+        public double surfaceAreaToBeSourceReduced;
+        public double massPerSurfaceArea;
+        public double massRemovedPerHourPerTeam;
+        public double numEntriesPerDay;
+        public double respiratorsPerPerson;
+        public double hoursEntering;
+        public double hoursExiting;
+        public double numTeams;
+        public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
+        public double personnelOverheadDays;
+        public double personnelRoundtripDays;
+        public Dictionary<PpeLevel, double> ppeRequired;
 
         public SourceReductionParameters(ParameterFilter[] parameters)
         {
