@@ -12,12 +12,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private readonly double _samplePackageTime;
         private readonly double _wipeAnalysisTime;
         private readonly double _hepaAnalysisTime;
-        private readonly Dictionary<Labs, double> _fractionOfWipeToEachLab;
-        private readonly Dictionary<Labs, double> _fractionOfHepaToEachLab;
-        private readonly Dictionary<Labs, double> _labUptimesHours;
-        private readonly Dictionary<Labs, double> _labDistanceFromSite;
+        private readonly double[] _fractionOfWipeToEachLab;
+        private readonly double[] _fractionOfHepaToEachLab;
+        private readonly double[] _labUptimesHours;
+        private readonly double[] _labDistanceFromSite;
 
-        public PhaseLagCalculator(double surfaceAreaPerWipe,  double surfaceAreaPerHepa, Dictionary<Labs, double> labUptimesHours, double samplePackageTime, double wipeAnalysisTime, double hepaAnalysisTime, Dictionary<Labs, double> fractionOfWipeToEachLab, Dictionary<Labs, double> fractionOfHepaToEachLab, Dictionary<Labs, double> labDistanceFromSite)
+        public PhaseLagCalculator(double surfaceAreaPerWipe,  double surfaceAreaPerHepa, double[] labUptimesHours, double samplePackageTime, double wipeAnalysisTime, double hepaAnalysisTime, double[] fractionOfWipeToEachLab, double[] fractionOfHepaToEachLab, double[] labDistanceFromSite)
         {
             _surfaceAreaPerWipe = surfaceAreaPerWipe;
             _surfaceAreaPerHepa = surfaceAreaPerHepa;
@@ -44,9 +44,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             {
 
                 
-                shippingTimePerLab[i] = _labDistanceFromSite.ElementAt(i).Value / (GlobalConstants.HoursPerWorkDay * GlobalConstants.AssumedDriverSpeed);
+                shippingTimePerLab[i] = _labDistanceFromSite[i] / (GlobalConstants.HoursPerWorkDay * GlobalConstants.AssumedDriverSpeed);
 
-                analysisTimePerLab[i] = Math.Abs((totalWipes * _fractionOfWipeToEachLab.ElementAt(i).Value * _wipeAnalysisTime) + (totalHepa * _fractionOfHepaToEachLab.ElementAt(i).Value * _hepaAnalysisTime)) / _labUptimesHours.ElementAt(i).Value;
+                analysisTimePerLab[i] = Math.Abs((totalWipes * _fractionOfWipeToEachLab[i] * _wipeAnalysisTime) + (totalHepa * _fractionOfHepaToEachLab[i] * _hepaAnalysisTime)) / _labUptimesHours[i];
 
                 if ((analysisTimePerLab[i] + shippingTimePerLab[i]) > maxLabTime)
                 {
