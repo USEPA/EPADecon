@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
@@ -18,9 +19,15 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double personnelOverheadDays;
         public Dictionary<PpeLevel, double> ppeRequired;
 
-        public SourceReductionParameters(ParameterFilter[] parameters)
+        public SourceReductionParameters(ParameterFilter[] parameters, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            //surfaceAreaToBeSourceReduced = 0.0;
+            var contaminationArea = new Dictionary<SurfaceType, double>();
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                contaminationArea[surface] = areaContaminated[surface].AreaContaminated;
+            }
+            // TODO: SEPARATE THESE PARAMETERS
+            surfaceAreaToBeSourceReduced = parameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction Surface Area to be Source Reduced").CreateDistribution().Draw() * contaminationArea.Values.Sum();
             massPerSurfaceArea = parameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Mass of Waste per Surface Area").CreateDistribution().Draw();
             massRemovedPerHourPerTeam = parameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Mass of Waste Removed Per Hour Per Team").CreateDistribution().Draw();
             numEntriesPerDay = parameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Number of Entries per Team per Day").CreateDistribution().Draw();
