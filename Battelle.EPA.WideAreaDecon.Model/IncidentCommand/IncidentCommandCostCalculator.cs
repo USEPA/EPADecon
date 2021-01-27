@@ -1,4 +1,4 @@
-using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
+﻿using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.Model.Services;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
@@ -31,7 +31,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 
         public IncidentCommandCostCalculator GetCalculator()
         {
-            throw new System.NotImplementedException();
+            return new IncidentCommandCostCalculator();
         }
     }
 }

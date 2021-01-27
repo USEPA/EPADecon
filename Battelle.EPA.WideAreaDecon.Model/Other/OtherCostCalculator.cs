@@ -16,7 +16,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Other
 
         public OtherCostCalculator GetCalculator()
         {
-            throw new System.NotImplementedException();
+            return new OtherCostCalculator();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
         public DecontaminationCostCalculator GetCalculator()
         {
-            throw new System.NotImplementedException();
+            return new DecontaminationCostCalculator();
         }
     }
 }
