@@ -93,54 +93,58 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                 }
 
                 // Construct calculators
-                var csParameters = new CharacterizationSamplingParameters(
-                    Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters);
-                var srParameters = new SourceReductionParameters(
-                    Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters);
-                var dcParameters = new DecontaminationParameters(
-                    Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters, 
-                    Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Filters);
-                var icParameters = new IncidentCommandParameters(
-                    Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters);
-                var otParameters = new OtherParameters(
-                    Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters);
-                var cParameters = new CostParameters(
-                    Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters);
+                for (int s = 0; s < scenarios.Count(); s++)
+                {
+                    for (int i = 0; i < scenarios[s].IndoorBuildingsContaminated.Length; i++)
+                    {
+                        var csParameters = new CharacterizationSamplingParameters(
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
+                            scenarios[s].IndoorBuildingsContaminated[i]);
+                        var srParameters = new SourceReductionParameters(
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
+                            scenarios[s].IndoorBuildingsContaminated[i]);
+                        var dcParameters = new DecontaminationParameters(
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
+                            scenarios[s].IndoorBuildingsContaminated[i]);
+                        var icParameters = new IncidentCommandParameters(
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters);
+                        var otParameters = new OtherParameters(
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters);
+                        var cParameters = new CostParameters(
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters);
 
-                ParameterArrayCharacterizationSamplingCalculatorFactory csCalculatorFactory = 
-                new ParameterArrayCharacterizationSamplingCalculatorFactory(csParameters, cParameters);
+                        ParameterArrayCharacterizationSamplingCalculatorFactory csCalculatorFactory =
+                        new ParameterArrayCharacterizationSamplingCalculatorFactory(csParameters, cParameters);
 
-                ParameterArraySourceReductionCalculatorFactory srCalculatorFactory = 
-                new ParameterArraySourceReductionCalculatorFactory(srParameters, cParameters);
+                        ParameterArraySourceReductionCalculatorFactory srCalculatorFactory =
+                        new ParameterArraySourceReductionCalculatorFactory(srParameters, cParameters);
 
-                ParameterArrayDecontaminationCalculatorFactory dcCalculatorFactory = 
-                new ParameterArrayDecontaminationCalculatorFactory(dcParameters, cParameters);
+                        ParameterArrayDecontaminationCalculatorFactory dcCalculatorFactory =
+                        new ParameterArrayDecontaminationCalculatorFactory(dcParameters, cParameters);
 
-                ParameterArrayOtherCalculatorFactory otCalculatorFactory = 
-                new ParameterArrayOtherCalculatorFactory(otParameters, cParameters);
+                        ParameterArrayOtherCalculatorFactory otCalculatorFactory =
+                        new ParameterArrayOtherCalculatorFactory(otParameters, cParameters);
 
-                ParameterArrayIncidentCommandCalculatorFactory icCalculatorFactory = 
-                new ParameterArrayIncidentCommandCalculatorFactory(
-                    icParameters, 
-                    cParameters,
-                    csCalculatorFactory,
-                    srCalculatorFactory,
-                    dcCalculatorFactory);
+                        ParameterArrayIncidentCommandCalculatorFactory icCalculatorFactory =
+                        new ParameterArrayIncidentCommandCalculatorFactory(
+                            icParameters,
+                            cParameters,
+                            csCalculatorFactory,
+                            srCalculatorFactory,
+                            dcCalculatorFactory);
 
-                var calculatorCreator = new CalculatorCreator(
-                    csCalculatorFactory,
-                    srCalculatorFactory,
-                    dcCalculatorFactory,
-                    otCalculatorFactory,
-                    icCalculatorFactory);
+                        var calculatorCreator = new CalculatorCreator(
+                            csCalculatorFactory,
+                            srCalculatorFactory,
+                            dcCalculatorFactory,
+                            otCalculatorFactory,
+                            icCalculatorFactory);
 
-                //TODO:: Run model
-                ScenarioManager scenarioDetails = new ScenarioManager(
-                    Running.DefineScenario,
-                    Running.ModifyParameter);
-
-                Running.Results = scenarioDetails.ExecuteScenario();
-
+                        //TODO:: Run model
+                        calculatorCreator.GetCalculators();
+                    }
+                }
                 //TODO:: Store results of model in job
                 Running.Status = JobStatus.Completed;
                 Finished.Add(Running);
