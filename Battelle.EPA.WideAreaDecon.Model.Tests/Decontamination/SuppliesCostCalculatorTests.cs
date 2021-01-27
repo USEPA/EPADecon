@@ -1,7 +1,9 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
@@ -34,14 +36,21 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             {
                 { SurfaceType.Hvac, 1.0 }
             };
-            double roomVolume = 2500;
+            
+            var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
+
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                areaContaminated[surface].AreaContaminated = 250;
+            }
+
             double roomSurfaceArea = 100;
 
             Assert.AreEqual(205.918810751869,
                 Calculator.NonFoggingSuppliesCostCalculator(percentOfRoomBySurface, roomSurfaceArea), 1e-6,
                 "Incorrect cost calculated(non fog)");
             Assert.AreEqual(438.5552474488785,
-                Calculator.FoggingSuppliesCostCalculator(roomVolume), 1e-6,
+                Calculator.FoggingSuppliesCostCalculator(areaContaminated), 1e-6,
                 "Incorrect cost calculated(fogging)");
         }
     }

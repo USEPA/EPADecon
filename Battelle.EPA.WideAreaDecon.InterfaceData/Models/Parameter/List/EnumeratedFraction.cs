@@ -17,7 +17,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List
         public string TypeName => typeof(T).Name;
         public ParameterMetaData MetaData { get; set; }
 
-        public Dictionary<T, ConstantDistribution> Values { get; set; }
+        public Dictionary<T, Statistics.ConstantDistribution> Values { get; set; }
 
         public static EnumeratedFraction<T> FromExcel(ParameterMetaData metaData, IEnumerable<IRow> rows)
         {
@@ -26,7 +26,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List
                 MetaData = metaData,
                 Values = rows.ToDictionary(
                     row => ParameterMetaData.FromExcel(row).Category.ParseEnum<T>(),
-                    row => ConstantDistribution.FromExcel(ParameterMetaData.FromExcel(row), row))
+                    row => Statistics.ConstantDistribution.FromExcel(ParameterMetaData.FromExcel(row), row))
             };
         }
 
