@@ -10,7 +10,7 @@ export default class UniformXDependent implements IParameter {
 
   @JsonProperty()
   get isSet(): boolean {
-    return !(!!this.xValues && !!this.yMinimumValues && !!this.yMaximumValues && !!this.dependentVariable);
+    return !!this.xValues && !!this.yMinimumValues && !!this.yMaximumValues && !!this.dependentVariable;
   }
 
   @JsonProperty()

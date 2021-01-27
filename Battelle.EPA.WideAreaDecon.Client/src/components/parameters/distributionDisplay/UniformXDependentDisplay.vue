@@ -2,7 +2,7 @@
   <v-container :style="vuetifyColorProps()">
     <v-row>
       <v-col align="center">
-        <v-btn v-if="selectedSet.points.length <= 6" @click="addPoint">Add Point</v-btn>
+        <v-btn v-if="selectedSet.points.length < 6" @click="addPoint">Add Point</v-btn>
       </v-col>
       <v-col align="center">
         <v-btn-toggle v-model="selectedSetName" dense mandatory background-color="primary">
@@ -49,6 +49,16 @@
           ></v-text-field>
         </v-card>
       </v-col>
+      <v-col>
+        <v-btn
+          :disabled="
+            selectedSet.points.length <= 2 || selectedIndex <= 0 || selectedIndex === selectedSet.points.length - 1
+          "
+          @click="removePoint(selectedSet.indices[selectedIndex])"
+        >
+          Remove Point
+        </v-btn>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -91,7 +101,7 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
 
   yMinValues: number[] = [];
 
-  dependentVariables?: string[] = [];
+  dependentVariables: string[] = [];
 
   selectedSetName = '';
 
@@ -148,8 +158,10 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     const colorProvider = new CycleColorProvider();
     const color = colorProvider.getNextColor();
 
-    const mins: ChartPoint2D[] = this.selectedSet.points.map((x, i) => new ChartPoint2D(x, this.selectedSet.mins[i]));
-    const maxs: ChartPoint2D[] = this.selectedSet.points.map((x, i) => new ChartPoint2D(x, this.selectedSet.maxs[i]));
+    const selectedXValues = this.selectedSet.points.sort((a, b) => a - b);
+
+    const mins: ChartPoint2D[] = selectedXValues.map((x, i) => new ChartPoint2D(x, this.selectedSet.mins[i]));
+    const maxs: ChartPoint2D[] = selectedXValues.map((x, i) => new ChartPoint2D(x, this.selectedSet.maxs[i]));
 
     if (mins.length) {
       const minScatter = new ScatterChartDataset(mins, 'Min', colorProvider, undefined, color);
@@ -161,18 +173,6 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
       const maxScatter = new ScatterChartDataset(maxs, 'Max', colorProvider, undefined, color);
       dataSets.push(maxScatter);
     }
-
-    // const min = this.interpolate(selectedYMins, selectedXValues, this.sliderValue);
-    // const max = this.interpolate(selectedYMaxs, selectedXValues, this.sliderValue);
-
-    // Vue.set(this.parameterValue, 'min', min);
-    // Vue.set(this.parameterValue, 'max', max);
-
-    // const currentMin = new ChartPoint2D(this.sliderValue, min);
-    // const currentMax = new ChartPoint2D(this.sliderValue, max);
-
-    // const current = new ScatterChartDataset([currentMin, currentMax], 'Current', colorProvider);
-    // dataSets.push(current);
 
     return new DefaultChartData(dataSets);
   }
@@ -188,7 +188,7 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
   }
 
   addPoint(): void {
-    if (this.selectedSet.points.length > 6) {
+    if (this.selectedSet.points.length >= 6) {
       return;
     }
     // Insert new point at median of existing points
@@ -201,18 +201,25 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     const minEfficacy = (this.selectedSet.mins[index - 1] + this.selectedSet.mins[index]) / 2;
     const maxEfficacy = (this.selectedSet.maxs[index - 1] + this.selectedSet.maxs[index]) / 2;
 
-    if (this.parameterValue.dependentVariable !== undefined && this.dependentVariables !== undefined) {
-      this.dependentVariables.splice(index, 0, this.selectedSetName);
+    this.dependentVariables.splice(this.selectedSet.indices[index], 0, this.selectedSetName);
+    this.xValues.splice(this.selectedSet.indices[index], 0, point);
+    this.yMinValues.splice(this.selectedSet.indices[index], 0, minEfficacy);
+    this.yMaxValues.splice(this.selectedSet.indices[index], 0, maxEfficacy);
+  }
+
+  removePoint(index: number): void {
+    if (this.selectedSet.points.length <= 2) {
+      return;
     }
-    if (this.parameterValue.xValues !== undefined) {
-      this.xValues.splice(index, 0, point);
-    }
-    if (this.parameterValue.yMinimumValues !== undefined) {
-      this.yMinValues.splice(index, 0, minEfficacy);
-    }
-    if (this.parameterValue.yMaximumValues !== undefined) {
-      this.yMaxValues.splice(index, 0, maxEfficacy);
-    }
+
+    // Remove point
+    this.dependentVariables.splice(index, 1);
+    this.xValues.splice(index, 1);
+    this.yMinValues.splice(index, 1);
+    this.yMaxValues.splice(index, 1);
+
+    this.selectedIndex = -1;
+    this.editPoint = false;
   }
 
   updateOnTextChange(value: string, maxOrMin: string, index: number): void {
@@ -266,7 +273,7 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     this.xValues = this.parameterValue.xValues ?? [];
     this.yMinValues = this.parameterValue.yMinimumValues ?? [];
     this.yMaxValues = this.parameterValue.yMaximumValues ?? [];
-    this.dependentVariables = this.parameterValue.dependentVariable;
+    this.dependentVariables = this.parameterValue.dependentVariable ?? [];
 
     // hide chart legend
     this.chartOptions.legend.display = false;
