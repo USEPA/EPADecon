@@ -17,14 +17,24 @@ namespace Battelle.EPA.WideAreaDecon.Model
             Services.ParameterArraySourceReductionCalculatorFactory srCalculatorFactory,
             Services.ParameterArrayDecontaminationCalculatorFactory dcCalculatorFactory,
             Services.ParameterArrayOtherCalculatorFactory otCalculatorFactory,
-            Services.ParameterArrayIncidentCommandCalculatorFactory icCalculatorFactory
-            )
+            Services.ParameterArrayIncidentCommandCalculatorFactory icCalculatorFactory)
         {
             _characterizationSamplingFactory = csCalculatorFactory;
             _sourceReductionFactory = srCalculatorFactory;
             _decontaminationFactory = dcCalculatorFactory;
             _otherFactory = otCalculatorFactory;
             _incidentCommandFactory = icCalculatorFactory;
+        }
+
+        public void GetCalculators()
+        {
+            _characterizationSamplingFactory.GetCalculator();
+            _sourceReductionFactory.GetCalculator();
+            _decontaminationFactory.GetCalculator();
+            _otherFactory.GetCalculator();
+            _incidentCommandFactory.GetCalculator();
+
+            throw new NotImplementedException();
         }
     }
 }
