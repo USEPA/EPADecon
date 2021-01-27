@@ -3,7 +3,7 @@ using System;
 using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
 using NUnit.Framework;
 using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
 {

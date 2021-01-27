@@ -2,16 +2,20 @@
 using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
 using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
     internal class MockEfficacyCalculator : IEfficacyCalculator
     {
-        public double[] CalculateEfficacy(double[] _initialSporeLoading)
+        public Dictionary<SurfaceType, double> CalculateEfficacy(Dictionary<SurfaceType, double> _initialSporeLoading)
         {
-            double[] dbl = new double[1];
-            dbl[0] = 0.9;
+            var dbl = new Dictionary<SurfaceType, double>();
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                dbl[surface] = 0.9;
+            }
+
             return dbl;
         }
     }
@@ -23,10 +27,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [SetUp]
         public void Setup()
         {
-            var surfaceTypes = new Dictionary<SurfaceType, string>()
-            {
-                { SurfaceType.IndoorInterior, "Indoor Interior"}
-            };
             var applicationMethods = new Dictionary<SurfaceType, ApplicationMethod>()
             {
                 { SurfaceType.IndoorInterior, ApplicationMethod.FoamSpray}
@@ -41,7 +41,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 { ApplicationMethod.FoamSpray, 3.0}
             };
             Calculator = new WorkDaysCalculator(
-                surfaceTypes,
                 applicationMethods,
                 initialSporeLoading,
                 desiredSporeThreshold,

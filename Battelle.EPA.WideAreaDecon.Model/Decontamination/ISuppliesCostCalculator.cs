@@ -6,7 +6,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
     public interface ISuppliesCostCalculator
     {
-        public double NonFoggingSuppliesCostCalculator(Dictionary<SurfaceType, double> percentOfRoomBySurface, double roomSurfaceArea);
+        public double NonFoggingSuppliesCostCalculator(Dictionary<SurfaceType, ContaminationInformation> areaContaminated);
 
         public double FoggingSuppliesCostCalculator(Dictionary<SurfaceType, ContaminationInformation> areaContaminated);
         

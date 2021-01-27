@@ -2,7 +2,7 @@
 using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
 using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
@@ -27,10 +27,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [Test]
         public void CalculateCost()
         {
-            double[] initialSporeLoading = { 1.1 };
-            double[] newSporeLoading = { 0.9 };
+            var initialSporeLoading = new Dictionary<SurfaceType, double>();
+            var newSporeLoading = new Dictionary<SurfaceType, double>();
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                initialSporeLoading[surface] = 1.1;
+                newSporeLoading[surface] = 0.9;
+            }
 
-            Assert.AreEqual(newSporeLoading.Sum(), Calculator.CalculateEfficacy(initialSporeLoading).Sum(), 1e-6, "Incorrect cost calculated");
+            Assert.AreEqual(newSporeLoading.Values.Sum(), Calculator.CalculateEfficacy(initialSporeLoading).Values.Sum(), 1e-6, "Incorrect cost calculated");
 
         }
     }
