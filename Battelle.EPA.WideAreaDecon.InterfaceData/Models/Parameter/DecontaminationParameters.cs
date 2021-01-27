@@ -2,6 +2,7 @@
 using System.Linq;
 using System;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
@@ -20,16 +21,23 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double respiratorsPerPerson;
         public double numTeams;
         public Dictionary<PpeLevel, double> ppeRequired;
-        public double roomVolume;
-        public Dictionary<SurfaceType, double> roomBreakdown;
+        public Dictionary<SurfaceType, ContaminationInformation> areaContaminated;
         public double fumigationAgentVolume;
         public double agentVolume;
 
-        public DecontaminationParameters(ParameterFilter[] dcParameters, ParameterFilter[] effParameters)
+        public DecontaminationParameters(
+            ParameterFilter[] dcParameters, 
+            IParameter[] effParameters,
+            Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails)
         {
-            //efficacyValues;
-            //applicationMethods;
-            //initialSporeLoading;
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                // THESE WILL BOTH NEED TO BE FIXED
+                efficacyValues[surface] = effParameters.First(p => p.MetaData.Name == "Aerosol Efficacy").CreateDistribution().Draw();
+                applicationMethods[surface] = ApplicationMethod.Fogging;
+
+                initialSporeLoading[surface] = scenarioDefinitionDetails[surface].Loading;
+            }
             desiredSporeThreshold = dcParameters.First(p => p.Name == "Eff").Parameters.First(n => n.MetaData.Name == "Post-decon Spore Threshold").CreateDistribution().Draw();
             foreach (ApplicationMethod method in Enum.GetValues(typeof(ApplicationMethod)))
             {
@@ -50,8 +58,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             ppeRequired[PpeLevel.B] = dcParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "PPE Required (B)").CreateDistribution().Draw();
             ppeRequired[PpeLevel.C] = dcParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "PPE Required (C)").CreateDistribution().Draw();
             ppeRequired[PpeLevel.D] = dcParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "PPE Required (D)").CreateDistribution().Draw();
-            //roomVolume;
-            //roomBreakdown;
+            areaContaminated = scenarioDefinitionDetails;
             fumigationAgentVolume = dcParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume of Agent Applied for Fogging/Fumigation").CreateDistribution().Draw();
             agentVolume = dcParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume of Agent Applied").CreateDistribution().Draw();
         }
