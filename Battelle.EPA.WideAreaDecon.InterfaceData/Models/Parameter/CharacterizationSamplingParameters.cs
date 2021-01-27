@@ -6,8 +6,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
     public class CharacterizationSamplingParameters
     {
-        public double surfaceAreaWiped;
-        public double surfaceAreaHepad;
+        public double fractionSampledWipe;
+        public double fractionSampledHepa;
         public double surfaceAreaPerWipe;
         public double surfaceAreaPerHepa;
         public double wipesPerHrPerTeam;
@@ -30,10 +30,12 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double respiratorsPerPerson;
         public Dictionary<PpeLevel, double> ppeRequired;
 
-        public CharacterizationSamplingParameters(ParameterFilter[] parameters)
+        public CharacterizationSamplingParameters(
+            ParameterFilter[] parameters, 
+            Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails)
         {
-            //surfaceAreaWiped = 0.0;
-            //surfaceAreaHepad = 0.0;
+            fractionSampledWipe = parameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
+            fractionSampledWipe = parameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
             surfaceAreaPerWipe = parameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per Wipe").CreateDistribution().Draw();
             surfaceAreaPerHepa = parameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per HEPA Sock").CreateDistribution().Draw();
             wipesPerHrPerTeam = parameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Wipes per Hour per Team").CreateDistribution().Draw();

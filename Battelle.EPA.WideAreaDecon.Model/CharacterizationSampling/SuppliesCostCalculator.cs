@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
@@ -30,17 +34,33 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _hepaRentalCostPerDay = hepaRentalCostPerDay;
         }
 
-        public double CalculateSuppliesCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateSuppliesCost(double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
-            return _surfaceAreaToBeWiped / _surfaceAreaPerWipe * _costPerWipe +
-                _surfaceAreaToBeHepa / _surfaceAreaPerHepaSock * _costPerVacuum + _surfaceAreaToBeHepa /
+            var contaminationArea = new Dictionary<SurfaceType, double>();
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                contaminationArea[surface] = _areaContaminated[surface].AreaContaminated;
+            }
+            var surfaceAreaToBeWiped = _fractionSampledWipe * contaminationArea.Values.Sum();
+            var surfaceAreaToBeHepa = _fractionSampledHepa * contaminationArea.Values.Sum();
+
+            return surfaceAreaToBeWiped / _surfaceAreaPerWipe * _costPerWipe +
+                surfaceAreaToBeHepa / _surfaceAreaPerHepaSock * _costPerVacuum + surfaceAreaToBeHepa /
                 _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams * GlobalConstants.HoursPerWorkDay) * _hepaRentalCostPerDay;
         }
 
-        public double CalculateWorkDays(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateWorkDays(double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
-            return Math.Abs(_surfaceAreaToBeWiped / _surfaceAreaPerWipe / (_wipesPerHourPerTeam * _numberTeams) / GlobalConstants.HoursPerWorkDay) +
-                Math.Abs(_surfaceAreaToBeHepa / _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams) /
+            var contaminationArea = new Dictionary<SurfaceType, double>();
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                contaminationArea[surface] = _areaContaminated[surface].AreaContaminated;
+            }
+            var surfaceAreaToBeWiped = _fractionSampledWipe * contaminationArea.Values.Sum();
+            var surfaceAreaToBeHepa = _fractionSampledHepa * contaminationArea.Values.Sum();
+
+            return Math.Abs(surfaceAreaToBeWiped / _surfaceAreaPerWipe / (_wipesPerHourPerTeam * _numberTeams) / GlobalConstants.HoursPerWorkDay) +
+                Math.Abs(surfaceAreaToBeHepa / _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams) /
                     GlobalConstants.HoursPerWorkDay);
         }
     }

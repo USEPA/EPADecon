@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
@@ -38,8 +40,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _labDistanceFromSite = labDistanceFromSite;
         }
 
-        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double surfaceAreaToBeWiped, double surfaceAreaToBeHepa)
+        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
+            var contaminationArea = new Dictionary<SurfaceType, double>();
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                contaminationArea[surface] = _areaContaminated[surface].AreaContaminated;
+            }
+            var surfaceAreaToBeWiped = _fractionSampledWipe * contaminationArea.Values.Sum();
+            var surfaceAreaToBeHepa = _fractionSampledHepa * contaminationArea.Values.Sum();
+
             double totalWipes = (surfaceAreaToBeWiped / _surfaceAreaPerWipe);
 
             double totalHepa = (surfaceAreaToBeHepa / _surfaceAreaPerHepa);
@@ -50,8 +60,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
             for (int i = 0; i < numberLabs; i++)
             {
-
-                
                 shippingTimePerLab[i] = _labDistanceFromSite[i] / (GlobalConstants.HoursPerWorkDay * GlobalConstants.AssumedDriverSpeed);
 
                 analysisTimePerLab[i] = Math.Abs((totalWipes * _fractionOfWipeToEachLab[i] * _wipeAnalysisTime) + (totalHepa * _fractionOfHepaToEachLab[i] * _hepaAnalysisTime)) / _labUptimesHours[i];

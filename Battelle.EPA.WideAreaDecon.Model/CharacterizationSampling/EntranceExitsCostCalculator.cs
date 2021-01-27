@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
@@ -34,11 +35,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _suppliesCostCalculator = suppliesCostCalculator;
         }
 
-        public double CalculateEntrancesExitsCost(double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateEntrancesExitsCost(double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
             var totalPersonnel = _personnelRequiredPerTeam.Values.Sum() * _numberTeams;
 
-            var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
+            var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
 
             var totalEntries = workDays * _numberEntriesPerTeamPerDay * _numberTeams;
 
@@ -46,7 +47,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
-            var entExitLaborCost = _laborCostCalculator.CalculateEntExitLaborCost( _numberTeams,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
+            var entExitLaborCost = _laborCostCalculator.CalculateEntExitLaborCost( _numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
 
             return entExitLaborCost + totalPersonnel * _respiratorsPerPerson * _costPerRespirator + totalCostPpe;
         }

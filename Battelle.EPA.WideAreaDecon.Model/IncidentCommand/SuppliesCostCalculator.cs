@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
@@ -19,11 +21,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
             _laborCostCalculator = laborCostCalculator;
         }
 
-        public double CalculateSuppliesCost(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays, double _surfaceAreaToBeHepa
-            ,double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
+        public double CalculateSuppliesCost(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
         {
             var onSiteDays = _laborCostCalculator.CalculateOnSiteDays( _numberTeams, surfaceAreaToBeSourceReduced, personnelRoundTripDays,
-             _surfaceAreaToBeHepa, _surfaceAreaToBeWiped,  numberLabs,  sampleTimeTransmitted);
+             _fractionSampledWipe, _fractionSampledHepa, _areaContaminated,  numberLabs,  sampleTimeTransmitted);
 
             return onSiteDays * (_equipmentRentalCostPerDay + _suppliesCostPerDay);
         }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
 
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
@@ -33,20 +34,19 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
         }
         
         public double CalculateOnSiteDays(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
-            double _surfaceAreaToBeHepa,double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
+            double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
         {
-            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays( _numberTeams, personnelRoundTripDays, _surfaceAreaToBeHepa,
-                _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted);
+            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays( _numberTeams, personnelRoundTripDays, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated, numberLabs, sampleTimeTransmitted);
             var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays( _numberTeams, personnelRoundTripDays, surfaceAreaToBeSourceReduced);
             var laborDaysDc = _laborCostCalculatorDc.CalculateLaborDays(personnelRoundTripDays);
 
-            var lagTime = _phaseLagCalculator.CalculatePhaseLagTime(numberLabs, sampleTimeTransmitted, _surfaceAreaToBeWiped, _surfaceAreaToBeHepa);
+            var lagTime = _phaseLagCalculator.CalculatePhaseLagTime(numberLabs, sampleTimeTransmitted, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
 
             return laborDaysCs + lagTime + laborDaysSr + laborDaysDc + _personnelOverheadDays;
         }
 
         public double CalculateLaborCost(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
-            double _surfaceAreaToBeHepa,double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
+            double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
         {
             
             var totalPersonnel = _personnelReqPerTeam.Values.Sum();
@@ -54,7 +54,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
             var personnelHoursCost = _personnelReqPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
             var onSiteDays = CalculateOnSiteDays(_numberTeams, surfaceAreaToBeSourceReduced, personnelRoundTripDays,
-             _surfaceAreaToBeHepa, _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted);
+             _fractionSampledWipe, _fractionSampledHepa, _areaContaminated, numberLabs, sampleTimeTransmitted);
 
             var laborHours = GlobalConstants.HoursPerWorkDay * (onSiteDays + personnelRoundTripDays);
 
