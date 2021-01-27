@@ -44,10 +44,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 areaContaminated[surface].AreaContaminated = 250;
             }
 
-            double roomSurfaceArea = 100;
-
             Assert.AreEqual(205.918810751869,
-                Calculator.NonFoggingSuppliesCostCalculator(percentOfRoomBySurface, roomSurfaceArea), 1e-6,
+                Calculator.NonFoggingSuppliesCostCalculator(areaContaminated), 1e-6,
                 "Incorrect cost calculated(non fog)");
             Assert.AreEqual(438.5552474488785,
                 Calculator.FoggingSuppliesCostCalculator(areaContaminated), 1e-6,

@@ -1,6 +1,7 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.Other;
 using NUnit.Framework;
 using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Other
 {

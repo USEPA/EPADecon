@@ -1,6 +1,7 @@
 using System;
 using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
