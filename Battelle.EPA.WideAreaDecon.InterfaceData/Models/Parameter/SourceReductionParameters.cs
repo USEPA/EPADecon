@@ -16,7 +16,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double numTeams;
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
         public double personnelOverheadDays;
-        public double personnelRoundtripDays;
         public Dictionary<PpeLevel, double> ppeRequired;
 
         public SourceReductionParameters(ParameterFilter[] parameters)
@@ -34,7 +33,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             personnelReqPerTeam[PersonnelLevel.PL3] = parameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-3)").CreateDistribution().Draw();
             personnelReqPerTeam[PersonnelLevel.PL4] = parameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw();
             personnelOverheadDays = parameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Personnel Overhead Days").CreateDistribution().Draw();
-            //personnelRoundtripDays = parameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per Wipe").CreateDistribution().Draw();
             ppeRequired[PpeLevel.A] = parameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "PPE Required (A)").CreateDistribution().Draw();
             ppeRequired[PpeLevel.B] = parameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "PPE Required (B)").CreateDistribution().Draw();
             ppeRequired[PpeLevel.C] = parameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "PPE Required (C)").CreateDistribution().Draw();
