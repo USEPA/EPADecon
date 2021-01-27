@@ -1,6 +1,6 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.Model.Services;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
