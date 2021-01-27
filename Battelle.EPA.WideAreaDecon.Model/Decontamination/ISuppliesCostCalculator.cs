@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
@@ -7,7 +8,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
     {
         public double NonFoggingSuppliesCostCalculator(Dictionary<SurfaceType, double> percentOfRoomBySurface, double roomSurfaceArea);
 
-        public double FoggingSuppliesCostCalculator(double roomVolume);
+        public double FoggingSuppliesCostCalculator(Dictionary<SurfaceType, ContaminationInformation> areaContaminated);
         
     }
 }

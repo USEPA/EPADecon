@@ -7,6 +7,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics;
 using NPOI.SS.UserModel;
 using Newtonsoft.Json;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json;
+using Battelle.RiskAssessment.Common.Statistics;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List
 {
@@ -47,6 +48,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List
                 MetaData = metaData,
                 Values =  values
             };
+        }
+
+        public IDistribution CreateDistribution()
+        {
+            throw new NotImplementedException();
         }
     }
 }

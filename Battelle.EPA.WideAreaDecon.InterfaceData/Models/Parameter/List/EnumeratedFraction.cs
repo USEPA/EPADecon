@@ -7,6 +7,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NPOI.SS.UserModel;
+using Battelle.RiskAssessment.Common.Statistics;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List
 {
@@ -27,6 +28,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List
                     row => ParameterMetaData.FromExcel(row).Category.ParseEnum<T>(),
                     row => ConstantDistribution.FromExcel(ParameterMetaData.FromExcel(row), row))
             };
+        }
+
+        public IDistribution CreateDistribution()
+        {
+            throw new NotImplementedException();
         }
     }
 }

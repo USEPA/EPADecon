@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
@@ -23,15 +24,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _deconAgentVolumeBySurface = deconAgentVolumeBySurface;
         }
 
-        public double NonFoggingSuppliesCostCalculator (Dictionary<SurfaceType, double> percentOfRoomBySurface, double roomSurfaceArea)
+        public double NonFoggingSuppliesCostCalculator(Dictionary<SurfaceType, double> percentOfRoomBySurface, double roomSurfaceArea)
         {
-            var agentNeededPerTreatment = _deconAgentVolumeBySurface.Values.Zip(percentOfRoomBySurface.Values, (x, y) => x * y).Sum() * roomSurfaceArea;
+            var agentNeededPerTreatment = _deconAgentVolumeBySurface.Values.Zip(percentOfRoomBySurface.Values, (x, y) => x * y).Sum();
             return (_deconMaterialsCost * roomSurfaceArea) + ((agentNeededPerTreatment) * _deconAgentCostPerVolume);
         }
 
-        public double FoggingSuppliesCostCalculator (double roomVolume)
+        public double FoggingSuppliesCostCalculator(Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return _deconMaterialsCost + (roomVolume * _deconAgentVolume * _deconAgentCostPerVolume);
+            var totalContaminationArea = areaContaminated.Skip(1).Sum(x => x.Value.AreaContaminated);
+            var roomHeight = 9.0; //THIS NEEDS TO BE REMOVED IN THE FUTURE
+            return _deconMaterialsCost + (totalContaminationArea * roomHeight * _deconAgentVolume * _deconAgentCostPerVolume);
         }
     }
 }

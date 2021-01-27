@@ -11,6 +11,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
+using Battelle.RiskAssessment.Common.Statistics;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 {
@@ -35,6 +36,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
                 Value = typeof(ConstantDistribution).GetCellValue(nameof(Value), row)?.ConvertToOptionalDouble(),
                 MetaData = metaData
             };
+        }
+
+        public IDistribution CreateDistribution()
+        {
+            throw new NotImplementedException();
         }
     }
 }
