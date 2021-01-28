@@ -17,7 +17,7 @@ export default class JobProvider implements IJobProvider {
     seed2: number,
   ): JobRequest {
     const job = new JobRequest(
-      1, // defualt id value?
+      '1', // defualt id value?
       JobStatus.new,
       scenarioDefinition,
       scenarioParameters,
@@ -29,10 +29,10 @@ export default class JobProvider implements IJobProvider {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  async postJobRequest(job: JobRequest): Promise<boolean> {
+  async postJobRequest(job: JobRequest): Promise<string> {
     const serializedJob = serialize(job);
     return Axios.post<JobRequest>('/api/JobRequest', serializedJob)
-      .then((response) => true) // TODO implement response handling
-      .catch((error) => false);
+      .then((response) => `${response.data}`)
+      .catch((error) => '');
   }
 }

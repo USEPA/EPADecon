@@ -9,5 +9,5 @@ export default interface IJobProvider {
     seed1: number,
     seed2: number,
   ): JobRequest;
-  postJobRequest(job: JobRequest): Promise<boolean>;
+  postJobRequest(job: JobRequest): Promise<string>;
 }

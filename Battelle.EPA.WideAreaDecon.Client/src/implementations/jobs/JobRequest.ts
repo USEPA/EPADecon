@@ -6,7 +6,7 @@ import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperLi
 @Serializable()
 export default class JobRequest implements IJobRequest {
   // @JsonProperty()
-  id: number;
+  id: string;
 
   status: JobStatus;
 
@@ -28,7 +28,7 @@ export default class JobRequest implements IJobRequest {
   results?: any;
 
   constructor(
-    id: number,
+    id: string,
     status: JobStatus = JobStatus.new,
     defineScenario: ParameterWrapperList,
     modifyParameter: ParameterWrapperList,

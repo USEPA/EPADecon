@@ -2,7 +2,7 @@ import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperLi
 import JobStatus from '@/enums/jobs/jobStatus';
 
 export default interface IJobRequest {
-  id: number;
+  id: string;
   status: JobStatus;
   defineScenario: ParameterWrapperList;
   modifyParameter: ParameterWrapperList;
