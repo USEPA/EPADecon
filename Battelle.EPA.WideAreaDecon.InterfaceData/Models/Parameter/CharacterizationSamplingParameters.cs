@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
@@ -16,7 +16,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double samplePackageTime;
         public double wipeAnalysisTime;
         public double hepaAnalysisTime;
-        public double numLabs;
+        public int numLabs;
         public List<double> fractionOfWipeToEachLab;
         public List<double> fractionOfHepaToEachLab;
         public List<double> labUptimesHours;
@@ -44,7 +44,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             samplePackageTime = parameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Packaging Time per Sample").CreateDistribution().Draw();
             wipeAnalysisTime = parameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Analysis Time per Wipe Sample").CreateDistribution().Draw();
             hepaAnalysisTime = parameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Analysis Time per HEPA Sample").CreateDistribution().Draw();
-            numLabs = parameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Labs").CreateDistribution().Draw();
+            numLabs = (int)parameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Labs").CreateDistribution().Draw();
             for (int i = 0; i < numLabs; i++)
             {
                 fractionOfWipeToEachLab.Add(parameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Wipe Samples to Each Lab").CreateDistribution().Draw());
