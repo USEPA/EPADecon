@@ -36,7 +36,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn outlined color="primary darken-1" text @click="runClick"> Run </v-btn>
+          <v-btn outlined color="primary darken-1" text @click="runClick" :disabled="!canRun"> Run </v-btn>
           <v-btn outlined color="primary darken-1" text @click="showModal = false"> Cancel </v-btn>
         </v-card-actions>
       </v-card>
@@ -51,13 +51,15 @@ import { Action, Getter } from 'vuex-class';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobProvider from '@/interfaces/providers/IJobProvider';
-import IRunScenarioPayload from '@/interfaces/store/jobs/IRunScenarioPayload';
+import ICreateJobRequestPayload from '@/interfaces/store/jobs/ICreateJobRequestPayload';
 
 @Component
 export default class RunScenario extends Vue {
   @Prop({ required: true }) visible!: boolean;
 
-  @Action runScenario!: (payload: IRunScenarioPayload) => void;
+  @Action createJobRequest!: (payload: ICreateJobRequestPayload) => void;
+
+  @Action postCurrentJobRequest!: (jobProvider: IJobProvider) => Promise<void>;
 
   @Getter canRun!: boolean;
 
@@ -83,13 +85,14 @@ export default class RunScenario extends Vue {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const form = this.$refs.form as any;
     if (this.canRun && form.validate()) {
-      const payload: IRunScenarioPayload = {
+      const payload: ICreateJobRequestPayload = {
         jobProvider: this.jobProvider,
         numberRealizations: this.numberRealizations,
         seed1: this.seed1,
         seed2: this.seed2,
       };
-      this.runScenario(payload);
+      this.createJobRequest(payload);
+      this.postCurrentJobRequest(this.jobProvider);
     }
   }
 

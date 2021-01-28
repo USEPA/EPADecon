@@ -1,9 +1,10 @@
 import { ActionTree } from 'vuex';
 import IRootState from '@/interfaces/store/IRootState';
-import IRunScenarioPayload from '@/interfaces/store/jobs/IRunScenarioPayload';
+import ICreateJobRequestPayload from '@/interfaces/store/jobs/ICreateJobRequestPayload';
+import IJobProvider from '@/interfaces/providers/IJobProvider';
 
-const jobActions: ActionTree<IRootState, IRootState> = {
-  runScenario: ({ state }, { jobProvider, numberRealizations, seed1, seed2 }: IRunScenarioPayload) => {
+const jobRequestActions: ActionTree<IRootState, IRootState> = {
+  createJobRequest: ({ commit, state }, { jobProvider, numberRealizations, seed1, seed2 }: ICreateJobRequestPayload) => {
     const job = jobProvider.createJobRequest(
       state.scenarioDefinition,
       state.scenarioParameters,
@@ -11,8 +12,15 @@ const jobActions: ActionTree<IRootState, IRootState> = {
       seed1,
       seed2,
     );
-    jobProvider.postJobRequest(job);
+    commit('setCurrentJob', job);
+  },
+
+  postCurrentJobRequest: async ({ commit, state }, jobProvider: IJobProvider) => {
+    const id = await jobProvider.postJobRequest(state.currentJob);
+    if (id.length) {
+      commit('updateJobId', id);
+    }
   },
 };
 
-export default jobActions;
+export default jobRequestActions;

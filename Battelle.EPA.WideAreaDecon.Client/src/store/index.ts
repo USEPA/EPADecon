@@ -13,7 +13,9 @@ import NavigationSettings from './navigationSettings/NavigationSettings';
 import navigationSettingsMutations from './navigationSettings/mutations';
 import parameterSelectionMutations from './parameterSelection/mutations';
 import ParameterSelection from './parameterSelection/ParameterSelection';
-import jobActions from './jobs/actions';
+import CurrentJob from './jobs/CurrentJob';
+import currentJobMutations from './jobs/mutations';
+import jobRequestActions from './jobs/actions';
 
 Vue.use(Vuex);
 
@@ -24,6 +26,7 @@ const store: StoreOptions<IRootState> = {
     ...new RunSettings(),
     ...new ParameterSelection(),
     ...new NavigationSettings(),
+    ...new CurrentJob(),
   },
   modules: {},
   getters: {
@@ -35,9 +38,10 @@ const store: StoreOptions<IRootState> = {
     ...runSettingsMutations,
     ...parameterSelectionMutations,
     ...navigationSettingsMutations,
+    ...currentJobMutations,
   },
   actions: {
-    ...jobActions,
+    ...jobRequestActions,
   },
 };
 
