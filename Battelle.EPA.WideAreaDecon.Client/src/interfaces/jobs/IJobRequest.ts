@@ -6,5 +6,8 @@ export default interface IJobRequest {
   status: JobStatus;
   defineScenario: ParameterWrapperList;
   modifyParameter: ParameterWrapperList;
+  numberRealizations: number;
+  seed1: number;
+  seed2: number;
   results?: any; // TODO update type
 }

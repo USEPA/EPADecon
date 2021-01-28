@@ -16,6 +16,15 @@ export default class JobRequest implements IJobRequest {
   @JsonProperty()
   modifyParameter: ParameterWrapperList;
 
+  @JsonProperty()
+  numberRealizations: number;
+
+  @JsonProperty()
+  seed1: number;
+
+  @JsonProperty()
+  seed2: number;
+
   results?: any;
 
   constructor(
@@ -23,12 +32,16 @@ export default class JobRequest implements IJobRequest {
     status: JobStatus = JobStatus.new,
     defineScenario: ParameterWrapperList,
     modifyParameter: ParameterWrapperList,
-    results?: any,
+    numberRealizations: number,
+    seed1: number, // default seed values?
+    seed2: number,
   ) {
     this.id = id;
     this.status = status;
     this.defineScenario = defineScenario;
     this.modifyParameter = modifyParameter;
-    this.results = results;
+    this.numberRealizations = numberRealizations;
+    this.seed1 = seed1;
+    this.seed2 = seed2;
   }
 }
