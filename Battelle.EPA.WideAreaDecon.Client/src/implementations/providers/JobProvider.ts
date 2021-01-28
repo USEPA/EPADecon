@@ -9,8 +9,22 @@ import ParameterWrapperList from '../parameter/ParameterWrapperList';
 @injectable()
 export default class JobProvider implements IJobProvider {
   // eslint-disable-next-line class-methods-use-this
-  createJobRequest(scenarioDefinition: ParameterWrapperList, scenarioParameters: ParameterWrapperList): JobRequest {
-    const job = new JobRequest(1, JobStatus.new, scenarioDefinition, scenarioParameters);
+  createJobRequest(
+    scenarioDefinition: ParameterWrapperList,
+    scenarioParameters: ParameterWrapperList,
+    numberRealizations: number,
+    seed1: number,
+    seed2: number,
+  ): JobRequest {
+    const job = new JobRequest(
+      1, // defualt id value?
+      JobStatus.new,
+      scenarioDefinition,
+      scenarioParameters,
+      numberRealizations,
+      seed1,
+      seed2,
+    );
     return job;
   }
 
