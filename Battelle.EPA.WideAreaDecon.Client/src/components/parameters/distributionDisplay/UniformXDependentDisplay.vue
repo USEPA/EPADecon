@@ -28,7 +28,7 @@
       <v-col>
         <v-card class="pa-2" outlined tile>
           <v-text-field
-            @input="updateOnTextChange($event, 'min', yMinValues.indexOf(selectedSet.mins[selectedIndex]))"
+            @input="updateOnTextChange($event, 'min', selectedSet.indices[selectedIndex])"
             :rules="[validationRulesMin]"
             type="number"
             :value="selectedSet.mins[selectedIndex]"
@@ -40,7 +40,7 @@
       <v-col>
         <v-card class="pa-2" outlined tile>
           <v-text-field
-            @input="updateOnTextChange($event, 'max', yMaxValues.indexOf(selectedSet.maxs[selectedIndex]))"
+            @input="updateOnTextChange($event, 'max', selectedSet.indices[selectedIndex])"
             :rules="[validationRulesMax]"
             type="number"
             :value="selectedSet.maxs[selectedIndex]"
@@ -76,18 +76,15 @@ import {
   DefaultChartOptions,
   DefaultChartData,
 } from 'battelle-common-vue-charting/src';
-
-interface IVariableSet {
-  name: string;
-  indices: number[];
-  points: number[];
-  maxs: number[];
-  mins: number[];
-}
+import Chart, { ChartLegendLabelItem } from 'chart.js';
 
 @Component({ components: { ScatterPlotWrapper } })
 export default class UniformXDependentDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: UniformXDependent;
+
+  key = this.$vnode.key;
+
+  baseline!: UniformXDependent;
 
   editPoint = false;
 
@@ -105,7 +102,13 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
 
   selectedSetName = '';
 
-  get variableSets(): IVariableSet[] {
+  get variableSets(): {
+    name: string;
+    indices: number[];
+    points: number[];
+    maxs: number[];
+    mins: number[];
+  }[] {
     const uniqueVariables = [...new Set(this.dependentVariables)];
     const sets = uniqueVariables.map((name) => {
       const indices: number[] = [];
@@ -137,7 +140,57 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     return sets;
   }
 
-  get selectedSet(): IVariableSet {
+  get baselineSets(): {
+    name: string;
+    indices: number[];
+    points: number[];
+    maxs: number[];
+    mins: number[];
+  }[] {
+    const uniqueVariables = [...new Set(this.baseline.dependentVariable)];
+    const sets = uniqueVariables.map((name) => {
+      const indices: number[] = [];
+      const points: number[] = [];
+      const mins: number[] = [];
+      const maxs: number[] = [];
+
+      return {
+        name,
+        indices,
+        points,
+        mins,
+        maxs,
+      };
+    });
+
+    // group points and indices with sets
+    if (this.baseline.xValues !== undefined) {
+      this.baseline.xValues.forEach((x, i) => {
+        const currentSet = this.baseline.dependentVariable ? this.baseline.dependentVariable[i] : undefined;
+        if (
+          currentSet !== undefined &&
+          this.baseline.yMinimumValues !== undefined &&
+          this.baseline.yMaximumValues !== undefined
+        ) {
+          const setIndex = sets.map((set) => set.name).indexOf(currentSet);
+          sets[setIndex].points.push(x);
+          sets[setIndex].indices.push(i);
+          sets[setIndex].mins.push(this.baseline.yMinimumValues[i]);
+          sets[setIndex].maxs.push(this.baseline.yMaximumValues[i]);
+        }
+      });
+    }
+
+    return sets;
+  }
+
+  get selectedSet(): {
+    name: string;
+    indices: number[];
+    points: number[];
+    maxs: number[];
+    mins: number[];
+  } {
     return this.variableSets.filter((set) => set.name === this.selectedSetName)[0];
   }
 
@@ -156,21 +209,46 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
   get chartData(): DefaultChartData {
     const dataSets: ScatterChartDataset[] = [];
     const colorProvider = new CycleColorProvider();
-    const color = colorProvider.getNextColor();
+    const baselineColor = colorProvider.getNextColor();
+    const currentColor = colorProvider.getNextColor();
+
+    const baselineSet = this.baselineSets.filter((set) => set.name === this.selectedSetName)[0];
+
+    const baselineMins: ChartPoint2D[] = baselineSet.points.map((x, i) => new ChartPoint2D(x, baselineSet.mins[i]));
+    const baselineMaxs: ChartPoint2D[] = baselineSet.points.map((x, i) => new ChartPoint2D(x, baselineSet.maxs[i]));
+
+    if (baselineMins.length) {
+      // dataset label will be hidden in chart legend
+      const baselineMinScatter = new ScatterChartDataset(baselineMins, 'Min', colorProvider, undefined, baselineColor);
+      dataSets.push(baselineMinScatter);
+    }
+
+    if (baselineMaxs.length) {
+      const baselineMaxScatter = new ScatterChartDataset(
+        baselineMaxs,
+        'Baseline',
+        colorProvider,
+        undefined,
+        baselineColor,
+      );
+      baselineMaxScatter.fill = '-1';
+      dataSets.push(baselineMaxScatter);
+    }
 
     const selectedXValues = this.selectedSet.points.sort((a, b) => a - b);
 
-    const mins: ChartPoint2D[] = selectedXValues.map((x, i) => new ChartPoint2D(x, this.selectedSet.mins[i]));
-    const maxs: ChartPoint2D[] = selectedXValues.map((x, i) => new ChartPoint2D(x, this.selectedSet.maxs[i]));
+    const currentMins: ChartPoint2D[] = selectedXValues.map((x, i) => new ChartPoint2D(x, this.selectedSet.mins[i]));
+    const currentMaxs: ChartPoint2D[] = selectedXValues.map((x, i) => new ChartPoint2D(x, this.selectedSet.maxs[i]));
 
-    if (mins.length) {
-      const minScatter = new ScatterChartDataset(mins, 'Min', colorProvider, undefined, color);
-      // minScatter.fill = 1; // TODO update charting library to support numbers here
+    if (currentMins.length) {
+      // dataset label will be hidden in chart legend
+      const minScatter = new ScatterChartDataset(currentMins, 'Min', colorProvider, undefined, currentColor);
       dataSets.push(minScatter);
     }
 
-    if (maxs.length) {
-      const maxScatter = new ScatterChartDataset(maxs, 'Max', colorProvider, undefined, color);
+    if (currentMaxs.length) {
+      const maxScatter = new ScatterChartDataset(currentMaxs, 'Current', colorProvider, undefined, currentColor);
+      maxScatter.fill = '-1';
       dataSets.push(maxScatter);
     }
 
@@ -223,6 +301,10 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
   }
 
   updateOnTextChange(value: string, maxOrMin: string, index: number): void {
+    if (index === -1) {
+      return;
+    }
+
     const newValue = Number(value);
     if (maxOrMin === 'max') {
       this.yMaxValues.splice(index, 1, newValue);
@@ -249,6 +331,7 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     return true;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onHover(event: MouseEvent, elements: any[]): void {
     if (elements.length !== 0) {
       // eslint-disable-next-line no-underscore-dangle
@@ -256,11 +339,29 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick(event: MouseEvent, elements: any[]): void {
     if (elements.length === 0) {
       this.selectedIndex = -1;
     }
     this.editPoint = this.selectedIndex >= 0;
+  }
+
+  // adapted from mawir's answer on Stack Overflow: https://stackoverflow.com/a/59716739
+  // eslint-disable-next-line class-methods-use-this
+  legendOnClick(event: MouseEvent, legendItem: ChartLegendLabelItem): void {
+    const index = legendItem.datasetIndex;
+    if (index !== undefined) {
+      // get last instance of chart
+      const chart = Object.values(Chart.instances)[Object.keys(Chart.instances).length - 1];
+      const maxMeta = chart.getDatasetMeta(index);
+      const minMeta = chart.getDatasetMeta(index - 1);
+
+      minMeta.hidden = !minMeta.hidden;
+      maxMeta.hidden = !maxMeta.hidden;
+
+      chart.update();
+    }
   }
 
   vuetifyColorProps(): unknown {
@@ -270,19 +371,28 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
   }
 
   setValues(): void {
+    if (this.key) {
+      // get baseline
+      this.baseline = this.$store.state.currentSelectedParameter.baseline.values[this.key];
+    }
     this.xValues = this.parameterValue.xValues ?? [];
     this.yMinValues = this.parameterValue.yMinimumValues ?? [];
     this.yMaxValues = this.parameterValue.yMaximumValues ?? [];
     this.dependentVariables = this.parameterValue.dependentVariable ?? [];
 
-    // hide chart legend
-    this.chartOptions.legend.display = false;
+    // update chart legend
+    if (this.chartOptions.legend.labels !== undefined) {
+      // hide min labels
+      this.chartOptions.legend.labels.filter = (item) => !item.text?.includes('Min');
+
+      // group baseline and current datasets onclick
+      this.chartOptions.legend.onClick = this.legendOnClick;
+    }
 
     // set chart event callbacks
     this.chartOptions.onClick = this.onClick;
     this.chartOptions.onHover = this.onHover;
 
-    // this.selectedSetName = this.parameterValue.set?.name ?? this.variableSets[0].name;
     this.selectedSetName = this.variableSets[0].name;
   }
 
