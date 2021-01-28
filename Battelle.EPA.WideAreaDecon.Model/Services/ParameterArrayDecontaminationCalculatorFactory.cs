@@ -60,8 +60,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
         }
         public DecontaminationCostCalculator GetCalculator()
         {
-            //return new DecontaminationCostCalculator();
-            throw new NotImplementedException();
+            return new DecontaminationCostCalculator();
         }
     }
 }

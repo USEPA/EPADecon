@@ -47,8 +47,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
 
         public IncidentCommandCostCalculator GetCalculator()
         {
-            //return new IncidentCommandCostCalculator();
-            throw new NotImplementedException();
+            return new IncidentCommandCostCalculator();
         }
     }
 }

@@ -52,8 +52,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
         }
         public SourceReductionCostCalculator GetCalculator()
         {
-            //return new SourceReductionCostCalculator();
-            throw new NotImplementedException();
+            return new SourceReductionCostCalculator();
         }
     }
 }

@@ -23,8 +23,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
         }
         public OtherCostCalculator GetCalculator()
         {
-            //return new OtherCostCalculator();
-            throw new NotImplementedException();
+            return new OtherCostCalculator();
         }
     }
 }
