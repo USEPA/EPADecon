@@ -4,7 +4,10 @@ import ICreateJobRequestPayload from '@/interfaces/store/jobs/ICreateJobRequestP
 import IJobProvider from '@/interfaces/providers/IJobProvider';
 
 const jobRequestActions: ActionTree<IRootState, IRootState> = {
-  createJobRequest: ({ commit, state }, { jobProvider, numberRealizations, seed1, seed2 }: ICreateJobRequestPayload) => {
+  createJobRequest: (
+    { commit, state },
+    { jobProvider, numberRealizations, seed1, seed2 }: ICreateJobRequestPayload,
+  ) => {
     const job = jobProvider.createJobRequest(
       state.scenarioDefinition,
       state.scenarioParameters,

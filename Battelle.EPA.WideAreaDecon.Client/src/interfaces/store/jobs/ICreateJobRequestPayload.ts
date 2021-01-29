@@ -1,4 +1,4 @@
-import IJobProvider from "@/interfaces/providers/IJobProvider";
+import IJobProvider from '@/interfaces/providers/IJobProvider';
 
 export default interface ICreateJobRequestPayload {
   jobProvider: IJobProvider;
