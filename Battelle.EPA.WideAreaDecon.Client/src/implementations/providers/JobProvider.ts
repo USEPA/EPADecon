@@ -33,6 +33,6 @@ export default class JobProvider implements IJobProvider {
     const serializedJob = serialize(job);
     return Axios.post<JobRequest>('/api/JobRequest', serializedJob)
       .then((response) => `${response.data}`)
-      .catch((error) => '');
+      .catch(() => '');
   }
 }

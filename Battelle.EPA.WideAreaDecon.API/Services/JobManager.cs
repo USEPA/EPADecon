@@ -142,7 +142,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                             icCalculatorFactory);
 
                         //TODO:: Run model
-                        calculatorCreator.GetCalculators();
+                        //calculatorCreator.GetCalculators();
                     }
                 }
                 //TODO:: Store results of model in job
