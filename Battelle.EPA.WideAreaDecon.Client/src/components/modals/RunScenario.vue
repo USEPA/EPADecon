@@ -47,11 +47,14 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
-import { Action, Getter } from 'vuex-class';
+import { Action, Getter, State } from 'vuex-class';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobProvider from '@/interfaces/providers/IJobProvider';
 import ICreateJobRequestPayload from '@/interfaces/store/jobs/ICreateJobRequestPayload';
+import JobRequest from '@/implementations/jobs/JobRequest';
+import JobManager from '@/implementations/providers/JobManager';
+import JobStatus from '@/enums/jobs/jobStatus';
 
 @Component
 export default class RunScenario extends Vue {
@@ -61,9 +64,17 @@ export default class RunScenario extends Vue {
 
   @Action postCurrentJobRequest!: (jobProvider: IJobProvider) => Promise<void>;
 
+  @Action updateJobStatus!: (status: JobStatus) => void;
+
+  @Action updateJobProgress!: (progress: number) => void;
+
   @Getter canRun!: boolean;
 
+  @State currentJob!: JobRequest;
+
   jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
+
+  jobManager?: JobManager;
 
   numberRealizations = 1;
 
@@ -93,6 +104,8 @@ export default class RunScenario extends Vue {
       };
       this.createJobRequest(payload);
       this.postCurrentJobRequest(this.jobProvider);
+      this.jobManager = new JobManager(this.currentJob.id, this.updateJobStatus, this.updateJobProgress);
+      this.jobManager.StartWatchJobProgress();
     }
   }
 

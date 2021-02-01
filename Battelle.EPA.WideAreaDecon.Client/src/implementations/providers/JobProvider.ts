@@ -16,15 +16,7 @@ export default class JobProvider implements IJobProvider {
     seed1: number,
     seed2: number,
   ): JobRequest {
-    const job = new JobRequest(
-      '1', // defualt id value?
-      JobStatus.new,
-      scenarioDefinition,
-      scenarioParameters,
-      numberRealizations,
-      seed1,
-      seed2,
-    );
+    const job = new JobRequest(JobStatus.new, scenarioDefinition, scenarioParameters, numberRealizations, seed1, seed2);
     return job;
   }
 

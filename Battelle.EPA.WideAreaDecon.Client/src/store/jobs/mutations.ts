@@ -15,6 +15,10 @@ const currentJobMutations: MutationTree<IRootState> = {
   updateJobStatus(state: IRootState, status: JobStatus) {
     state.currentJob.status = status;
   },
+
+  updateJobProgress(state: IRootState, progress: number) {
+    state.currentJob.progress = progress;
+  },
 };
 
 export default currentJobMutations;

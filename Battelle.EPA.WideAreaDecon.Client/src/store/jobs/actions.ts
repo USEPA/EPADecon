@@ -2,6 +2,7 @@ import { ActionTree } from 'vuex';
 import IRootState from '@/interfaces/store/IRootState';
 import ICreateJobRequestPayload from '@/interfaces/store/jobs/ICreateJobRequestPayload';
 import IJobProvider from '@/interfaces/providers/IJobProvider';
+import JobStatus from '@/enums/jobs/jobStatus';
 
 const jobRequestActions: ActionTree<IRootState, IRootState> = {
   createJobRequest: (
@@ -23,6 +24,14 @@ const jobRequestActions: ActionTree<IRootState, IRootState> = {
     if (id.length) {
       commit('updateJobId', id);
     }
+  },
+
+  UpdateJobStatus: ({ commit }, newStatus: JobStatus) => {
+    commit('updateJobStatus', newStatus);
+  },
+
+  UpdateJobProgress: ({ commit }, newProgress: number) => {
+    commit('updateJobProgress', newProgress);
   },
 };
 

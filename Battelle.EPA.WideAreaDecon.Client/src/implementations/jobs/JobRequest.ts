@@ -10,6 +10,8 @@ export default class JobRequest implements IJobRequest {
 
   status: JobStatus;
 
+  progress: number;
+
   @JsonProperty()
   defineScenario: ParameterWrapperList;
 
@@ -28,7 +30,6 @@ export default class JobRequest implements IJobRequest {
   results?: any;
 
   constructor(
-    id: string,
     status: JobStatus = JobStatus.new,
     defineScenario: ParameterWrapperList,
     modifyParameter: ParameterWrapperList,
@@ -36,8 +37,9 @@ export default class JobRequest implements IJobRequest {
     seed1: number, // default seed values?
     seed2: number,
   ) {
-    this.id = id;
+    this.id = '';
     this.status = status;
+    this.progress = 0;
     this.defineScenario = defineScenario;
     this.modifyParameter = modifyParameter;
     this.numberRealizations = numberRealizations;
