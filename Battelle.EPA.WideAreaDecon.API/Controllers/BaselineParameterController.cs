@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
-using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -1,0 +1,45 @@
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Attributes;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Helpers;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using NPOI.SS.UserModel;
+using System;
+using Battelle.RiskAssessment.Common.Statistics;
+
+namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
+{
+    public class LogNormalDistribution : IParameter
+    {
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ParameterType Type => ParameterType.LogNormal;
+
+        public ParameterMetaData MetaData { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [ExcelProperty(ParameterLocationHelper.Parameter1)]
+        public double? Mean { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [ExcelProperty(ParameterLocationHelper.Parameter2)]
+        public double? StdDev { get; set; }
+
+        public static LogNormalDistribution FromExcel(ParameterMetaData metaData, IRow information)
+        {
+            return new LogNormalDistribution()
+            {
+                MetaData = metaData,
+                Mean = typeof(LogNormalDistribution).GetCellValue(nameof(Mean), information)?.ConvertToOptionalDouble(),
+                StdDev = typeof(LogNormalDistribution).GetCellValue(nameof(StdDev), information)
+                    ?.ConvertToOptionalDouble(),
+            };
+        }
+
+        public IDistribution CreateDistribution()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

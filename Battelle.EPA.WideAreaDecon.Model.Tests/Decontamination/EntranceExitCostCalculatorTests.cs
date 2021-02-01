@@ -2,7 +2,7 @@
 using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
 using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
@@ -29,6 +29,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 { PersonnelLevel.PL3, 5.0 },
                 { PersonnelLevel.PL4, 2.0 }
             };
+
             var costPerPpe = new Dictionary<PpeLevel, double>()
             {
                 { PpeLevel.A, 3322.0 },
@@ -36,16 +37,19 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 { PpeLevel.C, 1897.68 },
                 { PpeLevel.D, 260.09 }
             };
+
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            //throw new NotImplementedException();
-            //Calculator = new EntranceExitCostCalculator(
-            //    personnelReqPerTeam,
-            //    respiratorsPerPerson,
-            //    costPerRespirator,
-            //    costPerPpe,
-            //    new MockEntExitLaborCostCalculator()
-            //);
+            var numberEntriesPerTeamPerDay = 4.0;
+            Calculator = new EntranceExitCostCalculator(
+                personnelReqPerTeam,
+                numberEntriesPerTeamPerDay,
+                respiratorsPerPerson,
+                costPerRespirator,
+                costPerPpe,
+                new MockEntExitLaborCostCalculator(),
+                new MockWorkDaysCalculator()
+            );
         }
 
         [Test]
@@ -60,8 +64,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             };
             var numTeams = 2.0;
             
-            //Assert.AreEqual(81546.64, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam), 1e-6,
-            //    "Incorrect cost calculated");
+            Assert.AreEqual(987098.96, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam), 
+                1e-6, "Incorrect cost calculated");
         }
     }
 }

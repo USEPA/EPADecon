@@ -2,15 +2,15 @@
 using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
 using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
     internal class MockWorkDaysCalculator : IWorkDaysCalculator
     {
-        public double CalculateWorkDays(Dictionary<SurfaceType,double> _initialSporeLoading)
+        public double CalculateWorkDays()
         {
-            return 38700.0;
+            return 3.0;
         }
     }
 
@@ -52,7 +52,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             var numTeams = 2.0;
             var roundtripDays = 2.0;
              
-            //Assert.AreEqual(120400.0, Calculator.CalculateLaborCost(numTeams, roundtripDays), 1e-6, "Incorrect cost calculated");
+            Assert.AreEqual(120400.0, Calculator.CalculateLaborCost(numTeams, roundtripDays), 1e-6, "Incorrect cost calculated");
 
         }
     }

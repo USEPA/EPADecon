@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
@@ -23,18 +23,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _workDaysCalculator = workDaysCalculator;
         }
 
-        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, Dictionary<SurfaceType, double> _initialSporeLoading)
+        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays)
         {
             var personnelHoursCost = _personnelReqPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
             
-            var totalWorkDays = _workDaysCalculator.CalculateWorkDays(_initialSporeLoading);
+            var totalWorkDays = _workDaysCalculator.CalculateWorkDays();
 
             return (totalWorkDays + _personnelOverhead + personnelRoundTripDays) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
         }
 
-        public double CalculateLaborDays(double personnelRoundTripDays, Dictionary<SurfaceType, double> _initialSporeLoading)
+        public double CalculateLaborDays(double personnelRoundTripDays)
         {
-            var totalWorkDays = _workDaysCalculator.CalculateWorkDays(_initialSporeLoading);
+            var totalWorkDays = _workDaysCalculator.CalculateWorkDays();
 
             return totalWorkDays + _personnelOverhead + personnelRoundTripDays;
         }

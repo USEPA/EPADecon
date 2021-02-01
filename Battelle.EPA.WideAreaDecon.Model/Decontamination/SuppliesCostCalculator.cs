@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using System;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
@@ -23,15 +25,24 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _deconAgentVolumeBySurface = deconAgentVolumeBySurface;
         }
 
-        public double NonFoggingSuppliesCostCalculator (Dictionary<SurfaceType, double> percentOfRoomBySurface)
+        public double NonFoggingSuppliesCostCalculator(Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            var agentNeededPerTreatment = _deconAgentVolumeBySurface.Values.Zip(percentOfRoomBySurface.Values, (x, y) => x * y).Sum();
-            return _deconMaterialsCost + ((agentNeededPerTreatment) * _deconAgentCostPerVolume);
+            var surfaceContamination = new Dictionary<SurfaceType, double>();
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                surfaceContamination[surface] = areaContaminated[surface].AreaContaminated;
+            }
+
+            var totalContaminationArea = areaContaminated.Skip(1).Sum(x => x.Value.AreaContaminated);
+            var agentNeededPerTreatment = _deconAgentVolumeBySurface.Values.Zip(surfaceContamination.Values, (x, y) => x * y).Sum();
+            return (_deconMaterialsCost * totalContaminationArea) + ((agentNeededPerTreatment) * _deconAgentCostPerVolume);
         }
 
-        public double FoggingSuppliesCostCalculator (double roomVolume)
+        public double FoggingSuppliesCostCalculator(Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return _deconMaterialsCost + (roomVolume * _deconAgentVolume * _deconAgentCostPerVolume);
+            var totalContaminationArea = areaContaminated.Skip(1).Sum(x => x.Value.AreaContaminated);
+            var roomHeight = 9.0; //THIS NEEDS TO BE REMOVED IN THE FUTURE
+            return _deconMaterialsCost + (totalContaminationArea * roomHeight * _deconAgentVolume * _deconAgentCostPerVolume);
         }
     }
 }

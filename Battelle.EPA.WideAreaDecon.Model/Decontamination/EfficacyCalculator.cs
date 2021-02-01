@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
-{internal class EfficacyCalculator : IEfficacyCalculator
+{
+    public class EfficacyCalculator : IEfficacyCalculator
     {
         /*private readonly Dictionary<SurfaceType, ApplicationMethod> _appMethodBySurfaceType;
         private readonly double _desiredSporeThreshold;
@@ -28,19 +29,26 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _efficacyValues = efficacyValues;
         }
 
-        public Dictionary<SurfaceType,double> CalculateEfficacy(Dictionary<SurfaceType, double> _initialSporeLoading)
+        public Dictionary<SurfaceType, double> CalculateEfficacy(Dictionary<SurfaceType, double> _initialSporeLoading)
         {
+            Dictionary<SurfaceType, double> _newSporeLoading = new Dictionary<SurfaceType, double>();
 
-            throw new NotImplementedException();
             //Dictionary<SurfaceType,double> _newSporeLoading;
-            //for (int i = 0; i < _initialSporeLoading.Count(); i++)
-            //{
-            //    void _newSporeLoading.Add(SurfaceType, (_initialSporeLoading.ElementAt(i).Value - _efficacyValues.ElementAt(i).Value));
-            //}
-            ////_newSporeLoading.Values = _initialSporeLoading.Values.Zip(_efficacyValues.Values, (x, y) => x - y);
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                if ((_initialSporeLoading[surface] - _efficacyValues[surface]) > 0)
+                {
+                    _newSporeLoading[surface] = (_initialSporeLoading[surface] - _efficacyValues[surface]);
+                }
+                else
+                {
+                    _newSporeLoading[surface] = 0.0;
+                }
+            }
+            //_newSporeLoading.Values = _initialSporeLoading.Values.Zip(_efficacyValues.Values, (x, y) => x - y);
 
-            //return _newSporeLoading;
-
+            return _newSporeLoading;
+        }
             /*
             double totalDeconDays = 0;
 
@@ -105,6 +113,5 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             
             return totalDeconDays;
             */
-        }
     }
 }

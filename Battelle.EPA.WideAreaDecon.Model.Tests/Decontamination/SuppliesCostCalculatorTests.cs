@@ -1,7 +1,10 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using System.Linq;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
@@ -12,10 +15,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [SetUp]
         public void Setup()
         {
-            var deconAgentVolumeBySurface = new Dictionary<SurfaceType, double>()
-            {
-                { SurfaceType.Hvac, 1.0 }
-            };
+            
             var deconAgentCostPerVolume = 0.52306056;
             var deconMaterialsCost = 1.53612754751869;
             var deconAgentVolume = 0.3342015463;
@@ -23,24 +23,25 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 deconAgentCostPerVolume,
                 deconMaterialsCost,
                 deconAgentVolume,
-                deconAgentVolumeBySurface
+                Enum.GetValues(typeof(SurfaceType)).Cast<SurfaceType>().ToDictionary(s => s, s => 1.0)
             );
         }
 
         [Test]
         public void CalculateCost()
         {
-            var percentOfRoomBySurface = new Dictionary<SurfaceType, double>()
-            {
-                { SurfaceType.Hvac, 1.0 }
-            };
-            double roomVolume = 25000;
+            var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
 
-            Assert.AreEqual(2.059188108,
-                Calculator.NonFoggingSuppliesCostCalculator(percentOfRoomBySurface), 1e-6,
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                areaContaminated[surface] = new ContaminationInformation(250, 1) ;
+            }
+
+            Assert.AreEqual(8882.314596954433d,
+                Calculator.NonFoggingSuppliesCostCalculator(areaContaminated), 1e-6,
                 "Incorrect cost calculated(non fog)");
-            Assert.AreEqual(4371.727327,
-                Calculator.FoggingSuppliesCostCalculator(roomVolume), 1e-6,
+            Assert.AreEqual(6687.9286620383236,
+                Calculator.FoggingSuppliesCostCalculator(areaContaminated), 1e-6,
                 "Incorrect cost calculated(fogging)");
         }
     }

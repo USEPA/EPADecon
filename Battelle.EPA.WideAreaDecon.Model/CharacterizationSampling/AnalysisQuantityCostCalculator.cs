@@ -1,4 +1,10 @@
-﻿namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
+﻿using System.Collections.Generic;
+using System;
+using System.Linq;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
+
+namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
     public class AnalysisQuantityCostCalculator : IAnalysisQuantityCostCalculator
     {
@@ -16,10 +22,18 @@
             _costPerHepaAnalysis = costPerHepaAnalysis;
         }
 
-        public double CalculateAnalysisQuantityCost(double _surfaceAreaToBeHep, double _surfaceAreaToBeWiped)
+        public double CalculateAnalysisQuantityCost(double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
-            return _surfaceAreaToBeWiped / _surfaceAreaPerWipe * _costPerWipeAnalysis +
-                _surfaceAreaToBeHep / _surfaceAreaPerHepaSock * _costPerHepaAnalysis;
+            var contaminationArea = new Dictionary<SurfaceType, double>();
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                contaminationArea[surface] = _areaContaminated[surface].AreaContaminated;
+            }
+            var surfaceAreaToBeWiped = _fractionSampledWipe * contaminationArea.Values.Sum();
+            var surfaceAreaToBeHepa = _fractionSampledHepa * contaminationArea.Values.Sum();
+
+            return surfaceAreaToBeWiped / _surfaceAreaPerWipe * _costPerWipeAnalysis +
+                surfaceAreaToBeHepa / _surfaceAreaPerHepaSock * _costPerHepaAnalysis;
         }
     }
 }

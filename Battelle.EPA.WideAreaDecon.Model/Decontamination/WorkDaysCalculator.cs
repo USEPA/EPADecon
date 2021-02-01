@@ -3,60 +3,61 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
-    internal class WorkDaysCalculator : IWorkDaysCalculator 
+    public class WorkDaysCalculator : IWorkDaysCalculator 
     {
         private readonly Dictionary<SurfaceType, ApplicationMethod> _appMethodBySurfaceType;
         private readonly double _desiredSporeThreshold;
-        private readonly Dictionary<SurfaceType, string> _surfaceTypes;
         private readonly Dictionary<ApplicationMethod, double> _treatmentDaysPerAm;
-        private readonly EfficacyCalculator _efficacyCalculator;
+        private readonly IEfficacyCalculator _efficacyCalculator;
+        private readonly Dictionary<SurfaceType, double> _initialSporeLoading;
 
         public WorkDaysCalculator(
-            Dictionary<SurfaceType, string> surfaceTypes,
             Dictionary<SurfaceType, ApplicationMethod> applicationMethods,
+            Dictionary<SurfaceType, double> initialSporeLoading,
             double desiredSporeThreshold,
             Dictionary<ApplicationMethod, double> treatmentDaysPerAm,
-            EfficacyCalculator efficacyCalculator)
+            IEfficacyCalculator efficacyCalculator)
         {
-            _surfaceTypes = surfaceTypes;
             _appMethodBySurfaceType = applicationMethods;
             _desiredSporeThreshold = desiredSporeThreshold;
             _treatmentDaysPerAm = treatmentDaysPerAm;
             _efficacyCalculator = efficacyCalculator;
+            _initialSporeLoading = initialSporeLoading;
         }
 
-        public double CalculateWorkDays(Dictionary<SurfaceType, double> _initialSporeLoading)
+        public double CalculateWorkDays()
         {
-            double[] _numberOfTreatmentDaysBySurfaceType = new double [_surfaceTypes.Count];
+            Dictionary<SurfaceType, double> _numberOfTreatmentDaysBySurfaceType = new Dictionary<SurfaceType, double>();
 
-            Dictionary<SurfaceType, double> _newSporeLoading;
+            Dictionary<SurfaceType, double> _newSporeLoading = new Dictionary<SurfaceType, double>();
 
             //mark surfaces that are already below threshold, -99 marks types with an undefined treatment number
-            for (int i = 0; i < _surfaceTypes.Count(); i++)
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
-                if (_initialSporeLoading.ElementAt(i).Value < _desiredSporeThreshold)
+                if (_initialSporeLoading[surface] <= _desiredSporeThreshold)
                 {
-                    _numberOfTreatmentDaysBySurfaceType[i] = -1.0;
+                    _numberOfTreatmentDaysBySurfaceType[surface] = -1.0;
                 }
                 else
                 {
-                    _numberOfTreatmentDaysBySurfaceType[i] = -99.0;
+                    _numberOfTreatmentDaysBySurfaceType[surface] = -99.0;
                 }
+                _newSporeLoading[surface] = _initialSporeLoading[surface];
             }
 
-            _newSporeLoading = _efficacyCalculator.CalculateEfficacy(_initialSporeLoading);
+            _newSporeLoading = _efficacyCalculator.CalculateEfficacy(_newSporeLoading);
 
             double treatmentCount = 0.0;
 
             //while spore loading is below threshold, treatments are counted by surface type
-            while (_newSporeLoading.Values.Max() < _desiredSporeThreshold)
+            do
             {
                 treatmentCount += 1;
-                for (int i = 0; i < _surfaceTypes.Count(); i++)
+                foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
                 {
                     double currentTreatmentDays = 0;
 
@@ -65,16 +66,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
                         currentTreatmentDays = _treatmentDaysPerAm[entry.Value];
                     }
 
-                    if ((_initialSporeLoading.ElementAt(i).Value < _desiredSporeThreshold) && (_numberOfTreatmentDaysBySurfaceType[i] != -99))
+                    if ((_newSporeLoading[surface] < _desiredSporeThreshold) && (_numberOfTreatmentDaysBySurfaceType[surface] == -99))
                     {
-                        _numberOfTreatmentDaysBySurfaceType[i] = treatmentCount * currentTreatmentDays;
+                        _numberOfTreatmentDaysBySurfaceType[surface] = treatmentCount * currentTreatmentDays;
                     }
                 }
 
-                _newSporeLoading = _efficacyCalculator.CalculateEfficacy(_initialSporeLoading);
-            }
+                _newSporeLoading = _efficacyCalculator.CalculateEfficacy(_newSporeLoading);
+            } while (_newSporeLoading.Values.Max() > _desiredSporeThreshold) ;
 
-            return _numberOfTreatmentDaysBySurfaceType.Max();
+            return _numberOfTreatmentDaysBySurfaceType.Values.Max();
 
 
 

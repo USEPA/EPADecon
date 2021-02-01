@@ -24,7 +24,9 @@
     <v-tooltip bottom :color="canRun ? 'info' : 'error'">
       <template v-slot:activator="{ on }">
         <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'" :color="canRun ? 'secondary' : ''">
-          <v-btn v-on="on" :disabled="!canRun" :color="canRun ? 'secondary' : ''"> Run Scenario </v-btn>
+          <v-btn v-on="on" @click="displayModal" :disabled="!canRun" :color="canRun ? 'secondary' : ''">
+            Run Scenario
+          </v-btn>
         </div>
       </template>
       <span v-if="canRun">Runs the model and generates results</span>
@@ -104,8 +106,8 @@ import { Component } from 'vue-property-decorator';
 import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
 import INavigationItem from '@/interfaces/configuration/INavigationItem';
 import container from '@/dependencyInjection/config';
-import IImageProvider from '../../interfaces/providers/IImageProvider';
-import TYPES from '../../dependencyInjection/types';
+import IImageProvider from '@/interfaces/providers/IImageProvider';
+import TYPES from '@/dependencyInjection/types';
 
 @Component
 export default class NavigationBar extends Vue {
@@ -126,6 +128,10 @@ export default class NavigationBar extends Vue {
   selectedNavigationRoute: string | null = null;
 
   selectedTabName!: never;
+
+  displayModal(): void {
+    this.$emit('visible');
+  }
 
   getClassName(name: string): string {
     return this.$vuetify.theme.dark ? this.getDarkClassName(name) : this.getLightClassName(name);

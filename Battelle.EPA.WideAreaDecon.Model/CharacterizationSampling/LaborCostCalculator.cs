@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.Model.Enumeration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
@@ -37,21 +38,21 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _phaseLagCalculator = phaseLagCalculator;
         }
         
-        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
             var personnelHoursCost = _personnelRequiredPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
-            var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
+            var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
 
             return (workDays + _personnelOverhead + personnelRoundTripDays) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
         }
         
         //return double if Elabor cost is not longer readonly
-        public double CalculateEntExitLaborCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateEntExitLaborCost(double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
             var personnelHoursCost = _personnelRequiredPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
-            var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped);
+            var workDays = _suppliesCostCalculator.CalculateWorkDays(_numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
 
             var totalEntries = workDays * _numberEntriesPerTeamPerDay * _numberTeams;
 
@@ -59,12 +60,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
                 (totalEntries * _hoursPerExitPerTeam)) * personnelHoursCost;
         }
 
-        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, 
-            double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
+        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
         {
-            var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
+            var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
 
-            var phaseLag = _phaseLagCalculator.CalculatePhaseLagTime( numberLabs,  sampleTimeTransmitted,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped);
+            var phaseLag = _phaseLagCalculator.CalculatePhaseLagTime( numberLabs,  sampleTimeTransmitted, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
 
             return workDays + _personnelOverhead + personnelRoundTripDays;
         }

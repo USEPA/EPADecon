@@ -31,11 +31,11 @@ export default class EnumeratedParameter implements IParameter {
   values: Record<string, IParameter>;
 
   @JsonProperty()
-  typeName: string;
+  typeName?: string;
 
   constructor(metaData = new ParameterMetaData(), typeName?: string, values?: Record<string, IParameter>) {
     this.metaData = metaData;
-    this.typeName = typeName ?? 'unknown';
+    this.typeName = typeName;
     this.values = values ?? {};
   }
 }
