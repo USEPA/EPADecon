@@ -43,7 +43,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
 
         private void RunNextJob()
-        {            
+        {
             if (Queued.IsEmpty)
             {
                 Task.Run(() =>
@@ -59,7 +59,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
             {
                 throw new ApplicationException($"Trying to run new job while currently running job {Running.Id}");
             }
-            if(!Queued.TryDequeue(out var newRun))
+            if (!Queued.TryDequeue(out var newRun))
             {
                 throw new ApplicationException($"Error trying to dequeue"); //TODO:: add more information to be helpful
             }

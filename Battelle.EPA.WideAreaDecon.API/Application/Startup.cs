@@ -17,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using VueCliMiddleware;
+using Battelle.EPA.WideAreaDecon.API.Hubs;
 
 namespace Battelle.EPA.WideAreaDecon.API.Application
 {
@@ -157,6 +158,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             services.AddSingleton<IParameterListProvider>(new EmptyParameterListProvider());
 
             services.AddSingleton<IJobManager, JobManager>();
+
+            services.AddSignalR();
+
+            services.AddTransient<JobStatusUpdater>();
         }
 
         private void ConfigureEndpoints(IEndpointRouteBuilder endpoints)
@@ -164,6 +169,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller}/{action=Index}/{id?}");
+
+            endpoints.MapHub<JobStatusHub>("/api/job-status-hub");
 #if DEBUG
             endpoints.MapToVueCliProxy(
                 "{*path}",
