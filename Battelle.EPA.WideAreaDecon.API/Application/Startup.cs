@@ -141,6 +141,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
                 IClientConfigurationService,
                 ClientConfigurationService>();
 
+            services.AddSignalR()
+                .AddNewtonsoftJsonProtocol();
+
             var inputFile = Configuration.GetValue<string>("InputFileConfiguration");
 
             if (!File.Exists(inputFile))
@@ -158,8 +161,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             services.AddSingleton<IParameterListProvider>(new EmptyParameterListProvider());
 
             services.AddSingleton<IJobManager, JobManager>();
-
-            services.AddSignalR();
 
             services.AddTransient<JobStatusUpdater>();
         }
