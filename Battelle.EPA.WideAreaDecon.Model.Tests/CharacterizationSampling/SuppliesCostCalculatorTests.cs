@@ -1,5 +1,9 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
@@ -32,13 +36,20 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         public void CalculateCost()
         {
             var _numberTeams = 4.0;
-            var _surfaceAreaToBeHepa = 500.0;
-            var _surfaceAreaToBeWiped = 500.0;
+            var fractionSampledWipe = 0.3;
+            var fractionSampledHepa = 0.2;
+            var info = new ContaminationInformation(100.0, 20.0);
+            var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
 
-            /*Assert.AreEqual(3610.116196, Calculator.CalculateSuppliesCost(_numberTeams, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped), 1e-6,
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                areaContaminated.Add(surface, info);
+            }
+
+            Assert.AreEqual(3610.116196, Calculator.CalculateSuppliesCost(_numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6,
                 "Incorrect supplies cost calculated");
-            Assert.AreEqual(0.840930863, Calculator.CalculateWorkDays(_numberTeams, _surfaceAreaToBeHepa, _surfaceAreaToBeWiped), 1e-6, "Incorrect work days cost calculated");
-        */
+            Assert.AreEqual(0.840930863, Calculator.CalculateWorkDays(_numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6, "Incorrect work days cost calculated");
+        
         }
     }
 }

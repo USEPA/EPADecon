@@ -1,6 +1,8 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
@@ -39,11 +41,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         {
             var numberLabs = 3;
             var sampleTimeTransmitted = 24.0;
-            var surfaceAreaToBeWiped = 500.0;
-            var surfaceAreaToBeHepa = 500.0;
+            var fractionSampledWipe = 0.3;
+            var fractionSampledHepa = 0.2;
+            var info = new ContaminationInformation(100.0, 20.0);
+            var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
 
-            /*Assert.AreEqual(10.6739875612766, Calculator.CalculatePhaseLagTime( numberLabs, sampleTimeTransmitted, surfaceAreaToBeWiped, surfaceAreaToBeHepa), 
-                1e-6, "Incorrect phase lag cost calculated");*/
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                areaContaminated.Add(surface, info);
+            }
+
+            Assert.AreEqual(10.6739875612766, Calculator.CalculatePhaseLagTime(numberLabs, sampleTimeTransmitted, fractionSampledWipe, fractionSampledHepa, areaContaminated), 
+                1e-6, "Incorrect phase lag cost calculated");
         }
     }
 }
