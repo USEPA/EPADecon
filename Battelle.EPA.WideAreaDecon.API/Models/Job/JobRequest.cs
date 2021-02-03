@@ -10,6 +10,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Job
         [JsonProperty]
         public Guid Id { get; set; }
 
+        public double Progress { get; set; }
+
         public JobStatus Status { get; set; } = JobStatus.New;
 
         [JsonProperty(Required = Required.Always)]

@@ -10,7 +10,12 @@ export default class UniformXDependent implements IParameter {
 
   @JsonProperty()
   get isSet(): boolean {
-    return !(!!this.xValues && !!this.yMinimumValues && !!this.yMaximumValues && !!this.dependentVariable);
+    const minsLessThanMaxes =
+      this.yMinimumValues !== undefined && this.yMaximumValues !== undefined
+        ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          this.yMaximumValues.every((max, i) => max >= this.yMinimumValues![i])
+        : false;
+    return !!this.xValues && !!this.dependentVariable && minsLessThanMaxes;
   }
 
   @JsonProperty()

@@ -6,9 +6,11 @@ import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperLi
 @Serializable()
 export default class JobRequest implements IJobRequest {
   // @JsonProperty()
-  id: number;
+  id: string;
 
   status: JobStatus;
+
+  progress: number;
 
   @JsonProperty()
   defineScenario: ParameterWrapperList;
@@ -16,19 +18,32 @@ export default class JobRequest implements IJobRequest {
   @JsonProperty()
   modifyParameter: ParameterWrapperList;
 
+  @JsonProperty()
+  numberRealizations: number;
+
+  @JsonProperty()
+  seed1: number;
+
+  @JsonProperty()
+  seed2: number;
+
   results?: any;
 
   constructor(
-    id: number,
     status: JobStatus = JobStatus.new,
     defineScenario: ParameterWrapperList,
     modifyParameter: ParameterWrapperList,
-    results?: any,
+    numberRealizations: number,
+    seed1: number, // default seed values?
+    seed2: number,
   ) {
-    this.id = id;
+    this.id = '';
     this.status = status;
+    this.progress = 0;
     this.defineScenario = defineScenario;
     this.modifyParameter = modifyParameter;
-    this.results = results;
+    this.numberRealizations = numberRealizations;
+    this.seed1 = seed1;
+    this.seed2 = seed2;
   }
 }
