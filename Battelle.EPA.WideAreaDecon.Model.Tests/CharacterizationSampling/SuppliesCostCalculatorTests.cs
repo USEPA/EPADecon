@@ -46,9 +46,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(3610.116196, Calculator.CalculateSuppliesCost(_numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6,
+            Assert.AreEqual(3335.53545095422, Calculator.CalculateSuppliesCost(_numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6,
                 "Incorrect supplies cost calculated");
-            Assert.AreEqual(0.840930863, Calculator.CalculateWorkDays(_numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6, "Incorrect work days cost calculated");
+            Assert.AreEqual(0.807293628838681, Calculator.CalculateWorkDays(_numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6, "Incorrect work days cost calculated");
         
         }
     }
