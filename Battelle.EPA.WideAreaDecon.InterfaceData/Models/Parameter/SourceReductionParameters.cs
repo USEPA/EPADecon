@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
@@ -24,7 +24,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             var contaminationArea = new Dictionary<SurfaceType, double>();
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
-                contaminationArea[surface] = areaContaminated[surface].AreaContaminated;
+                contaminationArea.Add(surface, areaContaminated[surface].AreaContaminated);
             }
             // TODO: SEPARATE THESE PARAMETERS
             surfaceAreaToBeSourceReduced = parameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction Surface Area to be Source Reduced").CreateDistribution().Draw() * contaminationArea.Values.Sum();
