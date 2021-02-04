@@ -19,7 +19,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             return 20537.549917656;
         }
 
-        public double CalculateLaborDays(double workDays, double _numberTeams, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
+        public double CalculateLaborDays(double workDays, double personnelRoundTripDays)
         {
             return 3.30729362883868;
         }

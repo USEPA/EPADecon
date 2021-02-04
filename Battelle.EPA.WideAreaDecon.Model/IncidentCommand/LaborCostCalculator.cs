@@ -37,7 +37,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
             double surfaceAreaToBeSourceReduced, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, 
             Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
         {
-            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays(workDaysCS, _numberTeams, personnelRoundTripDays, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated, numberLabs, sampleTimeTransmitted);
+            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays(workDaysCS, personnelRoundTripDays);
             var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays(workDaysSR, personnelRoundTripDays);
             var laborDaysDc = _laborCostCalculatorDc.CalculateLaborDays(workDaysDC, personnelRoundTripDays);
 
