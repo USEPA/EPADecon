@@ -36,7 +36,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
                 saToBeSourceReduced * _massPerSa * costPerTonRemoved;
         }
 
-        public double CalculateLaborDays(double workDays, double _numberTeams, double personnelRoundTripDays, double saToBeSourceReduced)
+        public double CalculateLaborDays(double workDays, double personnelRoundTripDays)
         {
             return workDays + _personnelOverhead + personnelRoundTripDays;
         }

@@ -7,21 +7,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
     public class SuppliesCostCalculator : ISuppliesCostCalculator
     {
         private readonly double _equipmentRentalCostPerDay;
-
-        private readonly ILaborCostCalculator _laborCostCalculator;
         private readonly double _suppliesCostPerDay;
 
         public SuppliesCostCalculator(
             double equipmentRentalCostPerDay,
-            double suppliesCostPerDay,
-            ILaborCostCalculator laborCostCalculator)
+            double suppliesCostPerDay)
         {
             _equipmentRentalCostPerDay = equipmentRentalCostPerDay;
             _suppliesCostPerDay = suppliesCostPerDay;
-            _laborCostCalculator = laborCostCalculator;
         }
 
-        public double CalculateSuppliesCost(double onSiteDays, double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
+        public double CalculateSuppliesCost(double onSiteDays)
         {
             return onSiteDays * (_equipmentRentalCostPerDay + _suppliesCostPerDay);
         }

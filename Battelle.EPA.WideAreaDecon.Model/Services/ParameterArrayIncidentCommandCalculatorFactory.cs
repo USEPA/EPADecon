@@ -40,8 +40,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
 
             Calculator_supplies = new SuppliesCostCalculator(
                 costParameters.icRentalCostPerDay,
-                costParameters.icSuppliesCostPerDay,
-                Calculator_labor
+                costParameters.icSuppliesCostPerDay
             );
         }
 

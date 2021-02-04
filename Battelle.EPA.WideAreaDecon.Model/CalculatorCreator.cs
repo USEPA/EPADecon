@@ -95,14 +95,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             var icCost = icCalculator.CalculateCost(
                 icOnSiteDays,
-                dcParameters.numTeams,
-                srParameters.surfaceAreaToBeSourceReduced,
-                otParameters.roundtripDays,
-                csParameters.fractionSampledWipe,
-                csParameters.fractionSampledHepa,
-                areaContaminated,
-                csParameters.numLabs,
-                csParameters.resultTransmissionToIC);
+                otParameters.roundtripDays);
 
             //TODO: return onsite days from each phase
 
