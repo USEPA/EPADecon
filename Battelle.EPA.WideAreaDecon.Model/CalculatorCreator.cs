@@ -65,12 +65,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 dcParameters.ppeRequired,
                 areaContaminated);
 
-            var otCost = otCalculator.CalculateCost(
-                otParameters.totalAvailablePersonnel,
-                otParameters.roundtripDays,
-                costParameters.roundtripTicketCostPerPerson,
-                dcParameters.personnelOverhead);
-
             var icCost = icCalculator.CalculateCost(
                 dcParameters.numTeams,
                 srParameters.surfaceAreaToBeSourceReduced,
@@ -80,6 +74,14 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 areaContaminated,
                 csParameters.numLabs,
                 csParameters.resultTransmissionToIC);
+
+            //TODO: return onsite days from each phase
+
+            var otCost = otCalculator.CalculateCost(
+                otParameters.totalAvailablePersonnel,
+                otParameters.roundtripDays,
+                costParameters.roundtripTicketCostPerPerson,
+                dcParameters.personnelOverhead);
 
             return csCost + srCost + dcCost + otCost + icCost;
         }
