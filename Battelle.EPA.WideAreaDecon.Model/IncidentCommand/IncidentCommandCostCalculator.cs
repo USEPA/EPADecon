@@ -22,9 +22,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
         public double CalculateCost(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
             double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
         {
-            var laborCosts = Calculator_labor.CalculateLaborCost(_numberTeams, surfaceAreaToBeSourceReduced, personnelRoundTripDays,
+            var onSiteDays = Calculator_labor.CalculateOnSiteDays(_numberTeams, surfaceAreaToBeSourceReduced, personnelRoundTripDays,
                 _fractionSampledWipe, _fractionSampledHepa, _areaContaminated, numberLabs, sampleTimeTransmitted);
-            var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(_numberTeams, surfaceAreaToBeSourceReduced, 
+            var laborCosts = Calculator_labor.CalculateLaborCost(onSiteDays, _numberTeams, surfaceAreaToBeSourceReduced, personnelRoundTripDays,
+                _fractionSampledWipe, _fractionSampledHepa, _areaContaminated, numberLabs, sampleTimeTransmitted);
+            var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(onSiteDays, _numberTeams, surfaceAreaToBeSourceReduced, 
                 personnelRoundTripDays, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated, numberLabs, sampleTimeTransmitted);
             return (suppliesCosts + laborCosts);
         }
