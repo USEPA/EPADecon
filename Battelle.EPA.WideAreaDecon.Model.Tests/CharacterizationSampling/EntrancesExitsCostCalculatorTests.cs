@@ -9,12 +9,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
     internal class MockLaborCostCalculator : ILaborCostCalculator
     {
-        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             return 84993.281164225;
         }
 
-        public double CalculateEntExitLaborCost(double _numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double CalculateEntExitLaborCost(double workDays, double _numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             return 21393.2811642251;
         }
@@ -87,6 +87,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var _numberTeams = 4.0;
             var fractionSampledWipe = 0.3;
             var fractionSampledHepa = 0.2;
+            var workDays = 0.807293628838681;
             var info = new ContaminationInformation(100.0, 20.0);
             Dictionary<SurfaceType, ContaminationInformation> areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
 
@@ -95,7 +96,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(821054.770855624, Calculator.CalculateEntrancesExitsCost(_numberTeams, ppePerLevelPerTeam, fractionSampledWipe, fractionSampledHepa, areaContaminated),
+            Assert.AreEqual(821054.770855624, Calculator.CalculateEntrancesExitsCost(workDays, _numberTeams, ppePerLevelPerTeam, fractionSampledWipe, fractionSampledHepa, areaContaminated),
                 1e-6, "Incorrect labor cost calculated");
         }
     }
