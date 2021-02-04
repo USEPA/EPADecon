@@ -32,8 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
             double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, 
             Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
         {
-            var laborCosts = Calculator_labor.CalculateLaborCost(onSiteDays, _numberTeams, surfaceAreaToBeSourceReduced, personnelRoundTripDays,
-                _fractionSampledWipe, _fractionSampledHepa, _areaContaminated, numberLabs, sampleTimeTransmitted);
+            var laborCosts = Calculator_labor.CalculateLaborCost(onSiteDays, personnelRoundTripDays);
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(onSiteDays, _numberTeams, surfaceAreaToBeSourceReduced, 
                 personnelRoundTripDays, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated, numberLabs, sampleTimeTransmitted);
             return (suppliesCosts + laborCosts);
