@@ -56,10 +56,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
                 (totalEntries * _hoursPerExitPerTeam)) * personnelHoursCost;
         }
 
-        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
+        public double CalculateLaborDays(double workDays, double _numberTeams, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
         {
-            var workDays = _suppliesCostCalculator.CalculateWorkDays( _numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
-
             var phaseLag = _phaseLagCalculator.CalculatePhaseLagTime( numberLabs,  sampleTimeTransmitted, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
 
             return workDays + _personnelOverhead + personnelRoundTripDays;

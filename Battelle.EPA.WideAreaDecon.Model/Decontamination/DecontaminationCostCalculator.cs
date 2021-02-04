@@ -12,9 +12,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private SuppliesCostCalculator Calculator_supplies { get; set; }
         private EntranceExitCostCalculator Calculator_entEx { get; set; }
 
-        public double CalculateCost(double _numberTeams, double personnelRoundTripDays, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double CalculateTime()
         {
-            var workDays = Calculator_workDays.CalculateWorkDays();
+            return Calculator_workDays.CalculateWorkDays();
+        }
+
+        public double CalculateCost(double workDays, double _numberTeams, double personnelRoundTripDays, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        {
             var suppliesCosts = Calculator_supplies.FoggingSuppliesCostCalculator(areaContaminated); //TODO: Fix this method call
             var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams, personnelRoundTripDays);
             var entExCosts = Calculator_entEx.CalculateEntranceExitCost(workDays, _numberTeams, ppeEachLevelPerTeam);
