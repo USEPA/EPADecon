@@ -47,14 +47,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 respiratorsPerPerson,
                 costPerRespirator,
                 costPerPpe,
-                new MockEntExitLaborCostCalculator(),
-                new MockWorkDaysCalculator()
+                new MockEntExitLaborCostCalculator()
             );
         }
 
         [Test]
         public void CalculateCost()
         {
+            var workDays = 3.0;
             var ppePerLevelPerTeam = new Dictionary<PpeLevel, double>()
             {
                 { PpeLevel.A, 0.0 },
@@ -64,7 +64,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             };
             var numTeams = 2.0;
             
-            Assert.AreEqual(987098.96, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam), 
+            Assert.AreEqual(987098.96, Calculator.CalculateEntranceExitCost(workDays, numTeams, ppePerLevelPerTeam), 
                 1e-6, "Incorrect cost calculated");
         }
     }

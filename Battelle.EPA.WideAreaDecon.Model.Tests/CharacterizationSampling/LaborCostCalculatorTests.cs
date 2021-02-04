@@ -11,7 +11,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
     {
         public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 9.095465;
+            return 10.6178806540723;
         }
     }
 
@@ -73,11 +73,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(84993.2811, Calculator.CalculateLaborCost(workDays, _numberTeams,  roundtripDays, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-4,
+            Assert.AreEqual(84137.5499176561, Calculator.CalculateLaborCost(workDays, _numberTeams,  roundtripDays, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-4,
                 "Incorrect labor cost calculated");
-            Assert.AreEqual(21393.2811, Calculator.CalculateEntExitLaborCost(workDays, _numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-4,
+            Assert.AreEqual(20537.549917656, Calculator.CalculateEntExitLaborCost(workDays, _numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-4,
                 "Incorrect ent/exit labor cost calculated");
-            Assert.AreEqual(3.340930863, Calculator.CalculateLaborDays(_numberTeams, roundtripDays, fractionSampledWipe, fractionSampledHepa, areaContaminated, numberLabs, sampleTimeTransmitted), 1e-4,
+            Assert.AreEqual(3.30729362883868, Calculator.CalculateLaborDays(workDays, _numberTeams, roundtripDays, fractionSampledWipe, fractionSampledHepa, areaContaminated, numberLabs, sampleTimeTransmitted), 1e-4,
                 "Incorrect labor days calculated");
         }
     }

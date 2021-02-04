@@ -9,16 +9,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {
     internal class MockLaborCostCalculator : ILaborCostCalculator
     {
-        public double CalculateOnSiteDays(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
+        public double CalculateOnSiteDays(double workDaysCS, double workDaysSR, double workDaysDC, double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
             double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, 
             int numberLabs, double sampleTimeTransmitted)
         {
             return 29.0934736019902;
         }
 
-        public double CalculateLaborCost(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
-            double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, 
-            int numberLabs, double sampleTimeTransmitted)
+        public double CalculateLaborCost(double onSiteDays, double personnelRoundTripDays)
         {
             return 345759.426454131;
         }
@@ -35,33 +33,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             var suppliesCostPerDay = 1007.082;
             Calculator = new SuppliesCostCalculator(
                 equipmentRentalCostPerDay,
-                suppliesCostPerDay,
-                new MockLaborCostCalculator()
+                suppliesCostPerDay
             );
         }
 
         [Test]
         public void CalculateCost()
         {
-            var _numberTeams = 4.0;
-            var saToBeSourceReduced = 8000.0;
-            var roundtripDays = 2.0;
-            var numberLabs = 3;
-            var sampleTimeTransmitted = 24.0;
-            var fractionSampledWipe = 0.3;
-            var fractionSampledHepa = 0.2;
-            var info = new ContaminationInformation(100.0, 20.0);
-            var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
+            var onSiteDays = 29.0037294602509;
 
-            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
-            {
-                areaContaminated.Add(surface, info);
-            }
-
-            Assert.AreEqual(36148.69913742,
-                Calculator.CalculateSuppliesCost(_numberTeams, saToBeSourceReduced, roundtripDays, fractionSampledWipe, 
-                fractionSampledHepa, areaContaminated, numberLabs, sampleTimeTransmitted),
-                1e-6, "Incorrect cost calculated");
+            Assert.AreEqual(36037.1918618207, Calculator.CalculateSuppliesCost(onSiteDays), 1e-6, "Incorrect cost calculated");
         }
     }
 }

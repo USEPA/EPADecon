@@ -55,14 +55,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
             };
             var _numberTeams = 4.0;
             var saToBeSourceReduced = 8000.0;
+            var workDays = 0.0;
             Assert.AreEqual(196406.287704968,
-                Calculator.CalculateEntranceExitCost( _numberTeams,  saToBeSourceReduced,  ppeEachLevelPerTeam), 1e-6,
+                Calculator.CalculateEntranceExitCost(workDays, _numberTeams,  saToBeSourceReduced,  ppeEachLevelPerTeam), 1e-6,
                 "Incorrect cost calculated");
         }
 
         private class MockEntExitLaborCostCalculator : IEntExitLaborCostCalculator
         {
-            public double CalculateEntExitLaborCost(double _numberTeams, double saToBeSourceReduced)
+            public double CalculateEntExitLaborCost(double workDays, double _numberTeams, double saToBeSourceReduced)
             {
                 return 132585.671704968;
             }

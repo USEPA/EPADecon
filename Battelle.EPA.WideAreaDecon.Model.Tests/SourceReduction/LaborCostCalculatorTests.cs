@@ -55,10 +55,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
             var roundtripDays = 2.0;
             var saToBeSourceReduced = 8000.0;
             var costPerTonRemoved = 0.1;
+            var workDays = 4.07855517733999;
 
-            Assert.AreEqual(137654.447803312, Calculator.CalculateLaborCost( _numberTeams,  roundtripDays,  saToBeSourceReduced,
+            Assert.AreEqual(137654.447803312, Calculator.CalculateLaborCost(workDays, _numberTeams,  roundtripDays,  saToBeSourceReduced,
              costPerTonRemoved), 1e-6, "Incorrect labor cost calculated");
-            Assert.AreEqual(6.07855517733999, Calculator.CalculateLaborDays(_numberTeams,  roundtripDays,  saToBeSourceReduced),
+            Assert.AreEqual(6.07855517733999, Calculator.CalculateLaborDays(workDays,  roundtripDays),
                 1e-6, "Incorrect labor days calculated");
         }
     }
