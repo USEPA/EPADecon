@@ -27,8 +27,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             var newSporeLoading = new Dictionary<SurfaceType, double>();
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
-                initialSporeLoading[surface] = 1.1;
-                newSporeLoading[surface] = 0.9;
+                initialSporeLoading.Add(surface, 1.1);
+                newSporeLoading.Add(surface, 0.9);
             }
 
             Assert.AreEqual(newSporeLoading.Values.Sum(),
