@@ -39,11 +39,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
             RunNextJob();
         }
 
-        public async Task AddToQueue(JobRequest job)
+        public void AddToQueue(JobRequest job)
         {
             AllJobs.Add(job);
-
-            await Task.Delay(500);
 
             _statusUpdater.UpdateJobStatus(job, JobStatus.Queued);
 
@@ -85,77 +83,77 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                 //TODO:: Convert to format known by model
 
-                //var extentOfContaminationParameters = Running.DefineScenario.Filters
-                //    .First(f => f.Name == "Extent of Contamination").Parameters;
+                var extentOfContaminationParameters = Running.DefineScenario.Filters
+                    .First(f => f.Name == "Extent of Contamination").Parameters;
 
-                //var scenarioCreator = new ScenarioCreator(
-                //    extentOfContaminationParameters.First(p => p.MetaData.Name == "Area Contaminated") as EnumeratedParameter<DecontaminationPhase>,
-                //    extentOfContaminationParameters.First(p => p.MetaData.Name == "Loading") as EnumeratedParameter<DecontaminationPhase>,
-                //    extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Contamination Breakout") as EnumeratedFraction<BuildingCategory>,
-                //    extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
-                //    extentOfContaminationParameters.First(p => p.MetaData.Name == "Outdoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
-                //    extentOfContaminationParameters.First(p => p.MetaData.Name == "Underground Surface Type Breakout") as EnumeratedFraction<SurfaceType>);
+                var scenarioCreator = new ScenarioCreator(
+                    extentOfContaminationParameters.First(p => p.MetaData.Name == "Area Contaminated") as EnumeratedParameter<DecontaminationPhase>,
+                    extentOfContaminationParameters.First(p => p.MetaData.Name == "Loading") as EnumeratedParameter<DecontaminationPhase>,
+                    extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Contamination Breakout") as EnumeratedFraction<BuildingCategory>,
+                    extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
+                    extentOfContaminationParameters.First(p => p.MetaData.Name == "Outdoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
+                    extentOfContaminationParameters.First(p => p.MetaData.Name == "Underground Surface Type Breakout") as EnumeratedFraction<SurfaceType>);
 
-                //var scenarios = new List<ScenarioRealization>();
+                var scenarios = new List<ScenarioRealization>();
 
-                //for (int r = 0; r < Running.NumberRealizations; r++)
-                //{
-                //    scenarios.Add(scenarioCreator.CreateRealizationScenario());
-                //}
+                for (int r = 0; r < Running.NumberRealizations; r++)
+                {
+                    scenarios.Add(scenarioCreator.CreateRealizationScenario());
+                }
 
-                //// Construct calculators
-                //for (int s = 0; s < scenarios.Count(); s++)
-                //{
-                //    for (int i = 0; i < scenarios[s].IndoorBuildingsContaminated.Length; i++)
-                //    {
-                //        var csParameters = new CharacterizationSamplingParameters(
-                //            Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
-                //            scenarios[s].IndoorBuildingsContaminated[i]);
-                //        var srParameters = new SourceReductionParameters(
-                //            Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
-                //            scenarios[s].IndoorBuildingsContaminated[i]);
-                //        var dcParameters = new DecontaminationParameters(
-                //            Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
-                //            Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
-                //            scenarios[s].IndoorBuildingsContaminated[i]);
-                //        var icParameters = new IncidentCommandParameters(
-                //            Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters);
-                //        var otParameters = new OtherParameters(
-                //            Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters);
-                //        var cParameters = new CostParameters(
-                //            Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters);
+                // Construct calculators
+                for (int s = 0; s < scenarios.Count(); s++)
+                {
+                    for (int i = 0; i < scenarios[s].IndoorBuildingsContaminated.Length; i++)
+                    {
+                        var csParameters = new CharacterizationSamplingParameters(
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
+                            scenarios[s].IndoorBuildingsContaminated[i]);
+                        var srParameters = new SourceReductionParameters(
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
+                            scenarios[s].IndoorBuildingsContaminated[i]);
+                        var dcParameters = new DecontaminationParameters(
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
+                            scenarios[s].IndoorBuildingsContaminated[i]);
+                        var icParameters = new IncidentCommandParameters(
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters);
+                        var otParameters = new OtherParameters(
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters);
+                        var cParameters = new CostParameters(
+                            Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters);
 
-                //        ParameterArrayCharacterizationSamplingCalculatorFactory csCalculatorFactory =
-                //        new ParameterArrayCharacterizationSamplingCalculatorFactory(csParameters, cParameters);
+                        ParameterArrayCharacterizationSamplingCalculatorFactory csCalculatorFactory =
+                        new ParameterArrayCharacterizationSamplingCalculatorFactory(csParameters, cParameters);
 
-                //        ParameterArraySourceReductionCalculatorFactory srCalculatorFactory =
-                //        new ParameterArraySourceReductionCalculatorFactory(srParameters, cParameters);
+                        ParameterArraySourceReductionCalculatorFactory srCalculatorFactory =
+                        new ParameterArraySourceReductionCalculatorFactory(srParameters, cParameters);
 
-                //        ParameterArrayDecontaminationCalculatorFactory dcCalculatorFactory =
-                //        new ParameterArrayDecontaminationCalculatorFactory(dcParameters, cParameters);
+                        ParameterArrayDecontaminationCalculatorFactory dcCalculatorFactory =
+                        new ParameterArrayDecontaminationCalculatorFactory(dcParameters, cParameters);
 
-                //        ParameterArrayOtherCalculatorFactory otCalculatorFactory =
-                //        new ParameterArrayOtherCalculatorFactory(otParameters, cParameters);
+                        ParameterArrayOtherCalculatorFactory otCalculatorFactory =
+                        new ParameterArrayOtherCalculatorFactory(otParameters, cParameters);
 
-                //        ParameterArrayIncidentCommandCalculatorFactory icCalculatorFactory =
-                //        new ParameterArrayIncidentCommandCalculatorFactory(
-                //            icParameters,
-                //            cParameters,
-                //            csCalculatorFactory,
-                //            srCalculatorFactory,
-                //            dcCalculatorFactory);
+                        ParameterArrayIncidentCommandCalculatorFactory icCalculatorFactory =
+                        new ParameterArrayIncidentCommandCalculatorFactory(
+                            icParameters,
+                            cParameters,
+                            csCalculatorFactory,
+                            srCalculatorFactory,
+                            dcCalculatorFactory);
 
-                //        var calculatorCreator = new CalculatorCreator(
-                //            csCalculatorFactory,
-                //            srCalculatorFactory,
-                //            dcCalculatorFactory,
-                //            otCalculatorFactory,
-                //            icCalculatorFactory);
+                        var calculatorCreator = new CalculatorCreator(
+                            csCalculatorFactory,
+                            srCalculatorFactory,
+                            dcCalculatorFactory,
+                            otCalculatorFactory,
+                            icCalculatorFactory);
 
-                //        //TODO:: Run model
-                //        //calculatorCreator.GetCalculators();
-                //    }
-                //}
+                        //TODO:: Run model
+                        //calculatorCreator.GetCalculators();
+                    }
+                }
 
                 //TODO:: Store results of model in job
                 _statusUpdater.UpdateJobStatus(Running, JobStatus.Completed);
