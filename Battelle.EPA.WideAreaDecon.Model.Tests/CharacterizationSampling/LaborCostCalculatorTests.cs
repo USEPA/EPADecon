@@ -60,8 +60,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             
             var _numberTeams = 4;
             var roundtripDays = 2.0;
-            var numberLabs = 3;
-            var sampleTimeTransmitted = 24.0;
             var fractionSampledWipe = 0.3;
             var fractionSampledHepa = 0.2;
             var workDays = 0.807293628838681;
