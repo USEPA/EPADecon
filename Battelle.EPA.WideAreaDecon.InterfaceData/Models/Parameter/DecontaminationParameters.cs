@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
@@ -33,15 +33,15 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
                 // THESE WILL BOTH NEED TO BE FIXED
-                efficacyValues[surface] = effParameters.First(p => p.MetaData.Name == "Aerosol Efficacy").CreateDistribution().Draw();
-                applicationMethods[surface] = ApplicationMethod.Fogging;
+                efficacyValues.Add(surface, effParameters.First(p => p.MetaData.Name == "Aerosol Efficacy").CreateDistribution().Draw());
+                applicationMethods.Add(surface, ApplicationMethod.Fogging);
 
-                initialSporeLoading[surface] = scenarioDefinitionDetails[surface].Loading;
+                initialSporeLoading.Add(surface, scenarioDefinitionDetails[surface].Loading);
             }
             desiredSporeThreshold = dcParameters.First(p => p.Name == "Eff").Parameters.First(n => n.MetaData.Name == "Post-decon Spore Threshold").CreateDistribution().Draw();
             foreach (ApplicationMethod method in Enum.GetValues(typeof(ApplicationMethod)))
             {
-                treatmentDaysPerAm[method] = dcParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon + Drying Days").CreateDistribution().Draw();
+                treatmentDaysPerAm.Add(method, dcParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon + Drying Days").CreateDistribution().Draw());
             }
             personnelReqPerTeam[PersonnelLevel.OSC] = dcParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)").CreateDistribution().Draw();
             personnelReqPerTeam[PersonnelLevel.PL1] = dcParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-1)").CreateDistribution().Draw();

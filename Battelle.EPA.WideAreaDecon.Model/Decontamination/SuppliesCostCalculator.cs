@@ -30,7 +30,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             var surfaceContamination = new Dictionary<SurfaceType, double>();
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
-                surfaceContamination[surface] = areaContaminated[surface].AreaContaminated;
+                surfaceContamination.Add(surface, areaContaminated[surface].AreaContaminated);
             }
 
             var totalContaminationArea = areaContaminated.Skip(1).Sum(x => x.Value.AreaContaminated);

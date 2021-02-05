@@ -33,28 +33,24 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
             _laborCostCalculatorDc = laborCostCalculatorDc;
         }
         
-        public double CalculateOnSiteDays(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
-            double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
+        public double CalculateOnSiteDays(double workDaysCS, double workDaysSR, double workDaysDC, double _numberTeams, 
+            double surfaceAreaToBeSourceReduced, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, 
+            Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
         {
-            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays( _numberTeams, personnelRoundTripDays, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated, numberLabs, sampleTimeTransmitted);
-            var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays( _numberTeams, personnelRoundTripDays, surfaceAreaToBeSourceReduced);
-            var laborDaysDc = _laborCostCalculatorDc.CalculateLaborDays(personnelRoundTripDays);
+            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays(workDaysCS, personnelRoundTripDays);
+            var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays(workDaysSR, personnelRoundTripDays);
+            var laborDaysDc = _laborCostCalculatorDc.CalculateLaborDays(workDaysDC, personnelRoundTripDays);
 
             var lagTime = _phaseLagCalculator.CalculatePhaseLagTime(numberLabs, sampleTimeTransmitted, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
 
             return laborDaysCs + lagTime + laborDaysSr + laborDaysDc + _personnelOverheadDays;
         }
 
-        public double CalculateLaborCost(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
-            double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
+        public double CalculateLaborCost(double onSiteDays, double personnelRoundTripDays)
         {
-            
             var totalPersonnel = _personnelReqPerTeam.Values.Sum();
 
             var personnelHoursCost = _personnelReqPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
-
-            var onSiteDays = CalculateOnSiteDays(_numberTeams, surfaceAreaToBeSourceReduced, personnelRoundTripDays,
-             _fractionSampledWipe, _fractionSampledHepa, _areaContaminated, numberLabs, sampleTimeTransmitted);
 
             var laborHours = GlobalConstants.HoursPerWorkDay * (onSiteDays + personnelRoundTripDays);
 

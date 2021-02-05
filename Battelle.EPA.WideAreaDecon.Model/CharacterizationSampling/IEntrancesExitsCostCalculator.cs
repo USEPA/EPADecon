@@ -6,6 +6,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
     public interface IEntrancesExitsCostCalculator
     {
-        public double CalculateEntrancesExitsCost(double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated);
+        public double CalculateEntrancesExitsCost(double workDays, double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated);
     }
 }

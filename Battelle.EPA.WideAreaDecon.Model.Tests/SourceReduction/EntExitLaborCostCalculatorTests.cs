@@ -44,19 +44,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         [Test]
         public void CalculateCost()
         {
+            var workDays = 4.078555177;
             var numberTeams = 4.0;
             var saToBeSourceReduced = 8000.0;
             
-            Assert.AreEqual(132585.671704968, Calculator.CalculateEntExitLaborCost(numberTeams, saToBeSourceReduced ), 1e-3,
+            Assert.AreEqual(132585.671704968, Calculator.CalculateEntExitLaborCost(workDays, numberTeams, saToBeSourceReduced ), 1e-3,
                 "Incorrect cost calculated");
-        }
-
-        private class MockWorkDaysCalculator : IWorkDaysCalculator
-        {
-            public double CalculateWorkDays(double _numberTeams, double saToBeSourceReduced)
-            {
-                return 4.078555177;
-            }
         }
     }
 }

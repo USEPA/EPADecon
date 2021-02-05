@@ -38,11 +38,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             {
                 if ((_initialSporeLoading[surface] - _efficacyValues[surface]) > 0)
                 {
-                    _newSporeLoading[surface] = (_initialSporeLoading[surface] - _efficacyValues[surface]);
+                    _newSporeLoading.Add(surface, (_initialSporeLoading[surface] - _efficacyValues[surface]));
                 }
                 else
                 {
-                    _newSporeLoading[surface] = 0.0;
+                    _newSporeLoading.Add(surface, 0.0);
                 }
             }
             //_newSporeLoading.Values = _initialSporeLoading.Values.Zip(_efficacyValues.Values, (x, y) => x - y);

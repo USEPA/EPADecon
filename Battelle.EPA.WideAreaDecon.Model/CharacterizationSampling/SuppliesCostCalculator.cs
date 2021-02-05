@@ -39,7 +39,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             var contaminationArea = new Dictionary<SurfaceType, double>();
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
-                contaminationArea[surface] = _areaContaminated[surface].AreaContaminated;
+                contaminationArea.Add(surface, _areaContaminated[surface].AreaContaminated);
             }
             var surfaceAreaToBeWiped = _fractionSampledWipe * contaminationArea.Values.Sum();
             var surfaceAreaToBeHepa = _fractionSampledHepa * contaminationArea.Values.Sum();
@@ -54,7 +54,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             var contaminationArea = new Dictionary<SurfaceType, double>();
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
-                contaminationArea[surface] = _areaContaminated[surface].AreaContaminated;
+                contaminationArea.Add(surface, _areaContaminated[surface].AreaContaminated);
             }
             var surfaceAreaToBeWiped = _fractionSampledWipe * contaminationArea.Values.Sum();
             var surfaceAreaToBeHepa = _fractionSampledHepa * contaminationArea.Values.Sum();

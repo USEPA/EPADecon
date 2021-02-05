@@ -54,8 +54,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 dcParameters.respiratorsPerPerson,
                 costParameters.respiratorCost,
                 costParameters.ppeCost,
-                Calculator_entExLabor,
-                Calculator_workDays
+                Calculator_entExLabor
             );
         }
         public DecontaminationCostCalculator GetCalculator()

@@ -150,8 +150,14 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                             otCalculatorFactory,
                             icCalculatorFactory);
 
-                        //TODO:: Run model
-                        //calculatorCreator.GetCalculators();
+                        var totalCost = calculatorCreator.GetCalculators(
+                            csParameters,
+                            srParameters,
+                            dcParameters,
+                            otParameters,
+                            cParameters,
+                            icParameters,
+                            scenarios[s].IndoorBuildingsContaminated[i]);
                     }
                 }
 

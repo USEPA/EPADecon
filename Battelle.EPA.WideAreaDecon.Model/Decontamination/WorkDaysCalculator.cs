@@ -40,13 +40,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             {
                 if (_initialSporeLoading[surface] <= _desiredSporeThreshold)
                 {
-                    _numberOfTreatmentDaysBySurfaceType[surface] = -1.0;
+                    _numberOfTreatmentDaysBySurfaceType.Add(surface, -1.0);
                 }
                 else
                 {
-                    _numberOfTreatmentDaysBySurfaceType[surface] = -99.0;
+                    _numberOfTreatmentDaysBySurfaceType.Add(surface, -99.0);
                 }
-                _newSporeLoading[surface] = _initialSporeLoading[surface];
+                _newSporeLoading.Add(surface, _initialSporeLoading[surface]);
             }
 
             _newSporeLoading = _efficacyCalculator.CalculateEfficacy(_newSporeLoading);

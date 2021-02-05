@@ -13,7 +13,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             var dbl = new Dictionary<SurfaceType, double>();
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
-                dbl[surface] = 0.9;
+                dbl.Add(surface, 0.9);
             }
 
             return dbl;

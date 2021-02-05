@@ -34,7 +34,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
-                areaContaminated[surface] = new ContaminationInformation(250, 1) ;
+                areaContaminated.Add(surface, new ContaminationInformation(250, 1));
             }
 
             Assert.AreEqual(8882.314596954433d,

@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
 using NUnit.Framework;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {
-    /*internal class MockLaborCostCalculator : ILaborCostCalculator
+    internal class MockLaborCostCalculator : ILaborCostCalculator
     {
-        public double CalculateOnSiteDays(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
-            double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
+        public double CalculateOnSiteDays(double workDaysCS, double workDaysSR, double workDaysDC, double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
+            double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, 
+            int numberLabs, double sampleTimeTransmitted)
         {
             return 29.0934736019902;
         }
 
-        public double CalculateLaborCost(double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
-            double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
+        public double CalculateLaborCost(double onSiteDays, double personnelRoundTripDays)
         {
             return 345759.426454131;
         }
-    }*/
+    }
 
     public class SuppliesCostCalculatorTests
     {
@@ -30,28 +31,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         {
             var equipmentRentalCostPerDay = 235.42;
             var suppliesCostPerDay = 1007.082;
-            /*Calculator = new SuppliesCostCalculator(
+            Calculator = new SuppliesCostCalculator(
                 equipmentRentalCostPerDay,
-                suppliesCostPerDay,
-                new MockLaborCostCalculator()
-            );*/
+                suppliesCostPerDay
+            );
         }
 
         [Test]
         public void CalculateCost()
         {
-            var _numberTeams = 4.0;
-            var saToBeSourceReduced = 8000.0;
-            var roundtripDays = 2.0;
-            var _surfaceAreaToBeWiped = 500.0;
-            var _surfaceAreaToBeHepa = 500.0;
-            var numberLabs = 3;
-            var sampleTimeTransmitted = 24.0;
+            var onSiteDays = 29.0037294602509;
 
-            /*Assert.AreEqual(36148.69913742,
-                Calculator.CalculateSuppliesCost(_numberTeams, saToBeSourceReduced, roundtripDays, _surfaceAreaToBeHepa,
-                    _surfaceAreaToBeWiped, numberLabs, sampleTimeTransmitted),
-                1e-6, "Incorrect cost calculated");*/
+            Assert.AreEqual(36037.1918618207, Calculator.CalculateSuppliesCost(onSiteDays), 1e-6, "Incorrect cost calculated");
         }
     }
 }

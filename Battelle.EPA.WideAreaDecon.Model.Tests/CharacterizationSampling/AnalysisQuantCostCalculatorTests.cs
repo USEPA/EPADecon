@@ -1,4 +1,8 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
+﻿using System.Collections.Generic;
+using System;
+using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using NUnit.Framework;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
@@ -25,10 +29,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         [Test]
         public void CalculateCost()
         {
-            var surfaceAreaToBeWiped = 500.0;
-            var surfaceAreaToBeHepa = 500.0;
+            var fractionSampledWipe = 0.3;
+            var fractionSampledHepa = 0.2;
+            var info = new ContaminationInformation(100.0, 20.0);
+            var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
+
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                areaContaminated.Add(surface, info);
+            }
             
-            //Assert.AreEqual(71580.035, Calculator.CalculateAnalysisQuantityCost(surfaceAreaToBeWiped, surfaceAreaToBeHepa ), 1e-2, "Incorrect cost calculated");
+            Assert.AreEqual(71687.6742408749, Calculator.CalculateAnalysisQuantityCost(fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-2, "Incorrect cost calculated");
         }
     }
 }
