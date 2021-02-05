@@ -40,7 +40,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            var numberEntriesPerTeamPerDay = 4.0;
+            var numberEntriesPerTeamPerDay = 2.0;
             Calculator = new EntranceExitCostCalculator(
                 personnelReqPerTeam,
                 numberEntriesPerTeamPerDay,
@@ -64,7 +64,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             };
             var numTeams = 2.0;
             
-            Assert.AreEqual(987098.96, Calculator.CalculateEntranceExitCost(workDays, numTeams, ppePerLevelPerTeam), 
+            Assert.AreEqual(62472.08, Calculator.CalculateEntranceExitCost(workDays, numTeams, ppePerLevelPerTeam), 
                 1e-6, "Incorrect cost calculated");
         }
     }
