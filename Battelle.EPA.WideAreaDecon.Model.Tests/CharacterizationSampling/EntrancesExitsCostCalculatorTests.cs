@@ -55,10 +55,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             };
             var costPerPpe = new Dictionary<PpeLevel, double>()
             {
-                { PpeLevel.A, 3322.0 },
-                { PpeLevel.B, 3023.8 },
-                { PpeLevel.C, 1897.68 },
-                { PpeLevel.D, 260.09 }
+                { PpeLevel.A, 391.59 },
+                { PpeLevel.B, 144.83 },
+                { PpeLevel.C, 66.60 },
+                { PpeLevel.D, 64.32 }
             };
             var numberEntriesPerPerson = 4.0;
             var respiratorsPerPerson = 1.0;
