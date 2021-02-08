@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
-using Battelle.RiskAssessment.Common.Statistics;
+using Stats = Battelle.RiskAssessment.Common.Statistics;
 using System;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
@@ -38,9 +38,13 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
             };
         }
 
-        public IDistribution CreateDistribution()
+        public Stats.IDistribution CreateDistribution()
         {
-            throw new NotImplementedException();
+            if (K.HasValue && Lambda.HasValue)
+            {
+                return new Stats.WeibullDistribution(K.Value, Lambda.Value);
+            }
+            throw new ArgumentNullException();
         }
     }
 }
