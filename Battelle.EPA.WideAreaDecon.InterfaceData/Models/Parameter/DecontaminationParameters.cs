@@ -23,7 +23,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public Dictionary<PpeLevel, double> ppeRequired;
         public Dictionary<SurfaceType, ContaminationInformation> areaContaminated;
         public double fumigationAgentVolume;
-        public double agentVolume;
+        public Dictionary<SurfaceType, double> agentVolume;
 
         public DecontaminationParameters(
             ParameterFilter[] dcParameters,
@@ -35,6 +35,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             initialSporeLoading = new Dictionary<SurfaceType, double>();
             treatmentDaysPerAm = new Dictionary<ApplicationMethod, double>();
             areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
+            agentVolume = new Dictionary<SurfaceType, double>();
 
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
@@ -43,6 +44,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
                 applicationMethods.Add(surface, ApplicationMethod.Fogging);
 
                 initialSporeLoading.Add(surface, scenarioDefinitionDetails[surface].Loading);
+                agentVolume.Add(surface, dcParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume of Agent Applied").CreateDistribution().Draw());
             }
             desiredSporeThreshold = dcParameters.First(p => p.Name == "Eff").Parameters.First(n => n.MetaData.Name == "Post-decon Spore Threshold").CreateDistribution().Draw();
             foreach (ApplicationMethod method in Enum.GetValues(typeof(ApplicationMethod)))
