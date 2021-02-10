@@ -1,12 +1,6 @@
 ﻿using System;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
-//using Battelle.EPA.WideAreaDecon.API.Interfaces;
-//using Battelle.EPA.WideAreaDecon.API.Interfaces.Providers;
-//using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
 using Battelle.EPA.WideAreaDecon.API.Models.Job;
-//using Battelle.EPA.WideAreaDecon.API.Models.Parameter;
-//using Battelle.EPA.WideAreaDecon.API.Providers;
-using Battelle.EPA.WideAreaDecon.API.Services;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,16 +16,16 @@ namespace Battelle.EPA.WideAreaDecon.API.Controllers
         /// <summary>
         /// Default constructor, requires a non-null provider
         /// </summary>
-        /// <param name="configProvider"></param>
+        /// <param name="jobManager"></param>
         public JobRequestController(IJobManager jobManager)
         {
             _jobManager = jobManager;
         }
 
         /// <summary>
-        /// Retrieves the client configuration from the backend server
+        /// Adds new job to the job manager queue
         /// </summary>
-        /// <returns>The application configuration for the frontend</returns>
+        /// <returns>The new job's id</returns>
         [HttpPost]
         [ProducesResponseType(typeof(Guid), 200)]
         public Guid AddNewJob([FromBody] JobRequest job)

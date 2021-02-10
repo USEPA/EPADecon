@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.API.Interfaces;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
 using Battelle.EPA.WideAreaDecon.API.Models.Job;
+using Battelle.EPA.WideAreaDecon.API.Hubs;
+using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
@@ -14,11 +16,35 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
         private readonly JobStatus[] _completedJobStatuses = new[] { JobStatus.Completed };
 
+        private readonly IHubContext<JobStatusHub, IJobStatusHub> _hub;
+
+        public JobStatusUpdater(IHubContext<JobStatusHub, IJobStatusHub> hub)
+        {
+            _hub = hub;
+        }
+
         public void UpdateJobStatus(JobRequest job, JobStatus newJobStatus)
         {
             var oldJobStatus = job.Status;
             job.Status = newJobStatus;
+            CheckIfJobStarted(job, oldJobStatus);
             CheckIfJobCompleted(job, oldJobStatus);
+
+            _hub.Clients.Group($"{job.Id}").JobStatusChanged(job.Id, job.Status).Wait();
+        }
+
+        private void CheckIfJobStarted(JobRequest job, JobStatus oldStatus)
+        {
+            if (!_initialJobStatuses.Contains(oldStatus))
+            {
+                return;
+            }
+
+            //// TODO Track time it takes to complete a job
+            //if (_runningJobStatuses.Contains(job.Status))
+            //{
+            //    job.Started = DateTime.Now;
+            //}
         }
 
         private void CheckIfJobCompleted(JobRequest job, JobStatus oldJobStatus)
@@ -27,6 +53,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
             {
                 return;
             }
+
+            //// TODO Track time it takes to complete a job
+            //if (_completedJobStatuses.Contains(job.Status))
+            //{
+            //    job.Completed = DateTime.Now;
+            //}
         }
     }
 }

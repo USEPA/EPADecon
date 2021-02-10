@@ -1,7 +1,10 @@
 ﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Battelle.EPA.WideAreaDecon.API.Enumeration.Job
 {
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum JobStatus
     {
         [EnumMember(Value = "Unknown")]

@@ -12,7 +12,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
-using Battelle.RiskAssessment.Common.Statistics;
+using Stats = Battelle.RiskAssessment.Common.Statistics;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 {
@@ -55,9 +55,13 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
             };
         }
 
-        public IDistribution CreateDistribution()
+        public Stats.IDistribution CreateDistribution()
         {
-            throw new NotImplementedException();
+            if (Min.HasValue && Max.HasValue && Mean.HasValue && StdDev.HasValue)
+            {
+                return new Stats.TruncatedNormalDistribution(Mean.Value, StdDev.Value, Min.Value, Max.Value);
+            }
+            throw new ArgumentNullException();
         }
     }
 }

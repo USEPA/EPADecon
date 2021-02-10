@@ -12,5 +12,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces
         void AddToQueue(JobRequest job);
         JobStatus GetStatus(Guid id);
         JobRequest GetJob(Guid id);
+        bool UpdateJob(JobRequest newJob);
     }
 }

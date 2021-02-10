@@ -69,7 +69,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public IDistribution CreateDistribution()
         {
-            throw new NotImplementedException();
+
+            throw new ArgumentNullException();
         }
     }
 }

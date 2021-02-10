@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
 using Battelle.EPA.WideAreaDecon.API.Models.Job;
+using Battelle.EPA.WideAreaDecon.API.Hubs;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
@@ -13,6 +14,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
 using Battelle.EPA.WideAreaDecon.Model.Services;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
@@ -25,19 +27,24 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
         private CancellationTokenSource cancelCancellationTokenSource;
 
-        public JobManager()
+        private JobStatusUpdater _statusUpdater;
+
+        public JobManager(IHubContext<JobStatusHub, IJobStatusHub> hub)
         {
             AllJobs = new List<JobRequest>();
             Queued = new ConcurrentQueue<JobRequest>();
             Running = null;
             Finished = new ConcurrentBag<JobRequest>();
+            _statusUpdater = new JobStatusUpdater(hub);
             RunNextJob();
         }
 
         public void AddToQueue(JobRequest job)
         {
-            job.Status = JobStatus.Queued;
             AllJobs.Add(job);
+
+            _statusUpdater.UpdateJobStatus(job, JobStatus.Queued);
+
             Queued.Enqueue(job);
         }
 
@@ -72,6 +79,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
         private Task ConvertAndExecuteJob() => Task.Run(() =>
             {
+                _statusUpdater.UpdateJobStatus(Running, JobStatus.Running);
+
                 //TODO:: Convert to format known by model
 
                 var extentOfContaminationParameters = Running.DefineScenario.Filters
@@ -151,8 +160,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                             scenarios[s].IndoorBuildingsContaminated[i]);
                     }
                 }
+
                 //TODO:: Store results of model in job
-                Running.Status = JobStatus.Completed;
+                _statusUpdater.UpdateJobStatus(Running, JobStatus.Completed);
                 Finished.Add(Running);
                 Running = null;
             });
@@ -160,5 +170,16 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         public JobStatus GetStatus(Guid id) => GetJob(id)?.Status ?? JobStatus.Unknown;
 
         public JobRequest GetJob(Guid id) => AllJobs.FirstOrDefault(request => request.Id == id);
+
+        public bool UpdateJob(JobRequest newJob)
+        {
+            var old = AllJobs.FirstOrDefault(request => request.Id == newJob.Id);
+            if (old == null)
+            {
+                return false;
+            }
+            old = newJob;
+            return true;
+        }
     }
 }
