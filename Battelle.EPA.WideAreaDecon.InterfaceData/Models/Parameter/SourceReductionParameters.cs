@@ -34,6 +34,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             respiratorsPerPerson = parameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Number of Respirators per Person").CreateDistribution().Draw();
             hoursEntering = parameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Hours per Entry, per Team").CreateDistribution().Draw();
             hoursExiting = parameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Hours per Entry, per Team").CreateDistribution().Draw();
+            numTeams = parameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Number of teams required").CreateDistribution().Draw();
 
             personnelReqPerTeam = new Dictionary<PersonnelLevel, double> {
                 [PersonnelLevel.OSC] = parameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)").CreateDistribution().Draw(),
