@@ -7,10 +7,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
     public class SourceReductionCostCalculator : ISourceReductionCalculatorFactory
     {
-        private WorkDaysCalculator Calculator_workDays { get; set; }
-        private LaborCostCalculator Calculator_labor { get; set; }
-        private EntranceExitCostCalculator Calculator_entEx { get; set; }
-        private EntExitLaborCostCalculator Calculator_entExLabor { get; set; }
+        public WorkDaysCalculator Calculator_workDays { get; set; }
+        public LaborCostCalculator Calculator_labor { get; set; }
+        public EntranceExitCostCalculator Calculator_entEx { get; set; }
+        public EntExitLaborCostCalculator Calculator_entExLabor { get; set; }
 
         public double CalculateTime(double _numberTeams, double saToBeSourceReduced)
         {

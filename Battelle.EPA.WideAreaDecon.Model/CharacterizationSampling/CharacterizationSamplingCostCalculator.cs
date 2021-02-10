@@ -8,10 +8,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 {
     public class CharacterizationSamplingCostCalculator : ICharacterizationSamplingCalculatorFactory
     {
-        private LaborCostCalculator Calculator_labor { get; set; }
-        private SuppliesCostCalculator Calculator_supplies { get; set; }
-        private EntrancesExitsCostCalculator Calculator_entEx { get; set; }
-        private AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
+        public LaborCostCalculator Calculator_labor { get; set; }
+        public SuppliesCostCalculator Calculator_supplies { get; set; }
+        public EntrancesExitsCostCalculator Calculator_entEx { get; set; }
+        public AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
 
         public double CalculateTime(double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {

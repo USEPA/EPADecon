@@ -6,7 +6,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Other
 {
     public class OtherCostCalculator : IOtherCalculatorFactory
     {
-        private TransportationCostCalculator Calculator { get; set; }
+        public TransportationCostCalculator Calculator { get; set; }
 
         public double CalculateCost(Dictionary<PersonnelLevel, double> personnelAvailableByType, double personnelRoundTripDays,
             double costPerRoundTripTicket, double totalOnSiteDays)

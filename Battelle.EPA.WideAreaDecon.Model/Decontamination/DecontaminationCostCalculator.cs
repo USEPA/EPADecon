@@ -7,10 +7,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
     public class DecontaminationCostCalculator : IDecontaminationCalculatorFactory
     {
-        private WorkDaysCalculator Calculator_workDays { get; set; }
-        private LaborCostCalculator Calculator_labor { get; set; }
-        private SuppliesCostCalculator Calculator_supplies { get; set; }
-        private EntranceExitCostCalculator Calculator_entEx { get; set; }
+        public WorkDaysCalculator Calculator_workDays { get; set; }
+        public LaborCostCalculator Calculator_labor { get; set; }
+        public SuppliesCostCalculator Calculator_supplies { get; set; }
+        public EntranceExitCostCalculator Calculator_entEx { get; set; }
 
         public double CalculateTime()
         {
