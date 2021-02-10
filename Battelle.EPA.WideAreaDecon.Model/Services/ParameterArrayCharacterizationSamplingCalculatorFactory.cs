@@ -72,7 +72,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
 
         public CharacterizationSamplingCostCalculator GetCalculator()
         {
-            return new CharacterizationSamplingCostCalculator();
+            return new CharacterizationSamplingCostCalculator
+            {
+                Calculator_labor = Calculator_labor,
+                Calculator_supplies = Calculator_supplies,
+                Calculator_entEx = Calculator_entEx,
+                Calculator_analysis = Calculator_analysis
+            };
         }
     }
 }
