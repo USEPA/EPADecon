@@ -137,6 +137,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                         ParameterArrayIncidentCommandCalculatorFactory icCalculatorFactory =
                         new ParameterArrayIncidentCommandCalculatorFactory(
+                            csParameters,
+                            srParameters,
+                            dcParameters,
+                            otParameters,
                             icParameters,
                             cParameters,
                             csCalculatorFactory,
