@@ -11,6 +11,16 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double roundtripDays;
         public Dictionary<PersonnelLevel, double> totalAvailablePersonnel;
 
+        public OtherParameters(
+            double _personnelPerRentalCar,
+            double _roundtripDays,
+            Dictionary<PersonnelLevel, double> _totalAvailablePersonnel)
+        {
+            personnelPerRentalCar = _personnelPerRentalCar;
+            roundtripDays = _roundtripDays;
+            totalAvailablePersonnel = _totalAvailablePersonnel;
+        }
+
         public OtherParameters(ParameterFilter[] parameters)
         {
             personnelPerRentalCar = parameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Personnel Per Rental Car").CreateDistribution().Draw();

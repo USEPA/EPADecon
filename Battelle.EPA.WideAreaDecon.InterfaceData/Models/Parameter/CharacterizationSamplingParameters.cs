@@ -31,6 +31,56 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public Dictionary<PpeLevel, double> ppeRequired;
 
         public CharacterizationSamplingParameters(
+            double _fractionSampledWipe,
+            double _fractionSampledHepa,
+            double _surfaceAreaPerWipe,
+            double _surfaceAreaPerHepa,
+            double _wipesPerHrPerTeam,
+            double _hepaSocksPerHrPerTeam,
+            double _numTeams,
+            double _samplePackageTime,
+            double _wipeAnalysisTime,
+            double _hepaAnalysisTime,
+            int _numLabs,
+            List<double> _fractionWipeToEachLab,
+            List<double> _fractionHepaToEachLab,
+            List<double> _labUptimeHours,
+            List<double> _labDistanceFromSite,
+            double _resultTransmissionToIC,
+            Dictionary<PersonnelLevel, double> _personnelPerTeam,
+            double _personnelOverheadDays,
+            double _entriesPerTeam,
+            double _hoursEntering,
+            double _hoursExiting,
+            double _respiratorsPerPerson,
+            Dictionary<PpeLevel, double> _ppeRequired)
+        {
+            fractionSampledWipe = _fractionSampledWipe;
+            fractionSampledHepa = _fractionSampledHepa;
+            surfaceAreaPerWipe = _surfaceAreaPerWipe;
+            surfaceAreaPerHepa = _surfaceAreaPerHepa;
+            wipesPerHrPerTeam = _wipesPerHrPerTeam;
+            hepaSocksPerHrPerTeam = _hepaSocksPerHrPerTeam;
+            numTeams = _numTeams;
+            samplePackageTime = _samplePackageTime;
+            wipeAnalysisTime = _wipeAnalysisTime;
+            hepaAnalysisTime = _hepaAnalysisTime;
+            numLabs = _numLabs;
+            fractionOfWipeToEachLab = _fractionWipeToEachLab;
+            fractionOfHepaToEachLab = _fractionHepaToEachLab;
+            labUptimesHours = _labUptimeHours;
+            labDistanceFromSite = _labDistanceFromSite;
+            resultTransmissionToIC = _resultTransmissionToIC;
+            personnelReqPerTeam = _personnelPerTeam;
+            personnelOverheadDays = _personnelOverheadDays;
+            entriesPerTeam = _entriesPerTeam;
+            hoursEntering = _hoursEntering;
+            hoursExiting = _hoursExiting;
+            respiratorsPerPerson = _respiratorsPerPerson;
+            ppeRequired = _ppeRequired;
+        }
+
+        public CharacterizationSamplingParameters(
             ParameterFilter[] parameters,
             Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails)
         {

@@ -23,6 +23,42 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double roundtripTicketCostPerPerson;
         public double perDiem;
 
+        public CostParameters(
+            Dictionary<PersonnelLevel, double> _hourlyRate,
+            double _icRentalCostPerDay,
+            double _icSuppliesCostPerDay,
+            double _wipeCost,
+            double _hepaCost,
+            double _respiratorCost,
+            Dictionary<PpeLevel, double> _ppeCost,
+            double _wipeAnalysisCost,
+            double _hepaAnalysisCost,
+            double _vacuumRentalCostPerDay,
+            double _costPerMassOfMaterialRemoved,
+            double _deconAgentCostPerVolume,
+            double _deconMaterialsCost,
+            double _rentalCarCostPerDay,
+            double _roundtripTicketCostPerPerson,
+            double _perDiem)
+        {
+            hourlyRate = _hourlyRate;
+            icRentalCostPerDay = _icRentalCostPerDay;
+            icSuppliesCostPerDay = _icSuppliesCostPerDay;
+            wipeCost = _wipeCost;
+            hepaCost = _hepaCost;
+            respiratorCost = _respiratorCost;
+            ppeCost = _ppeCost;
+            wipeAnalysisCost = _wipeAnalysisCost;
+            hepaAnalysisCost = _hepaAnalysisCost;
+            vacuumRentalCostPerDay = _vacuumRentalCostPerDay;
+            costPerMassOfMaterialRemoved = _costPerMassOfMaterialRemoved;
+            deconAgentCostPerVolume = _deconAgentCostPerVolume;
+            deconMaterialsCost = _deconMaterialsCost;
+            rentalCarCostPerDay = _rentalCarCostPerDay;
+            roundtripTicketCostPerPerson = _roundtripTicketCostPerPerson;
+            perDiem = _perDiem;
+        }
+
         public CostParameters(ParameterFilter[] parameters)
         {
             hourlyRate = new Dictionary<PersonnelLevel, double> {

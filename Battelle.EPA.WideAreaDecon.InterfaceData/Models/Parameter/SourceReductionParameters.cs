@@ -19,6 +19,32 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double personnelOverheadDays;
         public Dictionary<PpeLevel, double> ppeRequired;
 
+        public SourceReductionParameters(
+            double _surfaceAreaToBeSourceReduced,
+            double _massPerSurfaceArea,
+            double _massRemovedPerHourPerTeam,
+            double _numEntriesPerDay,
+            double _respiratorsPerPerson,
+            double _hoursEntering,
+            double _hoursExiting,
+            double _numTeams,
+            Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
+            double _personnelOverheadDays,
+            Dictionary<PpeLevel, double> _ppeRequired)
+        {
+            surfaceAreaToBeSourceReduced = _surfaceAreaToBeSourceReduced;
+            massPerSurfaceArea = _massPerSurfaceArea;
+            massRemovedPerHourPerTeam = _massRemovedPerHourPerTeam;
+            numEntriesPerDay = _numEntriesPerDay;
+            respiratorsPerPerson = _respiratorsPerPerson;
+            hoursEntering = _hoursEntering;
+            hoursExiting = _hoursExiting;
+            numTeams = _numTeams;
+            personnelReqPerTeam = _personnelReqPerTeam;
+            personnelOverheadDays = _personnelOverheadDays;
+            ppeRequired = _ppeRequired;
+        }
+
         public SourceReductionParameters(ParameterFilter[] parameters, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             var contaminationArea = new Dictionary<SurfaceType, double>();

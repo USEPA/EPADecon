@@ -26,6 +26,42 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public Dictionary<SurfaceType, double> agentVolume;
 
         public DecontaminationParameters(
+            Dictionary<SurfaceType, double> _efficacyValues,
+            Dictionary<SurfaceType, ApplicationMethod> _applicationMethods,
+            Dictionary<SurfaceType, double> _initialSporeLoading,
+            double _desiredSporeThreshold,
+            Dictionary<ApplicationMethod, double> _treatmentDaysPerAm,
+            Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
+            double _personnelOverhead,
+            double _numEntriesPerTeamPerDay,
+            double _hoursPerEntryPerTeam,
+            double _hoursPerExitPerTeam,
+            double _respiratorsPerPerson,
+            double _numTeams,
+            Dictionary<PpeLevel, double> _ppeRequired,
+            Dictionary<SurfaceType, ContaminationInformation> _areaContaminated,
+            double _fumigationAgentVolume,
+            Dictionary<SurfaceType, double> _agentVolume)
+        {
+            efficacyValues = _efficacyValues;
+            applicationMethods = _applicationMethods;
+            initialSporeLoading = _initialSporeLoading;
+            treatmentDaysPerAm = _treatmentDaysPerAm;
+            agentVolume = _agentVolume;
+            desiredSporeThreshold = _desiredSporeThreshold;
+            personnelReqPerTeam = _personnelReqPerTeam;
+            personnelOverhead = _personnelOverhead;
+            numEntriesPerTeamPerDay = _numEntriesPerTeamPerDay;
+            hoursPerEntryPerTeam = _hoursPerEntryPerTeam;
+            hoursPerExitPerTeam = _hoursPerExitPerTeam;
+            respiratorsPerPerson = _respiratorsPerPerson;
+            numTeams = _numTeams;
+            ppeRequired = _ppeRequired;
+            areaContaminated = _areaContaminated;
+            fumigationAgentVolume = _fumigationAgentVolume;
+        }
+
+        public DecontaminationParameters(
             ParameterFilter[] dcParameters,
             IParameter[] effParameters,
             Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails)
@@ -76,7 +112,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             
             areaContaminated = scenarioDefinitionDetails;
             fumigationAgentVolume = dcParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume of Agent Applied for Fogging/Fumigation").CreateDistribution().Draw();
-            agentVolume = dcParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume of Agent Applied").CreateDistribution().Draw();
         }
     }
 }

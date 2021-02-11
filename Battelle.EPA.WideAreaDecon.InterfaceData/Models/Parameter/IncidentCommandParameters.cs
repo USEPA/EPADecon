@@ -9,6 +9,14 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
         public double personnelOverheadDays;
 
+        public IncidentCommandParameters(
+            Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
+            double _personnelOverheadDays)
+        {
+            personnelReqPerTeam = _personnelReqPerTeam;
+            personnelOverheadDays = _personnelOverheadDays;
+        }
+
         public IncidentCommandParameters(ParameterFilter[] parameters)
         {
             personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
