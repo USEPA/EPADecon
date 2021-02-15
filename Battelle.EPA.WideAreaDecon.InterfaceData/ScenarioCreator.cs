@@ -41,12 +41,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData
 
         private Dictionary<SurfaceType, ContaminationInformation>[] CreateIndoorBuildings()
         {
-            var back = new List<Dictionary<SurfaceType, ContaminationInformation>>();
-
             var areaContaminated = _areaContaminated.Values[DecontaminationPhase.Indoor].CreateDistribution().Draw();
 
             return _indoorContaminationBreakout.Values.ToDictionary((v) => v.Key, (v) => areaContaminated * v.Value.Value.Value).SelectMany(ConvertToBuilding).ToArray();
-            
         }
 
         private Dictionary<SurfaceType, ContaminationInformation>[] ConvertToBuilding(
@@ -60,14 +57,20 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData
             throw new NotImplementedException();
         }
 
-        private Dictionary<SurfaceType, ContaminationInformation>[] CreateUndergroundBuildings()
+        private Dictionary<SurfaceType, ContaminationInformation> CreateUndergroundBuildings()
         {
-            throw new NotImplementedException();
+            var areaContaminated = _areaContaminated.Values[DecontaminationPhase.Underground].CreateDistribution().Draw();
+            var loading = _loading.Values[DecontaminationPhase.Underground].CreateDistribution().Draw();
+
+            return _undergroundSurfaceTypeBreakout.Values.ToDictionary(v => v.Key, v => new ContaminationInformation(areaContaminated * v.Value.Value.Value, loading * v.Value.Value.Value));
         }
 
         private Dictionary<SurfaceType, ContaminationInformation> CreateOutdoorAreas()
         {
-            throw new NotImplementedException();
+            var areaContaminated = _areaContaminated.Values[DecontaminationPhase.Outdoor].CreateDistribution().Draw();
+            var loading = _loading.Values[DecontaminationPhase.Outdoor].CreateDistribution().Draw();
+
+            return _outdoorSurfaceTypeBreakout.Values.ToDictionary(v => v.Key, v => new ContaminationInformation(areaContaminated * v.Value.Value.Value, loading * v.Value.Value.Value));
         }
     }
 }
