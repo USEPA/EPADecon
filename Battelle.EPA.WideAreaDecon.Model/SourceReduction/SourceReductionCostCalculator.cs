@@ -21,8 +21,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         {
             var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams, personnelRoundTripDays, saToBeSourceReduced, costPerTonRemoved);
             var entExCosts = Calculator_entEx.CalculateEntranceExitCost(workDays, _numberTeams, saToBeSourceReduced, ppePerLevelPerTeam);
-            var analysisCosts = Calculator_entExLabor.CalculateEntExitLaborCost(workDays, _numberTeams, saToBeSourceReduced);
-            return (laborCosts + entExCosts + analysisCosts);
+            return (laborCosts + entExCosts);
         }
 
         public SourceReductionCostCalculator GetCalculator()
