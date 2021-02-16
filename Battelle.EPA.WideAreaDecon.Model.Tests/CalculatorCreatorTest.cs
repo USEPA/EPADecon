@@ -24,66 +24,66 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
         public void Setup()
         {
             // Characterization sampling parameters
-            var fractionSampledWipe = 0.2;
-            var fractionSampledHepa = 0.5;
-            var surfaceAreaPerWipe = 5.0;
-            var surfaceAreaPerHepa = 10.0;
-            var wipesPerHrPerTeam = 10.0;
-            var hepaSocksPerHrPerTeam = 4.0;
-            var numTeamsCS = 3.0;
-            var samplePackageTime = 20.0;
-            var wipeAnalysisTime = 10.0;
-            var hepaAnalysisTime = 11.0;
+            var fractionSampledWipe = 0.3;
+            var fractionSampledHepa = 0.2;
+            var surfaceAreaPerWipe = 4.64515;
+            var surfaceAreaPerHepa = 9.2903;
+            var wipesPerHrPerTeam = 6.0;
+            var hepaSocksPerHrPerTeam = 6.0;
+            var numTeamsCS = 4.0;
+            var samplePackageTime = 1.63;
+            var wipeAnalysisTime = 0.79;
+            var hepaAnalysisTime = 1.0;
             var numLabs = 3;
-            var fractionOfWipeToEachLab = new List<double> { 0.2, 0.2, 0.2 };
-            var fractionOfHepaToEachLab = new List<double> { 0.6, 0.6, 0.6 };
-            var labUptimesHours = new List<double> { 10.0, 10.0, 10.0 };
-            var labDistanceFromSite = new List<double> { 100.0, 100.0, 100.0 };
-            var resultTransmissionToIC = 15.0;
+            var fractionOfWipeToEachLab = new List<double> { 0.2, 0.6, 0.2 };
+            var fractionOfHepaToEachLab = new List<double> { 0.5, 0.3, 0.2 };
+            var labUptimesHours = new List<double> { 8.0, 9.0, 10.0 };
+            var labDistanceFromSite = new List<double> { 48.0, 20.0, 90.0 };
+            var resultTransmissionToIC = 24.0;
             var personnelReqPerTeamCS = new Dictionary<PersonnelLevel, double>
             {
-                [PersonnelLevel.OSC] = 1.0,
-                [PersonnelLevel.PL1] = 3.0,
-                [PersonnelLevel.PL2] = 0.0,
+                [PersonnelLevel.OSC] = 0.3,
+                [PersonnelLevel.PL1] = 0.0,
+                [PersonnelLevel.PL2] = 1.0,
                 [PersonnelLevel.PL3] = 2.0,
-                [PersonnelLevel.PL4] = 1.0
+                [PersonnelLevel.PL4] = 2.0
             };
-            var personnelOverheadDaysCS = 2.0;
+            var personnelOverheadDaysCS = 0.5;
             var entriesPerTeamCS = 4.0;
-            var hoursEnteringCS = 2.0;
-            var hoursExitingCS = 2.0;
+            var hoursEnteringCS = 1.0;
+            var hoursExitingCS = 1.0;
             var respiratorsPerPersonCS = 1.0;
             var ppeRequiredCS = new Dictionary<PpeLevel, double>
             {
-                [PpeLevel.A] = 4.0,
+                [PpeLevel.A] = 0.0,
                 [PpeLevel.B] = 3.0,
-                [PpeLevel.C] = 0.0,
+                [PpeLevel.C] = 3.0,
                 [PpeLevel.D] = 0.0
             };
 
             // Source reduction parameters
-            var surfaceAreaToBeSourceReduced = 100.0;
-            var massPerSurfaceArea = 100.0;
-            var massRemovedPerHourPerTeam = 50.0;
-            var numEntriesPerDaySR = 4.0;
+            var surfaceAreaToBeSourceReduced = 8000.0;
+            var massPerSurfaceArea = 7.4;
+            var massRemovedPerHourPerTeam = 453.592;
+            var numEntriesPerDaySR = 3.0;
             var respiratorsPerPersonSR = 1.0;
-            var hoursEnteringSR = 10.0;
-            var hoursExitingSR = 10.0;
-            var numTeamsSR = 2.0;
+            var hoursEnteringSR = 2.0;
+            var hoursExitingSR = 2.0;
+            var numTeamsSR = 4.0;
             var personnelReqPerTeamSR = new Dictionary<PersonnelLevel, double>
             {
-                [PersonnelLevel.OSC] = 2.0,
-                [PersonnelLevel.PL1] = 1.0,
+                [PersonnelLevel.OSC] = 0.333,
+                [PersonnelLevel.PL1] = 0.0,
                 [PersonnelLevel.PL2] = 1.0,
-                [PersonnelLevel.PL3] = 1.0,
-                [PersonnelLevel.PL4] = 1.0
+                [PersonnelLevel.PL3] = 3.0,
+                [PersonnelLevel.PL4] = 0.67
             };
-            var personnelOverheadDaysSR = 2.0;
+            var personnelOverheadDaysSR = 0.0;
             var ppeRequiredSR = new Dictionary<PpeLevel, double>
             {
-                [PpeLevel.A] = 3.0,
+                [PpeLevel.A] = 0.0,
                 [PpeLevel.B] = 3.0,
-                [PpeLevel.C] = 0.0,
+                [PpeLevel.C] = 3.0,
                 [PpeLevel.D] = 0.0
             };
 
@@ -108,84 +108,84 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             var desiredSporeThreshold = 0.0;
             foreach (ApplicationMethod method in Enum.GetValues(typeof(ApplicationMethod)))
             {
-                treatmentDaysPerAm[method] = 2.0;
+                treatmentDaysPerAm[method] = 3.0;
             }
             var personnelReqPerTeamDC = new Dictionary<PersonnelLevel, double>
             {
-                [PersonnelLevel.OSC] = 2.0,
-                [PersonnelLevel.PL1] = 2.0,
+                [PersonnelLevel.OSC] = 0.3,
+                [PersonnelLevel.PL1] = 0.0,
                 [PersonnelLevel.PL2] = 0.0,
-                [PersonnelLevel.PL3] = 0.0,
-                [PersonnelLevel.PL4] = 3.0
+                [PersonnelLevel.PL3] = 5.0,
+                [PersonnelLevel.PL4] = 2.0
             };
             var personnelOverheadDC = 2.0;
-            var numEntriesPerTeamPerDayDC = 4.0;
-            var hoursPerEntryPerTeamDC = 1.0;
-            var hoursPerExitPerTeamDC = 3.0;
+            var numEntriesPerTeamPerDayDC = 2.0;
+            var hoursPerEntryPerTeamDC = 1.5;
+            var hoursPerExitPerTeamDC = 1.5;
             var respiratorsPerPersonDC = 1.0;
-            var numTeamsDC = 3.0;
+            var numTeamsDC = 2.0;
             var ppeRequiredDC = new Dictionary<PpeLevel, double>
             {
-                [PpeLevel.A] = 4.0,
-                [PpeLevel.B] = 3.0,
-                [PpeLevel.C] = 0.0,
+                [PpeLevel.A] = 0.0,
+                [PpeLevel.B] = 4.0,
+                [PpeLevel.C] = 4.0,
                 [PpeLevel.D] = 0.0
             };
-            var fumigationAgentVolume = 20.0;
+            var fumigationAgentVolume = 0.3342015463;
 
             // Other parameters
             var personnelPerRentalCar = 3.0;
             var roundtripDays = 2.0;
             var totalAvailablePersonnel = new Dictionary<PersonnelLevel, double>
             {
-                [PersonnelLevel.OSC] = 10.0,
-                [PersonnelLevel.PL1] = 10.0,
-                [PersonnelLevel.PL2] = 3.0,
-                [PersonnelLevel.PL3] = 5.0,
-                [PersonnelLevel.PL4] = 5.0
+                [PersonnelLevel.OSC] = 4.0,
+                [PersonnelLevel.PL1] = 0.0,
+                [PersonnelLevel.PL2] = 15.0,
+                [PersonnelLevel.PL3] = 30.0,
+                [PersonnelLevel.PL4] = 20.0
             };
 
             // Cost parameters
             var hourlyRate = new Dictionary<PersonnelLevel, double>
             {
-                [PersonnelLevel.OSC] = 28.0,
-                [PersonnelLevel.PL1] = 15.0,
-                [PersonnelLevel.PL2] = 20.0,
-                [PersonnelLevel.PL3] = 22.0,
-                [PersonnelLevel.PL4] = 24.0
+                [PersonnelLevel.OSC] = 150.0,
+                [PersonnelLevel.PL1] = 90.0,
+                [PersonnelLevel.PL2] = 110.0,
+                [PersonnelLevel.PL3] = 130.0,
+                [PersonnelLevel.PL4] = 190.0
             };
-            var icRentalCostPerDay = 21.0;
-            var icSuppliesCostPerDay = 20.0;
-            var wipeCost = 3.0;
-            var hepaCost = 40.0;
-            var respiratorCost = 215.0;
+            var icRentalCostPerDay = 235.42;
+            var icSuppliesCostPerDay = 1007.082;
+            var wipeCost = 19.0;
+            var hepaCost = 29.0;
+            var respiratorCost = 238.0;
             var ppeCost = new Dictionary<PpeLevel, double>
             {
-                [PpeLevel.A] = 150.0,
-                [PpeLevel.B] = 200.0,
-                [PpeLevel.C] = 250.0,
-                [PpeLevel.D] = 300.0
+                [PpeLevel.A] = 391.59,
+                [PpeLevel.B] = 144.83,
+                [PpeLevel.C] = 66.6,
+                [PpeLevel.D] = 64.32
             };
-            var wipeAnalysisCost = 10.0;
-            var hepaAnalysisCost = 15.0;
-            var vacuumRentalCostPerDay = 50.0;
-            var costPerMassOfMaterialRemoved = 10.0;
-            var deconAgentCostPerVolume = 3.0;
-            var deconMaterialsCost = 20.0;
-            var rentalCarCostPerDay = 215.0;
-            var roundtripTicketCostPerPerson = 200.0;
-            var perDiem = 100.0;
+            var wipeAnalysisCost = 520.0;
+            var hepaAnalysisCost = 290.0;
+            var vacuumRentalCostPerDay = 15.0;
+            var costPerMassOfMaterialRemoved = 0.1;
+            var deconAgentCostPerVolume = 0.52306056;
+            var deconMaterialsCost = 1.53612754751869;
+            var rentalCarCostPerDay = 225.0;
+            var roundtripTicketCostPerPerson = 350.0;
+            var perDiem = 250.0;
 
             // Incident command parameters
             var personnelReqPerTeamIC = new Dictionary<PersonnelLevel, double>
             {
-                [PersonnelLevel.OSC] = 3.0,
-                [PersonnelLevel.PL1] = 3.0,
-                [PersonnelLevel.PL2] = 0.0,
-                [PersonnelLevel.PL3] = 0.0,
-                [PersonnelLevel.PL4] = 0.0
+                [PersonnelLevel.OSC] = 1.0,
+                [PersonnelLevel.PL1] = 0.0,
+                [PersonnelLevel.PL2] = 2.0,
+                [PersonnelLevel.PL3] = 2.0,
+                [PersonnelLevel.PL4] = 4.0
             };
-            var personnelOverheadDaysIC = 4.0;
+            var personnelOverheadDaysIC = 8.0;
 
             CS_Parameters = new CharacterizationSamplingParameters(
                 fractionSampledWipe,
@@ -296,8 +296,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                 SR_Parameters, 
                 DC_Parameters, 
                 OT_Parameters, 
-                Cost_Parameters, 
-                IC_Parameters, 
+                Cost_Parameters,
                 areaContaminated);
         }
     }
