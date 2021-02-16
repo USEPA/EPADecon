@@ -110,6 +110,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                 for (int s = 0; s < scenarios.Count(); s++)
                 {
+                    // Indoor scenarios
                     for (int i = 0; i < scenarios[s].IndoorBuildingsContaminated.Length; i++)
                     {
                         var indoorCSParameters = parameterManager.SetCharacterizationSamplingParameters();
@@ -135,10 +136,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                             indoorDCParameters,
                             indoorOTParameters,
                             indoorCParameters,
-                            indoorICParameters,
                             scenarios[s].IndoorBuildingsContaminated[i]);
                     }
 
+                    // Outdoor scenarios
                     var outdoorCSParameters = parameterManager.SetCharacterizationSamplingParameters();
                     var outdoorSRParameters = parameterManager.SetSourceReductionParameters(scenarios[s].OutdoorAreasContaminated);
                     var outdoorDCParameters = parameterManager.SetDecontaminationParameters(scenarios[s].OutdoorAreasContaminated);
@@ -162,9 +163,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         outdoorDCParameters,
                         outdoorOTParameters,
                         outdoorCParameters,
-                        outdoorICParameters,
                         scenarios[s].OutdoorAreasContaminated);
 
+                    // Underground scenarios
                     var undergroundCSParameters = parameterManager.SetCharacterizationSamplingParameters();
                     var undergroundSRParameters = parameterManager.SetSourceReductionParameters(scenarios[s].UndergroundBuildingsContaminated);
                     var undergroundDCParameters = parameterManager.SetDecontaminationParameters(scenarios[s].UndergroundBuildingsContaminated);
@@ -188,7 +189,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         undergroundDCParameters,
                         undergroundOTParameters,
                         undergroundCParameters,
-                        undergroundICParameters,
                         scenarios[s].UndergroundBuildingsContaminated);
                 }
 
