@@ -35,7 +35,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
             DecontaminationParameters dcParameters,
             OtherParameters otParameters,
             CostParameters costParameters,
-            IncidentCommandParameters icParameters,
             Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             var csCalculator = _characterizationSamplingFactory.GetCalculator();
@@ -50,6 +49,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 csParameters.fractionSampledHepa,
                 areaContaminated);
 
+            var csLaborDays = csWorkDays + csParameters.personnelOverheadDays;
+
             var csCost = csCalculator.CalculateCost(
                 csWorkDays,
                 csParameters.numTeams, 
@@ -63,6 +64,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 srParameters.numTeams,
                 srParameters.surfaceAreaToBeSourceReduced);
 
+            var srLaborDays = srWorkDays + srParameters.personnelOverheadDays;
+
             var srCost = srCalculator.CalculateCost(
                 srWorkDays,
                 srParameters.numTeams,
@@ -72,6 +75,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 srParameters.ppeRequired);
 
             var dcWorkDays = dcCalculator.CalculateTime();
+
+            var dcLaborDays = dcWorkDays + dcParameters.personnelOverhead;
 
             var dcCost = dcCalculator.CalculateCost(
                 dcWorkDays,
@@ -94,10 +99,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 csParameters.resultTransmissionToIC);
 
             var icCost = icCalculator.CalculateCost(
-                icOnSiteDays,
-                otParameters.roundtripDays);
-
-            //TODO: return onsite days from each phase
+                icOnSiteDays);
 
             var otCost = otCalculator.CalculateCost(
                 otParameters.totalAvailablePersonnel,
