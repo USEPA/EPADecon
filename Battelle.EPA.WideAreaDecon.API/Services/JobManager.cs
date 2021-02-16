@@ -119,36 +119,15 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         var indoorOTParameters = parameterManager.SetOtherParameters();
                         var indoorCParameters = parameterManager.SetCostParameters();
 
-                        var indoorCSCalculatorFactory =
-                        new ParameterArrayCharacterizationSamplingCalculatorFactory(indoorCSParameters, indoorCParameters);
-
-                        var indoorSRCalculatorFactory =
-                        new ParameterArraySourceReductionCalculatorFactory(indoorSRParameters, indoorCParameters);
-
-                        var indoorDCCalculatorFactory =
-                        new ParameterArrayDecontaminationCalculatorFactory(indoorDCParameters, indoorCParameters);
-
-                        var indoorOTCalculatorFactory =
-                        new ParameterArrayOtherCalculatorFactory(indoorOTParameters, indoorCParameters);
-
-                        var indoorICCalculatorFactory =
-                        new ParameterArrayIncidentCommandCalculatorFactory(
+                        var indoorCalculatorManager = new CalculatorManager(
                             indoorCSParameters,
                             indoorSRParameters,
                             indoorDCParameters,
-                            indoorOTParameters,
                             indoorICParameters,
-                            indoorCParameters,
-                            indoorCSCalculatorFactory,
-                            indoorSRCalculatorFactory,
-                            indoorDCCalculatorFactory);
+                            indoorOTParameters,
+                            indoorCParameters);
 
-                        var indoorCalculatorCreator = new CalculatorCreator(
-                            indoorCSCalculatorFactory,
-                            indoorSRCalculatorFactory,
-                            indoorDCCalculatorFactory,
-                            indoorOTCalculatorFactory,
-                            indoorICCalculatorFactory);
+                        var indoorCalculatorCreator = indoorCalculatorManager.CreateCalculatorFactories();
 
                         var totalCost = indoorCalculatorCreator.GetCalculators(
                             indoorCSParameters,
@@ -167,36 +146,15 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                     var outdoorOTParameters = parameterManager.SetOtherParameters();
                     var outdoorCParameters = parameterManager.SetCostParameters();
 
-                    var outdoorCSCalculatorFactory =
-                    new ParameterArrayCharacterizationSamplingCalculatorFactory(outdoorCSParameters, outdoorCParameters);
-
-                    var outdoorSRCalculatorFactory =
-                    new ParameterArraySourceReductionCalculatorFactory(outdoorSRParameters, outdoorCParameters);
-
-                    var outdoorDCCalculatorFactory =
-                    new ParameterArrayDecontaminationCalculatorFactory(outdoorDCParameters, outdoorCParameters);
-
-                    var outdoorOTCalculatorFactory =
-                    new ParameterArrayOtherCalculatorFactory(outdoorOTParameters, outdoorCParameters);
-
-                    var outdoorICCalculatorFactory =
-                    new ParameterArrayIncidentCommandCalculatorFactory(
+                    var outdoorCalculatorManager = new CalculatorManager(
                         outdoorCSParameters,
                         outdoorSRParameters,
                         outdoorDCParameters,
-                        outdoorOTParameters,
                         outdoorICParameters,
-                        outdoorCParameters,
-                        outdoorCSCalculatorFactory,
-                        outdoorSRCalculatorFactory,
-                        outdoorDCCalculatorFactory);
+                        outdoorOTParameters,
+                        outdoorCParameters);
 
-                    var outdoorCalculatorCreator = new CalculatorCreator(
-                        outdoorCSCalculatorFactory,
-                        outdoorSRCalculatorFactory,
-                        outdoorDCCalculatorFactory,
-                        outdoorOTCalculatorFactory,
-                        outdoorICCalculatorFactory);
+                    var outdoorCalculatorCreator = outdoorCalculatorManager.CreateCalculatorFactories();
 
                     var outdoorCost = outdoorCalculatorCreator.GetCalculators(
                         outdoorCSParameters,
@@ -214,36 +172,15 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                     var undergroundOTParameters = parameterManager.SetOtherParameters();
                     var undergroundCParameters = parameterManager.SetCostParameters();
 
-                    var undergroundCSCalculatorFactory =
-                    new ParameterArrayCharacterizationSamplingCalculatorFactory(undergroundCSParameters, undergroundCParameters);
-
-                    var undergroundSRCalculatorFactory =
-                    new ParameterArraySourceReductionCalculatorFactory(undergroundSRParameters, undergroundCParameters);
-
-                    var undergroundDCCalculatorFactory =
-                    new ParameterArrayDecontaminationCalculatorFactory(undergroundDCParameters, undergroundCParameters);
-
-                    var undergroundOTCalculatorFactory =
-                    new ParameterArrayOtherCalculatorFactory(undergroundOTParameters, undergroundCParameters);
-
-                    var undergroundICCalculatorFactory =
-                    new ParameterArrayIncidentCommandCalculatorFactory(
+                    var undergroundCalculatorManager = new CalculatorManager(
                         undergroundCSParameters,
                         undergroundSRParameters,
                         undergroundDCParameters,
-                        undergroundOTParameters,
                         undergroundICParameters,
-                        undergroundCParameters,
-                        undergroundCSCalculatorFactory,
-                        undergroundSRCalculatorFactory,
-                        undergroundDCCalculatorFactory);
+                        undergroundOTParameters,
+                        undergroundCParameters);
 
-                    var undergroundCalculatorCreator = new CalculatorCreator(
-                        undergroundCSCalculatorFactory,
-                        undergroundSRCalculatorFactory,
-                        undergroundDCCalculatorFactory,
-                        undergroundOTCalculatorFactory,
-                        undergroundICCalculatorFactory);
+                    var undergroundCalculatorCreator = undergroundCalculatorManager.CreateCalculatorFactories();
 
                     var undergroundCost = undergroundCalculatorCreator.GetCalculators(
                         undergroundCSParameters,
