@@ -81,8 +81,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
             {
                 _statusUpdater.UpdateJobStatus(Running, JobStatus.Running);
 
-                //TODO:: Convert to format known by model
-
                 var extentOfContaminationParameters = Running.DefineScenario.Filters
                     .First(f => f.Name == "Extent of Contamination").Parameters;
 
@@ -101,68 +99,160 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                     scenarios.Add(scenarioCreator.CreateRealizationScenario());
                 }
 
-                // Construct calculators
+                var parameterManager = new ParameterManager(
+                    Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
+                    Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
+                    Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
+                    Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
+                    Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters,
+                    Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters,
+                    Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters);
+
                 for (int s = 0; s < scenarios.Count(); s++)
                 {
                     for (int i = 0; i < scenarios[s].IndoorBuildingsContaminated.Length; i++)
                     {
-                        var csParameters = new CharacterizationSamplingParameters(
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
-                            scenarios[s].IndoorBuildingsContaminated[i]);
-                        var srParameters = new SourceReductionParameters(
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
-                            scenarios[s].IndoorBuildingsContaminated[i]);
-                        var dcParameters = new DecontaminationParameters(
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
-                            scenarios[s].IndoorBuildingsContaminated[i]);
-                        var icParameters = new IncidentCommandParameters(
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters);
-                        var otParameters = new OtherParameters(
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters);
-                        var cParameters = new CostParameters(
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters);
+                        var indoorCSParameters = parameterManager.SetCharacterizationSamplingParameters();
+                        var indoorSRParameters = parameterManager.SetSourceReductionParameters(scenarios[s].IndoorBuildingsContaminated[i]);
+                        var indoorDCParameters = parameterManager.SetDecontaminationParameters(scenarios[s].IndoorBuildingsContaminated[i]);
+                        var indoorICParameters = parameterManager.SetIncidentCommandParameters();
+                        var indoorOTParameters = parameterManager.SetOtherParameters();
+                        var indoorCParameters = parameterManager.SetCostParameters();
 
-                        ParameterArrayCharacterizationSamplingCalculatorFactory csCalculatorFactory =
-                        new ParameterArrayCharacterizationSamplingCalculatorFactory(csParameters, cParameters);
+                        var indoorCSCalculatorFactory =
+                        new ParameterArrayCharacterizationSamplingCalculatorFactory(indoorCSParameters, indoorCParameters);
 
-                        ParameterArraySourceReductionCalculatorFactory srCalculatorFactory =
-                        new ParameterArraySourceReductionCalculatorFactory(srParameters, cParameters);
+                        var indoorSRCalculatorFactory =
+                        new ParameterArraySourceReductionCalculatorFactory(indoorSRParameters, indoorCParameters);
 
-                        ParameterArrayDecontaminationCalculatorFactory dcCalculatorFactory =
-                        new ParameterArrayDecontaminationCalculatorFactory(dcParameters, cParameters);
+                        var indoorDCCalculatorFactory =
+                        new ParameterArrayDecontaminationCalculatorFactory(indoorDCParameters, indoorCParameters);
 
-                        ParameterArrayOtherCalculatorFactory otCalculatorFactory =
-                        new ParameterArrayOtherCalculatorFactory(otParameters, cParameters);
+                        var indoorOTCalculatorFactory =
+                        new ParameterArrayOtherCalculatorFactory(indoorOTParameters, indoorCParameters);
 
-                        ParameterArrayIncidentCommandCalculatorFactory icCalculatorFactory =
+                        var indoorICCalculatorFactory =
                         new ParameterArrayIncidentCommandCalculatorFactory(
-                            csParameters,
-                            srParameters,
-                            dcParameters,
-                            otParameters,
-                            icParameters,
-                            cParameters,
-                            csCalculatorFactory,
-                            srCalculatorFactory,
-                            dcCalculatorFactory);
+                            indoorCSParameters,
+                            indoorSRParameters,
+                            indoorDCParameters,
+                            indoorOTParameters,
+                            indoorICParameters,
+                            indoorCParameters,
+                            indoorCSCalculatorFactory,
+                            indoorSRCalculatorFactory,
+                            indoorDCCalculatorFactory);
 
-                        var calculatorCreator = new CalculatorCreator(
-                            csCalculatorFactory,
-                            srCalculatorFactory,
-                            dcCalculatorFactory,
-                            otCalculatorFactory,
-                            icCalculatorFactory);
+                        var indoorCalculatorCreator = new CalculatorCreator(
+                            indoorCSCalculatorFactory,
+                            indoorSRCalculatorFactory,
+                            indoorDCCalculatorFactory,
+                            indoorOTCalculatorFactory,
+                            indoorICCalculatorFactory);
 
-                        var totalCost = calculatorCreator.GetCalculators(
-                            csParameters,
-                            srParameters,
-                            dcParameters,
-                            otParameters,
-                            cParameters,
-                            icParameters,
+                        var totalCost = indoorCalculatorCreator.GetCalculators(
+                            indoorCSParameters,
+                            indoorSRParameters,
+                            indoorDCParameters,
+                            indoorOTParameters,
+                            indoorCParameters,
+                            indoorICParameters,
                             scenarios[s].IndoorBuildingsContaminated[i]);
                     }
+
+                    var outdoorCSParameters = parameterManager.SetCharacterizationSamplingParameters();
+                    var outdoorSRParameters = parameterManager.SetSourceReductionParameters(scenarios[s].OutdoorAreasContaminated);
+                    var outdoorDCParameters = parameterManager.SetDecontaminationParameters(scenarios[s].OutdoorAreasContaminated);
+                    var outdoorICParameters = parameterManager.SetIncidentCommandParameters();
+                    var outdoorOTParameters = parameterManager.SetOtherParameters();
+                    var outdoorCParameters = parameterManager.SetCostParameters();
+
+                    var outdoorCSCalculatorFactory =
+                    new ParameterArrayCharacterizationSamplingCalculatorFactory(outdoorCSParameters, outdoorCParameters);
+
+                    var outdoorSRCalculatorFactory =
+                    new ParameterArraySourceReductionCalculatorFactory(outdoorSRParameters, outdoorCParameters);
+
+                    var outdoorDCCalculatorFactory =
+                    new ParameterArrayDecontaminationCalculatorFactory(outdoorDCParameters, outdoorCParameters);
+
+                    var outdoorOTCalculatorFactory =
+                    new ParameterArrayOtherCalculatorFactory(outdoorOTParameters, outdoorCParameters);
+
+                    var outdoorICCalculatorFactory =
+                    new ParameterArrayIncidentCommandCalculatorFactory(
+                        outdoorCSParameters,
+                        outdoorSRParameters,
+                        outdoorDCParameters,
+                        outdoorOTParameters,
+                        outdoorICParameters,
+                        outdoorCParameters,
+                        outdoorCSCalculatorFactory,
+                        outdoorSRCalculatorFactory,
+                        outdoorDCCalculatorFactory);
+
+                    var outdoorCalculatorCreator = new CalculatorCreator(
+                        outdoorCSCalculatorFactory,
+                        outdoorSRCalculatorFactory,
+                        outdoorDCCalculatorFactory,
+                        outdoorOTCalculatorFactory,
+                        outdoorICCalculatorFactory);
+
+                    var outdoorCost = outdoorCalculatorCreator.GetCalculators(
+                        outdoorCSParameters,
+                        outdoorSRParameters,
+                        outdoorDCParameters,
+                        outdoorOTParameters,
+                        outdoorCParameters,
+                        outdoorICParameters,
+                        scenarios[s].OutdoorAreasContaminated);
+
+                    var undergroundCSParameters = parameterManager.SetCharacterizationSamplingParameters();
+                    var undergroundSRParameters = parameterManager.SetSourceReductionParameters(scenarios[s].UndergroundBuildingsContaminated);
+                    var undergroundDCParameters = parameterManager.SetDecontaminationParameters(scenarios[s].UndergroundBuildingsContaminated);
+                    var undergroundICParameters = parameterManager.SetIncidentCommandParameters();
+                    var undergroundOTParameters = parameterManager.SetOtherParameters();
+                    var undergroundCParameters = parameterManager.SetCostParameters();
+
+                    var undergroundCSCalculatorFactory =
+                    new ParameterArrayCharacterizationSamplingCalculatorFactory(undergroundCSParameters, undergroundCParameters);
+
+                    var undergroundSRCalculatorFactory =
+                    new ParameterArraySourceReductionCalculatorFactory(undergroundSRParameters, undergroundCParameters);
+
+                    var undergroundDCCalculatorFactory =
+                    new ParameterArrayDecontaminationCalculatorFactory(undergroundDCParameters, undergroundCParameters);
+
+                    var undergroundOTCalculatorFactory =
+                    new ParameterArrayOtherCalculatorFactory(undergroundOTParameters, undergroundCParameters);
+
+                    var undergroundICCalculatorFactory =
+                    new ParameterArrayIncidentCommandCalculatorFactory(
+                        undergroundCSParameters,
+                        undergroundSRParameters,
+                        undergroundDCParameters,
+                        undergroundOTParameters,
+                        undergroundICParameters,
+                        undergroundCParameters,
+                        undergroundCSCalculatorFactory,
+                        undergroundSRCalculatorFactory,
+                        undergroundDCCalculatorFactory);
+
+                    var undergroundCalculatorCreator = new CalculatorCreator(
+                        undergroundCSCalculatorFactory,
+                        undergroundSRCalculatorFactory,
+                        undergroundDCCalculatorFactory,
+                        undergroundOTCalculatorFactory,
+                        undergroundICCalculatorFactory);
+
+                    var undergroundCost = undergroundCalculatorCreator.GetCalculators(
+                        undergroundCSParameters,
+                        undergroundSRParameters,
+                        undergroundDCParameters,
+                        undergroundOTParameters,
+                        undergroundCParameters,
+                        undergroundICParameters,
+                        scenarios[s].UndergroundBuildingsContaminated);
                 }
 
                 //TODO:: Store results of model in job
