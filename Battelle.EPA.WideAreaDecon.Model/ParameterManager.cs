@@ -9,7 +9,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
-    public class CalculatorManager
+    public class ParameterManager
     {
         private readonly ParameterFilter[] _characterizationSamplingParameters;
         private readonly ParameterFilter[] _sourceReductionParameters;
@@ -19,7 +19,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
         private readonly ParameterFilter[] _incidentCommandParameters;
         private readonly ParameterFilter[] _costParameters;
 
-        public CalculatorManager(
+        public ParameterManager(
             ParameterFilter[] csParameters, 
             ParameterFilter[] srParameters,
             ParameterFilter[] dcParameters,
