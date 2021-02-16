@@ -28,9 +28,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
                 numberLabs, sampleTimeTransmitted);
         }
 
-        public double CalculateCost(double onSiteDays, double personnelRoundTripDays)
+        public double CalculateCost(double onSiteDays)
         {
-            var laborCosts = Calculator_labor.CalculateLaborCost(onSiteDays, personnelRoundTripDays);
+            var laborCosts = Calculator_labor.CalculateLaborCost(onSiteDays);
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(onSiteDays);
             return (suppliesCosts + laborCosts);
         }

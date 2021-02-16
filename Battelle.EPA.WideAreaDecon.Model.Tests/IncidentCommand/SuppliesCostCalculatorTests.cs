@@ -16,7 +16,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             return 29.0934736019902;
         }
 
-        public double CalculateLaborCost(double onSiteDays, double personnelRoundTripDays)
+        public double CalculateLaborCost(double onSiteDays)
         {
             return 345759.426454131;
         }

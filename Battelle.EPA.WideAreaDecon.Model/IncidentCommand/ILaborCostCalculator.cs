@@ -10,6 +10,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
             double surfaceAreaToBeSourceReduced, double personnelRoundTripDays, double _fractionSampledWipe, 
             double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, 
             double sampleTimeTransmitted);
-        public double CalculateLaborCost(double onSiteDays, double personnelRoundTripDays);
+        public double CalculateLaborCost(double onSiteDays);
     }
 }

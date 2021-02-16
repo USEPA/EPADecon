@@ -21,7 +21,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             return 21393.2811642251;
         }
 
-        public double CalculateLaborDays(double workDays, double personnelRoundTripDays)
+        public double CalculateLaborDays(double workDays)
         {
             return 1.34093086337363;
         }
@@ -44,7 +44,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             return 137654.447803312;
         }
 
-        public double CalculateLaborDays(double workDays, double personnelRoundTripDays)
+        public double CalculateLaborDays(double workDays)
         {
             return 4.07855517733999;
         }
@@ -58,7 +58,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             return 120400.0;
         }
 
-        public double CalculateLaborDays(double workDays, double personnelRoundTripDays)
+        public double CalculateLaborDays(double workDays)
         {
             return 5.0;
         }
@@ -123,7 +123,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             var onSiteDays = Calculator.CalculateOnSiteDays(workDaysCS, workDaysSR, workDaysDC, _numberTeams, saToBeSourceReduced, roundtripDays, fractionSampledWipe, fractionSampledHepa, areaContaminated, numberLabs, sampleTimeTransmitted);
             Assert.AreEqual(29.0934736019902, onSiteDays, 1e-6,
                 "Incorrect onsite days calculated");
-            Assert.AreEqual(345759.426454131, Calculator.CalculateLaborCost(onSiteDays, roundtripDays), 1e-6,
+            Assert.AreEqual(345759.426454131, Calculator.CalculateLaborCost(onSiteDays), 1e-6,
                 "Incorrect Labor cost calculated");
         }
     }

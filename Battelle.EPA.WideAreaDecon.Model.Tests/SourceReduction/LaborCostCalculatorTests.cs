@@ -59,7 +59,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
 
             Assert.AreEqual(137654.447803312, Calculator.CalculateLaborCost(workDays, _numberTeams,  roundtripDays,  saToBeSourceReduced,
              costPerTonRemoved), 1e-6, "Incorrect labor cost calculated");
-            Assert.AreEqual(6.07855517733999, Calculator.CalculateLaborDays(workDays,  roundtripDays),
+            Assert.AreEqual(6.07855517733999, Calculator.CalculateLaborDays(workDays),
                 1e-6, "Incorrect labor days calculated");
         }
     }

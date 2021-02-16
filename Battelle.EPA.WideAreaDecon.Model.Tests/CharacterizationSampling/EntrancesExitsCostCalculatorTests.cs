@@ -19,7 +19,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             return 20537.549917656;
         }
 
-        public double CalculateLaborDays(double workDays, double personnelRoundTripDays)
+        public double CalculateLaborDays(double workDays)
         {
             return 3.30729362883868;
         }

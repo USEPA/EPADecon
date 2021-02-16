@@ -42,7 +42,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         {
             var personnelHoursCost = _personnelRequiredPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
-            return (workDays + _personnelOverhead + _personnelRoundTripDays) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
+            return (workDays + _personnelOverhead) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
         }
         
         //return double if Elabor cost is not longer readonly
@@ -56,9 +56,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
                 (totalEntries * _hoursPerExitPerTeam)) * personnelHoursCost;
         }
 
-        public double CalculateLaborDays(double workDays, double personnelRoundTripDays)
+        public double CalculateLaborDays(double workDays)
         {
-            return workDays + _personnelOverhead + personnelRoundTripDays;
+            return workDays + _personnelOverhead;
         }
     }
 }
