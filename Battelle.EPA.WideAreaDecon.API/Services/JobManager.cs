@@ -12,8 +12,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
-using Battelle.EPA.WideAreaDecon.Model.Services;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models;
 using Microsoft.AspNetCore.SignalR;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
@@ -108,11 +107,16 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                     Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters,
                     Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters);
 
+                var scenarioResults = new List<Dictionary<DecontaminationPhase, Results>>();
+
                 for (int s = 0; s < scenarios.Count(); s++)
                 {
-                    // Indoor scenarios
+                    var realizationResults = new Dictionary<DecontaminationPhase, Results>();
+
+                    //INDOOR SCENARIO
                     for (int i = 0; i < scenarios[s].IndoorBuildingsContaminated.Length; i++)
                     {
+                        //Set indoor parameter values
                         var indoorCalculatorManager = new CalculatorManager(
                             parameterManager.SetCharacterizationSamplingParameters(),
                             parameterManager.SetSourceReductionParameters(scenarios[s].IndoorBuildingsContaminated[i]),
@@ -130,7 +134,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                             scenarios[s].IndoorBuildingsContaminated[i]);
                     }
 
-                    // Outdoor scenarios
+                    //OUTDOOR SCENARIO
+                    //Set outdoor parameter values
                     var outdoorCalculatorManager = new CalculatorManager(
                         parameterManager.SetCharacterizationSamplingParameters(),
                         parameterManager.SetSourceReductionParameters(scenarios[s].OutdoorAreasContaminated),
@@ -143,11 +148,13 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                     var outdoorModelRun = outdoorCalculatorCreator.GetCalculators();
 
-                    var outdoorResults = outdoorModelRun.CalculateCost(
+                    //Run and store realization results for outdoor model run
+                    realizationResults.Add(DecontaminationPhase.Outdoor, outdoorModelRun.CalculateCost(
                         outdoorCalculatorManager,
-                        scenarios[s].OutdoorAreasContaminated);
+                        scenarios[s].OutdoorAreasContaminated));
 
-                    // Underground scenarios
+                    //UNDERGROUND SCENARIO
+                    //Set underground parameter values
                     var undergroundCalculatorManager = new CalculatorManager(
                         parameterManager.SetCharacterizationSamplingParameters(),
                         parameterManager.SetSourceReductionParameters(scenarios[s].UndergroundBuildingsContaminated),
@@ -160,12 +167,18 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                     var undergroundModelRun = undergroundCalculatorCreator.GetCalculators();
 
-                    var undergroundResults = undergroundModelRun.CalculateCost(
+                    //Run and store realization results for underground model run
+                    realizationResults.Add(DecontaminationPhase.Outdoor, undergroundModelRun.CalculateCost(
                         undergroundCalculatorManager,
-                        scenarios[s].UndergroundBuildingsContaminated);
+                        scenarios[s].UndergroundBuildingsContaminated));
+
+                    //Store results for realization
+                    scenarioResults.Add(realizationResults);
                 }
 
-                //TODO:: Store results of model in job
+                //Store results of model in job
+                Running.Results = scenarioResults;
+
                 _statusUpdater.UpdateJobStatus(Running, JobStatus.Completed);
                 Finished.Add(Running);
                 Running = null;
