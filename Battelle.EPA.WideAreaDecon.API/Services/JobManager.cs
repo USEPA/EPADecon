@@ -113,82 +113,55 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                     // Indoor scenarios
                     for (int i = 0; i < scenarios[s].IndoorBuildingsContaminated.Length; i++)
                     {
-                        var indoorCSParameters = parameterManager.SetCharacterizationSamplingParameters();
-                        var indoorSRParameters = parameterManager.SetSourceReductionParameters(scenarios[s].IndoorBuildingsContaminated[i]);
-                        var indoorDCParameters = parameterManager.SetDecontaminationParameters(scenarios[s].IndoorBuildingsContaminated[i]);
-                        var indoorICParameters = parameterManager.SetIncidentCommandParameters();
-                        var indoorOTParameters = parameterManager.SetOtherParameters();
-                        var indoorCParameters = parameterManager.SetCostParameters();
-
                         var indoorCalculatorManager = new CalculatorManager(
-                            indoorCSParameters,
-                            indoorSRParameters,
-                            indoorDCParameters,
-                            indoorICParameters,
-                            indoorOTParameters,
-                            indoorCParameters);
+                            parameterManager.SetCharacterizationSamplingParameters(),
+                            parameterManager.SetSourceReductionParameters(scenarios[s].IndoorBuildingsContaminated[i]),
+                            parameterManager.SetDecontaminationParameters(scenarios[s].IndoorBuildingsContaminated[i]),
+                            parameterManager.SetIncidentCommandParameters(),
+                            parameterManager.SetOtherParameters(),
+                            parameterManager.SetCostParameters());
 
                         var indoorCalculatorCreator = indoorCalculatorManager.CreateCalculatorFactories();
 
-                        var totalCost = indoorCalculatorCreator.GetCalculators(
-                            indoorCSParameters,
-                            indoorSRParameters,
-                            indoorDCParameters,
-                            indoorOTParameters,
-                            indoorCParameters,
+                        var indoorModelRun = indoorCalculatorCreator.GetCalculators();
+
+                        var indoorResults = indoorModelRun.CalculateCost(
+                            indoorCalculatorManager, 
                             scenarios[s].IndoorBuildingsContaminated[i]);
                     }
 
                     // Outdoor scenarios
-                    var outdoorCSParameters = parameterManager.SetCharacterizationSamplingParameters();
-                    var outdoorSRParameters = parameterManager.SetSourceReductionParameters(scenarios[s].OutdoorAreasContaminated);
-                    var outdoorDCParameters = parameterManager.SetDecontaminationParameters(scenarios[s].OutdoorAreasContaminated);
-                    var outdoorICParameters = parameterManager.SetIncidentCommandParameters();
-                    var outdoorOTParameters = parameterManager.SetOtherParameters();
-                    var outdoorCParameters = parameterManager.SetCostParameters();
-
                     var outdoorCalculatorManager = new CalculatorManager(
-                        outdoorCSParameters,
-                        outdoorSRParameters,
-                        outdoorDCParameters,
-                        outdoorICParameters,
-                        outdoorOTParameters,
-                        outdoorCParameters);
+                        parameterManager.SetCharacterizationSamplingParameters(),
+                        parameterManager.SetSourceReductionParameters(scenarios[s].OutdoorAreasContaminated),
+                        parameterManager.SetDecontaminationParameters(scenarios[s].OutdoorAreasContaminated),
+                        parameterManager.SetIncidentCommandParameters(),
+                        parameterManager.SetOtherParameters(),
+                        parameterManager.SetCostParameters());
 
                     var outdoorCalculatorCreator = outdoorCalculatorManager.CreateCalculatorFactories();
 
-                    var outdoorCost = outdoorCalculatorCreator.GetCalculators(
-                        outdoorCSParameters,
-                        outdoorSRParameters,
-                        outdoorDCParameters,
-                        outdoorOTParameters,
-                        outdoorCParameters,
+                    var outdoorModelRun = outdoorCalculatorCreator.GetCalculators();
+
+                    var outdoorResults = outdoorModelRun.CalculateCost(
+                        outdoorCalculatorManager,
                         scenarios[s].OutdoorAreasContaminated);
 
                     // Underground scenarios
-                    var undergroundCSParameters = parameterManager.SetCharacterizationSamplingParameters();
-                    var undergroundSRParameters = parameterManager.SetSourceReductionParameters(scenarios[s].UndergroundBuildingsContaminated);
-                    var undergroundDCParameters = parameterManager.SetDecontaminationParameters(scenarios[s].UndergroundBuildingsContaminated);
-                    var undergroundICParameters = parameterManager.SetIncidentCommandParameters();
-                    var undergroundOTParameters = parameterManager.SetOtherParameters();
-                    var undergroundCParameters = parameterManager.SetCostParameters();
-
                     var undergroundCalculatorManager = new CalculatorManager(
-                        undergroundCSParameters,
-                        undergroundSRParameters,
-                        undergroundDCParameters,
-                        undergroundICParameters,
-                        undergroundOTParameters,
-                        undergroundCParameters);
+                        parameterManager.SetCharacterizationSamplingParameters(),
+                        parameterManager.SetSourceReductionParameters(scenarios[s].UndergroundBuildingsContaminated),
+                        parameterManager.SetDecontaminationParameters(scenarios[s].UndergroundBuildingsContaminated),
+                        parameterManager.SetIncidentCommandParameters(),
+                        parameterManager.SetOtherParameters(),
+                        parameterManager.SetCostParameters());
 
                     var undergroundCalculatorCreator = undergroundCalculatorManager.CreateCalculatorFactories();
 
-                    var undergroundCost = undergroundCalculatorCreator.GetCalculators(
-                        undergroundCSParameters,
-                        undergroundSRParameters,
-                        undergroundDCParameters,
-                        undergroundOTParameters,
-                        undergroundCParameters,
+                    var undergroundModelRun = undergroundCalculatorCreator.GetCalculators();
+
+                    var undergroundResults = undergroundModelRun.CalculateCost(
+                        undergroundCalculatorManager,
                         scenarios[s].UndergroundBuildingsContaminated);
                 }
 

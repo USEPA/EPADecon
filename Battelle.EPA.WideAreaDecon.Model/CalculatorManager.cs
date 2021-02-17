@@ -8,54 +8,54 @@ namespace Battelle.EPA.WideAreaDecon.Model
 {
     public class CalculatorManager
     {
-        private readonly CharacterizationSamplingParameters _characterizationSamplingParameters;
-        private readonly SourceReductionParameters _sourceReductionParameters;
-        private readonly DecontaminationParameters _decontaminationParameters;
-        private readonly IncidentCommandParameters _incidentCommandParameters;
-        private readonly OtherParameters _otherParameters;
-        private readonly CostParameters _costParameters;
+        public CharacterizationSamplingParameters characterizationSamplingParameters;
+        public SourceReductionParameters sourceReductionParameters;
+        public DecontaminationParameters decontaminationParameters;
+        public IncidentCommandParameters incidentCommandParameters;
+        public OtherParameters otherParameters;
+        public CostParameters costParameters;
 
         public CalculatorManager(
-            CharacterizationSamplingParameters characterizationSamplingParameters,
-            SourceReductionParameters sourceReductionParameters,
-            DecontaminationParameters decontaminationParameters,
-            IncidentCommandParameters incidentCommandParameters,
-            OtherParameters otherParameters,
-            CostParameters costParameters)
+            CharacterizationSamplingParameters _characterizationSamplingParameters,
+            SourceReductionParameters _sourceReductionParameters,
+            DecontaminationParameters _decontaminationParameters,
+            IncidentCommandParameters _incidentCommandParameters,
+            OtherParameters _otherParameters,
+            CostParameters _costParameters)
         {
-            _characterizationSamplingParameters = characterizationSamplingParameters;
-            _sourceReductionParameters = sourceReductionParameters;
-            _decontaminationParameters = decontaminationParameters;
-            _incidentCommandParameters = incidentCommandParameters;
-            _otherParameters = otherParameters;
-            _costParameters = costParameters;
+            characterizationSamplingParameters = _characterizationSamplingParameters;
+            sourceReductionParameters = _sourceReductionParameters;
+            decontaminationParameters = _decontaminationParameters;
+            incidentCommandParameters = _incidentCommandParameters;
+            otherParameters = _otherParameters;
+            costParameters = _costParameters;
         }
 
         public CalculatorCreator CreateCalculatorFactories()
         {
             var csCalculatorFactory = new ParameterArrayCharacterizationSamplingCalculatorFactory(
-                _characterizationSamplingParameters,
-                _costParameters);
+                characterizationSamplingParameters,
+                costParameters);
 
             var srCalculatorFactory = new ParameterArraySourceReductionCalculatorFactory(
-                _sourceReductionParameters,
-                _costParameters);
+                sourceReductionParameters,
+                costParameters);
 
             var dcCalculatorFactory = new ParameterArrayDecontaminationCalculatorFactory(
-                _decontaminationParameters,
-                _costParameters);
+                decontaminationParameters,
+                costParameters);
 
             var otCalculatorFactory = new ParameterArrayOtherCalculatorFactory(
-                _otherParameters,
-                _costParameters);
+                otherParameters,
+                costParameters);
 
             var icCalculatorFactory = new ParameterArrayIncidentCommandCalculatorFactory(
-                _characterizationSamplingParameters,
-                _sourceReductionParameters,
-                _decontaminationParameters,
-                _otherParameters,
-                _incidentCommandParameters,
-                _costParameters,
+                characterizationSamplingParameters,
+                sourceReductionParameters,
+                decontaminationParameters,
+                otherParameters,
+                incidentCommandParameters,
+                costParameters,
                 csCalculatorFactory,
                 srCalculatorFactory,
                 dcCalculatorFactory);
