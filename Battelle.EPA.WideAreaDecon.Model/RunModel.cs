@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
 using Battelle.EPA.WideAreaDecon.Model.Decontamination;
@@ -9,6 +10,7 @@ using Battelle.EPA.WideAreaDecon.Model.Other;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
@@ -34,56 +36,64 @@ namespace Battelle.EPA.WideAreaDecon.Model
             otherCostCalculator = _otherCostCalculator;
         }
 
-        public double CalculateCost(
+        public Results CalculateCost(
             CalculatorManager parameters,
             Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            var csWorkDays = characterizationSamplingCostCalculator.CalculateTime(
-                parameters.characterizationSamplingParameters.numTeams,
-                parameters.characterizationSamplingParameters.fractionSampledWipe,
-                parameters.characterizationSamplingParameters.fractionSampledHepa,
-                areaContaminated);
+            var results = new Results();
 
-            var csLaborDays = csWorkDays + parameters.characterizationSamplingParameters.personnelOverheadDays;
+            results.workDays[PhaseCategory.CharacterizationSampling] = 
+                characterizationSamplingCostCalculator.CalculateTime(
+                    parameters.characterizationSamplingParameters.numTeams,
+                    parameters.characterizationSamplingParameters.fractionSampledWipe,
+                    parameters.characterizationSamplingParameters.fractionSampledHepa,
+                    areaContaminated);
 
-            var csCost = characterizationSamplingCostCalculator.CalculateCost(
-                csWorkDays,
-                parameters.characterizationSamplingParameters.numTeams,
-                parameters.characterizationSamplingParameters.fractionSampledWipe,
-                parameters.characterizationSamplingParameters.fractionSampledHepa,
-                areaContaminated,
-                parameters.otherParameters.roundtripDays,
-                parameters.characterizationSamplingParameters.ppeRequired);
+            results.onSiteDays[PhaseCategory.CharacterizationSampling] = 
+                results.workDays[PhaseCategory.CharacterizationSampling] +
+                parameters.characterizationSamplingParameters.personnelOverheadDays;
 
-            var srWorkDays = sourceReductionCostCalculator.CalculateTime(
+            results.phaseCost[PhaseCategory.CharacterizationSampling] = 
+                characterizationSamplingCostCalculator.CalculateCost(
+                    results.workDays[PhaseCategory.CharacterizationSampling],
+                    parameters.characterizationSamplingParameters.numTeams,
+                    parameters.characterizationSamplingParameters.fractionSampledWipe,
+                    parameters.characterizationSamplingParameters.fractionSampledHepa,
+                    areaContaminated,
+                    parameters.otherParameters.roundtripDays,
+                    parameters.characterizationSamplingParameters.ppeRequired);
+
+            results.workDays[PhaseCategory.SourceReduction] = sourceReductionCostCalculator.CalculateTime(
                 parameters.sourceReductionParameters.numTeams,
                 parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced);
 
-            var srLaborDays = srWorkDays + parameters.sourceReductionParameters.personnelOverheadDays;
+            results.onSiteDays[PhaseCategory.SourceReduction] = results.workDays[PhaseCategory.SourceReduction] +
+                parameters.sourceReductionParameters.personnelOverheadDays;
 
-            var srCost = sourceReductionCostCalculator.CalculateCost(
-                srWorkDays,
+            results.phaseCost[PhaseCategory.SourceReduction] = sourceReductionCostCalculator.CalculateCost(
+                results.workDays[PhaseCategory.SourceReduction],
                 parameters.sourceReductionParameters.numTeams,
                 parameters.otherParameters.roundtripDays,
                 parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced,
                 parameters.costParameters.costPerMassOfMaterialRemoved,
                 parameters.sourceReductionParameters.ppeRequired);
 
-            var dcWorkDays = decontaminationCostCalculator.CalculateTime();
+            results.workDays[PhaseCategory.Decontamination] = decontaminationCostCalculator.CalculateTime();
 
-            var dcLaborDays = dcWorkDays + parameters.decontaminationParameters.personnelOverhead;
+            results.onSiteDays[PhaseCategory.Decontamination] = results.workDays[PhaseCategory.Decontamination] + 
+                parameters.decontaminationParameters.personnelOverhead;
 
-            var dcCost = decontaminationCostCalculator.CalculateCost(
-                dcWorkDays,
+            results.phaseCost[PhaseCategory.Decontamination] = decontaminationCostCalculator.CalculateCost(
+                results.workDays[PhaseCategory.Decontamination],
                 parameters.decontaminationParameters.numTeams,
                 parameters.otherParameters.roundtripDays,
                 parameters.decontaminationParameters.ppeRequired,
                 areaContaminated);
 
-            var icOnSiteDays = incidentCommandCostCalculator.CalculateTime(
-                csWorkDays,
-                srWorkDays,
-                dcWorkDays,
+            results.onSiteDays[PhaseCategory.IncidentCommand] = incidentCommandCostCalculator.CalculateTime(
+                results.workDays[PhaseCategory.CharacterizationSampling],
+                results.workDays[PhaseCategory.SourceReduction],
+                results.workDays[PhaseCategory.Decontamination],
                 parameters.decontaminationParameters.numTeams,
                 parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced,
                 parameters.otherParameters.roundtripDays,
@@ -93,16 +103,18 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 parameters.characterizationSamplingParameters.numLabs,
                 parameters.characterizationSamplingParameters.resultTransmissionToIC);
 
-            var icCost = incidentCommandCostCalculator.CalculateCost(
-                icOnSiteDays);
+            results.phaseCost[PhaseCategory.IncidentCommand] = incidentCommandCostCalculator.CalculateCost(
+                results.onSiteDays[PhaseCategory.IncidentCommand]);
 
-            var otCost = otherCostCalculator.CalculateCost(
+            results.phaseCost[PhaseCategory.Other] = otherCostCalculator.CalculateCost(
                 parameters.otherParameters.totalAvailablePersonnel,
                 parameters.otherParameters.roundtripDays,
                 parameters.costParameters.roundtripTicketCostPerPerson,
-                icOnSiteDays);
+                results.onSiteDays[PhaseCategory.IncidentCommand]);
 
-            return csCost + srCost + dcCost + otCost + icCost;
+            results.totalCost = results.phaseCost.Values.Sum();
+
+            return results;
         }
     }
 }
