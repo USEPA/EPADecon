@@ -15,10 +15,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
 
         [EnumMember(Value = "Decontamination")] Decontamination,
 
-        [EnumMember(Value = "Efficacy")] Efficacy,
-
-        [EnumMember(Value = "Other")] Other,
-
-        [EnumMember(Value = "Cost per Parameter")] CostPerParameter
+        [EnumMember(Value = "Other")] Other
     }
 }
