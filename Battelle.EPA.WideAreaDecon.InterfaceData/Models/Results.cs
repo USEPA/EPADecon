@@ -7,9 +7,18 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models
 {
     public class Results
     {
-        public Dictionary<PhaseCategory, double> workDays { get; set; }
-        public Dictionary<PhaseCategory, double> onSiteDays { get; set; }
-        public Dictionary<PhaseCategory, double> phaseCost { get; set; }
+        public double characterizationSamplingWorkDays { get; set; }
+        public double characterizationSamplingOnSiteDays { get; set; }
+        public double characterizationSamplingPhaseCost { get; set; }
+        public double sourceReductionWorkDays { get; set; }
+        public double sourceReductionOnSiteDays { get; set; }
+        public double sourceReductionPhaseCost { get; set; }
+        public double decontaminationWorkDays { get; set; }
+        public double decontaminationOnSiteDays { get; set; }
+        public double decontaminationPhaseCost { get; set; }
+        public double incidentCommandOnSiteDays { get; set; }
+        public double incidentCommandPhaseCost { get; set; }
+        public double otherCosts { get; set; }
         public double totalCost { get; set; }
     }
 }
