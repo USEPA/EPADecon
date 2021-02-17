@@ -278,7 +278,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             var icCalculatorFactory = new ParameterArrayIncidentCommandCalculatorFactory(CS_Parameters, SR_Parameters, DC_Parameters, OT_Parameters, IC_Parameters, Cost_Parameters, csCalculatorFactory, srCalculatorFactory, dcCalculatorFactory);
             var otCalculatorFactory = new ParameterArrayOtherCalculatorFactory(OT_Parameters, Cost_Parameters);
 
-            Calculator = new CalculatorCreator(csCalculatorFactory, srCalculatorFactory, dcCalculatorFactory, otCalculatorFactory, icCalculatorFactory);
+            var calculatorCreator = new CalculatorCreator(csCalculatorFactory, srCalculatorFactory, dcCalculatorFactory, otCalculatorFactory, icCalculatorFactory);
+
+            //Calculator = calculatorCreator.GetCalculators();
         }
 
         [Test]
@@ -291,13 +293,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                 areaContaminated.Add(surface, info);
             }
 
-            var results = Calculator.GetCalculators(
+            /*var results = Calculator.GetCalculators(
                 CS_Parameters, 
                 SR_Parameters, 
                 DC_Parameters, 
                 OT_Parameters, 
                 Cost_Parameters,
-                areaContaminated);
+                areaContaminated);*/
         }
     }
 }
