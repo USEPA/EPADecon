@@ -42,8 +42,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData
         private Dictionary<SurfaceType, ContaminationInformation>[] CreateIndoorBuildings()
         {
             var areaContaminated = _areaContaminated.Values[DecontaminationPhase.Indoor].CreateDistribution().Draw();
+            var loading = _loading.Values[DecontaminationPhase.Indoor].CreateDistribution().Draw();
 
-            return _indoorContaminationBreakout.Values.ToDictionary((v) => v.Key, (v) => areaContaminated * v.Value.Value.Value).SelectMany(ConvertToBuilding).ToArray();
+            return _indoorContaminationBreakout.Values.ToDictionary((v) => v.Key, (v) => v.Value.Value.Value).SelectMany(ConvertToBuilding).ToArray();
         }
 
         private Dictionary<SurfaceType, ContaminationInformation>[] ConvertToBuilding(
