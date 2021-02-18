@@ -7,10 +7,9 @@ using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
 using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
 using Battelle.EPA.WideAreaDecon.Model.Other;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
@@ -42,17 +41,17 @@ namespace Battelle.EPA.WideAreaDecon.Model
         {
             var results = new Results();
 
-            results.characterizationSamplingWorkDays = characterizationSamplingCostCalculator.CalculateTime(
+            results.characterizationSamplingResults.workDays = characterizationSamplingCostCalculator.CalculateTime(
                 parameters.characterizationSamplingParameters.numTeams,
                 parameters.characterizationSamplingParameters.fractionSampledWipe,
                 parameters.characterizationSamplingParameters.fractionSampledHepa,
                 areaContaminated);
 
-            results.characterizationSamplingOnSiteDays = results.characterizationSamplingWorkDays +
+            results.characterizationSamplingResults.onSiteDays = results.characterizationSamplingResults.workDays +
                 parameters.characterizationSamplingParameters.personnelOverheadDays;
 
-            results.characterizationSamplingPhaseCost = characterizationSamplingCostCalculator.CalculateCost(
-                results.characterizationSamplingWorkDays,
+            results.characterizationSamplingResults.phaseCost = characterizationSamplingCostCalculator.CalculateCost(
+                results.characterizationSamplingResults.workDays,
                 parameters.characterizationSamplingParameters.numTeams,
                 parameters.characterizationSamplingParameters.fractionSampledWipe,
                 parameters.characterizationSamplingParameters.fractionSampledHepa,
@@ -60,37 +59,37 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 parameters.otherParameters.roundtripDays,
                 parameters.characterizationSamplingParameters.ppeRequired);
 
-            results.sourceReductionWorkDays = sourceReductionCostCalculator.CalculateTime(
+            results.sourceReductionResults.workDays = sourceReductionCostCalculator.CalculateTime(
                 parameters.sourceReductionParameters.numTeams,
                 parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced);
 
-            results.sourceReductionOnSiteDays = results.sourceReductionWorkDays +
+            results.sourceReductionResults.onSiteDays = results.sourceReductionResults.workDays +
                 parameters.sourceReductionParameters.personnelOverheadDays;
 
-            results.sourceReductionPhaseCost = sourceReductionCostCalculator.CalculateCost(
-                results.sourceReductionWorkDays,
+            results.sourceReductionResults.phaseCost = sourceReductionCostCalculator.CalculateCost(
+                results.sourceReductionResults.workDays,
                 parameters.sourceReductionParameters.numTeams,
                 parameters.otherParameters.roundtripDays,
                 parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced,
                 parameters.costParameters.costPerMassOfMaterialRemoved,
                 parameters.sourceReductionParameters.ppeRequired);
 
-            results.decontaminationWorkDays = decontaminationCostCalculator.CalculateTime();
+            results.decontaminationResults.workDays = decontaminationCostCalculator.CalculateTime();
 
-            results.decontaminationOnSiteDays = results.decontaminationWorkDays +
+            results.decontaminationResults.onSiteDays = results.decontaminationResults.workDays +
                 parameters.decontaminationParameters.personnelOverhead;
 
-            results.decontaminationPhaseCost = decontaminationCostCalculator.CalculateCost(
-                results.decontaminationWorkDays,
+            results.decontaminationResults.phaseCost = decontaminationCostCalculator.CalculateCost(
+                results.decontaminationResults.workDays,
                 parameters.decontaminationParameters.numTeams,
                 parameters.otherParameters.roundtripDays,
                 parameters.decontaminationParameters.ppeRequired,
                 areaContaminated);
 
-            results.incidentCommandOnSiteDays = incidentCommandCostCalculator.CalculateTime(
-                results.characterizationSamplingWorkDays,
-                results.sourceReductionWorkDays,
-                results.decontaminationWorkDays,
+            results.incidentCommandResults.onSiteDays = incidentCommandCostCalculator.CalculateTime(
+                results.characterizationSamplingResults.workDays,
+                results.sourceReductionResults.workDays,
+                results.decontaminationResults.workDays,
                 parameters.decontaminationParameters.numTeams,
                 parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced,
                 parameters.otherParameters.roundtripDays,
@@ -100,20 +99,22 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 parameters.characterizationSamplingParameters.numLabs,
                 parameters.characterizationSamplingParameters.resultTransmissionToIC);
 
-            results.incidentCommandPhaseCost = incidentCommandCostCalculator.CalculateCost(
-                results.incidentCommandOnSiteDays);
+            results.incidentCommandResults.phaseCost = incidentCommandCostCalculator.CalculateCost(
+                results.incidentCommandResults.onSiteDays);
 
-            results.otherCosts = otherCostCalculator.CalculateCost(
+            results.otherResults.otherCosts = otherCostCalculator.CalculateCost(
                 parameters.otherParameters.totalAvailablePersonnel,
                 parameters.otherParameters.roundtripDays,
                 parameters.costParameters.roundtripTicketCostPerPerson,
-                results.incidentCommandOnSiteDays);
+                results.incidentCommandResults.onSiteDays);
 
-            results.totalCost = results.characterizationSamplingPhaseCost +
-                results.sourceReductionPhaseCost +
-                results.decontaminationPhaseCost +
-                results.incidentCommandPhaseCost +
-                results.otherCosts;
+            results.generalResults.totalCost = results.characterizationSamplingResults.phaseCost +
+                results.sourceReductionResults.phaseCost +
+                results.decontaminationResults.phaseCost +
+                results.incidentCommandResults.phaseCost +
+                results.otherResults.otherCosts;
+
+            results.generalResults.areaContaminated = areaContaminated.Values.Sum(v => v.AreaContaminated);
 
             return results;
         }
