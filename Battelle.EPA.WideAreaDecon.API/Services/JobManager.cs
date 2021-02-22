@@ -12,6 +12,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models;
 using Microsoft.AspNetCore.SignalR;
 
@@ -107,20 +108,21 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                     Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters,
                     Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters);
 
-                var scenarioResults = new List<Dictionary<DecontaminationPhase, Results>>();
+                var scenarioResults = new List<object>();
 
                 for (int s = 0; s < scenarios.Count(); s++)
                 {
-                    var realizationResults = new Dictionary<DecontaminationPhase, Results>();
+                    var realizationResults = new Dictionary<DecontaminationPhase, object>();
 
                     //INDOOR SCENARIO
-                    for (int i = 0; i < scenarios[s].IndoorBuildingsContaminated.Length; i++)
+                    var buildingResults= new Dictionary<BuildingCategory, Results>();
+                    foreach (var building in scenarios[s].IndoorBuildingsContaminated)
                     {
                         //Set indoor parameter values
                         var indoorCalculatorManager = new CalculatorManager(
                             parameterManager.SetCharacterizationSamplingParameters(),
-                            parameterManager.SetSourceReductionParameters(scenarios[s].IndoorBuildingsContaminated[i]),
-                            parameterManager.SetDecontaminationParameters(scenarios[s].IndoorBuildingsContaminated[i]),
+                            parameterManager.SetSourceReductionParameters(building.Value),
+                            parameterManager.SetDecontaminationParameters(building.Value),
                             parameterManager.SetIncidentCommandParameters(),
                             parameterManager.SetOtherParameters(),
                             parameterManager.SetCostParameters());
@@ -129,10 +131,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                         var indoorModelRun = indoorCalculatorCreator.GetCalculators();
 
-                        var indoorResults = indoorModelRun.CalculateCost(
-                            indoorCalculatorManager, 
-                            scenarios[s].IndoorBuildingsContaminated[i]);
+                        buildingResults.Add(building.Key, indoorModelRun.CalculateCost(indoorCalculatorManager, building.Value));
                     }
+
+                    realizationResults.Add(DecontaminationPhase.Indoor, buildingResults);
 
                     //OUTDOOR SCENARIO
                     //Set outdoor parameter values
