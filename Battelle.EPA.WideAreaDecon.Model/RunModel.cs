@@ -39,7 +39,15 @@ namespace Battelle.EPA.WideAreaDecon.Model
             CalculatorManager parameters,
             Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            var results = new Results();
+            var results = new Results {
+                characterizationSamplingResults = new GenericPhaseResults(),
+                sourceReductionResults = new GenericPhaseResults(),
+                decontaminationResults = new GenericPhaseResults(),
+                incidentCommandResults = new IncidentCommandResults(),
+                otherResults = new OtherResults(),
+                generalResults = new GeneralResults()
+            };
+
 
             results.characterizationSamplingResults.workDays = characterizationSamplingCostCalculator.CalculateTime(
                 parameters.characterizationSamplingParameters.numTeams,
