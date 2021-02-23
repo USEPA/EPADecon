@@ -68,9 +68,9 @@ export default class RunScenario extends Vue {
 
   @Action postCurrentJobRequest!: (jobProvider: IJobProvider) => Promise<void>;
 
-  @Action updateJobStatus!: (status: JobStatus) => void;
+  @Action UpdateJobStatus!: (status: JobStatus) => void;
 
-  @Action updateJobProgress!: (progress: number) => void;
+  @Action UpdateJobProgress!: (progress: number) => void;
 
   @Getter canRun!: boolean;
 
@@ -96,7 +96,7 @@ export default class RunScenario extends Vue {
     this.$emit('close');
   }
 
-  runClick(): void {
+  async runClick(): Promise<void> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const form = this.$refs.form as any;
     if (this.canRun && form.validate()) {
@@ -107,9 +107,9 @@ export default class RunScenario extends Vue {
         seed2: this.seed2,
       };
       this.createJobRequest(payload);
-      this.postCurrentJobRequest(this.jobProvider);
-      this.jobManager = new JobManager(this.currentJob.id, this.updateJobStatus, this.updateJobProgress);
-      this.jobManager.StartWatchJobProgress();
+      await this.postCurrentJobRequest(this.jobProvider);
+      this.jobManager = new JobManager(this.currentJob.id, this.UpdateJobStatus, this.UpdateJobProgress);
+      await this.jobManager.StartWatchJobProgress();
     }
   }
 
