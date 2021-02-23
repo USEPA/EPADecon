@@ -23,7 +23,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 
         public double CalculateLaborDays(double workDays)
         {
-            return 1.34093086337363;
+            return 1.30729362883868;
         }
     }
 
@@ -32,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampledWipe, 
             double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 10.6739875612766;
+            return 10.6178806540723;
         }
     }
 
@@ -109,9 +109,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             double sampleTimeTransmitted = 24.0;
             var fractionSampledWipe = 0.3;
             var fractionSampledHepa = 0.2;
-            var workDaysCS = 0.0;
-            var workDaysSR = 0.0;
-            var workDaysDC = 0.0;
+            var workDaysCS = 0.807293628838681;
+            var workDaysSR = 4.07855517733999;
+            var workDaysDC = 3.0;
             var info = new ContaminationInformation(100.0, 20.0);
             var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
 
@@ -121,9 +121,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             }
 
             var onSiteDays = Calculator.CalculateOnSiteDays(workDaysCS, workDaysSR, workDaysDC, _numberTeams, saToBeSourceReduced, roundtripDays, fractionSampledWipe, fractionSampledHepa, areaContaminated, numberLabs, sampleTimeTransmitted);
-            Assert.AreEqual(29.0934736019902, onSiteDays, 1e-6,
+            Assert.AreEqual(29.0037294602509, onSiteDays, 1e-6,
                 "Incorrect onsite days calculated");
-            Assert.AreEqual(345759.426454131, Calculator.CalculateLaborCost(onSiteDays), 1e-6,
+            Assert.AreEqual(322521.47159799, Calculator.CalculateLaborCost(onSiteDays), 1e-6,
                 "Incorrect Labor cost calculated");
         }
     }
