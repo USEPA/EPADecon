@@ -5,6 +5,7 @@ import ModifyParameters from '@/components/adjustmentPages/ModifyParameters.vue'
 import LoadPreDefinedScenario from '@/components/modals/load/LoadPreDefinedScenario.vue';
 import LoadPreviousScenario from '@/components/modals/load/LoadPreviousScenario.vue';
 import Home from '@/components/base/Home.vue';
+import ViewResults from '@/components/results/ViewResults.vue';
 
 Vue.use(Router);
 
@@ -36,6 +37,11 @@ export default new Router({
       path: '/LoadPreviousScenario',
       name: 'loadPreviousScenario',
       component: LoadPreviousScenario,
+    },
+    {
+      path: '/ViewResults',
+      name: 'viewResults',
+      component: ViewResults,
     },
   ],
 });
