@@ -36,8 +36,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 numEntriesPerTeamPerDay,
                 hoursPerEntryPerTeam,
                 hoursPerExitPerTeam,
-                personnelHourlyRate,
-                new MockWorkDaysCalculator()
+                personnelHourlyRate
                 );
         }
 
@@ -45,7 +44,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         public void CalculateCost()
         {
             var _numberTeams= 2.0;
-            Assert.AreEqual(38700.0, Calculator.CalculateEntExitLaborCost(_numberTeams), 1e-6, "Incorrect cost calculated");
+            var workDays = 12.0;
+            Assert.AreEqual(154800.0, Calculator.CalculateEntExitLaborCost(_numberTeams, workDays), 1e-6, "Incorrect cost calculated");
         }
     }
 }

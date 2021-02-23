@@ -308,14 +308,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             
             Assert.AreEqual(12.0, results.decontaminationResults.workDays, 1e-6, "Incorrect work days calculated for decontamination");
             Assert.AreEqual(14.0, results.decontaminationResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for decontamination");
-            Assert.AreEqual(328140.01314134384, results.decontaminationResults.phaseCost, 1e-6, "Incorrect phase cost calculated for decontamination"); //TODO:: fix with hand calcs
+            Assert.AreEqual(483892.107797327, results.decontaminationResults.phaseCost, 1e-6, "Incorrect phase cost calculated for decontamination");
             
             Assert.AreEqual(38.0037294602509, results.incidentCommandResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for incident command");
             Assert.AreEqual(469821.181459811, results.incidentCommandResults.phaseCost, 1e-6, "Incorrect phase cost calculated for incident command");
 
             Assert.AreEqual(44000.9323650627, results.otherResults.otherCosts, 1e-6, "Incorrect cost calculated for other costs");
 
-            Assert.AreEqual(1364432.1063000283, results.generalResults.totalCost, 1e-6, "Incorrect total cost calculated");
+            Assert.AreEqual(1520184.20095601, results.generalResults.totalCost, 1e-6, "Incorrect total cost calculated");
         }
     }
 }
