@@ -18,7 +18,7 @@
                   </v-text-field>
                   <v-btn-toggle>
                     <v-btn-toggle v-model="numberRealizations" dense background-color="primary">
-                      <v-btn small v-for="runCount in presetRunCounts" :key="runCount" :value="runCount">
+                      <v-btn small tile v-for="runCount in presetRunCounts" :key="runCount" :value="runCount">
                         {{ runCount }}
                       </v-btn>
                     </v-btn-toggle>
@@ -33,6 +33,10 @@
               </v-row>
             </v-container>
           </v-form>
+          <v-container>
+            <v-progress-linear :value="currentJob.progress" class="mb-1"></v-progress-linear>
+            <span>Status: {{ currentJob.status }}</span>
+          </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -111,13 +115,16 @@ export default class RunScenario extends Vue {
 
   // eslint-disable-next-line class-methods-use-this
   validationRulesRealizations(value: number): boolean | string {
+    if (!value) {
+      return 'Value is required';
+    }
     if (value < 1) {
       return 'Value must be at least 1';
     }
     if (value > 1000) {
       return 'Value must be less than 1000';
     }
-    if (/\./.test(value.toString())) {
+    if (value % 1 !== 0) {
       return 'Value must be a whole number';
     }
     return true;
