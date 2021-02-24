@@ -132,8 +132,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                                 //Set indoor parameter values
                                 var indoorCalculatorManager = new CalculatorManager(
                                     parameterManager.SetCharacterizationSamplingParameters(),
-                                    parameterManager.SetSourceReductionParameters(building.Value),
-                                    parameterManager.SetDecontaminationParameters(building.Value),
+                                    parameterManager.SetSourceReductionParameters(building.Value, DecontaminationPhase.Indoor),
+                                    parameterManager.SetDecontaminationParameters(building.Value, DecontaminationPhase.Indoor),
                                     parameterManager.SetIncidentCommandParameters(),
                                     parameterManager.SetOtherParameters(),
                                     parameterManager.SetCostParameters());
@@ -152,8 +152,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         //Set outdoor parameter values
                         var outdoorCalculatorManager = new CalculatorManager(
                             parameterManager.SetCharacterizationSamplingParameters(),
-                            parameterManager.SetSourceReductionParameters(scenarios[s].OutdoorAreasContaminated),
-                            parameterManager.SetDecontaminationParameters(scenarios[s].OutdoorAreasContaminated),
+                            parameterManager.SetSourceReductionParameters(scenarios[s].OutdoorAreasContaminated, DecontaminationPhase.Outdoor),
+                            parameterManager.SetDecontaminationParameters(scenarios[s].OutdoorAreasContaminated, DecontaminationPhase.Outdoor),
                             parameterManager.SetIncidentCommandParameters(),
                             parameterManager.SetOtherParameters(),
                             parameterManager.SetCostParameters());
@@ -171,8 +171,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         //Set underground parameter values
                         var undergroundCalculatorManager = new CalculatorManager(
                             parameterManager.SetCharacterizationSamplingParameters(),
-                            parameterManager.SetSourceReductionParameters(scenarios[s].UndergroundBuildingsContaminated),
-                            parameterManager.SetDecontaminationParameters(scenarios[s].UndergroundBuildingsContaminated),
+                            parameterManager.SetSourceReductionParameters(scenarios[s].UndergroundBuildingsContaminated, DecontaminationPhase.Underground),
+                            parameterManager.SetDecontaminationParameters(scenarios[s].UndergroundBuildingsContaminated, DecontaminationPhase.Underground),
                             parameterManager.SetIncidentCommandParameters(),
                             parameterManager.SetOtherParameters(),
                             parameterManager.SetCostParameters());

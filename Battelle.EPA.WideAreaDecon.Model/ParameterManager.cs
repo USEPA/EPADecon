@@ -112,10 +112,12 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 ppeRequired);
         }
 
-        public SourceReductionParameters SetSourceReductionParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails)
+        public SourceReductionParameters SetSourceReductionParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails, DecontaminationPhase phase)
         {
+            var surfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(phase);
+
             var contaminationArea = new Dictionary<SurfaceType, double>();
-            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            foreach (SurfaceType surface in surfaces)
             {
                 contaminationArea.Add(surface, scenarioDefinitionDetails[surface].AreaContaminated);
             }
@@ -162,7 +164,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 ppeRequired);
         }
 
-        public DecontaminationParameters SetDecontaminationParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails)
+        public DecontaminationParameters SetDecontaminationParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails, DecontaminationPhase phase)
         {
             var efficacyValues = new Dictionary<SurfaceType, double>();
             var applicationMethods = new Dictionary<SurfaceType, ApplicationMethod>();
@@ -170,7 +172,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
             var treatmentDaysPerAm = new Dictionary<ApplicationMethod, double>();
             var agentVolume = new Dictionary<SurfaceType, double>();
 
-            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            var surfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(phase);
+
+            foreach (SurfaceType surface in surfaces)
             {
                 // TODO: THESE WILL BOTH NEED TO BE FIXED
                 efficacyValues.Add(surface, _efficacyParameters.First(p => p.MetaData.Name == "Aerosol Efficacy").CreateDistribution().Draw());
