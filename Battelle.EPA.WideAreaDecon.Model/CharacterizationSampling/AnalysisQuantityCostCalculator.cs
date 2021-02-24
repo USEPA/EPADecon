@@ -25,7 +25,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         public double CalculateAnalysisQuantityCost(double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
             var contaminationArea = new Dictionary<SurfaceType, double>();
-            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            foreach (SurfaceType surface in _areaContaminated.Keys)
             {
                 contaminationArea.Add(surface, _areaContaminated[surface].AreaContaminated);
             }
