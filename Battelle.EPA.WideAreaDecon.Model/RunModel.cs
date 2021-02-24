@@ -92,7 +92,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 parameters.decontaminationParameters.numTeams,
                 parameters.otherParameters.roundtripDays,
                 parameters.decontaminationParameters.ppeRequired,
-                areaContaminated);
+                areaContaminated,
+                parameters.decontaminationParameters.applicationMethods);
 
             results.incidentCommandResults.onSiteDays = incidentCommandCostCalculator.CalculateTime(
                 results.characterizationSamplingResults.workDays,

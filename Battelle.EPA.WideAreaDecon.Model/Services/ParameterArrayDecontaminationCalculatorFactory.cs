@@ -51,8 +51,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 dcParameters.numEntriesPerTeamPerDay,
                 dcParameters.hoursPerEntryPerTeam,
                 dcParameters.hoursPerExitPerTeam,
-                costParameters.hourlyRate,
-                Calculator_workDays
+                costParameters.hourlyRate
             );
 
             Calculator_entEx = new EntranceExitCostCalculator(

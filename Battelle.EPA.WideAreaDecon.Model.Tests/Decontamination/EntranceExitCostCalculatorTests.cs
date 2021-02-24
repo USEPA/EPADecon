@@ -8,7 +8,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
     internal class MockEntExitLaborCostCalculator : IEntExitLaborCostCalculator
     {
-        public double CalculateEntExitLaborCost(double _numberTeams)
+        public double CalculateEntExitLaborCost(double _numberTeams, double workDays)
         {
             return 38700.0;
         }

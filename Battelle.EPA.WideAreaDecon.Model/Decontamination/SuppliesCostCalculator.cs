@@ -25,24 +25,41 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _deconAgentVolumeBySurface = deconAgentVolumeBySurface;
         }
 
-        public double NonFoggingSuppliesCostCalculator(Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double NonFoggingSuppliesCostCalculator(
+            Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
+            Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
         {
             var surfaceContamination = new Dictionary<SurfaceType, double>();
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
-                surfaceContamination.Add(surface, areaContaminated[surface].AreaContaminated);
+                if (treatmentMethods[surface] != ApplicationMethod.Fogging && treatmentMethods[surface] != ApplicationMethod.Fumigation)
+                {
+                    surfaceContamination.Add(surface, areaContaminated[surface].AreaContaminated);
+                }
+                else
+                {
+                    surfaceContamination.Add(surface, 0.0);
+                }
             }
 
-            var totalContaminationArea = areaContaminated.Skip(1).Sum(x => x.Value.AreaContaminated);
+            var nonFoggingContaminationArea = surfaceContamination.Values.Sum();
             var agentNeededPerTreatment = _deconAgentVolumeBySurface.Values.Zip(surfaceContamination.Values, (x, y) => x * y).Sum();
-            return (_deconMaterialsCost * totalContaminationArea) + ((agentNeededPerTreatment) * _deconAgentCostPerVolume);
+            return (_deconMaterialsCost * nonFoggingContaminationArea) + ((agentNeededPerTreatment) * _deconAgentCostPerVolume);
         }
 
-        public double FoggingSuppliesCostCalculator(Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double FoggingSuppliesCostCalculator(
+            Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
+            Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
         {
-            var totalContaminationArea = areaContaminated.Skip(1).Sum(x => x.Value.AreaContaminated);
-            var roomHeight = 9.0; //THIS NEEDS TO BE REMOVED IN THE FUTURE
-            return _deconMaterialsCost + (totalContaminationArea * roomHeight * _deconAgentVolume * _deconAgentCostPerVolume);
+            var foggingSuppliesCost = 0.0;
+
+            if (treatmentMethods.ContainsValue(ApplicationMethod.Fogging) || treatmentMethods.ContainsValue(ApplicationMethod.Fumigation))
+            {
+                var totalContaminationArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
+                foggingSuppliesCost = (_deconMaterialsCost * totalContaminationArea) + (totalContaminationArea * GlobalConstants.RoomHeight * _deconAgentVolume * _deconAgentCostPerVolume);
+            }
+
+            return foggingSuppliesCost;
         }
     }
 }
