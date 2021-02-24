@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
@@ -344,10 +345,10 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             foreach (SurfaceType surface in treatmentMethods.Keys.ToList())
             {
-                var methodName = treatmentMethods[surface].ToString();
-
+                //var methodName = treatmentMethods[surface].ToString();
+                var methodName = Regex.Replace(treatmentMethods[surface].ToString(), "([a-z])([A-Z])", "$1 $2");
                 var metaDataName = methodName + " Efficacy by Surface";
-
+                var values = Enum.GetValues(typeof(ApplicationMethod));
                 try {
                     var efficacyData = _efficacyParameters.First(p => p.MetaData.Name == metaDataName) as EnumeratedParameter<SurfaceType>;
                     efficacyValues.Add(surface, efficacyData.Values[surface].CreateDistribution().Draw());
