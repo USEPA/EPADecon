@@ -19,7 +19,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
         public Dictionary<SurfaceType, double> CalculateEfficacy(Dictionary<SurfaceType, double> surfaceSporeLoading)
         {
-            foreach (SurfaceType surface in surfaceSporeLoading.Keys)
+            foreach (SurfaceType surface in surfaceSporeLoading.Keys.ToList())
             {
                 surfaceSporeLoading[surface] = surfaceSporeLoading[surface] > _efficacyValues[surface] ? 
                     surfaceSporeLoading[surface] -= _efficacyValues[surface] : 0.0;

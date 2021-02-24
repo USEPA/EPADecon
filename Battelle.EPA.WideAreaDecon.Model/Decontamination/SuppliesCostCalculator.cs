@@ -30,7 +30,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
         {
             var surfaceContamination = new Dictionary<SurfaceType, double>();
-            foreach (SurfaceType surface in areaContaminated.Keys)
+            foreach (SurfaceType surface in areaContaminated.Keys.ToList())
             {
                 if (treatmentMethods[surface] != ApplicationMethod.Fogging && treatmentMethods[surface] != ApplicationMethod.Fumigation)
                 {
