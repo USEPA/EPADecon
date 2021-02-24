@@ -167,22 +167,16 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
         public DecontaminationParameters SetDecontaminationParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails, DecontaminationPhase phase)
         {
-            var efficacyValues = new Dictionary<SurfaceType, double>();
-            var applicationMethods = new Dictionary<SurfaceType, ApplicationMethod>();
+            var surfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(phase);
+
+            var applicationMethods = SetTreatmentMethods(surfaces);
+            var efficacyValues = SetEfficacyValues(applicationMethods);
             var initialSporeLoading = new Dictionary<SurfaceType, double>();
             var treatmentDaysPerAm = new Dictionary<ApplicationMethod, double>();
             var agentVolume = new Dictionary<SurfaceType, double>();
 
-            var surfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(phase);
-
-            var aerosolEfficacy = _efficacyParameters.First(p => p.MetaData.Name == "Aerosol Efficacy") as EnumeratedParameter<ApplicationMethod>;
-
             foreach (SurfaceType surface in surfaces)
             {
-                // TODO: THESE WILL BOTH NEED TO BE FIXED
-                efficacyValues.Add(surface, aerosolEfficacy.Values[ApplicationMethod.Aerosol].CreateDistribution().Draw());
-                applicationMethods.Add(surface, ApplicationMethod.Fogging);
-
                 initialSporeLoading.Add(surface, scenarioDefinitionDetails[surface].Loading);
                 agentVolume.Add(surface, _decontaminationParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume of Agent Applied").CreateDistribution().Draw());
             }
@@ -326,6 +320,47 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 rentalCarCostPerDay,
                 roundtripTicketCostPerPerson,
                 perDiem);
+        }
+
+        private Dictionary<SurfaceType, ApplicationMethod> SetTreatmentMethods(SurfaceType[] surfaces)
+        {
+            Random random = new Random();
+            var treatmentMethods = new Dictionary<SurfaceType, ApplicationMethod>();
+
+            foreach (SurfaceType surface in surfaces)
+            {
+                var applicableMethods = ApplicableApplicationMethodHelper.GetApplicationMethodsForSurface(surface);
+                var methodIndex = random.Next(0, applicableMethods.Length);
+
+                treatmentMethods.Add(surface, applicableMethods[methodIndex]);
+            }
+
+            return treatmentMethods;
+        }
+
+        private Dictionary<SurfaceType, double> SetEfficacyValues(Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
+        {
+            var efficacyValues = new Dictionary<SurfaceType, double>();
+
+            foreach (SurfaceType surface in treatmentMethods.Keys.ToList())
+            {
+                var methodName = treatmentMethods[surface].ToString();
+
+                var metaDataName = methodName + " Efficacy by Surface";
+
+                try {
+                    var efficacyData = _efficacyParameters.First(p => p.MetaData.Name == metaDataName) as EnumeratedParameter<SurfaceType>;
+                    efficacyValues.Add(surface, efficacyData.Values[surface].CreateDistribution().Draw());
+                }
+                catch {
+                    metaDataName = methodName + " Efficacy";
+                    var efficacyData = _efficacyParameters.First(p => p.MetaData.Name == metaDataName) as EnumeratedParameter<ApplicationMethod>;
+
+                    efficacyValues.Add(surface, efficacyData.Values[treatmentMethods[surface]].CreateDistribution().Draw());
+                }
+            }
+
+            return efficacyValues;
         }
     }
 }
