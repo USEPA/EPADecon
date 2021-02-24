@@ -3,6 +3,7 @@ import IRootState from '@/interfaces/store/IRootState';
 import ICreateJobRequestPayload from '@/interfaces/store/jobs/ICreateJobRequestPayload';
 import IJobProvider from '@/interfaces/providers/IJobProvider';
 import JobStatus from '@/enums/jobs/jobStatus';
+import IJobResult from '@/interfaces/jobs/results/IJobResultRealization';
 
 const jobRequestActions: ActionTree<IRootState, IRootState> = {
   createJobRequest: (
@@ -29,6 +30,7 @@ const jobRequestActions: ActionTree<IRootState, IRootState> = {
   getCurrentJobResults: async ({ commit, state }, jobProvider: IJobProvider) => {
     const job = await jobProvider.getJob(state.currentJob.id);
     if (job) {
+      job.results = job.results as IJobResult[];
       commit('setCurrentJob', job);
     }
   },
