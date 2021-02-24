@@ -38,7 +38,7 @@
           <tbody v-for="(phaseResults, phaseName, index) in results[0]" :key="phaseName">
             <tr>
               <td :colspan="displayedRunIndexes.length + 1" class="text-subtitle-1 font-weight-medium">
-                {{ phaseName | addSpaces }}
+                {{ phaseName | startCase | addSpaces }}
               </td>
             </tr>
             <tr v-for="(_, item) in phaseResults" :key="item">
@@ -50,12 +50,13 @@
           </tbody>
         </template>
       </v-simple-table>
-      <div v-else>Please select at least one realization to display run summary</div>
+      <v-card-text v-else>Please select at least one realization to display run summary</v-card-text>
     </v-card>
   </v-container>
 </template>
 
 <script lang="ts">
+import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 
@@ -66,7 +67,7 @@ import { Component, Prop } from 'vue-property-decorator';
   },
 })
 export default class RealizationSummary extends Vue {
-  @Prop({ required: true }) results!: any[];
+  @Prop({ required: true }) results!: IPhaseResultSet[];
 
   @Prop({ required: true }) location!: boolean;
 
@@ -94,11 +95,6 @@ export default class RealizationSummary extends Vue {
   removeRunFromTable(runIndex: number): void {
     const index = this.displayedRunIndexes.indexOf(runIndex);
     this.displayedRunIndexes.splice(index, 1);
-  }
-
-  // TODO implement CSV export
-  exportResults(): void {
-    console.log(this.results);
   }
 
   // eslint-disable-next-line class-methods-use-this

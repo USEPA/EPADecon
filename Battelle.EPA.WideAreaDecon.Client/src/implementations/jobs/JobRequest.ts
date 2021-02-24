@@ -2,6 +2,7 @@ import JobStatus from '@/enums/jobs/jobStatus';
 import IJobRequest from '@/interfaces/jobs/IJobRequest';
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
+import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
 
 @Serializable()
 export default class JobRequest implements IJobRequest {
@@ -27,7 +28,7 @@ export default class JobRequest implements IJobRequest {
   @JsonProperty()
   seed2: number;
 
-  results?: any;
+  results?: IJobResultRealization[];
 
   constructor(
     status: JobStatus = JobStatus.new,
