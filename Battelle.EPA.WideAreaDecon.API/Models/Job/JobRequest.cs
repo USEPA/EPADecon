@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.Job
 {
+    /// <summary>
+    /// Contains all the information related to a job
+    /// </summary>
     public class JobRequest
     {
         [JsonProperty]

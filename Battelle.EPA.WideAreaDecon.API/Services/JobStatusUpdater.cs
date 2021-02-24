@@ -5,9 +5,13 @@ using Battelle.EPA.WideAreaDecon.API.Models.Job;
 using Battelle.EPA.WideAreaDecon.API.Hubs;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
 using Microsoft.AspNetCore.SignalR;
+using System.Threading.Tasks;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
+    /// <summary>
+    /// Updates a job's status and alerts hub clients of change
+    /// </summary>
     public class JobStatusUpdater
     {
         private readonly JobStatus[] _initialJobStatuses = new[] { JobStatus.New, JobStatus.Queued };
@@ -18,19 +22,28 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
         private readonly IHubContext<JobStatusHub, IJobStatusHub> _hub;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="hub">The hub context</param>
         public JobStatusUpdater(IHubContext<JobStatusHub, IJobStatusHub> hub)
         {
             _hub = hub;
         }
 
-        public void UpdateJobStatus(JobRequest job, JobStatus newJobStatus)
+        /// <summary>
+        /// Updates job status
+        /// </summary>
+        /// <param name="job">The job to be updated</param>
+        /// <param name="newJobStatus">The new job status</param>
+        public async Task UpdateJobStatus(JobRequest job, JobStatus newJobStatus)
         {
             var oldJobStatus = job.Status;
             job.Status = newJobStatus;
             CheckIfJobStarted(job, oldJobStatus);
             CheckIfJobCompleted(job, oldJobStatus);
 
-            _hub.Clients.Group($"{job.Id}").JobStatusChanged(job.Id, job.Status).Wait();
+            await _hub.Clients.Group($"{job.Id}").JobStatusChanged(job.Id, job.Status);
         }
 
         private void CheckIfJobStarted(JobRequest job, JobStatus oldStatus)
