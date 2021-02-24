@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
 using Battelle.EPA.WideAreaDecon.API.Services;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.SignalR;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
 
@@ -41,6 +38,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Hubs
                 }
 
                 await Groups.AddToGroupAsync(Context.ConnectionId, $"{jobId}");
+                //await Clients.Group($"{jobId}").JobStatusChanged(jobId, job.Status);
             }
             catch (Exception e)
             {
@@ -101,7 +99,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Hubs
                 }
                 _statusUpdater.UpdateJobStatus(oldJob, newJobStatus);
 
-                _jobManager.UpdateJob(oldJob);
+                //_jobManager.UpdateJob(oldJob);
                 Clients.Group($"{jobId}").JobStatusChanged(jobId, newJobStatus);
             }
             catch (Exception e)

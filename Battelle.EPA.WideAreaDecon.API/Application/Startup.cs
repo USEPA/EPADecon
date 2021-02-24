@@ -163,6 +163,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             services.AddSingleton<IJobManager, JobManager>();
 
             services.AddTransient<JobStatusUpdater>();
+            services.AddTransient<JobProgressUpdater>();
         }
 
         private void ConfigureEndpoints(IEndpointRouteBuilder endpoints)

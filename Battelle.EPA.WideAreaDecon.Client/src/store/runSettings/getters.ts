@@ -5,6 +5,10 @@ const runSettingsGetters: GetterTree<IRootState, IRootState> = {
   canRun: (state) => {
     return state.scenarioDefinition.allParametersValid() && state.scenarioParameters.allParametersValid();
   },
+
+  hasResults: (state) => {
+    return state.currentJob.results !== undefined;
+  },
 };
 
 export default runSettingsGetters;

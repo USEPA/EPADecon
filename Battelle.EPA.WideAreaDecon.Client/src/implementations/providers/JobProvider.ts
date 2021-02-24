@@ -27,4 +27,9 @@ export default class JobProvider implements IJobProvider {
       .then((response) => `${response.data}`)
       .catch(() => '');
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  async getJob(id: string): Promise<JobRequest> {
+    return Axios.get<JobRequest>(`/api/JobResuest/${id}`).then((response) => response.data);
+  }
 }
