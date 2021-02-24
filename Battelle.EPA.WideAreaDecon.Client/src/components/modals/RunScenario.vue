@@ -40,7 +40,17 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn outlined color="primary darken-1" text @click="runClick" :disabled="!canRun || isRunning"> Run </v-btn>
+          <v-btn
+            v-if="!hasResults"
+            outlined
+            color="primary darken-1"
+            text
+            @click="runClick"
+            :disabled="!canRun || isRunning"
+          >
+            Run
+          </v-btn>
+          <v-btn v-else outlined color="primary darken-1" text @click="viewResults"> View Results </v-btn>
           <v-btn outlined color="primary darken-1" text @click="showModal = false"> Cancel </v-btn>
         </v-card-actions>
       </v-card>
@@ -75,6 +85,8 @@ export default class RunScenario extends Vue {
   @Action UpdateJobProgress!: (progress: number) => void;
 
   @Getter canRun!: boolean;
+
+  @Getter hasResults!: boolean;
 
   @State currentJob!: JobRequest;
 
@@ -147,6 +159,11 @@ export default class RunScenario extends Vue {
       return 'Value must be a whole number';
     }
     return true;
+  }
+
+  viewResults(): void {
+    this.$router.push({ name: 'viewResults' });
+    this.showModal = false;
   }
 }
 </script>

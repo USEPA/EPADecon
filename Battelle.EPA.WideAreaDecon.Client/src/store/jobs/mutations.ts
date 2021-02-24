@@ -8,10 +8,6 @@ const currentJobMutations: MutationTree<IRootState> = {
     state.currentJob = newJob;
   },
 
-  setJobResults(state: IRootState, results: any) {
-    state.currentJob.results = results;
-  },
-
   updateJobId(state: IRootState, id: string) {
     state.currentJob.id = id;
   },
