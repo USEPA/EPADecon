@@ -44,7 +44,7 @@ export default new Router({
       name: 'viewResults',
       component: ViewResults,
       beforeEnter: (to: Route, from: Route, next: NavigationGuardNext) => {
-        if (!store.state.hasResults) {
+        if (!store.getters.hasResults) {
           next({ name: 'defineScenario' });
         }
         next();
