@@ -127,20 +127,23 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         var buildingResults = new Dictionary<BuildingCategory, Results>();
                         foreach (var building in scenarios[s].IndoorBuildingsContaminated)
                         {
-                            //Set indoor parameter values
-                            var indoorCalculatorManager = new CalculatorManager(
-                                parameterManager.SetCharacterizationSamplingParameters(),
-                                parameterManager.SetSourceReductionParameters(building.Value),
-                                parameterManager.SetDecontaminationParameters(building.Value),
-                                parameterManager.SetIncidentCommandParameters(),
-                                parameterManager.SetOtherParameters(),
-                                parameterManager.SetCostParameters());
+                            if (building.Value.Count > 0)
+                            {
+                                //Set indoor parameter values
+                                var indoorCalculatorManager = new CalculatorManager(
+                                    parameterManager.SetCharacterizationSamplingParameters(),
+                                    parameterManager.SetSourceReductionParameters(building.Value),
+                                    parameterManager.SetDecontaminationParameters(building.Value),
+                                    parameterManager.SetIncidentCommandParameters(),
+                                    parameterManager.SetOtherParameters(),
+                                    parameterManager.SetCostParameters());
 
-                            var indoorCalculatorCreator = indoorCalculatorManager.CreateCalculatorFactories();
+                                var indoorCalculatorCreator = indoorCalculatorManager.CreateCalculatorFactories();
 
-                            var indoorModelRun = indoorCalculatorCreator.GetCalculators();
+                                var indoorModelRun = indoorCalculatorCreator.GetCalculators();
 
-                            buildingResults.Add(building.Key, indoorModelRun.CalculateCost(indoorCalculatorManager, building.Value));
+                                buildingResults.Add(building.Key, indoorModelRun.CalculateCost(indoorCalculatorManager, building.Value));
+                            }
                         }
 
                         realizationResults.Add(DecontaminationPhase.Indoor, buildingResults);
