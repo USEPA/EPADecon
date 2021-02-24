@@ -6,6 +6,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
@@ -129,15 +130,15 @@ namespace Battelle.EPA.WideAreaDecon.Model
             var respiratorsPerPerson = _sourceReductionParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Number of Respirators per Person").CreateDistribution().Draw();
             var hoursEntering = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Hours per Entry, per Team").CreateDistribution().Draw();
             var hoursExiting = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Hours per Entry, per Team").CreateDistribution().Draw();
-            var numTeams = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Number of teams required").CreateDistribution().Draw();
+            var numTeams = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
 
             var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
             {
-                [PersonnelLevel.OSC] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL1] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-1)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL2] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-2)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL3] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-3)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL4] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
+                [PersonnelLevel.OSC] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Per Team (OSC)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL1] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Per Team (PL-1)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL2] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Per Team (PL-2)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL3] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Per Team (PL-3)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL4] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Per Team (PL-4)").CreateDistribution().Draw()
             };
 
             var personnelOverheadDays = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Personnel Overhead Days").CreateDistribution().Draw();
@@ -174,10 +175,12 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             var surfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(phase);
 
+            var aerosolEfficacy = _efficacyParameters.First(p => p.MetaData.Name == "Aerosol Efficacy") as EnumeratedParameter<ApplicationMethod>;
+
             foreach (SurfaceType surface in surfaces)
             {
                 // TODO: THESE WILL BOTH NEED TO BE FIXED
-                efficacyValues.Add(surface, _efficacyParameters.First(p => p.MetaData.Name == "Aerosol Efficacy").CreateDistribution().Draw());
+                efficacyValues.Add(surface, aerosolEfficacy.Values[ApplicationMethod.Aerosol].CreateDistribution().Draw());
                 applicationMethods.Add(surface, ApplicationMethod.Fogging);
 
                 initialSporeLoading.Add(surface, scenarioDefinitionDetails[surface].Loading);
@@ -297,7 +300,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             };
 
             var wipeAnalysisCost = _costParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Cost Per Wipe Sample Analyzed").CreateDistribution().Draw();
-            var hepaAnalysisCost = _costParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Cost of HEPA Sample Analyzed").CreateDistribution().Draw();
+            var hepaAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost of HEPA Sample Analyzed").CreateDistribution().Draw();
             var vacuumRentalCostPerDay = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "HEPA Vacuum Rental per Day").CreateDistribution().Draw();
             var costPerMassOfMaterialRemoved = _costParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Material Removal Per Surface Area").CreateDistribution().Draw();
             var deconAgentCostPerVolume = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost of Decon Agent").CreateDistribution().Draw();

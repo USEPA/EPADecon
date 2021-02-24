@@ -13,9 +13,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models;
 using Microsoft.AspNetCore.SignalR;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
@@ -182,7 +180,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         var undergroundModelRun = undergroundCalculatorCreator.GetCalculators();
 
                         //Run and store realization results for underground model run
-                        realizationResults.Add(DecontaminationPhase.Outdoor, undergroundModelRun.CalculateCost(
+                        realizationResults.Add(DecontaminationPhase.Underground, undergroundModelRun.CalculateCost(
                             undergroundCalculatorManager,
                             scenarios[s].UndergroundBuildingsContaminated));
 
