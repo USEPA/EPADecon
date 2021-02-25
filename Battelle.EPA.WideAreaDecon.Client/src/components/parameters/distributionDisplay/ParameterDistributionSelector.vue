@@ -44,7 +44,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Watch } from 'vue-property-decorator';
-import { State } from 'vuex-class';
+import { Action, Getter, State } from 'vuex-class';
 import ParameterType from '@/enums/parameter/parameterType';
 import NullDisplay from '@/components/parameters/distributionDisplay/NullDisplay.vue';
 import UnknownDisplay from '@/components/parameters/distributionDisplay/UnknownDisplay.vue';
@@ -91,11 +91,22 @@ import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDi
 export default class ParameterDistributionSelector extends Vue {
   @State currentSelectedParameter!: ParameterWrapper;
 
+  @Getter hasResults!: boolean;
+
+  @Action resetCurrentJobRequest!: () => void;
+
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
   @Watch('currentSelectedParameter')
   onCurrentSelectedParameterChange(): void {
     this.currentDistType = this.currentSelectedParameter.type;
+  }
+
+  @Watch('parameterHasChanged')
+  onParameterChanged(newValue: boolean): void {
+    if (newValue && this.hasResults) {
+      this.resetCurrentJobRequest();
+    }
   }
 
   currentDistType = ParameterType.constant;
