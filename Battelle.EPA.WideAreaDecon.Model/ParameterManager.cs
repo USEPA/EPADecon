@@ -8,6 +8,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
@@ -345,8 +346,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             foreach (SurfaceType surface in treatmentMethods.Keys.ToList())
             {
-                //var methodName = treatmentMethods[surface].ToString();
-                var methodName = Regex.Replace(treatmentMethods[surface].ToString(), "([a-z])([A-Z])", "$1 $2");
+                ApplicationMethod tmp = treatmentMethods[surface];
+                string methodName = tmp.GetStringValue();
                 var metaDataName = methodName + " Efficacy by Surface";
                 var values = Enum.GetValues(typeof(ApplicationMethod));
                 try {
