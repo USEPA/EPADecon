@@ -90,7 +90,7 @@
           <span>{{ item.tooltip.enabled }}</span>
         </v-tooltip>
 
-        <v-tooltip bottom :key="item.title" v-else color="error">
+        <v-tooltip bottom :key="`${item.title}-disabled`" v-else color="error">
           <template v-slot:activator="{ on }">
             <div v-on="on" class="v-tab disabled-tool-tip">
               <v-tab value="true" :to="item.link" :disabled="!item.enabled">
