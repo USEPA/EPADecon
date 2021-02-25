@@ -56,7 +56,13 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 areaContaminated);
 
             results.characterizationSamplingResults.onSiteDays = results.characterizationSamplingResults.workDays +
-                parameters.characterizationSamplingParameters.personnelOverheadDays;
+                parameters.characterizationSamplingParameters.personnelOverheadDays +
+                characterizationSamplingCostCalculator.CalculatePhaseLag(
+                    parameters.characterizationSamplingParameters.numLabs,
+                    parameters.characterizationSamplingParameters.resultTransmissionToIC,
+                    parameters.characterizationSamplingParameters.fractionSampledWipe,
+                    parameters.characterizationSamplingParameters.fractionSampledHepa,
+                    areaContaminated);
 
             results.characterizationSamplingResults.phaseCost = characterizationSamplingCostCalculator.CalculateCost(
                 results.characterizationSamplingResults.workDays,

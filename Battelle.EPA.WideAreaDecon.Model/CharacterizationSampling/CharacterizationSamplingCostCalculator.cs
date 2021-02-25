@@ -12,10 +12,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         public SuppliesCostCalculator Calculator_supplies { get; set; }
         public EntrancesExitsCostCalculator Calculator_entEx { get; set; }
         public AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
+        public PhaseLagCalculator Calculator_phaseLag { get; set; }
 
         public double CalculateTime(double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
             return Calculator_supplies.CalculateWorkDays(_numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
+        }
+
+        public double CalculatePhaseLag(int _numberLabs, double _sampleTimeTransmitted, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
+        {
+            return Calculator_phaseLag.CalculatePhaseLagTime(_numberLabs, _sampleTimeTransmitted, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
         }
 
         public double CalculateCost(double workDays, double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, double personnelRoundTripDays,
