@@ -22,7 +22,11 @@
       </v-col>
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
-    <component :key="componentKey" :is="display.distComponent" :parameter-value="currentSelectedParameter.current">
+    <component
+      :key="currentSelectedParameter.path"
+      :is="display.distComponent"
+      :parameter-value="currentSelectedParameter.current"
+    >
     </component>
     <v-container>
       <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
@@ -94,8 +98,6 @@ export default class ParameterDistributionSelector extends Vue {
     this.currentDistType = this.currentSelectedParameter.type;
   }
 
-  componentKey = 0;
-
   currentDistType = ParameterType.constant;
 
   distNames = changeableDistributionTypes;
@@ -121,7 +123,6 @@ export default class ParameterDistributionSelector extends Vue {
   resetParameter(): void {
     this.$store.commit('resetCurrentSelectedParameter');
     this.currentDistType = this.currentSelectedParameter.type;
-    this.componentKey += 1;
   }
 
   onDistributionTypeChange(): void {
