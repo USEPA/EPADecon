@@ -14,6 +14,7 @@
                     type="number"
                     :rules="[validationRulesRealizations]"
                     hide-details="auto"
+                    :disabled="isRunning || hasResults"
                   >
                   </v-text-field>
                   <v-btn-toggle>
@@ -25,10 +26,24 @@
                   </v-btn-toggle>
                 </v-col>
                 <v-col>
-                  <v-text-field label="Seed 1" v-model.number="seed1" type="number" hide-details="auto"> </v-text-field>
+                  <v-text-field
+                    label="Seed 1"
+                    v-model.number="seed1"
+                    type="number"
+                    hide-details="auto"
+                    :disabled="isRunning || hasResults"
+                  >
+                  </v-text-field>
                 </v-col>
                 <v-col>
-                  <v-text-field label="Seed 2" v-model.number="seed2" type="number" hide-details="auto"> </v-text-field>
+                  <v-text-field
+                    label="Seed 2"
+                    v-model.number="seed2"
+                    type="number"
+                    hide-details="auto"
+                    :disabled="isRunning || hasResults"
+                  >
+                  </v-text-field>
                 </v-col>
               </v-row>
             </v-container>
