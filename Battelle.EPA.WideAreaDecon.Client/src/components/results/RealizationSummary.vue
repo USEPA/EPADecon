@@ -75,7 +75,7 @@ export default class RealizationSummary extends Vue {
 
   displayedRunIndexes: number[] = [];
 
-  get displayRows(): any[] {
+  get displayRows(): unknown[] {
     if (!this.displayedRunIndexes.length) {
       return [];
     }
@@ -84,7 +84,6 @@ export default class RealizationSummary extends Vue {
     });
   }
 
-  // TODO implement adding runs to table
   addRunToTable(): void {
     const run = this.results[this.runNumber - 1];
     if (run !== undefined && !this.displayedRunIndexes.includes(this.runNumber - 1)) {

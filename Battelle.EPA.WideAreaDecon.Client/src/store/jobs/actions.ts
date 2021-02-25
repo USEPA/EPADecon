@@ -4,6 +4,8 @@ import ICreateJobRequestPayload from '@/interfaces/store/jobs/ICreateJobRequestP
 import IJobProvider from '@/interfaces/providers/IJobProvider';
 import JobStatus from '@/enums/jobs/jobStatus';
 import IJobResult from '@/interfaces/jobs/results/IJobResultRealization';
+import JobRequest from '@/implementations/jobs/JobRequest';
+import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 
 const jobRequestActions: ActionTree<IRootState, IRootState> = {
   createJobRequest: (
@@ -33,6 +35,11 @@ const jobRequestActions: ActionTree<IRootState, IRootState> = {
       job.results = job.results as IJobResult[];
       commit('setCurrentJob', job);
     }
+  },
+
+  resetCurrentJobRequest: ({ commit }) => {
+    const job = new JobRequest(JobStatus.unknown, new ParameterWrapperList(), new ParameterWrapperList(), 0, 0, 0);
+    commit('setCurrentJob', job);
   },
 
   UpdateJobStatus: ({ commit }, newStatus: JobStatus) => {

@@ -39,11 +39,6 @@ export default class ViewResults extends Vue {
 
   tab = 0;
 
-  // // TODO implement CSV export
-  // exportResults(): void {
-  //   console.log(this.mockResults);
-  // }
-
   getResultsForLocation(location: string): IPhaseResultSet[] {
     if (Object.keys(BuildingCategory).includes(location)) {
       return this.results.map((realization) => realization.Indoor[location]);

@@ -40,7 +40,7 @@ export default class DefaultNavigationItemProvider implements INavigationItemPro
         'View Results',
         'fa-building',
         '/ViewResults',
-        store.state.hasResults,
+        false,
         {
           enabled: 'View the results from the latest model run',
           disabled: 'No results - run model to generate results...',
