@@ -63,6 +63,7 @@ export default class JobProvider implements IJobProvider {
 
     const indoorResults = results.map((r) =>
       Object.entries(r.Indoor)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .map(([b, res]) => ['', b, ...Object.values(res).flatMap((ps: any) => Object.values(ps))])
         .join('\n'),
     );
