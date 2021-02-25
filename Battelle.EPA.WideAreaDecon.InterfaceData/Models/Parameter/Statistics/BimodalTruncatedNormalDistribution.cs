@@ -77,7 +77,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
                 Stats.TruncatedNormalDistribution child1 = new Stats.TruncatedNormalDistribution(Mean1.Value, StdDev1.Value, Min.Value, Max.Value);
                 Stats.TruncatedNormalDistribution child2 = new Stats.TruncatedNormalDistribution(Mean2.Value, StdDev2.Value, Min.Value, Max.Value);
 
-                //return new Stats.BimodalTruncatedNormalDistribution(child1, child2);
+                return new Stats.BimodalTruncatedNormalDistribution(child1, child2);
             }
             throw new ArgumentNullException();
         }
