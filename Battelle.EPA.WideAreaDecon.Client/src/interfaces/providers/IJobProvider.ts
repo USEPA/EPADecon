@@ -11,4 +11,5 @@ export default interface IJobProvider {
   ): JobRequest;
   postJobRequest(job: JobRequest): Promise<string>;
   getJob(id: string): Promise<JobRequest>;
+  exportJobResults(job: JobRequest): void;
 }
