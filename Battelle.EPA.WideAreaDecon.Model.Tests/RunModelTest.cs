@@ -299,7 +299,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             var results = Calculator.CalculateCost(parameters, areaContaminated);
 
             Assert.AreEqual(0.807293628838681, results.characterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for characterization sampling");
-            Assert.AreEqual(1.30729362883868, results.characterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for characterization sampling");
+            Assert.AreEqual(11.925174282911, results.characterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for characterization sampling");
             Assert.AreEqual(166635.639180651, results.characterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for characterization sampling");
             
             Assert.AreEqual(4.07855517733999, results.sourceReductionResults.workDays, 1e-6, "Incorrect work days calculated for source reduction");
