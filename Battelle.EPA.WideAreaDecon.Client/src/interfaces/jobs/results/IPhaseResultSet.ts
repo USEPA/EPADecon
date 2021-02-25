@@ -7,4 +7,5 @@ export default interface IPhaseResultSet {
   incidentCommandResults: IPhaseResult;
   otherResults: IPhaseResult;
   generalResults: IPhaseResult;
+  [key: string]: IPhaseResult;
 }

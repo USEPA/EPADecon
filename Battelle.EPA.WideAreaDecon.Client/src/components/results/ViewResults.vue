@@ -19,8 +19,8 @@ import { Component } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 import JobRequest from '@/implementations/jobs/JobRequest';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
+import IIndoorResult from '@/interfaces/jobs/results/IIndoorResult';
 import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
-import BuildingCategory from '@/enums/parameter/buildingCategory';
 import RealizationSummary from './RealizationSummary.vue';
 
 @Component({
@@ -39,11 +39,8 @@ export default class ViewResults extends Vue {
 
   tab = 0;
 
-  getResultsForLocation(location: string): IPhaseResultSet[] {
-    if (Object.keys(BuildingCategory).includes(location)) {
-      return this.results.map((realization) => realization.Indoor[location]);
-    }
-    return this.results.map((realization) => realization[location]);
+  getResultsForLocation(location: string): (IIndoorResult | IPhaseResultSet)[] {
+    return this.results.map((r) => (r[location] ? r[location] : r.Indoor[location]));
   }
 
   parseResults(): void {
