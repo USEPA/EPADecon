@@ -330,3 +330,5 @@ ASALocalRun/
 .mfractor/
 
 Battelle.EPA.WideAreaDecon.API/dist/
+
+!BuildPackages/*.nupkg
