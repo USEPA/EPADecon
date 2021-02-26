@@ -3,40 +3,40 @@ using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
-    /*internal class MockLaborCostCalculator : ILaborCostCalculator
+    internal class MockLaborCostCalculator : ILaborCostCalculator
     {
-        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
-            return 84993.281164225;
+            return 84137.5499176561;
         }
 
-        public double CalculateEntExitLaborCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateEntExitLaborCost(double workDays, double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
-            return 21393.2811642251;
+            return 20537.549917656;
         }
 
-        public double CalculateLaborDays(double _numberTeams, double personnelRoundTripDays, double _surfaceAreaToBeHepa, 
-            double _surfaceAreaToBeWiped, int numberLabs, double sampleTimeTransmitted)
+        public double CalculateLaborDays(double workDays)
         {
-            return 3.340930863;
+            return 3.30729362883868;
         }
-    }*/
+    }
 
-    /*internal class MockSuppliesCostCalculator : ISuppliesCostCalculator
+    internal class MockSuppliesCostCalculator : ISuppliesCostCalculator
     {
-        public double CalculateSuppliesCost(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateSuppliesCost(double _numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 3610.11619646298;
+            return 3335.53545095422;
         }
 
-        public double CalculateWorkDays(double _numberTeams, double _surfaceAreaToBeHepa, double _surfaceAreaToBeWiped)
+        public double CalculateWorkDays(double _numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 0.840930863373626;
+            return 0.807293628838681;
         }
-    }*/
+    }
 
     public class EntrancesExitsCostCalculatorTests
     {
@@ -55,15 +55,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             };
             var costPerPpe = new Dictionary<PpeLevel, double>()
             {
-                { PpeLevel.A, 3322.0 },
-                { PpeLevel.B, 3023.8 },
-                { PpeLevel.C, 1897.68 },
-                { PpeLevel.D, 260.09 }
+                { PpeLevel.A, 391.59 },
+                { PpeLevel.B, 144.83 },
+                { PpeLevel.C, 66.60 },
+                { PpeLevel.D, 64.32 }
             };
             var numberEntriesPerPerson = 4.0;
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            /*Calculator = new EntrancesExitsCostCalculator(
+            Calculator = new EntrancesExitsCostCalculator(
                 personnelReqPerTeam,
                 numberEntriesPerPerson,
                 respiratorsPerPerson,
@@ -71,7 +71,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 costPerPpe,
                 new MockLaborCostCalculator(),
                 new MockSuppliesCostCalculator()
-            );*/
+            );
         }
 
         [Test]
@@ -85,11 +85,19 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 { PpeLevel.D, 0.0 }
             };
             var _numberTeams = 4.0;
-            var _surfaceAreaToBeHepa = 500.0;
-            var _surfaceAreaToBeWiped = 500.0;
-            
-            /*Assert.AreEqual(821054.770855624, Calculator.CalculateEntrancesExitsCost( _numberTeams, ppePerLevelPerTeam,  _surfaceAreaToBeHepa,  _surfaceAreaToBeWiped),
-                1e-6, "Incorrect labor cost calculated");*/
+            var fractionSampledWipe = 0.3;
+            var fractionSampledHepa = 0.2;
+            var workDays = 0.807293628838681;
+            var info = new ContaminationInformation(100.0, 20.0);
+            Dictionary<SurfaceType, ContaminationInformation> areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
+
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                areaContaminated.Add(surface, info);
+            }
+
+            Assert.AreEqual(58354.8795711656, Calculator.CalculateEntrancesExitsCost(workDays, _numberTeams, ppePerLevelPerTeam, fractionSampledWipe, fractionSampledHepa, areaContaminated),
+                1e-6, "Incorrect labor cost calculated");
         }
     }
 }

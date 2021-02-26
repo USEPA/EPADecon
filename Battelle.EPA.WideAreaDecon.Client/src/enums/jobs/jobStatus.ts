@@ -2,6 +2,7 @@
 enum JobStatus {
   unknown = 'Unknown',
   error = 'Error',
+  cancelled = 'Cancelled',
   new = 'New',
   queued = 'Queued',
   running = 'Running',

@@ -1,5 +1,6 @@
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 import JobStatus from '@/enums/jobs/jobStatus';
+import IJobResultRealization from './results/IJobResultRealization';
 
 export default interface IJobRequest {
   id: string;
@@ -10,5 +11,5 @@ export default interface IJobRequest {
   numberRealizations: number;
   seed1: number;
   seed2: number;
-  results?: any; // TODO update type
+  results?: IJobResultRealization[];
 }

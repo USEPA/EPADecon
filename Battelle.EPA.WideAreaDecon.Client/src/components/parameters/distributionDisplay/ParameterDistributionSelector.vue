@@ -22,7 +22,11 @@
       </v-col>
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
-    <component :key="componentKey" :is="display.distComponent" :parameter-value="currentSelectedParameter.current">
+    <component
+      :key="currentSelectedParameter.path"
+      :is="display.distComponent"
+      :parameter-value="currentSelectedParameter.current"
+    >
     </component>
     <v-container>
       <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
@@ -40,7 +44,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Watch } from 'vue-property-decorator';
-import { State } from 'vuex-class';
+import { Action, Getter, State } from 'vuex-class';
 import ParameterType from '@/enums/parameter/parameterType';
 import NullDisplay from '@/components/parameters/distributionDisplay/NullDisplay.vue';
 import UnknownDisplay from '@/components/parameters/distributionDisplay/UnknownDisplay.vue';
@@ -87,6 +91,10 @@ import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDi
 export default class ParameterDistributionSelector extends Vue {
   @State currentSelectedParameter!: ParameterWrapper;
 
+  @Getter hasResults!: boolean;
+
+  @Action resetCurrentJobRequest!: () => void;
+
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
   @Watch('currentSelectedParameter')
@@ -94,7 +102,12 @@ export default class ParameterDistributionSelector extends Vue {
     this.currentDistType = this.currentSelectedParameter.type;
   }
 
-  componentKey = 0;
+  @Watch('parameterHasChanged')
+  onParameterChanged(newValue: boolean): void {
+    if (newValue && this.hasResults) {
+      this.resetCurrentJobRequest();
+    }
+  }
 
   currentDistType = ParameterType.constant;
 
@@ -121,7 +134,6 @@ export default class ParameterDistributionSelector extends Vue {
   resetParameter(): void {
     this.$store.commit('resetCurrentSelectedParameter');
     this.currentDistType = this.currentSelectedParameter.type;
-    this.componentKey += 1;
   }
 
   onDistributionTypeChange(): void {

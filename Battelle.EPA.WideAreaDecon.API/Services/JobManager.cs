@@ -6,13 +6,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
 using Battelle.EPA.WideAreaDecon.API.Models.Job;
+using Battelle.EPA.WideAreaDecon.API.Hubs;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
-using Battelle.EPA.WideAreaDecon.Model.Services;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
@@ -25,22 +26,32 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
         private CancellationTokenSource cancelCancellationTokenSource;
 
-        public JobManager()
+        private JobStatusUpdater _statusUpdater;
+        private JobProgressUpdater _progressUpdater;
+
+        public JobManager(IHubContext<JobStatusHub, IJobStatusHub> hub)
         {
             AllJobs = new List<JobRequest>();
             Queued = new ConcurrentQueue<JobRequest>();
             Running = null;
             Finished = new ConcurrentBag<JobRequest>();
+            _statusUpdater = new JobStatusUpdater(hub);
+            _progressUpdater = new JobProgressUpdater(hub);
             RunNextJob();
         }
 
-        public void AddToQueue(JobRequest job)
+        public async Task AddToQueue(JobRequest job)
         {
-            job.Status = JobStatus.Queued;
             AllJobs.Add(job);
+
+            // allows for frontend to join hub group
+            await Task.Delay(1000);
+
+            await _statusUpdater.UpdateJobStatus(job, JobStatus.Queued);
+            //_progressUpdater.UpdateJobProgress(job, 0.0);
+
             Queued.Enqueue(job);
         }
-
 
         private void RunNextJob()
         {
@@ -55,6 +66,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
             }
 
             cancelCancellationTokenSource = new CancellationTokenSource();
+
             if (Running != null)
             {
                 throw new ApplicationException($"Trying to run new job while currently running job {Running.Id}");
@@ -70,83 +82,124 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
         }
 
-        private Task ConvertAndExecuteJob() => Task.Run(() =>
+        private Task ConvertAndExecuteJob() => Task.Run(async () =>
             {
-                //TODO:: Convert to format known by model
+                await _statusUpdater.UpdateJobStatus(Running, JobStatus.Running);
 
-                var extentOfContaminationParameters = Running.DefineScenario.Filters
-                    .First(f => f.Name == "Extent of Contamination").Parameters;
-
-                var scenarioCreator = new ScenarioCreator(
-                    extentOfContaminationParameters.First(p => p.MetaData.Name == "Area Contaminated") as EnumeratedParameter<DecontaminationPhase>,
-                    extentOfContaminationParameters.First(p => p.MetaData.Name == "Loading") as EnumeratedParameter<DecontaminationPhase>,
-                    extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Contamination Breakout") as EnumeratedFraction<BuildingCategory>,
-                    extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
-                    extentOfContaminationParameters.First(p => p.MetaData.Name == "Outdoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
-                    extentOfContaminationParameters.First(p => p.MetaData.Name == "Underground Surface Type Breakout") as EnumeratedFraction<SurfaceType>);
-
-                var scenarios = new List<ScenarioRealization>();
-
-                for (int r = 0; r < Running.NumberRealizations; r++)
+                try
                 {
-                    scenarios.Add(scenarioCreator.CreateRealizationScenario());
-                }
+                    var extentOfContaminationParameters = Running.DefineScenario.Filters
+                        .First(f => f.Name == "Extent of Contamination").Parameters;
 
-                // Construct calculators
-                for (int s = 0; s < scenarios.Count(); s++)
-                {
-                    for (int i = 0; i < scenarios[s].IndoorBuildingsContaminated.Length; i++)
+                    var scenarioCreator = new ScenarioCreator(
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Area Contaminated") as EnumeratedParameter<DecontaminationPhase>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Loading") as EnumeratedParameter<DecontaminationPhase>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Contamination Breakout") as EnumeratedFraction<BuildingCategory>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Outdoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Underground Surface Type Breakout") as EnumeratedFraction<SurfaceType>);
+
+                    var scenarios = new List<ScenarioRealization>();
+
+                    for (int r = 0; r < Running.NumberRealizations; r++)
                     {
-                        var csParameters = new CharacterizationSamplingParameters(
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
-                            scenarios[s].IndoorBuildingsContaminated[i]);
-                        var srParameters = new SourceReductionParameters(
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
-                            scenarios[s].IndoorBuildingsContaminated[i]);
-                        var dcParameters = new DecontaminationParameters(
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
-                            scenarios[s].IndoorBuildingsContaminated[i]);
-                        var icParameters = new IncidentCommandParameters(
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters);
-                        var otParameters = new OtherParameters(
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters);
-                        var cParameters = new CostParameters(
-                            Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters);
-
-                        ParameterArrayCharacterizationSamplingCalculatorFactory csCalculatorFactory =
-                        new ParameterArrayCharacterizationSamplingCalculatorFactory(csParameters, cParameters);
-
-                        ParameterArraySourceReductionCalculatorFactory srCalculatorFactory =
-                        new ParameterArraySourceReductionCalculatorFactory(srParameters, cParameters);
-
-                        ParameterArrayDecontaminationCalculatorFactory dcCalculatorFactory =
-                        new ParameterArrayDecontaminationCalculatorFactory(dcParameters, cParameters);
-
-                        ParameterArrayOtherCalculatorFactory otCalculatorFactory =
-                        new ParameterArrayOtherCalculatorFactory(otParameters, cParameters);
-
-                        ParameterArrayIncidentCommandCalculatorFactory icCalculatorFactory =
-                        new ParameterArrayIncidentCommandCalculatorFactory(
-                            icParameters,
-                            cParameters,
-                            csCalculatorFactory,
-                            srCalculatorFactory,
-                            dcCalculatorFactory);
-
-                        var calculatorCreator = new CalculatorCreator(
-                            csCalculatorFactory,
-                            srCalculatorFactory,
-                            dcCalculatorFactory,
-                            otCalculatorFactory,
-                            icCalculatorFactory);
-
-                        //TODO:: Run model
-                        //calculatorCreator.GetCalculators();
+                        scenarios.Add(scenarioCreator.CreateRealizationScenario());
                     }
+
+                    var parameterManager = new ParameterManager(
+                        Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
+                        Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
+                        Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
+                        Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
+                        Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters,
+                        Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters,
+                        Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters);
+
+                    var scenarioResults = new List<object>();
+
+                    for (int s = 0; s < scenarios.Count(); s++)
+                    {
+                        var realizationResults = new Dictionary<DecontaminationPhase, object>();
+
+                        //INDOOR SCENARIO
+                        var buildingResults = new Dictionary<BuildingCategory, Results>();
+                        foreach (var building in scenarios[s].IndoorBuildingsContaminated)
+                        {
+                            if (building.Value.Count > 0)
+                            {
+                                //Set indoor parameter values
+                                var indoorCalculatorManager = new CalculatorManager(
+                                    parameterManager.SetCharacterizationSamplingParameters(),
+                                    parameterManager.SetSourceReductionParameters(building.Value, DecontaminationPhase.Indoor),
+                                    parameterManager.SetDecontaminationParameters(building.Value, DecontaminationPhase.Indoor),
+                                    parameterManager.SetIncidentCommandParameters(),
+                                    parameterManager.SetOtherParameters(),
+                                    parameterManager.SetCostParameters());
+
+                                var indoorCalculatorCreator = indoorCalculatorManager.CreateCalculatorFactories();
+
+                                var indoorModelRun = indoorCalculatorCreator.GetCalculators();
+
+                                buildingResults.Add(building.Key, indoorModelRun.CalculateCost(indoorCalculatorManager, building.Value));
+                            }
+                        }
+
+                        realizationResults.Add(DecontaminationPhase.Indoor, buildingResults);
+
+                        //OUTDOOR SCENARIO
+                        //Set outdoor parameter values
+                        var outdoorCalculatorManager = new CalculatorManager(
+                            parameterManager.SetCharacterizationSamplingParameters(),
+                            parameterManager.SetSourceReductionParameters(scenarios[s].OutdoorAreasContaminated, DecontaminationPhase.Outdoor),
+                            parameterManager.SetDecontaminationParameters(scenarios[s].OutdoorAreasContaminated, DecontaminationPhase.Outdoor),
+                            parameterManager.SetIncidentCommandParameters(),
+                            parameterManager.SetOtherParameters(),
+                            parameterManager.SetCostParameters());
+
+                        var outdoorCalculatorCreator = outdoorCalculatorManager.CreateCalculatorFactories();
+
+                        var outdoorModelRun = outdoorCalculatorCreator.GetCalculators();
+
+                        //Run and store realization results for outdoor model run
+                        realizationResults.Add(DecontaminationPhase.Outdoor, outdoorModelRun.CalculateCost(
+                            outdoorCalculatorManager,
+                            scenarios[s].OutdoorAreasContaminated));
+
+                        //UNDERGROUND SCENARIO
+                        //Set underground parameter values
+                        var undergroundCalculatorManager = new CalculatorManager(
+                            parameterManager.SetCharacterizationSamplingParameters(),
+                            parameterManager.SetSourceReductionParameters(scenarios[s].UndergroundBuildingsContaminated, DecontaminationPhase.Underground),
+                            parameterManager.SetDecontaminationParameters(scenarios[s].UndergroundBuildingsContaminated, DecontaminationPhase.Underground),
+                            parameterManager.SetIncidentCommandParameters(),
+                            parameterManager.SetOtherParameters(),
+                            parameterManager.SetCostParameters());
+
+                        var undergroundCalculatorCreator = undergroundCalculatorManager.CreateCalculatorFactories();
+
+                        var undergroundModelRun = undergroundCalculatorCreator.GetCalculators();
+
+                        //Run and store realization results for underground model run
+                        realizationResults.Add(DecontaminationPhase.Underground, undergroundModelRun.CalculateCost(
+                            undergroundCalculatorManager,
+                            scenarios[s].UndergroundBuildingsContaminated));
+
+                        //Store results for realization
+                        scenarioResults.Add(realizationResults);
+                    }
+
+                    //Store results of model in job
+                    Running.Results = scenarioResults;
+
+                    await _statusUpdater.UpdateJobStatus(Running, JobStatus.Completed);
+                    
+                } catch (Exception e)
+                {
+                    Console.Error.WriteLine(e);
+                    // TODO display error on front end?
+                    await _statusUpdater.UpdateJobStatus(Running, JobStatus.Error);
                 }
-                //TODO:: Store results of model in job
-                Running.Status = JobStatus.Completed;
+
                 Finished.Add(Running);
                 Running = null;
             });
@@ -154,5 +207,16 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         public JobStatus GetStatus(Guid id) => GetJob(id)?.Status ?? JobStatus.Unknown;
 
         public JobRequest GetJob(Guid id) => AllJobs.FirstOrDefault(request => request.Id == id);
+
+        //public bool UpdateJob(JobRequest newJob)
+        //{
+        //    var old = AllJobs.FirstOrDefault(request => request.Id == newJob.Id);
+        //    if (old == null)
+        //    {
+        //        return false;
+        //    }
+        //    old = newJob;
+        //    return true;
+        //}
     }
 }

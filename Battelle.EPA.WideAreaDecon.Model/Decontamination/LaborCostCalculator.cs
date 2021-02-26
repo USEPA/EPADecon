@@ -9,7 +9,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly Dictionary<PersonnelLevel, double> _personnelHourlyRate;
         private readonly double _personnelOverhead;
         private readonly Dictionary<PersonnelLevel, double> _personnelReqPerTeam;
-        private readonly IWorkDaysCalculator _workDaysCalculator;
 
         public LaborCostCalculator(
             Dictionary<PersonnelLevel, double> personnelReqPerTeam,
@@ -20,23 +19,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _personnelReqPerTeam = personnelReqPerTeam;
             _personnelHourlyRate = personnelHourlyRate;
             _personnelOverhead = personnelOverhead;
-            _workDaysCalculator = workDaysCalculator;
         }
 
-        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays)
+        public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays)
         {
             var personnelHoursCost = _personnelReqPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
-            
-            var totalWorkDays = _workDaysCalculator.CalculateWorkDays();
 
-            return (totalWorkDays + _personnelOverhead + personnelRoundTripDays) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
+            return (workDays + _personnelOverhead) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
         }
 
-        public double CalculateLaborDays(double personnelRoundTripDays)
-        {
-            var totalWorkDays = _workDaysCalculator.CalculateWorkDays();
-
-            return totalWorkDays + _personnelOverhead + personnelRoundTripDays;
+        public double CalculateLaborDays(double workDays)
+        { 
+            return workDays + _personnelOverhead;
         }
     }
 }

@@ -10,4 +10,6 @@ export default interface IJobProvider {
     seed2: number,
   ): JobRequest;
   postJobRequest(job: JobRequest): Promise<string>;
+  getJob(id: string): Promise<JobRequest>;
+  exportJobResults(job: JobRequest): void;
 }

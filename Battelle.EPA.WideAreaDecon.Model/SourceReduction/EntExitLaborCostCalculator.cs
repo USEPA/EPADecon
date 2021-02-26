@@ -30,11 +30,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
             _workDaysCalculator = workDaysCalculator;
         }
         
-        public double CalculateEntExitLaborCost(double _numberTeams, double surfaceAreaToBeSourceReduced)
+        public double CalculateEntExitLaborCost(double workDays, double _numberTeams, double surfaceAreaToBeSourceReduced)
         {
             var personnelHoursCost = _personnelRequiredPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
-
-            var workDays = _workDaysCalculator.CalculateWorkDays( _numberTeams,  surfaceAreaToBeSourceReduced);
 
             return (workDays * _numEntriesPerTeamPerDay * _numberTeams * _hoursPerEntryPerTeam +
                 workDays * _numEntriesPerTeamPerDay * _numberTeams * _hoursPerExitPerTeam) * personnelHoursCost;

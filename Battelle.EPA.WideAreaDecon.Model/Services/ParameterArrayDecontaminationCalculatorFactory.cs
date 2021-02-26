@@ -32,6 +32,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 Calculator_efficacy
             );
 
+            Calculator_supplies = new SuppliesCostCalculator(
+                costParameters.deconAgentCostPerVolume,
+                costParameters.deconMaterialsCost,
+                dcParameters.fumigationAgentVolume,
+                dcParameters.agentVolume
+            );
+
             Calculator_labor = new LaborCostCalculator(
                 dcParameters.personnelReqPerTeam,
                 costParameters.hourlyRate,
@@ -44,8 +51,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 dcParameters.numEntriesPerTeamPerDay,
                 dcParameters.hoursPerEntryPerTeam,
                 dcParameters.hoursPerExitPerTeam,
-                costParameters.hourlyRate,
-                Calculator_workDays
+                costParameters.hourlyRate
             );
 
             Calculator_entEx = new EntranceExitCostCalculator(
@@ -54,13 +60,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 dcParameters.respiratorsPerPerson,
                 costParameters.respiratorCost,
                 costParameters.ppeCost,
-                Calculator_entExLabor,
-                Calculator_workDays
+                Calculator_entExLabor
             );
         }
         public DecontaminationCostCalculator GetCalculator()
         {
-            return new DecontaminationCostCalculator();
+            return new DecontaminationCostCalculator
+            {
+                Calculator_workDays = Calculator_workDays,
+                Calculator_supplies = Calculator_supplies,
+                Calculator_labor = Calculator_labor,
+                Calculator_entEx = Calculator_entEx
+            };
         }
     }
 }

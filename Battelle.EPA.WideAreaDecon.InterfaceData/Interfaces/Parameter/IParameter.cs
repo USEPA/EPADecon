@@ -15,6 +15,7 @@ using TruncatedLogNormalDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.
 using TruncatedNormalDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.TruncatedNormalDistribution;
 using UniformDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.UniformDistribution;
 using WeibullDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.WeibullDistribution;
+using BimodalTruncatedNormalDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.BimodalTruncatedNormalDistribution;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter
 {

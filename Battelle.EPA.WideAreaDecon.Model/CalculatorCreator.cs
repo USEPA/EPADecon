@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
@@ -29,59 +26,14 @@ namespace Battelle.EPA.WideAreaDecon.Model
             _incidentCommandFactory = icCalculatorFactory;
         }
 
-        public double GetCalculators(
-            CharacterizationSamplingParameters csParameters,
-            SourceReductionParameters srParameters,
-            DecontaminationParameters dcParameters,
-            OtherParameters otParameters,
-            CostParameters costParameters,
-            IncidentCommandParameters icParameters,
-            Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public RunModel GetCalculators()
         {
-            var csCalculator = _characterizationSamplingFactory.GetCalculator();
-            var srCalculator = _sourceReductionFactory.GetCalculator();
-            var dcCalculator = _decontaminationFactory.GetCalculator();
-            var otCalculator = _otherFactory.GetCalculator();
-            var icCalculator = _incidentCommandFactory.GetCalculator();
-
-            var csCost = csCalculator.CalculateCost(
-                csParameters.numTeams, 
-                csParameters.fractionSampledWipe, 
-                csParameters.fractionSampledHepa,
-                areaContaminated,
-                otParameters.roundtripDays,
-                csParameters.ppeRequired);
-
-            var srCost = srCalculator.CalculateCost(
-                srParameters.numTeams,
-                otParameters.roundtripDays,
-                srParameters.surfaceAreaToBeSourceReduced,
-                costParameters.costPerMassOfMaterialRemoved,
-                srParameters.ppeRequired);
-
-            var dcCost = dcCalculator.CalculateCost(
-                dcParameters.numTeams,
-                otParameters.roundtripDays,
-                dcParameters.ppeRequired,
-                areaContaminated);
-
-            var otCost = otCalculator.CalculateCost(
-                otParameters.totalAvailablePersonnel,
-                otParameters.roundtripDays,
-                costParameters.roundtripTicketCostPerPerson,
-                dcParameters.personnelOverhead);
-
-            var icCost = icCalculator.CalculateCost(
-                dcParameters.numTeams,
-                srParameters.surfaceAreaToBeSourceReduced,
-                otParameters.roundtripDays,
-                csParameters.fractionSampledWipe,
-                csParameters.fractionSampledHepa,
-                areaContaminated,
-                csParameters.numLabs,
-                csParameters.resultTransmissionToIC);
-
-            return csCost + srCost + dcCost + otCost + icCost;
+            return new RunModel(
+                _characterizationSamplingFactory.GetCalculator(),
+                _sourceReductionFactory.GetCalculator(),
+                _decontaminationFactory.GetCalculator(),
+                _incidentCommandFactory.GetCalculator(),
+                _otherFactory.GetCalculator());
         }
     }
 }

@@ -39,35 +39,56 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData
                 CreateUndergroundBuildings());
         }
 
-        private Dictionary<SurfaceType, ContaminationInformation>[] CreateIndoorBuildings()
+        private Dictionary<BuildingCategory, Dictionary<SurfaceType, ContaminationInformation>> CreateIndoorBuildings()
         {
-            var back = new List<Dictionary<SurfaceType, ContaminationInformation>>();
-
             var areaContaminated = _areaContaminated.Values[DecontaminationPhase.Indoor].CreateDistribution().Draw();
+            var loading = _loading.Values[DecontaminationPhase.Indoor].CreateDistribution().Draw();
 
-            return _indoorContaminationBreakout.Values.ToDictionary((v) => v.Key, (v) => areaContaminated * v.Value.Value.Value).SelectMany(ConvertToBuilding).ToArray();
-            
-        }
+            var contaminationBreakout = _indoorContaminationBreakout.Values.ToDictionary((v) => v.Key, (v) => new ContaminationInformation(areaContaminated * v.Value.Value.Value, loading * v.Value.Value.Value));
 
-        private Dictionary<SurfaceType, ContaminationInformation>[] ConvertToBuilding(
-            KeyValuePair<BuildingCategory, double> kvp)
-        {
-            if (kvp.Value <= 0)
+            var buildings = new Dictionary<BuildingCategory, Dictionary<SurfaceType, ContaminationInformation>>();
+
+            foreach (var buildingCategory in contaminationBreakout.Keys)
             {
-                return new Dictionary<SurfaceType, ContaminationInformation>[0];
+                buildings.Add(buildingCategory, ConvertToBuilding(contaminationBreakout[buildingCategory]));
             }
 
-            throw new NotImplementedException();
+            return buildings;
         }
 
-        private Dictionary<SurfaceType, ContaminationInformation>[] CreateUndergroundBuildings()
+        private Dictionary<SurfaceType, ContaminationInformation> ConvertToBuilding(
+            ContaminationInformation buildingInformation)
         {
-            throw new NotImplementedException();
+            var buildingBreakdown = new Dictionary<SurfaceType, ContaminationInformation>();
+
+            if (buildingInformation.AreaContaminated > 0)
+            {
+                foreach (SurfaceType surface in _indoorSurfaceTypeBreakout.Values.Keys)
+                {
+                    var surfaceFraction = _indoorSurfaceTypeBreakout.Values[surface].CreateDistribution().Draw();
+                    var info = new ContaminationInformation(buildingInformation.AreaContaminated * surfaceFraction, buildingInformation.Loading * surfaceFraction);
+
+                    buildingBreakdown.Add(surface, info);
+                }
+            }
+
+            return buildingBreakdown;
+        }
+
+        private Dictionary<SurfaceType, ContaminationInformation> CreateUndergroundBuildings()
+        {
+            var areaContaminated = _areaContaminated.Values[DecontaminationPhase.Underground].CreateDistribution().Draw();
+            var loading = _loading.Values[DecontaminationPhase.Underground].CreateDistribution().Draw();
+
+            return _undergroundSurfaceTypeBreakout.Values.ToDictionary(v => v.Key, v => new ContaminationInformation(areaContaminated * v.Value.Value.Value, loading * v.Value.Value.Value));
         }
 
         private Dictionary<SurfaceType, ContaminationInformation> CreateOutdoorAreas()
         {
-            throw new NotImplementedException();
+            var areaContaminated = _areaContaminated.Values[DecontaminationPhase.Outdoor].CreateDistribution().Draw();
+            var loading = _loading.Values[DecontaminationPhase.Outdoor].CreateDistribution().Draw();
+
+            return _outdoorSurfaceTypeBreakout.Values.ToDictionary(v => v.Key, v => new ContaminationInformation(areaContaminated * v.Value.Value.Value, loading * v.Value.Value.Value));
         }
     }
 }

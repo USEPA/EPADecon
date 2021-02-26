@@ -20,22 +20,21 @@ export default class JobManager {
     this.jobId = jobId;
     this.connection = new HubConnectionBuilder()
       .withUrl(this.apiEndpoint, {
-        transport: HttpTransportType.LongPolling || HttpTransportType.WebSockets,
+        transport: HttpTransportType.WebSockets,
       })
-      .configureLogging(LogLevel.Warning)
+      .configureLogging(LogLevel.Debug)
       .build();
 
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
-
-    this.connection.on(this.jobStatusChangedEventName, (id: string, newStatus: JobStatus) => {
+    this.connection.on(self.jobStatusChangedEventName, (id: string, newStatus: JobStatus) => {
       if (self.jobId !== id) {
         return;
       }
       updateJobStatusCallback(newStatus);
     });
 
-    this.connection.on(this.jobProgressChangedEventName, (id: string, newProgress: number) => {
+    this.connection.on(self.jobProgressChangedEventName, (id: string, newProgress: number) => {
       if (self.jobId !== id) {
         return;
       }

@@ -14,29 +14,58 @@
                     type="number"
                     :rules="[validationRulesRealizations]"
                     hide-details="auto"
+                    :disabled="isRunning || hasResults"
                   >
                   </v-text-field>
                   <v-btn-toggle>
                     <v-btn-toggle v-model="numberRealizations" dense background-color="primary">
-                      <v-btn small v-for="runCount in presetRunCounts" :key="runCount" :value="runCount">
+                      <v-btn small tile v-for="runCount in presetRunCounts" :key="runCount" :value="runCount">
                         {{ runCount }}
                       </v-btn>
                     </v-btn-toggle>
                   </v-btn-toggle>
                 </v-col>
                 <v-col>
-                  <v-text-field label="Seed 1" v-model.number="seed1" type="number" hide-details="auto"> </v-text-field>
+                  <v-text-field
+                    label="Seed 1"
+                    v-model.number="seed1"
+                    type="number"
+                    hide-details="auto"
+                    :disabled="isRunning || hasResults"
+                  >
+                  </v-text-field>
                 </v-col>
                 <v-col>
-                  <v-text-field label="Seed 2" v-model.number="seed2" type="number" hide-details="auto"> </v-text-field>
+                  <v-text-field
+                    label="Seed 2"
+                    v-model.number="seed2"
+                    type="number"
+                    hide-details="auto"
+                    :disabled="isRunning || hasResults"
+                  >
+                  </v-text-field>
                 </v-col>
               </v-row>
             </v-container>
           </v-form>
+          <v-container>
+            <!-- <v-progress-linear :value="currentJob.progress" class="mb-1"></v-progress-linear> -->
+            <span>Job Status: {{ currentJob.status }}</span>
+          </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn outlined color="primary darken-1" text @click="runClick" :disabled="!canRun"> Run </v-btn>
+          <v-btn
+            v-if="!hasResults"
+            outlined
+            color="primary darken-1"
+            text
+            @click="runClick"
+            :disabled="!canRun || isRunning"
+          >
+            Run
+          </v-btn>
+          <v-btn v-else outlined color="primary darken-1" text @click="viewResults"> View Results </v-btn>
           <v-btn outlined color="primary darken-1" text @click="showModal = false"> Cancel </v-btn>
         </v-card-actions>
       </v-card>
@@ -46,7 +75,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 import { Action, Getter, State } from 'vuex-class';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
@@ -64,11 +93,15 @@ export default class RunScenario extends Vue {
 
   @Action postCurrentJobRequest!: (jobProvider: IJobProvider) => Promise<void>;
 
-  @Action updateJobStatus!: (status: JobStatus) => void;
+  @Action getCurrentJobResults!: (jobProvider: IJobProvider) => Promise<void>;
 
-  @Action updateJobProgress!: (progress: number) => void;
+  @Action UpdateJobStatus!: (status: JobStatus) => void;
+
+  @Action UpdateJobProgress!: (progress: number) => void;
 
   @Getter canRun!: boolean;
+
+  @Getter hasResults!: boolean;
 
   @State currentJob!: JobRequest;
 
@@ -84,15 +117,32 @@ export default class RunScenario extends Vue {
 
   presetRunCounts = [1, 10, 100, 1000];
 
+  isRunning = false;
+
+  completedJobStatuses: JobStatus[] = [JobStatus.completed, JobStatus.cancelled, JobStatus.error];
+
   get showModal(): boolean {
     return this.visible;
   }
 
   set showModal(value: boolean) {
+    // TODO cancel runs as well if running
     this.$emit('close');
   }
 
-  runClick(): void {
+  @Watch('currentJob.status')
+  async onJobStatusChagned(newStatus: JobStatus): Promise<void> {
+    if (this.completedJobStatuses.includes(newStatus)) {
+      if (newStatus === JobStatus.completed) {
+        await this.getCurrentJobResults(this.jobProvider);
+      }
+      await this.jobManager?.StopWatchJobProgress();
+      this.isRunning = false;
+    }
+  }
+
+  async runClick(): Promise<void> {
+    this.isRunning = true;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const form = this.$refs.form as any;
     if (this.canRun && form.validate()) {
@@ -103,24 +153,32 @@ export default class RunScenario extends Vue {
         seed2: this.seed2,
       };
       this.createJobRequest(payload);
-      this.postCurrentJobRequest(this.jobProvider);
-      this.jobManager = new JobManager(this.currentJob.id, this.updateJobStatus, this.updateJobProgress);
-      this.jobManager.StartWatchJobProgress();
+      await this.postCurrentJobRequest(this.jobProvider);
+      this.jobManager = new JobManager(this.currentJob.id, this.UpdateJobStatus, this.UpdateJobProgress);
+      await this.jobManager.StartWatchJobProgress();
     }
   }
 
   // eslint-disable-next-line class-methods-use-this
   validationRulesRealizations(value: number): boolean | string {
+    if (!value) {
+      return 'Value is required';
+    }
     if (value < 1) {
       return 'Value must be at least 1';
     }
     if (value > 1000) {
       return 'Value must be less than 1000';
     }
-    if (/\./.test(value.toString())) {
+    if (value % 1 !== 0) {
       return 'Value must be a whole number';
     }
     return true;
+  }
+
+  viewResults(): void {
+    this.$router.push({ name: 'viewResults' });
+    this.showModal = false;
   }
 }
 </script>

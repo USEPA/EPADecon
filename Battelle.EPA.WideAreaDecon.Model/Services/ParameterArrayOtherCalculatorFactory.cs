@@ -9,7 +9,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
     /// </summary>
     public class ParameterArrayOtherCalculatorFactory : IOtherCalculatorFactory
     {
-        private TransportationCostCalculator Calculator { get; set; }
+        public TransportationCostCalculator Calculator { get; set; }
 
         public ParameterArrayOtherCalculatorFactory(
             OtherParameters otherParameters, 
@@ -23,7 +23,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
         }
         public OtherCostCalculator GetCalculator()
         {
-            return new OtherCostCalculator();
+            return new OtherCostCalculator
+            {
+                Calculator = Calculator
+            };
         }
     }
 }

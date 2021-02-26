@@ -26,10 +26,10 @@
   </ItemGroup>
   
   <ItemGroup Condition="'$(Configuration)'!='Debug'">
-    <PackageReference Include="Battelle.RiskAssessment.Common.Statistics" Version="1.0.7" PrivateAssets="NONE" />
+    <PackageReference Include="Battelle.RiskAssessment.Common.Statistics" Version="1.0.11" PrivateAssets="NONE" />
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)'=='Debug'">
-    <PackageReference Include="Battelle.RiskAssessment.Common.Statistics" Version="1.0.7-Debug" PrivateAssets="NONE" />
+    <PackageReference Include="Battelle.RiskAssessment.Common.Statistics-Debug" Version="1.0.11" PrivateAssets="NONE" />
   </ItemGroup>
 
 </Project>

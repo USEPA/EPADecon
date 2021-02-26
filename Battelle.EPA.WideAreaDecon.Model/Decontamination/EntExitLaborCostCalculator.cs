@@ -11,32 +11,27 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly double _numEntriesPerTeamPerDay;
         private readonly Dictionary<PersonnelLevel, double> _personnelHourlyRate;
         private readonly Dictionary<PersonnelLevel, double> _personnelReqPerTeam;
-        private readonly IWorkDaysCalculator _workDaysCalculator;
 
         public EntExitLaborCostCalculator(
             Dictionary<PersonnelLevel, double> personnelReqPerTeam,
             double numEntriesPerTeamPerDay,
             double hoursPerEntryPerTeam,
             double hoursPerExitPerTeam,
-            Dictionary<PersonnelLevel, double> personnelHourlyRate,
-            IWorkDaysCalculator workDaysCalculator)
+            Dictionary<PersonnelLevel, double> personnelHourlyRate)
         {
             _personnelReqPerTeam = personnelReqPerTeam;
             _numEntriesPerTeamPerDay = numEntriesPerTeamPerDay;
             _hoursPerEntryPerTeam = hoursPerEntryPerTeam;
             _hoursPerExitPerTeam = hoursPerExitPerTeam;
             _personnelHourlyRate = personnelHourlyRate;
-            _workDaysCalculator = workDaysCalculator;
         }
 
-        public double CalculateEntExitLaborCost(double _numberTeams)
+        public double CalculateEntExitLaborCost(double _numberTeams, double workDays)
         {
             var personnelHoursCost = _personnelReqPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
-            double totalWorkDays = _workDaysCalculator.CalculateWorkDays();
-
-            return (totalWorkDays * _numEntriesPerTeamPerDay * _numberTeams * _hoursPerEntryPerTeam +
-                totalWorkDays * _numEntriesPerTeamPerDay * _numberTeams * _hoursPerExitPerTeam) * personnelHoursCost;
+            return (workDays * _numEntriesPerTeamPerDay * _numberTeams * _hoursPerEntryPerTeam +
+                workDays * _numEntriesPerTeamPerDay * _numberTeams * _hoursPerExitPerTeam) * personnelHoursCost;
         }
     }
 }

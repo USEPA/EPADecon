@@ -52,7 +52,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
         }
         public SourceReductionCostCalculator GetCalculator()
         {
-            return new SourceReductionCostCalculator();
+            return new SourceReductionCostCalculator
+            {
+                Calculator_workDays = Calculator_workDays,
+                Calculator_labor = Calculator_labor,
+                Calculator_entEx = Calculator_entEx,
+                Calculator_entExLabor = Calculator_entExLabor
+            };
         }
     }
 }

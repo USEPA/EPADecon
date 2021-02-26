@@ -7,15 +7,21 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
     public class DecontaminationCostCalculator : IDecontaminationCalculatorFactory
     {
-        private LaborCostCalculator Calculator_labor { get; set; }
-        private SuppliesCostCalculator Calculator_supplies { get; set; }
-        private EntranceExitCostCalculator Calculator_entEx { get; set; }
+        public WorkDaysCalculator Calculator_workDays { get; set; }
+        public LaborCostCalculator Calculator_labor { get; set; }
+        public SuppliesCostCalculator Calculator_supplies { get; set; }
+        public EntranceExitCostCalculator Calculator_entEx { get; set; }
 
-        public double CalculateCost(double _numberTeams, double personnelRoundTripDays, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double CalculateTime()
         {
-            var suppliesCosts = Calculator_supplies.FoggingSuppliesCostCalculator(areaContaminated);
-            var laborCosts = Calculator_labor.CalculateLaborCost(_numberTeams, personnelRoundTripDays);
-            var entExCosts = Calculator_entEx.CalculateEntranceExitCost(_numberTeams, ppeEachLevelPerTeam);
+            return Calculator_workDays.CalculateWorkDays();
+        }
+
+        public double CalculateCost(double workDays, double _numberTeams, double personnelRoundTripDays, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
+        {
+            var suppliesCosts = Calculator_supplies.FoggingSuppliesCostCalculator(areaContaminated, treatmentMethods) + Calculator_supplies.NonFoggingSuppliesCostCalculator(areaContaminated, treatmentMethods);
+            var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams, personnelRoundTripDays);
+            var entExCosts = Calculator_entEx.CalculateEntranceExitCost(workDays, _numberTeams, ppeEachLevelPerTeam);
             return (suppliesCosts + laborCosts + entExCosts);
         }
 

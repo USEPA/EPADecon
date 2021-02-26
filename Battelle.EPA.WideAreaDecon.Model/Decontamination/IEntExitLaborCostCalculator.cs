@@ -2,6 +2,6 @@
 {
     public interface IEntExitLaborCostCalculator
     {
-        public double CalculateEntExitLaborCost(double _numberTeams);
+        public double CalculateEntExitLaborCost(double _numberTeams, double workDays);
     }
 }

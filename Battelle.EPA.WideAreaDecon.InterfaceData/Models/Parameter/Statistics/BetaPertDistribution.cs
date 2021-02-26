@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Attributes;
@@ -13,8 +8,6 @@ using Battelle.RiskAssessment.Common.Statistics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
-using NPOI.SS.Formula.Functions;
-using Microsoft.VisualBasic;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 {
@@ -54,7 +47,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public IDistribution CreateDistribution()
         {
-            throw new NotImplementedException();
+            if (Mode.HasValue && Min.HasValue && Max.HasValue)
+            {
+                return new PertDistribution(Mode.Value, Min.Value, Max.Value);
+            }
+            throw new ArgumentNullException();
         }
     }
 }

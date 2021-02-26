@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -80,5 +81,16 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             SurfaceType.UndergroundMisc,
             SurfaceType.Hvac,
         };
+
+        public static SurfaceType[] GetSurfaceTypesForPhase(DecontaminationPhase phase)
+        {
+            return phase switch
+            {
+                DecontaminationPhase.Indoor => IndoorSurfaceTypes,
+                DecontaminationPhase.Outdoor => OutdoorSurfaceTypes,
+                DecontaminationPhase.Underground => UndergroundSurfaceTypes,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
     }
 }

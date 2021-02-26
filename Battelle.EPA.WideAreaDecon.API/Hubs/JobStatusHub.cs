@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
 using Battelle.EPA.WideAreaDecon.API.Services;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.SignalR;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
 
@@ -41,6 +38,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Hubs
                 }
 
                 await Groups.AddToGroupAsync(Context.ConnectionId, $"{jobId}");
+                //await Clients.Group($"{jobId}").JobStatusChanged(jobId, job.Status);
             }
             catch (Exception e)
             {
@@ -69,13 +67,13 @@ namespace Battelle.EPA.WideAreaDecon.API.Hubs
         /// Updates the progress of a job to a new value
         /// </summary>
         /// <param name="jobId">The job being updated</param>
-        /// <param name="progress">The new progress value</param>
-        public void UpdateJobProgress(Guid jobId, double progress)
+        /// <param name="newProgress">The new progress value</param>
+        public void UpdateJobProgress(Guid jobId, double newProgress)
         {
             try
             {
                 var oldJob = _jobManager.GetJob(jobId);
-                oldJob.Progress = progress;
+                oldJob.Progress = newProgress;
                 // TODO add update progress method to job manager
             }
             catch (Exception e)
@@ -88,7 +86,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Hubs
         /// Updates the status of a job to a new value
         /// </summary>
         /// <param name="jobId">The job being updated</param>
-        /// <param name="status">The new status</param>
+        /// <param name="newJobStatus">The new job status</param>
         public void UpdateJobStatus(Guid jobId, JobStatus newJobStatus)
         {
             try
@@ -100,6 +98,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Hubs
                     return;
                 }
                 _statusUpdater.UpdateJobStatus(oldJob, newJobStatus);
+
+                //_jobManager.UpdateJob(oldJob);
                 Clients.Group($"{jobId}").JobStatusChanged(jobId, newJobStatus);
             }
             catch (Exception e)

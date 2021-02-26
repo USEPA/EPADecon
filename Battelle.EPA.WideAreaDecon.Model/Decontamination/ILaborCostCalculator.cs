@@ -4,7 +4,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
     public interface ILaborCostCalculator
     {
-        public double CalculateLaborCost(double _numberTeams, double personnelRoundTripDays);
-        public double CalculateLaborDays(double personnelRoundTripDays);
+        public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays);
+        public double CalculateLaborDays(double workDays);
     }
 }

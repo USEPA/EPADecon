@@ -6,9 +6,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData
 {
     public class ScenarioRealization
     {
-        public ScenarioRealization(Dictionary<SurfaceType, ContaminationInformation>[] indoorBuildingsContaminated,
+        public ScenarioRealization(Dictionary<BuildingCategory, Dictionary<SurfaceType, ContaminationInformation>> indoorBuildingsContaminated,
             Dictionary<SurfaceType, ContaminationInformation> outdoorAreasContaminated,
-            Dictionary<SurfaceType, ContaminationInformation>[] undergroundBuildingsContaminated)
+            Dictionary<SurfaceType, ContaminationInformation> undergroundBuildingsContaminated)
         {
             IndoorBuildingsContaminated = indoorBuildingsContaminated ??
                                           throw new ArgumentNullException(nameof(indoorBuildingsContaminated));
@@ -17,8 +17,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData
             UndergroundBuildingsContaminated= undergroundBuildingsContaminated ??
                                           throw new ArgumentNullException(nameof(undergroundBuildingsContaminated));
         }
-        public Dictionary<SurfaceType, ContaminationInformation>[] IndoorBuildingsContaminated { get; }
+        public Dictionary<BuildingCategory, Dictionary<SurfaceType, ContaminationInformation>> IndoorBuildingsContaminated { get; }
         public Dictionary<SurfaceType, ContaminationInformation> OutdoorAreasContaminated { get; }
-        public Dictionary<SurfaceType, ContaminationInformation>[] UndergroundBuildingsContaminated { get; }
+        public Dictionary<SurfaceType, ContaminationInformation> UndergroundBuildingsContaminated { get; }
     }
 }

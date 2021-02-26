@@ -8,7 +8,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
     internal class MockEntExitLaborCostCalculator : IEntExitLaborCostCalculator
     {
-        public double CalculateEntExitLaborCost(double _numberTeams)
+        public double CalculateEntExitLaborCost(double _numberTeams, double workDays)
         {
             return 38700.0;
         }
@@ -32,29 +32,29 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 
             var costPerPpe = new Dictionary<PpeLevel, double>()
             {
-                { PpeLevel.A, 3322.0 },
-                { PpeLevel.B, 3023.8 },
-                { PpeLevel.C, 1897.68 },
-                { PpeLevel.D, 260.09 }
+                { PpeLevel.A, 391.59 },
+                { PpeLevel.B, 144.83 },
+                { PpeLevel.C, 66.60 },
+                { PpeLevel.D, 64.32 }
             };
 
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            var numberEntriesPerTeamPerDay = 4.0;
+            var numberEntriesPerTeamPerDay = 2.0;
             Calculator = new EntranceExitCostCalculator(
                 personnelReqPerTeam,
                 numberEntriesPerTeamPerDay,
                 respiratorsPerPerson,
                 costPerRespirator,
                 costPerPpe,
-                new MockEntExitLaborCostCalculator(),
-                new MockWorkDaysCalculator()
+                new MockEntExitLaborCostCalculator()
             );
         }
 
         [Test]
         public void CalculateCost()
         {
+            var workDays = 3.0;
             var ppePerLevelPerTeam = new Dictionary<PpeLevel, double>()
             {
                 { PpeLevel.A, 0.0 },
@@ -64,7 +64,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             };
             var numTeams = 2.0;
             
-            Assert.AreEqual(987098.96, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam), 
+            Assert.AreEqual(62472.08, Calculator.CalculateEntranceExitCost(workDays, numTeams, ppePerLevelPerTeam), 
                 1e-6, "Incorrect cost calculated");
         }
     }

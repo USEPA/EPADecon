@@ -37,9 +37,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         public double CalculateSuppliesCost(double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
             var contaminationArea = new Dictionary<SurfaceType, double>();
-            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            foreach (SurfaceType surface in _areaContaminated.Keys.ToList())
             {
-                contaminationArea[surface] = _areaContaminated[surface].AreaContaminated;
+                contaminationArea.Add(surface, _areaContaminated[surface].AreaContaminated);
             }
             var surfaceAreaToBeWiped = _fractionSampledWipe * contaminationArea.Values.Sum();
             var surfaceAreaToBeHepa = _fractionSampledHepa * contaminationArea.Values.Sum();
@@ -52,9 +52,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         public double CalculateWorkDays(double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
             var contaminationArea = new Dictionary<SurfaceType, double>();
-            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            foreach (SurfaceType surface in _areaContaminated.Keys.ToList())
             {
-                contaminationArea[surface] = _areaContaminated[surface].AreaContaminated;
+                contaminationArea.Add(surface, _areaContaminated[surface].AreaContaminated);
             }
             var surfaceAreaToBeWiped = _fractionSampledWipe * contaminationArea.Values.Sum();
             var surfaceAreaToBeHepa = _fractionSampledHepa * contaminationArea.Values.Sum();

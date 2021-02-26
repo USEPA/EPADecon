@@ -13,7 +13,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
-using Battelle.RiskAssessment.Common.Statistics;
+using Stats = Battelle.RiskAssessment.Common.Statistics;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 {
@@ -67,9 +67,25 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
             };
         }
 
-        public IDistribution CreateDistribution()
+        public Stats.IDistribution CreateDistribution()
         {
-            throw new NotImplementedException();
+            if (XValues.Length > 0 && YMinimumValues.Length > 0 && YMaximumValues.Length > 0)
+            {
+                if (XValues.Length != YMinimumValues.Length || YMinimumValues.Length != YMaximumValues.Length)
+                {
+                    throw new ArgumentException("Uniform X Dependent arrays are different sizes");
+                }
+
+                // select random index (x value)
+                int index = new Random().Next(0, XValues.Length);
+
+                // create uniform distribution from max and mins at x value
+                double min = YMinimumValues[index];
+                double max = YMaximumValues[index];
+
+                return new Stats.UniformDistribution(min, max);
+            }
+            throw new ArgumentNullException();
         }
     }
 }
