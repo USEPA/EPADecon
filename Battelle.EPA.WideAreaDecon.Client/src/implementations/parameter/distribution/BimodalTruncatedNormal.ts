@@ -1,11 +1,12 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
+import Distribution, { BimodalTruncatedNormalDistribution } from 'battelle-common-typescript-statistics';
 import ParameterMetaData from '../ParameterMetaData';
-import IUnivariateParameter from './IUnivariateParameter';
 
 @Serializable()
-export default class BimodalTruncatedNormal implements IParameter, IUnivariateParameter {
+export default class BimodalTruncatedNormal implements IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.bimodalTruncatedNormal;
 
@@ -89,6 +90,27 @@ export default class BimodalTruncatedNormal implements IParameter, IUnivariatePa
     this.min = min;
     this.max = max;
     this.metaData = metaData;
+  }
+
+  get distribution(): Distribution | undefined {
+    if (
+      this.min === undefined ||
+      this.max === undefined ||
+      this.mean1 === undefined ||
+      this.stdDev1 === undefined ||
+      this.mean2 === undefined ||
+      this.stdDev2 === undefined
+    ) {
+      return undefined;
+    }
+    return new BimodalTruncatedNormalDistribution(
+      this.mean1,
+      this.stdDev1,
+      this.mean2,
+      this.stdDev2,
+      this.min,
+      this.max,
+    );
   }
 
   isEquivalent(other: IParameter): boolean {

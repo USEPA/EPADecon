@@ -45,11 +45,11 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
         private void StartWindow(
             IHostApplicationLifetime lifetime)
         {
-
             // Open the Electron-Window here
             Task.Run(async () =>
             {
-                var browserWindow = await Electron.WindowManager.CreateWindowAsync(WindowOptions ?? new BrowserWindowOptions());
+                var browserWindow =
+                    await Electron.WindowManager.CreateWindowAsync(WindowOptions ?? new BrowserWindowOptions());
                 browserWindow.Maximize();
                 Electron.GlobalShortcut.Register("CommandOrControl+Shift+I",
                     () => { browserWindow.WebContents.OpenDevTools(); });

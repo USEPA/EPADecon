@@ -9,8 +9,9 @@ enum ParameterType {
   logUniform = 'Log Uniform',
   truncatedLogNormal = 'Truncated Log Normal',
   logNormal = 'Log Normal',
-  efficacy = 'Efficacy',
   weibull = 'Weibull',
+  enumeratedFraction = 'Enumerated Fraction',
+  enumeratedParameter = 'Enumerated Parameter',
   null = 'Null',
 }
 

@@ -1,10 +1,12 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import Distribution, { UniformDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
-export default class Uniform implements IParameter {
+export default class Uniform implements IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.uniform;
 
@@ -37,6 +39,13 @@ export default class Uniform implements IParameter {
     this.min = min;
     this.max = max;
     this.metaData = metaData;
+  }
+
+  get distribution(): Distribution | undefined {
+    if (this.min === undefined || this.max === undefined) {
+      return undefined;
+    }
+    return new UniformDistribution(this.min, this.max);
   }
 
   isEquivalent(other: IParameter): boolean {

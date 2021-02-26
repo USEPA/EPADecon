@@ -1,10 +1,12 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import Distribution, { TruncatedLogNormalDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
-export default class TruncatedLogNormal implements IParameter {
+export default class TruncatedLogNormal implements IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.truncatedLogNormal;
 
@@ -78,5 +80,17 @@ export default class TruncatedLogNormal implements IParameter {
           this.logMean === other.logMean &&
           this.logStdDev === other.logStdDev
       : false;
+  }
+
+  get distribution(): Distribution | undefined {
+    if (
+      this.min === undefined ||
+      this.max === undefined ||
+      this.logMean === undefined ||
+      this.logStdDev === undefined
+    ) {
+      return undefined;
+    }
+    return new TruncatedLogNormalDistribution(this.logMean, this.logStdDev, this.min, this.max);
   }
 }

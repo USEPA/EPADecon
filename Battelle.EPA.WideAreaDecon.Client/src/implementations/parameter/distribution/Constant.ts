@@ -1,24 +1,27 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
-export default class Constant implements IParameter {
+export default class Constant implements IUnivariateParameter {
   private readonly numStdDevs = 5;
 
   @JsonProperty()
   readonly type: ParameterType = ParameterType.constant;
 
   @JsonProperty()
-  value?: number;
-
-  @JsonProperty()
   metaData: ParameterMetaData;
+
+  locked?: boolean;
 
   public get isSet(): boolean {
     return this.value !== undefined;
   }
+
+  @JsonProperty()
+  public value?: number;
 
   public get min(): number {
     return this.metaData.lowerLimit;

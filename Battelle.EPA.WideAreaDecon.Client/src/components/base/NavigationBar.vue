@@ -20,11 +20,20 @@
     <v-toolbar-title class="title" v-text="applicationTitle"></v-toolbar-title>
     <v-spacer></v-spacer>
 
-    <!-- Run button -->
+    <!-- Run / Export results buttons -->
     <v-tooltip bottom :color="canRun ? 'info' : 'error'">
       <template v-slot:activator="{ on }">
         <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'" :color="canRun ? 'secondary' : ''">
-          <v-btn v-on="on" :disabled="!canRun" :color="canRun ? 'secondary' : ''"> Run Scenario </v-btn>
+          <v-btn
+            v-if="!showExportButton()"
+            v-on="on"
+            @click="displayModal"
+            :disabled="!canRun"
+            :color="canRun ? 'secondary' : ''"
+          >
+            Run Scenario
+          </v-btn>
+          <v-btn v-else v-on="on" @click="exportResults" color="secondary"> Export Results </v-btn>
         </div>
       </template>
       <span v-if="canRun">Runs the model and generates results</span>
@@ -63,8 +72,8 @@
       :icons-and-text="true"
     >
       <v-tabs-slider></v-tabs-slider>
-      <template v-for="(item, i) in navigationItems">
-        <v-tooltip bottom :key="i" v-if="item.enabled" color="info">
+      <template v-for="item in navigationItems">
+        <v-tooltip bottom :key="item.title" v-if="item.enabled" color="info">
           <template v-slot:activator="{ on }">
             <v-tab :class="getClassName(item.link)" v-on="on" :to="item.link" :disabled="!item.enabled">
               {{ item.title }}
@@ -81,7 +90,7 @@
           <span>{{ item.tooltip.enabled }}</span>
         </v-tooltip>
 
-        <v-tooltip bottom :key="i" v-if="!item.enabled" color="error">
+        <v-tooltip bottom :key="`${item.title}-disabled`" v-else color="error">
           <template v-slot:activator="{ on }">
             <div v-on="on" class="v-tab disabled-tool-tip">
               <v-tab value="true" :to="item.link" :disabled="!item.enabled">
@@ -100,12 +109,15 @@
 <script lang="ts">
 import Vue from 'vue';
 import { State, Getter } from 'vuex-class';
-import { Component } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
+import store from '@/store';
 import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
 import INavigationItem from '@/interfaces/configuration/INavigationItem';
 import container from '@/dependencyInjection/config';
-import IImageProvider from '../../interfaces/providers/IImageProvider';
-import TYPES from '../../dependencyInjection/types';
+import IImageProvider from '@/interfaces/providers/IImageProvider';
+import TYPES from '@/dependencyInjection/types';
+import IJobProvider from '@/interfaces/providers/IJobProvider';
+import JobRequest from '@/implementations/jobs/JobRequest';
 
 @Component
 export default class NavigationBar extends Vue {
@@ -115,17 +127,42 @@ export default class NavigationBar extends Vue {
 
   @Getter canRun!: boolean;
 
+  @Getter hasResults!: boolean;
+
   @State applicationActions!: IApplicationAction[];
 
   @State navigationItems!: INavigationItem[];
 
   @State enableNavigationTabs!: boolean;
 
+  @State currentJob!: JobRequest;
+
   imageProvider = container.get<IImageProvider>(TYPES.ImageProvider);
+
+  jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
 
   selectedNavigationRoute: string | null = null;
 
   selectedTabName!: never;
+
+  @Watch('hasResults')
+  enableResultsNavigationTab(newValue: boolean): void {
+    const items = this.navigationItems;
+    items[items.length - 1].enabled = newValue;
+    store.commit('setNavigationItems', items);
+  }
+
+  displayModal(): void {
+    this.$emit('visible');
+  }
+
+  exportResults(): void {
+    this.jobProvider.exportJobResults(this.currentJob);
+  }
+
+  showExportButton(): boolean {
+    return this.hasResults && this.selectedNavigationRoute === '/ViewResults';
+  }
 
   getClassName(name: string): string {
     return this.$vuetify.theme.dark ? this.getDarkClassName(name) : this.getLightClassName(name);

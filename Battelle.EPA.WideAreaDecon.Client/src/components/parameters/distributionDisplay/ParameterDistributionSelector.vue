@@ -22,14 +22,29 @@
       </v-col>
     </v-row>
     <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
-    <component :key="componentKey" :is="distComponent" :selected-parameter="currentSelectedParameter"> </component>
+    <component
+      :key="currentSelectedParameter.path"
+      :is="display.distComponent"
+      :parameter-value="currentSelectedParameter.current"
+    >
+    </component>
+    <v-container>
+      <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
+        <distribution-chart
+          :distribution-series="display.chartData"
+          :xAxisLabel="display.xAxisLabel"
+          :yAxisLabel="'Probability of Selection'"
+          :data-generator="display.dataGenerator"
+        ></distribution-chart>
+      </v-card>
+    </v-container>
   </v-card>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Watch } from 'vue-property-decorator';
-import { State } from 'vuex-class';
+import { Action, Getter, State } from 'vuex-class';
 import ParameterType from '@/enums/parameter/parameterType';
 import NullDisplay from '@/components/parameters/distributionDisplay/NullDisplay.vue';
 import UnknownDisplay from '@/components/parameters/distributionDisplay/UnknownDisplay.vue';
@@ -40,12 +55,19 @@ import TruncatedLogNormalDisplay from '@/components/parameters/distributionDispl
 import TruncatedNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedNormalDisplay.vue';
 import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNormalDisplay.vue';
 import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
+import UniformXDependentDisplay from '@/components/parameters/distributionDisplay/UniformXDependentDisplay.vue';
 import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
+import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
+import EnumeratedFractionDisplay from '@/components/parameters/distributionDisplay/EnumeratedFractionDisplay.vue';
+import EnumeratedParameterDisplay from '@/components/parameters/distributionDisplay/EnumeratedParameterDisplay.vue';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
+import { DistributionChart } from 'battelle-common-vue-charting/src/index';
+import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
+import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
 
 @Component({
   components: {
@@ -56,13 +78,22 @@ import TYPES from '@/dependencyInjection/types';
     BetaPertDisplay,
     TruncatedLogNormalDisplay,
     TruncatedNormalDisplay,
+    UniformXDependentDisplay,
     UniformDisplay,
     LogNormalDisplay,
     WeibullDisplay,
+    BimodalTruncatedNormalDisplay,
+    EnumeratedFractionDisplay,
+    EnumeratedParameterDisplay,
+    DistributionChart,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
   @State currentSelectedParameter!: ParameterWrapper;
+
+  @Getter hasResults!: boolean;
+
+  @Action resetCurrentJobRequest!: () => void;
 
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
@@ -71,35 +102,21 @@ export default class ParameterDistributionSelector extends Vue {
     this.currentDistType = this.currentSelectedParameter.type;
   }
 
-  componentKey = 0;
+  @Watch('parameterHasChanged')
+  onParameterChanged(newValue: boolean): void {
+    if (newValue && this.hasResults) {
+      this.resetCurrentJobRequest();
+    }
+  }
 
   currentDistType = ParameterType.constant;
 
   distNames = changeableDistributionTypes;
 
-  get distComponent(): string {
-    switch (this.currentSelectedParameter.current.type) {
-      case ParameterType.null:
-        return 'null-display';
-      case ParameterType.constant:
-        return 'constant-display';
-      case ParameterType.logUniform:
-        return 'log-uniform-display';
-      case ParameterType.pert:
-        return 'beta-pert-display';
-      case ParameterType.truncatedLogNormal:
-        return 'truncated-log-normal-display';
-      case ParameterType.truncatedNormal:
-        return 'truncated-normal-display';
-      case ParameterType.logNormal:
-        return 'log-normal-display';
-      case ParameterType.uniform:
-        return 'uniform-display';
-      case ParameterType.weibull:
-        return 'weibull-display';
-      default:
-        return 'unknown-display';
-    }
+  get display(): DistributionDisplay {
+    return container
+      .get<IDistributionDisplayProvider>(TYPES.DistributionDisplayProvider)
+      .getDistributionDisplay(this.currentSelectedParameter.baseline, this.currentSelectedParameter.current);
   }
 
   get isChangeableDist(): boolean {
@@ -117,7 +134,6 @@ export default class ParameterDistributionSelector extends Vue {
   resetParameter(): void {
     this.$store.commit('resetCurrentSelectedParameter');
     this.currentDistType = this.currentSelectedParameter.type;
-    this.componentKey += 1;
   }
 
   onDistributionTypeChange(): void {
