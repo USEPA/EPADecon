@@ -49,14 +49,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
             var ppeEachLevelPerTeam = new Dictionary<PpeLevel, double>()
             {
                 { PpeLevel.A, 0.0 },
-                { PpeLevel.B, 3.0 },
-                { PpeLevel.C, 3.0 },
+                { PpeLevel.B, 0.5 },
+                { PpeLevel.C, 0.5 },
                 { PpeLevel.D, 0.0 }
             };
             var _numberTeams = 4.0;
             var saToBeSourceReduced = 8000.0;
             var workDays = 4.07855517733999;
-            Assert.AreEqual(261523.892349847,
+            Assert.AreEqual(240890.08592469,
                 Calculator.CalculateEntranceExitCost(workDays, _numberTeams,  saToBeSourceReduced,  ppeEachLevelPerTeam), 1e-6,
                 "Incorrect cost calculated");
         }

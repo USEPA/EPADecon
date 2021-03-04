@@ -50,8 +50,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             var ppeRequiredCS = new Dictionary<PpeLevel, double>
             {
                 [PpeLevel.A] = 0.0,
-                [PpeLevel.B] = 3.0,
-                [PpeLevel.C] = 3.0,
+                [PpeLevel.B] = 0.5,
+                [PpeLevel.C] = 0.5,
                 [PpeLevel.D] = 0.0
             };
 
@@ -76,8 +76,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             var ppeRequiredSR = new Dictionary<PpeLevel, double>
             {
                 [PpeLevel.A] = 0.0,
-                [PpeLevel.B] = 3.0,
-                [PpeLevel.C] = 3.0,
+                [PpeLevel.B] = 0.5,
+                [PpeLevel.C] = 0.5,
                 [PpeLevel.D] = 0.0
             };
 
@@ -121,8 +121,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             var ppeRequiredDC = new Dictionary<PpeLevel, double>
             {
                 [PpeLevel.A] = 0.0,
-                [PpeLevel.B] = 4.0,
-                [PpeLevel.C] = 4.0,
+                [PpeLevel.B] = 0.5,
+                [PpeLevel.C] = 0.5,
                 [PpeLevel.D] = 0.0
             };
             var fumigationAgentVolume = 0.3342015463;
@@ -300,22 +300,22 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
 
             Assert.AreEqual(0.807293628838681, results.characterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for characterization sampling");
             Assert.AreEqual(11.925174282911, results.characterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for characterization sampling");
-            Assert.AreEqual(166635.639180651, results.characterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for characterization sampling");
+            Assert.AreEqual(162812.270721075, results.characterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for characterization sampling");
             
             Assert.AreEqual(4.07855517733999, results.sourceReductionResults.workDays, 1e-6, "Incorrect work days calculated for source reduction");
             Assert.AreEqual(4.07855517733999, results.sourceReductionResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for source reduction");
-            Assert.AreEqual(355834.34015316, results.sourceReductionResults.phaseCost, 1e-6, "Incorrect phase cost calculated for source reduction");
+            Assert.AreEqual(335200.533728002, results.sourceReductionResults.phaseCost, 1e-6, "Incorrect phase cost calculated for source reduction");
             
             Assert.AreEqual(12.0, results.decontaminationResults.workDays, 1e-6, "Incorrect work days calculated for decontamination");
             Assert.AreEqual(14.0, results.decontaminationResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for decontamination");
-            Assert.AreEqual(483892.107797327, results.decontaminationResults.phaseCost, 1e-6, "Incorrect phase cost calculated for decontamination");
+            Assert.AreEqual(476788.059797327, results.decontaminationResults.phaseCost, 1e-6, "Incorrect phase cost calculated for decontamination");
             
             Assert.AreEqual(38.0037294602509, results.incidentCommandResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for incident command");
             Assert.AreEqual(469821.181459811, results.incidentCommandResults.phaseCost, 1e-6, "Incorrect phase cost calculated for incident command");
 
             Assert.AreEqual(44000.9323650627, results.otherResults.otherCosts, 1e-6, "Incorrect cost calculated for other costs");
 
-            Assert.AreEqual(1520184.20095601, results.generalResults.totalCost, 1e-6, "Incorrect total cost calculated");
+            Assert.AreEqual(1488622.97807128, results.generalResults.totalCost, 1e-6, "Incorrect total cost calculated");
         }
     }
 }

@@ -80,8 +80,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var ppePerLevelPerTeam = new Dictionary<PpeLevel, double>()
             {
                 { PpeLevel.A, 0.0 },
-                { PpeLevel.B, 3.0 },
-                { PpeLevel.C, 3.0 },
+                { PpeLevel.B, 0.5 },
+                { PpeLevel.C, 0.5 },
                 { PpeLevel.D, 0.0 }
             };
             var _numberTeams = 4.0;
@@ -96,7 +96,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(58354.8795711656, Calculator.CalculateEntrancesExitsCost(workDays, _numberTeams, ppePerLevelPerTeam, fractionSampledWipe, fractionSampledHepa, areaContaminated),
+            Assert.AreEqual(54531.5111115895, Calculator.CalculateEntrancesExitsCost(workDays, _numberTeams, ppePerLevelPerTeam, fractionSampledWipe, fractionSampledHepa, areaContaminated),
                 1e-6, "Incorrect labor cost calculated");
         }
     }
