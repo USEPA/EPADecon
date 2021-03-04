@@ -41,7 +41,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
             var totalEntries = workDays * _numberEntriesPerTeamPerDay * _numberTeams;
 
-            var totalPpePerLevel = ppePerLevelPerTeam.Values.Select(x => x * _numberTeams * totalEntries);
+            var totalPpePerLevel = ppePerLevelPerTeam.Values.Select(x => x * totalPersonnel * totalEntries);
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
