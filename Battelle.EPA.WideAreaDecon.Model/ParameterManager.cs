@@ -298,7 +298,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             var wipeAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per Wipe Sample Analyzed").CreateDistribution().Draw();
             var hepaAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per HEPA Sample Analyzed").CreateDistribution().Draw();
             var vacuumRentalCostPerDay = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "HEPA Vacuum Rental per Day").CreateDistribution().Draw();
-            var costPerMassOfMaterialRemoved = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Material Removal per Surface Area").CreateDistribution().Draw();
+            var costPerMassOfMaterialRemoved = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Material Removal per Mass").CreateDistribution().Draw();
             var deconAgentCostPerVolume = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost of Decon Agent").CreateDistribution().Draw();
             var deconMaterialsCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Decon Material Cost per Surface Area").CreateDistribution().Draw();
             var rentalCarCostPerDay = _costParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Rental Car Cost per Day").CreateDistribution().Draw();
