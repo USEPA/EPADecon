@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.Model.Services;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
@@ -12,7 +13,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         public SuppliesCostCalculator Calculator_supplies { get; set; }
         public EntranceExitCostCalculator Calculator_entEx { get; set; }
 
-        public double CalculateTime()
+        public Tuple<double, int> CalculateTime()
         {
             return Calculator_workDays.CalculateWorkDays();
         }

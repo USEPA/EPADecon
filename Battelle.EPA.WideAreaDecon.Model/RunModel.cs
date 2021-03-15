@@ -103,8 +103,10 @@ namespace Battelle.EPA.WideAreaDecon.Model
                     parameters.costParameters.costPerMassOfMaterialRemoved,
                     parameters.sourceReductionParameters.ppeRequired));
             }
-            
-            results.decontaminationResults.workDays = decontaminationCostCalculator.CalculateTime();
+
+            Tuple<double, int> decontaminationLabor = decontaminationCostCalculator.CalculateTime();
+
+            results.decontaminationResults.workDays = decontaminationLabor.Item1;
 
             results.decontaminationResults.onSiteDays = results.decontaminationResults.workDays +
                 parameters.decontaminationParameters.personnelOverhead;
@@ -146,6 +148,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 results.otherResults.otherCosts;
 
             results.generalResults.areaContaminated = areaContaminated.Values.Sum(v => v.AreaContaminated);
+
+            results.generalResults.decontaminationRounds = decontaminationLabor.Item2;
 
             return results;
         }

@@ -8,9 +8,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
     internal class MockWorkDaysCalculator : IWorkDaysCalculator
     {
-        public double CalculateWorkDays()
+        public Tuple<double, int> CalculateWorkDays()
         {
-            return 3.0;
+            Tuple<double, int> deconLabor = new Tuple<double, int>(3.0, 2);
+
+            return deconLabor;
         }
     }
 
