@@ -64,14 +64,14 @@ namespace Battelle.EPA.WideAreaDecon.Model
                     parameters.characterizationSamplingParameters.fractionSampledHepa,
                     areaContaminated);
 
-            results.characterizationSamplingResults.phaseCost = characterizationSamplingCostCalculator.CalculateCost(
+            results.characterizationSamplingResults.phaseCost = Convert.ToInt64(characterizationSamplingCostCalculator.CalculateCost(
                 results.characterizationSamplingResults.workDays,
                 parameters.characterizationSamplingParameters.numTeams,
                 parameters.characterizationSamplingParameters.fractionSampledWipe,
                 parameters.characterizationSamplingParameters.fractionSampledHepa,
                 areaContaminated,
                 parameters.otherParameters.roundtripDays,
-                parameters.characterizationSamplingParameters.ppeRequired);
+                parameters.characterizationSamplingParameters.ppeRequired));
 
             results.sourceReductionResults.workDays = sourceReductionCostCalculator.CalculateTime(
                 parameters.sourceReductionParameters.numTeams,
@@ -80,26 +80,26 @@ namespace Battelle.EPA.WideAreaDecon.Model
             results.sourceReductionResults.onSiteDays = results.sourceReductionResults.workDays +
                 parameters.sourceReductionParameters.personnelOverheadDays;
 
-            results.sourceReductionResults.phaseCost = sourceReductionCostCalculator.CalculateCost(
+            results.sourceReductionResults.phaseCost = Convert.ToInt64(sourceReductionCostCalculator.CalculateCost(
                 results.sourceReductionResults.workDays,
                 parameters.sourceReductionParameters.numTeams,
                 parameters.otherParameters.roundtripDays,
                 parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced,
                 parameters.costParameters.costPerMassOfMaterialRemoved,
-                parameters.sourceReductionParameters.ppeRequired);
+                parameters.sourceReductionParameters.ppeRequired));
 
             results.decontaminationResults.workDays = decontaminationCostCalculator.CalculateTime();
 
             results.decontaminationResults.onSiteDays = results.decontaminationResults.workDays +
                 parameters.decontaminationParameters.personnelOverhead;
 
-            results.decontaminationResults.phaseCost = decontaminationCostCalculator.CalculateCost(
+            results.decontaminationResults.phaseCost = Convert.ToInt64(decontaminationCostCalculator.CalculateCost(
                 results.decontaminationResults.workDays,
                 parameters.decontaminationParameters.numTeams,
                 parameters.otherParameters.roundtripDays,
                 parameters.decontaminationParameters.ppeRequired,
                 areaContaminated,
-                parameters.decontaminationParameters.applicationMethods);
+                parameters.decontaminationParameters.applicationMethods));
 
             results.incidentCommandResults.onSiteDays = incidentCommandCostCalculator.CalculateTime(
                 results.characterizationSamplingResults.workDays,
@@ -114,14 +114,14 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 parameters.characterizationSamplingParameters.numLabs,
                 parameters.characterizationSamplingParameters.resultTransmissionToIC);
 
-            results.incidentCommandResults.phaseCost = incidentCommandCostCalculator.CalculateCost(
-                results.incidentCommandResults.onSiteDays);
+            results.incidentCommandResults.phaseCost = Convert.ToInt64(incidentCommandCostCalculator.CalculateCost(
+                results.incidentCommandResults.onSiteDays));
 
-            results.otherResults.otherCosts = otherCostCalculator.CalculateCost(
+            results.otherResults.otherCosts = Convert.ToInt64(otherCostCalculator.CalculateCost(
                 parameters.otherParameters.totalAvailablePersonnel,
                 parameters.otherParameters.roundtripDays,
                 parameters.costParameters.roundtripTicketCostPerPerson,
-                results.incidentCommandResults.onSiteDays);
+                results.incidentCommandResults.onSiteDays));
 
             results.generalResults.totalCost = results.characterizationSamplingResults.phaseCost +
                 results.sourceReductionResults.phaseCost +
