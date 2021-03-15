@@ -26,22 +26,13 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
 
     public static class ApplicableApplicationMethodHelper
     {
-        public static readonly ApplicationMethod[] IndoorInteriorMethods = {
+        public static readonly ApplicationMethod[] IndoorWallsMethods = {
             ApplicationMethod.Aerosol,
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
             ApplicationMethod.Fumigation,
             ApplicationMethod.Gel,
             ApplicationMethod.LiquidImmersion,
-            ApplicationMethod.LiquidSpray,
-            ApplicationMethod.LiquidWipe,
-            ApplicationMethod.Physical
-        };
-
-        public static readonly ApplicationMethod[] IndoorExteriorMethods = {
-            ApplicationMethod.Aerosol,
-            ApplicationMethod.FoamSpray,
-            ApplicationMethod.Fumigation,
             ApplicationMethod.LiquidSpray,
             ApplicationMethod.LiquidWipe,
             ApplicationMethod.Physical
@@ -148,7 +139,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly ApplicationMethod[] UndergroundInteriorMethods = {
+        public static readonly ApplicationMethod[] UndergroundWallsMethods = {
             ApplicationMethod.Aerosol,
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
@@ -208,8 +199,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
         {
             return surface switch
             {
-                SurfaceType.IndoorInterior => IndoorInteriorMethods,
-                SurfaceType.IndoorExterior => IndoorExteriorMethods,
+                SurfaceType.IndoorWalls => IndoorWallsMethods,
                 SurfaceType.IndoorCeilings => IndoorCeilingsMethods,
                 SurfaceType.IndoorCarpet => IndoorCarpetMethods,
                 SurfaceType.IndoorNonCarpet => IndoorNonCarpetMethods,
@@ -221,7 +211,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
                 SurfaceType.Water => WaterMethods,
                 SurfaceType.Soil => SoilMethods,
                 SurfaceType.OutdoorMisc => OutdoorMiscMethods,
-                SurfaceType.UndergroundInterior => UndergroundInteriorMethods,
+                SurfaceType.UndergroundWalls => UndergroundWallsMethods,
                 SurfaceType.UndergroundCeilings => UndergroundCeilingsMethods,
                 SurfaceType.UndergroundCarpet => UndergroundCarpetMethods,
                 SurfaceType.UndergroundNonCarpet => UndergroundNonCarpetMethods,
