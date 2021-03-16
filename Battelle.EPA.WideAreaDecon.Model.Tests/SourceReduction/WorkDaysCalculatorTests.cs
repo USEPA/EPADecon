@@ -22,10 +22,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         public void CalculateCost()
         {
             var _numberTeams = 4.0;
-            var saToBeSourceReduced = 0.5;
-            var area = 16000.0;
+            var saToBeSourceReduced = 0.9;
+            var area = 9000.0;
 
-            Assert.AreEqual(4.07855517733999, Calculator.CalculateWorkDays(_numberTeams, saToBeSourceReduced, area), 1e-6,
+            Assert.AreEqual(4.12953711705674, Calculator.CalculateWorkDays(_numberTeams, saToBeSourceReduced, area), 1e-6,
                 "Incorrect labor cost calculated");
         }
     }
