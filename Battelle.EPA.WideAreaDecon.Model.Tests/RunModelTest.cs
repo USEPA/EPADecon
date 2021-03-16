@@ -56,7 +56,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             };
 
             // Source reduction parameters
-            var surfaceAreaToBeSourceReduced = 8000.0;
+            var surfaceAreaToBeSourceReduced = 0.9;
             var massPerSurfaceArea = 7.4;
             var massRemovedPerHourPerTeam = 453.592;
             var numEntriesPerDaySR = 3.0;
@@ -289,7 +289,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
         public void CalculateCost()
         {
             var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
-            var contaminationInfo = new ContaminationInformation(100, 20);
+            var contaminationInfo = new ContaminationInformation(500, 20);
 
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
@@ -298,24 +298,25 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
 
             var results = Calculator.CalculateCost(parameters, areaContaminated);
 
-            Assert.AreEqual(0.807293628838681, results.characterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for characterization sampling");
-            Assert.AreEqual(11.925174282911, results.characterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for characterization sampling");
-            Assert.AreEqual(162812, results.characterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for characterization sampling");
+            Assert.AreEqual(4.03646814419341, results.characterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for characterization sampling");
+            Assert.AreEqual(45.5128948086206, results.characterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for characterization sampling");
+            Assert.AreEqual(742999, results.characterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for characterization sampling");
             
-            Assert.AreEqual(4.07855517733999, results.sourceReductionResults.workDays, 1e-6, "Incorrect work days calculated for source reduction");
-            Assert.AreEqual(4.07855517733999, results.sourceReductionResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for source reduction");
-            Assert.AreEqual(335201, results.sourceReductionResults.phaseCost, 1e-6, "Incorrect phase cost calculated for source reduction");
+            Assert.AreEqual(4.12953711705674, results.sourceReductionResults.workDays, 1e-6, "Incorrect work days calculated for source reduction");
+            Assert.AreEqual(4.12953711705674, results.sourceReductionResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for source reduction");
+            Assert.AreEqual(339331, results.sourceReductionResults.phaseCost, 1e-6, "Incorrect phase cost calculated for source reduction");
             
             Assert.AreEqual(12.0, results.decontaminationResults.workDays, 1e-6, "Incorrect work days calculated for decontamination");
             Assert.AreEqual(14.0, results.decontaminationResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for decontamination");
-            Assert.AreEqual(476788, results.decontaminationResults.phaseCost, 1e-6, "Incorrect phase cost calculated for decontamination");
+            Assert.AreEqual(491301, results.decontaminationResults.phaseCost, 1e-6, "Incorrect phase cost calculated for decontamination");
             
-            Assert.AreEqual(38.0037294602509, results.incidentCommandResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for incident command");
-            Assert.AreEqual(469821, results.incidentCommandResults.phaseCost, 1e-6, "Incorrect phase cost calculated for incident command");
+            Assert.AreEqual(71.6424319256773, results.incidentCommandResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for incident command");
+            Assert.AreEqual(885680, results.incidentCommandResults.phaseCost, 1e-6, "Incorrect phase cost calculated for incident command");
 
-            Assert.AreEqual(44001, results.otherResults.otherCosts, 1e-6, "Incorrect cost calculated for other costs");
+            Assert.AreEqual(52411, results.otherResults.otherCosts, 1e-6, "Incorrect cost calculated for other costs");
 
-            Assert.AreEqual(1488623, results.generalResults.totalCost, 1e-6, "Incorrect total cost calculated");
+            Assert.AreEqual(2511722, results.generalResults.totalCost, 1e-6, "Incorrect total cost calculated");
+            Assert.AreEqual(4, results.generalResults.decontaminationRounds, 1e-6, "Incorrect number of decontamination rounds calculated");
         }
     }
 }

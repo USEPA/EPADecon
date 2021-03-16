@@ -7,7 +7,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
 {
     internal class MockWorkDaysCalculator : IWorkDaysCalculator
     {
-        public double CalculateWorkDays(double _numberTeams, double saToBeSourceReduced)
+        public double CalculateWorkDays(double _numberTeams, double saToBeSourceReduced, double area)
         {
             return 4.07855517733999;
         }
@@ -52,13 +52,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         {
             
             var _numberTeams = 4.0;
-            var roundtripDays = 2.0;
-            var saToBeSourceReduced = 8000.0;
+            var saToBeSourceReduced = 0.5;
+            var area = 16000.0;
             var costPerTonRemoved = 0.1;
             var workDays = 4.07855517733999;
 
-            Assert.AreEqual(94310.4478033122, Calculator.CalculateLaborCost(workDays, _numberTeams,  roundtripDays,  saToBeSourceReduced,
-             costPerTonRemoved), 1e-6, "Incorrect labor cost calculated");
+            Assert.AreEqual(94310.4478033122, Calculator.CalculateLaborCost(workDays, _numberTeams, saToBeSourceReduced,
+             costPerTonRemoved, area), 1e-6, "Incorrect labor cost calculated");
             Assert.AreEqual(4.07855517733999, Calculator.CalculateLaborDays(workDays),
                 1e-6, "Incorrect labor days calculated");
         }

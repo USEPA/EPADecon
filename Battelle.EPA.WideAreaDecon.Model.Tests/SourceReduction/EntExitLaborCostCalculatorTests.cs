@@ -48,7 +48,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
             var numberTeams = 4.0;
             var saToBeSourceReduced = 8000.0;
             
-            Assert.AreEqual(132585.671704968, Calculator.CalculateEntExitLaborCost(workDays, numberTeams, saToBeSourceReduced ), 1e-3,
+            Assert.AreEqual(132585.671704968, Calculator.CalculateEntExitLaborCost(workDays, numberTeams), 1e-3,
                 "Incorrect cost calculated");
         }
     }
