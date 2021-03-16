@@ -115,17 +115,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 ppeRequired);
         }
 
-        public SourceReductionParameters SetSourceReductionParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails, DecontaminationPhase phase)
+        public SourceReductionParameters SetSourceReductionParameters()
         {
-            var surfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(phase);
-
-            var contaminationArea = new Dictionary<SurfaceType, double>();
-            foreach (SurfaceType surface in surfaces)
-            {
-                contaminationArea.Add(surface, scenarioDefinitionDetails[surface].AreaContaminated);
-            }
-            // TODO: SEPARATE THESE PARAMETERS
-            var surfaceAreaToBeSourceReduced = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction Surface Area to be Source Reduced").CreateDistribution().Draw() * contaminationArea.Values.Sum();
+            var surfaceAreaToBeSourceReduced = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction Surface Area to be Source Reduced").CreateDistribution().Draw();
             var massPerSurfaceArea = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Mass of Waste per Surface Area").CreateDistribution().Draw();
             var massRemovedPerHourPerTeam = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Mass of Waste Removed per Hour per Team").CreateDistribution().Draw();
             var numEntriesPerDay = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Entries per Team per Day").CreateDistribution().Draw();

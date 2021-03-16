@@ -90,7 +90,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
             {
                 results.sourceReductionResults.workDays = sourceReductionCostCalculator.CalculateTime(
                     parameters.sourceReductionParameters.numTeams,
-                    parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced);
+                    parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced,
+                    areaContaminated.Values.Sum(v => v.AreaContaminated));
 
                 results.sourceReductionResults.onSiteDays = results.sourceReductionResults.workDays +
                     parameters.sourceReductionParameters.personnelOverheadDays;
@@ -101,7 +102,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                     parameters.otherParameters.roundtripDays,
                     parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced,
                     parameters.costParameters.costPerMassOfMaterialRemoved,
-                    parameters.sourceReductionParameters.ppeRequired));
+                    parameters.sourceReductionParameters.ppeRequired,
+                    areaContaminated.Values.Sum(v => v.AreaContaminated)));
             }
 
             Tuple<double, int> decontaminationLabor = decontaminationCostCalculator.CalculateTime();

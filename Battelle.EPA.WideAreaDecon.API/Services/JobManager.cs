@@ -130,7 +130,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                                 //Set indoor parameter values
                                 var indoorCalculatorManager = new CalculatorManager(
                                     parameterManager.SetCharacterizationSamplingParameters(),
-                                    parameterManager.SetSourceReductionParameters(building.Value, DecontaminationPhase.Indoor),
+                                    parameterManager.SetSourceReductionParameters(),
                                     parameterManager.SetDecontaminationParameters(building.Value, DecontaminationPhase.Indoor),
                                     parameterManager.SetIncidentCommandParameters(),
                                     parameterManager.SetOtherParameters(),
@@ -150,7 +150,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         //Set outdoor parameter values
                         var outdoorCalculatorManager = new CalculatorManager(
                             parameterManager.SetCharacterizationSamplingParameters(),
-                            parameterManager.SetSourceReductionParameters(scenarios[s].OutdoorAreasContaminated, DecontaminationPhase.Outdoor),
+                            parameterManager.SetSourceReductionParameters(),
                             parameterManager.SetDecontaminationParameters(scenarios[s].OutdoorAreasContaminated, DecontaminationPhase.Outdoor),
                             parameterManager.SetIncidentCommandParameters(),
                             parameterManager.SetOtherParameters(),
@@ -169,7 +169,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         //Set underground parameter values
                         var undergroundCalculatorManager = new CalculatorManager(
                             parameterManager.SetCharacterizationSamplingParameters(),
-                            parameterManager.SetSourceReductionParameters(scenarios[s].UndergroundBuildingsContaminated, DecontaminationPhase.Underground),
+                            parameterManager.SetSourceReductionParameters(),
                             parameterManager.SetDecontaminationParameters(scenarios[s].UndergroundBuildingsContaminated, DecontaminationPhase.Underground),
                             parameterManager.SetIncidentCommandParameters(),
                             parameterManager.SetOtherParameters(),
