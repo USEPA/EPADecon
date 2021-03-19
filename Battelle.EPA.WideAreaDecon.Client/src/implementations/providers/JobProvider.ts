@@ -98,7 +98,7 @@ export default class JobProvider implements IJobProvider {
     results: IJobResultRealization[],
     location: string,
     isIndoor: boolean,
-  ): number[][] {
+  ): (number | undefined)[][] {
     return results.map((r, i) => [
       i + 1,
       ...Object.values(isIndoor ? r.Indoor[location] : r[location]).flatMap((p: IPhaseResult) => Object.values(p)),
@@ -117,13 +117,13 @@ export default class JobProvider implements IJobProvider {
     resultHeaders: string[],
     averageHeaders: string[],
     isIndoor = false,
-  ): (string | number)[][] {
+  ): (string | number | undefined)[][] {
     return [
       [`${isIndoor ? `${location} Building` : location} Results`],
       [''], // empty row
       ['', ...phaseHeaders],
       ['', ...averageHeaders],
-      ['', ...[]],
+      ['', ...this.calculateAverages(results, location, isIndoor)],
       [''],
       [''],
       ['Realization Results'],
@@ -132,5 +132,16 @@ export default class JobProvider implements IJobProvider {
       ['Realization', ...resultHeaders],
       ...this.parseLocationRealizationResults(results, location, isIndoor),
     ];
+  }
+
+  private calculateAverages(results: IJobResultRealization[], location: string, isIndoor: boolean): number[] {
+    const { length } = results;
+    const vals = this.parseLocationRealizationResults(results, location, isIndoor).map((v) => v.slice(1));
+
+    return vals
+      .reduce((acc, cur) => {
+        return cur.map((x, i) => (acc[i] ?? 0) + (x ?? 0));
+      }, [])
+      .map((v) => (v ?? 0) / length);
   }
 }

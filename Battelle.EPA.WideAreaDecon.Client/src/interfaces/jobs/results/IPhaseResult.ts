@@ -5,4 +5,5 @@ export default interface IPhaseResult {
   otherCosts?: number;
   areaContaminated?: number;
   totalCost?: number;
+  [key: string]: number | undefined;
 }
