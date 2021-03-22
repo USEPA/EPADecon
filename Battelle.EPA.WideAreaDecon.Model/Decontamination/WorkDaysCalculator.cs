@@ -35,7 +35,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             double totalDays = 0.0;
             int decontaminationRounds = 0;
 
-            while (_surfaceSporeLoading.Values.All(loading => loading != _desiredSporeThreshold)) {
+            while (_surfaceSporeLoading.Values.Any(loading => loading > _desiredSporeThreshold)) {
                 var surfaces = _surfaceSporeLoading.Where(pair => pair.Value > _desiredSporeThreshold).Select(pair => pair.Key);
                 var methods = _appMethodBySurfaceType.Where(pair => surfaces.Contains(pair.Key)).Select(pair => pair.Value);
                 var days = _treatmentDaysPerAm.Where(pair => methods.Contains(pair.Key)).Select(pair => pair.Value);
