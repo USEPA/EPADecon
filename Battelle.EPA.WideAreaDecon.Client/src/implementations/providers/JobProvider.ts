@@ -76,6 +76,8 @@ export default class JobProvider implements IJobProvider {
     const runData = [
       ['Data exported on: ', new Date(Date.now()).toLocaleString()],
       ['Number of realizations: ', job.numberRealizations],
+      ['Seed 1: ', job.seed1],
+      ['Seed 2: ', job.seed2],
     ];
 
     // Create worksheets from arrays
