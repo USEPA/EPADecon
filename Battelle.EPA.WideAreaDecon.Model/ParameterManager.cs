@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
@@ -319,14 +317,26 @@ namespace Battelle.EPA.WideAreaDecon.Model
         private Dictionary<SurfaceType, ApplicationMethod> SetTreatmentMethods(SurfaceType[] surfaces)
         {
             Random random = new Random();
+
             var treatmentMethods = new Dictionary<SurfaceType, ApplicationMethod>();
+            List<ApplicationMethod> applicationMethods = Enum.GetValues(typeof(ApplicationMethod)).Cast<ApplicationMethod>().ToList();
 
-            foreach (SurfaceType surface in surfaces)
+            while (treatmentMethods.Count < surfaces.Length)
             {
-                var applicableMethods = ApplicableApplicationMethodHelper.GetApplicationMethodsForSurface(surface);
-                var methodIndex = random.Next(0, applicableMethods.Length);
+                var methodIndex = random.Next(0, applicationMethods.Count);
 
-                treatmentMethods.Add(surface, applicableMethods[methodIndex]);
+                foreach (SurfaceType surface in surfaces)
+                {
+                    if (!treatmentMethods.ContainsKey(surface))
+                    {
+                        List<ApplicationMethod> applicableSurfaces = ApplicableApplicationMethodHelper.GetApplicationMethodsForSurface(surface);
+
+                        if (applicableSurfaces.Contains(applicationMethods[methodIndex]))
+                        {
+                            treatmentMethods.Add(surface, applicationMethods[methodIndex]);
+                        }
+                    }
+                }
             }
 
             return treatmentMethods;
@@ -338,7 +348,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             foreach (SurfaceType surface in treatmentMethods.Keys.ToList())
             {
-                ApplicationMethod tmp = treatmentMethods[surface];
+                ApplicationMethod? tmp = treatmentMethods[surface];
                 string methodName = tmp.GetStringValue();
                 var metaDataName = methodName + " Efficacy by Surface";
                 var values = Enum.GetValues(typeof(ApplicationMethod));
