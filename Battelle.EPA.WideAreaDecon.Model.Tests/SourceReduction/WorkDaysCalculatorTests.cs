@@ -25,7 +25,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
             var saToBeSourceReduced = 0.9;
             var area = 9000.0;
 
-            Assert.AreEqual(4.12953711705674, Calculator.CalculateWorkDays(_numberTeams, saToBeSourceReduced, area), 1e-6,
+            Assert.AreEqual(2.75302474470449, Calculator.CalculateWorkDays(_numberTeams, saToBeSourceReduced, area), 1e-6,
                 "Incorrect labor cost calculated");
         }
     }

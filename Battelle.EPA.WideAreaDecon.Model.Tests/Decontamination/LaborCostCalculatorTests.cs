@@ -55,7 +55,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             var numTeams = 2.0;
             var roundtripDays = 2.0;
              
-            Assert.AreEqual(240800.0, Calculator.CalculateLaborCost(workDays, numTeams, roundtripDays), 1e-6, "Incorrect cost calculated");
+            Assert.AreEqual(361200, Calculator.CalculateLaborCost(workDays, numTeams, roundtripDays), 1e-6, "Incorrect cost calculated");
 
         }
     }

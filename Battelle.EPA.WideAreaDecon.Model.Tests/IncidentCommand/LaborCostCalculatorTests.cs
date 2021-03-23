@@ -12,18 +12,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays,
             double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 115407.74958828;
+            return 121767.74958828;
         }
 
         public double CalculateEntExitLaborCost(double workDays, double _numberTeams, double fractionSampledWipe, 
             double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 102687.74958828;
+            return 68458.4997255202;
         }
 
         public double CalculateLaborDays(double workDays)
         {
-            return 4.53646814419341;
+            return 3.1909787627956;
         }
     }
 
@@ -32,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampledWipe, 
             double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 40.9764266644272;
+            return 39.967011947266;
         }
     }
 
@@ -46,7 +46,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 
         public double CalculateLaborDays(double workDays)
         {
-            return 4.12953711705674;
+            return 2.75302474470449;
         }
     }
 
@@ -54,7 +54,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
     {
         public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays)
         {
-            return 240800;
+            return 361200;
         }
 
         public double CalculateLaborDays(double workDays)
@@ -108,9 +108,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             double sampleTimeTransmitted = 24.0;
             var fractionSampledWipe = 0.3;
             var fractionSampledHepa = 0.2;
-            var workDaysCS = 4.03646814419341;
-            var workDaysSR = 4.12953711705674;
-            var workDaysDC = 3.0;
+            var workDaysCS = 2.6909787627956;
+            var workDaysSR = 2.75302474470449;
+            var workDaysDC = 12.0;
             var info = new ContaminationInformation(500.0, 20.0);
             var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
 
@@ -120,9 +120,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
             }
 
             var onSiteDays = Calculator.CalculateOnSiteDays(workDaysCS, workDaysSR, workDaysDC, _numberTeams, saToBeSourceReduced, roundtripDays, fractionSampledWipe, fractionSampledHepa, areaContaminated, numberLabs, sampleTimeTransmitted);
-            Assert.AreEqual(71.6424319256773, onSiteDays, 1e-6,
+            Assert.AreEqual(67.9110154547661, onSiteDays, 1e-6,
                 "Incorrect onsite days calculated");
-            Assert.AreEqual(796663.843013532, Calculator.CalculateLaborCost(onSiteDays), 1e-6,
+            Assert.AreEqual(1132755.7377855, Calculator.CalculateLaborCost(onSiteDays), 1e-6,
                 "Incorrect Labor cost calculated");
         }
     }
