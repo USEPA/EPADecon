@@ -22,7 +22,7 @@ export default class DashboardResultCard extends Vue {
 
   @Prop() text!: string;
 
-  @Prop() value!: string | number;
+  @Prop() value!: string;
 }
 </script>
 
