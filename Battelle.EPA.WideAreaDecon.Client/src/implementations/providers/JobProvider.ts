@@ -74,7 +74,6 @@ export default class JobProvider implements IJobProvider {
     // Get sum of all buildings (this is likely only temporary)
     const indoorSum = this.buildLocationResults(results, 'Outdoor', phaseHeaders, resultHeaders, averageHeaders);
     indoorSum.splice(0, 1, ['Sum of Indoor Results']);
-    indoorSum.splice(4);
     const avgSum = [
       '',
       ...buildings
@@ -83,7 +82,7 @@ export default class JobProvider implements IJobProvider {
           return cur.map((v, i) => acc[i] + v);
         }),
     ];
-    indoorSum.push(avgSum);
+    indoorSum.splice(4, indoorSum.length - 1, avgSum);
 
     const outdoor = this.buildLocationResults(results, 'Outdoor', phaseHeaders, resultHeaders, averageHeaders);
     const underground = this.buildLocationResults(results, 'Underground', phaseHeaders, resultHeaders, averageHeaders);
