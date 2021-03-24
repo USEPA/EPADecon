@@ -45,8 +45,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
             var labUptimesHours = new List<double>();
             var labDistanceFromSite = new List<double>();
 
-            var fractionSampledWipe = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
-            var fractionSampledHepa = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
+            var fractionSurfaceSampled = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
+            var fractionSampledWipe =  fractionSurfaceSampled * 0.5;
+            var fractionSampledHepa = fractionSurfaceSampled * 0.5;
             var surfaceAreaPerWipe = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per Wipe").CreateDistribution().Draw();
             var surfaceAreaPerHepa = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per HEPA Sock").CreateDistribution().Draw();
             var wipesPerHrPerTeam = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Wipes per Hour per Team").CreateDistribution().Draw();
