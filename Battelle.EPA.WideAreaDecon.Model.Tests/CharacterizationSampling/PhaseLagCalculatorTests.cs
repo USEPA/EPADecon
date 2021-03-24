@@ -21,12 +21,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var hepaAnalysisTime = 1.0;
             var fractionOfWipeToEachLab = new List<double> { 0.2, 0.6, 0.2 };
             var fractionOfHepaToEachLab = new List<double> { 0.5, 0.3, 0.2 };
-            var labUptimesHours = new List<double> { 8.0, 9.0, 10.0 };
             var labDistanceFromSite = new List<double> { 48.0, 20.0, 90.0 };
             Calculator = new PhaseLagCalculator(
                 surfaceAreaPerWipe, 
-                surfaceAreaPerHepa, 
-                labUptimesHours, 
+                surfaceAreaPerHepa,
                 samplePackageTime, 
                 wipeAnalysisTime, 
                 hepaAnalysisTime, 

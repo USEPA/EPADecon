@@ -15,13 +15,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private readonly double _hepaAnalysisTime;
         private readonly List<double> _fractionOfWipeToEachLab;
         private readonly List<double> _fractionOfHepaToEachLab;
-        private readonly List<double> _labUptimesHours;
         private readonly List<double> _labDistanceFromSite;
 
         public PhaseLagCalculator(
             double surfaceAreaPerWipe,  
-            double surfaceAreaPerHepa, 
-            List<double> labUptimesHours, 
+            double surfaceAreaPerHepa,
             double samplePackageTime, 
             double wipeAnalysisTime, 
             double hepaAnalysisTime,
@@ -31,7 +29,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         {
             _surfaceAreaPerWipe = surfaceAreaPerWipe;
             _surfaceAreaPerHepa = surfaceAreaPerHepa;
-            _labUptimesHours = labUptimesHours;
             _samplePackageTime = samplePackageTime;
             _wipeAnalysisTime = wipeAnalysisTime;
             _hepaAnalysisTime = hepaAnalysisTime;

@@ -19,7 +19,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public int numLabs;
         public List<double> fractionOfWipeToEachLab;
         public List<double> fractionOfHepaToEachLab;
-        public List<double> labUptimesHours;
         public List<double> labDistanceFromSite;
         public double resultTransmissionToIC;
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
@@ -44,7 +43,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             int _numLabs,
             List<double> _fractionWipeToEachLab,
             List<double> _fractionHepaToEachLab,
-            List<double> _labUptimeHours,
             List<double> _labDistanceFromSite,
             double _resultTransmissionToIC,
             Dictionary<PersonnelLevel, double> _personnelPerTeam,
@@ -68,7 +66,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             numLabs = _numLabs;
             fractionOfWipeToEachLab = _fractionWipeToEachLab;
             fractionOfHepaToEachLab = _fractionHepaToEachLab;
-            labUptimesHours = _labUptimeHours;
             labDistanceFromSite = _labDistanceFromSite;
             resultTransmissionToIC = _resultTransmissionToIC;
             personnelReqPerTeam = _personnelPerTeam;

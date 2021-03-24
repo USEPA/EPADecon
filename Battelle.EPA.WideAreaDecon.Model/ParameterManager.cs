@@ -42,7 +42,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
         {
             var fractionOfWipeToEachLab = new List<double>();
             var fractionOfHepaToEachLab = new List<double>();
-            var labUptimesHours = new List<double>();
             var labDistanceFromSite = new List<double>();
 
             var fractionSurfaceSampled = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
@@ -61,7 +60,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
             {
                 fractionOfWipeToEachLab.Add(_characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Wipe Samples to Each Lab").CreateDistribution().Draw());
                 fractionOfHepaToEachLab.Add(_characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of HEPA Samples to Each Lab").CreateDistribution().Draw());
-                labUptimesHours.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Uptime Hours per Day").CreateDistribution().Draw());
                 labDistanceFromSite.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance from Site").CreateDistribution().Draw());
             }
             var resultTransmissionToIC = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Time of Result Transmission to IC").CreateDistribution().Draw();
@@ -102,7 +100,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 numLabs,
                 fractionOfWipeToEachLab,
                 fractionOfHepaToEachLab,
-                labUptimesHours,
                 labDistanceFromSite,
                 resultTransmissionToIC,
                 personnelReqPerTeam,

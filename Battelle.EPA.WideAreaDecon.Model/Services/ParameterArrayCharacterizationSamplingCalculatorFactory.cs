@@ -32,7 +32,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
             Calculator_phaseLag = new PhaseLagCalculator(
                 csParameters.surfaceAreaPerWipe,
                 csParameters.surfaceAreaPerHepa,
-                csParameters.labUptimesHours,
                 csParameters.samplePackageTime,
                 csParameters.wipeAnalysisTime,
                 csParameters.hepaAnalysisTime,
