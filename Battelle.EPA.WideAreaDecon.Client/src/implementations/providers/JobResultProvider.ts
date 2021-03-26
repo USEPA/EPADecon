@@ -1,8 +1,9 @@
+import { injectable } from 'inversify';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import JobRequest from '@/implementations/jobs/JobRequest';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
-import BuildingCategory from '@/enums/parameter/buildingCategory';
 
+@injectable()
 export default class JobResultProvider implements IJobResultProvider {
   /* eslint-disable class-methods-use-this */
   exportJobResults(job: JobRequest): void {
