@@ -73,6 +73,7 @@ import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealizati
 import IIndoorResult from '@/interfaces/jobs/results/IIndoorResult';
 import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
 import IJobProvider from '@/interfaces/providers/IJobProvider';
+import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import TYPES from '@/dependencyInjection/types';
 import container from '@/dependencyInjection/config';
 // TODO remove mock results
@@ -96,7 +97,9 @@ export default class ViewResults extends Vue {
 
   @Action setScenarioParameters!: (newParameters: ParameterWrapperList) => void;
 
-  private jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
+  // private jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
+
+  private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
   results: IJobResultRealization[] = [];
 
@@ -122,7 +125,7 @@ export default class ViewResults extends Vue {
   workdayBreakdown = this.mockPieChartData;
 
   exportResults(): void {
-    this.jobProvider.exportJobResults(this.currentJob);
+    this.resultProvider.exportJobResults(this.currentJob);
   }
 
   // eslint-disable-next-line class-methods-use-this

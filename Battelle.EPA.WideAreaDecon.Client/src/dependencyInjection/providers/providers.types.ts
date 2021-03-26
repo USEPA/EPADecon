@@ -11,6 +11,7 @@ const PROVIDER_TYPES = {
   BackendScenarioParameterProvider: Symbol('BackendScenarioParameterProvider'),
   DistributionDisplayProvider: Symbol('DistributionDisplayProvider'),
   JobProvider: Symbol('IJobProvider'),
+  JobResultProvider: Symbol('IJobResultProvider'),
 };
 
 export default PROVIDER_TYPES;

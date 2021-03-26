@@ -28,7 +28,7 @@ export default class JobRequest implements IJobRequest {
   @JsonProperty()
   seed2: number;
 
-  results?: IJobResultRealization[];
+  results: IJobResultRealization[];
 
   constructor(
     status: JobStatus = JobStatus.new,
@@ -46,5 +46,6 @@ export default class JobRequest implements IJobRequest {
     this.numberRealizations = numberRealizations;
     this.seed1 = seed1;
     this.seed2 = seed2;
+    this.results = [];
   }
 }

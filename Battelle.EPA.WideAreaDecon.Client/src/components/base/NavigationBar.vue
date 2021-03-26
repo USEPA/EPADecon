@@ -116,8 +116,8 @@ import INavigationItem from '@/interfaces/configuration/INavigationItem';
 import container from '@/dependencyInjection/config';
 import IImageProvider from '@/interfaces/providers/IImageProvider';
 import TYPES from '@/dependencyInjection/types';
-import IJobProvider from '@/interfaces/providers/IJobProvider';
 import JobRequest from '@/implementations/jobs/JobRequest';
+import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 
 @Component
 export default class NavigationBar extends Vue {
@@ -139,7 +139,7 @@ export default class NavigationBar extends Vue {
 
   imageProvider = container.get<IImageProvider>(TYPES.ImageProvider);
 
-  jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
+  resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
   selectedNavigationRoute: string | null = null;
 
@@ -157,7 +157,7 @@ export default class NavigationBar extends Vue {
   }
 
   exportResults(): void {
-    this.jobProvider.exportJobResults(this.currentJob);
+    this.resultProvider.exportJobResults(this.currentJob);
   }
 
   showExportButton(): boolean {
