@@ -21,9 +21,9 @@ import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDi
 import DistributionDisplayProvider from '@/implementations/providers/DistributionDisplayProvider';
 import IJobProvider from '@/interfaces/providers/IJobProvider';
 import JobProvider from '@/implementations/providers/JobProvider';
-import PROVIDER_TYPES from './providers.types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import JobResultProvider from '@/implementations/providers/JobResultProvider';
+import PROVIDER_TYPES from './providers.types';
 
 const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => {
   bind<IClientConfigurationProvider>(PROVIDER_TYPES.ClientConfigurationProvider).to(DefaultClientConfigurationProvider);
