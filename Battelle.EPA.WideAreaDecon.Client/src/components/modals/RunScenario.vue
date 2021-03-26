@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="showModal" persistent max-width="600">
+    <v-dialog v-model="isVisible" persistent max-width="600">
       <v-card>
         <v-card-title class="headline"> Run Scenario </v-card-title>
         <v-card-text>
@@ -66,7 +66,7 @@
             Run
           </v-btn>
           <v-btn v-else outlined color="primary darken-1" text @click="viewResults"> View Results </v-btn>
-          <v-btn outlined color="primary darken-1" text @click="showModal = false"> Cancel </v-btn>
+          <v-btn outlined color="primary darken-1" text @click="isVisible = false"> Cancel </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -75,7 +75,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop, Watch } from 'vue-property-decorator';
+import { Component, VModel, Watch } from 'vue-property-decorator';
 import { Action, Getter, State } from 'vuex-class';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
@@ -87,7 +87,7 @@ import JobStatus from '@/enums/jobs/jobStatus';
 
 @Component
 export default class RunScenario extends Vue {
-  @Prop({ required: true }) visible!: boolean;
+  @VModel({ default: () => false }) isVisible!: boolean;
 
   @Action createJobRequest!: (payload: ICreateJobRequestPayload) => void;
 
@@ -120,15 +120,6 @@ export default class RunScenario extends Vue {
   isRunning = false;
 
   completedJobStatuses: JobStatus[] = [JobStatus.completed, JobStatus.cancelled, JobStatus.error];
-
-  get showModal(): boolean {
-    return this.visible;
-  }
-
-  set showModal(value: boolean) {
-    // TODO cancel runs as well if running
-    this.$emit('close');
-  }
 
   @Watch('currentJob.status')
   async onJobStatusChagned(newStatus: JobStatus): Promise<void> {
@@ -178,7 +169,7 @@ export default class RunScenario extends Vue {
 
   viewResults(): void {
     this.$router.push({ name: 'viewResults' });
-    this.showModal = false;
+    this.isVisible = false;
   }
 }
 </script>
