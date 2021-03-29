@@ -56,10 +56,11 @@ namespace Battelle.EPA.WideAreaDecon.Model
             var wipeAnalysisTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Analysis Time per Wipe Sample").CreateDistribution().Draw();
             var hepaAnalysisTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Analysis Time per HEPA Sample").CreateDistribution().Draw();
             var numLabs = (int)_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Labs").CreateDistribution().Draw();
+            var fractionPerLab = 1.0 / numLabs;
             for (int i = 0; i < numLabs; i++)
             {
-                fractionOfWipeToEachLab.Add(_characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Wipe Samples to Each Lab").CreateDistribution().Draw());
-                fractionOfHepaToEachLab.Add(_characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of HEPA Samples to Each Lab").CreateDistribution().Draw());
+                fractionOfWipeToEachLab.Add(fractionPerLab);
+                fractionOfHepaToEachLab.Add(fractionPerLab);
                 labDistanceFromSite.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance from Site").CreateDistribution().Draw());
             }
             var resultTransmissionToIC = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Time of Result Transmission to IC").CreateDistribution().Draw();
