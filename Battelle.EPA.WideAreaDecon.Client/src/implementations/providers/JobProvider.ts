@@ -70,25 +70,41 @@ export default class JobProvider implements IJobProvider {
     const indoor = buildings.map((b) =>
       this.buildLocationResults(results, b, phaseHeaders, resultHeaders, averageHeaders, true),
     );
+
+    // Get sum of all buildings (this is likely only temporary)
+    const indoorSum = this.buildLocationResults(results, 'Outdoor', phaseHeaders, resultHeaders, averageHeaders);
+    indoorSum.splice(0, 1, ['Sum of Indoor Results']);
+    const avgSum = [
+      '',
+      ...buildings
+        .map((b) => this.calculateAverages(results, b, true))
+        .reduce((acc, cur) => {
+          return cur.map((v, i) => acc[i] + v);
+        }),
+    ];
+    indoorSum.splice(4, indoorSum.length - 1, avgSum);
+
     const outdoor = this.buildLocationResults(results, 'Outdoor', phaseHeaders, resultHeaders, averageHeaders);
     const underground = this.buildLocationResults(results, 'Underground', phaseHeaders, resultHeaders, averageHeaders);
 
     const runData = [
       ['Data exported on: ', new Date(Date.now()).toLocaleString()],
       ['Number of realizations: ', job.numberRealizations],
-      ['Seed 1: ', job.seed1],
-      ['Seed 2: ', job.seed2],
+      // ['Seed 1: ', job.seed1],
+      // ['Seed 2: ', job.seed2],
     ];
 
     // Create worksheets from arrays
     const dataWS = XLSX.utils.aoa_to_sheet(runData);
     const indWS = indoor.map((aoa) => XLSX.utils.aoa_to_sheet(aoa));
+    const indSumWS = XLSX.utils.aoa_to_sheet(indoorSum);
     const outWS = XLSX.utils.aoa_to_sheet(outdoor);
     const undWS = XLSX.utils.aoa_to_sheet(underground);
 
     // Add worksheets to workbook
     XLSX.utils.book_append_sheet(wb, dataWS, 'Data');
     indWS.forEach((WS, i) => XLSX.utils.book_append_sheet(wb, WS, `${buildings[i]} Building`));
+    XLSX.utils.book_append_sheet(wb, indSumWS, 'Indoor');
     XLSX.utils.book_append_sheet(wb, outWS, 'Outdoor');
     XLSX.utils.book_append_sheet(wb, undWS, 'Underground');
 
