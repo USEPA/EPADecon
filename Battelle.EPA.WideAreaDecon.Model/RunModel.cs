@@ -40,7 +40,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
             Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             var results = new Results {
-                characterizationSamplingResults = new GenericPhaseResults(),
+                preDeconCharacterizationSamplingResults = new GenericPhaseResults(),
+                postDeconCharacterizationSamplingResults = new GenericPhaseResults(),
+                totalCharacterizationSamplingResults = new GenericPhaseResults(),
                 sourceReductionResults = new GenericPhaseResults(),
                 decontaminationResults = new GenericPhaseResults(),
                 incidentCommandResults = new IncidentCommandResults(),
@@ -48,21 +50,23 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 generalResults = new GeneralResults()
             };
 
-            if (parameters.characterizationSamplingParameters.fractionSampledHepa == 0 && 
+            // Pre-Decon Characterization Sampling
+            if (parameters.characterizationSamplingParameters.fractionSampledHepa == 0 &&
                 parameters.characterizationSamplingParameters.fractionSampledWipe == 0)
             {
-                results.characterizationSamplingResults.workDays = 0.0;
-                results.characterizationSamplingResults.onSiteDays = 0.0;
-                results.characterizationSamplingResults.phaseCost = 0;
-            } else
+                results.preDeconCharacterizationSamplingResults.workDays = 0.0;
+                results.preDeconCharacterizationSamplingResults.onSiteDays = 0.0;
+                results.preDeconCharacterizationSamplingResults.phaseCost = 0;
+            }
+            else
             {
-                results.characterizationSamplingResults.workDays = characterizationSamplingCostCalculator.CalculateTime(
+                results.preDeconCharacterizationSamplingResults.workDays = characterizationSamplingCostCalculator.CalculateTime(
                 parameters.characterizationSamplingParameters.numTeams,
                 parameters.characterizationSamplingParameters.fractionSampledWipe,
                 parameters.characterizationSamplingParameters.fractionSampledHepa,
                 areaContaminated);
 
-                results.characterizationSamplingResults.onSiteDays = results.characterizationSamplingResults.workDays +
+                results.preDeconCharacterizationSamplingResults.onSiteDays = results.preDeconCharacterizationSamplingResults.workDays +
                     parameters.characterizationSamplingParameters.personnelOverheadDays +
                     characterizationSamplingCostCalculator.CalculatePhaseLag(
                         parameters.characterizationSamplingParameters.numLabs,
@@ -71,8 +75,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                         parameters.characterizationSamplingParameters.fractionSampledHepa,
                         areaContaminated);
 
-                results.characterizationSamplingResults.phaseCost = Convert.ToInt64(characterizationSamplingCostCalculator.CalculateCost(
-                    results.characterizationSamplingResults.workDays,
+                results.preDeconCharacterizationSamplingResults.phaseCost = Convert.ToInt64(characterizationSamplingCostCalculator.CalculateCost(
+                    results.preDeconCharacterizationSamplingResults.workDays,
                     parameters.characterizationSamplingParameters.numTeams,
                     parameters.characterizationSamplingParameters.fractionSampledWipe,
                     parameters.characterizationSamplingParameters.fractionSampledHepa,
@@ -81,6 +85,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                     parameters.characterizationSamplingParameters.ppeRequired));
             }
 
+            // Source Reduction
             if (parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced == 0)
             {
                 results.sourceReductionResults.workDays = 0.0;
@@ -106,9 +111,11 @@ namespace Battelle.EPA.WideAreaDecon.Model
                     areaContaminated.Values.Sum(v => v.AreaContaminated)));
             }
 
+            //Decontamination
             Tuple<double, int> decontaminationLabor = decontaminationCostCalculator.CalculateTime();
 
             results.decontaminationResults.workDays = decontaminationLabor.Item1;
+            results.generalResults.decontaminationRounds = decontaminationLabor.Item2;
 
             results.decontaminationResults.onSiteDays = results.decontaminationResults.workDays +
                 parameters.decontaminationParameters.personnelOverhead;
@@ -121,8 +128,53 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 areaContaminated,
                 parameters.decontaminationParameters.applicationMethods));
 
+            // Post-Decon Characterization Sampling
+            results.postDeconCharacterizationSamplingResults.workDays = 0.0;
+            results.postDeconCharacterizationSamplingResults.onSiteDays = 0.0;
+            results.postDeconCharacterizationSamplingResults.phaseCost = 0;
+
+            for (int i = 0; i < results.generalResults.decontaminationRounds; i++)
+            {
+                if (parameters.characterizationSamplingParameters.fractionSampledHepa > 0 ||
+                    parameters.characterizationSamplingParameters.fractionSampledWipe > 0)
+                {
+                    results.postDeconCharacterizationSamplingResults.workDays += characterizationSamplingCostCalculator.CalculateTime(
+                    parameters.characterizationSamplingParameters.numTeams,
+                    parameters.characterizationSamplingParameters.fractionSampledWipe,
+                    parameters.characterizationSamplingParameters.fractionSampledHepa,
+                    areaContaminated);
+
+                    results.postDeconCharacterizationSamplingResults.onSiteDays += results.postDeconCharacterizationSamplingResults.workDays +
+                        parameters.characterizationSamplingParameters.personnelOverheadDays +
+                        characterizationSamplingCostCalculator.CalculatePhaseLag(
+                            parameters.characterizationSamplingParameters.numLabs,
+                            parameters.characterizationSamplingParameters.resultTransmissionToIC,
+                            parameters.characterizationSamplingParameters.fractionSampledWipe,
+                            parameters.characterizationSamplingParameters.fractionSampledHepa,
+                            areaContaminated);
+
+                    results.postDeconCharacterizationSamplingResults.phaseCost += Convert.ToInt64(characterizationSamplingCostCalculator.CalculateCost(
+                        results.postDeconCharacterizationSamplingResults.workDays,
+                        parameters.characterizationSamplingParameters.numTeams,
+                        parameters.characterizationSamplingParameters.fractionSampledWipe,
+                        parameters.characterizationSamplingParameters.fractionSampledHepa,
+                        areaContaminated,
+                        parameters.otherParameters.roundtripDays,
+                        parameters.characterizationSamplingParameters.ppeRequired));
+                }
+            }
+
+            //Total Characterization Sampling Results
+            results.totalCharacterizationSamplingResults.workDays = results.preDeconCharacterizationSamplingResults.workDays +
+                results.postDeconCharacterizationSamplingResults.workDays;
+            results.totalCharacterizationSamplingResults.onSiteDays = results.preDeconCharacterizationSamplingResults.onSiteDays +
+                results.postDeconCharacterizationSamplingResults.onSiteDays;
+            results.totalCharacterizationSamplingResults.phaseCost = results.preDeconCharacterizationSamplingResults.phaseCost +
+                results.postDeconCharacterizationSamplingResults.phaseCost;
+
+            //Incident Command
             results.incidentCommandResults.onSiteDays = incidentCommandCostCalculator.CalculateTime(
-                results.characterizationSamplingResults.workDays,
+                results.totalCharacterizationSamplingResults.workDays,
                 results.sourceReductionResults.workDays,
                 results.decontaminationResults.workDays,
                 parameters.decontaminationParameters.numTeams,
@@ -137,21 +189,21 @@ namespace Battelle.EPA.WideAreaDecon.Model
             results.incidentCommandResults.phaseCost = Convert.ToInt64(incidentCommandCostCalculator.CalculateCost(
                 results.incidentCommandResults.onSiteDays));
 
+            //Other
             results.otherResults.otherCosts = Convert.ToInt64(otherCostCalculator.CalculateCost(
                 parameters.otherParameters.totalAvailablePersonnel,
                 parameters.otherParameters.roundtripDays,
                 parameters.costParameters.roundtripTicketCostPerPerson,
                 results.incidentCommandResults.onSiteDays));
 
-            results.generalResults.totalCost = results.characterizationSamplingResults.phaseCost +
+            //Total
+            results.generalResults.totalCost = results.totalCharacterizationSamplingResults.phaseCost +
                 results.sourceReductionResults.phaseCost +
                 results.decontaminationResults.phaseCost +
                 results.incidentCommandResults.phaseCost +
                 results.otherResults.otherCosts;
 
             results.generalResults.areaContaminated = areaContaminated.Values.Sum(v => v.AreaContaminated);
-
-            results.generalResults.decontaminationRounds = decontaminationLabor.Item2;
 
             return results;
         }
