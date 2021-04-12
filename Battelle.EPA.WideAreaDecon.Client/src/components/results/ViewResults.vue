@@ -111,7 +111,7 @@ export default class ViewResults extends Vue {
           backgroundColor: colors,
         },
       ],
-      labels: phaseResults.map((p) => this.resultProvider.formatResultPhaseName(p.phase)),
+      labels: phaseResults.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase)),
     };
   }
 

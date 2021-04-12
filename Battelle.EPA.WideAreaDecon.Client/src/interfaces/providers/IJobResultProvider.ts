@@ -3,6 +3,12 @@ import IJobResultRealization from '../jobs/results/IJobResultRealization';
 import IResultDetails from '../jobs/results/IResultDetails';
 
 export default interface IJobResultProvider {
+  /** Converts camel case string to title case.
+   * @param {string} name - The camel case string to be converted.
+   * @returns The string in title case.
+   */
+   convertCamelToTitleCase(name: string): string;
+
   /** Exports job results to a Microsoft Excel file.
    * @param {IJobResultRealization[]} results - The job results to be exported.
    */
@@ -13,12 +19,6 @@ export default interface IJobResultProvider {
    * @returns A number in a more readable format.
    */
   formatNumber(number: number): string;
-
-  /** Converts camel case string to sentence case.
-   * @param {string} name - The phase result name to be formatted.
-   * @returns The phase result name in sentence case.
-   */
-  formatResultPhaseName(name: string): string;
 
   /** Retrieves the results for a specific realization.
    * @param {IJobResultRealization[]} allResults - The array of realization results.
