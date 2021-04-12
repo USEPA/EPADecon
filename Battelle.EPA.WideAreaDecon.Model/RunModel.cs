@@ -7,6 +7,7 @@ using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
 using Battelle.EPA.WideAreaDecon.Model.Decontamination;
 using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
 using Battelle.EPA.WideAreaDecon.Model.Other;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
@@ -206,6 +207,86 @@ namespace Battelle.EPA.WideAreaDecon.Model
             results.generalResults.areaContaminated = areaContaminated.Values.Sum(v => v.AreaContaminated);
 
             return results;
+        }
+
+        private void Run(DecontaminationPhase phase)
+        {
+            var parameterManager = new ParameterManager(
+                Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
+                Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
+                Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
+                Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
+                Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters,
+                Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters,
+                Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters);
+
+            var characterizationSamplingParameters = RedrawCSParameters(parameterManager);
+            var sourceReductionParameters = RedrawSRParameters(parameterManager);
+            var decontaminationParameters = RedrawDCParameters(parameterManager, scenarioDefinitionDetails, phase);
+            var incidentCommandParameters = RedrawICParameters(parameterManager);
+            var otherParameters = RedrawOTParameters(parameterManager);
+            var costParameters = RedrawCostParameters(parameterManager);
+
+            var calculatorCreator = SetDrawnParameters(
+                characterizationSamplingParameters,
+                sourceReductionParameters,
+                decontaminationParameters,
+                incidentCommandParameters,
+                otherParameters,
+                costParameters);
+
+            var modelRun = calculatorCreator.GetCalculators();
+        }
+
+        private CharacterizationSamplingParameters RedrawCSParameters(ParameterManager parameterManager)
+        {
+            return parameterManager.SetCharacterizationSamplingParameters();
+        }
+
+        private SourceReductionParameters RedrawSRParameters(ParameterManager parameterManager)
+        {
+            return parameterManager.SetSourceReductionParameters();
+        }
+
+        private DecontaminationParameters RedrawDCParameters(ParameterManager parameterManager, 
+            Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails, 
+            DecontaminationPhase phase)
+        {
+            return parameterManager.SetDecontaminationParameters(scenarioDefinitionDetails, phase);
+        }
+
+        private IncidentCommandParameters RedrawICParameters(ParameterManager parameterManager)
+        {
+            return parameterManager.SetIncidentCommandParameters();
+        }
+
+        private OtherParameters RedrawOTParameters(ParameterManager parameterManager)
+        {
+            return parameterManager.SetOtherParameters();
+        }
+
+        private CostParameters RedrawCostParameters(ParameterManager parameterManager)
+        {
+            return parameterManager.SetCostParameters();
+        }
+
+        private CalculatorCreator SetDrawnParameters(
+            CharacterizationSamplingParameters csParameters,
+            SourceReductionParameters srParameters,
+            DecontaminationParameters dcParameters,
+            IncidentCommandParameters icParameters,
+            OtherParameters otParameters,
+            CostParameters costParameters)
+        {
+            var calculatorCreator = new CalculatorManager(
+                csParameters,
+                srParameters,
+                dcParameters,
+                icParameters,
+                otParameters,
+                costParameters);
+
+            return calculatorCreator.CreateCalculatorFactories();
         }
     }
 }
