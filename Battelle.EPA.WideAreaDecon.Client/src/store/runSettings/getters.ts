@@ -7,7 +7,7 @@ const runSettingsGetters: GetterTree<IRootState, IRootState> = {
   },
 
   hasResults: (state) => {
-    return state.currentJob.results !== undefined;
+    return state.currentJob.results.length > 0;
   },
 };
 
