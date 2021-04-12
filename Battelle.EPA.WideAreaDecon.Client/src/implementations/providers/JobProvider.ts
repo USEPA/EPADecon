@@ -8,7 +8,7 @@ import ParameterWrapperList from '../parameter/ParameterWrapperList';
 
 @injectable()
 export default class JobProvider implements IJobProvider {
-  // eslint-disable-next-line class-methods-use-this
+  /* eslint-disable class-methods-use-this */
   createJobRequest(
     scenarioDefinition: ParameterWrapperList,
     scenarioParameters: ParameterWrapperList,
@@ -20,15 +20,11 @@ export default class JobProvider implements IJobProvider {
     return job;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async postJobRequest(job: JobRequest): Promise<string> {
     const serializedJob = serialize(job);
-    return Axios.post<JobRequest>('/api/JobRequest', serializedJob)
-      .then((response) => `${response.data}`)
-      .catch(() => '');
+    return Axios.post<string>('/api/JobRequest', serializedJob).then((response) => response.data);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async getJobRequest(id: string): Promise<JobRequest> {
     return Axios.get<JobRequest>(`/api/JobRequest`, { params: { id } }).then((response) => response.data);
   }
