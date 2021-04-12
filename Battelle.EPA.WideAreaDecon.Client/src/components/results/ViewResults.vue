@@ -1,28 +1,14 @@
 <template>
   <v-container>
-    <!-- <v-card width="100%">
-      <v-tabs right v-model="tab">
-        <v-tab v-for="location in locations" :key="location">{{ location }}</v-tab>
-        <v-tabs-items v-model="tab">
-          <v-tab-item :transition="null" v-for="location in locations" :key="location">
-            <realization-summary :results="getResultsForLocation(location)" :location="location" />
-          </v-tab-item>
-        </v-tabs-items>
-      </v-tabs>
-    </v-card> -->
     <v-row>
       <v-col cols="3">
-        <dashboard-result-card
-          icon="mdi-currency-usd"
-          text="Average Total Cost"
-          :value="`$${formatNumber(getAverage('totalCost'))}`"
-        />
+        <dashboard-result-card icon="mdi-currency-usd" text="Average Total Cost" :value="`$${averageTotalCost}`" />
       </v-col>
       <v-col cols="3">
         <dashboard-result-card
           icon="mdi-earth"
           text="Average Total Area Contaminated"
-          :value="`${formatNumber(getAverage('areaContaminated'))} m2`"
+          :value="`${averageAreaContaminated} m^2`"
         />
       </v-col>
       <v-col cols="3">
@@ -35,10 +21,10 @@
 
     <v-row>
       <v-col cols="6">
-        <dashboard-chart-card text="Cost Breakdown By Phase" :data="costBreakdown" />
+        <dashboard-chart-card text="Cost Breakdown By Phase" :data="getPhaseBreakdownChartData('phaseCost')" />
       </v-col>
       <v-col cols="6">
-        <dashboard-chart-card text="Workday Breakdown By Phase" :data="workdayBreakdown" />
+        <dashboard-chart-card text="Workday Breakdown By Phase" :data="getPhaseBreakdownChartData('workDays')" />
       </v-col>
     </v-row>
 
@@ -69,16 +55,13 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { Action, State } from 'vuex-class';
 import JobRequest from '@/implementations/jobs/JobRequest';
-import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
-import IIndoorResult from '@/interfaces/jobs/results/IIndoorResult';
-import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
-import IJobProvider from '@/interfaces/providers/IJobProvider';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import TYPES from '@/dependencyInjection/types';
 import container from '@/dependencyInjection/config';
-// TODO remove mock results
-import mockResults from '@/dataMocks/mockResults';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
+import { CycleColorProvider } from 'battelle-common-vue-charting/src';
+import { ChartData } from 'chart.js';
+import PhaseResult from '@/enums/jobs/results/phaseResult';
 import RealizationSummary from './RealizationSummary.vue';
 import DashboardResultCard from './DashboardResultCard.vue';
 import DashboardChartCard from './DashboardChartCard.vue';
@@ -97,45 +80,48 @@ export default class ViewResults extends Vue {
 
   @Action setScenarioParameters!: (newParameters: ParameterWrapperList) => void;
 
-  // private jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
-
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
-  results: IJobResultRealization[] = [];
+  averageTotalCost = '';
 
-  locations: string[] = [];
+  averageAreaContaminated = '';
 
-  runNumber = 1;
+  getPhaseBreakdownChartData(result: PhaseResult): ChartData {
+    const phaseResults: { phase: string; value: number }[] = [];
 
-  tab = 0;
+    this.currentJob.results.forEach((r) => {
+      const res = this.resultProvider.getResultPhaseBreakdown(r, result);
+      res.forEach((p, i) => {
+        if (phaseResults[i] === undefined) {
+          phaseResults.push(p);
+        } else {
+          phaseResults[i].value += p.value ?? 0;
+        }
+      });
+    });
 
-  mockResults = mockResults;
+    const colorProvider = new CycleColorProvider();
+    const colors = phaseResults.map(() => colorProvider.getNextColor());
+    const numberRealizations = this.currentJob.results.length;
 
-  mockPieChartData = {
-    datasets: [
-      {
-        data: [10, 20, 30, 40, 50],
-      },
-    ],
-    labels: ['Item1', 'Item2', 'Item3', 'Item4', 'Item5'],
-  };
-
-  costBreakdown = this.mockPieChartData;
-
-  workdayBreakdown = this.mockPieChartData;
-
-  exportResults(): void {
-    this.resultProvider.exportJobResults(this.currentJob);
+    return {
+      datasets: [
+        {
+          data: phaseResults.map((p) => p.value / numberRealizations),
+          backgroundColor: colors,
+        },
+      ],
+      labels: phaseResults.map((p) => this.resultProvider.formatResultPhaseName(p.phase)),
+    };
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  formatNumber(num: number): string {
-    return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  exportResults(): void {
+    this.resultProvider.exportJobResults(this.currentJob.results);
   }
 
   getAverage(result: string): number {
     return (
-      this.mockResults.reduce((acc, cur) => {
+      this.currentJob.results.reduce((acc, cur) => {
         if (acc !== undefined && cur !== undefined) {
           // get indoor cost
           const indoorCost = Object.values(cur.Indoor).reduce((acc2, cur2) => {
@@ -152,7 +138,7 @@ export default class ViewResults extends Vue {
           );
         }
         return 0;
-      }, 0) / this.mockResults.length
+      }, 0) / this.currentJob.results.length
     );
   }
 
@@ -167,23 +153,17 @@ export default class ViewResults extends Vue {
     this.$router.push({ name: location });
   }
 
-  // getResultsForLocation(location: string): (IIndoorResult | IPhaseResultSet)[] {
-  //   return this.results.map((r) => (r[location] ? r[location] : r.Indoor[location]));
-  // }
+  setValues(): void {
+    const averageTotalCost = this.getAverage(PhaseResult.TotalCost);
+    this.averageTotalCost = this.resultProvider.formatNumber(averageTotalCost);
 
-  // parseResults(): void {
-  //   this.results = this.currentJob.results ?? [];
+    const averageAreaContaminated = this.getAverage(PhaseResult.AreaContaminated);
+    this.averageAreaContaminated = this.resultProvider.formatNumber(averageAreaContaminated);
+  }
 
-  //   this.locations = Object.keys(this.results[0]);
-  //   const indoorBuildings = Object.keys(this.results[0].Indoor);
-
-  //   this.locations.splice(0, 1, ...indoorBuildings);
-  // }
-
-  // created(): void {
-  //   this.$store.commit('enableNavigationTabs');
-  //   this.parseResults();
-  // }
+  created(): void {
+    this.setValues();
+  }
 }
 </script>
 
