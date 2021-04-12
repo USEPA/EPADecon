@@ -1,13 +1,14 @@
 import { injectable } from 'inversify';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
-import JobRequest from '@/implementations/jobs/JobRequest';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
+import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
+import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
+import PhaseResult from '@/enums/jobs/results/phaseResult';
 
 @injectable()
 export default class JobResultProvider implements IJobResultProvider {
   /* eslint-disable class-methods-use-this */
-  exportJobResults(job: JobRequest): void {
-    const { results } = job;
+  exportJobResults(results: IJobResultRealization[]): void {
     if (!results.length) {
       return;
     }
@@ -76,8 +77,101 @@ export default class JobResultProvider implements IJobResultProvider {
     link.click(); // download file
   }
 
-  getRealizationResults(job: JobRequest, realization: number): IJobResultRealization {
-    const realizationIndex = realization - 1;
-    return job.results[realizationIndex];
+  formatNumber(number: number): string {
+    return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  formatResultPhaseName(name: string): string {
+    const regex = /([A-Z](?=[A-Z][a-z])|[^A-Z](?=[A-Z])|[a-zA-Z](?=[^a-zA-Z]))/g;
+    return `${name.charAt(0).toUpperCase()}${name.slice(1).replace(regex, '$1 ')}`;
+  }
+
+  getRealizationResults(allResults: IJobResultRealization[], realizationNumber: number): IJobResultRealization {
+    const realizationIndex = realizationNumber - 1;
+    return allResults[realizationIndex];
+  }
+
+  getResultPhaseBreakdown(realization: IJobResultRealization, result: PhaseResult): { phase: string; value: number }[] {
+    const phaseNames = Object.keys(realization.Outdoor);
+    const breakdown: number[] = [];
+
+    this.findResultValues(realization, result, (value: number | undefined, index: number) => {
+      const res = value ?? 0;
+
+      if (breakdown[index] !== undefined) {
+        breakdown[index] += res;
+      } else {
+        breakdown.push(res);
+      }
+    });
+
+    return breakdown
+      .filter((v) => v > 0)
+      .map((v, i) => {
+        return {
+          phase: phaseNames[i].replace(/Results$/, ''),
+          value: v,
+        };
+      });
+  }
+
+  getResultDetails(allResults: IJobResultRealization[], result: PhaseResult): IResultDetails {
+    const instances: number[] = [];
+
+    allResults.forEach((r) => {
+      this.findResultValues(r, result, (value: number | undefined) => {
+        if (value !== undefined) {
+          instances.push(value);
+        }
+      });
+    });
+
+    const { minimum, maximum } = this.getMinandMax(instances);
+    const mean = instances.reduce((acc, cur) => acc + cur, 0) / instances.length;
+    const stdDev = Math.sqrt(instances.map((x) => (x - mean) ** 2).reduce((a, b) => a + b) / instances.length);
+
+    return {
+      mean,
+      maximum,
+      minimum,
+      stdDev,
+    };
+  }
+
+  private findResultValues(
+    realization: IJobResultRealization,
+    result: PhaseResult,
+    callback: (value: number | undefined, index: number) => void,
+  ): void {
+    const phaseNames = Object.keys(realization.Outdoor);
+
+    Object.entries(realization).forEach(([location, resultSet]) => {
+      const phaseResultSets: IPhaseResultSet[] = this.isIndoor(location) ? Object.values(resultSet) : [resultSet];
+
+      phaseResultSets.forEach((rs) => {
+        phaseNames.forEach((p, i) => {
+          callback(rs[p][result], i);
+        });
+      });
+    });
+  }
+
+  private isIndoor(location: string): boolean {
+    return location === 'Indoor';
+  }
+
+  // credit to Lior Elrom's answer https://stackoverflow.com/a/52613528
+  private getMinandMax(arr: number[]): { minimum: number; maximum: number } {
+    let minimum = arr[0];
+    let maximum = arr[1];
+    let i = arr.length;
+
+    while (i) {
+      minimum = arr[i] < minimum ? arr[i] : minimum;
+      maximum = arr[i] > maximum ? arr[i] : maximum;
+      i -= 1;
+    }
+
+    return { minimum, maximum };
   }
 }

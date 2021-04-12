@@ -1,7 +1,45 @@
-import JobRequest from "@/implementations/jobs/JobRequest";
-import IJobResultRealization from "../jobs/results/IJobResultRealization";
+import PhaseResult from '@/enums/jobs/results/phaseResult';
+import IJobResultRealization from '../jobs/results/IJobResultRealization';
+import IResultDetails from '../jobs/results/IResultDetails';
 
 export default interface IJobResultProvider {
-  exportJobResults(job: JobRequest): void;
-  getRealizationResults(job: JobRequest, realization: number): IJobResultRealization | undefined;
+  /** Exports job results to a Microsoft Excel file.
+   * @param {IJobResultRealization[]} results - The job results to be exported.
+   */
+  exportJobResults(results: IJobResultRealization[]): void;
+
+  /** Rounds number to 2 decimal places and adds commas where necessary.
+   * @param {number} number - The number to be converted.
+   * @returns A number in a more readable format.
+   */
+  formatNumber(number: number): string;
+
+  /** Converts camel case string to sentence case.
+   * @param {string} name - The phase result name to be formatted.
+   * @returns The phase result name in sentence case.
+   */
+  formatResultPhaseName(name: string): string;
+
+  /** Retrieves the results for a specific realization.
+   * @param {IJobResultRealization[]} allResults - The array of realization results.
+   * @param {number} realizationNumber - The number of the realization.
+   * @returns The results for the realization.
+   */
+  getRealizationResults(allResults: IJobResultRealization[], realizationNumber: number): IJobResultRealization;
+
+  /** Retrieves the mean, max, min, and standard deviation of a result
+   * across all realizations.
+   * @param {IJobResultRealization[]} allResults - The array of realization results.
+   * @param {PhaseResult} - The result to get details for.
+   * @returns The mean, max, min, and standard deviation of the result.
+   */
+  getResultDetails(allResults: IJobResultRealization[], result: PhaseResult): IResultDetails;
+
+  /** Retrieves the breakdown by each phase of a specific result.
+   * @param {IJobResultRealization} realization - The job result realization.
+   * @param {PhaseResult} result - The result to get the breakdown for.
+   * @returns {{ phase: string; value: number }} An array of objects holding the phase's name and value for the
+   * inputted result if it exists
+   */
+  getResultPhaseBreakdown(realization: IJobResultRealization, result: PhaseResult): { phase: string; value: number }[];
 }
