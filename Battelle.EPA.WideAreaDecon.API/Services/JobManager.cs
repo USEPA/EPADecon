@@ -141,7 +141,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         realizationResults.Add(DecontaminationPhase.Outdoor, outdoorModelRunner.RunModel());
 
                         //UNDERGROUND SCENARIO
-                        var undergroundModelRunner = new ModelRunner(Running.ModifyParameter, DecontaminationPhase.Underground, scenarios[s].OutdoorAreasContaminated);
+                        var undergroundModelRunner = new ModelRunner(Running.ModifyParameter, DecontaminationPhase.Underground, scenarios[s].UndergroundBuildingsContaminated);
 
                         realizationResults.Add(DecontaminationPhase.Underground, undergroundModelRunner.RunModel());
 
