@@ -38,7 +38,31 @@ namespace Battelle.EPA.WideAreaDecon.Model
             _costParameters = costParameters;
         }
 
-        public CharacterizationSamplingParameters SetCharacterizationSamplingParameters()
+        public CalculatorManager RedrawParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails,
+            DecontaminationPhase phase)
+        {
+            return new CalculatorManager(
+                SetCharacterizationSamplingParameters(),
+                SetSourceReductionParameters(),
+                SetDecontaminationParameters(scenarioDefinitionDetails, phase),
+                SetIncidentCommandParameters(),
+                SetOtherParameters(),
+                SetCostParameters());
+        }
+
+        public ResultsCalculator SetDrawnParameters(CalculatorManager calculatorManager)
+        {
+            var calculatorCreator = calculatorManager.CreateCalculatorFactories();
+
+            return new ResultsCalculator(
+                calculatorCreator._characterizationSamplingFactory.GetCalculator(),
+                calculatorCreator._sourceReductionFactory.GetCalculator(),
+                calculatorCreator._decontaminationFactory.GetCalculator(),
+                calculatorCreator._incidentCommandFactory.GetCalculator(),
+                calculatorCreator._otherFactory.GetCalculator());
+        }
+
+        private CharacterizationSamplingParameters SetCharacterizationSamplingParameters()
         {
             var fractionOfWipeToEachLab = new List<double>();
             var fractionOfHepaToEachLab = new List<double>();
@@ -112,7 +136,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 ppeRequired);
         }
 
-        public SourceReductionParameters SetSourceReductionParameters()
+        private SourceReductionParameters SetSourceReductionParameters()
         {
             var surfaceAreaToBeSourceReduced = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction Surface Area to be Source Reduced").CreateDistribution().Draw();
             var massPerSurfaceArea = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Mass of Waste per Surface Area").CreateDistribution().Draw();
@@ -156,7 +180,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 ppeRequired);
         }
 
-        public DecontaminationParameters SetDecontaminationParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails, DecontaminationPhase phase)
+        private DecontaminationParameters SetDecontaminationParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails, DecontaminationPhase phase)
         {
             var surfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(phase);
 
@@ -222,7 +246,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 agentVolume);
         }
 
-        public IncidentCommandParameters SetIncidentCommandParameters()
+        private IncidentCommandParameters SetIncidentCommandParameters()
         {
             var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
             {
@@ -239,7 +263,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 personnelOverheadDays);
         }
 
-        public OtherParameters SetOtherParameters()
+        private OtherParameters SetOtherParameters()
         {
             var personnelPerRentalCar = _otherParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Personnel per Rental Car").CreateDistribution().Draw();
             var roundtripDays = _otherParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
@@ -259,7 +283,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 totalAvailablePersonnel);
         }
 
-        public CostParameters SetCostParameters()
+        private CostParameters SetCostParameters()
         {
             var hourlyRate = new Dictionary<PersonnelLevel, double>
             {
