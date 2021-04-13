@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
@@ -11,7 +11,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
 {
     public class RunModelTest
     {
-        private RunModel Calculator { get; set; }
+        private ResultsCalculator Calculator { get; set; }
         public CalculatorManager parameters { get; set; }
 
         [SetUp]
