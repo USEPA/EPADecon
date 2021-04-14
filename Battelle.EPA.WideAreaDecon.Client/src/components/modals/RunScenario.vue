@@ -115,7 +115,7 @@ export default class RunScenario extends Vue {
 
   seed2 = 678910;
 
-  presetRunCounts = [1, 10, 100, 1000];
+  presetRunCounts = [1, 10, 100, 1000, 10000];
 
   isRunning = false;
 
@@ -158,8 +158,8 @@ export default class RunScenario extends Vue {
     if (value < 1) {
       return 'Value must be at least 1';
     }
-    if (value > 1000) {
-      return 'Value must be less than 1000';
+    if (value > 10000) {
+      return 'Value must be less than 10000';
     }
     if (value % 1 !== 0) {
       return 'Value must be a whole number';

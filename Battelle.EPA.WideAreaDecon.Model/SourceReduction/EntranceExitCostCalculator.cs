@@ -35,18 +35,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
             _workDaysCalculator= workDaysCalculator;
         }
 
-        public double CalculateEntranceExitCost(double workDays, double _numberTeams, double saToBeSourceReduced, Dictionary<PpeLevel, double> ppeEachLevelPerTeam)
+        public double CalculateEntranceExitCost(double workDays, double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
             var totalPersonnel = _personnelRequiredPerTeam.Values.Sum() * _numberTeams;
             
             var totalEntries = workDays * _numberEntriesPerTeamPerDay * _numberTeams;
 
-            var totalPpePerLevel = ppeEachLevelPerTeam.Values.Select(x => x * _numberTeams * totalEntries);
+            var totalPpePerLevel = ppePerLevelPerTeam.Values.Select(x => x * totalPersonnel * totalEntries);
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
             //EntExitLabor declared as local double as input is needed to calculate
-            var entExitLabor = _entExitLaborCostCalculator.CalculateEntExitLaborCost(workDays, _numberTeams, saToBeSourceReduced);
+            var entExitLabor = _entExitLaborCostCalculator.CalculateEntExitLaborCost(workDays, _numberTeams);
 
             return entExitLabor + totalPersonnel * _respiratorsPerPerson * _costPerRespirator + totalCostPpe;
         }

@@ -12,18 +12,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays,
             double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 84993.281164225;
+            return 121767.74958828;
         }
 
         public double CalculateEntExitLaborCost(double workDays, double _numberTeams, double fractionSampledWipe, 
             double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 21393.2811642251;
+            return 68458.4997255202;
         }
 
         public double CalculateLaborDays(double workDays)
         {
-            return 1.30729362883868;
+            return 3.1909787627956;
         }
     }
 
@@ -32,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampledWipe, 
             double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 10.6178806540723;
+            return 39.967011947266;
         }
     }
 
@@ -41,26 +41,25 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays, double saToBeSourceReduced,
             double costPerTonRemoved)
         {
-            return 137654.447803312;
+            return 95489.3284008536;
         }
 
         public double CalculateLaborDays(double workDays)
         {
-            return 4.07855517733999;
+            return 2.75302474470449;
         }
     }
 
     internal class MockDLaborCostCalculator : Model.Decontamination.ILaborCostCalculator
     {
-
         public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays)
         {
-            return 120400.0;
+            return 361200;
         }
 
         public double CalculateLaborDays(double workDays)
         {
-            return 5.0;
+            return 14.0;
         }
     }
 
@@ -102,29 +101,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         [Test]
         public void CalculateCost()
         {
-            var _numberTeams = 4;
-            var saToBeSourceReduced = 8000.0;
-            var roundtripDays = 2.0;
-            int numberLabs = 3;
-            double sampleTimeTransmitted = 24.0;
-            var fractionSampledWipe = 0.3;
-            var fractionSampledHepa = 0.2;
-            var workDaysCS = 0.807293628838681;
-            var workDaysSR = 4.07855517733999;
-            var workDaysDC = 3.0;
-            var info = new ContaminationInformation(100.0, 20.0);
-            var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
+            var onsiteDaysCS = 2.6909787627956;
+            var onsiteDaysSR = 2.75302474470449;
+            var onsiteDaysDC = 12.0;
 
-            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
-            {
-                areaContaminated.Add(surface, info);
-            }
-
-            var onSiteDays = Calculator.CalculateOnSiteDays(workDaysCS, workDaysSR, workDaysDC, _numberTeams, saToBeSourceReduced, roundtripDays, fractionSampledWipe, fractionSampledHepa, areaContaminated, numberLabs, sampleTimeTransmitted);
-            Assert.AreEqual(29.0037294602509, onSiteDays, 1e-6,
-                "Incorrect onsite days calculated");
-            Assert.AreEqual(322521.47159799, Calculator.CalculateLaborCost(onSiteDays), 1e-6,
-                "Incorrect Labor cost calculated");
+            var onSiteDays = Calculator.CalculateOnSiteDays(onsiteDaysCS, onsiteDaysSR, onsiteDaysDC);
+            Assert.AreEqual(67.9110154547661, onSiteDays, 1e-6, "Incorrect onsite days calculated");
+            Assert.AreEqual(1132755.7377855, Calculator.CalculateLaborCost(onSiteDays), 1e-6, "Incorrect Labor cost calculated");
         }
     }
 }

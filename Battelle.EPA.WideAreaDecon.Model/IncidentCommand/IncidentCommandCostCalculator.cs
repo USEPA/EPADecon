@@ -19,13 +19,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
         public Decontamination.EfficacyCalculator Calculator_efficacy { get; set; }
         public Decontamination.WorkDaysCalculator Calculator_workDaysDc { get; set; }
 
-        public double CalculateTime(double workDaysCS, double workDaysSR, double workDaysDC, double _numberTeams,
-            double surfaceAreaToBeSourceReduced, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa,
-            Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
+        public double CalculateTime(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC)
         {
-            return Calculator_labor.CalculateOnSiteDays(workDaysCS, workDaysSR, workDaysDC, _numberTeams,
-                surfaceAreaToBeSourceReduced, personnelRoundTripDays, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated,
-                numberLabs, sampleTimeTransmitted);
+            return Calculator_labor.CalculateOnSiteDays(onsiteDaysCS, onsiteDaysSR, onsiteDaysDC);
         }
 
         public double CalculateCost(double onSiteDays)
