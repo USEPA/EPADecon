@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
@@ -183,17 +183,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             // Incident Command
             results.incidentCommandResults.onSiteDays = _incidentCommandCostCalculator.CalculateTime(
-                results.totalCharacterizationSamplingResults.workDays,
+                results.totalCharacterizationSamplingResults.onSiteDays,
                 results.sourceReductionResults.workDays,
-                results.decontaminationResults.workDays,
-                parameters.decontaminationParameters.numTeams,
-                parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced,
-                parameters.otherParameters.roundtripDays,
-                parameters.characterizationSamplingParameters.fractionSampledWipe,
-                parameters.characterizationSamplingParameters.fractionSampledHepa,
-                areaContaminated,
-                parameters.characterizationSamplingParameters.numLabs,
-                parameters.characterizationSamplingParameters.resultTransmissionToIC);
+                results.decontaminationResults.workDays);
 
             results.incidentCommandResults.phaseCost = Convert.ToInt64(_incidentCommandCostCalculator.CalculateCost(
                 results.incidentCommandResults.onSiteDays));
