@@ -2,20 +2,36 @@
   <v-container>
     <v-row>
       <v-col cols="3">
-        <dashboard-result-card icon="mdi-currency-usd" text="Average Total Cost" :value="`$${averageTotalCost}`" />
+        <dashboard-result-card
+          @showDetails="showResultDetails"
+          icon="mdi-currency-usd"
+          text="Average Total Cost"
+          :value="`$${averageTotalCost}`"
+        />
       </v-col>
       <v-col cols="3">
         <dashboard-result-card
+          @showDetails="showResultDetails"
           icon="mdi-earth"
           text="Average Total Area Contaminated"
           :value="`${averageAreaContaminated} m^2`"
         />
       </v-col>
       <v-col cols="3">
-        <dashboard-result-card icon="mdi-calendar" text="Avergage Total Workdays" :value="500" />
+        <dashboard-result-card
+          @showDetails="showResultDetails"
+          icon="mdi-calendar"
+          text="Avergage Total Workdays"
+          :value="500"
+        />
       </v-col>
       <v-col cols="3">
-        <dashboard-result-card icon="mdi-hand-water" text="Average Number of Rounds of Decontamination" :value="500" />
+        <dashboard-result-card
+          @showDetails="showResultDetails"
+          icon="mdi-hand-water"
+          text="Average Number of Rounds of Decontamination"
+          :value="500"
+        />
       </v-col>
     </v-row>
 
@@ -30,7 +46,12 @@
 
     <v-row>
       <v-col cols="3">
-        <dashboard-result-card icon="mdi-tent" text="Average Number of Days Spent on Setup and Teardown" :value="500" />
+        <dashboard-result-card
+          @showDetails="showResultDetails"
+          icon="mdi-tent"
+          text="Average Number of Days Spent on Setup and Teardown"
+          :value="500"
+        />
       </v-col>
       <v-col cols="3">
         <dashboard-result-card icon="mdi-replay" text="Number of Realizations" :value="currentJob.numberRealizations" />
@@ -47,6 +68,7 @@
         </v-card>
       </v-col>
     </v-row>
+    <result-details :title="modalTitle" :details="mockDetails" v-model="showModal" />
   </v-container>
 </template>
 
@@ -62,6 +84,7 @@ import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperLi
 import { CycleColorProvider } from 'battelle-common-vue-charting/src';
 import { ChartData } from 'chart.js';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
+import ResultDetails from '@/components/modals/results/ResultDetails.vue';
 import RealizationSummary from './RealizationSummary.vue';
 import DashboardResultCard from './DashboardResultCard.vue';
 import DashboardChartCard from './DashboardChartCard.vue';
@@ -71,6 +94,7 @@ import DashboardChartCard from './DashboardChartCard.vue';
     RealizationSummary,
     DashboardResultCard,
     DashboardChartCard,
+    ResultDetails,
   },
 })
 export default class ViewResults extends Vue {
@@ -82,9 +106,20 @@ export default class ViewResults extends Vue {
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
+  showModal = false;
+
+  modalTitle = '';
+
   averageTotalCost = '';
 
   averageAreaContaminated = '';
+
+  mockDetails = {
+    mean: 123,
+    maximum: 12345,
+    minimum: 0.001,
+    stdDev: 35,
+  };
 
   getPhaseBreakdownChartData(result: PhaseResult): ChartData {
     const phaseResults: { phase: string; value: number }[] = [];
@@ -119,28 +154,33 @@ export default class ViewResults extends Vue {
     this.resultProvider.exportJobResults(this.currentJob.results);
   }
 
-  getAverage(result: string): number {
-    return (
-      this.currentJob.results.reduce((acc, cur) => {
-        if (acc !== undefined && cur !== undefined) {
-          // get indoor cost
-          const indoorCost = Object.values(cur.Indoor).reduce((acc2, cur2) => {
-            if (acc2 !== undefined && cur2 !== undefined) {
-              return acc2 + (cur2.generalResults[result] ?? 0);
-            }
-            return 0;
-          }, 0);
-          return (
-            acc +
-            indoorCost +
-            (cur.Outdoor.generalResults[result] ?? 0) +
-            (cur.Underground.generalResults.totalCost ?? 0)
-          );
-        }
-        return 0;
-      }, 0) / this.currentJob.results.length
-    );
+  showResultDetails(result: string): void {
+    this.modalTitle = result;
+    this.showModal = true;
   }
+
+  // getAverage(result: string): number {
+  //   return (
+  //     this.currentJob.results.reduce((acc, cur) => {
+  //       if (acc !== undefined && cur !== undefined) {
+  //         // get indoor cost
+  //         const indoorCost = Object.values(cur.Indoor).reduce((acc2, cur2) => {
+  //           if (acc2 !== undefined && cur2 !== undefined) {
+  //             return acc2 + (cur2.generalResults[result] ?? 0);
+  //           }
+  //           return 0;
+  //         }, 0);
+  //         return (
+  //           acc +
+  //           indoorCost +
+  //           (cur.Outdoor.generalResults[result] ?? 0) +
+  //           (cur.Underground.generalResults.totalCost ?? 0)
+  //         );
+  //       }
+  //       return 0;
+  //     }, 0) / this.currentJob.results.length
+  //   );
+  // }
 
   viewParameters(): void {
     const { modifyParameter, defineScenario } = this.currentJob;
@@ -154,10 +194,10 @@ export default class ViewResults extends Vue {
   }
 
   setValues(): void {
-    const averageTotalCost = this.getAverage(PhaseResult.TotalCost);
+    const averageTotalCost = 1000; // this.getAverage(PhaseResult.TotalCost);
     this.averageTotalCost = this.resultProvider.formatNumber(averageTotalCost);
 
-    const averageAreaContaminated = this.getAverage(PhaseResult.AreaContaminated);
+    const averageAreaContaminated = 2000; // this.getAverage(PhaseResult.AreaContaminated);
     this.averageAreaContaminated = this.resultProvider.formatNumber(averageAreaContaminated);
   }
 

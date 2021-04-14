@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card @click="$emit('showDetails', text)">
     <div class="d-flex flex-no-wrap">
       <v-avatar color="primary" class="ma-5" size="80" tile>
         <v-icon color="white" size="60">{{ icon }}</v-icon>
