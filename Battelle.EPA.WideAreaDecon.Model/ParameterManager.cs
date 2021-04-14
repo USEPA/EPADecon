@@ -66,6 +66,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
         {
             var fractionOfWipeToEachLab = new List<double>();
             var fractionOfHepaToEachLab = new List<double>();
+            var labUptimesHours = new List<double>();
             var labDistanceFromSite = new List<double>();
 
             var fractionSurfaceSampled = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
@@ -83,6 +84,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             var fractionPerLab = 1.0 / numLabs;
             for (int i = 0; i < numLabs; i++)
             {
+                labUptimesHours.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Uptime Hours per Day").CreateDistribution().Draw());
                 fractionOfWipeToEachLab.Add(fractionPerLab);
                 fractionOfHepaToEachLab.Add(fractionPerLab);
                 labDistanceFromSite.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance from Site").CreateDistribution().Draw());
@@ -125,6 +127,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 numLabs,
                 fractionOfWipeToEachLab,
                 fractionOfHepaToEachLab,
+                labUptimesHours,
                 labDistanceFromSite,
                 resultTransmissionToIC,
                 personnelReqPerTeam,
