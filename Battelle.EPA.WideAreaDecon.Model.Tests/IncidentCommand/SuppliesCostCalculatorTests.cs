@@ -9,9 +9,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {
     internal class MockLaborCostCalculator : ILaborCostCalculator
     {
-        public double CalculateOnSiteDays(double workDaysCS, double workDaysSR, double workDaysDC, double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
-            double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, 
-            int numberLabs, double sampleTimeTransmitted)
+        public double CalculateOnSiteDays(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC)
         {
             return 71.6424319256773;
         }

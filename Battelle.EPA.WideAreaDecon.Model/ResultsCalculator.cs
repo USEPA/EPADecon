@@ -185,8 +185,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
             // Incident Command
             results.incidentCommandResults.onSiteDays = _incidentCommandCostCalculator.CalculateTime(
                 results.totalCharacterizationSamplingResults.onSiteDays,
-                results.sourceReductionResults.workDays,
-                results.decontaminationResults.workDays);
+                results.sourceReductionResults.onSiteDays,
+                results.decontaminationResults.onSiteDays);
 
             results.incidentCommandResults.phaseCost = Convert.ToInt64(_incidentCommandCostCalculator.CalculateCost(
                 results.incidentCommandResults.onSiteDays));

@@ -27,10 +27,5 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
             return (workDays + _personnelOverhead) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
         }
-
-        public double CalculateLaborDays(double workDays)
-        { 
-            return workDays + _personnelOverhead;
-        }
     }
 }

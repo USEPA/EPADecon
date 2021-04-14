@@ -35,10 +35,5 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
             return (workDays + _personnelOverhead) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost +
                 (saToBeSourceReduced * area) * _massPerSa * costPerTonRemoved;
         }
-
-        public double CalculateLaborDays(double workDays)
-        {
-            return workDays + _personnelOverhead;
-        }
     }
 }

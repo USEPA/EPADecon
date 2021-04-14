@@ -33,12 +33,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
             _laborCostCalculatorDc = laborCostCalculatorDc;
         }
         
-        public double CalculateOnSiteDays(double onsiteDaysCS, double workDaysSR, double workDaysDC)
+        public double CalculateOnSiteDays(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC)
         {
-            var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays(workDaysSR);
-            var laborDaysDc = _laborCostCalculatorDc.CalculateLaborDays(workDaysDC);
-
-            return onsiteDaysCS + laborDaysSr + laborDaysDc + _personnelOverheadDays;
+            return onsiteDaysCS + onsiteDaysSR + onsiteDaysDC + _personnelOverheadDays;
         }
 
         public double CalculateLaborCost(double onSiteDays)

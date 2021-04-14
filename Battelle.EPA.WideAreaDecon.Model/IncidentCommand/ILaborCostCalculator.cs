@@ -6,7 +6,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
     public interface ILaborCostCalculator
     {
-        public double CalculateOnSiteDays(double onsiteDaysCS, double workDaysSR, double workDaysDC);
+        public double CalculateOnSiteDays(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC);
         public double CalculateLaborCost(double onSiteDays);
     }
 }
