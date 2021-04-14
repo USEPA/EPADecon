@@ -8,19 +8,19 @@
             <v-row> Histogram... </v-row>
             <v-row>
               <v-col>
-                <p class="text-body-2 mb-0">$123456777</p>
+                <p class="text-body-2 mb-0">{{ details.mean }}</p>
                 <p class="text-subtitle-1">Mean</p>
               </v-col>
               <v-col>
-                <p class="text-body-2 mb-0">$123456777</p>
+                <p class="text-body-2 mb-0">{{ details.maximum }}</p>
                 <p class="text-subtitle-1">Maximum</p>
               </v-col>
               <v-col>
-                <p class="text-body-2 mb-0">$123456777</p>
+                <p class="text-body-2 mb-0">{{ details.minimum }}</p>
                 <p class="text-subtitle-1">Minimum</p>
               </v-col>
               <v-col>
-                <p class="text-body-2 mb-0">$123456777</p>
+                <p class="text-body-2 mb-0">{{ details.stdDev }}</p>
                 <p class="text-subtitle-1">Standard Deviation</p>
               </v-col>
             </v-row>
@@ -37,10 +37,13 @@
 
 <script lang="ts">
 import { Component, Prop, VModel, Vue } from 'vue-property-decorator';
+import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 
 @Component
 export default class ResultDetails extends Vue {
   @Prop() title!: string;
+
+  @Prop() details!: IResultDetails;
 
   @VModel({ default: () => false }) isVisible!: boolean;
 }
