@@ -30,10 +30,11 @@ export default interface IJobResultProvider {
   /** Retrieves the mean, max, min, and standard deviation of a result
    * across all realizations.
    * @param {IJobResultRealization[]} allResults - The array of realization results.
-   * @param {PhaseResult} - The result to get details for.
-   * @returns The mean, max, min, and standard deviation of the result.
+   * @param {PhaseResult} result - The result to get details for.
+   * @returns The mean, max, min, and standard deviation of the result if it can be found.
+   * Otherwise returns undefined.
    */
-  getResultDetails(allResults: IJobResultRealization[], result: PhaseResult): IResultDetails;
+  getResultDetails(allResults: IJobResultRealization[], result: PhaseResult): IResultDetails | undefined;
 
   /** Retrieves the breakdown by each phase of a specific result.
    * @param {IJobResultRealization} realization - The job result realization.

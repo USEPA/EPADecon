@@ -127,10 +127,11 @@ export default class JobResultProvider implements IJobResultProvider {
       });
   }
 
-  getResultDetails(allResults: IJobResultRealization[], result: PhaseResult): IResultDetails {
+  getResultDetails(allResults: IJobResultRealization[], result: PhaseResult): IResultDetails | undefined {
     const instances: number[] = [];
 
-    allResults.forEach((r) => {
+    // get all instances of the result
+    allResults.forEach((r, i) => {
       this.findResultValues(r, result, (value: number | undefined) => {
         if (value !== undefined) {
           instances.push(value);
@@ -138,9 +139,32 @@ export default class JobResultProvider implements IJobResultProvider {
       });
     });
 
-    const { minimum, maximum } = this.getMinandMax(instances);
-    const mean = instances.reduce((acc, cur) => acc + cur, 0) / instances.length;
-    const stdDev = Math.sqrt(instances.map((x) => (x - mean) ** 2).reduce((a, b) => a + b) / instances.length);
+    if (!instances.length) {
+      return;
+    }
+
+    const numLocations = Object.keys(allResults[0]).length - 1 + Object.keys(allResults[0].Indoor).length;
+    const numOccurencesPerLocation = instances.length / (allResults.length * numLocations);
+    const sums: number[] = [];
+
+    while (instances.length > 0) {
+      const next: number[] =
+        numOccurencesPerLocation === 1
+          ? instances.splice(0, numLocations)
+          : [...Array(numLocations)].map(() => {
+              return instances.splice(0, numOccurencesPerLocation).reduce((acc, cur) => acc + cur, 0);
+            });
+
+      const sum = next.reduce((acc, cur) => acc + cur, 0);
+      sums.push(sum);
+    }
+
+    const { minimum, maximum } = this.getMinandMax(sums);
+
+    // credit to Foxcode's answer: https://stackoverflow.com/a/53577159
+    const { length } = sums;
+    const mean = sums.reduce((acc, cur) => acc + cur, 0) / length ?? undefined;
+    const stdDev = Math.sqrt(sums.map((x) => (x - mean) ** 2).reduce((a, b) => a + b, 0) / (length - 1)) ?? undefined;
 
     return {
       mean,
