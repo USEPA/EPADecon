@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
@@ -141,8 +141,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
             for (int i = 0; i < results.generalResults.decontaminationRounds; i++)
             {
                 // redraw characterization sampling values for each new round of decontamination
-                var calculatorManager = parameterManager.RedrawParameters(areaContaminated, phase);
-                var resultsCalculator = parameterManager.SetDrawnParameters(calculatorManager);
+                parameters = parameterManager.RedrawParameters(areaContaminated, phase);
+
+                var resultsCalculator = parameterManager.SetDrawnParameters(parameters);
 
                 if (parameters.characterizationSamplingParameters.fractionSampledHepa > 0 ||
                     parameters.characterizationSamplingParameters.fractionSampledWipe > 0)
