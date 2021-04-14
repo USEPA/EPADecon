@@ -1,11 +1,15 @@
-import IPhaseResult from './IPhaseResult';
+import IGeneralResult from './phase/IGeneralResult';
+import IGenericPhaseResult from './phase/IGenericPhaseResult';
+import IIncidentCommandResult from './phase/IIncidentCommandResult';
+import IOtherResult from './phase/IOtherResult';
+import IPhaseResult from './phase/IPhaseResult';
 
 export default interface IPhaseResultSet {
-  characterizationSamplingResults: IPhaseResult;
-  sourceReductionResults: IPhaseResult;
-  decontaminationResults: IPhaseResult;
-  incidentCommandResults: IPhaseResult;
-  otherResults: IPhaseResult;
-  generalResults: IPhaseResult;
+  characterizationSamplingResults: IGenericPhaseResult;
+  sourceReductionResults: IGenericPhaseResult;
+  decontaminationResults: IGenericPhaseResult;
+  incidentCommandResults: IIncidentCommandResult;
+  otherResults: IOtherResult;
+  generalResults: IGeneralResult;
   [key: string]: IPhaseResult;
 }

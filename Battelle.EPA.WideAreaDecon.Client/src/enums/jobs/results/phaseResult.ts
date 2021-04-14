@@ -6,6 +6,7 @@ enum PhaseResult {
   OtherCosts = 'otherCosts',
   TotalCost = 'totalCost',
   AreaContaminated = 'areaContaminated',
+  DecontaminationRounds = 'decontaminationRounds',
 }
 
 export default PhaseResult;

@@ -5,7 +5,7 @@ import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealizati
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
-import IPhaseResult from '@/interfaces/jobs/results/IPhaseResult';
+import IPhaseResult from '@/interfaces/jobs/results/phase/IPhaseResult';
 
 @injectable()
 export default class JobResultProvider implements IJobResultProvider {
