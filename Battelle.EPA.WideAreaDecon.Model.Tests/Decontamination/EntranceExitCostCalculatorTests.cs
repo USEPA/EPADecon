@@ -10,7 +10,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
     {
         public double CalculateEntExitLaborCost(double _numberTeams, double workDays)
         {
-            return 154800;
+            return 38700.0;
         }
     }
 
@@ -54,17 +54,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [Test]
         public void CalculateCost()
         {
-            var workDays = 12.0;
+            var workDays = 3.0;
             var ppePerLevelPerTeam = new Dictionary<PpeLevel, double>()
             {
                 { PpeLevel.A, 0.0 },
-                { PpeLevel.B, 0.5 },
-                { PpeLevel.C, 0.5 },
+                { PpeLevel.B, 4.0 },
+                { PpeLevel.C, 4.0 },
                 { PpeLevel.D, 0.0 }
             };
             var numTeams = 2.0;
             
-            Assert.AreEqual(232359.872, Calculator.CalculateEntranceExitCost(workDays, numTeams, ppePerLevelPerTeam), 
+            Assert.AreEqual(62472.08, Calculator.CalculateEntranceExitCost(workDays, numTeams, ppePerLevelPerTeam), 
                 1e-6, "Incorrect cost calculated");
         }
     }

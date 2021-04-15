@@ -2,8 +2,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
 {
@@ -28,7 +26,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
 
     public static class ApplicableApplicationMethodHelper
     {
-        public static readonly List<ApplicationMethod> IndoorWallsMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] IndoorInteriorMethods = {
             ApplicationMethod.Aerosol,
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
@@ -40,7 +38,16 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> IndoorCeilingsMethods = new List<ApplicationMethod> { 
+        public static readonly ApplicationMethod[] IndoorExteriorMethods = {
+            ApplicationMethod.Aerosol,
+            ApplicationMethod.FoamSpray,
+            ApplicationMethod.Fumigation,
+            ApplicationMethod.LiquidSpray,
+            ApplicationMethod.LiquidWipe,
+            ApplicationMethod.Physical
+        };
+
+        public static readonly ApplicationMethod[] IndoorCeilingsMethods = { 
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
             ApplicationMethod.Fumigation,
@@ -51,7 +58,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> IndoorCarpetMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] IndoorCarpetMethods = {
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
             ApplicationMethod.Fumigation,
@@ -60,7 +67,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> IndoorNonCarpetMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] IndoorNonCarpetMethods = {
             ApplicationMethod.Aerosol,
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
@@ -72,7 +79,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> HvacMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] HvacMethods = {
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
             ApplicationMethod.Fumigation,
@@ -82,7 +89,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> IndoorMiscMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] IndoorMiscMethods = {
             ApplicationMethod.Aerosol,
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fumigation,
@@ -92,7 +99,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> OutdoorExteriorMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] OutdoorExteriorMethods = {
             ApplicationMethod.Aerosol,
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fumigation,
@@ -101,14 +108,14 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> PavementMethods = new List<ApplicationMethod> { 
+        public static readonly ApplicationMethod[] PavementMethods = { 
             ApplicationMethod.FoamSpray,
             ApplicationMethod.LiquidImmersion,
             ApplicationMethod.LiquidSpray,
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> RoofingMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] RoofingMethods = {
             ApplicationMethod.Aerosol,
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
@@ -117,19 +124,19 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> WaterMethods = new List<ApplicationMethod> { 
+        public static readonly ApplicationMethod[] WaterMethods = { 
             ApplicationMethod.LiquidSuspension,
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> SoilMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] SoilMethods = {
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fumigation,
             ApplicationMethod.LiquidSpray,
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> OutdoorMiscMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] OutdoorMiscMethods = {
             ApplicationMethod.Aerosol,
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
@@ -141,7 +148,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> UndergroundWallsMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] UndergroundInteriorMethods = {
             ApplicationMethod.Aerosol,
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
@@ -153,7 +160,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> UndergroundCeilingsMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] UndergroundCeilingsMethods = {
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
             ApplicationMethod.Fumigation,
@@ -164,7 +171,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> UndergroundCarpetMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] UndergroundCarpetMethods = {
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
             ApplicationMethod.Fumigation,
@@ -173,7 +180,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> UndergroundNonCarpetMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] UndergroundNonCarpetMethods = {
             ApplicationMethod.Aerosol,
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
@@ -185,7 +192,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> UndergroundMiscMethods = new List<ApplicationMethod> {
+        public static readonly ApplicationMethod[] UndergroundMiscMethods = {
             ApplicationMethod.Aerosol,
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
@@ -197,11 +204,12 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static List<ApplicationMethod> GetApplicationMethodsForSurface(SurfaceType surface)
+        public static ApplicationMethod[] GetApplicationMethodsForSurface(SurfaceType surface)
         {
             return surface switch
             {
-                SurfaceType.IndoorWalls => IndoorWallsMethods,
+                SurfaceType.IndoorInterior => IndoorInteriorMethods,
+                SurfaceType.IndoorExterior => IndoorExteriorMethods,
                 SurfaceType.IndoorCeilings => IndoorCeilingsMethods,
                 SurfaceType.IndoorCarpet => IndoorCarpetMethods,
                 SurfaceType.IndoorNonCarpet => IndoorNonCarpetMethods,
@@ -213,7 +221,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
                 SurfaceType.Water => WaterMethods,
                 SurfaceType.Soil => SoilMethods,
                 SurfaceType.OutdoorMisc => OutdoorMiscMethods,
-                SurfaceType.UndergroundWalls => UndergroundWallsMethods,
+                SurfaceType.UndergroundInterior => UndergroundInteriorMethods,
                 SurfaceType.UndergroundCeilings => UndergroundCeilingsMethods,
                 SurfaceType.UndergroundCarpet => UndergroundCarpetMethods,
                 SurfaceType.UndergroundNonCarpet => UndergroundNonCarpetMethods,

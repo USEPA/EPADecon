@@ -1,9 +1,9 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
     public interface IWorkDaysCalculator
     {
-        public Tuple<double, int> CalculateWorkDays();
+        public double CalculateWorkDays();
     }
 }

@@ -25,15 +25,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _deconAgentVolumeBySurface = deconAgentVolumeBySurface;
         }
 
-        public double CalculateSuppliesCost(Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
-            Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
-        {
-            var totalContaminationArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
-
-            return (_deconMaterialsCost * totalContaminationArea) + NonFoggingSuppliesCostCalculator(areaContaminated, treatmentMethods) + FoggingSuppliesCostCalculator(areaContaminated, treatmentMethods);
-        }
-
-        private double NonFoggingSuppliesCostCalculator(
+        public double NonFoggingSuppliesCostCalculator(
             Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
             Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
         {
@@ -52,10 +44,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
             var nonFoggingContaminationArea = surfaceContamination.Values.Sum();
             var agentNeededPerTreatment = _deconAgentVolumeBySurface.Values.Zip(surfaceContamination.Values, (x, y) => x * y).Sum();
-            return agentNeededPerTreatment * _deconAgentCostPerVolume;
+            return (_deconMaterialsCost * nonFoggingContaminationArea) + ((agentNeededPerTreatment) * _deconAgentCostPerVolume);
         }
 
-        private double FoggingSuppliesCostCalculator(
+        public double FoggingSuppliesCostCalculator(
             Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
             Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
         {
@@ -64,8 +56,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             if (treatmentMethods.ContainsValue(ApplicationMethod.Fogging) || treatmentMethods.ContainsValue(ApplicationMethod.Fumigation))
             {
                 var totalContaminationArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
-
-                foggingSuppliesCost = totalContaminationArea * GlobalConstants.RoomHeight * _deconAgentVolume * _deconAgentCostPerVolume;
+                foggingSuppliesCost = (_deconMaterialsCost * totalContaminationArea) + (totalContaminationArea * GlobalConstants.RoomHeight * _deconAgentVolume * _deconAgentCostPerVolume);
             }
 
             return foggingSuppliesCost;

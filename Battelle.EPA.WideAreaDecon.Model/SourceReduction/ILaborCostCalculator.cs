@@ -2,6 +2,9 @@
 {
     public interface ILaborCostCalculator
     {
-        public double CalculateLaborCost(double workDays, double _numberTeams, double saToBeSourceReduced, double costPerTonRemoved, double area);
+        public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays, double saToBeSourceReduced,
+            double costPerTonRemoved);
+
+        public double CalculateLaborDays(double workDays);
     }
 }

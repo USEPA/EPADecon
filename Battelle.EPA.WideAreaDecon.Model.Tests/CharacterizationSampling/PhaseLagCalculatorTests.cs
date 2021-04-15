@@ -43,7 +43,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var sampleTimeTransmitted = 24.0;
             var fractionSampledWipe = 0.3;
             var fractionSampledHepa = 0.2;
-            var info = new ContaminationInformation(500.0, 20.0);
+            var info = new ContaminationInformation(100.0, 20.0);
             var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
 
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
@@ -51,7 +51,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(39.967011947266, Calculator.CalculatePhaseLagTime(numberLabs, sampleTimeTransmitted, fractionSampledWipe, fractionSampledHepa, areaContaminated), 
+            Assert.AreEqual(10.6178806540723, Calculator.CalculatePhaseLagTime(numberLabs, sampleTimeTransmitted, fractionSampledWipe, fractionSampledHepa, areaContaminated), 
                 1e-6, "Incorrect phase lag cost calculated");
         }
     }

@@ -6,11 +6,11 @@ namespace Battelle.EPA.WideAreaDecon.Model
 {
     public class CalculatorCreator
     {
-        public Services.ICharacterizationSamplingCalculatorFactory _characterizationSamplingFactory;
-        public Services.ISourceReductionCalculatorFactory _sourceReductionFactory;
-        public Services.IDecontaminationCalculatorFactory _decontaminationFactory;
-        public Services.IOtherCalculatorFactory _otherFactory;
-        public Services.IIncidentCommandCalculatorFactory _incidentCommandFactory;
+        private readonly Services.ICharacterizationSamplingCalculatorFactory _characterizationSamplingFactory;
+        private readonly Services.ISourceReductionCalculatorFactory _sourceReductionFactory;
+        private readonly Services.IDecontaminationCalculatorFactory _decontaminationFactory;
+        private readonly Services.IOtherCalculatorFactory _otherFactory;
+        private readonly Services.IIncidentCommandCalculatorFactory _incidentCommandFactory;
 
         public CalculatorCreator(
             Services.ParameterArrayCharacterizationSamplingCalculatorFactory csCalculatorFactory,
@@ -26,9 +26,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
             _incidentCommandFactory = icCalculatorFactory;
         }
 
-        public ResultsCalculator GetCalculators()
+        public RunModel GetCalculators()
         {
-            return new ResultsCalculator(
+            return new RunModel(
                 _characterizationSamplingFactory.GetCalculator(),
                 _sourceReductionFactory.GetCalculator(),
                 _decontaminationFactory.GetCalculator(),

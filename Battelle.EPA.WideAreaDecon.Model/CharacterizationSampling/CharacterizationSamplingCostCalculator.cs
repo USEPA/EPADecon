@@ -36,7 +36,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
         public CharacterizationSamplingCostCalculator GetCalculator()
         {
-            return new CharacterizationSamplingCostCalculator();
+            return new CharacterizationSamplingCostCalculator()
+            {
+                //Calculator_labor = csCalculator.GetCalculator(),
+                //Calculator_supplies = 
+
+            };
         }
     }
 }

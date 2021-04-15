@@ -8,8 +8,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
     [JsonConverter(typeof(StringEnumConverter))]
     public enum SurfaceType
     {
-        [EnumMember(Value = "Indoor Walls")]
-        IndoorWalls,
+        [EnumMember(Value = "Indoor Interior")]
+        IndoorInterior,
 
         [EnumMember(Value = "Indoor Exterior")]
         IndoorExterior,
@@ -35,8 +35,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
         [EnumMember(Value = "Outdoor Miscellaneous")]
         OutdoorMisc,
 
-        [EnumMember(Value = "Underground Walls")]
-        UndergroundWalls,
+        [EnumMember(Value = "Underground Interior")]
+        UndergroundInterior,
 
         [EnumMember(Value = "Underground Ceilings")]
         UndergroundCeilings,
@@ -53,7 +53,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
     public static class SurfaceTypeHelper
     {
         public static readonly SurfaceType[] IndoorSurfaceTypes = {
-            SurfaceType.IndoorWalls,
+            SurfaceType.IndoorInterior,
+            SurfaceType.IndoorExterior,
             SurfaceType.IndoorCeilings,
             SurfaceType.IndoorCarpet,
             SurfaceType.IndoorNonCarpet,
@@ -73,7 +74,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
 
 
         public static readonly SurfaceType[] UndergroundSurfaceTypes = {
-            SurfaceType.UndergroundWalls,
+            SurfaceType.UndergroundInterior,
             SurfaceType.UndergroundCeilings,
             SurfaceType.UndergroundCarpet,
             SurfaceType.UndergroundNonCarpet,

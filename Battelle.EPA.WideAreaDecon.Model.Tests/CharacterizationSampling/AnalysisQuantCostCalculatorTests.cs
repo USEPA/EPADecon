@@ -31,7 +31,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         {
             var fractionSampledWipe = 0.3;
             var fractionSampledHepa = 0.2;
-            var info = new ContaminationInformation(500.0, 20.0);
+            var info = new ContaminationInformation(100.0, 20.0);
             var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
 
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
@@ -39,7 +39,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 areaContaminated.Add(surface, info);
             }
             
-            Assert.AreEqual(358438.371204374, Calculator.CalculateAnalysisQuantityCost(fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-2, "Incorrect cost calculated");
+            Assert.AreEqual(71687.6742408749, Calculator.CalculateAnalysisQuantityCost(fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-2, "Incorrect cost calculated");
         }
     }
 }

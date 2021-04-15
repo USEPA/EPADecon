@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Services
 {
-    public interface IIncidentCommandCalculatorFactory
+    interface IIncidentCommandCalculatorFactory
     {
         IncidentCommand.IncidentCommandCostCalculator GetCalculator();
     }

@@ -9,14 +9,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {
     internal class MockLaborCostCalculator : ILaborCostCalculator
     {
-        public double CalculateOnSiteDays(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC)
+        public double CalculateOnSiteDays(double workDaysCS, double workDaysSR, double workDaysDC, double _numberTeams, double surfaceAreaToBeSourceReduced, double personnelRoundTripDays,
+            double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, 
+            int numberLabs, double sampleTimeTransmitted)
         {
-            return 71.6424319256773;
+            return 29.0934736019902;
         }
 
         public double CalculateLaborCost(double onSiteDays)
         {
-            return 796663.843013532;
+            return 345759.426454131;
         }
     }
 
@@ -38,9 +40,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         [Test]
         public void CalculateCost()
         {
-            var onSiteDays = 71.6424319256773;
+            var onSiteDays = 29.0037294602509;
 
-            Assert.AreEqual(89015.8649525179, Calculator.CalculateSuppliesCost(onSiteDays), 1e-6, "Incorrect cost calculated");
+            Assert.AreEqual(36037.1918618207, Calculator.CalculateSuppliesCost(onSiteDays), 1e-6, "Incorrect cost calculated");
         }
     }
 }

@@ -33,9 +33,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
             _laborCostCalculatorDc = laborCostCalculatorDc;
         }
         
-        public double CalculateOnSiteDays(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC)
+        public double CalculateOnSiteDays(double workDaysCS, double workDaysSR, double workDaysDC, double _numberTeams, 
+            double surfaceAreaToBeSourceReduced, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, 
+            Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, int numberLabs, double sampleTimeTransmitted)
         {
-            return onsiteDaysCS + onsiteDaysSR + onsiteDaysDC + _personnelOverheadDays;
+            var laborDaysCs = _laborCostCalculatorCs.CalculateLaborDays(workDaysCS);
+            var laborDaysSr = _laborCostCalculatorSr.CalculateLaborDays(workDaysSR);
+            var laborDaysDc = _laborCostCalculatorDc.CalculateLaborDays(workDaysDC);
+
+            var lagTime = _phaseLagCalculator.CalculatePhaseLagTime(numberLabs, sampleTimeTransmitted, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
+
+            return laborDaysCs + lagTime + laborDaysSr + laborDaysDc + _personnelOverheadDays;
         }
 
         public double CalculateLaborCost(double onSiteDays)

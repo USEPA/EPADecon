@@ -43,10 +43,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [Test]
         public void CalculateCost()
         {
-            Tuple<double, int> decontaminationLabor = Calculator.CalculateWorkDays();
 
-            Assert.AreEqual(12.0, decontaminationLabor.Item1, 1e-6, "Incorrect cost calculated");
-            Assert.AreEqual(4.0, decontaminationLabor.Item2, 1e-6, "Incorrect decontamination rounds calculated");
+            Assert.AreEqual(12.0, Calculator.CalculateWorkDays(), 1e-6, "Incorrect cost calculated");
 
         }
     }
