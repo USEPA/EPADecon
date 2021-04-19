@@ -101,13 +101,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         [Test]
         public void CalculateCost()
         {
-            var onsiteDaysCS = 2.6909787627956;
+            var onsiteDaysCS = 67.4428920064922;
             var onsiteDaysSR = 2.75302474470449;
-            var onsiteDaysDC = 12.0;
+            var onsiteDaysDC = 14.0;
 
             var onSiteDays = Calculator.CalculateOnSiteDays(onsiteDaysCS, onsiteDaysSR, onsiteDaysDC);
-            Assert.AreEqual(67.9110154547661, onSiteDays, 1e-6, "Incorrect onsite days calculated");
-            Assert.AreEqual(1132755.7377855, Calculator.CalculateLaborCost(onSiteDays), 1e-6, "Incorrect Labor cost calculated");
+            Assert.AreEqual(92.1959167511967, onSiteDays, 1e-6, "Incorrect onsite days calculated");
+            Assert.AreEqual(1537827.89140996, Calculator.CalculateLaborCost(onSiteDays), 1e-6, "Incorrect Labor cost calculated");
         }
     }
 }

@@ -55,8 +55,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                 scenarioDefinitionDetails.Add(surface, info);
             }
 
-            //var csResults = Manager.SetCharacterizationSamplingParameters();
-            //var deconResults = Manager.SetDecontaminationParameters(scenarioDefinitionDetails, DecontaminationPhase.Indoor);
+            var indoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationPhase.Indoor);
+            var outdoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationPhase.Outdoor);
+            var undergroundParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationPhase.Underground);
+
+            Assert.Pass();
         }
     }
 }
