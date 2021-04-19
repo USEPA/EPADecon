@@ -26,8 +26,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             var hepaSocksPerHrPerTeam = 6.0;
             var numTeamsCS = 4.0;
             var samplePackageTime = 1.63;
-            var wipeAnalysisTime = 0.79;
-            var hepaAnalysisTime = 1.0;
             var numLabs = 3;
             var labThroughput = new List<double> { 50, 60, 40 };
             var labDistanceFromSite = new List<double> { 48.0, 20.0, 90.0 };
@@ -189,8 +187,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                 hepaSocksPerHrPerTeam,
                 numTeamsCS,
                 samplePackageTime,
-                wipeAnalysisTime,
-                hepaAnalysisTime,
                 numLabs,
                 labUptimeHours,
                 labDistanceFromSite,

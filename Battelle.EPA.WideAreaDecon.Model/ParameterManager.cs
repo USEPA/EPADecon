@@ -77,8 +77,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
             var hepaSocksPerHrPerTeam = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "HEPA Socks per Hour per Team").CreateDistribution().Draw();
             var numTeams = _characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
             var samplePackageTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Packaging Time per Sample").CreateDistribution().Draw();
-            var wipeAnalysisTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Analysis Time per Wipe Sample").CreateDistribution().Draw();
-            var hepaAnalysisTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Analysis Time per HEPA Sample").CreateDistribution().Draw();
             var numLabs = (int)_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Labs").CreateDistribution().Draw();
             for (int i = 0; i < numLabs; i++)
             {
@@ -119,8 +117,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 hepaSocksPerHrPerTeam,
                 numTeams,
                 samplePackageTime,
-                wipeAnalysisTime,
-                hepaAnalysisTime,
                 numLabs,
                 labUptimesHours,
                 labDistanceFromSite,

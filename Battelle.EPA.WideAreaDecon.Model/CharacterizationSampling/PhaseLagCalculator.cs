@@ -11,8 +11,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         private readonly double _surfaceAreaPerWipe;
         private readonly double _surfaceAreaPerHepa;
         private readonly double _samplePackageTime;
-        private readonly double _wipeAnalysisTime;
-        private readonly double _hepaAnalysisTime;
         private readonly List<double> _labUptimesHours;
         private readonly List<double> _labDistanceFromSite;
         private readonly List<double> _labThroughput;
@@ -21,9 +19,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             double surfaceAreaPerWipe,  
             double surfaceAreaPerHepa, 
             List<double> labUptimesHours, 
-            double samplePackageTime, 
-            double wipeAnalysisTime, 
-            double hepaAnalysisTime,
+            double samplePackageTime,
             List<double> labDistanceFromSite,
             List<double> labThroughput)
         {
@@ -31,8 +27,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _surfaceAreaPerHepa = surfaceAreaPerHepa;
             _labUptimesHours = labUptimesHours;
             _samplePackageTime = samplePackageTime;
-            _wipeAnalysisTime = wipeAnalysisTime;
-            _hepaAnalysisTime = hepaAnalysisTime;
             _labDistanceFromSite = labDistanceFromSite;
             _labThroughput = labThroughput;
         }

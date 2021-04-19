@@ -34,8 +34,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 csParameters.surfaceAreaPerHepa,
                 csParameters.labUptimesHours,
                 csParameters.samplePackageTime,
-                csParameters.wipeAnalysisTime,
-                csParameters.hepaAnalysisTime,
                 csParameters.labDistanceFromSite,
                 csParameters.labThroughput
             );

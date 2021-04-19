@@ -17,8 +17,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var surfaceAreaPerWipe = 4.64515;
             var surfaceAreaPerHepa = 9.2903;
             var samplePackageTime = 1.63;
-            var wipeAnalysisTime = 0.79;
-            var hepaAnalysisTime = 1.0;
             var labThroughput = new List<double> { 50, 60, 40 };
             var labUptimesHours = new List<double> { 8.0, 9.0, 10.0 };
             var labDistanceFromSite = new List<double> { 48.0, 20.0, 90.0 };
@@ -26,9 +24,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 surfaceAreaPerWipe, 
                 surfaceAreaPerHepa, 
                 labUptimesHours, 
-                samplePackageTime, 
-                wipeAnalysisTime, 
-                hepaAnalysisTime,
+                samplePackageTime,
                 labDistanceFromSite,
                 labThroughput
             );
