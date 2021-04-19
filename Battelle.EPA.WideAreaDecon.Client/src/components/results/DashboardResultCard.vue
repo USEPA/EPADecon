@@ -1,5 +1,5 @@
 <template>
-  <v-card @click="$emit('showDetails', text)">
+  <v-card @click="$emit('showDetails', eventText)">
     <div class="d-flex flex-no-wrap">
       <v-avatar color="primary" class="ma-5" size="80" tile>
         <v-icon color="white" size="60">{{ icon }}</v-icon>
@@ -23,6 +23,10 @@ export default class DashboardResultCard extends Vue {
   @Prop() text!: string;
 
   @Prop() value!: string;
+
+  get eventText(): string {
+    return this.text.replace(/^Average /, '');
+  }
 }
 </script>
 
