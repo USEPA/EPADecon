@@ -21,7 +21,7 @@
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.Workdays)"
           icon="mdi-calendar"
-          text="Avergage Total Workdays"
+          text="Average Total Workdays"
           :value="averageTotalWorkdays"
         />
       </v-col>
