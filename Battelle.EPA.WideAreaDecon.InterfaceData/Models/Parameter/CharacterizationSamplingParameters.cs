@@ -14,8 +14,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double hepaSocksPerHrPerTeam;
         public double numTeams;
         public double samplePackageTime;
-        public double wipeAnalysisTime;
-        public double hepaAnalysisTime;
         public int numLabs;
         public List<double> labUptimesHours;
         public List<double> labDistanceFromSite;
@@ -38,8 +36,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _hepaSocksPerHrPerTeam,
             double _numTeams,
             double _samplePackageTime,
-            double _wipeAnalysisTime,
-            double _hepaAnalysisTime,
             int _numLabs,
             List<double> _labUptimeHours,
             List<double> _labDistanceFromSite,
@@ -61,8 +57,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             hepaSocksPerHrPerTeam = _hepaSocksPerHrPerTeam;
             numTeams = _numTeams;
             samplePackageTime = _samplePackageTime;
-            wipeAnalysisTime = _wipeAnalysisTime;
-            hepaAnalysisTime = _hepaAnalysisTime;
             numLabs = _numLabs;
             labUptimesHours = _labUptimeHours;
             labDistanceFromSite = _labDistanceFromSite;
