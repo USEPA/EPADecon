@@ -2,7 +2,7 @@ import { injectable } from 'inversify';
 import JobStatus from '@/enums/jobs/jobStatus';
 import IJobProvider from '@/interfaces/providers/IJobProvider';
 import Axios from 'axios';
-import { serialize } from 'typescript-json-serializer';
+import { deserialize, serialize } from 'typescript-json-serializer';
 import JobRequest from '../jobs/JobRequest';
 import ParameterWrapperList from '../parameter/ParameterWrapperList';
 
@@ -26,6 +26,8 @@ export default class JobProvider implements IJobProvider {
   }
 
   async getJobRequest(id: string): Promise<JobRequest> {
-    return Axios.get<JobRequest>(`/api/JobRequest`, { params: { id } }).then((response) => response.data);
+    return Axios.get<JobRequest>(`/api/JobRequest`, { params: { id } }).then((response) =>
+      deserialize<JobRequest>(response.data, JobRequest),
+    );
   }
 }
