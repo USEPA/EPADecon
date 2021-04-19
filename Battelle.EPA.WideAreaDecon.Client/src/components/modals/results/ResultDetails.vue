@@ -68,8 +68,6 @@ export default class ResultDetails extends Vue {
 
   numberOfBins = 5;
 
-  chartTicks: number[] = [];
-
   get chartData(): ChartData {
     if (!this.details) {
       return new DefaultChartData([]);
@@ -111,14 +109,13 @@ export default class ResultDetails extends Vue {
     };
   }
 
+  get chartTicks(): number[] {
+    return this.chartData.labels as number[];
+  }
+
   @Watch('details')
   onDetailsChanged(): void {
     this.initializeChart();
-  }
-
-  @Watch('chartData')
-  onChartDataChagned(newValue: ChartData): void {
-    this.chartTicks = newValue.labels as number[];
   }
 
   initializeChart(): void {
