@@ -29,8 +29,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             var wipeAnalysisTime = 0.79;
             var hepaAnalysisTime = 1.0;
             var numLabs = 3;
-            var fractionOfWipeToEachLab = new List<double> { 0.2, 0.6, 0.2 };
-            var fractionOfHepaToEachLab = new List<double> { 0.5, 0.3, 0.2 };
+            var labThroughput = new List<double> { 50, 60, 40 };
             var labDistanceFromSite = new List<double> { 48.0, 20.0, 90.0 };
             var labUptimeHours = new List<double> { 12.0, 12.0, 12.0 } ;
             var resultTransmissionToIC = 24.0;
@@ -193,10 +192,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                 wipeAnalysisTime,
                 hepaAnalysisTime,
                 numLabs,
-                fractionOfWipeToEachLab,
-                fractionOfHepaToEachLab,
                 labUptimeHours,
                 labDistanceFromSite,
+                labThroughput,
                 resultTransmissionToIC,
                 personnelReqPerTeamCS,
                 personnelOverheadDaysCS,

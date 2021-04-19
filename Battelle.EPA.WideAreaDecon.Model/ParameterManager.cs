@@ -64,10 +64,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
         private CharacterizationSamplingParameters SetCharacterizationSamplingParameters()
         {
-            var fractionOfWipeToEachLab = new List<double>();
-            var fractionOfHepaToEachLab = new List<double>();
             var labUptimesHours = new List<double>();
             var labDistanceFromSite = new List<double>();
+            var labThroughput = new List<double>();
 
             var fractionSurfaceSampled = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
             var fractionSampledWipe =  fractionSurfaceSampled * 0.5;
@@ -81,13 +80,11 @@ namespace Battelle.EPA.WideAreaDecon.Model
             var wipeAnalysisTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Analysis Time per Wipe Sample").CreateDistribution().Draw();
             var hepaAnalysisTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Analysis Time per HEPA Sample").CreateDistribution().Draw();
             var numLabs = (int)_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Labs").CreateDistribution().Draw();
-            var fractionPerLab = 1.0 / numLabs;
             for (int i = 0; i < numLabs; i++)
             {
                 labUptimesHours.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Uptime Hours per Day").CreateDistribution().Draw());
-                fractionOfWipeToEachLab.Add(fractionPerLab);
-                fractionOfHepaToEachLab.Add(fractionPerLab);
                 labDistanceFromSite.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance from Site").CreateDistribution().Draw());
+                labThroughput.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Throughput Samples per Day").CreateDistribution().Draw());
             }
             var resultTransmissionToIC = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Time of Result Transmission to IC").CreateDistribution().Draw();
 
@@ -125,10 +122,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 wipeAnalysisTime,
                 hepaAnalysisTime,
                 numLabs,
-                fractionOfWipeToEachLab,
-                fractionOfHepaToEachLab,
                 labUptimesHours,
                 labDistanceFromSite,
+                labThroughput,
                 resultTransmissionToIC,
                 personnelReqPerTeam,
                 personnelOverheadDays,
