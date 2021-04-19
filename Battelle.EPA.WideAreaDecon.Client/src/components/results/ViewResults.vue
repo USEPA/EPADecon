@@ -29,7 +29,7 @@
         <dashboard-result-card
           @showDetails="showResultDetails"
           icon="mdi-hand-water"
-          text="Average Number of Rounds of Decontamination"
+          text="Average Number of Decontamination Iterations"
           :value="500"
         />
       </v-col>
@@ -37,10 +37,10 @@
 
     <v-row>
       <v-col cols="6">
-        <dashboard-chart-card text="Cost Breakdown By Phase" :data="getPhaseBreakdownChartData('phaseCost')" />
+        <dashboard-chart-card text="Cost Breakdown By Element" :data="getPhaseBreakdownChartData('phaseCost')" />
       </v-col>
       <v-col cols="6">
-        <dashboard-chart-card text="Workday Breakdown By Phase" :data="getPhaseBreakdownChartData('workDays')" />
+        <dashboard-chart-card text="Workday Breakdown By Element" :data="getPhaseBreakdownChartData('workDays')" />
       </v-col>
     </v-row>
 
@@ -60,7 +60,7 @@
         <v-card>
           <v-card-title class="headline pl-5" v-text="'Actions'"></v-card-title>
           <v-card-text class="d-flex justify-space-between px-5">
-            <v-btn color="secondary" v-text="'Realization Summary'" @click="navigate('realizationSummary')"></v-btn>
+            <v-btn color="secondary" v-text="'Summary'" @click="navigate('realizationSummary')"></v-btn>
             <v-btn color="secondary" v-text="'View Parameters'" @click="viewParameters"></v-btn>
             <v-btn color="secondary" v-text="'Run Job Again'"></v-btn>
             <v-btn color="secondary" v-text="'Export Results'" @click="exportResults"></v-btn>
