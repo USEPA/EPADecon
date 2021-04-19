@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import mockResults from '@/dataMocks/mockResults';
 import JobResultProvider from '@/implementations/providers/JobResultProvider';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
-import { hasUncaughtExceptionCaptureCallback } from 'process';
 
 describe('JobResultProvider tests', () => {
   const results = mockResults;
