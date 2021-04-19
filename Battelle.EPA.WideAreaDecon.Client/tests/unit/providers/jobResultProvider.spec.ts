@@ -63,6 +63,18 @@ describe('JobResultProvider tests', () => {
     expect(result?.stdDev).to.be.closeTo(35808107.753, 0.01);
   });
 
+  it('number of values returned is correct', () => {
+    // Setup
+    const phaseResult = PhaseResult.PhaseCost;
+    const count = results.length;
+
+    // SUT
+    const result = provider.getResultDetails(results, phaseResult);
+
+    // Assert
+    expect(result?.values.length).to.equal(count);
+  });
+
   it('invalid result returns undefined', () => {
     // Setup
     const phaseResult = 'invalid' as PhaseResult;
