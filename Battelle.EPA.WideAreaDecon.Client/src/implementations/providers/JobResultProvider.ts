@@ -131,7 +131,7 @@ export default class JobResultProvider implements IJobResultProvider {
     const instances: number[] = [];
 
     // get all instances of the result
-    allResults.forEach((r, i) => {
+    allResults.forEach((r) => {
       this.findResultValues(r, result, (value: number | undefined) => {
         if (value !== undefined) {
           instances.push(value);
@@ -140,7 +140,7 @@ export default class JobResultProvider implements IJobResultProvider {
     });
 
     if (!instances.length) {
-      return;
+      return undefined;
     }
 
     const numLocations = Object.keys(allResults[0]).length - 1 + Object.keys(allResults[0].Indoor).length;
@@ -167,11 +167,24 @@ export default class JobResultProvider implements IJobResultProvider {
     const stdDev = Math.sqrt(sums.map((x) => (x - mean) ** 2).reduce((a, b) => a + b, 0) / (length - 1)) ?? undefined;
 
     return {
+      values: sums,
       mean,
       maximum,
       minimum,
       stdDev,
     };
+  }
+
+  getUnits(result: PhaseResult): string | undefined {
+    switch (result) {
+      case PhaseResult.AreaContaminated:
+        return 'm^2';
+      case PhaseResult.TotalCost:
+      case PhaseResult.PhaseCost:
+        return '$';
+      default:
+        return undefined;
+    }
   }
 
   private findResultValues(

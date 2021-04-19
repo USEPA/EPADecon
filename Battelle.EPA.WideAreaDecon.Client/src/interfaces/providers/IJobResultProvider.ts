@@ -28,10 +28,10 @@ export default interface IJobResultProvider {
   getRealizationResults(allResults: IJobResultRealization[], realizationNumber: number): IJobResultRealization;
 
   /** Retrieves the mean, max, min, and standard deviation of a result
-   * across all realizations.
+   * across all realizations. Also retrieves all values of the result.
    * @param {IJobResultRealization[]} allResults - The array of realization results.
    * @param {PhaseResult} result - The result to get details for.
-   * @returns The mean, max, min, and standard deviation of the result if it can be found.
+   * @returns The mean, max, min, standard deviation, and all values of the result if it can be found.
    * Otherwise returns undefined.
    */
   getResultDetails(allResults: IJobResultRealization[], result: PhaseResult): IResultDetails | undefined;
@@ -43,4 +43,10 @@ export default interface IJobResultProvider {
    * inputted result if it exists
    */
   getResultPhaseBreakdown(realization: IJobResultRealization, result: PhaseResult): { phase: string; value: number }[];
+
+  /** Retrieves the units for a given result (if they exist)
+   * @param {PhaseResult} result - The result to get units for.
+   * @returns The units for the given result (or undefined if they don't exist).
+   */
+  getUnits(result: PhaseResult): string | undefined;
 }
