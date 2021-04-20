@@ -54,8 +54,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
                 { PpeLevel.D, 0.0 }
             };
             var _numberTeams = 4.0;
-            var workDays = 4.12953711705674;
-            Assert.AreEqual(243841.676298749,
+            var workDays = 2.75302474470449;
+            Assert.AreEqual(111730.822350432,
                 Calculator.CalculateEntranceExitCost(workDays, _numberTeams, ppeEachLevelPerTeam), 1e-6,
                 "Incorrect cost calculated");
         }
@@ -64,7 +64,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         {
             public double CalculateEntExitLaborCost(double workDays, double _numberTeams)
             {
-                return 134242.99260128;
+                return 89495.3284008536;
             }
         }
     }
