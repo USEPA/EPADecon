@@ -12,18 +12,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays,
             double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 84993.281164225;
+            return 121767.74958828;
         }
 
         public double CalculateEntExitLaborCost(double workDays, double _numberTeams, double fractionSampledWipe, 
             double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 21393.2811642251;
+            return 68458.4997255202;
         }
 
         public double CalculateLaborDays(double workDays)
         {
-            return 1.30729362883868;
+            return 3.1909787627956;
         }
     }
 
@@ -32,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampledWipe, 
             double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return 10.6178806540723;
+            return 39.967011947266;
         }
     }
 
@@ -41,26 +41,25 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays, double saToBeSourceReduced,
             double costPerTonRemoved)
         {
-            return 137654.447803312;
+            return 95489.3284008536;
         }
 
         public double CalculateLaborDays(double workDays)
         {
-            return 4.07855517733999;
+            return 2.75302474470449;
         }
     }
 
     internal class MockDLaborCostCalculator : Model.Decontamination.ILaborCostCalculator
     {
-
         public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays)
         {
-            return 120400.0;
+            return 361200;
         }
 
         public double CalculateLaborDays(double workDays)
         {
-            return 5.0;
+            return 14.0;
         }
     }
 

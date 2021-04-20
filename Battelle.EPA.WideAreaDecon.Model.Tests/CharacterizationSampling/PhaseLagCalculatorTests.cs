@@ -37,7 +37,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var sampleTimeTransmitted = 24.0;
             var fractionSampledWipe = 0.3;
             var fractionSampledHepa = 0.2;
-            var info = new ContaminationInformation(100.0, 20.0);
+            var info = new ContaminationInformation(500.0, 20.0);
             var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
 
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))

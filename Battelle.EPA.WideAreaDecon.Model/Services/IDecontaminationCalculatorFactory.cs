@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Services
 {
-    interface IDecontaminationCalculatorFactory
+    public interface IDecontaminationCalculatorFactory
     {
         Decontamination.DecontaminationCostCalculator GetCalculator();
     }
