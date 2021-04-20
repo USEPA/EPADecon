@@ -102,29 +102,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         [Test]
         public void CalculateCost()
         {
-            var _numberTeams = 4;
-            var saToBeSourceReduced = 8000.0;
-            var roundtripDays = 2.0;
-            int numberLabs = 3;
-            double sampleTimeTransmitted = 24.0;
-            var fractionSampledWipe = 0.3;
-            var fractionSampledHepa = 0.2;
-            var workDaysCS = 0.807293628838681;
-            var workDaysSR = 4.07855517733999;
-            var workDaysDC = 3.0;
-            var info = new ContaminationInformation(100.0, 20.0);
-            var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
+            var onsiteDaysCS = 67.4428920064922;
+            var onsiteDaysSR = 2.75302474470449;
+            var onsiteDaysDC = 14.0;
 
-            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
-            {
-                areaContaminated.Add(surface, info);
-            }
-
-            var onSiteDays = Calculator.CalculateOnSiteDays(workDaysCS, workDaysSR, workDaysDC, _numberTeams, saToBeSourceReduced, roundtripDays, fractionSampledWipe, fractionSampledHepa, areaContaminated, numberLabs, sampleTimeTransmitted);
-            Assert.AreEqual(29.0037294602509, onSiteDays, 1e-6,
-                "Incorrect onsite days calculated");
-            Assert.AreEqual(322521.47159799, Calculator.CalculateLaborCost(onSiteDays), 1e-6,
-                "Incorrect Labor cost calculated");
+            var onSiteDays = Calculator.CalculateOnSiteDays(onsiteDaysCS, onsiteDaysSR, onsiteDaysDC);
+            Assert.AreEqual(92.1959167511967, onSiteDays, 1e-6, "Incorrect onsite days calculated");
+            Assert.AreEqual(1537827.89140996, Calculator.CalculateLaborCost(onSiteDays), 1e-6, "Incorrect Labor cost calculated");
         }
     }
 }

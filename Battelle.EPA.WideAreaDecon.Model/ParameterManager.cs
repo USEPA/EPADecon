@@ -42,10 +42,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
         public CharacterizationSamplingParameters SetCharacterizationSamplingParameters()
         {
-            var fractionOfWipeToEachLab = new List<double>();
-            var fractionOfHepaToEachLab = new List<double>();
             var labUptimesHours = new List<double>();
             var labDistanceFromSite = new List<double>();
+            var labThroughput = new List<double>();
 
             var fractionSampledWipe = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
             var fractionSampledHepa = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
@@ -55,15 +54,14 @@ namespace Battelle.EPA.WideAreaDecon.Model
             var hepaSocksPerHrPerTeam = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "HEPA Socks per Hour per Team").CreateDistribution().Draw();
             var numTeams = _characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
             var samplePackageTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Packaging Time per Sample").CreateDistribution().Draw();
-            var wipeAnalysisTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Analysis Time per Wipe Sample").CreateDistribution().Draw();
-            var hepaAnalysisTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Analysis Time per HEPA Sample").CreateDistribution().Draw();
             var numLabs = (int)_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Labs").CreateDistribution().Draw();
             for (int i = 0; i < numLabs; i++)
             {
                 fractionOfWipeToEachLab.Add(_characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Wipe Samples to Each Lab").CreateDistribution().Draw());
                 fractionOfHepaToEachLab.Add(_characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of HEPA Samples to Each Lab").CreateDistribution().Draw());
                 labUptimesHours.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Uptime Hours per Day").CreateDistribution().Draw());
-                labDistanceFromSite.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance From Site").CreateDistribution().Draw());
+                labDistanceFromSite.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance from Site").CreateDistribution().Draw());
+                labThroughput.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Throughput Samples per Day").CreateDistribution().Draw());
             }
             var resultTransmissionToIC = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Time of Result Transmission to IC").CreateDistribution().Draw();
 
@@ -98,13 +96,10 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 hepaSocksPerHrPerTeam,
                 numTeams,
                 samplePackageTime,
-                wipeAnalysisTime,
-                hepaAnalysisTime,
                 numLabs,
-                fractionOfWipeToEachLab,
-                fractionOfHepaToEachLab,
                 labUptimesHours,
                 labDistanceFromSite,
+                labThroughput,
                 resultTransmissionToIC,
                 personnelReqPerTeam,
                 personnelOverheadDays,

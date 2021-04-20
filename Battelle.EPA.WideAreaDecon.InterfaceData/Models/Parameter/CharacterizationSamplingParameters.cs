@@ -14,13 +14,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double hepaSocksPerHrPerTeam;
         public double numTeams;
         public double samplePackageTime;
-        public double wipeAnalysisTime;
-        public double hepaAnalysisTime;
         public int numLabs;
-        public List<double> fractionOfWipeToEachLab;
-        public List<double> fractionOfHepaToEachLab;
         public List<double> labUptimesHours;
         public List<double> labDistanceFromSite;
+        public List<double> labThroughput;
         public double resultTransmissionToIC;
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
         public double personnelOverheadDays;
@@ -39,13 +36,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _hepaSocksPerHrPerTeam,
             double _numTeams,
             double _samplePackageTime,
-            double _wipeAnalysisTime,
-            double _hepaAnalysisTime,
             int _numLabs,
-            List<double> _fractionWipeToEachLab,
-            List<double> _fractionHepaToEachLab,
             List<double> _labUptimeHours,
             List<double> _labDistanceFromSite,
+            List<double> _labThroughput,
             double _resultTransmissionToIC,
             Dictionary<PersonnelLevel, double> _personnelPerTeam,
             double _personnelOverheadDays,
@@ -63,13 +57,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             hepaSocksPerHrPerTeam = _hepaSocksPerHrPerTeam;
             numTeams = _numTeams;
             samplePackageTime = _samplePackageTime;
-            wipeAnalysisTime = _wipeAnalysisTime;
-            hepaAnalysisTime = _hepaAnalysisTime;
             numLabs = _numLabs;
-            fractionOfWipeToEachLab = _fractionWipeToEachLab;
-            fractionOfHepaToEachLab = _fractionHepaToEachLab;
             labUptimesHours = _labUptimeHours;
             labDistanceFromSite = _labDistanceFromSite;
+            labThroughput = _labThroughput;
             resultTransmissionToIC = _resultTransmissionToIC;
             personnelReqPerTeam = _personnelPerTeam;
             personnelOverheadDays = _personnelOverheadDays;
