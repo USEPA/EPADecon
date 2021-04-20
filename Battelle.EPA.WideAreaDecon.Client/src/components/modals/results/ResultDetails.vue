@@ -125,8 +125,10 @@ export default class ResultDetails extends Vue {
     this.options.tooltips.callbacks = {
       title: ([item]) => {
         const index = item.index ?? 0;
-        const upper = this.resultProvider.formatNumber(this.chartTicks[index + 1] ?? this.details.maximum);
-        const lower = this.resultProvider.formatNumber(this.chartTicks[index]);
+        // const upper = this.resultProvider.formatNumber(this.chartTicks[index + 1] ?? this.details.maximum);
+        // const lower = this.resultProvider.formatNumber(this.chartTicks[index]);
+        const upper = this.chartTicks[index + 1] ?? this.details.maximum;
+        const lower = this.chartTicks[index];
         return `${lower} - ${upper}`;
       },
     };
