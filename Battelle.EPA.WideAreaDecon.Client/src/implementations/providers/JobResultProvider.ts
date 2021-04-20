@@ -212,7 +212,7 @@ export default class JobResultProvider implements IJobResultProvider {
   // credit to Lior Elrom's answer https://stackoverflow.com/a/52613528
   private getMinandMax(arr: number[]): { minimum: number; maximum: number } {
     let minimum = arr[0];
-    let maximum = arr[1];
+    let maximum = arr[0];
     let i = arr.length;
 
     while (i) {
