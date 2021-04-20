@@ -3,12 +3,17 @@ import IJobRequest from '@/interfaces/jobs/IJobRequest';
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
+import mockResults from '@/dataMocks/mockResults';
 
 @Serializable()
 export default class JobRequest implements IJobRequest {
-  // @JsonProperty()
+  @JsonProperty({
+    // don't include in serialization
+    onSerialize: () => undefined,
+  })
   id: string;
 
+  @JsonProperty()
   status: JobStatus;
 
   progress: number;
@@ -28,6 +33,7 @@ export default class JobRequest implements IJobRequest {
   @JsonProperty()
   seed2: number;
 
+  @JsonProperty()
   results: IJobResultRealization[];
 
   constructor(
