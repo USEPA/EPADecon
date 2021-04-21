@@ -11,9 +11,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
         [EnumMember(Value = "Indoor Walls")]
         IndoorWalls,
 
-        [EnumMember(Value = "Indoor Exterior")]
-        IndoorExterior,
-
         [EnumMember(Value = "Indoor Ceilings")]
         IndoorCeilings,
         [EnumMember(Value = "Indoor Carpet")] IndoorCarpet,

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
@@ -21,7 +21,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
         private readonly ParameterFilter[] _costParameters;
 
         public ParameterManager(
-            ParameterFilter[] csParameters, 
+            ParameterFilter[] csParameters,
             ParameterFilter[] srParameters,
             ParameterFilter[] dcParameters,
             IParameter[] effParameters,
@@ -78,6 +78,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             var numTeams = _characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
             var samplePackageTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Packaging Time per Sample").CreateDistribution().Draw();
             var numLabs = (int)_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Labs").CreateDistribution().Draw();
+            var fractionPerLab = 1.0 / numLabs;
             for (int i = 0; i < numLabs; i++)
             {
                 labUptimesHours.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Uptime Hours per Day").CreateDistribution().Draw());
@@ -366,15 +367,26 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             foreach (SurfaceType surface in treatmentMethods.Keys.ToList())
             {
-                ApplicationMethod? tmp = treatmentMethods[surface];
-                string methodName = tmp.GetStringValue();
+                string methodName = treatmentMethods[surface].GetStringValue();
                 var metaDataName = methodName + " Efficacy by Surface";
                 var values = Enum.GetValues(typeof(ApplicationMethod));
-                try {
+
+                try
+                {
                     var efficacyData = _efficacyParameters.First(p => p.MetaData.Name == metaDataName) as EnumeratedParameter<SurfaceType>;
-                    efficacyValues.Add(surface, efficacyData.Values[surface].CreateDistribution().Draw());
+
+                    if (efficacyData.Values.ContainsKey(surface))
+                    {
+                        efficacyValues.Add(surface, efficacyData.Values[surface].CreateDistribution().Draw());
+                    }
+                    else
+                    {
+                        throw new System.InvalidOperationException();
+                    }
+
                 }
-                catch {
+                catch (System.InvalidOperationException)
+                {
                     metaDataName = methodName + " Efficacy";
                     var efficacyData = _efficacyParameters.First(p => p.MetaData.Name == metaDataName) as EnumeratedParameter<ApplicationMethod>;
 

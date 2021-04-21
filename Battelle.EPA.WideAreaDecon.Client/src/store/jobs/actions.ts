@@ -29,7 +29,7 @@ const jobRequestActions: ActionTree<IRootState, IRootState> = {
   },
 
   getCurrentJobResults: async ({ commit, state }, jobProvider: IJobProvider) => {
-    const job = await jobProvider.getJob(state.currentJob.id);
+    const job = await jobProvider.getJobRequest(state.currentJob.id);
     if (job) {
       commit('setCurrentJob', job);
     }

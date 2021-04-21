@@ -46,8 +46,9 @@ export default new Router({
       beforeEnter: (to: Route, from: Route, next: NavigationGuardNext) => {
         if (!store.getters.hasResults) {
           next({ name: 'defineScenario' });
+        } else {
+          next();
         }
-        next();
       },
     },
   ],

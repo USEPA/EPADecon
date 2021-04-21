@@ -1,11 +1,11 @@
 <template>
   <v-app>
     <div>Hello world!</div>
-    <nav-bar @visible="visible = true" />
+    <nav-bar @showRunModal="showRunModal = true" />
 
     <!-- Content Router -->
     <v-main>
-      <run-scenario @close="visible = false" :visible="visible" />
+      <run-scenario v-model="showRunModal" />
       <router-view />
     </v-main>
 
@@ -27,7 +27,7 @@ import FooterBar from '@/components/base/FooterBar.vue';
   },
 })
 export default class App extends Vue {
-  visible = false;
+  showRunModal = false;
 }
 </script>
 <style scoped lang="scss">
