@@ -5,8 +5,6 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
@@ -179,9 +177,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
         private DecontaminationParameters SetDecontaminationParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails, DecontaminationPhase phase)
         {
             var surfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(phase);
-
             var applicationMethods = SetTreatmentMethods(surfaces);
-            var efficacyValues = SetEfficacyValues(applicationMethods);
             var initialSporeLoading = new Dictionary<SurfaceType, double>();
             var treatmentDaysPerAm = new Dictionary<ApplicationMethod, double>();
             var agentVolume = new Dictionary<SurfaceType, double>();
@@ -224,7 +220,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             var fumigationAgentVolume = _decontaminationParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume of Agent Applied for Fogging/Fumigation").CreateDistribution().Draw();
 
             return new DecontaminationParameters(
-                efficacyValues,
+                _efficacyParameters,
                 applicationMethods,
                 initialSporeLoading,
                 desiredSporeThreshold,
@@ -359,42 +355,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
             }
 
             return treatmentMethods;
-        }
-
-        private Dictionary<SurfaceType, double> SetEfficacyValues(Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
-        {
-            var efficacyValues = new Dictionary<SurfaceType, double>();
-
-            foreach (SurfaceType surface in treatmentMethods.Keys.ToList())
-            {
-                string methodName = treatmentMethods[surface].GetStringValue();
-                var metaDataName = methodName + " Efficacy by Surface";
-                var values = Enum.GetValues(typeof(ApplicationMethod));
-
-                try
-                {
-                    var efficacyData = _efficacyParameters.First(p => p.MetaData.Name == metaDataName) as EnumeratedParameter<SurfaceType>;
-
-                    if (efficacyData.Values.ContainsKey(surface))
-                    {
-                        efficacyValues.Add(surface, efficacyData.Values[surface].CreateDistribution().Draw());
-                    }
-                    else
-                    {
-                        throw new System.InvalidOperationException();
-                    }
-
-                }
-                catch (System.InvalidOperationException)
-                {
-                    metaDataName = methodName + " Efficacy";
-                    var efficacyData = _efficacyParameters.First(p => p.MetaData.Name == metaDataName) as EnumeratedParameter<ApplicationMethod>;
-
-                    efficacyValues.Add(surface, efficacyData.Values[treatmentMethods[surface]].CreateDistribution().Draw());
-                }
-            }
-
-            return efficacyValues;
         }
     }
 }

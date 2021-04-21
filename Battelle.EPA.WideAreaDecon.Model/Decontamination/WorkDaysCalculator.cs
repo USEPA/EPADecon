@@ -42,7 +42,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 
                 totalDays += days.Sum();
 
-                _surfaceSporeLoading = _efficacyCalculator.CalculateEfficacy(_surfaceSporeLoading);
+                _surfaceSporeLoading = _efficacyCalculator.CalculateEfficacy(_surfaceSporeLoading, _appMethodBySurfaceType);
                 decontaminationRounds++;
             }
 

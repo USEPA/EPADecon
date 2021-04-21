@@ -8,7 +8,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
     public class DecontaminationParameters
     {
-        public Dictionary<SurfaceType, double> efficacyValues;
+        public IParameter[] efficacyParameters;
         public Dictionary<SurfaceType, ApplicationMethod> applicationMethods;
         public Dictionary<SurfaceType, double> initialSporeLoading;
         public double desiredSporeThreshold;
@@ -26,7 +26,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public Dictionary<SurfaceType, double> agentVolume;
 
         public DecontaminationParameters(
-            Dictionary<SurfaceType, double> _efficacyValues,
+            IParameter[] _efficacyParameters,
             Dictionary<SurfaceType, ApplicationMethod> _applicationMethods,
             Dictionary<SurfaceType, double> _initialSporeLoading,
             double _desiredSporeThreshold,
@@ -43,7 +43,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _fumigationAgentVolume,
             Dictionary<SurfaceType, double> _agentVolume)
         {
-            efficacyValues = _efficacyValues;
+            efficacyParameters = _efficacyParameters;
             applicationMethods = _applicationMethods;
             initialSporeLoading = _initialSporeLoading;
             treatmentDaysPerAm = _treatmentDaysPerAm;

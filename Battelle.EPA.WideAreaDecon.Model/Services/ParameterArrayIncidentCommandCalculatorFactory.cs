@@ -76,7 +76,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
             );
 
             Calculator_efficacy = new Decontamination.EfficacyCalculator(
-                dcParameters.efficacyValues
+                dcParameters.efficacyParameters
             );
 
             Calculator_workDaysDc = new Decontamination.WorkDaysCalculator(

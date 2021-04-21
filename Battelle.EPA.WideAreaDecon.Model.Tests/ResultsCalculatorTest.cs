@@ -178,105 +178,105 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             };
             var personnelOverheadDaysIC = 8.0;
 
-            var CS_Parameters = new CharacterizationSamplingParameters(
-                fractionSampledWipe,
-                fractionSampledHepa,
-                surfaceAreaPerWipe,
-                surfaceAreaPerHepa,
-                wipesPerHrPerTeam,
-                hepaSocksPerHrPerTeam,
-                numTeamsCS,
-                samplePackageTime,
-                numLabs,
-                labUptimeHours,
-                labDistanceFromSite,
-                labThroughput,
-                resultTransmissionToIC,
-                personnelReqPerTeamCS,
-                personnelOverheadDaysCS,
-                entriesPerTeamCS,
-                hoursEnteringCS,
-                hoursExitingCS,
-                respiratorsPerPersonCS,
-                ppeRequiredCS
-            );
+            //var CS_Parameters = new CharacterizationSamplingParameters(
+            //    fractionSampledWipe,
+            //    fractionSampledHepa,
+            //    surfaceAreaPerWipe,
+            //    surfaceAreaPerHepa,
+            //    wipesPerHrPerTeam,
+            //    hepaSocksPerHrPerTeam,
+            //    numTeamsCS,
+            //    samplePackageTime,
+            //    numLabs,
+            //    labUptimeHours,
+            //    labDistanceFromSite,
+            //    labThroughput,
+            //    resultTransmissionToIC,
+            //    personnelReqPerTeamCS,
+            //    personnelOverheadDaysCS,
+            //    entriesPerTeamCS,
+            //    hoursEnteringCS,
+            //    hoursExitingCS,
+            //    respiratorsPerPersonCS,
+            //    ppeRequiredCS
+            //);
 
-            var SR_Parameters = new SourceReductionParameters(
-                surfaceAreaToBeSourceReduced,
-                massPerSurfaceArea,
-                massRemovedPerHourPerTeam,
-                numEntriesPerDaySR,
-                respiratorsPerPersonSR,
-                hoursEnteringSR,
-                hoursExitingSR,
-                numTeamsSR,
-                personnelReqPerTeamSR,
-                personnelOverheadDaysSR,
-                ppeRequiredSR
-            );
+            //var SR_Parameters = new SourceReductionParameters(
+            //    surfaceAreaToBeSourceReduced,
+            //    massPerSurfaceArea,
+            //    massRemovedPerHourPerTeam,
+            //    numEntriesPerDaySR,
+            //    respiratorsPerPersonSR,
+            //    hoursEnteringSR,
+            //    hoursExitingSR,
+            //    numTeamsSR,
+            //    personnelReqPerTeamSR,
+            //    personnelOverheadDaysSR,
+            //    ppeRequiredSR
+            //);
 
-            var DC_Parameters = new DecontaminationParameters(
-                efficacyValues,
-                applicationMethods,
-                initialSporeLoading,
-                desiredSporeThreshold,
-                treatmentDaysPerAm,
-                personnelReqPerTeamDC,
-                personnelOverheadDC,
-                numEntriesPerTeamPerDayDC,
-                hoursPerEntryPerTeamDC,
-                hoursPerExitPerTeamDC,
-                respiratorsPerPersonDC,
-                numTeamsDC,
-                ppeRequiredDC,
-                contaminationArea,
-                fumigationAgentVolume,
-                agentVolume);
+            //var DC_Parameters = new DecontaminationParameters(
+            //    efficacyParameters,
+            //    applicationMethods,
+            //    initialSporeLoading,
+            //    desiredSporeThreshold,
+            //    treatmentDaysPerAm,
+            //    personnelReqPerTeamDC,
+            //    personnelOverheadDC,
+            //    numEntriesPerTeamPerDayDC,
+            //    hoursPerEntryPerTeamDC,
+            //    hoursPerExitPerTeamDC,
+            //    respiratorsPerPersonDC,
+            //    numTeamsDC,
+            //    ppeRequiredDC,
+            //    contaminationArea,
+            //    fumigationAgentVolume,
+            //    agentVolume);
 
-            var OT_Parameters = new OtherParameters(
-                personnelPerRentalCar,
-                roundtripDays,
-                totalAvailablePersonnel);
+            //var OT_Parameters = new OtherParameters(
+            //    personnelPerRentalCar,
+            //    roundtripDays,
+            //    totalAvailablePersonnel);
 
-            var Cost_Parameters = new CostParameters(
-                hourlyRate,
-                icRentalCostPerDay,
-                icSuppliesCostPerDay,
-                wipeCost,
-                hepaCost,
-                respiratorCost,
-                ppeCost,
-                wipeAnalysisCost,
-                hepaAnalysisCost,
-                vacuumRentalCostPerDay,
-                costPerMassOfMaterialRemoved,
-                deconAgentCostPerVolume,
-                deconMaterialsCost,
-                rentalCarCostPerDay,
-                roundtripTicketCostPerPerson,
-                perDiem);
+            //var Cost_Parameters = new CostParameters(
+            //    hourlyRate,
+            //    icRentalCostPerDay,
+            //    icSuppliesCostPerDay,
+            //    wipeCost,
+            //    hepaCost,
+            //    respiratorCost,
+            //    ppeCost,
+            //    wipeAnalysisCost,
+            //    hepaAnalysisCost,
+            //    vacuumRentalCostPerDay,
+            //    costPerMassOfMaterialRemoved,
+            //    deconAgentCostPerVolume,
+            //    deconMaterialsCost,
+            //    rentalCarCostPerDay,
+            //    roundtripTicketCostPerPerson,
+            //    perDiem);
 
-            var IC_Parameters = new IncidentCommandParameters(
-                personnelReqPerTeamIC,
-                personnelOverheadDaysIC);
+            //var IC_Parameters = new IncidentCommandParameters(
+            //    personnelReqPerTeamIC,
+            //    personnelOverheadDaysIC);
 
-            parameters = new CalculatorManager(
-                CS_Parameters, 
-                SR_Parameters, 
-                DC_Parameters, 
-                IC_Parameters, 
-                OT_Parameters, 
-                Cost_Parameters);
+            //parameters = new CalculatorManager(
+            //    CS_Parameters, 
+            //    SR_Parameters, 
+            //    DC_Parameters, 
+            //    IC_Parameters, 
+            //    OT_Parameters, 
+            //    Cost_Parameters);
 
-            var csCalculatorFactory = new ParameterArrayCharacterizationSamplingCalculatorFactory(CS_Parameters, Cost_Parameters);
-            var srCalculatorFactory = new ParameterArraySourceReductionCalculatorFactory(SR_Parameters, Cost_Parameters);
-            var dcCalculatorFactory = new ParameterArrayDecontaminationCalculatorFactory(DC_Parameters, Cost_Parameters);
-            var icCalculatorFactory = new ParameterArrayIncidentCommandCalculatorFactory(CS_Parameters, SR_Parameters, DC_Parameters, OT_Parameters, IC_Parameters, Cost_Parameters, csCalculatorFactory, srCalculatorFactory, dcCalculatorFactory);
-            var otCalculatorFactory = new ParameterArrayOtherCalculatorFactory(OT_Parameters, Cost_Parameters);
+            //var csCalculatorFactory = new ParameterArrayCharacterizationSamplingCalculatorFactory(CS_Parameters, Cost_Parameters);
+            //var srCalculatorFactory = new ParameterArraySourceReductionCalculatorFactory(SR_Parameters, Cost_Parameters);
+            //var dcCalculatorFactory = new ParameterArrayDecontaminationCalculatorFactory(DC_Parameters, Cost_Parameters);
+            //var icCalculatorFactory = new ParameterArrayIncidentCommandCalculatorFactory(CS_Parameters, SR_Parameters, DC_Parameters, OT_Parameters, IC_Parameters, Cost_Parameters, csCalculatorFactory, srCalculatorFactory, dcCalculatorFactory);
+            //var otCalculatorFactory = new ParameterArrayOtherCalculatorFactory(OT_Parameters, Cost_Parameters);
 
-            var calculatorCreator = new CalculatorCreator(csCalculatorFactory, srCalculatorFactory, dcCalculatorFactory, otCalculatorFactory, icCalculatorFactory);
+            //var calculatorCreator = new CalculatorCreator(csCalculatorFactory, srCalculatorFactory, dcCalculatorFactory, otCalculatorFactory, icCalculatorFactory);
 
-            Calculator = calculatorCreator.GetCalculators();
+            //Calculator = calculatorCreator.GetCalculators();
         }
 
         [Test]
