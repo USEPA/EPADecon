@@ -83,6 +83,12 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
                 double min = YMinimumValues[index];
                 double max = YMaximumValues[index];
 
+                // if min and max are the same point, return constant distribution instead
+                if (min == max)
+                {
+                    return new Stats.ConstantDistribution(min);
+                }
+
                 return new Stats.UniformDistribution(min, max);
             }
             throw new ArgumentNullException();
