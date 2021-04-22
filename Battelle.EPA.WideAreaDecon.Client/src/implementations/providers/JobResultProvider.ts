@@ -104,7 +104,8 @@ export default class JobResultProvider implements IJobResultProvider {
   }
 
   getResultPhaseBreakdown(realization: IJobResultRealization, result: PhaseResult): { phase: string; value: number }[] {
-    const phaseNames = Object.keys(realization.Outdoor);
+    // remove total cs results for now
+    const phaseNames = Object.keys(realization.Outdoor).filter((p) => !p.toLowerCase().includes('total'));
     const breakdown: number[] = [];
 
     this.findResultValues(realization, result, (value: number | undefined, index: number) => {
@@ -192,7 +193,8 @@ export default class JobResultProvider implements IJobResultProvider {
     result: PhaseResult,
     callback: (value: number | undefined, index: number) => void,
   ): void {
-    const phaseNames = Object.keys(realization.Outdoor);
+    // remove total characterization sampling results for now
+    const phaseNames = Object.keys(realization.Outdoor).filter((p) => !p.toLowerCase().includes('total'));
 
     Object.entries(realization).forEach(([location, resultSet]) => {
       const phaseResultSets: IPhaseResultSet[] = this.isIndoor(location) ? Object.values(resultSet) : [resultSet];
