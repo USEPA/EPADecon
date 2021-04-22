@@ -36,11 +36,30 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static BetaPertDistribution FromExcel(ParameterMetaData metaData, IRow row)
         {
+            var minimum = typeof(BetaPertDistribution).GetCellValue(nameof(Min), row)?.ConvertToOptionalDouble();
+            var maximum = typeof(BetaPertDistribution).GetCellValue(nameof(Max), row)?.ConvertToOptionalDouble();
+            var mode = typeof(BetaPertDistribution).GetCellValue(nameof(Mode), row)?.ConvertToOptionalDouble();
+
+            if (minimum < metaData.LowerLimit || minimum > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Minimum for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
+            if (maximum < metaData.LowerLimit || maximum > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Maximum for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
+            if (mode < metaData.LowerLimit || mode > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Mode for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
             return new BetaPertDistribution()
             {
-                Min = typeof(BetaPertDistribution).GetCellValue(nameof(Min), row)?.ConvertToOptionalDouble(),
-                Max = typeof(BetaPertDistribution).GetCellValue(nameof(Max), row)?.ConvertToOptionalDouble(),
-                Mode = typeof(BetaPertDistribution).GetCellValue(nameof(Mode), row)?.ConvertToOptionalDouble(),
+                Min = minimum,
+                Max = maximum,
+                Mode = mode,
                 MetaData = metaData
             };
         }

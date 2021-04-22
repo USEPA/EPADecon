@@ -28,10 +28,17 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static LogNormalDistribution FromExcel(ParameterMetaData metaData, IRow information)
         {
+            var mean = typeof(LogNormalDistribution).GetCellValue(nameof(Mean), information)?.ConvertToOptionalDouble();
+
+            if (mean < metaData.LowerLimit || mean > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Mean for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
             return new LogNormalDistribution()
             {
                 MetaData = metaData,
-                Mean = typeof(LogNormalDistribution).GetCellValue(nameof(Mean), information)?.ConvertToOptionalDouble(),
+                Mean = mean,
                 StdDev = typeof(LogNormalDistribution).GetCellValue(nameof(StdDev), information)
                     ?.ConvertToOptionalDouble(),
             };

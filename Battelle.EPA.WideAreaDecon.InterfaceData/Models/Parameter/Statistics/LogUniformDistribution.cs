@@ -38,11 +38,24 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static LogUniformDistribution FromExcel(ParameterMetaData metaData, IRow information)
         {
+            var minimum = typeof(LogUniformDistribution).GetCellValue(nameof(Min), information)?.ConvertToOptionalDouble();
+            var maximum = typeof(LogUniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToOptionalDouble();
+
+            if (minimum < metaData.LowerLimit || minimum > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Minimum for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
+            if (maximum < metaData.LowerLimit || maximum > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Maximum for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
             return new LogUniformDistribution()
             {
                 MetaData = metaData,
-                Min = typeof(LogUniformDistribution).GetCellValue(nameof(Min), information)?.ConvertToOptionalDouble(),
-                Max = typeof(LogUniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToOptionalDouble()
+                Min = minimum,
+                Max = maximum
             };
         }
 

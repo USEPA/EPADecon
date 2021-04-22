@@ -48,7 +48,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 postDeconCharacterizationSamplingResults = new GenericPhaseResults(),
                 totalCharacterizationSamplingResults = new GenericPhaseResults(),
                 sourceReductionResults = new GenericPhaseResults(),
-                decontaminationResults = new GenericPhaseResults(),
+                //decontaminationResults = new GenericPhaseResults(),
+                decontaminationResults = new TempDeconResults(),
                 incidentCommandResults = new IncidentCommandResults(),
                 otherResults = new OtherResults(),
                 generalResults = new GeneralResults()
@@ -125,13 +126,18 @@ namespace Battelle.EPA.WideAreaDecon.Model
             results.decontaminationResults.onSiteDays = results.decontaminationResults.workDays +
                 parameters.decontaminationParameters.personnelOverhead;
 
-            results.decontaminationResults.phaseCost = Convert.ToInt64(_decontaminationCostCalculator.CalculateCost(
+            //results.decontaminationResults.phaseCost = Convert.ToInt64(_decontaminationCostCalculator.CalculateCost(
+            Tuple<double, double> decontaminationCosts = _decontaminationCostCalculator.CalculateCost(
                 results.decontaminationResults.workDays,
                 parameters.decontaminationParameters.numTeams,
                 parameters.otherParameters.roundtripDays,
                 parameters.decontaminationParameters.ppeRequired,
                 areaContaminated,
-                parameters.decontaminationParameters.applicationMethods));
+                parameters.decontaminationParameters.applicationMethods);
+                //parameters.decontaminationParameters.applicationMethods));
+
+            results.decontaminationResults.suppliesCost = Convert.ToInt64(decontaminationCosts.Item1);
+            results.decontaminationResults.otherCosts = Convert.ToInt64(decontaminationCosts.Item2 / 3.0);
 
             // Post-Decon Characterization Sampling
             results.postDeconCharacterizationSamplingResults.workDays = 0.0;
@@ -201,7 +207,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
             // Total
             results.generalResults.totalCost = results.totalCharacterizationSamplingResults.phaseCost +
                 results.sourceReductionResults.phaseCost +
-                results.decontaminationResults.phaseCost +
+                //results.decontaminationResults.phaseCost +
+                results.decontaminationResults.suppliesCost +
+                results.decontaminationResults.otherCosts +
                 results.incidentCommandResults.phaseCost +
                 results.otherResults.otherCosts;
 

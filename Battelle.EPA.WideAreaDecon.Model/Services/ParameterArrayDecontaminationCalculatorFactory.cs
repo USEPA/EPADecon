@@ -21,7 +21,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
             CostParameters costParameters)
         {
             Calculator_efficacy = new EfficacyCalculator(
-                dcParameters.efficacyValues
+                dcParameters.efficacyParameters
             );
 
             Calculator_workDays = new WorkDaysCalculator(

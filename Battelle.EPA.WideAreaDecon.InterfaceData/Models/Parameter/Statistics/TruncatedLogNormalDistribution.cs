@@ -44,15 +44,34 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static TruncatedLogNormalDistribution FromExcel(ParameterMetaData metaData, IRow information)
         {
+            var minimum = typeof(TruncatedLogNormalDistribution).GetCellValue(nameof(Min), information)
+                    ?.ConvertToOptionalDouble();
+            var maximum = typeof(TruncatedLogNormalDistribution).GetCellValue(nameof(Max), information)
+                    ?.ConvertToOptionalDouble();
+            var mean = typeof(TruncatedLogNormalDistribution).GetCellValue(nameof(Mean), information)
+                    ?.ConvertToOptionalDouble();
+
+            if (minimum < metaData.LowerLimit || minimum > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Minimum for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
+            if (maximum < metaData.LowerLimit || maximum > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Maximum for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
+            if (mean < metaData.LowerLimit || mean > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Mean for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
             return new TruncatedLogNormalDistribution()
             {
                 MetaData = metaData,
-                Min = typeof(TruncatedLogNormalDistribution).GetCellValue(nameof(Min), information)
-                    ?.ConvertToOptionalDouble(),
-                Max = typeof(TruncatedLogNormalDistribution).GetCellValue(nameof(Max), information)
-                    ?.ConvertToOptionalDouble(),
-                Mean = typeof(TruncatedLogNormalDistribution).GetCellValue(nameof(Mean), information)
-                    ?.ConvertToOptionalDouble(),
+                Min = minimum,
+                Max = maximum,
+                Mean = mean,
                 StdDev = typeof(TruncatedLogNormalDistribution).GetCellValue(nameof(StdDev), information)
                     ?.ConvertToOptionalDouble(),
             };
