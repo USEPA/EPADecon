@@ -1,99 +1,216 @@
 <template>
   <v-container>
-    <v-card elevation="0">
-      <v-row dense>
-        <v-col cols="auto" class="mr-auto">
-          <v-card-title v-text="`Realization Summary - ${location}`" />
-        </v-col>
-        <v-col style="margin-top: 7px" cols="2" class="d-inline-flex">
-          <v-text-field
-            label="Run Number"
-            v-model.number="runNumber"
-            type="number"
-            :rules="[validationRulesRunNumber]"
-            hide-details="auto"
-          ></v-text-field>
-          <v-btn
-            height="45"
-            color="secondary"
-            @click="addRunToTable"
-            :disabled="validationRulesRunNumber(runNumber) !== true"
-          >
-            View
-          </v-btn>
-        </v-col>
-      </v-row>
-      <v-divider color="grey"></v-divider>
-      <v-simple-table v-if="displayedRunIndexes.length">
-        <template v-slot:default>
-          <thead>
-            <tr>
-              <th></th>
-              <th class="text-left text-body-1" v-for="runIndex in displayedRunIndexes" :key="runIndex">
-                Run {{ runIndex + 1 }}
-                <v-icon class="ml-1" small @click="removeRunFromTable(runIndex)">mdi-close-circle</v-icon>
-              </th>
-            </tr>
-          </thead>
-          <tbody v-for="(phaseResults, phaseName, index) in results[0]" :key="phaseName">
-            <tr>
-              <td :colspan="displayedRunIndexes.length + 1" class="text-subtitle-1 font-weight-medium">
-                {{ phaseName | startCase | addSpaces }}
-              </td>
-            </tr>
-            <tr v-for="(_, item) in phaseResults" :key="item">
-              <td class="pl-8">{{ item | startCase | addSpaces }}</td>
-              <td v-for="(cost, i) in displayRows[index]" :key="cost + i">
-                {{ cost[item] }}
-              </td>
-            </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
-      <v-card-text v-else>Please select at least one realization to display run summary</v-card-text>
-    </v-card>
+    <v-row>
+      <v-col cols="3">
+        <output-statistics-panel :results="selectedResults" />
+      </v-col>
+      <v-col>
+        <results-chart-panel @showModal="showModal = true" />
+      </v-col>
+    </v-row>
+
+    <!-- TODO MAKE OWN COMPONENT -->
+    <v-row>
+      <v-col>
+        <v-card>
+          <v-row dense>
+            <v-col cols="auto" class="mr-auto">
+              <v-card-title v-text="'Realization Comparison'" />
+            </v-col>
+
+            <v-col style="margin-top: 7px" cols="2">
+              <v-select
+                label="Building"
+                :items="['All', ...locations]"
+                v-model="selectedLocation"
+                outlined
+                hide-details="auto"
+              ></v-select>
+            </v-col>
+
+            <v-col style="margin-top: 7px" cols="2" class="d-inline-flex">
+              <v-text-field
+                label="Run Number"
+                v-model.number="runNumber"
+                type="number"
+                :rules="[validationRulesRunNumber]"
+                hide-details="auto"
+                outlined
+              ></v-text-field>
+
+              <v-btn
+                height="45"
+                color="secondary"
+                @click="addRunToTable"
+                :disabled="validationRulesRunNumber(runNumber) !== true"
+              >
+                View
+              </v-btn>
+            </v-col>
+          </v-row>
+
+          <v-divider color="grey"></v-divider>
+
+          <v-simple-table v-if="displayedRunNumbers.length" dense class="overflow-x-auto">
+            <template v-if="selectedLocation !== 'All'" v-slot:default>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th class="text-right text-body-1" v-for="runNumber in displayedRunNumbers" :key="runNumber">
+                    Run {{ runNumber }}
+                    <v-icon class="ml-1" small @click="removeRunFromTable(runNumber)">mdi-close-circle</v-icon>
+
+                    <v-btn class="d-block ml-auto" x-small>Summary</v-btn>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody v-for="(phaseResult, phaseName) in results[0].Outdoor" :key="phaseName">
+                <tr>
+                  <td class="text-subtitle-1 font-weight-medium">
+                    {{ resultProvider.convertCamelToTitleCase(phaseName) }}
+                  </td>
+                  <td :colspan="displayedRunNumbers.length"></td>
+                </tr>
+
+                <tr v-for="(_, result) in phaseResult" :key="result">
+                  <td class="pl-8">{{ resultProvider.convertCamelToTitleCase(result) }}</td>
+
+                  <td class="text-right" v-for="runNumber in displayedRunNumbers" :key="runNumber">
+                    {{ getLocationResults(runNumber)[phaseName][result] }}
+                  </td>
+                </tr>
+              </tbody>
+            </template>
+
+            <template v-else v-slot:default>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th
+                    class="text-center text-body-1"
+                    :colspan="locations.length - 1"
+                    v-for="runNumber in displayedRunNumbers"
+                    :key="runNumber"
+                  >
+                    Run {{ runNumber }}
+                    <v-icon class="ml-1" small @click="removeRunFromTable(runNumber)">mdi-close-circle</v-icon>
+                  </th>
+                </tr>
+
+                <tr>
+                  <th></th>
+                  <th
+                    class="text-right text-body-1"
+                    v-for="(location, i) in tableLocations"
+                    :key="`${location} - ${i}`"
+                  >
+                    {{ location }}
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody v-for="(phaseResult, phaseName) in results[0].Outdoor" :key="phaseName">
+                <tr>
+                  <td class="text-subtitle-1 font-weight-medium">
+                    {{ resultProvider.convertCamelToTitleCase(phaseName) }}
+                  </td>
+                  <td :colspan="locations.length * displayedRunNumbers.length"></td>
+                </tr>
+
+                <tr v-for="(_, result) in phaseResult" :key="result">
+                  <td>{{ resultProvider.convertCamelToTitleCase(result) }}</td>
+
+                  <td class="text-right" v-for="(location, i) in tableLocations" :key="`${location} - ${i}`">
+                    {{ getLocationResults(calculateRunNumber(i), location)[phaseName][result] }}
+                  </td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+
+          <v-card-text v-else>Please select at least one realization to display a summary for</v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+    <chart-options v-model="showModal" />
   </v-container>
 </template>
 
 <script lang="ts">
+import { State } from 'vuex-class';
+import { Component, Vue } from 'vue-property-decorator';
+import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
+import container from '@/dependencyInjection/config';
+import TYPES from '@/dependencyInjection/types';
+import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
-import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import BuildingCategory from '@/enums/parameter/buildingCategory';
+import mockResults from '@/dataMocks/mockResults';
+import PhaseResult from '@/enums/jobs/results/phaseResult';
+import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
+import ChartOptions from '@/components/modals/results/ChartOptions.vue';
+import OutputStatisticsPanel from './OutputStatisticsPanel.vue';
+import ResultsChartPanel from './ResultsChartPanel.vue';
 
-@Component({
-  filters: {
-    addSpaces: (name: string) => name.split(/(?=[A-Z])/).join(' '),
-    startCase: (name: string) => `${name.substring(0, 1).toUpperCase()}${name.substring(1, name.length)}`,
-  },
-})
+@Component({ components: { ChartOptions, OutputStatisticsPanel, ResultsChartPanel } })
 export default class RealizationSummary extends Vue {
-  @Prop({ required: true }) results!: IPhaseResultSet[];
+  // @State((state) => state.currentJob.results) results!: IJobResultRealization[];
+  results = mockResults;
 
-  @Prop({ required: true }) location!: boolean;
+  private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
+
+  // get testDetails(): (IResultDetails | undefined)[] {
+  //   return [
+  //     this.resultProvider.getResultDetails(this.results, PhaseResult.Workdays),
+  //     this.resultProvider.getResultDetails(this.results, PhaseResult.DecontaminationRounds),
+  //   ];
+  // }
+
+  // testResults = ['Workdays', 'Decon Rounds'];
+
+  showModal = false;
 
   runNumber = 1;
 
-  displayedRunIndexes: number[] = [];
+  displayedRunNumbers: number[] = [];
 
-  get displayRows(): unknown[] {
-    if (!this.displayedRunIndexes.length) {
-      return [];
-    }
-    return Object.entries(this.results[0]).map(([prop]) => {
-      return this.displayedRunIndexes.map((i) => this.results[i][prop]);
-    });
+  selectedLocation = 'All';
+
+  selectedResults: string[] = [];
+
+  get locations(): string[] {
+    const outUnd = Object.keys(this.results[0]).splice(1);
+    return [...Object.keys(this.results[0].Indoor).map((l) => `${l} Building`), ...outUnd];
+  }
+
+  get tableLocations(): string[] {
+    const { length } = this.displayedRunNumbers;
+    return [...Array(length)].flatMap(() => this.locations);
   }
 
   addRunToTable(): void {
-    const run = this.results[this.runNumber - 1];
-    if (run !== undefined && !this.displayedRunIndexes.includes(this.runNumber - 1)) {
-      this.displayedRunIndexes.push(this.runNumber - 1);
+    const run = this.resultProvider.getRealizationResults(this.results, this.runNumber);
+    if (run !== undefined && !this.displayedRunNumbers.includes(this.runNumber)) {
+      this.displayedRunNumbers.push(this.runNumber);
     }
   }
 
-  removeRunFromTable(runIndex: number): void {
-    const index = this.displayedRunIndexes.indexOf(runIndex);
-    this.displayedRunIndexes.splice(index, 1);
+  calculateRunNumber(index: number): number {
+    const { length } = this.locations;
+    return Math.floor((index + length) / length);
+  }
+
+  getLocationResults(runNumber: number, location?: string): IPhaseResultSet {
+    const run = this.resultProvider.getRealizationResults(this.results, runNumber);
+    const selectedLocation = (location !== undefined ? location : this.selectedLocation).replace(/ Building$/, '');
+    const isIndoor = Object.keys(BuildingCategory).includes(selectedLocation);
+    return isIndoor ? run.Indoor[selectedLocation] : (run[selectedLocation] as IPhaseResultSet);
+  }
+
+  removeRunFromTable(runNumber: number): void {
+    const index = this.displayedRunNumbers.indexOf(runNumber);
+    this.displayedRunNumbers.splice(index, 1);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -112,4 +229,22 @@ export default class RealizationSummary extends Vue {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.v-data-table__wrapper > table {
+  position: relative;
+
+  & > thead > tr > th:first-child {
+    width: 250px;
+  }
+
+  & > tbody > tr > td:first-child {
+    left: 0;
+    position: sticky;
+    background: #fff;
+
+    &:hover {
+      background-color: green;
+    }
+  }
+}
+</style>
