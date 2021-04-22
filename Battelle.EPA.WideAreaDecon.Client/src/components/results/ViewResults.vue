@@ -27,10 +27,10 @@
       </v-col>
       <v-col cols="3">
         <dashboard-result-card
-          @showDetails="showResultDetails"
+          @showDetails="showResultDetails($event, PhaseResult.DecontaminationRounds)"
           icon="mdi-hand-water"
           text="Average Number of Decontamination Iterations"
-          :value="500"
+          :value="averageDeconRounds"
         />
       </v-col>
     </v-row>
@@ -60,7 +60,7 @@
         <v-card>
           <v-card-title class="headline pl-5" v-text="'Actions'"></v-card-title>
           <v-card-text class="d-flex justify-space-between px-5">
-            <v-btn color="secondary" v-text="'Summary'" @click="navigate('realizationSummary')"></v-btn>
+            <v-btn color="secondary" v-text="'Summary'" @click="navigate('jobSummary')"></v-btn>
             <v-btn color="secondary" v-text="'View Parameters'" @click="viewParameters"></v-btn>
             <v-btn color="secondary" v-text="'Run Job Again'"></v-btn>
             <v-btn color="secondary" v-text="'Export Results'" @click="exportResults"></v-btn>
@@ -118,6 +118,8 @@ export default class ViewResults extends Vue {
   averageTotalWorkdays = '';
 
   averageTotalOnSiteDays = '';
+
+  averageDeconRounds = '';
 
   PhaseResult = PhaseResult; // needed to use enum in template
 
@@ -185,14 +187,13 @@ export default class ViewResults extends Vue {
     this.averageTotalCost = this.getAverageFormatted(PhaseResult.TotalCost);
     this.averageTotalAreaContaminated = this.getAverageFormatted(PhaseResult.AreaContaminated);
     this.averageTotalWorkdays = this.getAverageFormatted(PhaseResult.Workdays);
+    this.averageDeconRounds = this.getAverageFormatted(PhaseResult.DecontaminationRounds);
 
     const avgOnSiteDays =
       this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.OnSiteDays)?.mean ?? 0;
     const avgWorkdays = this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.Workdays)?.mean ?? 0;
 
     this.averageTotalOnSiteDays = this.resultProvider.formatNumber(avgOnSiteDays - avgWorkdays);
-
-    // TODO get rounds of decontamination
   }
 
   created(): void {
