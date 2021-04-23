@@ -1,11 +1,11 @@
 <template>
-  <v-card height="100%">
+  <v-card height="600">
     <v-card-title v-text="'Output Statistics'"></v-card-title>
     <v-divider class="mx-4" color="grey"></v-divider>
     <v-card-text>
       <div v-if="!results.length">Statistics will be displayed when a chart has been created</div>
       <div v-else>
-        <v-simple-table v-for="(result, index) in results" :key="result">
+        <v-simple-table v-for="(result, index) in resultsFormatted" :key="result">
           <template v-slot:default>
             <thead>
               <tr>
@@ -41,6 +41,10 @@ export default class OutputStatisticsPanel extends Vue {
   @Prop() results!: string[];
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
+
+  get resultsFormatted(): string[] {
+    return this.results.map((r) => this.resultProvider.convertCamelToTitleCase(r));
+  }
 
   get detailsWithoutValues(): { mean: number; minimum: number; maximum: number; stdDev: number }[] {
     return this.details.map((d) => omit(d, ['values']));

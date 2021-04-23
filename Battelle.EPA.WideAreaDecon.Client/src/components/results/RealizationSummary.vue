@@ -2,10 +2,10 @@
   <v-container>
     <v-row>
       <v-col cols="3">
-        <output-statistics-panel :results="selectedResults" />
+        <output-statistics-panel :details="outputStatistics" :results="selectedResults" />
       </v-col>
       <v-col>
-        <results-chart-panel @showModal="showModal = true" />
+        <results-chart-panel @showModal="showModal = true" :chartData="chartData" :chartType="chartType" />
       </v-col>
     </v-row>
 
@@ -133,7 +133,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <chart-options v-model="showModal" />
+    <chart-options @createChart="getChartData" v-model="showModal" />
   </v-container>
 </template>
 
@@ -146,6 +146,13 @@ import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
 import BuildingCategory from '@/enums/parameter/buildingCategory';
+import { ChartData } from 'chart.js';
+import {
+  ChartPoint2D,
+  CycleColorProvider,
+  DefaultChartData,
+  ScatterChartDataset,
+} from 'battelle-common-vue-charting/src';
 import mockResults from '@/dataMocks/mockResults';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
@@ -168,6 +175,11 @@ export default class RealizationSummary extends Vue {
   // }
 
   // testResults = ['Workdays', 'Decon Rounds'];
+  chartData: ChartData | ScatterChartDataset | null = null;
+
+  chartType = '';
+
+  outputStatistics: (IResultDetails | undefined)[] = [];
 
   showModal = false;
 
@@ -201,11 +213,65 @@ export default class RealizationSummary extends Vue {
     return Math.floor((index + length) / length);
   }
 
+  // createHistogram(values: number[], label: PhaseResult): ChartData {}
+
+  // createPieChart(values: number[], label: PhaseResult): ChartData {
+  // }
+
+  createScatterPlot(xVals: number[], yVals: number[], labels: PhaseResult[]): ChartData {
+    const dataPoints = xVals.map((x, i) => new ChartPoint2D(x, yVals[i]));
+    const colorProvider = new CycleColorProvider();
+    let [xLabel, yLabel] = labels as string[];
+    xLabel = this.resultProvider.convertCamelToTitleCase(xLabel);
+    yLabel = this.resultProvider.convertCamelToTitleCase(yLabel);
+
+    const scatterDataSet = new ScatterChartDataset(dataPoints, `${yLabel} vs. ${xLabel}`, colorProvider);
+    return new DefaultChartData([scatterDataSet]);
+  }
+
+  getChartData([xAxis, yAxis]: [PhaseResult, PhaseResult]): void {
+    const xVals = xAxis ? this.resultProvider.getResultDetails(this.results, xAxis)?.values : null;
+    const yVals = yAxis ? this.resultProvider.getResultDetails(this.results, yAxis)?.values : null;
+
+    if (xVals && !yVals) {
+      // histogram
+      this.chartType = 'bar';
+    } else if (!xVals && yVals) {
+      // pie chart
+      this.chartType = 'pie';
+    } else if (xVals && yVals) {
+      // scatter plot
+      this.chartType = 'scatter';
+      const scatterPlot = this.createScatterPlot(xVals, yVals, [xAxis, yAxis]);
+      this.$set(this, 'chartData', scatterPlot);
+    }
+
+    this.getOutputStatistics(xAxis, yAxis);
+  }
+
   getLocationResults(runNumber: number, location?: string): IPhaseResultSet {
     const run = this.resultProvider.getRealizationResults(this.results, runNumber);
     const selectedLocation = (location !== undefined ? location : this.selectedLocation).replace(/ Building$/, '');
     const isIndoor = Object.keys(BuildingCategory).includes(selectedLocation);
     return isIndoor ? run.Indoor[selectedLocation] : (run[selectedLocation] as IPhaseResultSet);
+  }
+
+  getOutputStatistics(xLabel: PhaseResult | null, yLabel: PhaseResult | null): void {
+    const stats: (IResultDetails | undefined)[] = [];
+    this.selectedResults.splice(0);
+
+    if (xLabel) {
+      stats.push(this.resultProvider.getResultDetails(this.results, xLabel));
+      this.selectedResults.push(xLabel);
+    }
+    if (yLabel && yLabel !== xLabel) {
+      stats.push(this.resultProvider.getResultDetails(this.results, yLabel));
+      if (yLabel !== xLabel) {
+        this.selectedResults.push(yLabel);
+      }
+    }
+
+    this.$set(this, 'outputStatistics', stats);
   }
 
   removeRunFromTable(runNumber: number): void {
