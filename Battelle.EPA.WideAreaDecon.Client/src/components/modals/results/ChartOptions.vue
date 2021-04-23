@@ -52,25 +52,24 @@ export default class ChartOptions extends Vue {
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
-  selectedX = '';
+  selectedX: PhaseResult | null = null;
 
-  selectedY = '';
+  selectedY: PhaseResult | null = null;
 
   get canCreateChart(): boolean {
     return this.selectedOptions.some((o) => o);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get phaseResultNames(): string[] {
     return Object.keys(PhaseResult).map((p) => this.resultProvider.convertCamelToTitleCase(p));
   }
 
   // eslint-disable-next-line class-methods-use-this
-  get phaseResultValues(): string[] {
+  get phaseResultValues(): PhaseResult[] {
     return Object.values(PhaseResult);
   }
 
-  get selectedOptions(): string[] {
+  get selectedOptions(): (PhaseResult | null)[] {
     return [this.selectedX, this.selectedY];
   }
 
@@ -91,9 +90,18 @@ export default class ChartOptions extends Vue {
   }
 
   createChart(): void {
-    console.log(this.selectedOptions);
+    this.$emit('createChart', this.selectedOptions);
+    this.isVisible = false;
   }
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+::v-deep td.text-center > .v-input--checkbox > div > div {
+  justify-content: center;
+}
+
+::v-deep td.text-center > .v-input--checkbox > div > div > div {
+  margin-right: 0px;
+}
+</style>
