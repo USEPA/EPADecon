@@ -13,21 +13,33 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
 
         [EnumMember(Value = "Indoor Ceilings")]
         IndoorCeilings,
-        [EnumMember(Value = "Indoor Carpet")] IndoorCarpet,
+
+        [EnumMember(Value = "Indoor Carpet")] 
+        IndoorCarpet,
 
         [EnumMember(Value = "Indoor Non-Carpet")]
         IndoorNonCarpet,
-        [EnumMember(Value = "HVAC")] Hvac,
+
+        [EnumMember(Value = "Indoor HVAC")] 
+        IndoorHvac,
 
         [EnumMember(Value = "Indoor Miscellaneous")]
         IndoorMisc,
 
         [EnumMember(Value = "Outdoor Exterior")]
         OutdoorExterior,
-        [EnumMember(Value = "Pavement")] Pavement,
-        [EnumMember(Value = "Roofing")] Roofing,
-        [EnumMember(Value = "Water")] Water,
-        [EnumMember(Value = "Soil")] Soil,
+
+        [EnumMember(Value = "Pavement")] 
+        Pavement,
+
+        [EnumMember(Value = "Roofing")] 
+        Roofing,
+
+        [EnumMember(Value = "Water")] 
+        Water,
+
+        [EnumMember(Value = "Soil")] 
+        Soil,
 
         [EnumMember(Value = "Outdoor Miscellaneous")]
         OutdoorMisc,
@@ -44,6 +56,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
         [EnumMember(Value = "Underground Non-Carpet")]
         UndergroundNonCarpet,
 
+        [EnumMember(Value = "Underground HVAC")]
+        UndergroundHvac,
+
         [EnumMember(Value = "Underground Miscellaneous")]
         UndergroundMisc
     }
@@ -54,7 +69,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             SurfaceType.IndoorCeilings,
             SurfaceType.IndoorCarpet,
             SurfaceType.IndoorNonCarpet,
-            SurfaceType.Hvac,
+            SurfaceType.IndoorHvac,
             SurfaceType.IndoorMisc,
         };
 
@@ -75,7 +90,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             SurfaceType.UndergroundCarpet,
             SurfaceType.UndergroundNonCarpet,
             SurfaceType.UndergroundMisc,
-            SurfaceType.Hvac,
+            SurfaceType.UndergroundHvac,
         };
 
         public static SurfaceType[] GetSurfaceTypesForPhase(DecontaminationPhase phase)

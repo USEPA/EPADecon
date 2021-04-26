@@ -10,20 +10,35 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ApplicationMethod
     {
-        [EnumMember(Value = "Aerosol")] Aerosol,
-        [EnumMember(Value = "Foam Spray")] FoamSpray,
-        [EnumMember(Value = "Fogging")] Fogging,
-        [EnumMember(Value = "Fumigation")] Fumigation,
-        [EnumMember(Value = "Gel")] Gel,
+        [EnumMember(Value = "Aerosol")] 
+        Aerosol,
+
+        [EnumMember(Value = "Foam Spray")] 
+        FoamSpray,
+
+        [EnumMember(Value = "Fogging")] 
+        Fogging,
+
+        [EnumMember(Value = "Fumigation")] 
+        Fumigation,
+
+        [EnumMember(Value = "Gel")] 
+        Gel,
 
         [EnumMember(Value = "Liquid Immersion")]
         LiquidImmersion,
-        [EnumMember(Value = "Liquid Spray")] LiquidSpray,
+
+        [EnumMember(Value = "Liquid Spray")] 
+        LiquidSpray,
 
         [EnumMember(Value = "Liquid Suspension")]
         LiquidSuspension,
-        [EnumMember(Value = "Liquid Wipe")] LiquidWipe,
-        [EnumMember(Value = "Physical")] Physical
+
+        [EnumMember(Value = "Liquid Wipe")] 
+        LiquidWipe,
+
+        [EnumMember(Value = "Physical")] 
+        Physical
     }
 
     public static class ApplicableApplicationMethodHelper
@@ -72,7 +87,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> HvacMethods = new List<ApplicationMethod> {
+        public static readonly List<ApplicationMethod> IndoorHvacMethods = new List<ApplicationMethod> {
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
             ApplicationMethod.Fumigation,
@@ -185,6 +200,16 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
+        public static readonly List<ApplicationMethod> UndergroundHvacMethods = new List<ApplicationMethod> {
+            ApplicationMethod.FoamSpray,
+            ApplicationMethod.Fogging,
+            ApplicationMethod.Fumigation,
+            ApplicationMethod.Gel,
+            ApplicationMethod.LiquidSpray,
+            ApplicationMethod.LiquidWipe,
+            ApplicationMethod.Physical
+        };
+
         public static readonly List<ApplicationMethod> UndergroundMiscMethods = new List<ApplicationMethod> {
             ApplicationMethod.Aerosol,
             ApplicationMethod.FoamSpray,
@@ -205,7 +230,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
                 SurfaceType.IndoorCeilings => IndoorCeilingsMethods,
                 SurfaceType.IndoorCarpet => IndoorCarpetMethods,
                 SurfaceType.IndoorNonCarpet => IndoorNonCarpetMethods,
-                SurfaceType.Hvac => HvacMethods,
+                SurfaceType.IndoorHvac => IndoorHvacMethods,
                 SurfaceType.IndoorMisc => IndoorMiscMethods,
                 SurfaceType.OutdoorExterior => OutdoorExteriorMethods,
                 SurfaceType.Pavement => PavementMethods,
@@ -217,6 +242,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
                 SurfaceType.UndergroundCeilings => UndergroundCeilingsMethods,
                 SurfaceType.UndergroundCarpet => UndergroundCarpetMethods,
                 SurfaceType.UndergroundNonCarpet => UndergroundNonCarpetMethods,
+                SurfaceType.UndergroundHvac => UndergroundHvacMethods,
                 SurfaceType.UndergroundMisc => UndergroundNonCarpetMethods,
                 _ => throw new ArgumentOutOfRangeException()
             };
