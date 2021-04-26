@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -51,6 +51,23 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Providers
             using var stream = new FileStream(FileName, FileMode.Open, FileAccess.Read) {Position = 0};
             XSSFWorkbook xssWorkbook = new XSSFWorkbook(stream);
 
+            // Building Treatment Methods Enumerated Parameter
+            var treatmentMethods = new List<IParameter>();
+            var treatmentMethodSheet = xssWorkbook.GetSheet("Decon Methods by Surface");
+            var row = new Dictionary<IRow, ParameterMetaData>();
+
+            for (var i = 1; i <= treatmentMethodSheet.LastRowNum; i++)
+            {
+                row.Add(treatmentMethodSheet.GetRow(i), ParameterMetaData.FromExcel(treatmentMethodSheet.GetRow(i)));
+            }
+
+            treatmentMethods.Add(EnumeratedParameter<SurfaceType>.FromExcel(new ParameterMetaData()
+            {
+                Name = "Decontamination Method by Surface",
+                Description = "The decontamination methods to be applied to each surface",
+            }, row.Select(row => row.Key)));
+
+            // Building Efficacy Enumerated Parameters
             var efficacyParameters = new List<IParameter>();
             foreach (var method in Enum.GetValues(typeof(ApplicationMethod)).Cast<ApplicationMethod>())
             {
@@ -95,6 +112,12 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Providers
                 Name = "Efficacy",
                 Filters = new ParameterFilter[0],
                 Parameters = efficacyParameters.ToArray()
+            });
+            filters.Add(new ParameterFilter()
+            {
+                Name = "Decontamination Treatment Methods by Surface",
+                Filters = new ParameterFilter[0],
+                Parameters = treatmentMethods.ToArray()
             });
 
 
