@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Attributes;
@@ -21,6 +21,28 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 
         public static ParameterMetaData FromExcel(IRow row)
         {
+            
+            var name = typeof(ParameterMetaData).GetCellValue(nameof(Name), row) ??
+                    throw new ApplicationException("Parameter must have a name");
+
+            if (name == "Decontamination Treatment Method by Surface")
+            {
+                return new ParameterMetaData()
+                {
+                    ValidPhases = typeof(ParameterMetaData).GetCellValue(nameof(ValidPhases), row)
+                            ?.Split(';')
+                            .Select(Enum.Parse<DecontaminationPhase>).ToArray() ??
+                        throw new ApplicationException("Error determining Valid Phases"),
+                    Category = typeof(ParameterMetaData).GetCellValue(nameof(Category), row),
+                    Name = name,
+                    Description = typeof(ParameterMetaData).GetCellValue(nameof(Description), row),
+                    Units = null,
+                    LowerLimit = -1.0,
+                    UpperLimit = -1.0,
+                    Step = -1.0
+                };
+            }
+
             return new ParameterMetaData()
             {
                 ValidPhases = typeof(ParameterMetaData).GetCellValue(nameof(ValidPhases), row)
@@ -28,8 +50,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
                         .Select(Enum.Parse<DecontaminationPhase>).ToArray() ??
                     throw new ApplicationException("Error determining Valid Phases"),
                 Category = typeof(ParameterMetaData).GetCellValue(nameof(Category), row),
-                Name = typeof(ParameterMetaData).GetCellValue(nameof(Name), row) ??
-                    throw new ApplicationException("Parameter must have a name"),
+                Name = name,
                 Description = typeof(ParameterMetaData).GetCellValue(nameof(Description), row),
                 Units = typeof(ParameterMetaData).GetCellValue(nameof(Units), row),
                 LowerLimit = double.Parse(typeof(ParameterMetaData).GetCellValue(nameof(LowerLimit), row)
