@@ -39,7 +39,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 treatmentMethods.Add(surface, ApplicationMethod.Fogging);
             }
 
-            Assert.AreEqual(17133.1090429345, Calculator.CalculateSuppliesCost(areaContaminated, treatmentMethods), 1e-6,
+            Assert.AreEqual(18140.9389866365, Calculator.CalculateSuppliesCost(areaContaminated, treatmentMethods), 1e-6,
                 "Incorrect supplies cost calculated");
         }
     }
