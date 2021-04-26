@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -61,30 +61,30 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Providers
                     rows.Add(methodSheet.GetRow(i), ParameterMetaData.FromExcel(methodSheet.GetRow(i)));
                 }
 
-                var surfaceCat = rows.Where(row =>
+                var surfaceCategory = rows.Where(row =>
                     Enum.TryParse(typeof(SurfaceType), row.Value.Category, true, out var tmp)).ToArray();
-                if (surfaceCat.Any())
+                if (surfaceCategory.Any())
                 {
                     efficacyParameters.Add(EnumeratedParameter<SurfaceType>.FromExcel(new ParameterMetaData()
                     {
                         Name = $"{method.GetStringValue()} Efficacy by Surface",
                         Description = $"The Efficacy of {method.GetStringValue()} based on the surface it is applied to",
                         Units = "log reduction",
-                    }, surfaceCat.Select(row => row.Key)));
+                    }, surfaceCategory.Select(row => row.Key)));
                 }
 
-                var methodCat = rows.Where(row => Enum.TryParse(typeof(ApplicationMethod),
+                var methodCategory = rows.Where(row => Enum.TryParse(typeof(ApplicationMethod),
                     ParameterMetaData.FromExcel(row.Key).Category,
                     true,
                     out var tmp)).ToArray();
-                if (methodCat.Any())
+                if (methodCategory.Any())
                 {
                     efficacyParameters.Add(EnumeratedParameter<ApplicationMethod>.FromExcel(new ParameterMetaData()
                     {
                         Name = $"{method.GetStringValue()} Efficacy",
                         Description = $"The Efficacy of {method.GetStringValue()} independent of the surface it is applied to",
                         Units = "log reduction",
-                    }, methodCat.Select(row => row.Key)));
+                    }, methodCategory.Select(row => row.Key)));
                 }
             }
 
