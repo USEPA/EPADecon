@@ -154,13 +154,15 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 if (parameters.characterizationSamplingParameters.fractionSampledHepa > 0 ||
                     parameters.characterizationSamplingParameters.fractionSampledWipe > 0)
                 {
-                    results.postDeconCharacterizationSamplingResults.workDays += _characterizationSamplingCostCalculator.CalculateTime(
+                    var postDeconWorkDays = _characterizationSamplingCostCalculator.CalculateTime(
                     parameters.characterizationSamplingParameters.numTeams,
                     parameters.characterizationSamplingParameters.fractionSampledWipe,
                     parameters.characterizationSamplingParameters.fractionSampledHepa,
                     areaContaminated);
 
-                    results.postDeconCharacterizationSamplingResults.onSiteDays += results.postDeconCharacterizationSamplingResults.workDays +
+                    results.postDeconCharacterizationSamplingResults.workDays += postDeconWorkDays;
+
+                    results.postDeconCharacterizationSamplingResults.onSiteDays += postDeconWorkDays +
                         parameters.characterizationSamplingParameters.personnelOverheadDays +
                         _characterizationSamplingCostCalculator.CalculatePhaseLag(
                             parameters.characterizationSamplingParameters.numLabs,
@@ -170,7 +172,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                             areaContaminated);
 
                     results.postDeconCharacterizationSamplingResults.phaseCost += Convert.ToInt64(_characterizationSamplingCostCalculator.CalculateCost(
-                        results.postDeconCharacterizationSamplingResults.workDays,
+                        postDeconWorkDays,
                         parameters.characterizationSamplingParameters.numTeams,
                         parameters.characterizationSamplingParameters.fractionSampledWipe,
                         parameters.characterizationSamplingParameters.fractionSampledHepa,
