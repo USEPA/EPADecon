@@ -18,7 +18,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
         public void Setup()
         {
             // Setting parameters
-            string TestFileName1 = @"InputFiles\ModifyParameters.xlsx";
+            string TestFileName1 = @"InputFiles\ModifyParametersTest.xlsx";
             var modifyParameters = new ExcelModifyParameterParameterListProvider
             {
                 FileName = TestFileName1,
