@@ -1,5 +1,5 @@
 <template>
-  <v-card class="d-flex justify-center" height="100%">
+  <v-card class="d-flex justify-center" id="chartPanel" height="100%">
     <div v-if="!chartData" class="d-flex justify-center align-center flex-column">
       <v-btn
         width="150"
@@ -16,17 +16,43 @@
         </ul>
       </v-card-text>
     </div>
-    <div v-else>
+    <div v-else class="pa-16" style="width: 100%">
       <scatter-plot-wrapper
         v-if="chartType === 'scatter'"
         type="scatter"
+        class="pl-10"
         :data="chartData"
         :options="options"
-        :key="chartKey"
         :width="100"
         :height="100"
       />
-      <chart-js-wrapper v-else :type="chartType" :data="chartData" :options="options" :plugins="[]" :key="chartKey" />
+      <chart-js-wrapper
+        v-else
+        :type="chartType"
+        class="pl-10"
+        :data="chartData"
+        :options="options"
+        :plugins="[]"
+        :key="chartKey"
+      />
+
+      <v-chip
+        v-if="chartLabels.x"
+        class="px-6"
+        id="xLabel"
+        close
+        v-text="chartLabels.x"
+        @click="onLabelClicked('x')"
+      ></v-chip>
+
+      <v-chip
+        v-if="chartLabels.y"
+        class="px-6"
+        id="yLabel"
+        close
+        v-text="chartLabels.y"
+        @click="onLabelClicked('y')"
+      ></v-chip>
     </div>
   </v-card>
 </template>
@@ -36,6 +62,7 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import ChartOptions from '@/components/modals/results/ChartOptions.vue';
 import { ChartData } from 'chart.js';
 import { ChartJsWrapper, DefaultChartOptions, ScatterPlotWrapper } from 'battelle-common-vue-charting/src';
+import PhaseResult from '@/enums/jobs/results/phaseResult';
 
 @Component({ components: { ChartJsWrapper, ChartOptions, ScatterPlotWrapper } })
 export default class ResultsChartPanel extends Vue {
@@ -43,21 +70,25 @@ export default class ResultsChartPanel extends Vue {
 
   @Prop() chartType!: string;
 
+  @Prop() chartLabels!: { x: PhaseResult | null; y: PhaseResult | null };
+
   chartKey = 0;
 
   options = new DefaultChartOptions();
 
   @Watch('chartType')
   onChartTypeChanged(newValue: string): void {
-    if (this.chartData.datasets?.[0]) {
+    if (this.chartData?.datasets?.[0]) {
       this.chartData.datasets[0].showLine = newValue !== 'scatter';
     }
     this.chartKey += 1;
   }
 
+  onLabelClicked(label: string): void {
+    this.$emit('removeLabel', label);
+  }
+
   created(): void {
-    this.options.maintainAspectRatio = false;
-    this.options.responsive = true;
     this.options.tooltips.enabled = true;
   }
 }
@@ -68,5 +99,21 @@ export default class ResultsChartPanel extends Vue {
   list-style-type: '- ';
   list-style-position: inside;
   padding-left: 0;
+}
+
+#chartPanel {
+  max-height: 600px;
+}
+
+#xLabel {
+  position: absolute;
+  left: 50%;
+}
+
+#yLabel {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: rotate(-90deg);
 }
 </style>

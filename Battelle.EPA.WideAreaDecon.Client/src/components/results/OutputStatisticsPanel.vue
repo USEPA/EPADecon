@@ -3,14 +3,13 @@
     <v-card-title v-text="'Output Statistics'"></v-card-title>
     <v-divider class="mx-4" color="grey"></v-divider>
     <v-card-text>
-      <div v-if="!results.length">Statistics will be displayed when a chart has been created</div>
+      <div v-if="!results.x && !results.y">Statistics will be displayed when a chart has been created</div>
       <div v-else>
-        <v-simple-table v-for="(result, index) in resultsFormatted" :key="result">
-          <template v-slot:default>
+        <v-simple-table v-for="(result, index) in resultsFormatted" :key="`${result}-${index}`">
+          <template v-slot:default v-if="result">
             <thead>
               <tr>
-                <th class="text-body-1 text-left">{{ result }}</th>
-                <th></th>
+                <th colspan="2" class="text-body-1 text-left">{{ result }}</th>
               </tr>
             </thead>
             <tbody>
@@ -33,21 +32,27 @@ import { omit } from 'lodash';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
+import PhaseResult from '@/enums/jobs/results/phaseResult';
 
 @Component
 export default class OutputStatisticsPanel extends Vue {
-  @Prop() details!: IResultDetails[];
+  @Prop() details!: { x: IResultDetails | null; y: IResultDetails | null };
 
-  @Prop() results!: string[];
+  @Prop() results!: { x: PhaseResult | null; y: PhaseResult | null };
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
-  get resultsFormatted(): string[] {
-    return this.results.map((r) => this.resultProvider.convertCamelToTitleCase(r));
+  get resultsFormatted(): (string | null)[] {
+    return Object.values(this.results).map((r) => {
+      return r ? this.resultProvider.convertCamelToTitleCase(r as string) : r;
+    });
   }
 
-  get detailsWithoutValues(): { mean: number; minimum: number; maximum: number; stdDev: number }[] {
-    return this.details.map((d) => omit(d, ['values']));
+  get detailsWithoutValues(): ({ mean: number; minimum: number; maximum: number; stdDev: number } | null)[] {
+    // return this.details.map((d) => omit(d, ['values']));
+    return Object.values(this.details).map((d) => {
+      return d ? omit(d, ['values']) : d;
+    });
   }
 }
 </script>

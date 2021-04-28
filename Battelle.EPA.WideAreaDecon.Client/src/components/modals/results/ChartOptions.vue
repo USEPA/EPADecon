@@ -57,7 +57,7 @@ export default class ChartOptions extends Vue {
   selectedY: PhaseResult | null = null;
 
   get canCreateChart(): boolean {
-    return this.selectedOptions.some((o) => o);
+    return Object.values(this.selectedOptions).some((o) => o);
   }
 
   get phaseResultNames(): string[] {
@@ -69,8 +69,11 @@ export default class ChartOptions extends Vue {
     return Object.values(PhaseResult);
   }
 
-  get selectedOptions(): (PhaseResult | null)[] {
-    return [this.selectedX, this.selectedY];
+  get selectedOptions(): { x: PhaseResult | null; y: PhaseResult | null } {
+    return {
+      x: this.selectedX,
+      y: this.selectedY,
+    };
   }
 
   get createText(): string {

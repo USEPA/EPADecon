@@ -1,11 +1,22 @@
 <template>
   <v-container>
     <v-row>
+      <v-col class="ml-auto mt-3" cols="auto">
+        <v-btn color="secondary" @click="$router.push({ name: 'viewResults' })" v-text="'Return to dashboard'"></v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
       <v-col cols="3">
         <output-statistics-panel :details="outputStatistics" :results="selectedResults" />
       </v-col>
-      <v-col>
-        <results-chart-panel @showModal="showModal = true" :chartData="chartData" :chartType="chartType" />
+      <v-col cols="9">
+        <results-chart-panel
+          @showModal="showModal = true"
+          @removeLabel="removeSelectedResult"
+          :chartData="chartData"
+          :chartType="chartType"
+          :chartLabels="selectedResults"
+        />
       </v-col>
     </v-row>
 
@@ -89,7 +100,7 @@
                   <th></th>
                   <th
                     class="text-center text-body-1"
-                    :colspan="locations.length - 1"
+                    :colspan="locations.length"
                     v-for="runNumber in displayedRunNumbers"
                     :key="runNumber"
                   >
@@ -133,7 +144,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <chart-options @createChart="getChartData" v-model="showModal" />
+    <chart-options @createChart="setChartData" v-model="showModal" />
   </v-container>
 </template>
 
@@ -153,33 +164,25 @@ import {
   DefaultChartData,
   ScatterChartDataset,
 } from 'battelle-common-vue-charting/src';
-import mockResults from '@/dataMocks/mockResults';
+// import mockResults from '@/dataMocks/mockResults';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import ChartOptions from '@/components/modals/results/ChartOptions.vue';
+import { range } from 'lodash';
 import OutputStatisticsPanel from './OutputStatisticsPanel.vue';
 import ResultsChartPanel from './ResultsChartPanel.vue';
 
 @Component({ components: { ChartOptions, OutputStatisticsPanel, ResultsChartPanel } })
 export default class RealizationSummary extends Vue {
-  // @State((state) => state.currentJob.results) results!: IJobResultRealization[];
-  results = mockResults;
+  @State((state) => state.currentJob.results) results!: IJobResultRealization[];
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
-  // get testDetails(): (IResultDetails | undefined)[] {
-  //   return [
-  //     this.resultProvider.getResultDetails(this.results, PhaseResult.Workdays),
-  //     this.resultProvider.getResultDetails(this.results, PhaseResult.DecontaminationRounds),
-  //   ];
-  // }
-
-  // testResults = ['Workdays', 'Decon Rounds'];
   chartData: ChartData | ScatterChartDataset | null = null;
 
   chartType = '';
 
-  outputStatistics: (IResultDetails | undefined)[] = [];
+  outputStatistics: { x: IResultDetails | null; y: IResultDetails | null } = { x: null, y: null };
 
   showModal = false;
 
@@ -189,7 +192,7 @@ export default class RealizationSummary extends Vue {
 
   selectedLocation = 'All';
 
-  selectedResults: string[] = [];
+  selectedResults: { x: PhaseResult | null; y: PhaseResult | null } = { x: null, y: null };
 
   get locations(): string[] {
     const outUnd = Object.keys(this.results[0]).splice(1);
@@ -213,12 +216,79 @@ export default class RealizationSummary extends Vue {
     return Math.floor((index + length) / length);
   }
 
-  // createHistogram(values: number[], label: PhaseResult): ChartData {}
+  createHistogram({ values, minimum, maximum }: IResultDetails, label: PhaseResult | null): ChartData {
+    const xLabel = this.resultProvider.convertCamelToTitleCase(label as string);
+    const color = new CycleColorProvider().getNextColor();
 
-  // createPieChart(values: number[], label: PhaseResult): ChartData {
-  // }
+    const numberOfBins = 10;
 
-  createScatterPlot(xVals: number[], yVals: number[], labels: PhaseResult[]): ChartData {
+    // create bins
+    const step = (maximum - minimum) / numberOfBins;
+    const bins = step ? range(minimum, maximum, step) : [minimum];
+
+    // put values into bins
+    const binVals: number[] = [];
+    values.forEach((v) => {
+      let index = bins.findIndex((b, i) => v >= b && v < bins[i + 1]);
+      if (index === -1) {
+        // value falls into last bin
+        index = bins.length - 1;
+      }
+
+      if (binVals[index] !== undefined) {
+        binVals[index] += 1;
+      } else {
+        binVals[index] = 1;
+      }
+    });
+
+    return {
+      labels: bins,
+      datasets: [
+        {
+          // label: 'Number of Realizations',
+          data: binVals,
+          backgroundColor: color,
+          barPercentage: 1,
+          categoryPercentage: 1,
+          borderWidth: 1,
+        },
+      ],
+    };
+  }
+
+  createPieChart(values: number[], label: PhaseResult | null): ChartData {
+    const phaseResults: { phase: string; value: number }[] = [];
+
+    if (label) {
+      this.results.forEach((r) => {
+        const res = this.resultProvider.getResultPhaseBreakdown(r, label);
+        res.forEach((p, i) => {
+          if (phaseResults[i] === undefined) {
+            phaseResults.push(p);
+          } else {
+            phaseResults[i].value += p.value ?? 0;
+          }
+        });
+      });
+    }
+
+    const colorProvider = new CycleColorProvider();
+    const colors = phaseResults.map(() => colorProvider.getNextColor());
+    const numberRealizations = values.length;
+
+    return {
+      datasets: [
+        {
+          data: phaseResults.map((p) => p.value / numberRealizations),
+          backgroundColor: colors,
+        },
+      ],
+      labels: phaseResults.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase)),
+    };
+  }
+
+  createScatterPlot(xVals: number[], yVals: number[], labels: (PhaseResult | null)[]): ChartData {
     const dataPoints = xVals.map((x, i) => new ChartPoint2D(x, yVals[i]));
     const colorProvider = new CycleColorProvider();
     let [xLabel, yLabel] = labels as string[];
@@ -229,24 +299,27 @@ export default class RealizationSummary extends Vue {
     return new DefaultChartData([scatterDataSet]);
   }
 
-  getChartData([xAxis, yAxis]: [PhaseResult, PhaseResult]): void {
-    const xVals = xAxis ? this.resultProvider.getResultDetails(this.results, xAxis)?.values : null;
-    const yVals = yAxis ? this.resultProvider.getResultDetails(this.results, yAxis)?.values : null;
+  setChartData({ x, y }: { x: PhaseResult | null; y: PhaseResult | null }): void {
+    const xDetails = x ? this.resultProvider.getResultDetails(this.results, x) : null;
+    const yDetails = y ? this.resultProvider.getResultDetails(this.results, y) : null;
 
-    if (xVals && !yVals) {
+    if (xDetails && !yDetails) {
       // histogram
       this.chartType = 'bar';
-    } else if (!xVals && yVals) {
+      this.chartData = this.createHistogram(xDetails, x);
+    } else if (!xDetails && yDetails) {
       // pie chart
       this.chartType = 'pie';
-    } else if (xVals && yVals) {
+      this.chartData = this.createPieChart(yDetails.values, y);
+    } else if (xDetails && yDetails) {
       // scatter plot
       this.chartType = 'scatter';
-      const scatterPlot = this.createScatterPlot(xVals, yVals, [xAxis, yAxis]);
-      this.$set(this, 'chartData', scatterPlot);
+      this.chartData = this.createScatterPlot(xDetails.values, yDetails.values, [x, y]);
+    } else {
+      this.chartData = null;
     }
 
-    this.getOutputStatistics(xAxis, yAxis);
+    this.getOutputStatistics(x, y);
   }
 
   getLocationResults(runNumber: number, location?: string): IPhaseResultSet {
@@ -257,18 +330,15 @@ export default class RealizationSummary extends Vue {
   }
 
   getOutputStatistics(xLabel: PhaseResult | null, yLabel: PhaseResult | null): void {
-    const stats: (IResultDetails | undefined)[] = [];
-    this.selectedResults.splice(0);
+    const stats: { x: IResultDetails | null; y: IResultDetails | null } = { x: null, y: null };
 
     if (xLabel) {
-      stats.push(this.resultProvider.getResultDetails(this.results, xLabel));
-      this.selectedResults.push(xLabel);
+      stats.x = this.resultProvider.getResultDetails(this.results, xLabel) ?? null;
+      this.$set(this.selectedResults, 'x', xLabel);
     }
-    if (yLabel && yLabel !== xLabel) {
-      stats.push(this.resultProvider.getResultDetails(this.results, yLabel));
-      if (yLabel !== xLabel) {
-        this.selectedResults.push(yLabel);
-      }
+    if (yLabel) {
+      stats.y = this.resultProvider.getResultDetails(this.results, yLabel) ?? null;
+      this.$set(this.selectedResults, 'y', yLabel);
     }
 
     this.$set(this, 'outputStatistics', stats);
@@ -277,6 +347,11 @@ export default class RealizationSummary extends Vue {
   removeRunFromTable(runNumber: number): void {
     const index = this.displayedRunNumbers.indexOf(runNumber);
     this.displayedRunNumbers.splice(index, 1);
+  }
+
+  removeSelectedResult(axis: string): void {
+    this.$set(this.selectedResults, axis, null);
+    this.setChartData(this.selectedResults);
   }
 
   // eslint-disable-next-line class-methods-use-this
