@@ -9,6 +9,7 @@ import Uniform from './Uniform';
 import BimodalTruncatedNormal from './BimodalTruncatedNormal';
 import LogNormal from './LogNormal';
 import Weibull from './Weibull';
+import TextValue from './TextValue';
 
 type UnivariateDistributionType =
   | BetaPERT
@@ -19,7 +20,8 @@ type UnivariateDistributionType =
   | TruncatedLogNormal
   | TruncatedNormal
   | Uniform
-  | Weibull;
+  | Weibull
+  | TextValue;
 
 function isUnivariateDistribution(param: IParameter): boolean {
   switch (param.type) {
@@ -32,6 +34,7 @@ function isUnivariateDistribution(param: IParameter): boolean {
     case ParameterType.truncatedNormal:
     case ParameterType.uniform:
     case ParameterType.uniformXDependent:
+    case ParameterType.textValue:
     case ParameterType.weibull:
       return true;
     case ParameterType.null:

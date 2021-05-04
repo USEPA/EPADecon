@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
@@ -80,6 +81,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json
                 ParameterType.Uniform => JsonObject.ToObject<UniformDistribution>(),
                 ParameterType.UniformXDependent => JsonObject.ToObject<UniformXDependentDistribution>(),
                 ParameterType.Weibull => JsonObject.ToObject<WeibullDistribution>(),
+                ParameterType.Text => JsonObject.ToObject<TextValue>(),
                 _ => throw new SerializationException($"Unknown type {type} found")
             };
         }
