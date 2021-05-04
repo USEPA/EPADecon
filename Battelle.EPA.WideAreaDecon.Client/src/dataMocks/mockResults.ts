@@ -4,11601 +4,11201 @@ const mockResults: IJobResultRealization[] = [
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 16141.917158222986,
-          onSiteDays: 569138.4717518653,
-          phaseCost: 3059061858.137491,
-        },
-        sourceReductionResults: {
-          workDays: 4875.149246445629,
-          onSiteDays: 4875.149246445629,
-          phaseCost: 1029585914.0974232,
-        },
-        decontaminationResults: {
-          workDays: 11.771191413693874,
-          onSiteDays: 12.718313727695103,
-          phaseCost: 384087189.5948764,
-        },
-        incidentCommandResults: {
-          onSiteDays: 574034.3393120386,
-          phaseCost: 1412156389.7384233,
-        },
-        otherResults: {
-          otherCosts: 146557593.93639752,
-        },
-        generalResults: {
-          totalCost: 6031448945.504612,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.2593690489039828,
+          onSiteDays: 8.68591111234779,
+          phaseCost: 362568,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.6243461171220845,
+          onSiteDays: 16.78305814991253,
+          phaseCost: 1020975,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.883715166026067,
+          onSiteDays: 25.468969262260323,
+          phaseCost: 1383543,
+        },
+        sourceReductionResults: { workDays: 0.5555314178131265, onSiteDays: 0.5555314178131265, phaseCost: 100480 },
+        decontaminationResults: {
+          workDays: 9.079790366599287,
+          onSiteDays: 10.016591866504537,
+          suppliesCost: 206373,
+          otherCosts: 261145,
+        },
+        incidentCommandResults: { onSiteDays: 44.041092546577985, phaseCost: 135409 },
+        otherResults: { otherCosts: 79666 },
+        generalResults: { totalCost: 2166616, areaContaminated: 8690.140841922288, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 20527.915253329204,
-          onSiteDays: 192765.02236438708,
-          phaseCost: 7376874726.486568,
-        },
-        sourceReductionResults: {
-          workDays: 1660.220505752507,
-          onSiteDays: 1660.220505752507,
-          phaseCost: 213820568.97733727,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 7.171627423002343,
+          onSiteDays: 21.19072739420737,
+          phaseCost: 918728,
         },
-        decontaminationResults: {
-          workDays: 18.921742556132784,
-          onSiteDays: 21.06652286161355,
-          phaseCost: 619687324.6141205,
-        },
-        incidentCommandResults: {
-          onSiteDays: 194454.30939300123,
-          phaseCost: 478756190.74525046,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 11.134072037428306,
+          onSiteDays: 58.37161246518783,
+          phaseCost: 3038019,
         },
-        otherResults: {
-          otherCosts: 37207251.81979442,
+        totalCharacterizationSamplingResults: {
+          workDays: 18.30569946043065,
+          onSiteDays: 79.5623398593952,
+          phaseCost: 3956747,
         },
-        generalResults: {
-          totalCost: 8726346062.64307,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.866697198583625, onSiteDays: 0.866697198583625, phaseCost: 180368 },
+        decontaminationResults: {
+          workDays: 17.20423640874313,
+          onSiteDays: 17.867549093409338,
+          suppliesCost: 185310,
+          otherCosts: 587794,
         },
+        incidentCommandResults: { onSiteDays: 106.29658615138815, phaseCost: 328526 },
+        otherResults: { otherCosts: 82155 },
+        generalResults: { totalCost: 5320900, areaContaminated: 8690.140841922288, decontaminationRounds: 4 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 89713.0757306974,
-        onSiteDays: 751868.5211030453,
-        phaseCost: 7027401989.88752,
-      },
-      sourceReductionResults: {
-        workDays: 3647.341651090835,
-        onSiteDays: 3647.341651090835,
-        phaseCost: 305408165.4536191,
-      },
-      decontaminationResults: {
-        workDays: 17.211815770299133,
-        onSiteDays: 18.50897460303013,
-        phaseCost: 788559422.612446,
-      },
-      incidentCommandResults: {
-        onSiteDays: 755542.3717287392,
-        phaseCost: 1855593107.346131,
-      },
-      otherResults: {
-        otherCosts: 149718486.6846139,
-      },
-      generalResults: {
-        totalCost: 10126681171.98433,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.5024375499467064,
+        onSiteDays: 25.64149355263475,
+        phaseCost: 548836,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.167723083460347,
+        onSiteDays: 36.335836909638466,
+        phaseCost: 838928,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.670160633407053,
+        onSiteDays: 61.977330462273216,
+        phaseCost: 1387764,
+      },
+      sourceReductionResults: { workDays: 0.25550368099658854, onSiteDays: 0.25550368099658854, phaseCost: 25628 },
+      decontaminationResults: {
+        workDays: 15.282976340335555,
+        onSiteDays: 16.109954848678306,
+        suppliesCost: 316060,
+        otherCosts: 933355,
+      },
+      incidentCommandResults: { onSiteDays: 86.34278899194811, phaseCost: 265624 },
+      otherResults: { otherCosts: 56453 },
+      generalResults: { totalCost: 2984884, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 32790.566397255505,
-        onSiteDays: 853498.0580304752,
-        phaseCost: 15050378443.470148,
-      },
-      sourceReductionResults: {
-        workDays: 1494.1134485481855,
-        onSiteDays: 1494.1134485481855,
-        phaseCost: 269503607.99273,
-      },
-      decontaminationResults: {
-        workDays: 20.632354453586125,
-        onSiteDays: 21.805496022991253,
-        phaseCost: 1949629542.5512223,
-      },
-      incidentCommandResults: {
-        onSiteDays: 855021.9769750463,
-        phaseCost: 2083235068.7876606,
-      },
-      otherResults: {
-        otherCosts: 243802090.2581412,
-      },
-      generalResults: {
-        totalCost: 19596548753.0599,
-        areaContaminated: 40860000,
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.0687950546182394,
+        onSiteDays: 7.609619400507058,
+        phaseCost: 307159,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.123626886462159,
+        onSiteDays: 17.45668365060566,
+        phaseCost: 1127191,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.192421941080398,
+        onSiteDays: 25.06630305111272,
+        phaseCost: 1434350,
+      },
+      sourceReductionResults: { workDays: 0.3766394289445705, onSiteDays: 0.3766394289445705, phaseCost: 90220 },
+      decontaminationResults: {
+        workDays: 3.913242122371039,
+        onSiteDays: 6.408245293751416,
+        suppliesCost: 102166,
+        otherCosts: 180471,
       },
+      incidentCommandResults: { onSiteDays: 39.851187773808704, phaseCost: 121737 },
+      otherResults: { otherCosts: 78130 },
+      generalResults: { totalCost: 2007074, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 13762.986932894175,
-          onSiteDays: 3755627.938597553,
-          phaseCost: 5646446287.294773,
-        },
-        sourceReductionResults: {
-          workDays: 5387.436140114176,
-          onSiteDays: 5387.436140114176,
-          phaseCost: 474900698.7589857,
-        },
-        decontaminationResults: {
-          workDays: 25.54709619273131,
-          onSiteDays: 26.4417321752854,
-          phaseCost: 210612513.09016043,
-        },
-        incidentCommandResults: {
-          onSiteDays: 3761049.816469842,
-          phaseCost: 9286629692.46843,
-        },
-        otherResults: {
-          otherCosts: 842229509.6065731,
-        },
-        generalResults: {
-          totalCost: 16460818701.218922,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.1031646722615847,
+          onSiteDays: 10.423108654454161,
+          phaseCost: 534010,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.777927655443835,
+          onSiteDays: 8.283937441047108,
+          phaseCost: 497929,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.88109232770542,
+          onSiteDays: 18.70704609550127,
+          phaseCost: 1031939,
+        },
+        sourceReductionResults: { workDays: 2.443080713398474, onSiteDays: 2.443080713398474, phaseCost: 372498 },
+        decontaminationResults: {
+          workDays: 4.038037374391695,
+          onSiteDays: 6.974580359639269,
+          suppliesCost: 240917,
+          otherCosts: 210437,
+        },
+        incidentCommandResults: { onSiteDays: 36.12470716853901, phaseCost: 110651 },
+        otherResults: { otherCosts: 89102 },
+        generalResults: { totalCost: 2055544, areaContaminated: 14988.12461038775, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 25414.475099320687,
-          onSiteDays: 174408.4195079516,
-          phaseCost: 7011466945.926482,
-        },
-        sourceReductionResults: {
-          workDays: 1012.3443634631591,
-          onSiteDays: 1012.3443634631591,
-          phaseCost: 131370941.62156846,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 5.087409166368513,
+          onSiteDays: 18.494047851364602,
+          phaseCost: 700363,
         },
-        decontaminationResults: {
-          workDays: 20.45087477039799,
-          onSiteDays: 20.45314674043403,
-          phaseCost: 720181282.095022,
-        },
-        incidentCommandResults: {
-          onSiteDays: 175449.2170181552,
-          phaseCost: 430436245.23651373,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.341076363435376,
+          onSiteDays: 38.48830125980512,
+          phaseCost: 1799379,
         },
-        otherResults: {
-          otherCosts: 32362914.069478314,
+        totalCharacterizationSamplingResults: {
+          workDays: 10.42848552980389,
+          onSiteDays: 56.982349111169725,
+          phaseCost: 2499742,
         },
-        generalResults: {
-          totalCost: 8325818328.949065,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.7169896403071518, onSiteDays: 1.7169896403071518, phaseCost: 136794 },
+        decontaminationResults: {
+          workDays: 3.743933647578567,
+          onSiteDays: 4.178979241796532,
+          suppliesCost: 390601,
+          otherCosts: 201425,
         },
+        incidentCommandResults: { onSiteDays: 70.87831799327341, phaseCost: 219061 },
+        otherResults: { otherCosts: 93695 },
+        generalResults: { totalCost: 3541318, areaContaminated: 14988.12461038775, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 16923.767874620004,
-        onSiteDays: 595217.3855122256,
-        phaseCost: 7160837890.863907,
-      },
-      sourceReductionResults: {
-        workDays: 10462.405411035917,
-        onSiteDays: 10462.405411035917,
-        phaseCost: 2011343270.8015194,
-      },
-      decontaminationResults: {
-        workDays: 18.888693774558767,
-        onSiteDays: 21.40379555393099,
-        phaseCost: 695185468.4505184,
-      },
-      incidentCommandResults: {
-        onSiteDays: 605709.1947188154,
-        phaseCost: 1486235303.2681599,
-      },
-      otherResults: {
-        otherCosts: 147890907.62540695,
-      },
-      generalResults: {
-        totalCost: 11501492841.00951,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 5.114045315344455,
+        onSiteDays: 25.00785277137829,
+        phaseCost: 842380,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.602408670247053,
+        onSiteDays: 13.020556715520527,
+        phaseCost: 457667,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.716453985591508,
+        onSiteDays: 38.028409486898816,
+        phaseCost: 1300047,
+      },
+      sourceReductionResults: { workDays: 2.3735904558163465, onSiteDays: 2.3735904558163465, phaseCost: 235518 },
+      decontaminationResults: {
+        workDays: 11.277583924186784,
+        onSiteDays: 13.974753277603245,
+        suppliesCost: 72680,
+        otherCosts: 489296,
+      },
+      incidentCommandResults: { onSiteDays: 62.376753220318406, phaseCost: 190565 },
+      otherResults: { otherCosts: 133264 },
+      generalResults: { totalCost: 2421370, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 44681.306073893225,
-        onSiteDays: 973932.8659483945,
-        phaseCost: 8284460297.030462,
-      },
-      sourceReductionResults: {
-        workDays: 666.9322704792278,
-        onSiteDays: 666.9322704792278,
-        phaseCost: 42392964.67682354,
-      },
-      decontaminationResults: {
-        workDays: 19.66427016646235,
-        onSiteDays: 22.29279945401773,
-        phaseCost: 1111872539.7288766,
-      },
-      incidentCommandResults: {
-        onSiteDays: 974630.0910183279,
-        phaseCost: 2395503330.905257,
-      },
-      otherResults: {
-        otherCosts: 202161759.29773262,
-      },
-      generalResults: {
-        totalCost: 12036390891.639153,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.1069355384283337,
+        onSiteDays: 10.615319858071091,
+        phaseCost: 210631,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 6.041804519583602,
+        onSiteDays: 68.00544584871759,
+        phaseCost: 1706607,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.148740058011936,
+        onSiteDays: 78.62076570678867,
+        phaseCost: 1917238,
+      },
+      sourceReductionResults: { workDays: 0.24543806258876963, onSiteDays: 0.24543806258876963, phaseCost: 41678 },
+      decontaminationResults: {
+        workDays: 12.868087687033249,
+        onSiteDays: 14.420178643059959,
+        suppliesCost: 399578,
+        otherCosts: 830101,
+      },
+      incidentCommandResults: { onSiteDays: 101.2863824124374, phaseCost: 309125 },
+      otherResults: { otherCosts: 87130 },
+      generalResults: { totalCost: 3584850, areaContaminated: 10000, decontaminationRounds: 2 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 11276.304763691383,
-          onSiteDays: 552643.7827714115,
-          phaseCost: 2536755081.0059824,
-        },
-        sourceReductionResults: {
-          workDays: 1958.7966252661101,
-          onSiteDays: 1958.7966252661101,
-          phaseCost: 533854019.6275643,
-        },
-        decontaminationResults: {
-          workDays: 16.102545601805332,
-          onSiteDays: 17.643416944575357,
-          phaseCost: 745450897.129745,
-        },
-        incidentCommandResults: {
-          onSiteDays: 554628.2228136221,
-          phaseCost: 1346799986.5901122,
-        },
-        otherResults: {
-          otherCosts: 142599873.75440416,
-        },
-        generalResults: {
-          totalCost: 5305459858.107808,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.9165902857489865,
+          onSiteDays: 24.611220541777975,
+          phaseCost: 790759,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.7611613539696314,
+          onSiteDays: 22.979726578820994,
+          phaseCost: 791957,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 5.677751639718618,
+          onSiteDays: 47.59094712059897,
+          phaseCost: 1582716,
+        },
+        sourceReductionResults: { workDays: 0.4292181381076081, onSiteDays: 0.4292181381076081, phaseCost: 50972 },
+        decontaminationResults: {
+          workDays: 4.784175262270536,
+          onSiteDays: 5.726690359815651,
+          suppliesCost: 63701,
+          otherCosts: 130048,
+        },
+        incidentCommandResults: { onSiteDays: 61.746855618522225, phaseCost: 188478 },
+        otherResults: { otherCosts: 106046 },
+        generalResults: { totalCost: 2121961, areaContaminated: 8815.64494544073, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 14504.820043068605,
-          onSiteDays: 719194.2314673098,
-          phaseCost: 3934470564.087094,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.886202840558524,
+          onSiteDays: 30.885602374423783,
+          phaseCost: 666471,
         },
-        sourceReductionResults: {
-          workDays: 784.7976914575779,
-          onSiteDays: 784.7976914575779,
-          phaseCost: 131073533.47256945,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 6.667026146381254,
+          onSiteDays: 34.23199139067906,
+          phaseCost: 721311,
         },
-        decontaminationResults: {
-          workDays: 20.985614736095446,
-          onSiteDays: 22.634756608548283,
-          phaseCost: 136088625.51090065,
-        },
-        incidentCommandResults: {
-          onSiteDays: 720009.6639153758,
-          phaseCost: 1741554311.0700088,
+        totalCharacterizationSamplingResults: {
+          workDays: 13.553228986939779,
+          onSiteDays: 65.11759376510284,
+          phaseCost: 1387782,
         },
-        otherResults: {
-          otherCosts: 243907777.77381718,
-        },
-        generalResults: {
-          totalCost: 6187094811.91439,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.018707209888103843, onSiteDays: 0.018707209888103843, phaseCost: 7553 },
+        decontaminationResults: {
+          workDays: 4.920975984987098,
+          onSiteDays: 6.688576012777299,
+          suppliesCost: 159229,
+          otherCosts: 327756,
         },
+        incidentCommandResults: { onSiteDays: 79.82487698776825, phaseCost: 244640 },
+        otherResults: { otherCosts: 108695 },
+        generalResults: { totalCost: 2235655, areaContaminated: 8815.64494544073, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 45182.151590842324,
-        onSiteDays: 595850.2184880977,
-        phaseCost: 11805381891.545483,
-      },
-      sourceReductionResults: {
-        workDays: 5395.882075862224,
-        onSiteDays: 5395.882075862224,
-        phaseCost: 185418050.7437222,
-      },
-      decontaminationResults: {
-        workDays: 12.848740899900147,
-        onSiteDays: 15.153408015182569,
-        phaseCost: 1263987046.3818433,
-      },
-      incidentCommandResults: {
-        onSiteDays: 601269.2539719751,
-        phaseCost: 1458756349.8149338,
-      },
-      otherResults: {
-        otherCosts: 122054225.2743499,
-      },
-      generalResults: {
-        totalCost: 14835597563.760332,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.2897680654691905,
+        onSiteDays: 19.217981250236758,
+        phaseCost: 706382,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 0.6836245993700241,
+        onSiteDays: 5.550466057864884,
+        phaseCost: 200091,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 3.9733926648392144,
+        onSiteDays: 24.768447308101642,
+        phaseCost: 906473,
+      },
+      sourceReductionResults: { workDays: 1.9793625117767837, onSiteDays: 1.9793625117767837, phaseCost: 439585 },
+      decontaminationResults: {
+        workDays: 4.030553502736277,
+        onSiteDays: 4.25749952002836,
+        suppliesCost: 187750,
+        otherCosts: 178990,
+      },
+      incidentCommandResults: { onSiteDays: 39.00530933990679, phaseCost: 117763 },
+      otherResults: { otherCosts: 133206 },
+      generalResults: { totalCost: 1963767, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 27485.196580555785,
-        onSiteDays: 223293.03373632734,
-        phaseCost: 5231485880.542819,
-      },
-      sourceReductionResults: {
-        workDays: 6221.374748961847,
-        onSiteDays: 6221.374748961847,
-        phaseCost: 2473549635.697039,
-      },
-      decontaminationResults: {
-        workDays: 18.43142064507851,
-        onSiteDays: 19.295233428314152,
-        phaseCost: 1874391693.4169085,
-      },
-      incidentCommandResults: {
-        onSiteDays: 229541.7037187175,
-        phaseCost: 561246484.1561062,
-      },
-      otherResults: {
-        otherCosts: 40347949.37707703,
-      },
-      generalResults: {
-        totalCost: 10181021643.18995,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.0474712899616963,
+        onSiteDays: 5.80880096525619,
+        phaseCost: 155566,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.6663679166757008,
+        onSiteDays: 11.2279810234917,
+        phaseCost: 347851,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 2.713839206637397,
+        onSiteDays: 17.03678198874789,
+        phaseCost: 503417,
+      },
+      sourceReductionResults: { workDays: 3.1613981449678534, onSiteDays: 3.1613981449678534, phaseCost: 245023 },
+      decontaminationResults: {
+        workDays: 3.594328046914732,
+        onSiteDays: 5.9483197405814,
+        suppliesCost: 433474,
+        otherCosts: 122788,
+      },
+      incidentCommandResults: { onSiteDays: 34.14649987429715, phaseCost: 103229 },
+      otherResults: { otherCosts: 47642 },
+      generalResults: { totalCost: 1455573, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 57399.28062860494,
-          onSiteDays: 432721.31904003187,
-          phaseCost: 4365562775.261692,
-        },
-        sourceReductionResults: {
-          workDays: 33856.33670478788,
-          onSiteDays: 33856.33670478788,
-          phaseCost: 1201383302.4301043,
-        },
-        decontaminationResults: {
-          workDays: 18.94506524175989,
-          onSiteDays: 20.412152834565415,
-          phaseCost: 1038028488.9094949,
-        },
-        incidentCommandResults: {
-          onSiteDays: 466606.0678976543,
-          phaseCost: 1132640185.0135615,
-        },
-        otherResults: {
-          otherCosts: 131562344.33035925,
-        },
-        generalResults: {
-          totalCost: 7869177095.945212,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.8866861299909505,
+          onSiteDays: 40.04620009892667,
+          phaseCost: 802737,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.9490334958555562,
+          onSiteDays: 9.141158322641465,
+          phaseCost: 122497,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 5.835719625846506,
+          onSiteDays: 49.187358421568135,
+          phaseCost: 925234,
+        },
+        sourceReductionResults: { workDays: 0.46607085913270746, onSiteDays: 0.46607085913270746, phaseCost: 55859 },
+        decontaminationResults: {
+          workDays: 8.434288931645986,
+          onSiteDays: 11.17370769548549,
+          suppliesCost: 196270,
+          otherCosts: 262193,
+        },
+        incidentCommandResults: { onSiteDays: 68.82713697618632, phaseCost: 209561 },
+        otherResults: { otherCosts: 78063 },
+        generalResults: { totalCost: 1727180, areaContaminated: 8693.056777979493, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 21422.946520795802,
-          onSiteDays: 2471121.3464182736,
-          phaseCost: 2644622438.317362,
-        },
-        sourceReductionResults: {
-          workDays: 9322.870368253793,
-          onSiteDays: 9322.870368253793,
-          phaseCost: 954588284.8486322,
-        },
-        decontaminationResults: {
-          workDays: 19.766474933541957,
-          onSiteDays: 20.38249524272571,
-          phaseCost: 741078275.5839756,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.9070714616585063,
+          onSiteDays: 30.97745857919955,
+          phaseCost: 563923,
         },
-        incidentCommandResults: {
-          onSiteDays: 2480472.59928177,
-          phaseCost: 6052158578.610188,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.874278292439327,
+          onSiteDays: 28.036559601213504,
+          phaseCost: 479489,
         },
-        otherResults: {
-          otherCosts: 730254116.8289042,
+        totalCharacterizationSamplingResults: {
+          workDays: 5.781349754097834,
+          onSiteDays: 59.01401818041305,
+          phaseCost: 1043412,
         },
-        generalResults: {
-          totalCost: 11122701694.18906,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 3.1161348205691133, onSiteDays: 3.1161348205691133, phaseCost: 319852 },
+        decontaminationResults: {
+          workDays: 3.4065300958246296,
+          onSiteDays: 5.1841587739028405,
+          suppliesCost: 351164,
+          otherCosts: 136980,
         },
+        incidentCommandResults: { onSiteDays: 75.31431177488501, phaseCost: 229822 },
+        otherResults: { otherCosts: 76496 },
+        generalResults: { totalCost: 2157726, areaContaminated: 8693.056777979493, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 16939.33856083369,
-        onSiteDays: 584120.8603378704,
-        phaseCost: 9075424078.02111,
-      },
-      sourceReductionResults: {
-        workDays: 437.02426226244245,
-        onSiteDays: 437.02426226244245,
-        phaseCost: 24070626.58268649,
-      },
-      decontaminationResults: {
-        workDays: 17.376630772225703,
-        onSiteDays: 18.84728946370242,
-        phaseCost: 1375107669.9560354,
-      },
-      incidentCommandResults: {
-        onSiteDays: 584584.7318895966,
-        phaseCost: 1430506753.3070478,
-      },
-      otherResults: {
-        otherCosts: 112696778.35329862,
-      },
-      generalResults: {
-        totalCost: 12017805906.22018,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.2391360399077227,
+        onSiteDays: 16.545096608270555,
+        phaseCost: 1000036,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.364873392172381,
+        onSiteDays: 6.953423768659051,
+        phaseCost: 431895,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.604009432080104,
+        onSiteDays: 23.498520376929605,
+        phaseCost: 1431931,
+      },
+      sourceReductionResults: { workDays: 1.970633500745953, onSiteDays: 1.970633500745953, phaseCost: 441414 },
+      decontaminationResults: {
+        workDays: 16.96051398500812,
+        onSiteDays: 16.978866120795455,
+        suppliesCost: 154605,
+        otherCosts: 776040,
+      },
+      incidentCommandResults: { onSiteDays: 50.44801999847101, phaseCost: 153727 },
+      otherResults: { otherCosts: 44853 },
+      generalResults: { totalCost: 3002570, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 24284.801704827412,
-        onSiteDays: 805696.8728880644,
-        phaseCost: 8710116336.358171,
-      },
-      sourceReductionResults: {
-        workDays: 13432.141136565355,
-        onSiteDays: 13432.141136565355,
-        phaseCost: 1852996765.0790277,
-      },
-      decontaminationResults: {
-        workDays: 12.504500141251949,
-        onSiteDays: 14.366962619444115,
-        phaseCost: 364894474.26018804,
-      },
-      incidentCommandResults: {
-        onSiteDays: 819151.3809872492,
-        phaseCost: 2023064134.0288548,
-      },
-      otherResults: {
-        otherCosts: 159809846.3264318,
-      },
-      generalResults: {
-        totalCost: 13110881556.052671,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.2443850640155987,
+        onSiteDays: 6.519964783603657,
+        phaseCost: 215927,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.2552313522617267,
+        onSiteDays: 18.79376989484255,
+        phaseCost: 754417,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.499616416277325,
+        onSiteDays: 25.31373467844621,
+        phaseCost: 970344,
+      },
+      sourceReductionResults: { workDays: 0.37489473399820716, onSiteDays: 0.37489473399820716, phaseCost: 20357 },
+      decontaminationResults: {
+        workDays: 7.547466763655532,
+        onSiteDays: 9.254033357196962,
+        suppliesCost: 336630,
+        otherCosts: 363854,
+      },
+      incidentCommandResults: { onSiteDays: 42.94266276964138, phaseCost: 129855 },
+      otherResults: { otherCosts: 146525 },
+      generalResults: { totalCost: 1967565, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 23540.788066367168,
-          onSiteDays: 390907.09402413946,
-          phaseCost: 1906375258.0147786,
-        },
-        sourceReductionResults: {
-          workDays: 4724.33676062238,
-          onSiteDays: 4724.33676062238,
-          phaseCost: 333895337.14174926,
-        },
-        decontaminationResults: {
-          workDays: 18.981863244432457,
-          onSiteDays: 19.327670310001743,
-          phaseCost: 837776541.306188,
-        },
-        incidentCommandResults: {
-          onSiteDays: 395658.75845507183,
-          phaseCost: 979715414.6621639,
-        },
-        otherResults: {
-          otherCosts: 91898312.64094917,
-        },
-        generalResults: {
-          totalCost: 4149660863.765829,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.8079080585131846,
+          onSiteDays: 5.689353595966968,
+          phaseCost: 231148,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.7023123489216246,
+          onSiteDays: 6.229436683277969,
+          phaseCost: 197746,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 1.5102204074348093,
+          onSiteDays: 11.918790279244938,
+          phaseCost: 428894,
+        },
+        sourceReductionResults: { workDays: 0.6275946224435841, onSiteDays: 0.6275946224435841, phaseCost: 82624 },
+        decontaminationResults: {
+          workDays: 4.132841160784672,
+          onSiteDays: 4.478822973668302,
+          suppliesCost: 125639,
+          otherCosts: 222875,
+        },
+        incidentCommandResults: { onSiteDays: 25.025207875356823, phaseCost: 77419 },
+        otherResults: { otherCosts: 33750 },
+        generalResults: { totalCost: 971201, areaContaminated: 11965.225266051764, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 32268.605928189514,
-          onSiteDays: 1102786.9375327781,
-          phaseCost: 3859023713.3286543,
-        },
-        sourceReductionResults: {
-          workDays: 962.8382357359809,
-          onSiteDays: 962.8382357359809,
-          phaseCost: 250919267.5347309,
-        },
-        decontaminationResults: {
-          workDays: 13.521227592258068,
-          onSiteDays: 14.251184277760606,
-          phaseCost: 792081237.0558826,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 7.1640783726165065,
+          onSiteDays: 24.083817201424658,
+          phaseCost: 1221730,
         },
-        incidentCommandResults: {
-          onSiteDays: 1103772.0269527917,
-          phaseCost: 2728112556.617655,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.992613695924179,
+          onSiteDays: 21.827772719265532,
+          phaseCost: 1144847,
         },
-        otherResults: {
-          otherCosts: 372030334.8073932,
+        totalCharacterizationSamplingResults: {
+          workDays: 13.156692068540686,
+          onSiteDays: 45.91158992069019,
+          phaseCost: 2366577,
         },
-        generalResults: {
-          totalCost: 8002167109.344316,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 3.7501020832750944, onSiteDays: 3.7501020832750944, phaseCost: 255814 },
+        decontaminationResults: {
+          workDays: 8.48231814207563,
+          onSiteDays: 10.973257771686942,
+          suppliesCost: 215049,
+          otherCosts: 462892,
         },
+        incidentCommandResults: { onSiteDays: 68.63494977565223, phaseCost: 208091 },
+        otherResults: { otherCosts: 94096 },
+        generalResults: { totalCost: 3602519, areaContaminated: 11965.225266051764, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 27779.812995236094,
-        onSiteDays: 668097.6151904842,
-        phaseCost: 3852840345.174975,
-      },
-      sourceReductionResults: {
-        workDays: 7063.950055626324,
-        onSiteDays: 7063.950055626324,
-        phaseCost: 2723356196.6291304,
-      },
-      decontaminationResults: {
-        workDays: 19.171604269224126,
-        onSiteDays: 19.481433435455298,
-        phaseCost: 372312079.40553844,
-      },
-      incidentCommandResults: {
-        onSiteDays: 675189.046679546,
-        phaseCost: 1660064100.3706822,
-      },
-      otherResults: {
-        otherCosts: 189845478.43461052,
-      },
-      generalResults: {
-        totalCost: 8798418200.014936,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.5782673329688732,
+        onSiteDays: 21.67322192970125,
+        phaseCost: 884447,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.9854740227536833,
+        onSiteDays: 15.558304636095933,
+        phaseCost: 497461,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.563741355722557,
+        onSiteDays: 37.23152656579718,
+        phaseCost: 1381908,
+      },
+      sourceReductionResults: { workDays: 1.8523538140474107, onSiteDays: 1.8523538140474107, phaseCost: 162074 },
+      decontaminationResults: {
+        workDays: 11.201908712322338,
+        onSiteDays: 13.9077872403217,
+        suppliesCost: 319214,
+        otherCosts: 358515,
+      },
+      incidentCommandResults: { onSiteDays: 60.9916676201663, phaseCost: 186384 },
+      otherResults: { otherCosts: 55822 },
+      generalResults: { totalCost: 2463917, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 40451.02040270647,
-        onSiteDays: 510634.2066911887,
-        phaseCost: 6020893595.900778,
-      },
-      sourceReductionResults: {
-        workDays: 25583.222055412145,
-        onSiteDays: 25583.222055412145,
-        phaseCost: 1083632878.8586895,
-      },
-      decontaminationResults: {
-        workDays: 14.614354204529514,
-        onSiteDays: 16.918815999505767,
-        phaseCost: 2562299486.6813893,
-      },
-      incidentCommandResults: {
-        onSiteDays: 536242.3475626004,
-        phaseCost: 1306031435.450478,
-      },
-      otherResults: {
-        otherCosts: 143572248.87925258,
-      },
-      generalResults: {
-        totalCost: 11116429645.770588,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 5.959558595089723,
+        onSiteDays: 19.77088435631393,
+        phaseCost: 924298,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.588356473592188,
+        onSiteDays: 10.433116022960277,
+        phaseCost: 556480,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.54791506868191,
+        onSiteDays: 30.204000379274206,
+        phaseCost: 1480778,
+      },
+      sourceReductionResults: { workDays: 0.26251515392026953, onSiteDays: 0.26251515392026953, phaseCost: 48927 },
+      decontaminationResults: {
+        workDays: 3.799282630625945,
+        onSiteDays: 6.355709458551302,
+        suppliesCost: 380132,
+        otherCosts: 224336,
+      },
+      incidentCommandResults: { onSiteDays: 44.82222499174578, phaseCost: 138650 },
+      otherResults: { otherCosts: 88544 },
+      generalResults: { totalCost: 2361367, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 7516.372785417331,
-          onSiteDays: 787788.3783925741,
-          phaseCost: 1992732953.661839,
-        },
-        sourceReductionResults: {
-          workDays: 6702.039955227314,
-          onSiteDays: 6702.039955227314,
-          phaseCost: 258921998.8125656,
-        },
-        decontaminationResults: {
-          workDays: 19.890292323867392,
-          onSiteDays: 22.48287057398885,
-          phaseCost: 195496348.33404115,
-        },
-        incidentCommandResults: {
-          onSiteDays: 794520.9012183754,
-          phaseCost: 1950138139.3782673,
-        },
-        otherResults: {
-          otherCosts: 137295698.4763682,
-        },
-        generalResults: {
-          totalCost: 4534585138.663081,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.283531276021704,
+          onSiteDays: 41.09215918516283,
+          phaseCost: 589980,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 10.358280246543156,
+          onSiteDays: 101.95853044191443,
+          phaseCost: 1853004,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 13.641811522564861,
+          onSiteDays: 143.05068962707725,
+          phaseCost: 2442984,
+        },
+        sourceReductionResults: { workDays: 0.9860165196562822, onSiteDays: 0.9860165196562822, phaseCost: 101028 },
+        decontaminationResults: {
+          workDays: 15.263501068871353,
+          onSiteDays: 15.740151525414586,
+          suppliesCost: 307183,
+          otherCosts: 837573,
+        },
+        incidentCommandResults: { onSiteDays: 167.7768576721481, phaseCost: 507638 },
+        otherResults: { otherCosts: 124466 },
+        generalResults: { totalCost: 4320872, areaContaminated: 8643.743799450747, decontaminationRounds: 3 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 53236.53832664745,
-          onSiteDays: 755199.2571448706,
-          phaseCost: 3003460885.7298756,
-        },
-        sourceReductionResults: {
-          workDays: 103.71906950307287,
-          onSiteDays: 103.71906950307287,
-          phaseCost: 10618607.725123905,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.5640124045957555,
+          onSiteDays: 9.026132862303774,
+          phaseCost: 298480,
         },
-        decontaminationResults: {
-          workDays: 13.691696991140883,
-          onSiteDays: 15.319944646749633,
-          phaseCost: 733961157.4037312,
-        },
-        incidentCommandResults: {
-          onSiteDays: 755326.2961590204,
-          phaseCost: 1857625896.9729052,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.0858182659726356,
+          onSiteDays: 21.249705138219632,
+          phaseCost: 786454,
         },
-        otherResults: {
-          otherCosts: 195933853.8394836,
+        totalCharacterizationSamplingResults: {
+          workDays: 4.649830670568392,
+          onSiteDays: 30.275838000523407,
+          phaseCost: 1084934,
         },
-        generalResults: {
-          totalCost: 5801600401.67112,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.15856831632036297, onSiteDays: 0.15856831632036297, phaseCost: 33044 },
+        decontaminationResults: {
+          workDays: 3.543756851587388,
+          onSiteDays: 5.776333149703297,
+          suppliesCost: 47283,
+          otherCosts: 236890,
         },
+        incidentCommandResults: { onSiteDays: 44.21073946654707, phaseCost: 133415 },
+        otherResults: { otherCosts: 117345 },
+        generalResults: { totalCost: 1652911, areaContaminated: 8643.743799450747, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 25305.24351613397,
-        onSiteDays: 3659826.236896927,
-        phaseCost: 8753269894.9372,
-      },
-      sourceReductionResults: {
-        workDays: 9967.888816663726,
-        onSiteDays: 9967.888816663726,
-        phaseCost: 663028323.6945028,
-      },
-      decontaminationResults: {
-        workDays: 26.71775097276963,
-        onSiteDays: 29.02410904830883,
-        phaseCost: 1814076381.9560459,
-      },
-      incidentCommandResults: {
-        onSiteDays: 3669831.149822639,
-        phaseCost: 8991731843.374857,
-      },
-      otherResults: {
-        otherCosts: 1105087584.2989259,
-      },
-      generalResults: {
-        totalCost: 21327194028.26153,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.571988915798563,
+        onSiteDays: 50.87375484800877,
+        phaseCost: 935381,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.86546945567619,
+        onSiteDays: 53.59625852535919,
+        phaseCost: 1096542,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 9.437458371474754,
+        onSiteDays: 104.47001337336796,
+        phaseCost: 2031923,
+      },
+      sourceReductionResults: { workDays: 0.1805689245812545, onSiteDays: 0.1805689245812545, phaseCost: 20231 },
+      decontaminationResults: {
+        workDays: 14.13511445469575,
+        onSiteDays: 14.334777226283862,
+        suppliesCost: 416794,
+        otherCosts: 381705,
+      },
+      incidentCommandResults: { onSiteDays: 126.98535952423308, phaseCost: 384931 },
+      otherResults: { otherCosts: 106250 },
+      generalResults: { totalCost: 3341834, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 19709.62774483068,
-        onSiteDays: 559577.1132038437,
-        phaseCost: 7725756533.825666,
-      },
-      sourceReductionResults: {
-        workDays: 1956.251565060885,
-        onSiteDays: 1956.251565060885,
-        phaseCost: 352744132.1090341,
-      },
-      decontaminationResults: {
-        workDays: 17.357200911584588,
-        onSiteDays: 18.588448217741316,
-        phaseCost: 680585356.0771191,
-      },
-      incidentCommandResults: {
-        onSiteDays: 561559.9532171224,
-        phaseCost: 1372639194.6572871,
-      },
-      otherResults: {
-        otherCosts: 125230566.86330059,
-      },
-      generalResults: {
-        totalCost: 10256955783.532408,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.8816955634303802,
+        onSiteDays: 34.713786372260685,
+        phaseCost: 1034814,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.871566701060039,
+        onSiteDays: 17.90312292705534,
+        phaseCost: 430268,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.753262264490419,
+        onSiteDays: 52.61690929931602,
+        phaseCost: 1465082,
+      },
+      sourceReductionResults: { workDays: 0.6398403955934697, onSiteDays: 0.6398403955934697, phaseCost: 95950 },
+      decontaminationResults: {
+        workDays: 4.95199939141795,
+        onSiteDays: 5.195953158474516,
+        suppliesCost: 70669,
+        otherCosts: 320404,
+      },
+      incidentCommandResults: { onSiteDays: 66.45270285338401, phaseCost: 200348 },
+      otherResults: { otherCosts: 58072 },
+      generalResults: { totalCost: 2210525, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 14942.307430294297,
-          onSiteDays: 274998.6747126458,
-          phaseCost: 2791635247.024715,
-        },
-        sourceReductionResults: {
-          workDays: 8566.092169343343,
-          onSiteDays: 8566.092169343343,
-          phaseCost: 848136918.8123467,
-        },
-        decontaminationResults: {
-          workDays: 18.416207991870166,
-          onSiteDays: 18.52707034710959,
-          phaseCost: 781934284.6273224,
-        },
-        incidentCommandResults: {
-          onSiteDays: 283591.29395233624,
-          phaseCost: 692444797.9498831,
-        },
-        otherResults: {
-          otherCosts: 96349785.09886055,
-        },
-        generalResults: {
-          totalCost: 5210501033.513128,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.5554353385379271,
+          onSiteDays: 13.502066336301608,
+          phaseCost: 416821,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.6776648638652598,
+          onSiteDays: 12.766753098659818,
+          phaseCost: 408762,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.233100202403187,
+          onSiteDays: 26.268819434961426,
+          phaseCost: 825583,
+        },
+        sourceReductionResults: { workDays: 6.606483187126802, onSiteDays: 6.606483187126802, phaseCost: 375398 },
+        decontaminationResults: {
+          workDays: 7.535157513230843,
+          onSiteDays: 8.102083392930702,
+          suppliesCost: 182629,
+          otherCosts: 336593,
+        },
+        incidentCommandResults: { onSiteDays: 48.97738601501893, phaseCost: 149289 },
+        otherResults: { otherCosts: 90574 },
+        generalResults: { totalCost: 1960066, areaContaminated: 9809.357944133077, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 46902.17904429314,
-          onSiteDays: 2498702.163009246,
-          phaseCost: 2535188627.5874915,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.138886879734804,
+          onSiteDays: 14.400182362858997,
+          phaseCost: 356613,
         },
-        sourceReductionResults: {
-          workDays: 3854.0952347463567,
-          onSiteDays: 3854.0952347463567,
-          phaseCost: 274959703.33268374,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.570781730839524,
+          onSiteDays: 14.71710793428969,
+          phaseCost: 445518,
         },
-        decontaminationResults: {
-          workDays: 24.508074984072728,
-          onSiteDays: 27.505279801670763,
-          phaseCost: 1134880890.6798656,
-        },
-        incidentCommandResults: {
-          onSiteDays: 2502591.7635237942,
-          phaseCost: 6095263879.91519,
+        totalCharacterizationSamplingResults: {
+          workDays: 10.70966861057433,
+          onSiteDays: 29.117290297148685,
+          phaseCost: 802131,
         },
-        otherResults: {
-          otherCosts: 815567698.3742937,
-        },
-        generalResults: {
-          totalCost: 10855860799.889524,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 3.051911256371057, onSiteDays: 3.051911256371057, phaseCost: 189723 },
+        decontaminationResults: {
+          workDays: 4.531778201817483,
+          onSiteDays: 5.304547586782031,
+          suppliesCost: 275012,
+          otherCosts: 244699,
         },
+        incidentCommandResults: { onSiteDays: 45.47374914030177, phaseCost: 140496 },
+        otherResults: { otherCosts: 57126 },
+        generalResults: { totalCost: 1709187, areaContaminated: 9809.357944133077, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 34588.47550600687,
-        onSiteDays: 5054522.119922648,
-        phaseCost: 6450170967.590616,
-      },
-      sourceReductionResults: {
-        workDays: 756.2950829797542,
-        onSiteDays: 756.2950829797542,
-        phaseCost: 128814512.19349411,
-      },
-      decontaminationResults: {
-        workDays: 11.194535804957741,
-        onSiteDays: 13.640600448856269,
-        phaseCost: 160311310.54961538,
-      },
-      incidentCommandResults: {
-        onSiteDays: 5055300.0556060765,
-        phaseCost: 12265087844.035934,
-      },
-      otherResults: {
-        otherCosts: 1092149343.1093273,
-      },
-      generalResults: {
-        totalCost: 20096533977.47899,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.8919534691113578,
+        onSiteDays: 15.586397635107055,
+        phaseCost: 371537,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.467444403533671,
+        onSiteDays: 21.07448285701969,
+        phaseCost: 480107,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.359397872645029,
+        onSiteDays: 36.66088049212674,
+        phaseCost: 851644,
+      },
+      sourceReductionResults: { workDays: 2.3652827233569145, onSiteDays: 2.3652827233569145, phaseCost: 148122 },
+      decontaminationResults: {
+        workDays: 14.26672112575423,
+        onSiteDays: 14.846560983417222,
+        suppliesCost: 314405,
+        otherCosts: 311316,
+      },
+      incidentCommandResults: { onSiteDays: 61.872724198900876, phaseCost: 186234 },
+      otherResults: { otherCosts: 78657 },
+      generalResults: { totalCost: 1890378, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 18809.530919155375,
-        onSiteDays: 9468693.41111955,
-        phaseCost: 8285672695.449821,
-      },
-      sourceReductionResults: {
-        workDays: 9553.788240978965,
-        onSiteDays: 9553.788240978965,
-        phaseCost: 3937117294.5075145,
-      },
-      decontaminationResults: {
-        workDays: 15.559306729482325,
-        onSiteDays: 17.678157453350295,
-        phaseCost: 2837902968.0223503,
-      },
-      incidentCommandResults: {
-        onSiteDays: 9478272.877517981,
-        phaseCost: 23133718438.63981,
-      },
-      otherResults: {
-        otherCosts: 2561098534.2177835,
-      },
-      generalResults: {
-        totalCost: 40755509930.83727,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.5148251314631949,
+        onSiteDays: 9.191551600049415,
+        phaseCost: 369226,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.56828051287948,
+        onSiteDays: 7.33486117910287,
+        phaseCost: 244797,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 3.083105644342675,
+        onSiteDays: 16.526412779152285,
+        phaseCost: 614023,
+      },
+      sourceReductionResults: { workDays: 1.8949790006875034, onSiteDays: 1.8949790006875034, phaseCost: 181610 },
+      decontaminationResults: {
+        workDays: 3.8662142587979824,
+        onSiteDays: 6.7336696460223,
+        suppliesCost: 114728,
+        otherCosts: 226957,
+      },
+      incidentCommandResults: { onSiteDays: 33.15506142586209, phaseCost: 100420 },
+      otherResults: { otherCosts: 29906 },
+      generalResults: { totalCost: 1267644, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 16984.764825000246,
-          onSiteDays: 824076.612510225,
-          phaseCost: 4265088906.26369,
-        },
-        sourceReductionResults: {
-          workDays: 5005.932640871684,
-          onSiteDays: 5005.932640871684,
-          phaseCost: 522736868.01267105,
-        },
-        decontaminationResults: {
-          workDays: 14.39808508297384,
-          onSiteDays: 15.157475647087553,
-          phaseCost: 829086460.8573514,
-        },
-        incidentCommandResults: {
-          onSiteDays: 829105.7026267438,
-          phaseCost: 2025392533.3903606,
-        },
-        otherResults: {
-          otherCosts: 239841558.78645653,
-        },
-        generalResults: {
-          totalCost: 7882146327.31053,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.8157412991682915,
+          onSiteDays: 9.898688202076677,
+          phaseCost: 492691,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.7613072698598733,
+          onSiteDays: 4.523555300824944,
+          phaseCost: 173767,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.5770485690281646,
+          onSiteDays: 14.42224350290162,
+          phaseCost: 666458,
+        },
+        sourceReductionResults: { workDays: 0.5585062058367267, onSiteDays: 0.5585062058367267, phaseCost: 100205 },
+        decontaminationResults: {
+          workDays: 7.65930825557078,
+          onSiteDays: 9.04362684070217,
+          suppliesCost: 76162,
+          otherCosts: 438536,
+        },
+        incidentCommandResults: { onSiteDays: 32.02437654944052, phaseCost: 99182 },
+        otherResults: { otherCosts: 45927 },
+        generalResults: { totalCost: 1426470, areaContaminated: 8092.692727943111, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 40203.5357185055,
-          onSiteDays: 1945262.6901361821,
-          phaseCost: 3601750449.2610316,
-        },
-        sourceReductionResults: {
-          workDays: 895.1672644438427,
-          onSiteDays: 895.1672644438427,
-          phaseCost: 124138351.39857191,
-        },
-        decontaminationResults: {
-          workDays: 23.754808940867616,
-          onSiteDays: 26.53213958151921,
-          phaseCost: 922727479.5935922,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.8515999120634614,
+          onSiteDays: 7.498737916644528,
+          phaseCost: 327505,
         },
-        incidentCommandResults: {
-          onSiteDays: 1946192.3895402076,
-          phaseCost: 4712231267.494595,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.486326381987951,
+          onSiteDays: 9.590105663399797,
+          phaseCost: 424854,
         },
-        otherResults: {
-          otherCosts: 375983859.77146983,
+        totalCharacterizationSamplingResults: {
+          workDays: 9.337926294051412,
+          onSiteDays: 17.088843580044326,
+          phaseCost: 752359,
         },
-        generalResults: {
-          totalCost: 9736831407.51926,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.31659082818550377, onSiteDays: 0.31659082818550377, phaseCost: 9790 },
+        decontaminationResults: {
+          workDays: 3.458722239467018,
+          onSiteDays: 5.569338321818351,
+          suppliesCost: 58967,
+          otherCosts: 134951,
         },
+        incidentCommandResults: { onSiteDays: 30.97477273004818, phaseCost: 93821 },
+        otherResults: { otherCosts: 46350 },
+        generalResults: { totalCost: 1096238, areaContaminated: 8092.692727943111, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 26973.752751357497,
-        onSiteDays: 1040160.3546370754,
-        phaseCost: 11698771597.470627,
-      },
-      sourceReductionResults: {
-        workDays: 709.8164278716719,
-        onSiteDays: 709.8164278716719,
-        phaseCost: 154571987.14528945,
-      },
-      decontaminationResults: {
-        workDays: 13.6711487298997,
-        onSiteDays: 15.023570789961045,
-        phaseCost: 1283240143.1427355,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1040893.1946357371,
-        phaseCost: 2562173750.919465,
-      },
-      otherResults: {
-        otherCosts: 345132542.7286559,
-      },
-      generalResults: {
-        totalCost: 16043890021.406773,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.4349305977854834,
+        onSiteDays: 15.54105248936137,
+        phaseCost: 1074352,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.5195818334756854,
+        onSiteDays: 15.80481108616939,
+        phaseCost: 1099635,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.954512431261168,
+        onSiteDays: 31.34586357553076,
+        phaseCost: 2173987,
+      },
+      sourceReductionResults: { workDays: 0.412786534987208, onSiteDays: 0.412786534987208, phaseCost: 31704 },
+      decontaminationResults: {
+        workDays: 3.7344297959316592,
+        onSiteDays: 4.119238972458811,
+        suppliesCost: 323405,
+        otherCosts: 182079,
+      },
+      incidentCommandResults: { onSiteDays: 43.87788908297678, phaseCost: 134777 },
+      otherResults: { otherCosts: 118913 },
+      generalResults: { totalCost: 2964865, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 68823.04106922721,
-        onSiteDays: 573249.6787729808,
-        phaseCost: 6524778210.185955,
-      },
-      sourceReductionResults: {
-        workDays: 1738.5215517186368,
-        onSiteDays: 1738.5215517186368,
-        phaseCost: 491947564.33329403,
-      },
-      decontaminationResults: {
-        workDays: 16.32830868110254,
-        onSiteDays: 16.50976579205826,
-        phaseCost: 564109598.7640501,
-      },
-      incidentCommandResults: {
-        onSiteDays: 575012.7100904915,
-        phaseCost: 1419439016.7567883,
-      },
-      otherResults: {
-        otherCosts: 191997391.49205104,
-      },
-      generalResults: {
-        totalCost: 9192271781.532139,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.490974724491651,
+        onSiteDays: 8.251258420235029,
+        phaseCost: 447542,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 9.216905573993849,
+        onSiteDays: 20.038521944550443,
+        phaseCost: 895393,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.707880298485499,
+        onSiteDays: 28.28978036478547,
+        phaseCost: 1342935,
+      },
+      sourceReductionResults: { workDays: 2.7355564523321982, onSiteDays: 2.7355564523321982, phaseCost: 301982 },
+      decontaminationResults: {
+        workDays: 3.304755773000595,
+        onSiteDays: 4.031516406692452,
+        suppliesCost: 244603,
+        otherCosts: 191795,
+      },
+      incidentCommandResults: { onSiteDays: 43.05685322381012, phaseCost: 133192 },
+      otherResults: { otherCosts: 38204 },
+      generalResults: { totalCost: 2252711, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 27898.824140784633,
-          onSiteDays: 22473221.259506546,
-          phaseCost: 2483396511.54388,
-        },
-        sourceReductionResults: {
-          workDays: 1173.725701199215,
-          onSiteDays: 1173.725701199215,
-          phaseCost: 181727216.6183748,
-        },
-        decontaminationResults: {
-          workDays: 18.767831285430077,
-          onSiteDays: 19.251537621079834,
-          phaseCost: 1137532893.8001225,
-        },
-        incidentCommandResults: {
-          onSiteDays: 22474422.236745365,
-          phaseCost: 55113480833.305405,
-        },
-        otherResults: {
-          otherCosts: 4554750142.934851,
-        },
-        generalResults: {
-          totalCost: 63470887598.20264,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.443667144992243,
+          onSiteDays: 12.410742859661354,
+          phaseCost: 481490,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 11.583086210582177,
+          onSiteDays: 35.08224706666209,
+          phaseCost: 1153599,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 13.02675335557442,
+          onSiteDays: 47.492989926323446,
+          phaseCost: 1635089,
+        },
+        sourceReductionResults: { workDays: 0.4686643706984039, onSiteDays: 0.4686643706984039, phaseCost: 27053 },
+        decontaminationResults: {
+          workDays: 9.293138473595757,
+          onSiteDays: 11.262294603805591,
+          suppliesCost: 491241,
+          otherCosts: 465863,
+        },
+        incidentCommandResults: { onSiteDays: 67.22394890082745, phaseCost: 207620 },
+        otherResults: { otherCosts: 57868 },
+        generalResults: { totalCost: 2884734, areaContaminated: 13022.67268254018, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 26889.218143543116,
-          onSiteDays: 1203533.975740642,
-          phaseCost: 4977437299.613674,
-        },
-        sourceReductionResults: {
-          workDays: 2462.865242419295,
-          onSiteDays: 2462.865242419295,
-          phaseCost: 223649535.30664003,
-        },
-        decontaminationResults: {
-          workDays: 20.51946837769809,
-          onSiteDays: 22.93513899038898,
-          phaseCost: 232035624.9649248,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.2430608601775806,
+          onSiteDays: 13.917161292077347,
+          phaseCost: 323290,
         },
-        incidentCommandResults: {
-          onSiteDays: 1206027.7761220518,
-          phaseCost: 2979881757.9386053,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.239901285928456,
+          onSiteDays: 41.07568640129451,
+          phaseCost: 1298196,
         },
-        otherResults: {
-          otherCosts: 251145462.98999932,
+        totalCharacterizationSamplingResults: {
+          workDays: 7.482962146106036,
+          onSiteDays: 54.99284769337186,
+          phaseCost: 1621486,
         },
-        generalResults: {
-          totalCost: 8664149680.813843,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.7227358014784255, onSiteDays: 0.7227358014784255, phaseCost: 29683 },
+        decontaminationResults: {
+          workDays: 3.1141687599276584,
+          onSiteDays: 5.700219697947665,
+          suppliesCost: 241020,
+          otherCosts: 115849,
         },
+        incidentCommandResults: { onSiteDays: 69.41580319279795, phaseCost: 210434 },
+        otherResults: { otherCosts: 108681 },
+        generalResults: { totalCost: 2327153, areaContaminated: 13022.67268254018, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 16632.27714292233,
-        onSiteDays: 7909836.703766817,
-        phaseCost: 6335882742.482963,
-      },
-      sourceReductionResults: {
-        workDays: 4508.094239566747,
-        onSiteDays: 4508.094239566747,
-        phaseCost: 160139861.9863664,
-      },
-      decontaminationResults: {
-        workDays: 18.06626183936984,
-        onSiteDays: 18.754774257017946,
-        phaseCost: 1783155276.711582,
-      },
-      incidentCommandResults: {
-        onSiteDays: 7914371.55278064,
-        phaseCost: 19210466118.888252,
-      },
-      otherResults: {
-        otherCosts: 2095863472.759211,
-      },
-      generalResults: {
-        totalCost: 29585507472.828377,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 6.493691083670784,
+        onSiteDays: 51.99912385068872,
+        phaseCost: 1029449,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 6.355196039929435,
+        onSiteDays: 50.58104375820017,
+        phaseCost: 983378,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 12.84888712360022,
+        onSiteDays: 102.58016760888889,
+        phaseCost: 2012827,
+      },
+      sourceReductionResults: { workDays: 1.2318580601093294, onSiteDays: 1.2318580601093294, phaseCost: 76275 },
+      decontaminationResults: {
+        workDays: 12.393040169354771,
+        onSiteDays: 13.816536853978537,
+        suppliesCost: 389681,
+        otherCosts: 471470,
+      },
+      incidentCommandResults: { onSiteDays: 125.62856252297675, phaseCost: 378689 },
+      otherResults: { otherCosts: 79266 },
+      generalResults: { totalCost: 3408208, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 90487.17435759235,
-        onSiteDays: 1172678.1421833942,
-        phaseCost: 7233075465.845415,
-      },
-      sourceReductionResults: {
-        workDays: 19342.793185999653,
-        onSiteDays: 19342.793185999653,
-        phaseCost: 1028311216.1068363,
-      },
-      decontaminationResults: {
-        workDays: 20.435420258072067,
-        onSiteDays: 23.299353729537536,
-        phaseCost: 1311258343.4868755,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1192052.2347231233,
-        phaseCost: 2925219968.401292,
-      },
-      otherResults: {
-        otherCosts: 244003752.05721295,
-      },
-      generalResults: {
-        totalCost: 12741868745.897633,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.9557909201044597,
+        onSiteDays: 11.273474766898886,
+        phaseCost: 425792,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 23.218075775758216,
+        onSiteDays: 78.81112002279987,
+        phaseCost: 3090526,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 26.173866695862674,
+        onSiteDays: 90.08459478969876,
+        phaseCost: 3516318,
+      },
+      sourceReductionResults: { workDays: 0.5818270529907675, onSiteDays: 0.5818270529907675, phaseCost: 129219 },
+      decontaminationResults: {
+        workDays: 16.604587746924857,
+        onSiteDays: 18.875348068279063,
+        suppliesCost: 211982,
+        otherCosts: 959910,
+      },
+      incidentCommandResults: { onSiteDays: 117.54176991096858, phaseCost: 357764 },
+      otherResults: { otherCosts: 83987 },
+      generalResults: { totalCost: 5259180, areaContaminated: 10000, decontaminationRounds: 3 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 5712.74387062015,
-          onSiteDays: 73324.27941353763,
-          phaseCost: 2497186892.3348613,
-        },
-        sourceReductionResults: {
-          workDays: 2863.2695790024695,
-          onSiteDays: 2863.2695790024695,
-          phaseCost: 239488174.30886865,
-        },
-        decontaminationResults: {
-          workDays: 19.97825881395914,
-          onSiteDays: 20.934749177409046,
-          phaseCost: 1287351815.0765455,
-        },
-        incidentCommandResults: {
-          onSiteDays: 76216.48374171751,
-          phaseCost: 187900138.67148048,
-        },
-        otherResults: {
-          otherCosts: 23351718.248624384,
-        },
-        generalResults: {
-          totalCost: 4235278738.640381,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 10.15985175358678,
+          onSiteDays: 32.710857932527645,
+          phaseCost: 603556,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.6624949436063545,
+          onSiteDays: 23.129780684464908,
+          phaseCost: 544413,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 12.822346697193135,
+          onSiteDays: 55.84063861699255,
+          phaseCost: 1147969,
+        },
+        sourceReductionResults: { workDays: 1.5512778905679951, onSiteDays: 1.5512778905679951, phaseCost: 70704 },
+        decontaminationResults: {
+          workDays: 4.27482460096358,
+          onSiteDays: 7.26380276779267,
+          suppliesCost: 466382,
+          otherCosts: 304655,
+        },
+        incidentCommandResults: { onSiteDays: 72.65571927535322, phaseCost: 225006 },
+        otherResults: { otherCosts: 106149 },
+        generalResults: { totalCost: 2320865, areaContaminated: 11040.891414983404, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 9343.121161693049,
-          onSiteDays: 57379.82257103731,
-          phaseCost: 964524412.0059315,
-        },
-        sourceReductionResults: {
-          workDays: 1827.9694229700835,
-          onSiteDays: 1827.9694229700835,
-          phaseCost: 438310658.6972523,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 7.7930708976028065,
+          onSiteDays: 40.89556400035346,
+          phaseCost: 1039220,
         },
-        decontaminationResults: {
-          workDays: 9.68974843893427,
-          onSiteDays: 9.89580678145769,
-          phaseCost: 473445766.1968081,
-        },
-        incidentCommandResults: {
-          onSiteDays: 59225.68780078885,
-          phaseCost: 144870274.22832584,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.2454344575290959,
+          onSiteDays: 9.711498163130432,
+          phaseCost: 297696,
         },
-        otherResults: {
-          otherCosts: 13640442.945621273,
+        totalCharacterizationSamplingResults: {
+          workDays: 9.038505355131903,
+          onSiteDays: 50.60706216348389,
+          phaseCost: 1336916,
         },
-        generalResults: {
-          totalCost: 2034791554.0739388,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.3898916281360759, onSiteDays: 0.3898916281360759, phaseCost: 64781 },
+        decontaminationResults: {
+          workDays: 9.267736041747904,
+          onSiteDays: 11.699876492773154,
+          suppliesCost: 364892,
+          otherCosts: 563780,
         },
+        incidentCommandResults: { onSiteDays: 70.69683028439312, phaseCost: 214345 },
+        otherResults: { otherCosts: 94401 },
+        generalResults: { totalCost: 2639115, areaContaminated: 11040.891414983404, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 31654.19826553626,
-        onSiteDays: 1959206.4255452217,
-        phaseCost: 6986229103.780045,
-      },
-      sourceReductionResults: {
-        workDays: 7234.925193560402,
-        onSiteDays: 7234.925193560402,
-        phaseCost: 2023254894.572406,
-      },
-      decontaminationResults: {
-        workDays: 17.885535651325608,
-        onSiteDays: 18.890946118135695,
-        phaseCost: 962511959.0415202,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1966468.2416849001,
-        phaseCost: 4766125420.37066,
-      },
-      otherResults: {
-        otherCosts: 514819786.46126807,
-      },
-      generalResults: {
-        totalCost: 15252941164.2259,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.262317776276737,
+        onSiteDays: 16.699145151918902,
+        phaseCost: 533496,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.342000282866042,
+        onSiteDays: 21.42343473593069,
+        phaseCost: 628743,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.604318059142779,
+        onSiteDays: 38.1225798878496,
+        phaseCost: 1162239,
+      },
+      sourceReductionResults: { workDays: 3.1406590447794875, onSiteDays: 3.1406590447794875, phaseCost: 182731 },
+      decontaminationResults: {
+        workDays: 7.242853115602129,
+        onSiteDays: 9.774422746797656,
+        suppliesCost: 179477,
+        otherCosts: 392207,
+      },
+      incidentCommandResults: { onSiteDays: 59.03766167942674, phaseCost: 181600 },
+      otherResults: { otherCosts: 115704 },
+      generalResults: { totalCost: 2213958, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 19473.87171540162,
-        onSiteDays: 1215840.647378229,
-        phaseCost: 2205642667.405427,
-      },
-      sourceReductionResults: {
-        workDays: 3681.930627212762,
-        onSiteDays: 3681.930627212762,
-        phaseCost: 761910854.113728,
-      },
-      decontaminationResults: {
-        workDays: 19.596429143705507,
-        onSiteDays: 20.977375488024528,
-        phaseCost: 2519502400.404661,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1219551.55538093,
-        phaseCost: 2974945930.449325,
-      },
-      otherResults: {
-        otherCosts: 296031807.88740057,
-      },
-      generalResults: {
-        totalCost: 8758033660.260542,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 11.61816822643606,
+        onSiteDays: 31.308903013440244,
+        phaseCost: 1154931,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 10.634839648485046,
+        onSiteDays: 29.11492045888159,
+        phaseCost: 889331,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 22.253007874921106,
+        onSiteDays: 60.42382347232183,
+        phaseCost: 2044262,
+      },
+      sourceReductionResults: { workDays: 0.20052326183894634, onSiteDays: 0.20052326183894634, phaseCost: 18979 },
+      decontaminationResults: {
+        workDays: 10.850206363445661,
+        onSiteDays: 11.128191740049093,
+        suppliesCost: 45462,
+        otherCosts: 538160,
+      },
+      incidentCommandResults: { onSiteDays: 79.75253847420987, phaseCost: 245286 },
+      otherResults: { otherCosts: 55400 },
+      generalResults: { totalCost: 2947549, areaContaminated: 10000, decontaminationRounds: 2 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 10284.597975860303,
-          onSiteDays: 304923.5888846937,
-          phaseCost: 1383449969.7154944,
-        },
-        sourceReductionResults: {
-          workDays: 15765.219695284868,
-          onSiteDays: 15765.219695284868,
-          phaseCost: 953795664.5904112,
-        },
-        decontaminationResults: {
-          workDays: 20.19810244934589,
-          onSiteDays: 20.586522387710055,
-          phaseCost: 419247542.02741146,
-        },
-        incidentCommandResults: {
-          onSiteDays: 320717.3951023662,
-          phaseCost: 790816904.4509401,
-        },
-        otherResults: {
-          otherCosts: 55309875.09831681,
-        },
-        generalResults: {
-          totalCost: 3602619955.8825736,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.485707244794272,
+          onSiteDays: 16.52130150319421,
+          phaseCost: 586288,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 20.92895024354491,
+          onSiteDays: 52.408156290301406,
+          phaseCost: 1784075,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 27.41465748833918,
+          onSiteDays: 68.92945779349562,
+          phaseCost: 2370363,
+        },
+        sourceReductionResults: { workDays: 3.185827416904194, onSiteDays: 3.185827416904194, phaseCost: 513757 },
+        decontaminationResults: {
+          workDays: 18.30512878608544,
+          onSiteDays: 20.82718528337479,
+          suppliesCost: 563500,
+          otherCosts: 970070,
+        },
+        incidentCommandResults: { onSiteDays: 100.9424704937746, phaseCost: 306667 },
+        otherResults: { otherCosts: 57673 },
+        generalResults: { totalCost: 4782030, areaContaminated: 14486.57420451906, decontaminationRounds: 2 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 26160.061364090434,
-          onSiteDays: 296628.43206194165,
-          phaseCost: 4784466701.562843,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.3291350366979073,
+          onSiteDays: 16.611956664264923,
+          phaseCost: 496774,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 8.081825614629258,
+          onSiteDays: 28.76319181198697,
+          phaseCost: 706844,
         },
-        sourceReductionResults: {
-          workDays: 3250.929810740309,
-          onSiteDays: 3250.929810740309,
-          phaseCost: 505828544.0653839,
+        totalCharacterizationSamplingResults: {
+          workDays: 11.410960651327166,
+          onSiteDays: 45.375148476251894,
+          phaseCost: 1203618,
         },
+        sourceReductionResults: { workDays: 2.4635293080472676, onSiteDays: 2.4635293080472676, phaseCost: 196810 },
         decontaminationResults: {
-          workDays: 18.086455506525574,
-          onSiteDays: 20.88775482934149,
-          phaseCost: 390163269.1412057,
+          workDays: 7.090435009237946,
+          onSiteDays: 7.634875119113102,
+          suppliesCost: 159197,
+          otherCosts: 211224,
         },
-        incidentCommandResults: {
-          onSiteDays: 299908.2496275113,
-          phaseCost: 738445375.1259809,
-        },
-        otherResults: {
-          otherCosts: 100714094.52679265,
-        },
-        generalResults: {
-          totalCost: 6519617984.422207,
-          areaContaminated: 17860000,
-        },
+        incidentCommandResults: { onSiteDays: 63.47355290341227, phaseCost: 191845 },
+        otherResults: { otherCosts: 63308 },
+        generalResults: { totalCost: 2026002, areaContaminated: 14486.57420451906, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 17096.02341146718,
-        onSiteDays: 24602792.23472349,
-        phaseCost: 10173422435.659369,
-      },
-      sourceReductionResults: {
-        workDays: 3343.0290125332745,
-        onSiteDays: 3343.0290125332745,
-        phaseCost: 197958227.95576262,
-      },
-      decontaminationResults: {
-        workDays: 18.657291861171203,
-        onSiteDays: 19.182956847404817,
-        phaseCost: 2210496658.520091,
-      },
-      incidentCommandResults: {
-        onSiteDays: 24606162.446692873,
-        phaseCost: 59935431079.752365,
-      },
-      otherResults: {
-        otherCosts: 6935885475.597878,
-      },
-      generalResults: {
-        totalCost: 79453193877.48547,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.51478248203695,
+        onSiteDays: 23.785766317895426,
+        phaseCost: 871942,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 10.72268038467451,
+        onSiteDays: 30.99868223247669,
+        phaseCost: 1021251,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 15.23746286671146,
+        onSiteDays: 54.78444855037212,
+        phaseCost: 1893193,
+      },
+      sourceReductionResults: { workDays: 0.8740550458550164, onSiteDays: 0.8740550458550164, phaseCost: 117553 },
+      decontaminationResults: {
+        workDays: 11.021018142816848,
+        onSiteDays: 11.927999611927197,
+        suppliesCost: 46568,
+        otherCosts: 904429,
+      },
+      incidentCommandResults: { onSiteDays: 75.58650320815433, phaseCost: 229544 },
+      otherResults: { otherCosts: 78694 },
+      generalResults: { totalCost: 3269981, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 22714.37480566499,
-        onSiteDays: 614518.1449325803,
-        phaseCost: 8334655412.230993,
-      },
-      sourceReductionResults: {
-        workDays: 2199.1479258631794,
-        onSiteDays: 2199.1479258631794,
-        phaseCost: 292709802.3589786,
-      },
-      decontaminationResults: {
-        workDays: 13.349142968968755,
-        onSiteDays: 16.199587263446205,
-        phaseCost: 2778157802.8921967,
-      },
-      incidentCommandResults: {
-        onSiteDays: 616741.4924457069,
-        phaseCost: 1526032149.986557,
-      },
-      otherResults: {
-        otherCosts: 206499640.66392368,
-      },
-      generalResults: {
-        totalCost: 13138054808.132648,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.4222903848403332,
+        onSiteDays: 12.230186574858529,
+        phaseCost: 422004,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.482645063551622,
+        onSiteDays: 14.591018943341798,
+        phaseCost: 573794,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 3.904935448391955,
+        onSiteDays: 26.821205518200326,
+        phaseCost: 995798,
+      },
+      sourceReductionResults: { workDays: 4.417916095857946, onSiteDays: 4.417916095857946, phaseCost: 254635 },
+      decontaminationResults: {
+        workDays: 4.610312790519165,
+        onSiteDays: 5.35082136312286,
+        suppliesCost: 334802,
+        otherCosts: 286730,
+      },
+      incidentCommandResults: { onSiteDays: 44.58994297718113, phaseCost: 137944 },
+      otherResults: { otherCosts: 64067 },
+      generalResults: { totalCost: 2073976, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 57235.20180585416,
-          onSiteDays: 295910.0481268086,
-          phaseCost: 3886771691.8179116,
-        },
-        sourceReductionResults: {
-          workDays: 1176.2379624983582,
-          onSiteDays: 1176.2379624983582,
-          phaseCost: 168479566.63256085,
-        },
-        decontaminationResults: {
-          workDays: 18.662468059375527,
-          onSiteDays: 19.023750729165915,
-          phaseCost: 1398062630.074217,
-        },
-        incidentCommandResults: {
-          onSiteDays: 297113.3098400361,
-          phaseCost: 722993421.0168917,
-        },
-        otherResults: {
-          otherCosts: 64354343.99805062,
-        },
-        generalResults: {
-          totalCost: 6240661653.539632,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.267253808516646,
+          onSiteDays: 17.313281131149367,
+          phaseCost: 595288,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 26.412591995515,
+          onSiteDays: 54.79750566691628,
+          phaseCost: 1818681,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 32.67984580403164,
+          onSiteDays: 72.11078679806565,
+          phaseCost: 2413969,
+        },
+        sourceReductionResults: { workDays: 0.33598649647610734, onSiteDays: 0.33598649647610734, phaseCost: 72715 },
+        decontaminationResults: {
+          workDays: 4.110648572237848,
+          onSiteDays: 4.305978735281616,
+          suppliesCost: 431551,
+          otherCosts: 221380,
+        },
+        incidentCommandResults: { onSiteDays: 84.75275202982337, phaseCost: 256466 },
+        otherResults: { otherCosts: 106965 },
+        generalResults: { totalCost: 3503046, areaContaminated: 14976.79968596827, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 3345.2040163979996,
-          onSiteDays: 158365.4219621572,
-          phaseCost: 1467366684.306637,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.0253050195316646,
+          onSiteDays: 12.198791192803514,
+          phaseCost: 484443,
         },
-        sourceReductionResults: {
-          workDays: 486.59833106160926,
-          onSiteDays: 486.59833106160926,
-          phaseCost: 43718667.06364013,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 12.960050210272247,
+          onSiteDays: 43.67130841365322,
+          phaseCost: 1716325,
         },
-        decontaminationResults: {
-          workDays: 13.342999398788205,
-          onSiteDays: 13.43632430011321,
-          phaseCost: 865485059.0842081,
-        },
-        incidentCommandResults: {
-          onSiteDays: 158873.4566175189,
-          phaseCost: 388226493.5403383,
+        totalCharacterizationSamplingResults: {
+          workDays: 15.985355229803911,
+          onSiteDays: 55.87009960645673,
+          phaseCost: 2200768,
         },
-        otherResults: {
-          otherCosts: 36062285.74845457,
-        },
-        generalResults: {
-          totalCost: 2800859189.743278,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.19770460489566824, onSiteDays: 0.19770460489566824, phaseCost: 15976 },
+        decontaminationResults: {
+          workDays: 13.062958778362479,
+          onSiteDays: 15.168865676310116,
+          suppliesCost: 234904,
+          otherCosts: 902544,
         },
+        incidentCommandResults: { onSiteDays: 79.23666988766252, phaseCost: 243337 },
+        otherResults: { otherCosts: 90238 },
+        generalResults: { totalCost: 3687767, areaContaminated: 14976.79968596827, decontaminationRounds: 2 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 79319.20206531032,
-        onSiteDays: 3869235.7561347685,
-        phaseCost: 8164195553.094785,
-      },
-      sourceReductionResults: {
-        workDays: 558.2363508613776,
-        onSiteDays: 558.2363508613776,
-        phaseCost: 32089068.17617024,
-      },
-      decontaminationResults: {
-        workDays: 20.532851465403297,
-        onSiteDays: 21.466873792341644,
-        phaseCost: 282930652.7419462,
-      },
-      incidentCommandResults: {
-        onSiteDays: 3869823.4593594223,
-        phaseCost: 9597217224.399532,
-      },
-      otherResults: {
-        otherCosts: 1020941388.6592926,
-      },
-      generalResults: {
-        totalCost: 19097373887.071728,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 0.6110627318138127,
+        onSiteDays: 3.783080535193415,
+        phaseCost: 173755,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.7175041538111415,
+        onSiteDays: 8.714524236596022,
+        phaseCost: 623405,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 2.328566885624954,
+        onSiteDays: 12.497604771789437,
+        phaseCost: 797160,
+      },
+      sourceReductionResults: { workDays: 0.3746421831706485, onSiteDays: 0.3746421831706485, phaseCost: 41647 },
+      decontaminationResults: {
+        workDays: 8.275484578282452,
+        onSiteDays: 9.782427921607724,
+        suppliesCost: 169790,
+        otherCosts: 500501,
+      },
+      incidentCommandResults: { onSiteDays: 30.65467487656781, phaseCost: 93201 },
+      otherResults: { otherCosts: 93516 },
+      generalResults: { totalCost: 1695815, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 47277.93356272161,
-        onSiteDays: 2436708.3783736746,
-        phaseCost: 10201457257.126663,
-      },
-      sourceReductionResults: {
-        workDays: 3012.193663258142,
-        onSiteDays: 3012.193663258142,
-        phaseCost: 772639656.1277919,
-      },
-      decontaminationResults: {
-        workDays: 14.158864556383078,
-        onSiteDays: 15.841538569154576,
-        phaseCost: 2006576366.8615897,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2439744.4135755016,
-        phaseCost: 5966419414.885132,
-      },
-      otherResults: {
-        otherCosts: 504316599.6971841,
-      },
-      generalResults: {
-        totalCost: 19451409294.69836,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.968614661962486,
+        onSiteDays: 25.075761984653102,
+        phaseCost: 851739,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.077589158288201,
+        onSiteDays: 11.216029380173719,
+        phaseCost: 319277,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.046203820250687,
+        onSiteDays: 36.29179136482682,
+        phaseCost: 1171016,
+      },
+      sourceReductionResults: { workDays: 1.6138775761019652, onSiteDays: 1.6138775761019652, phaseCost: 380945 },
+      decontaminationResults: {
+        workDays: 3.3999959524720897,
+        onSiteDays: 5.124563037214001,
+        suppliesCost: 86640,
+        otherCosts: 174997,
+      },
+      incidentCommandResults: { onSiteDays: 51.03023197814279, phaseCost: 154848 },
+      otherResults: { otherCosts: 99531 },
+      generalResults: { totalCost: 2067977, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 61891.58599381613,
-          onSiteDays: 280457.70200767316,
-          phaseCost: 3896010622.810022,
-        },
-        sourceReductionResults: {
-          workDays: 1261.3529913766668,
-          onSiteDays: 1261.3529913766668,
-          phaseCost: 291892736.4385668,
-        },
-        decontaminationResults: {
-          workDays: 26.395454722083045,
-          onSiteDays: 29.32345380920997,
-          phaseCost: 190977984.6832876,
-        },
-        incidentCommandResults: {
-          onSiteDays: 281756.378452859,
-          phaseCost: 697109785.6374818,
-        },
-        otherResults: {
-          otherCosts: 57461691.67125012,
-        },
-        generalResults: {
-          totalCost: 5133452821.240608,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.758345309411988,
+          onSiteDays: 26.528672658648574,
+          phaseCost: 1088152,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.479865116187521,
+          onSiteDays: 19.838764999439572,
+          phaseCost: 940913,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 11.238210425599508,
+          onSiteDays: 46.36743765808815,
+          phaseCost: 2029065,
+        },
+        sourceReductionResults: { workDays: 0.13777538567414518, onSiteDays: 0.13777538567414518, phaseCost: 42684 },
+        decontaminationResults: {
+          workDays: 3.049409344338209,
+          onSiteDays: 5.025386950938354,
+          suppliesCost: 160848,
+          otherCosts: 107056,
+        },
+        incidentCommandResults: { onSiteDays: 59.53059999470065, phaseCost: 181468 },
+        otherResults: { otherCosts: 106313 },
+        generalResults: { totalCost: 2627434, areaContaminated: 9285.819668855009, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 24668.02342704364,
-          onSiteDays: 1226936.6175873352,
-          phaseCost: 2495590760.5097723,
-        },
-        sourceReductionResults: {
-          workDays: 1294.684989900056,
-          onSiteDays: 1294.684989900056,
-          phaseCost: 285336483.81235754,
-        },
-        decontaminationResults: {
-          workDays: 19.59019064218509,
-          onSiteDays: 21.303240197082804,
-          phaseCost: 1259292233.7224514,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.03552045183566,
+          onSiteDays: 16.895536485626213,
+          phaseCost: 653552,
         },
-        incidentCommandResults: {
-          onSiteDays: 1228260.6058174323,
-          phaseCost: 3014970684.5300426,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 6.820519785931429,
+          onSiteDays: 30.615301823947846,
+          phaseCost: 1124851,
         },
-        otherResults: {
-          otherCosts: 417112174.072794,
+        totalCharacterizationSamplingResults: {
+          workDays: 8.85604023776709,
+          onSiteDays: 47.510838309574055,
+          phaseCost: 1778403,
         },
-        generalResults: {
-          totalCost: 7472302336.647418,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.2508951223732987, onSiteDays: 1.2508951223732987, phaseCost: 172685 },
+        decontaminationResults: {
+          workDays: 9.374235734197832,
+          onSiteDays: 12.016119937416194,
+          suppliesCost: 84797,
+          otherCosts: 202201,
         },
+        incidentCommandResults: { onSiteDays: 68.77785336936356, phaseCost: 211115 },
+        otherResults: { otherCosts: 133951 },
+        generalResults: { totalCost: 2583152, areaContaminated: 9285.819668855009, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 72362.27263045931,
-        onSiteDays: 654181.6884493787,
-        phaseCost: 4272958887.6540756,
-      },
-      sourceReductionResults: {
-        workDays: 4877.920161701981,
-        onSiteDays: 4877.920161701981,
-        phaseCost: 730264586.0835532,
-      },
-      decontaminationResults: {
-        workDays: 16.58931159055543,
-        onSiteDays: 18.950943511200823,
-        phaseCost: 1137041920.8209903,
-      },
-      incidentCommandResults: {
-        onSiteDays: 659086.5595545919,
-        phaseCost: 1634073666.0323272,
-      },
-      otherResults: {
-        otherCosts: 202047076.20600367,
-      },
-      generalResults: {
-        totalCost: 7976386136.796949,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.746408739656459,
+        onSiteDays: 14.761914941415338,
+        phaseCost: 731447,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 0.8824586083356827,
+        onSiteDays: 4.956336678546857,
+        phaseCost: 235403,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.628867347992142,
+        onSiteDays: 19.718251619962196,
+        phaseCost: 966850,
+      },
+      sourceReductionResults: { workDays: 0.9612647199485768, onSiteDays: 0.9612647199485768, phaseCost: 80199 },
+      decontaminationResults: {
+        workDays: 7.316539367036087,
+        onSiteDays: 9.4602952181502,
+        suppliesCost: 320514,
+        otherCosts: 298105,
+      },
+      incidentCommandResults: { onSiteDays: 38.13981155806097, phaseCost: 118185 },
+      otherResults: { otherCosts: 81692 },
+      generalResults: { totalCost: 1865545, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 25805.93657096167,
-        onSiteDays: 2012891.3634414172,
-        phaseCost: 7246842672.577787,
-      },
-      sourceReductionResults: {
-        workDays: 20148.684926886657,
-        onSiteDays: 20148.684926886657,
-        phaseCost: 2966422832.1399055,
-      },
-      decontaminationResults: {
-        workDays: 18.47477530489554,
-        onSiteDays: 20.88556658893022,
-        phaseCost: 1312781393.6635451,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2033068.9339348928,
-        phaseCost: 5004708316.938278,
-      },
-      otherResults: {
-        otherCosts: 537458240.7419789,
-      },
-      generalResults: {
-        totalCost: 17068213456.061497,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 6.6358941137128635,
+        onSiteDays: 18.254296911796594,
+        phaseCost: 476149,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 8.058897700963268,
+        onSiteDays: 26.33097859429511,
+        phaseCost: 759661,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 14.694791814676131,
+        onSiteDays: 44.585275506091705,
+        phaseCost: 1235810,
+      },
+      sourceReductionResults: { workDays: 0.21176879228935783, onSiteDays: 0.21176879228935783, phaseCost: 8233 },
+      decontaminationResults: {
+        workDays: 4.794523536179803,
+        onSiteDays: 5.84574270757049,
+        suppliesCost: 175400,
+        otherCosts: 226017,
+      },
+      incidentCommandResults: { onSiteDays: 58.64278700595155, phaseCost: 178730 },
+      otherResults: { otherCosts: 58548 },
+      generalResults: { totalCost: 1882738, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 24336.10263870206,
-          onSiteDays: 230078.64817314496,
-          phaseCost: 6621543925.964462,
-        },
-        sourceReductionResults: {
-          workDays: 4067.6276840910455,
-          onSiteDays: 4067.6276840910455,
-          phaseCost: 1269653190.9758873,
-        },
-        decontaminationResults: {
-          workDays: 14.757206557029209,
-          onSiteDays: 16.948819202824687,
-          phaseCost: 83161425.9662324,
-        },
-        incidentCommandResults: {
-          onSiteDays: 234171.22467643884,
-          phaseCost: 569098991.3727559,
-        },
-        otherResults: {
-          otherCosts: 74383613.07705586,
-        },
-        generalResults: {
-          totalCost: 8617841147.356394,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.0020101272674544,
+          onSiteDays: 9.668903806968698,
+          phaseCost: 377586,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 6.5288600067666085,
+          onSiteDays: 16.700128650474483,
+          phaseCost: 457510,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 7.530870134034063,
+          onSiteDays: 26.369032457443183,
+          phaseCost: 835096,
+        },
+        sourceReductionResults: { workDays: 0.8317471507470819, onSiteDays: 0.8317471507470819, phaseCost: 167226 },
+        decontaminationResults: {
+          workDays: 9.18889658087606,
+          onSiteDays: 9.479336808314393,
+          suppliesCost: 165748,
+          otherCosts: 522209,
+        },
+        incidentCommandResults: { onSiteDays: 44.68011641650466, phaseCost: 136388 },
+        otherResults: { otherCosts: 69487 },
+        generalResults: { totalCost: 1896154, areaContaminated: 7143.391157068171, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 31347.369266286612,
-          onSiteDays: 411142.56209179194,
-          phaseCost: 4402934938.560299,
-        },
-        sourceReductionResults: {
-          workDays: 276.2400646866479,
-          onSiteDays: 276.2400646866479,
-          phaseCost: 22107945.745019957,
-        },
-        decontaminationResults: {
-          workDays: 13.862246480738335,
-          onSiteDays: 16.74508391547601,
-          phaseCost: 978516269.2378832,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.4473935639942883,
+          onSiteDays: 7.015434056356079,
+          phaseCost: 502862,
         },
-        incidentCommandResults: {
-          onSiteDays: 411443.54724039405,
-          phaseCost: 1012126133.8536842,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.381993201245989,
+          onSiteDays: 7.5283833318061895,
+          phaseCost: 498542,
         },
-        otherResults: {
-          otherCosts: 88218943.25286658,
+        totalCharacterizationSamplingResults: {
+          workDays: 2.8293867652402773,
+          onSiteDays: 14.543817388162267,
+          phaseCost: 1001404,
         },
-        generalResults: {
-          totalCost: 6503904230.649754,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.6177047464630769, onSiteDays: 0.6177047464630769, phaseCost: 69636 },
+        decontaminationResults: {
+          workDays: 6.738059787251535,
+          onSiteDays: 8.873918597557097,
+          suppliesCost: 101226,
+          otherCosts: 269186,
         },
+        incidentCommandResults: { onSiteDays: 32.03544073218244, phaseCost: 98341 },
+        otherResults: { otherCosts: 60814 },
+        generalResults: { totalCost: 1600607, areaContaminated: 7143.391157068171, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 97154.79412268169,
-        onSiteDays: 7839481.179796838,
-        phaseCost: 6714822940.233246,
-      },
-      sourceReductionResults: {
-        workDays: 10670.655179467354,
-        onSiteDays: 10670.655179467354,
-        phaseCost: 2132798131.7200565,
-      },
-      decontaminationResults: {
-        workDays: 23.507093763329806,
-        onSiteDays: 26.274835667404073,
-        phaseCost: 142264525.42955387,
-      },
-      incidentCommandResults: {
-        onSiteDays: 7850186.109811973,
-        phaseCost: 19082485531.69664,
-      },
-      otherResults: {
-        otherCosts: 1408745489.4684308,
-      },
-      generalResults: {
-        totalCost: 29481116618.547928,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.639201942674106,
+        onSiteDays: 16.06049309482014,
+        phaseCost: 1086989,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.0084563832300875,
+        onSiteDays: 14.780013666739805,
+        phaseCost: 876160,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.647658325904192,
+        onSiteDays: 30.840506761559944,
+        phaseCost: 1963149,
+      },
+      sourceReductionResults: { workDays: 5.191391105228117, onSiteDays: 5.191391105228117, phaseCost: 429307 },
+      decontaminationResults: {
+        workDays: 13.400901452265892,
+        onSiteDays: 14.708980046843408,
+        suppliesCost: 254055,
+        otherCosts: 778937,
+      },
+      incidentCommandResults: { onSiteDays: 58.740877913631465, phaseCost: 180306 },
+      otherResults: { otherCosts: 92415 },
+      generalResults: { totalCost: 3698169, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 149333.28317227282,
-        onSiteDays: 574669.0565123217,
-        phaseCost: 5164694550.682345,
-      },
-      sourceReductionResults: {
-        workDays: 4022.9154107239124,
-        onSiteDays: 4022.9154107239124,
-        phaseCost: 511510149.6296309,
-      },
-      decontaminationResults: {
-        workDays: 12.158376621817792,
-        onSiteDays: 14.647829083178152,
-        phaseCost: 2857882039.718291,
-      },
-      incidentCommandResults: {
-        onSiteDays: 578714.6197521287,
-        phaseCost: 1435023816.8533354,
-      },
-      otherResults: {
-        otherCosts: 131797791.22997253,
-      },
-      generalResults: {
-        totalCost: 10100908348.113575,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.8936061336256444,
+        onSiteDays: 11.071876480617478,
+        phaseCost: 627052,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.322765112753088,
+        onSiteDays: 16.635981553937366,
+        phaseCost: 723683,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.216371246378733,
+        onSiteDays: 27.707858034554846,
+        phaseCost: 1350735,
+      },
+      sourceReductionResults: { workDays: 1.3009875093092207, onSiteDays: 1.3009875093092207, phaseCost: 194242 },
+      decontaminationResults: {
+        workDays: 4.635096885644621,
+        onSiteDays: 7.310358845701059,
+        suppliesCost: 328516,
+        otherCosts: 270135,
+      },
+      incidentCommandResults: { onSiteDays: 44.31920438956512, phaseCost: 135610 },
+      otherResults: { otherCosts: 78760 },
+      generalResults: { totalCost: 2357998, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 12429.85240843781,
-          onSiteDays: 129021.07508869794,
-          phaseCost: 1719093403.8524003,
-        },
-        sourceReductionResults: {
-          workDays: 385.15570162485324,
-          onSiteDays: 385.15570162485324,
-          phaseCost: 134974220.87271208,
-        },
-        decontaminationResults: {
-          workDays: 21.33107292659838,
-          onSiteDays: 24.145547603058052,
-          phaseCost: 235891440.79767534,
-        },
-        incidentCommandResults: {
-          onSiteDays: 129438.37633792585,
-          phaseCost: 313795886.24743086,
-        },
-        otherResults: {
-          otherCosts: 31778317.815295696,
-        },
-        generalResults: {
-          totalCost: 2435533269.5855145,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.5886922203092348,
+          onSiteDays: 8.904253323621019,
+          phaseCost: 465104,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.5973216471406453,
+          onSiteDays: 9.785935042547695,
+          phaseCost: 598755,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.18601386744988,
+          onSiteDays: 18.690188366168712,
+          phaseCost: 1063859,
+        },
+        sourceReductionResults: { workDays: 0.6372944401053933, onSiteDays: 0.6372944401053933, phaseCost: 92189 },
+        decontaminationResults: {
+          workDays: 4.268510144033588,
+          onSiteDays: 4.744340500501995,
+          suppliesCost: 48422,
+          otherCosts: 282720,
+        },
+        incidentCommandResults: { onSiteDays: 32.071823306776096, phaseCost: 97743 },
+        otherResults: { otherCosts: 59755 },
+        generalResults: { totalCost: 1644688, areaContaminated: 6358.082455433459, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 7996.698441416669,
-          onSiteDays: 165523.79867190678,
-          phaseCost: 3429517758.229191,
-        },
-        sourceReductionResults: {
-          workDays: 712.6160807223563,
-          onSiteDays: 712.6160807223563,
-          phaseCost: 167153364.20972604,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.0254394294068416,
+          onSiteDays: 12.200573214728285,
+          phaseCost: 970507,
         },
-        decontaminationResults: {
-          workDays: 19.921085279183714,
-          onSiteDays: 20.92821734490064,
-          phaseCost: 1335309283.4783504,
-        },
-        incidentCommandResults: {
-          onSiteDays: 166265.34296997404,
-          phaseCost: 405473473.7950787,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.3477779406275303,
+          onSiteDays: 10.464646567032268,
+          phaseCost: 770866,
         },
-        otherResults: {
-          otherCosts: 48987047.902599,
+        totalCharacterizationSamplingResults: {
+          workDays: 4.3732173700343715,
+          onSiteDays: 22.665219781760555,
+          phaseCost: 1741373,
         },
-        generalResults: {
-          totalCost: 5386440927.614944,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.029518317307599577, onSiteDays: 0.029518317307599577, phaseCost: 12804 },
+        decontaminationResults: {
+          workDays: 4.015996916456148,
+          onSiteDays: 4.2396779966633025,
+          suppliesCost: 73533,
+          otherCosts: 262288,
         },
+        incidentCommandResults: { onSiteDays: 34.93441609573146, phaseCost: 107779 },
+        otherResults: { otherCosts: 101549 },
+        generalResults: { totalCost: 2299326, areaContaminated: 6358.082455433459, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 10518.62891312322,
-        onSiteDays: 1470862.6499158447,
-        phaseCost: 4724828065.813339,
-      },
-      sourceReductionResults: {
-        workDays: 3201.0040620723203,
-        onSiteDays: 3201.0040620723203,
-        phaseCost: 685450761.881996,
-      },
-      decontaminationResults: {
-        workDays: 21.26344871573696,
-        onSiteDays: 21.84791494669577,
-        phaseCost: 440540122.2029097,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1474093.5018928638,
-        phaseCost: 3623463958.532964,
-      },
-      otherResults: {
-        otherCosts: 437881323.7770061,
-      },
-      generalResults: {
-        totalCost: 9912164232.208216,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 6.0032289296588575,
+        onSiteDays: 21.203340581747227,
+        phaseCost: 524687,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 8.336054444195215,
+        onSiteDays: 25.905047530696507,
+        phaseCost: 634520,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 14.339283373854073,
+        onSiteDays: 47.108388112443734,
+        phaseCost: 1159207,
+      },
+      sourceReductionResults: { workDays: 1.8838709997074363, onSiteDays: 1.8838709997074363, phaseCost: 144949 },
+      decontaminationResults: {
+        workDays: 16.272176853910132,
+        onSiteDays: 19.009980588455218,
+        suppliesCost: 77587,
+        otherCosts: 577301,
+      },
+      incidentCommandResults: { onSiteDays: 76.00223970060638, phaseCost: 232980 },
+      otherResults: { otherCosts: 87012 },
+      generalResults: { totalCost: 2279036, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 43808.10429562947,
-        onSiteDays: 372641.9415378445,
-        phaseCost: 4634356787.56496,
-      },
-      sourceReductionResults: {
-        workDays: 2492.663931791236,
-        onSiteDays: 2492.663931791236,
-        phaseCost: 301157963.0907289,
-      },
-      decontaminationResults: {
-        workDays: 18.91874246995867,
-        onSiteDays: 20.697120256884286,
-        phaseCost: 1454961649.4972103,
-      },
-      incidentCommandResults: {
-        onSiteDays: 375163.30258989264,
-        phaseCost: 907847957.3949387,
-      },
-      otherResults: {
-        otherCosts: 123489142.8233773,
-      },
-      generalResults: {
-        totalCost: 7421813500.371215,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 13.999035758867961,
+        onSiteDays: 23.242197323917615,
+        phaseCost: 951780,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 0.9893391952016816,
+        onSiteDays: 4.765439440909893,
+        phaseCost: 364610,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 14.988374954069643,
+        onSiteDays: 28.00763676482751,
+        phaseCost: 1316390,
+      },
+      sourceReductionResults: { workDays: 0.1932292288562527, onSiteDays: 0.1932292288562527, phaseCost: 8626 },
+      decontaminationResults: {
+        workDays: 8.016910416078034,
+        onSiteDays: 9.01427675225173,
+        suppliesCost: 215637,
+        otherCosts: 176261,
+      },
+      incidentCommandResults: { onSiteDays: 45.215142745935495, phaseCost: 138409 },
+      otherResults: { otherCosts: 101808 },
+      generalResults: { totalCost: 1957131, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 18326.877667091667,
-          onSiteDays: 464820.7630542783,
-          phaseCost: 3712048654.2255044,
-        },
-        sourceReductionResults: {
-          workDays: 1245.8994522557007,
-          onSiteDays: 1245.8994522557007,
-          phaseCost: 53310360.00838567,
-        },
-        decontaminationResults: {
-          workDays: 19.874672678037236,
-          onSiteDays: 22.618348161368246,
-          phaseCost: 967552888.3296975,
-        },
-        incidentCommandResults: {
-          onSiteDays: 466097.2808546953,
-          phaseCost: 1155055771.7457871,
-        },
-        otherResults: {
-          otherCosts: 90098360.91774143,
-        },
-        generalResults: {
-          totalCost: 5978066035.227116,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.8578218293978384,
+          onSiteDays: 20.91748670212366,
+          phaseCost: 815473,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 8.289133278699634,
+          onSiteDays: 31.56933988536459,
+          phaseCost: 1079978,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 10.146955108097472,
+          onSiteDays: 52.48682658748825,
+          phaseCost: 1895451,
+        },
+        sourceReductionResults: { workDays: 1.5298283534336832, onSiteDays: 1.5298283534336832, phaseCost: 61490 },
+        decontaminationResults: {
+          workDays: 3.628820735641946,
+          onSiteDays: 3.7106608929370206,
+          suppliesCost: 189995,
+          otherCosts: 119559,
+        },
+        incidentCommandResults: { onSiteDays: 65.72731583385897, phaseCost: 201302 },
+        otherResults: { otherCosts: 60429 },
+        generalResults: { totalCost: 2528226, areaContaminated: 7882.583637927329, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 18907.712191953888,
-          onSiteDays: 1204506.3031821072,
-          phaseCost: 7004521939.894987,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.6380794069111886,
+          onSiteDays: 11.62381666603481,
+          phaseCost: 524012,
         },
-        sourceReductionResults: {
-          workDays: 1598.1994412041247,
-          onSiteDays: 1598.1994412041247,
-          phaseCost: 344285327.7006067,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.4788239235797032,
+          onSiteDays: 7.840903740194621,
+          phaseCost: 345424,
         },
-        decontaminationResults: {
-          workDays: 21.533003207420236,
-          onSiteDays: 21.82694272995623,
-          phaseCost: 935732565.386552,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1206134.3295660412,
-          phaseCost: 2922329149.331971,
+        totalCharacterizationSamplingResults: {
+          workDays: 4.116903330490892,
+          onSiteDays: 19.464720406229432,
+          phaseCost: 869436,
         },
-        otherResults: {
-          otherCosts: 222611186.9436624,
-        },
-        generalResults: {
-          totalCost: 11429480169.25778,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.526645019076729, onSiteDays: 1.526645019076729, phaseCost: 225650 },
+        decontaminationResults: {
+          workDays: 8.274484382074904,
+          onSiteDays: 8.923712661472083,
+          suppliesCost: 245766,
+          otherCosts: 162736,
         },
+        incidentCommandResults: { onSiteDays: 37.915078086778244, phaseCost: 116823 },
+        otherResults: { otherCosts: 145886 },
+        generalResults: { totalCost: 1766297, areaContaminated: 7882.583637927329, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 28557.90979570139,
-        onSiteDays: 781362.0874415304,
-        phaseCost: 11314739637.28413,
-      },
-      sourceReductionResults: {
-        workDays: 4651.503163802969,
-        onSiteDays: 4651.503163802969,
-        phaseCost: 813910784.1389247,
-      },
-      decontaminationResults: {
-        workDays: 24.24496847350266,
-        onSiteDays: 25.97559296409031,
-        phaseCost: 1500021741.3860643,
-      },
-      incidentCommandResults: {
-        onSiteDays: 786047.5661982975,
-        phaseCost: 1908754650.4516838,
-      },
-      otherResults: {
-        otherCosts: 186812501.33218104,
-      },
-      generalResults: {
-        totalCost: 15724239314.592985,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.4909431953108623,
+        onSiteDays: 17.838616532446636,
+        phaseCost: 859819,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.7356262282034223,
+        onSiteDays: 20.76635788819336,
+        phaseCost: 1021712,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.2265694235142846,
+        onSiteDays: 38.60497442064,
+        phaseCost: 1881531,
+      },
+      sourceReductionResults: { workDays: 1.0663798140462541, onSiteDays: 1.0663798140462541, phaseCost: 188027 },
+      decontaminationResults: {
+        workDays: 16.733662534210286,
+        onSiteDays: 18.85694313651345,
+        suppliesCost: 309340,
+        otherCosts: 386643,
+      },
+      incidentCommandResults: { onSiteDays: 66.5282973711997, phaseCost: 202425 },
+      otherResults: { otherCosts: 97930 },
+      generalResults: { totalCost: 3065896, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 20912.14803790417,
-        onSiteDays: 317809.4943472754,
-        phaseCost: 2477755240.202176,
-      },
-      sourceReductionResults: {
-        workDays: 3457.3138102106395,
-        onSiteDays: 3457.3138102106395,
-        phaseCost: 161003361.9487353,
-      },
-      decontaminationResults: {
-        workDays: 17.841273660734593,
-        onSiteDays: 17.94364227935291,
-        phaseCost: 595045381.1895838,
-      },
-      incidentCommandResults: {
-        onSiteDays: 321292.7517997654,
-        phaseCost: 778645211.8491199,
-      },
-      otherResults: {
-        otherCosts: 59188830.57890869,
-      },
-      generalResults: {
-        totalCost: 4071638025.768524,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 0.9995353630564854,
+        onSiteDays: 10.738093647014225,
+        phaseCost: 294253,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.229999837224501,
+        onSiteDays: 23.826761131114115,
+        phaseCost: 662406,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.229535200280986,
+        onSiteDays: 34.564854778128336,
+        phaseCost: 956659,
+      },
+      sourceReductionResults: { workDays: 0.7667189381297864, onSiteDays: 0.7667189381297864, phaseCost: 122485 },
+      decontaminationResults: {
+        workDays: 4.343047587048041,
+        onSiteDays: 6.663298403067351,
+        suppliesCost: 250361,
+        otherCosts: 272386,
+      },
+      incidentCommandResults: { onSiteDays: 49.99487211932547, phaseCost: 153954 },
+      otherResults: { otherCosts: 96184 },
+      generalResults: { totalCost: 1852029, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 13488.746914714273,
-          onSiteDays: 1072043.0492494071,
-          phaseCost: 6273239793.207618,
-        },
-        sourceReductionResults: {
-          workDays: 6203.638123027605,
-          onSiteDays: 6203.638123027605,
-          phaseCost: 178015297.1931659,
-        },
-        decontaminationResults: {
-          workDays: 25.323678120347594,
-          onSiteDays: 27.332311934636046,
-          phaseCost: 536691496.25894815,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1078282.0196843692,
-          phaseCost: 2620872411.5394006,
-        },
-        otherResults: {
-          otherCosts: 287285856.71604115,
-        },
-        generalResults: {
-          totalCost: 9896104854.915174,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.7243514843722867,
+          onSiteDays: 5.888992860141589,
+          phaseCost: 208945,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.8814536059297882,
+          onSiteDays: 6.764522538073308,
+          phaseCost: 216946,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 2.605805090302075,
+          onSiteDays: 12.653515398214896,
+          phaseCost: 425891,
+        },
+        sourceReductionResults: { workDays: 0.47795595776108274, onSiteDays: 0.47795595776108274, phaseCost: 95021 },
+        decontaminationResults: {
+          workDays: 7.194095270054903,
+          onSiteDays: 8.991351477799785,
+          suppliesCost: 470064,
+          otherCosts: 587056,
+        },
+        incidentCommandResults: { onSiteDays: 30.122822833775764, phaseCost: 92690 },
+        otherResults: { otherCosts: 59712 },
+        generalResults: { totalCost: 1730434, areaContaminated: 11273.605103202537, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 19770.093764659792,
-          onSiteDays: 823157.4867495208,
-          phaseCost: 4337511696.27241,
-        },
-        sourceReductionResults: {
-          workDays: 2845.394466092426,
-          onSiteDays: 2845.394466092426,
-          phaseCost: 577272402.7504001,
-        },
-        decontaminationResults: {
-          workDays: 14.711712508628079,
-          onSiteDays: 17.69705841403852,
-          phaseCost: 167716949.132159,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.7541957256532297,
+          onSiteDays: 13.149364616872107,
+          phaseCost: 571196,
         },
-        incidentCommandResults: {
-          onSiteDays: 826028.5782740272,
-          phaseCost: 2002628816.727345,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.290868556110614,
+          onSiteDays: 14.338004248157844,
+          phaseCost: 758512,
         },
-        otherResults: {
-          otherCosts: 149951586.64796764,
+        totalCharacterizationSamplingResults: {
+          workDays: 7.045064281763844,
+          onSiteDays: 27.48736886502995,
+          phaseCost: 1329708,
         },
-        generalResults: {
-          totalCost: 7235081451.530282,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.2544069667024367, onSiteDays: 0.2544069667024367, phaseCost: 22969 },
+        decontaminationResults: {
+          workDays: 3.4965859606155627,
+          onSiteDays: 5.503180928645465,
+          suppliesCost: 297557,
+          otherCosts: 120759,
         },
+        incidentCommandResults: { onSiteDays: 41.24495676037785, phaseCost: 126342 },
+        otherResults: { otherCosts: 66939 },
+        generalResults: { totalCost: 1964274, areaContaminated: 11273.605103202537, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 47255.849892638915,
-        onSiteDays: 499847.5993136681,
-        phaseCost: 2689853272.8312817,
-      },
-      sourceReductionResults: {
-        workDays: 2331.9392871832893,
-        onSiteDays: 2331.9392871832893,
-        phaseCost: 439766483.7118459,
-      },
-      decontaminationResults: {
-        workDays: 20.52795397013611,
-        onSiteDays: 22.981471541100525,
-        phaseCost: 304826031.4679391,
-      },
-      incidentCommandResults: {
-        onSiteDays: 502210.5200723925,
-        phaseCost: 1221479270.9056597,
-      },
-      otherResults: {
-        otherCosts: 158869418.92445996,
-      },
-      generalResults: {
-        totalCost: 4814794477.841187,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.1127291489585183,
+        onSiteDays: 8.716735427388594,
+        phaseCost: 298089,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.433181527120545,
+        onSiteDays: 22.542370842118903,
+        phaseCost: 1096617,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.545910676079063,
+        onSiteDays: 31.259106269507498,
+        phaseCost: 1394706,
+      },
+      sourceReductionResults: { workDays: 2.4721660680906603, onSiteDays: 2.4721660680906603, phaseCost: 124579 },
+      decontaminationResults: {
+        workDays: 12.675059049314601,
+        onSiteDays: 12.94436241359086,
+        suppliesCost: 193424,
+        otherCosts: 667035,
+      },
+      incidentCommandResults: { onSiteDays: 54.675634751189016, phaseCost: 167781 },
+      otherResults: { otherCosts: 69830 },
+      generalResults: { totalCost: 2617355, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 31745.614641585933,
-        onSiteDays: 2776069.176319923,
-        phaseCost: 11770019655.208998,
-      },
-      sourceReductionResults: {
-        workDays: 12097.10329385044,
-        onSiteDays: 12097.10329385044,
-        phaseCost: 1534884847.9974067,
-      },
-      decontaminationResults: {
-        workDays: 21.21439669938162,
-        onSiteDays: 22.68509386588938,
-        phaseCost: 1613944871.7586968,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2788196.964707639,
-        phaseCost: 6821573453.011058,
-      },
-      otherResults: {
-        otherCosts: 503840872.1090002,
-      },
-      generalResults: {
-        totalCost: 22244263700.08516,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.7222980141456852,
+        onSiteDays: 11.126571459933693,
+        phaseCost: 551879,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.24408379642344,
+        onSiteDays: 19.52916699379799,
+        phaseCost: 942306,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.966381810569125,
+        onSiteDays: 30.655738453731683,
+        phaseCost: 1494185,
+      },
+      sourceReductionResults: { workDays: 0.04226000437874536, onSiteDays: 0.04226000437874536, phaseCost: 4438 },
+      decontaminationResults: {
+        workDays: 9.00269910483684,
+        onSiteDays: 9.452264813811581,
+        suppliesCost: 399915,
+        otherCosts: 750448,
+      },
+      incidentCommandResults: { onSiteDays: 48.150263271922014, phaseCost: 149062 },
+      otherResults: { otherCosts: 34874 },
+      generalResults: { totalCost: 2832922, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 13059.091418934113,
-          onSiteDays: 161001.29926831785,
-          phaseCost: 4920276687.793918,
-        },
-        sourceReductionResults: {
-          workDays: 4867.246456595155,
-          onSiteDays: 4867.246456595155,
-          phaseCost: 1133026882.9650035,
-        },
-        decontaminationResults: {
-          workDays: 20.44839792266684,
-          onSiteDays: 21.07284812211824,
-          phaseCost: 962737204.9437588,
-        },
-        incidentCommandResults: {
-          onSiteDays: 165897.61857303514,
-          phaseCost: 410184389.0606394,
-        },
-        otherResults: {
-          otherCosts: 49968260.08605231,
-        },
-        generalResults: {
-          totalCost: 7476193424.849371,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.0264092264089846,
+          onSiteDays: 12.219962971114475,
+          phaseCost: 536774,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.434965293924494,
+          onSiteDays: 20.38772836414492,
+          phaseCost: 1136567,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 7.461374520333479,
+          onSiteDays: 32.607691335259396,
+          phaseCost: 1673341,
+        },
+        sourceReductionResults: { workDays: 0.34253416277352594, onSiteDays: 0.34253416277352594, phaseCost: 29567 },
+        decontaminationResults: {
+          workDays: 8.268961411032118,
+          onSiteDays: 9.895491153675945,
+          suppliesCost: 319574,
+          otherCosts: 668566,
+        },
+        incidentCommandResults: { onSiteDays: 50.84571665170887, phaseCost: 154906 },
+        otherResults: { otherCosts: 71187 },
+        generalResults: { totalCost: 2917141, areaContaminated: 8797.800604672588, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 13145.625148603429,
-          onSiteDays: 551825.9805939851,
-          phaseCost: 2862938004.9075556,
-        },
-        sourceReductionResults: {
-          workDays: 845.2150319453548,
-          onSiteDays: 845.2150319453548,
-          phaseCost: 172991643.60401934,
-        },
-        decontaminationResults: {
-          workDays: 23.442465304732895,
-          onSiteDays: 26.352142211597446,
-          phaseCost: 380646603.44528955,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.8314631753401938,
+          onSiteDays: 26.892400993724273,
+          phaseCost: 879626,
         },
-        incidentCommandResults: {
-          onSiteDays: 552705.5477681421,
-          phaseCost: 1352363747.91285,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.000120293629531,
+          onSiteDays: 35.986006575655324,
+          phaseCost: 1204258,
         },
-        otherResults: {
-          otherCosts: 165840796.16808707,
+        totalCharacterizationSamplingResults: {
+          workDays: 7.8315834689697255,
+          onSiteDays: 62.8784075693796,
+          phaseCost: 2083884,
         },
-        generalResults: {
-          totalCost: 4934780796.037802,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.4527749022731598, onSiteDays: 0.4527749022731598, phaseCost: 37135 },
+        decontaminationResults: {
+          workDays: 14.558782511520846,
+          onSiteDays: 16.523536064551102,
+          suppliesCost: 140108,
+          otherCosts: 921737,
         },
+        incidentCommandResults: { onSiteDays: 87.85471853620386, phaseCost: 268794 },
+        otherResults: { otherCosts: 45376 },
+        generalResults: { totalCost: 3497034, areaContaminated: 8797.800604672588, decontaminationRounds: 3 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 24228.046510646032,
-        onSiteDays: 770643.3849504143,
-        phaseCost: 9016852413.193892,
-      },
-      sourceReductionResults: {
-        workDays: 12492.659525841424,
-        onSiteDays: 12492.659525841424,
-        phaseCost: 1718647202.9268084,
-      },
-      decontaminationResults: {
-        workDays: 11.272150171052699,
-        onSiteDays: 11.395701438280684,
-        phaseCost: 791026190.2983438,
-      },
-      incidentCommandResults: {
-        onSiteDays: 783155.4401776941,
-        phaseCost: 1896033953.40029,
-      },
-      otherResults: {
-        otherCosts: 218279109.19696632,
-      },
-      generalResults: {
-        totalCost: 13640838869.0163,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.369152919369503,
+        onSiteDays: 15.957244722987856,
+        phaseCost: 592459,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.5030302975985372,
+        onSiteDays: 26.593610803204044,
+        phaseCost: 1103704,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.87218321696804,
+        onSiteDays: 42.550855526191896,
+        phaseCost: 1696163,
+      },
+      sourceReductionResults: { workDays: 0.41183528893824733, onSiteDays: 0.41183528893824733, phaseCost: 21043 },
+      decontaminationResults: {
+        workDays: 3.3920701584760264,
+        onSiteDays: 4.334914275755853,
+        suppliesCost: 342908,
+        otherCosts: 153402,
+      },
+      incidentCommandResults: { onSiteDays: 55.297605090885995, phaseCost: 170020 },
+      otherResults: { otherCosts: 54913 },
+      generalResults: { totalCost: 2438449, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 62616.31733028889,
-        onSiteDays: 106302875.60106118,
-        phaseCost: 11644391217.347147,
-      },
-      sourceReductionResults: {
-        workDays: 14674.037153846757,
-        onSiteDays: 14674.037153846757,
-        phaseCost: 3408980730.3824034,
-      },
-      decontaminationResults: {
-        workDays: 19.015297857116746,
-        onSiteDays: 20.621762116351576,
-        phaseCost: 1770194573.5114665,
-      },
-      incidentCommandResults: {
-        onSiteDays: 106317578.25997713,
-        phaseCost: 263489994885.7317,
-      },
-      otherResults: {
-        otherCosts: 29280771616.420094,
-      },
-      generalResults: {
-        totalCost: 309594333023.3928,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 7.185635315402804,
+        onSiteDays: 16.301802429558634,
+        phaseCost: 1073538,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.3209154540171137,
+        onSiteDays: 5.741961343770878,
+        phaseCost: 300396,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.506550769419917,
+        onSiteDays: 22.043763773329513,
+        phaseCost: 1373934,
+      },
+      sourceReductionResults: { workDays: 1.3208791691728294, onSiteDays: 1.3208791691728294, phaseCost: 108031 },
+      decontaminationResults: {
+        workDays: 9.05157396221803,
+        onSiteDays: 10.335979184446852,
+        suppliesCost: 218672,
+        otherCosts: 322609,
+      },
+      incidentCommandResults: { onSiteDays: 41.7006221269492, phaseCost: 129343 },
+      otherResults: { otherCosts: 51214 },
+      generalResults: { totalCost: 2203803, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 19153.43593863909,
-          onSiteDays: 238192.70602578475,
-          phaseCost: 3440473746.3303595,
-        },
-        sourceReductionResults: {
-          workDays: 2357.9710817091827,
-          onSiteDays: 2357.9710817091827,
-          phaseCost: 228795670.1758576,
-        },
-        decontaminationResults: {
-          workDays: 18.422171204682016,
-          onSiteDays: 18.58482039570455,
-          phaseCost: 699445397.3217568,
-        },
-        incidentCommandResults: {
-          onSiteDays: 240577.26192788963,
-          phaseCost: 582473793.4696229,
-        },
-        otherResults: {
-          otherCosts: 46399475.40342701,
-        },
-        generalResults: {
-          totalCost: 4997588082.701024,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.3596679357838513,
+          onSiteDays: 10.64073521838511,
+          phaseCost: 410533,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.2360290033450474,
+          onSiteDays: 7.934742396114633,
+          phaseCost: 326688,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 4.595696939128898,
+          onSiteDays: 18.575477614499743,
+          phaseCost: 737221,
+        },
+        sourceReductionResults: { workDays: 1.573303364528814, onSiteDays: 1.573303364528814, phaseCost: 235293 },
+        decontaminationResults: {
+          workDays: 9.349408538394936,
+          onSiteDays: 10.483852623841692,
+          suppliesCost: 546836,
+          otherCosts: 572233,
+        },
+        incidentCommandResults: { onSiteDays: 38.63263360287025, phaseCost: 116937 },
+        otherResults: { otherCosts: 85751 },
+        generalResults: { totalCost: 2294271, areaContaminated: 12655.894730159987, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 4213.748157500614,
-          onSiteDays: 40031.86616271053,
-          phaseCost: 870397024.6853154,
-        },
-        sourceReductionResults: {
-          workDays: 3662.6818860841627,
-          onSiteDays: 3662.6818860841627,
-          phaseCost: 1097257732.3223727,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.6066230861386019,
+          onSiteDays: 4.399130801858479,
+          phaseCost: 173703,
         },
-        decontaminationResults: {
-          workDays: 15.091697099407133,
-          onSiteDays: 15.515720761966827,
-          phaseCost: 286397249.24901277,
-        },
-        incidentCommandResults: {
-          onSiteDays: 43718.06376955666,
-          phaseCost: 107655921.96107244,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.8889234481895496,
+          onSiteDays: 7.669951237803266,
+          phaseCost: 387465,
         },
-        otherResults: {
-          otherCosts: 10619901.945307085,
+        totalCharacterizationSamplingResults: {
+          workDays: 2.4955465343281515,
+          onSiteDays: 12.069082039661744,
+          phaseCost: 561168,
         },
-        generalResults: {
-          totalCost: 2372327830.1630807,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.1939263450630379, onSiteDays: 0.1939263450630379, phaseCost: 29511 },
+        decontaminationResults: {
+          workDays: 4.721586101623622,
+          onSiteDays: 6.701410435303443,
+          suppliesCost: 410207,
+          otherCosts: 123204,
         },
+        incidentCommandResults: { onSiteDays: 26.964418820028225, phaseCost: 82615 },
+        otherResults: { otherCosts: 60589 },
+        generalResults: { totalCost: 1267294, areaContaminated: 12655.894730159987, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 46168.70201347866,
-        onSiteDays: 254334.05219438882,
-        phaseCost: 6525927120.205664,
-      },
-      sourceReductionResults: {
-        workDays: 2540.7746661216765,
-        onSiteDays: 2540.7746661216765,
-        phaseCost: 143795577.81367046,
-      },
-      decontaminationResults: {
-        workDays: 13.898415140551148,
-        onSiteDays: 16.058305108234826,
-        phaseCost: 1214290760.8587737,
-      },
-      incidentCommandResults: {
-        onSiteDays: 256898.8851656187,
-        phaseCost: 624634181.1547215,
-      },
-      otherResults: {
-        otherCosts: 81857499.83355355,
-      },
-      generalResults: {
-        totalCost: 8590505139.866383,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.7351612149931153,
+        onSiteDays: 9.378257605110083,
+        phaseCost: 615875,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 9.530999579189555,
+        onSiteDays: 22.353240614005443,
+        phaseCost: 1115657,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.26616079418267,
+        onSiteDays: 31.731498219115526,
+        phaseCost: 1731532,
+      },
+      sourceReductionResults: { workDays: 1.0401238219448223, onSiteDays: 1.0401238219448223, phaseCost: 72657 },
+      decontaminationResults: {
+        workDays: 13.678444034112255,
+        onSiteDays: 14.500376974814658,
+        suppliesCost: 178278,
+        otherCosts: 484138,
+      },
+      incidentCommandResults: { onSiteDays: 55.271999015875004, phaseCost: 169286 },
+      otherResults: { otherCosts: 76295 },
+      generalResults: { totalCost: 2712186, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 123578.00884293667,
-        onSiteDays: 697658.2384619936,
-        phaseCost: 4787247265.432197,
-      },
-      sourceReductionResults: {
-        workDays: 28839.226296829493,
-        onSiteDays: 28839.226296829493,
-        phaseCost: 1290343688.8809066,
-      },
-      decontaminationResults: {
-        workDays: 15.057158508118512,
-        onSiteDays: 17.200556092942264,
-        phaseCost: 2947784016.131328,
-      },
-      incidentCommandResults: {
-        onSiteDays: 726522.665314916,
-        phaseCost: 1769849874.566381,
-      },
-      otherResults: {
-        otherCosts: 226362082.07775223,
-      },
-      generalResults: {
-        totalCost: 11021586927.088566,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 5.554042868577729,
+        onSiteDays: 39.60750994126979,
+        phaseCost: 695418,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.0355915537708436,
+        onSiteDays: 31.49483498921833,
+        phaseCost: 577428,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.589634422348572,
+        onSiteDays: 71.10234493048812,
+        phaseCost: 1272846,
+      },
+      sourceReductionResults: { workDays: 0.3311697518995711, onSiteDays: 0.3311697518995711, phaseCost: 32203 },
+      decontaminationResults: {
+        workDays: 4.94234092206283,
+        onSiteDays: 4.951186702109684,
+        suppliesCost: 78718,
+        otherCosts: 146981,
+      },
+      incidentCommandResults: { onSiteDays: 84.38470138449736, phaseCost: 259492 },
+      otherResults: { otherCosts: 87479 },
+      generalResults: { totalCost: 1877719, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 15721.230256874265,
-          onSiteDays: 961984.2344286011,
-          phaseCost: 6986688032.856897,
-        },
-        sourceReductionResults: {
-          workDays: 3922.9709688272847,
-          onSiteDays: 3922.9709688272847,
-          phaseCost: 290859681.43591386,
-        },
-        decontaminationResults: {
-          workDays: 24.857077802265312,
-          onSiteDays: 26.487334885049457,
-          phaseCost: 637153735.025527,
-        },
-        incidentCommandResults: {
-          onSiteDays: 965941.6927323134,
-          phaseCost: 2368909511.7888145,
-        },
-        otherResults: {
-          otherCosts: 242358240.8923227,
-        },
-        generalResults: {
-          totalCost: 10525969201.999475,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.0616331967075752,
+          onSiteDays: 6.767597870463692,
+          phaseCost: 391495,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.6588301859708134,
+          onSiteDays: 10.05143067960488,
+          phaseCost: 376332,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.7204633826783886,
+          onSiteDays: 16.819028550068573,
+          phaseCost: 767827,
+        },
+        sourceReductionResults: { workDays: 0.169056870016324, onSiteDays: 0.169056870016324, phaseCost: 33241 },
+        decontaminationResults: {
+          workDays: 3.5737038307296354,
+          onSiteDays: 4.700337331206616,
+          suppliesCost: 418392,
+          otherCosts: 230273,
+        },
+        incidentCommandResults: { onSiteDays: 29.68842275129151, phaseCost: 90823 },
+        otherResults: { otherCosts: 79738 },
+        generalResults: { totalCost: 1620294, areaContaminated: 10349.661322624808, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 5906.045378519704,
-          onSiteDays: 87037.23941071621,
-          phaseCost: 1727104986.8903832,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 5.60891374616676,
+          onSiteDays: 14.381475072632735,
+          phaseCost: 447019,
         },
-        sourceReductionResults: {
-          workDays: 3257.6174427273413,
-          onSiteDays: 3257.6174427273413,
-          phaseCost: 671446727.2300377,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.06354817342027,
+          onSiteDays: 8.166034790788554,
+          phaseCost: 289817,
         },
-        decontaminationResults: {
-          workDays: 17.44190670397177,
-          onSiteDays: 18.614583969026476,
-          phaseCost: 1167862069.4437504,
-        },
-        incidentCommandResults: {
-          onSiteDays: 90321.47143741258,
-          phaseCost: 219987173.58877864,
+        totalCharacterizationSamplingResults: {
+          workDays: 6.67246191958703,
+          onSiteDays: 22.54750986342129,
+          phaseCost: 736836,
         },
-        otherResults: {
-          otherCosts: 30138105.594856787,
-        },
-        generalResults: {
-          totalCost: 3816539062.7478065,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.303211321059066, onSiteDays: 0.303211321059066, phaseCost: 36918 },
+        decontaminationResults: {
+          workDays: 9.016208566030535,
+          onSiteDays: 10.01021013804949,
+          suppliesCost: 222639,
+          otherCosts: 299553,
         },
+        incidentCommandResults: { onSiteDays: 40.86093132252985, phaseCost: 125665 },
+        otherResults: { otherCosts: 157626 },
+        generalResults: { totalCost: 1579237, areaContaminated: 10349.661322624808, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 57351.02205574829,
-        onSiteDays: 806663.4283057131,
-        phaseCost: 4123901915.755657,
-      },
-      sourceReductionResults: {
-        workDays: 3306.7974652404037,
-        onSiteDays: 3306.7974652404037,
-        phaseCost: 759869663.6361475,
-      },
-      decontaminationResults: {
-        workDays: 18.083260902223003,
-        onSiteDays: 18.652580752655066,
-        phaseCost: 2063151482.2743394,
-      },
-      incidentCommandResults: {
-        onSiteDays: 809996.8783517061,
-        phaseCost: 1962176634.791367,
-      },
-      otherResults: {
-        otherCosts: 208296849.55559996,
-      },
-      generalResults: {
-        totalCost: 9117396546.013111,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.358237105374411,
+        onSiteDays: 15.933232635429112,
+        phaseCost: 680059,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.1591824856554651,
+        onSiteDays: 8.61865595612561,
+        phaseCost: 314197,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 3.517419591029876,
+        onSiteDays: 24.55188859155472,
+        phaseCost: 994256,
+      },
+      sourceReductionResults: { workDays: 6.783070235351867, onSiteDays: 6.783070235351867, phaseCost: 404951 },
+      decontaminationResults: {
+        workDays: 14.062446688083572,
+        onSiteDays: 14.96505203749171,
+        suppliesCost: 408832,
+        otherCosts: 912290,
+      },
+      incidentCommandResults: { onSiteDays: 54.3000108643983, phaseCost: 163866 },
+      otherResults: { otherCosts: 31115 },
+      generalResults: { totalCost: 2915310, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 43514.49637340627,
-        onSiteDays: 1833479.7882007684,
-        phaseCost: 14336997163.129736,
-      },
-      sourceReductionResults: {
-        workDays: 5.011783468727503,
-        onSiteDays: 5.011783468727503,
-        phaseCost: 131538.5256045994,
-      },
-      decontaminationResults: {
-        workDays: 19.80372922141192,
-        onSiteDays: 20.04636581219881,
-        phaseCost: 3201325660.0759554,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1833512.8463500494,
-        phaseCost: 4511415658.60001,
-      },
-      otherResults: {
-        otherCosts: 492851001.4520922,
-      },
-      generalResults: {
-        totalCost: 22542721021.783398,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 6.284274975169673,
+        onSiteDays: 18.18450474338583,
+        phaseCost: 633583,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.343944913789556,
+        onSiteDays: 18.860575599975476,
+        phaseCost: 891427,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 10.62821988895923,
+        onSiteDays: 37.045080343361306,
+        phaseCost: 1525010,
+      },
+      sourceReductionResults: { workDays: 1.612041301597026, onSiteDays: 1.612041301597026, phaseCost: 119756 },
+      decontaminationResults: {
+        workDays: 6.950183957570742,
+        onSiteDays: 7.479940490908907,
+        suppliesCost: 66556,
+        otherCosts: 390215,
+      },
+      incidentCommandResults: { onSiteDays: 54.13706213586724, phaseCost: 166610 },
+      otherResults: { otherCosts: 77130 },
+      generalResults: { totalCost: 2345277, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 15442.610005351817,
-          onSiteDays: 488884.41079827177,
-          phaseCost: 4144591807.990796,
-        },
-        sourceReductionResults: {
-          workDays: 26552.011160523605,
-          onSiteDays: 26552.011160523605,
-          phaseCost: 950302537.0864967,
-        },
-        decontaminationResults: {
-          workDays: 26.305472238060432,
-          onSiteDays: 27.831187387889063,
-          phaseCost: 1192554435.7523506,
-        },
-        incidentCommandResults: {
-          onSiteDays: 515472.25314618327,
-          phaseCost: 1251530239.7624514,
-        },
-        otherResults: {
-          otherCosts: 94284761.60421129,
-        },
-        generalResults: {
-          totalCost: 7633263782.196305,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.0762423048807892,
+          onSiteDays: 6.158333321627289,
+          phaseCost: 349657,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 9.95526877197231,
+          onSiteDays: 40.13837883380154,
+          phaseCost: 1525090,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 11.0315110768531,
+          onSiteDays: 46.29671215542883,
+          phaseCost: 1874747,
+        },
+        sourceReductionResults: { workDays: 0.4252033174766314, onSiteDays: 0.4252033174766314, phaseCost: 60960 },
+        decontaminationResults: {
+          workDays: 18.52116036450517,
+          onSiteDays: 19.799413260025766,
+          suppliesCost: 197828,
+          otherCosts: 645376,
+        },
+        incidentCommandResults: { onSiteDays: 74.52132873293122, phaseCost: 226451 },
+        otherResults: { otherCosts: 74665 },
+        generalResults: { totalCost: 3080027, areaContaminated: 5092.064552030542, decontaminationRounds: 3 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 15574.840953551326,
-          onSiteDays: 440856.66959137196,
-          phaseCost: 3400111673.7370253,
-        },
-        sourceReductionResults: {
-          workDays: 1496.1202672034851,
-          onSiteDays: 1496.1202672034851,
-          phaseCost: 116107510.41186337,
-        },
-        decontaminationResults: {
-          workDays: 20.468262662055963,
-          onSiteDays: 22.03364361311161,
-          phaseCost: 948781668.9468377,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.1158842522477634,
+          onSiteDays: 9.671798530615195,
+          phaseCost: 283276,
         },
-        incidentCommandResults: {
-          onSiteDays: 442382.82350218855,
-          phaseCost: 1081280855.5521913,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.0883581095728236,
+          onSiteDays: 7.371319563500549,
+          phaseCost: 197871,
         },
-        otherResults: {
-          otherCosts: 88304196.52942672,
+        totalCharacterizationSamplingResults: {
+          workDays: 5.204242361820587,
+          onSiteDays: 17.043118094115744,
+          phaseCost: 481147,
         },
-        generalResults: {
-          totalCost: 5634585905.177343,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 2.0610383236567764, onSiteDays: 2.0610383236567764, phaseCost: 154943 },
+        decontaminationResults: {
+          workDays: 9.16561887999196,
+          onSiteDays: 11.667015567344384,
+          suppliesCost: 101712,
+          otherCosts: 384197,
         },
+        incidentCommandResults: { onSiteDays: 38.77117198511691, phaseCost: 118048 },
+        otherResults: { otherCosts: 74182 },
+        generalResults: { totalCost: 1314229, areaContaminated: 5092.064552030542, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 27827.43851788185,
-        onSiteDays: 59094928.46980055,
-        phaseCost: 12765500059.209232,
-      },
-      sourceReductionResults: {
-        workDays: 11078.585892181425,
-        onSiteDays: 11078.585892181425,
-        phaseCost: 1450480599.8966804,
-      },
-      decontaminationResults: {
-        workDays: 10.455628927670332,
-        onSiteDays: 10.597812238754194,
-        phaseCost: 1638920054.4006705,
-      },
-      incidentCommandResults: {
-        onSiteDays: 59106025.65350496,
-        phaseCost: 143631592181.91577,
-      },
-      otherResults: {
-        otherCosts: 19264783574.436466,
-      },
-      generalResults: {
-        totalCost: 178751276469.85883,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.3658602271951874,
+        onSiteDays: 4.837708474053404,
+        phaseCost: 227226,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.564049465997433,
+        onSiteDays: 15.188055189146791,
+        phaseCost: 593647,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.929909693192621,
+        onSiteDays: 20.025763663200195,
+        phaseCost: 820873,
+      },
+      sourceReductionResults: { workDays: 1.189206361105582, onSiteDays: 1.189206361105582, phaseCost: 219721 },
+      decontaminationResults: {
+        workDays: 11.552466686012332,
+        onSiteDays: 13.129336365994376,
+        suppliesCost: 331279,
+        otherCosts: 616956,
+      },
+      incidentCommandResults: { onSiteDays: 42.344306390300154, phaseCost: 130115 },
+      otherResults: { otherCosts: 79941 },
+      generalResults: { totalCost: 2198885, areaContaminated: 10000, decontaminationRounds: 2 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 76424.01356463933,
-        onSiteDays: 476749.87961442425,
-        phaseCost: 3364008051.7487974,
-      },
-      sourceReductionResults: {
-        workDays: 2236.410590688637,
-        onSiteDays: 2236.410590688637,
-        phaseCost: 132974385.58372314,
-      },
-      decontaminationResults: {
-        workDays: 19.253969103157047,
-        onSiteDays: 20.249137785343716,
-        phaseCost: 3330162754.4303417,
-      },
-      incidentCommandResults: {
-        onSiteDays: 479014.53934289824,
-        phaseCost: 1185951806.187294,
-      },
-      otherResults: {
-        otherCosts: 140776371.65643233,
-      },
-      generalResults: {
-        totalCost: 8153873369.606588,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.9314816753641177,
+        onSiteDays: 12.645345832020201,
+        phaseCost: 233514,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 8.297568775152127,
+        onSiteDays: 45.93200308686703,
+        phaseCost: 952865,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.229050450516246,
+        onSiteDays: 58.577348918887225,
+        phaseCost: 1186379,
+      },
+      sourceReductionResults: { workDays: 1.9817666879284386, onSiteDays: 1.9817666879284386, phaseCost: 80899 },
+      decontaminationResults: {
+        workDays: 3.1166102593104843,
+        onSiteDays: 4.478435080377021,
+        suppliesCost: 345510,
+        otherCosts: 126167,
+      },
+      incidentCommandResults: { onSiteDays: 73.03755068719269, phaseCost: 222953 },
+      otherResults: { otherCosts: 64596 },
+      generalResults: { totalCost: 2026504, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 15497.318726939742,
-          onSiteDays: 1722948.002668936,
-          phaseCost: 5393488110.43289,
-        },
-        sourceReductionResults: {
-          workDays: 5804.77508776871,
-          onSiteDays: 5804.77508776871,
-          phaseCost: 282209514.4057452,
-        },
-        decontaminationResults: {
-          workDays: 13.864530217336615,
-          onSiteDays: 16.624061362031863,
-          phaseCost: 112972305.33806787,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1728777.4018180668,
-          phaseCost: 4253631124.082244,
-        },
-        otherResults: {
-          otherCosts: 300557990.0362221,
-        },
-        generalResults: {
-          totalCost: 10342859044.29517,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 7.74845705125557,
+          onSiteDays: 33.79383779179682,
+          phaseCost: 768560,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 7.552029506355234,
+          onSiteDays: 38.72993662589954,
+          phaseCost: 1018579,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 15.300486557610803,
+          onSiteDays: 72.52377441769636,
+          phaseCost: 1787139,
+        },
+        sourceReductionResults: { workDays: 0.032147627177361714, onSiteDays: 0.032147627177361714, phaseCost: 9205 },
+        decontaminationResults: {
+          workDays: 11.153623800294852,
+          onSiteDays: 13.869764838570209,
+          suppliesCost: 208696,
+          otherCosts: 217148,
+        },
+        incidentCommandResults: { onSiteDays: 94.42568688344393, phaseCost: 289541 },
+        otherResults: { otherCosts: 79758 },
+        generalResults: { totalCost: 2591487, areaContaminated: 11876.345408818765, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 17311.69679261962,
-          onSiteDays: 323268.522030399,
-          phaseCost: 5446763865.216218,
-        },
-        sourceReductionResults: {
-          workDays: 337.91173334852914,
-          onSiteDays: 337.91173334852914,
-          phaseCost: 67765454.29847664,
-        },
-        decontaminationResults: {
-          workDays: 20.071292906317694,
-          onSiteDays: 20.991661068981433,
-          phaseCost: 837882712.3849998,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.3822966074332084,
+          onSiteDays: 18.80885312129502,
+          phaseCost: 733323,
         },
-        incidentCommandResults: {
-          onSiteDays: 323635.4254248165,
-          phaseCost: 800686804.6663496,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 33.74819752650318,
+          onSiteDays: 135.9887022101824,
+          phaseCost: 5682787,
         },
-        otherResults: {
-          otherCosts: 73031626.53359856,
+        totalCharacterizationSamplingResults: {
+          workDays: 37.130494133936395,
+          onSiteDays: 154.7975553314774,
+          phaseCost: 6416110,
         },
-        generalResults: {
-          totalCost: 7226130463.099643,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.21393515164832672, onSiteDays: 0.21393515164832672, phaseCost: 25813 },
+        decontaminationResults: {
+          workDays: 13.833707462491866,
+          onSiteDays: 15.560299904216151,
+          suppliesCost: 329633,
+          otherCosts: 1014731,
         },
+        incidentCommandResults: { onSiteDays: 178.57179038734188, phaseCost: 542390 },
+        otherResults: { otherCosts: 142600 },
+        generalResults: { totalCost: 8471277, areaContaminated: 11876.345408818765, decontaminationRounds: 3 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 60685.40157418304,
-        onSiteDays: 6614322.689176316,
-        phaseCost: 9639669451.863277,
-      },
-      sourceReductionResults: {
-        workDays: 4803.1279089963655,
-        onSiteDays: 4803.1279089963655,
-        phaseCost: 83519745.87870874,
-      },
-      decontaminationResults: {
-        workDays: 12.156863455929994,
-        onSiteDays: 14.695996344484387,
-        phaseCost: 1180268256.7764826,
-      },
-      incidentCommandResults: {
-        onSiteDays: 6619148.513081657,
-        phaseCost: 16032426076.594463,
-      },
-      otherResults: {
-        otherCosts: 2033462123.937105,
-      },
-      generalResults: {
-        totalCost: 28969345655.050034,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 15.425985391024057,
+        onSiteDays: 40.03714304202221,
+        phaseCost: 686876,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.260348792476774,
+        onSiteDays: 29.297194688503048,
+        phaseCost: 775751,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 19.68633418350083,
+        onSiteDays: 69.33433773052525,
+        phaseCost: 1462627,
+      },
+      sourceReductionResults: { workDays: 0.03102088115826729, onSiteDays: 0.03102088115826729, phaseCost: 4517 },
+      decontaminationResults: {
+        workDays: 15.397447369852438,
+        onSiteDays: 16.78271514125697,
+        suppliesCost: 280368,
+        otherCosts: 447876,
+      },
+      incidentCommandResults: { onSiteDays: 94.14807375294049, phaseCost: 286952 },
+      otherResults: { otherCosts: 157570 },
+      generalResults: { totalCost: 2639910, areaContaminated: 10000, decontaminationRounds: 2 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 15569.502985184397,
-        onSiteDays: 475977.5703952074,
-        phaseCost: 4303333707.145356,
-      },
-      sourceReductionResults: {
-        workDays: 3176.0369690979724,
-        onSiteDays: 3176.0369690979724,
-        phaseCost: 391894915.05105597,
-      },
-      decontaminationResults: {
-        workDays: 18.4301364187687,
-        onSiteDays: 18.433868491191852,
-        phaseCost: 1808895435.8671217,
-      },
-      incidentCommandResults: {
-        onSiteDays: 479180.04123279656,
-        phaseCost: 1174635851.7232594,
-      },
-      otherResults: {
-        otherCosts: 159759734.1230806,
-      },
-      generalResults: {
-        totalCost: 7838519643.909873,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.3953280121845708,
+        onSiteDays: 6.600841242937571,
+        phaseCost: 319505,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.3015181679434913,
+        onSiteDays: 6.009466466176988,
+        phaseCost: 324806,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 2.696846180128062,
+        onSiteDays: 12.61030770911456,
+        phaseCost: 644311,
+      },
+      sourceReductionResults: { workDays: 1.9562056838670792, onSiteDays: 1.9562056838670792, phaseCost: 272153 },
+      decontaminationResults: {
+        workDays: 4.641041773753483,
+        onSiteDays: 6.541393780508403,
+        suppliesCost: 356341,
+        otherCosts: 369816,
+      },
+      incidentCommandResults: { onSiteDays: 29.10790717349004, phaseCost: 90232 },
+      otherResults: { otherCosts: 70027 },
+      generalResults: { totalCost: 1802880, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 7430.812700854864,
-          onSiteDays: 1228573.7053257201,
-          phaseCost: 1919364550.661996,
-        },
-        sourceReductionResults: {
-          workDays: 389.4375872931652,
-          onSiteDays: 389.4375872931652,
-          phaseCost: 135552832.9132242,
-        },
-        decontaminationResults: {
-          workDays: 24.71403210487078,
-          onSiteDays: 25.648293348878692,
-          phaseCost: 1240490357.2069514,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1228996.7912063622,
-          phaseCost: 3008464542.436877,
-        },
-        otherResults: {
-          otherCosts: 319525615.662017,
-        },
-        generalResults: {
-          totalCost: 6623397898.881064,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 9.724362864695202,
+          onSiteDays: 52.88574883108263,
+          phaseCost: 951143,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.97776683279081,
+          onSiteDays: 24.691278953056504,
+          phaseCost: 444508,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 12.702129697486011,
+          onSiteDays: 77.57702778413913,
+          phaseCost: 1395651,
+        },
+        sourceReductionResults: { workDays: 0.08039993592341903, onSiteDays: 0.08039993592341903, phaseCost: 7079 },
+        decontaminationResults: {
+          workDays: 4.227255724656223,
+          onSiteDays: 5.839726401222807,
+          suppliesCost: 298020,
+          otherCosts: 298949,
+        },
+        incidentCommandResults: { onSiteDays: 91.49715412128536, phaseCost: 275361 },
+        otherResults: { otherCosts: 128019 },
+        generalResults: { totalCost: 2403079, areaContaminated: 9156.352147496385, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 20857.879914104396,
-          onSiteDays: 1061512.2595818576,
-          phaseCost: 3237685504.7153435,
-        },
-        sourceReductionResults: {
-          workDays: 290.58757298448955,
-          onSiteDays: 290.58757298448955,
-          phaseCost: 103349383.46863115,
-        },
-        decontaminationResults: {
-          workDays: 16.441979729673356,
-          onSiteDays: 17.53487350711014,
-          phaseCost: 79266278.2413139,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.2516347172853486,
+          onSiteDays: 34.334941111568526,
+          phaseCost: 741323,
         },
-        incidentCommandResults: {
-          onSiteDays: 1061828.3820283492,
-          phaseCost: 2579911399.706196,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.3515349583939937,
+          onSiteDays: 15.004703599325651,
+          phaseCost: 236782,
         },
-        otherResults: {
-          otherCosts: 271083591.8393061,
+        totalCharacterizationSamplingResults: {
+          workDays: 3.603169675679342,
+          onSiteDays: 49.33964471089418,
+          phaseCost: 978105,
         },
-        generalResults: {
-          totalCost: 6271296157.970791,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.547734335530339, onSiteDays: 0.547734335530339, phaseCost: 32914 },
+        decontaminationResults: {
+          workDays: 4.602129674423982,
+          onSiteDays: 6.732641913865843,
+          suppliesCost: 172148,
+          otherCosts: 194092,
         },
+        incidentCommandResults: { onSiteDays: 64.62002096029036, phaseCost: 199519 },
+        otherResults: { otherCosts: 89058 },
+        generalResults: { totalCost: 1665836, areaContaminated: 9156.352147496385, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 59078.34802732713,
-        onSiteDays: 1480096.71421121,
-        phaseCost: 3955458194.0829706,
-      },
-      sourceReductionResults: {
-        workDays: 943.2528753552187,
-        onSiteDays: 943.2528753552187,
-        phaseCost: 253258172.53855726,
-      },
-      decontaminationResults: {
-        workDays: 18.675114666036123,
-        onSiteDays: 20.791519465342052,
-        phaseCost: 1667435753.784639,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1481068.7586060306,
-        phaseCost: 3633937544.8708744,
-      },
-      otherResults: {
-        otherCosts: 277105481.39652675,
-      },
-      generalResults: {
-        totalCost: 9787195146.673567,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 0.9877498669261533,
+        onSiteDays: 6.811890241229575,
+        phaseCost: 259099,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.538099953514362,
+        onSiteDays: 18.288768702973158,
+        phaseCost: 937662,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.525849820440515,
+        onSiteDays: 25.100658944202735,
+        phaseCost: 1196761,
+      },
+      sourceReductionResults: { workDays: 0.8983589132137529, onSiteDays: 0.8983589132137529, phaseCost: 131988 },
+      decontaminationResults: {
+        workDays: 7.42188244904901,
+        onSiteDays: 7.723450533748476,
+        suppliesCost: 333181,
+        otherCosts: 238326,
+      },
+      incidentCommandResults: { onSiteDays: 41.722468391164966, phaseCost: 126598 },
+      otherResults: { otherCosts: 113837 },
+      generalResults: { totalCost: 2140691, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 43513.108951570895,
-        onSiteDays: 551951.5692859992,
-        phaseCost: 5640880974.152849,
-      },
-      sourceReductionResults: {
-        workDays: 20355.457262302618,
-        onSiteDays: 20355.457262302618,
-        phaseCost: 3272614345.7482605,
-      },
-      decontaminationResults: {
-        workDays: 25.084802325136216,
-        onSiteDays: 25.37997841797303,
-        phaseCost: 220853705.97931454,
-      },
-      incidentCommandResults: {
-        onSiteDays: 572340.4065267198,
-        phaseCost: 1398240687.264489,
-      },
-      otherResults: {
-        otherCosts: 159712070.04309374,
-      },
-      generalResults: {
-        totalCost: 10692301783.188007,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 14.045802666101086,
+        onSiteDays: 49.53004444992516,
+        phaseCost: 930237,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.0471678768117725,
+        onSiteDays: 12.859247664955095,
+        phaseCost: 219032,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 18.09297054291286,
+        onSiteDays: 62.38929211488025,
+        phaseCost: 1149269,
+      },
+      sourceReductionResults: { workDays: 0.376531553593751, onSiteDays: 0.376531553593751, phaseCost: 50806 },
+      decontaminationResults: {
+        workDays: 7.032321491519064,
+        onSiteDays: 9.928281210579044,
+        suppliesCost: 254490,
+        otherCosts: 275249,
+      },
+      incidentCommandResults: { onSiteDays: 80.69410487905304, phaseCost: 242750 },
+      otherResults: { otherCosts: 95237 },
+      generalResults: { totalCost: 2067801, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 13286.58001679392,
-          onSiteDays: 308027.76727521536,
-          phaseCost: 4175059966.187705,
-        },
-        sourceReductionResults: {
-          workDays: 3037.217602242504,
-          onSiteDays: 3037.217602242504,
-          phaseCost: 305603571.78648055,
-        },
-        decontaminationResults: {
-          workDays: 24.103289694083685,
-          onSiteDays: 24.37315229195476,
-          phaseCost: 529690620.72334397,
-        },
-        incidentCommandResults: {
-          onSiteDays: 311097.35802974977,
-          phaseCost: 757725664.6396984,
-        },
-        otherResults: {
-          otherCosts: 84161157.12520365,
-        },
-        generalResults: {
-          totalCost: 5852240980.462432,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 16.457841639315415,
+          onSiteDays: 32.85967361759186,
+          phaseCost: 1204984,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.59642698775009,
+          onSiteDays: 21.6377125073118,
+          phaseCost: 1302081,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 21.054268627065504,
+          onSiteDays: 54.497386124903656,
+          phaseCost: 2507065,
+        },
+        sourceReductionResults: { workDays: 1.1509555487425596, onSiteDays: 1.1509555487425596, phaseCost: 41278 },
+        decontaminationResults: {
+          workDays: 6.465786415260701,
+          onSiteDays: 8.536941639505546,
+          suppliesCost: 90147,
+          otherCosts: 266181,
+        },
+        incidentCommandResults: { onSiteDays: 72.18528331315176, phaseCost: 219623 },
+        otherResults: { otherCosts: 63562 },
+        generalResults: { totalCost: 3187856, areaContaminated: 13217.398528525931, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 49323.05667363559,
-          onSiteDays: 1600481.3909613946,
-          phaseCost: 3168334547.1603317,
-        },
-        sourceReductionResults: {
-          workDays: 13596.672009941927,
-          onSiteDays: 13596.672009941927,
-          phaseCost: 903947309.9907856,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 5.0950468599296626,
+          onSiteDays: 51.346928931860226,
+          phaseCost: 1707719,
         },
-        decontaminationResults: {
-          workDays: 19.78430912661932,
-          onSiteDays: 22.680679615512645,
-          phaseCost: 193520907.34722394,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1614108.7436509521,
-          phaseCost: 3938225952.7236266,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.206009463049315,
+          onSiteDays: 37.175842605852225,
+          phaseCost: 1250483,
         },
-        otherResults: {
-          otherCosts: 373887232.2693581,
+        totalCharacterizationSamplingResults: {
+          workDays: 8.301056322978978,
+          onSiteDays: 88.52277153771246,
+          phaseCost: 2958202,
         },
-        generalResults: {
-          totalCost: 8577915949.491325,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.6349501703038295, onSiteDays: 0.6349501703038295, phaseCost: 124278 },
+        decontaminationResults: {
+          workDays: 4.452419272030801,
+          onSiteDays: 5.915068952346935,
+          suppliesCost: 156189,
+          otherCosts: 168597,
         },
+        incidentCommandResults: { onSiteDays: 103.07279066036321, phaseCost: 316497 },
+        otherResults: { otherCosts: 61829 },
+        generalResults: { totalCost: 3785592, areaContaminated: 13217.398528525931, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 32151.557958025507,
-        onSiteDays: 328576.3350577229,
-        phaseCost: 9252086330.909176,
-      },
-      sourceReductionResults: {
-        workDays: 7762.921333241696,
-        onSiteDays: 7762.921333241696,
-        phaseCost: 1429935779.447075,
-      },
-      decontaminationResults: {
-        workDays: 17.24738548305989,
-        onSiteDays: 19.68460218647602,
-        phaseCost: 1096908285.911018,
-      },
-      incidentCommandResults: {
-        onSiteDays: 336366.9409931511,
-        phaseCost: 823882480.7351803,
-      },
-      otherResults: {
-        otherCosts: 97625260.40778969,
-      },
-      generalResults: {
-        totalCost: 12700438137.410238,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 0.6806826850844353,
+        onSiteDays: 3.6054771710237024,
+        phaseCost: 184617,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.192417511962109,
+        onSiteDays: 14.582088339499022,
+        phaseCost: 1089421,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.873100197046544,
+        onSiteDays: 18.187565510522724,
+        phaseCost: 1274038,
+      },
+      sourceReductionResults: { workDays: 0.25830075669594627, onSiteDays: 0.25830075669594627, phaseCost: 32820 },
+      decontaminationResults: {
+        workDays: 11.497935105231111,
+        onSiteDays: 14.044186758120588,
+        suppliesCost: 401056,
+        otherCosts: 509895,
+      },
+      incidentCommandResults: { onSiteDays: 40.49005302533926, phaseCost: 123145 },
+      otherResults: { otherCosts: 164604 },
+      generalResults: { totalCost: 2505558, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 69873.01307774868,
-        onSiteDays: 3643888.50042663,
-        phaseCost: 11125350000.989275,
-      },
-      sourceReductionResults: {
-        workDays: 9363.077879892515,
-        onSiteDays: 9363.077879892515,
-        phaseCost: 851605356.1572618,
-      },
-      decontaminationResults: {
-        workDays: 24.533802572762085,
-        onSiteDays: 25.680473322905712,
-        phaseCost: 2017264680.2996626,
-      },
-      incidentCommandResults: {
-        onSiteDays: 3653285.2587798457,
-        phaseCost: 9004375722.596067,
-      },
-      otherResults: {
-        otherCosts: 913002572.6773728,
-      },
-      generalResults: {
-        totalCost: 23911598332.71964,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.578095990842956,
+        onSiteDays: 5.314401068739869,
+        phaseCost: 483713,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 31.259208430764662,
+        onSiteDays: 63.777643365977845,
+        phaseCost: 2900208,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 32.83730442160762,
+        onSiteDays: 69.0920444347177,
+        phaseCost: 3383921,
+      },
+      sourceReductionResults: { workDays: 3.1627097655729965, onSiteDays: 3.1627097655729965, phaseCost: 438217 },
+      decontaminationResults: {
+        workDays: 10.278054604604387,
+        onSiteDays: 11.303839667538144,
+        suppliesCost: 225574,
+        otherCosts: 290661,
+      },
+      incidentCommandResults: { onSiteDays: 91.55859386782885, phaseCost: 275435 },
+      otherResults: { otherCosts: 98621 },
+      generalResults: { totalCost: 4712429, areaContaminated: 10000, decontaminationRounds: 2 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 5394.851387967397,
-          onSiteDays: 99856.96920270246,
-          phaseCost: 2739880963.1853285,
-        },
-        sourceReductionResults: {
-          workDays: 629.3582821884971,
-          onSiteDays: 629.3582821884971,
-          phaseCost: 267825599.60675943,
-        },
-        decontaminationResults: {
-          workDays: 20.36062407152742,
-          onSiteDays: 23.271687666483153,
-          phaseCost: 1120337178.366443,
-        },
-        incidentCommandResults: {
-          onSiteDays: 100517.59917255743,
-          phaseCost: 244897913.73303103,
-        },
-        otherResults: {
-          otherCosts: 20105658.714903023,
-        },
-        generalResults: {
-          totalCost: 4393047313.606465,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.040757433277748,
+          onSiteDays: 25.06531416581094,
+          phaseCost: 504276,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.5721221828025413,
+          onSiteDays: 22.468520063520714,
+          phaseCost: 595448,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 4.612879616080289,
+          onSiteDays: 47.53383422933165,
+          phaseCost: 1099724,
+        },
+        sourceReductionResults: { workDays: 0.39214581394392434, onSiteDays: 0.39214581394392434, phaseCost: 42245 },
+        decontaminationResults: {
+          workDays: 12.97584829548743,
+          onSiteDays: 13.003479438369043,
+          suppliesCost: 134009,
+          otherCosts: 1032908,
+        },
+        incidentCommandResults: { onSiteDays: 68.92945948164461, phaseCost: 209971 },
+        otherResults: { otherCosts: 97924 },
+        generalResults: { totalCost: 2616781, areaContaminated: 7161.282629743517, decontaminationRounds: 2 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 12548.766190172762,
-          onSiteDays: 2312380.484385812,
-          phaseCost: 2772251064.8956294,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.56336919550254,
+          onSiteDays: 15.61034183346881,
+          phaseCost: 727437,
         },
-        sourceReductionResults: {
-          workDays: 3144.610955099726,
-          onSiteDays: 3144.610955099726,
-          phaseCost: 276558825.4996241,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.5258198711603121,
+          onSiteDays: 8.713061039678246,
+          phaseCost: 364935,
         },
-        decontaminationResults: {
-          workDays: 19.06751208614267,
-          onSiteDays: 20.93810307768595,
-          phaseCost: 694606099.2427514,
-        },
-        incidentCommandResults: {
-          onSiteDays: 2315554.033443989,
-          phaseCost: 5645056125.271513,
+        totalCharacterizationSamplingResults: {
+          workDays: 4.089189066662852,
+          onSiteDays: 24.323402873147057,
+          phaseCost: 1092372,
         },
-        otherResults: {
-          otherCosts: 592919909.3109246,
-        },
-        generalResults: {
-          totalCost: 9981392024.220444,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.5426201423371294, onSiteDays: 0.5426201423371294, phaseCost: 127982 },
+        decontaminationResults: {
+          workDays: 3.8014356751929586,
+          onSiteDays: 5.878265146137743,
+          suppliesCost: 159799,
+          otherCosts: 143172,
         },
+        incidentCommandResults: { onSiteDays: 38.744288161621924, phaseCost: 119154 },
+        otherResults: { otherCosts: 40067 },
+        generalResults: { totalCost: 1682546, areaContaminated: 7161.282629743517, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 47028.62403456616,
-        onSiteDays: 1024043.8214282955,
-        phaseCost: 9166622945.357166,
-      },
-      sourceReductionResults: {
-        workDays: 2682.587738412706,
-        onSiteDays: 2682.587738412706,
-        phaseCost: 635237856.1418374,
-      },
-      decontaminationResults: {
-        workDays: 14.343915121709909,
-        onSiteDays: 16.60019867112865,
-        phaseCost: 1476759981.3893516,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1026751.0093653792,
-        phaseCost: 2534826116.0972533,
-      },
-      otherResults: {
-        otherCosts: 321932816.8858651,
-      },
-      generalResults: {
-        totalCost: 14135379715.871473,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 7.328409814392506,
+        onSiteDays: 40.72213142114099,
+        phaseCost: 954379,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.327868121531784,
+        onSiteDays: 40.450265298167814,
+        phaseCost: 980113,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 12.65627793592429,
+        onSiteDays: 81.17239671930881,
+        phaseCost: 1934492,
+      },
+      sourceReductionResults: { workDays: 0.47868551471613313, onSiteDays: 0.47868551471613313, phaseCost: 36045 },
+      decontaminationResults: {
+        workDays: 16.54806782969927,
+        onSiteDays: 17.05264856178608,
+        suppliesCost: 339419,
+        otherCosts: 591796,
+      },
+      incidentCommandResults: { onSiteDays: 106.70373079581103, phaseCost: 320881 },
+      otherResults: { otherCosts: 70254 },
+      generalResults: { totalCost: 3292887, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 20846.19149257914,
-        onSiteDays: 36005757.24317403,
-        phaseCost: 8191776628.457609,
-      },
-      sourceReductionResults: {
-        workDays: 866.9992704902658,
-        onSiteDays: 866.9992704902658,
-        phaseCost: 279027815.96597147,
-      },
-      decontaminationResults: {
-        workDays: 15.50697587093035,
-        onSiteDays: 16.967888494713204,
-        phaseCost: 734866525.518108,
-      },
-      incidentCommandResults: {
-        onSiteDays: 36006649.21033302,
-        phaseCost: 89097574445.63141,
-      },
-      otherResults: {
-        otherCosts: 10783073658.43564,
-      },
-      generalResults: {
-        totalCost: 109086319074.00873,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.848600468141387,
+        onSiteDays: 21.591661755115595,
+        phaseCost: 717120,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.63332296475284,
+        onSiteDays: 27.660734265567587,
+        phaseCost: 1068288,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.481923432894227,
+        onSiteDays: 49.25239602068318,
+        phaseCost: 1785408,
+      },
+      sourceReductionResults: { workDays: 0.05649971117024017, onSiteDays: 0.05649971117024017, phaseCost: 15563 },
+      decontaminationResults: {
+        workDays: 4.804213214154405,
+        onSiteDays: 6.872244433935789,
+        suppliesCost: 160408,
+        otherCosts: 236460,
+      },
+      incidentCommandResults: { onSiteDays: 64.1811401657892, phaseCost: 196191 },
+      otherResults: { otherCosts: 66312 },
+      generalResults: { totalCost: 2460342, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 18081.750225929525,
-          onSiteDays: 867958.451266396,
-          phaseCost: 6274341318.805468,
-        },
-        sourceReductionResults: {
-          workDays: 3980.63283171977,
-          onSiteDays: 3980.63283171977,
-          phaseCost: 698857839.8668752,
-        },
-        decontaminationResults: {
-          workDays: 20.14006255267655,
-          onSiteDays: 21.67893519431328,
-          phaseCost: 120378301.98473184,
-        },
-        incidentCommandResults: {
-          onSiteDays: 871968.7630333101,
-          phaseCost: 2144694726.2626996,
-        },
-        otherResults: {
-          otherCosts: 259036483.2218549,
-        },
-        generalResults: {
-          totalCost: 9497308670.141628,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.8388182132064936,
+          onSiteDays: 14.448356341653886,
+          phaseCost: 667672,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.8106998655350672,
+          onSiteDays: 17.80390034656975,
+          phaseCost: 826424,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 6.649518078741561,
+          onSiteDays: 32.25225668822364,
+          phaseCost: 1494096,
+        },
+        sourceReductionResults: { workDays: 0.8787307925405297, onSiteDays: 0.8787307925405297, phaseCost: 54957 },
+        decontaminationResults: {
+          workDays: 3.4689354851071106,
+          onSiteDays: 5.575037746358438,
+          suppliesCost: 348729,
+          otherCosts: 301852,
+        },
+        incidentCommandResults: { onSiteDays: 46.70602522712261, phaseCost: 143857 },
+        otherResults: { otherCosts: 44378 },
+        generalResults: { totalCost: 2387869, areaContaminated: 10242.562427940444, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 18387.21428033192,
-          onSiteDays: 148790.0874568197,
-          phaseCost: 7439228912.304835,
-        },
-        sourceReductionResults: {
-          workDays: 1345.2699538867903,
-          onSiteDays: 1345.2699538867903,
-          phaseCost: 38206387.23793503,
-        },
-        decontaminationResults: {
-          workDays: 15.04529910186429,
-          onSiteDays: 16.417641725721218,
-          phaseCost: 760661988.2560942,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.0925441313968145,
+          onSiteDays: 41.24029277085217,
+          phaseCost: 866411,
         },
-        incidentCommandResults: {
-          onSiteDays: 150159.7750524322,
-          phaseCost: 372219685.8237779,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.8633073196138803,
+          onSiteDays: 9.462559494380464,
+          phaseCost: 168266,
         },
-        otherResults: {
-          otherCosts: 25993351.35774959,
+        totalCharacterizationSamplingResults: {
+          workDays: 4.955851451010695,
+          onSiteDays: 50.702852265232636,
+          phaseCost: 1034677,
         },
-        generalResults: {
-          totalCost: 8636310324.980392,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.9444359180927266, onSiteDays: 1.9444359180927266, phaseCost: 387964 },
+        decontaminationResults: {
+          workDays: 6.316680260076346,
+          onSiteDays: 7.5920359591469255,
+          suppliesCost: 168925,
+          otherCosts: 413263,
         },
+        incidentCommandResults: { onSiteDays: 68.2393241424723, phaseCost: 211484 },
+        otherResults: { otherCosts: 71022 },
+        generalResults: { totalCost: 2287335, areaContaminated: 10242.562427940444, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 45157.1471164038,
-        onSiteDays: 1398701.5821309604,
-        phaseCost: 7073183760.861262,
-      },
-      sourceReductionResults: {
-        workDays: 1773.584940892877,
-        onSiteDays: 1773.584940892877,
-        phaseCost: 135218384.49277583,
-      },
-      decontaminationResults: {
-        workDays: 16.35055583770167,
-        onSiteDays: 19.341308502327024,
-        phaseCost: 2377710485.402285,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1400502.5083803555,
-        phaseCost: 3444502196.0919514,
-      },
-      otherResults: {
-        otherCosts: 372000120.0196369,
-      },
-      generalResults: {
-        totalCost: 13402614946.86791,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.4795095595906114,
+        onSiteDays: 10.65321575956676,
+        phaseCost: 185807,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.5254497904146582,
+        onSiteDays: 14.699524295412775,
+        phaseCost: 462777,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.00495935000527,
+        onSiteDays: 25.352740054979535,
+        phaseCost: 648584,
+      },
+      sourceReductionResults: { workDays: 0.5319871748790378, onSiteDays: 0.5319871748790378, phaseCost: 102793 },
+      decontaminationResults: {
+        workDays: 7.828180500266184,
+        onSiteDays: 9.441635794807606,
+        suppliesCost: 73709,
+        otherCosts: 202309,
+      },
+      incidentCommandResults: { onSiteDays: 43.32636302466618, phaseCost: 132139 },
+      otherResults: { otherCosts: 77328 },
+      generalResults: { totalCost: 1236862, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 145146.58878717417,
-        onSiteDays: 121281040.43945669,
-        phaseCost: 5642642130.449524,
-      },
-      sourceReductionResults: {
-        workDays: 13529.166413274144,
-        onSiteDays: 13529.166413274144,
-        phaseCost: 568975713.3140839,
-      },
-      decontaminationResults: {
-        workDays: 19.007167537232668,
-        onSiteDays: 20.337354272449705,
-        phaseCost: 1162651144.6800523,
-      },
-      incidentCommandResults: {
-        onSiteDays: 121294597.94322424,
-        phaseCost: 298256025635.6008,
-      },
-      otherResults: {
-        otherCosts: 22908902163.9817,
-      },
-      generalResults: {
-        totalCost: 328539196788.0262,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.008999327696737,
+        onSiteDays: 23.010445539900182,
+        phaseCost: 803949,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 25.593825457309705,
+        onSiteDays: 89.59515576860933,
+        phaseCost: 2308017,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 29.60282478500644,
+        onSiteDays: 112.6056013085095,
+        phaseCost: 3111966,
+      },
+      sourceReductionResults: { workDays: 5.271745999365081, onSiteDays: 5.271745999365081, phaseCost: 189884 },
+      decontaminationResults: {
+        workDays: 16.10992467638802,
+        onSiteDays: 16.259503732495826,
+        suppliesCost: 179299,
+        otherCosts: 625799,
+      },
+      incidentCommandResults: { onSiteDays: 142.1368510403704, phaseCost: 437403 },
+      otherResults: { otherCosts: 135341 },
+      generalResults: { totalCost: 4679692, areaContaminated: 10000, decontaminationRounds: 3 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 21963.431566937015,
-          onSiteDays: 477306.36700152844,
-          phaseCost: 6651289947.036645,
-        },
-        sourceReductionResults: {
-          workDays: 14171.151587750937,
-          onSiteDays: 14171.151587750937,
-          phaseCost: 672948393.3184439,
-        },
-        decontaminationResults: {
-          workDays: 19.045012942991455,
-          onSiteDays: 21.995173068250338,
-          phaseCost: 728657647.7315356,
-        },
-        incidentCommandResults: {
-          onSiteDays: 491507.51376234763,
-          phaseCost: 1193940359.0898337,
-        },
-        otherResults: {
-          otherCosts: 146642105.8615501,
-        },
-        generalResults: {
-          totalCost: 9393478453.038008,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.0923872646256727,
+          onSiteDays: 8.882837140848027,
+          phaseCost: 268342,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.264390448671643,
+          onSiteDays: 28.855943016089412,
+          phaseCost: 982042,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 5.356777713297316,
+          onSiteDays: 37.73878015693744,
+          phaseCost: 1250384,
+        },
+        sourceReductionResults: { workDays: 1.562515774049277, onSiteDays: 1.562515774049277, phaseCost: 117593 },
+        decontaminationResults: {
+          workDays: 4.121730332058326,
+          onSiteDays: 6.188853990097729,
+          suppliesCost: 146722,
+          otherCosts: 215319,
+        },
+        incidentCommandResults: { onSiteDays: 53.49014992108444, phaseCost: 163545 },
+        otherResults: { otherCosts: 56052 },
+        generalResults: { totalCost: 1949615, areaContaminated: 9230.966950820519, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 9687.177816134945,
-          onSiteDays: 306982.0511605592,
-          phaseCost: 2219379418.5382714,
-        },
-        sourceReductionResults: {
-          workDays: 2546.389829364043,
-          onSiteDays: 2546.389829364043,
-          phaseCost: 197862853.27304065,
-        },
-        decontaminationResults: {
-          workDays: 21.67127746778337,
-          onSiteDays: 24.075920560182052,
-          phaseCost: 592973963.0175265,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.4602982532358304,
+          onSiteDays: 32.46639867705194,
+          phaseCost: 808472,
         },
-        incidentCommandResults: {
-          onSiteDays: 309560.51691048336,
-          phaseCost: 748824205.8736897,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.189279487135504,
+          onSiteDays: 28.74228536681397,
+          phaseCost: 555295,
         },
-        otherResults: {
-          otherCosts: 62975991.24381689,
+        totalCharacterizationSamplingResults: {
+          workDays: 6.649577740371335,
+          onSiteDays: 61.208684043865915,
+          phaseCost: 1363767,
         },
-        generalResults: {
-          totalCost: 3822016431.9463453,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.47418508531855663, onSiteDays: 0.47418508531855663, phaseCost: 75094 },
+        decontaminationResults: {
+          workDays: 7.972659553394807,
+          onSiteDays: 10.780916657713455,
+          suppliesCost: 239441,
+          otherCosts: 254067,
         },
+        incidentCommandResults: { onSiteDays: 80.46378578689793, phaseCost: 249515 },
+        otherResults: { otherCosts: 93485 },
+        generalResults: { totalCost: 2275369, areaContaminated: 9230.966950820519, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 9074.848275414864,
-        onSiteDays: 650917.7279604543,
-        phaseCost: 3321679532.41929,
-      },
-      sourceReductionResults: {
-        workDays: 4455.067535416684,
-        onSiteDays: 4455.067535416684,
-        phaseCost: 696339761.5842556,
-      },
-      decontaminationResults: {
-        workDays: 19.73109753819441,
-        onSiteDays: 21.673431011772117,
-        phaseCost: 1013421521.2445605,
-      },
-      incidentCommandResults: {
-        onSiteDays: 655402.4689268827,
-        phaseCost: 1611069023.0060484,
-      },
-      otherResults: {
-        otherCosts: 162975960.958876,
-      },
-      generalResults: {
-        totalCost: 6805485799.21303,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 5.029092630379024,
+        onSiteDays: 14.923023342505696,
+        phaseCost: 382807,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.0730878628493326,
+        onSiteDays: 8.277490879013651,
+        phaseCost: 350741,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.1021804932283565,
+        onSiteDays: 23.20051422151935,
+        phaseCost: 733548,
+      },
+      sourceReductionResults: { workDays: 0.5339947607716272, onSiteDays: 0.5339947607716272, phaseCost: 127283 },
+      decontaminationResults: {
+        workDays: 16.133369498451557,
+        onSiteDays: 18.993880297987225,
+        suppliesCost: 216291,
+        otherCosts: 979346,
+      },
+      incidentCommandResults: { onSiteDays: 50.7283892802782, phaseCost: 157221 },
+      otherResults: { otherCosts: 61833 },
+      generalResults: { totalCost: 2275522, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 52565.98313746125,
-        onSiteDays: 3066209.259085575,
-        phaseCost: 17603738027.332573,
-      },
-      sourceReductionResults: {
-        workDays: 5771.581949263454,
-        onSiteDays: 5771.581949263454,
-        phaseCost: 1819658141.622798,
-      },
-      decontaminationResults: {
-        workDays: 17.044492775817517,
-        onSiteDays: 19.518590110242037,
-        phaseCost: 1033185167.3571173,
-      },
-      incidentCommandResults: {
-        onSiteDays: 3072008.359624949,
-        phaseCost: 7515384833.824881,
-      },
-      otherResults: {
-        otherCosts: 712478974.3826152,
-      },
-      generalResults: {
-        totalCost: 28684445144.51998,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.3076115578845433,
+        onSiteDays: 6.375722673861405,
+        phaseCost: 393420,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.478997461829364,
+        onSiteDays: 6.512193950494174,
+        phaseCost: 395979,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 2.7866090197139073,
+        onSiteDays: 12.88791662435558,
+        phaseCost: 789399,
+      },
+      sourceReductionResults: { workDays: 1.2123625663861386, onSiteDays: 1.2123625663861386, phaseCost: 234681 },
+      decontaminationResults: {
+        workDays: 3.932512100537427,
+        onSiteDays: 5.336885987859426,
+        suppliesCost: 378137,
+        otherCosts: 249514,
+      },
+      incidentCommandResults: { onSiteDays: 27.437165178601145, phaseCost: 82534 },
+      otherResults: { otherCosts: 64538 },
+      generalResults: { totalCost: 1798803, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 8824.346153961063,
-          onSiteDays: 151187.78947809245,
-          phaseCost: 2741868118.6219354,
-        },
-        sourceReductionResults: {
-          workDays: 20626.10949983828,
-          onSiteDays: 20626.10949983828,
-          phaseCost: 593908829.5455842,
-        },
-        decontaminationResults: {
-          workDays: 9.618072637966385,
-          onSiteDays: 9.640495065748807,
-          phaseCost: 386122519.64761907,
-        },
-        incidentCommandResults: {
-          onSiteDays: 171831.5394729965,
-          phaseCost: 425554686.28119504,
-        },
-        otherResults: {
-          otherCosts: 50725407.514622256,
-        },
-        generalResults: {
-          totalCost: 4198179561.610956,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.162861504375753,
+          onSiteDays: 6.324595598300295,
+          phaseCost: 231987,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.941798761436293,
+          onSiteDays: 19.910749865803748,
+          phaseCost: 1010800,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 7.104660265812046,
+          onSiteDays: 26.235345464104043,
+          phaseCost: 1242787,
+        },
+        sourceReductionResults: { workDays: 0.9222622744340347, onSiteDays: 0.9222622744340347, phaseCost: 120998 },
+        decontaminationResults: {
+          workDays: 3.628286894557133,
+          onSiteDays: 6.00677844835603,
+          suppliesCost: 270468,
+          otherCosts: 346044,
+        },
+        incidentCommandResults: { onSiteDays: 41.164386186894106, phaseCost: 127411 },
+        otherResults: { otherCosts: 77365 },
+        generalResults: { totalCost: 2185073, areaContaminated: 14965.214810791707, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 10503.002468256691,
-          onSiteDays: 428101.67346782156,
-          phaseCost: 3063818180.577155,
-        },
-        sourceReductionResults: {
-          workDays: 3485.345537439402,
-          onSiteDays: 3485.345537439402,
-          phaseCost: 812443675.6460848,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.951176153020807,
+          onSiteDays: 54.61066809700178,
+          phaseCost: 1070978,
         },
-        decontaminationResults: {
-          workDays: 25.051355622953587,
-          onSiteDays: 26.854121164151962,
-          phaseCost: 362508440.77323127,
-        },
-        incidentCommandResults: {
-          onSiteDays: 431621.8731264251,
-          phaseCost: 1045464943.23065,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.896737450646701,
+          onSiteDays: 25.406141939616894,
+          phaseCost: 421798,
         },
-        otherResults: {
-          otherCosts: 105318996.98658639,
+        totalCharacterizationSamplingResults: {
+          workDays: 11.847913603667507,
+          onSiteDays: 80.01681003661866,
+          phaseCost: 1492776,
         },
-        generalResults: {
-          totalCost: 5389554237.213708,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 3.520666849601888, onSiteDays: 3.520666849601888, phaseCost: 176841 },
+        decontaminationResults: {
+          workDays: 4.832095854876585,
+          onSiteDays: 6.414928547203291,
+          suppliesCost: 385778,
+          otherCosts: 326119,
         },
+        incidentCommandResults: { onSiteDays: 97.95240543342385, phaseCost: 302724 },
+        otherResults: { otherCosts: 49927 },
+        generalResults: { totalCost: 2734165, areaContaminated: 14965.214810791707, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 45866.286661972,
-        onSiteDays: 494008.32052444376,
-        phaseCost: 7714958990.73974,
-      },
-      sourceReductionResults: {
-        workDays: 153.79539541527905,
-        onSiteDays: 153.79539541527905,
-        phaseCost: 61696080.18372654,
-      },
-      decontaminationResults: {
-        workDays: 15.583310692939746,
-        onSiteDays: 17.102977453056482,
-        phaseCost: 361364597.5296365,
-      },
-      incidentCommandResults: {
-        onSiteDays: 494187.21889731206,
-        phaseCost: 1197449288.4477448,
-      },
-      otherResults: {
-        otherCosts: 119236342.93579088,
-      },
-      generalResults: {
-        totalCost: 9454705299.83664,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.2243534891958836,
+        onSiteDays: 11.755905569919928,
+        phaseCost: 738194,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.497555913915302,
+        onSiteDays: 10.360851084009266,
+        phaseCost: 465422,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.721909403111185,
+        onSiteDays: 22.116756653929194,
+        phaseCost: 1203616,
+      },
+      sourceReductionResults: { workDays: 0.11565733262435605, onSiteDays: 0.11565733262435605, phaseCost: 10377 },
+      decontaminationResults: {
+        workDays: 12.32592778637212,
+        onSiteDays: 15.224441607534988,
+        suppliesCost: 312199,
+        otherCosts: 432142,
+      },
+      incidentCommandResults: { onSiteDays: 45.45685559408854, phaseCost: 140199 },
+      otherResults: { otherCosts: 106132 },
+      generalResults: { totalCost: 2204665, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 46490.9578321466,
-        onSiteDays: 992941.7423695931,
-        phaseCost: 3208267392.5614147,
-      },
-      sourceReductionResults: {
-        workDays: 53136.646018564476,
-        onSiteDays: 53136.646018564476,
-        phaseCost: 1232356954.3623848,
-      },
-      decontaminationResults: {
-        workDays: 15.466599259867007,
-        onSiteDays: 18.36614006742978,
-        phaseCost: 484579782.98364776,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1046104.754528225,
-        phaseCost: 2576100458.402169,
-      },
-      otherResults: {
-        otherCosts: 328224769.5889898,
-      },
-      generalResults: {
-        totalCost: 7829529357.898606,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.205415332398444,
+        onSiteDays: 20.667118661917296,
+        phaseCost: 609936,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.244060987004587,
+        onSiteDays: 16.55561790648016,
+        phaseCost: 332766,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.449476319403031,
+        onSiteDays: 37.22273656839745,
+        phaseCost: 942702,
+      },
+      sourceReductionResults: { workDays: 1.1890250910853932, onSiteDays: 1.1890250910853932, phaseCost: 66501 },
+      decontaminationResults: {
+        workDays: 4.521605412830041,
+        onSiteDays: 6.397910738223677,
+        suppliesCost: 427866,
+        otherCosts: 210509,
+      },
+      incidentCommandResults: { onSiteDays: 52.80967239770652, phaseCost: 159193 },
+      otherResults: { otherCosts: 101608 },
+      generalResults: { totalCost: 1908379, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 16289.998846933177,
-          onSiteDays: 237131.49164584596,
-          phaseCost: 3154725884.9970975,
-        },
-        sourceReductionResults: {
-          workDays: 14958.904646328332,
-          onSiteDays: 14958.904646328332,
-          phaseCost: 695666892.8552091,
-        },
-        decontaminationResults: {
-          workDays: 15.804292991711826,
-          onSiteDays: 18.250747945218055,
-          phaseCost: 941830457.5775002,
-        },
-        incidentCommandResults: {
-          onSiteDays: 252116.6470401195,
-          phaseCost: 613028853.5493455,
-        },
-        otherResults: {
-          otherCosts: 49059691.66558834,
-        },
-        generalResults: {
-          totalCost: 5454311780.644741,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.267197953104822,
+          onSiteDays: 14.051761419220036,
+          phaseCost: 744687,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.3741722086056787,
+          onSiteDays: 11.433400632842492,
+          phaseCost: 649101,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 6.641370161710501,
+          onSiteDays: 25.485162052062527,
+          phaseCost: 1393788,
+        },
+        sourceReductionResults: { workDays: 6.267029368278166, onSiteDays: 6.267029368278166, phaseCost: 525321 },
+        decontaminationResults: {
+          workDays: 4.23315209924084,
+          onSiteDays: 5.05991719175594,
+          suppliesCost: 114215,
+          otherCosts: 235332,
+        },
+        incidentCommandResults: { onSiteDays: 44.81210861209664, phaseCost: 138392 },
+        otherResults: { otherCosts: 61239 },
+        generalResults: { totalCost: 2468287, areaContaminated: 12253.429507197212, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 17850.655850272116,
-          onSiteDays: 174453.7514166339,
-          phaseCost: 5048295574.044189,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 5.040841466974573,
+          onSiteDays: 34.67224213966115,
+          phaseCost: 1343359,
         },
-        sourceReductionResults: {
-          workDays: 2098.6454328590507,
-          onSiteDays: 2098.6454328590507,
-          phaseCost: 466879015.7212587,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 9.168415172853837,
+          onSiteDays: 34.3081230842134,
+          phaseCost: 1126296,
         },
-        decontaminationResults: {
-          workDays: 14.395086409150409,
-          onSiteDays: 15.609031671334296,
-          phaseCost: 233890450.52945083,
-        },
-        incidentCommandResults: {
-          onSiteDays: 176576.00588116428,
-          phaseCost: 427085030.9811881,
+        totalCharacterizationSamplingResults: {
+          workDays: 14.20925663982841,
+          onSiteDays: 68.98036522387454,
+          phaseCost: 2469655,
         },
-        otherResults: {
-          otherCosts: 48420927.81553063,
-        },
-        generalResults: {
-          totalCost: 6224570999.091618,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.6189074143937017, onSiteDays: 0.6189074143937017, phaseCost: 63458 },
+        decontaminationResults: {
+          workDays: 3.2415218162912693,
+          onSiteDays: 3.9805169084529664,
+          suppliesCost: 189626,
+          otherCosts: 128729,
         },
+        incidentCommandResults: { onSiteDays: 81.57978954672122, phaseCost: 250173 },
+        otherResults: { otherCosts: 140862 },
+        generalResults: { totalCost: 3242503, areaContaminated: 12253.429507197212, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 45221.321817245785,
-        onSiteDays: 3893157.5397319966,
-        phaseCost: 8511803091.119839,
-      },
-      sourceReductionResults: {
-        workDays: 3731.792905423743,
-        onSiteDays: 3731.792905423743,
-        phaseCost: 542890529.7229894,
-      },
-      decontaminationResults: {
-        workDays: 11.456024259435019,
-        onSiteDays: 12.652190120576925,
-        phaseCost: 221316561.97092864,
-      },
-      incidentCommandResults: {
-        onSiteDays: 3896909.984827541,
-        phaseCost: 9494546761.011396,
-      },
-      otherResults: {
-        otherCosts: 1163706249.6686957,
-      },
-      generalResults: {
-        totalCost: 19934263193.49385,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.286567978539277,
+        onSiteDays: 12.856808786781588,
+        phaseCost: 445056,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.503355972599792,
+        onSiteDays: 12.39554213957902,
+        phaseCost: 337347,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.78992395113907,
+        onSiteDays: 25.252350926360606,
+        phaseCost: 782403,
+      },
+      sourceReductionResults: { workDays: 0.5664466592347558, onSiteDays: 0.5664466592347558, phaseCost: 26851 },
+      decontaminationResults: {
+        workDays: 7.796838451129579,
+        onSiteDays: 9.062199158841324,
+        suppliesCost: 53058,
+        otherCosts: 343179,
+      },
+      incidentCommandResults: { onSiteDays: 42.880996744436686, phaseCost: 131652 },
+      otherResults: { otherCosts: 64715 },
+      generalResults: { totalCost: 1401858, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 27415.220389069273,
-        onSiteDays: 503033.38195945555,
-        phaseCost: 10662859225.703583,
-      },
-      sourceReductionResults: {
-        workDays: 5215.037923451219,
-        onSiteDays: 5215.037923451219,
-        phaseCost: 1377015031.5728183,
-      },
-      decontaminationResults: {
-        workDays: 23.959145424412363,
-        onSiteDays: 24.614663319805324,
-        phaseCost: 1508430550.3263738,
-      },
-      incidentCommandResults: {
-        onSiteDays: 508281.03454622655,
-        phaseCost: 1256823352.8939662,
-      },
-      otherResults: {
-        otherCosts: 153948369.39943287,
-      },
-      generalResults: {
-        totalCost: 14959076529.896175,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 16.48744417338243,
+        onSiteDays: 31.79472319184223,
+        phaseCost: 622123,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.78032908690317,
+        onSiteDays: 19.2480447008639,
+        phaseCost: 622530,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 21.267773260285598,
+        onSiteDays: 51.04276789270613,
+        phaseCost: 1244653,
+      },
+      sourceReductionResults: { workDays: 0.3202462416807089, onSiteDays: 0.3202462416807089, phaseCost: 49551 },
+      decontaminationResults: {
+        workDays: 3.146469086908379,
+        onSiteDays: 5.340483843661026,
+        suppliesCost: 51404,
+        otherCosts: 218614,
+      },
+      incidentCommandResults: { onSiteDays: 64.70349797804786, phaseCost: 198263 },
+      otherResults: { otherCosts: 93120 },
+      generalResults: { totalCost: 1855605, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 26091.44405660767,
-          onSiteDays: 178855.82433936917,
-          phaseCost: 3743988083.7519913,
-        },
-        sourceReductionResults: {
-          workDays: 357.7015773673703,
-          onSiteDays: 357.7015773673703,
-          phaseCost: 109792335.13393182,
-        },
-        decontaminationResults: {
-          workDays: 16.39365453095959,
-          onSiteDays: 18.684854452890544,
-          phaseCost: 371764494.7189876,
-        },
-        incidentCommandResults: {
-          onSiteDays: 179240.21077118942,
-          phaseCost: 443461301.6208124,
-        },
-        otherResults: {
-          otherCosts: 57633715.34299004,
-        },
-        generalResults: {
-          totalCost: 4726639930.568713,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.6216494334785352,
+          onSiteDays: 6.537079784618368,
+          phaseCost: 228255,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.6734153726293057,
+          onSiteDays: 12.42824489078645,
+          phaseCost: 464089,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 2.295064806107841,
+          onSiteDays: 18.96532467540482,
+          phaseCost: 692344,
+        },
+        sourceReductionResults: { workDays: 0.17670777775104404, onSiteDays: 0.17670777775104404, phaseCost: 20484 },
+        decontaminationResults: {
+          workDays: 8.393451707529241,
+          onSiteDays: 10.518844276321783,
+          suppliesCost: 49072,
+          otherCosts: 378340,
+        },
+        incidentCommandResults: { onSiteDays: 37.66087672947765, phaseCost: 116839 },
+        otherResults: { otherCosts: 60396 },
+        generalResults: { totalCost: 1317475, areaContaminated: 8445.77122792736, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 9926.675250869706,
-          onSiteDays: 111490.01599516573,
-          phaseCost: 2980272742.1564198,
-        },
-        sourceReductionResults: {
-          workDays: 3297.338960200912,
-          onSiteDays: 3297.338960200912,
-          phaseCost: 502151457.2711097,
-        },
-        decontaminationResults: {
-          workDays: 24.388186789208135,
-          onSiteDays: 25.526156225597056,
-          phaseCost: 1363977808.623763,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 8.268208613726435,
+          onSiteDays: 23.996474187658457,
+          phaseCost: 651157,
         },
-        incidentCommandResults: {
-          onSiteDays: 114820.88111159223,
-          phaseCost: 279719585.48518085,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.53297686120488,
+          onSiteDays: 15.423560176895116,
+          phaseCost: 521695,
         },
-        otherResults: {
-          otherCosts: 38633852.44441038,
+        totalCharacterizationSamplingResults: {
+          workDays: 10.801185474931314,
+          onSiteDays: 39.42003436455357,
+          phaseCost: 1172852,
         },
-        generalResults: {
-          totalCost: 5164755445.980884,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.8424408971796681, onSiteDays: 0.8424408971796681, phaseCost: 69382 },
+        decontaminationResults: {
+          workDays: 3.7754494726600707,
+          onSiteDays: 4.501046214136538,
+          suppliesCost: 41561,
+          otherCosts: 278525,
         },
+        incidentCommandResults: { onSiteDays: 52.76352147586978, phaseCost: 158634 },
+        otherResults: { otherCosts: 78867 },
+        generalResults: { totalCost: 1799821, areaContaminated: 8445.77122792736, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 16251.88845301059,
-        onSiteDays: 549602.2169759263,
-        phaseCost: 4596092968.22426,
-      },
-      sourceReductionResults: {
-        workDays: 4680.686848542499,
-        onSiteDays: 4680.686848542499,
-        phaseCost: 772683485.9038733,
-      },
-      decontaminationResults: {
-        workDays: 20.787324631537153,
-        onSiteDays: 23.690385560433004,
-        phaseCost: 266126829.6689571,
-      },
-      incidentCommandResults: {
-        onSiteDays: 554314.5942100292,
-        phaseCost: 1345723355.9415953,
-      },
-      otherResults: {
-        otherCosts: 144837426.3937843,
-      },
-      generalResults: {
-        totalCost: 7125464066.13247,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 13.900648640951538,
+        onSiteDays: 25.478625767859462,
+        phaseCost: 1039248,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.565225840717338,
+        onSiteDays: 18.233252328182974,
+        phaseCost: 1070079,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 19.465874481668877,
+        onSiteDays: 43.71187809604244,
+        phaseCost: 2109327,
+      },
+      sourceReductionResults: { workDays: 5.789079613824963, onSiteDays: 5.789079613824963, phaseCost: 106689 },
+      decontaminationResults: {
+        workDays: 9.813059883148656,
+        onSiteDays: 12.690545492267828,
+        suppliesCost: 305635,
+        otherCosts: 323862,
+      },
+      incidentCommandResults: { onSiteDays: 70.19150320213524, phaseCost: 217002 },
+      otherResults: { otherCosts: 83121 },
+      generalResults: { totalCost: 3145636, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 24824.241081552384,
-        onSiteDays: 726604.9896552531,
-        phaseCost: 5353787378.641598,
-      },
-      sourceReductionResults: {
-        workDays: 1652.293599785961,
-        onSiteDays: 1652.293599785961,
-        phaseCost: 182358291.07963812,
-      },
-      decontaminationResults: {
-        workDays: 25.492610767365576,
-        onSiteDays: 26.53598794749379,
-        phaseCost: 2349500310.808633,
-      },
-      incidentCommandResults: {
-        onSiteDays: 728291.8192429866,
-        phaseCost: 1792340451.7005467,
-      },
-      otherResults: {
-        otherCosts: 129058906.06315406,
-      },
-      generalResults: {
-        totalCost: 9807045338.29357,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.840278515932586,
+        onSiteDays: 10.69557821358052,
+        phaseCost: 528995,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.0058640531004706,
+        onSiteDays: 16.5373198632673,
+        phaseCost: 1193652,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.846142569033057,
+        onSiteDays: 27.232898076847817,
+        phaseCost: 1722647,
+      },
+      sourceReductionResults: { workDays: 0.10868064424930954, onSiteDays: 0.10868064424930954, phaseCost: 20833 },
+      decontaminationResults: {
+        workDays: 3.114304117419362,
+        onSiteDays: 4.947128404618038,
+        suppliesCost: 250572,
+        otherCosts: 106130,
+      },
+      incidentCommandResults: { onSiteDays: 40.28870712571516, phaseCost: 123634 },
+      otherResults: { otherCosts: 56137 },
+      generalResults: { totalCost: 2279953, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 16655.414101537965,
-          onSiteDays: 391384.7690344653,
-          phaseCost: 6626539773.190734,
-        },
-        sourceReductionResults: {
-          workDays: 809.2881262497485,
-          onSiteDays: 809.2881262497485,
-          phaseCost: 314629971.57815325,
-        },
-        decontaminationResults: {
-          workDays: 12.384567451985685,
-          onSiteDays: 15.36144517300684,
-          phaseCost: 1252312365.8157957,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.936969631076134,
+          onSiteDays: 18.448350060372533,
+          phaseCost: 959337,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 8.608638871935746,
+          onSiteDays: 34.700360749681316,
+          phaseCost: 1496527,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 11.54560850301188,
+          onSiteDays: 53.14871081005385,
+          phaseCost: 2455864,
+        },
+        sourceReductionResults: { workDays: 1.6096069077664061, onSiteDays: 1.6096069077664061, phaseCost: 58140 },
+        decontaminationResults: {
+          workDays: 9.505669972744228,
+          onSiteDays: 10.270012875383257,
+          suppliesCost: 252669,
+          otherCosts: 668140,
+        },
+        incidentCommandResults: { onSiteDays: 73.0283305932035, phaseCost: 219791 },
+        otherResults: { otherCosts: 118259 },
+        generalResults: { totalCost: 3772863, areaContaminated: 13649.298739305066, decontaminationRounds: 1 },
+      },
+      Industrial: {
+        preDeconCharacterizationSamplingResults: {
+          workDays: 7.026526007076644,
+          onSiteDays: 20.70014316606494,
+          phaseCost: 1170804,
         },
-        incidentCommandResults: {
-          onSiteDays: 392217.41860588803,
-          phaseCost: 972427950.4122994,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 8.025765050736863,
+          onSiteDays: 21.396341680039285,
+          phaseCost: 1229012,
         },
-        otherResults: {
-          otherCosts: 131728986.14951858,
+        totalCharacterizationSamplingResults: {
+          workDays: 15.052291057813507,
+          onSiteDays: 42.096484846104225,
+          phaseCost: 2399816,
         },
-        generalResults: {
-          totalCost: 9297639047.146502,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.940146953327613, onSiteDays: 0.940146953327613, phaseCost: 128485 },
+        decontaminationResults: {
+          workDays: 4.90203172292142,
+          onSiteDays: 7.0519655696237376,
+          suppliesCost: 59019,
+          otherCosts: 258005,
         },
+        incidentCommandResults: { onSiteDays: 58.08859736905558, phaseCost: 178786 },
+        otherResults: { otherCosts: 64235 },
+        generalResults: { totalCost: 3088346, areaContaminated: 13649.298739305066, decontaminationRounds: 1 },
+      },
+    },
+    Outdoor: {
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.00455186334133,
+        onSiteDays: 31.254160279513812,
+        phaseCost: 783984,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.7894075505674438,
+        onSiteDays: 17.465680178189814,
+        phaseCost: 429912,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.793959413908774,
+        onSiteDays: 48.719840457703626,
+        phaseCost: 1213896,
+      },
+      sourceReductionResults: { workDays: 0.042046278847604, onSiteDays: 0.042046278847604, phaseCost: 7804 },
+      decontaminationResults: {
+        workDays: 4.91181348960656,
+        onSiteDays: 5.053463226895189,
+        suppliesCost: 387346,
+        otherCosts: 132236,
+      },
+      incidentCommandResults: { onSiteDays: 61.81534996344642, phaseCost: 186561 },
+      otherResults: { otherCosts: 104901 },
+      generalResults: { totalCost: 2032744, areaContaminated: 10000, decontaminationRounds: 1 },
+    },
+    Underground: {
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.8572927712426757,
+        onSiteDays: 7.173760613794689,
+        phaseCost: 353775,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.776581632794795,
+        onSiteDays: 14.725577649188129,
+        phaseCost: 872789,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.63387440403747,
+        onSiteDays: 21.899338262982816,
+        phaseCost: 1226564,
+      },
+      sourceReductionResults: { workDays: 0.1429960251846125, onSiteDays: 0.1429960251846125, phaseCost: 18654 },
+      decontaminationResults: {
+        workDays: 7.195614350772373,
+        onSiteDays: 8.299880253686542,
+        suppliesCost: 128108,
+        otherCosts: 500047,
+      },
+      incidentCommandResults: { onSiteDays: 38.34221454185397, phaseCost: 116926 },
+      otherResults: { otherCosts: 36545 },
+      generalResults: { totalCost: 2026844, areaContaminated: 10000, decontaminationRounds: 1 },
+    },
+  },
+  {
+    Indoor: {
+      Commercial: {
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.228268659206371,
+          onSiteDays: 43.601492010955575,
+          phaseCost: 1017196,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.794169667178363,
+          onSiteDays: 62.4359402920414,
+          phaseCost: 1404555,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 8.022438326384734,
+          onSiteDays: 106.03743230299698,
+          phaseCost: 2421751,
+        },
+        sourceReductionResults: { workDays: 4.938781677291445, onSiteDays: 4.938781677291445, phaseCost: 391617 },
+        decontaminationResults: {
+          workDays: 7.29466482514857,
+          onSiteDays: 9.26761851209859,
+          suppliesCost: 92111,
+          otherCosts: 495907,
+        },
+        incidentCommandResults: { onSiteDays: 128.243832492387, phaseCost: 392293 },
+        otherResults: { otherCosts: 151005 },
+        generalResults: { totalCost: 3944684, areaContaminated: 14995.577028020187, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 53654.33669837809,
-          onSiteDays: 953879.1547197824,
-          phaseCost: 5768189375.431665,
-        },
-        sourceReductionResults: {
-          workDays: 1898.1634874574313,
-          onSiteDays: 1898.1634874574313,
-          phaseCost: 226365728.9201122,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.176209500714933,
+          onSiteDays: 9.760345599057636,
+          phaseCost: 221148,
         },
-        decontaminationResults: {
-          workDays: 11.224387582909406,
-          onSiteDays: 11.672818570787278,
-          phaseCost: 840740008.5584358,
-        },
-        incidentCommandResults: {
-          onSiteDays: 955796.9910258106,
-          phaseCost: 2343075214.4121027,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 6.305834438335429,
+          onSiteDays: 22.598269863984164,
+          phaseCost: 1013478,
         },
-        otherResults: {
-          otherCosts: 275745075.8774065,
+        totalCharacterizationSamplingResults: {
+          workDays: 10.482043939050362,
+          onSiteDays: 32.3586154630418,
+          phaseCost: 1234626,
         },
-        generalResults: {
-          totalCost: 9454115403.199722,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.259152899287299, onSiteDays: 1.259152899287299, phaseCost: 132535 },
+        decontaminationResults: {
+          workDays: 7.278008495289368,
+          onSiteDays: 7.513731570801169,
+          suppliesCost: 216178,
+          otherCosts: 256265,
         },
+        incidentCommandResults: { onSiteDays: 49.13149993313027, phaseCost: 148824 },
+        otherResults: { otherCosts: 109555 },
+        generalResults: { totalCost: 2097983, areaContaminated: 14995.577028020187, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 18339.13587929039,
-        onSiteDays: 868869.2812763046,
-        phaseCost: 8506782699.986982,
-      },
-      sourceReductionResults: {
-        workDays: 13539.108601990696,
-        onSiteDays: 13539.108601990696,
-        phaseCost: 1223508671.8046095,
-      },
-      decontaminationResults: {
-        workDays: 21.26522005309007,
-        onSiteDays: 23.648067670792358,
-        phaseCost: 860535431.3306727,
-      },
-      incidentCommandResults: {
-        onSiteDays: 882440.0379459661,
-        phaseCost: 2137003377.9826083,
-      },
-      otherResults: {
-        otherCosts: 193163214.24853027,
-      },
-      generalResults: {
-        totalCost: 12920993395.353403,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.9549992466386281,
+        onSiteDays: 13.876730816322711,
+        phaseCost: 298820,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 8.707139744518738,
+        onSiteDays: 40.058691815787256,
+        phaseCost: 729525,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 10.662138991157367,
+        onSiteDays: 53.93542263210997,
+        phaseCost: 1028345,
+      },
+      sourceReductionResults: { workDays: 2.7049666060631896, onSiteDays: 2.7049666060631896, phaseCost: 83904 },
+      decontaminationResults: {
+        workDays: 11.751877295494051,
+        onSiteDays: 13.06963535376583,
+        suppliesCost: 36773,
+        otherCosts: 532731,
+      },
+      incidentCommandResults: { onSiteDays: 77.71002459193899, phaseCost: 239980 },
+      otherResults: { otherCosts: 106091 },
+      generalResults: { totalCost: 2027824, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 12320.193745839293,
-        onSiteDays: 221189.14815583342,
-        phaseCost: 3520951334.024802,
-      },
-      sourceReductionResults: {
-        workDays: 13443.640766652148,
-        onSiteDays: 13443.640766652148,
-        phaseCost: 2582919271.0551186,
-      },
-      decontaminationResults: {
-        workDays: 15.27630401758391,
-        onSiteDays: 16.681542100776348,
-        phaseCost: 1845130227.9901366,
-      },
-      incidentCommandResults: {
-        onSiteDays: 234657.47046458634,
-        phaseCost: 571560534.0948682,
-      },
-      otherResults: {
-        otherCosts: 61393048.83434289,
-      },
-      generalResults: {
-        totalCost: 8581954415.999268,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 5.155540041034955,
+        onSiteDays: 18.08496473863506,
+        phaseCost: 729767,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.4095883228555537,
+        onSiteDays: 12.240643679723517,
+        phaseCost: 500845,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.5651283638905085,
+        onSiteDays: 30.325608418358577,
+        phaseCost: 1230612,
+      },
+      sourceReductionResults: { workDays: 2.4821845521815877, onSiteDays: 2.4821845521815877, phaseCost: 331479 },
+      decontaminationResults: {
+        workDays: 4.358360831476366,
+        onSiteDays: 6.126788430411086,
+        suppliesCost: 265192,
+        otherCosts: 324421,
+      },
+      incidentCommandResults: { onSiteDays: 46.934581400951245, phaseCost: 142517 },
+      otherResults: { otherCosts: 59966 },
+      generalResults: { totalCost: 2354187, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 26749.9390009647,
-          onSiteDays: 1921957.8148820028,
-          phaseCost: 5666436501.268969,
-        },
-        sourceReductionResults: {
-          workDays: 3270.5752819226723,
-          onSiteDays: 3270.5752819226723,
-          phaseCost: 259678322.8674389,
-        },
-        decontaminationResults: {
-          workDays: 23.454728214874567,
-          onSiteDays: 26.133386434086923,
-          phaseCost: 714616013.4139225,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1925262.5235503595,
-          phaseCost: 4754895730.540127,
-        },
-        otherResults: {
-          otherCosts: 437958243.02233565,
-        },
-        generalResults: {
-          totalCost: 11833584811.112793,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.8478129148986913,
+          onSiteDays: 22.416104030173543,
+          phaseCost: 288700,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.051510813959699,
+          onSiteDays: 32.365390360880866,
+          phaseCost: 449079,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 6.89932372885839,
+          onSiteDays: 54.78149439105441,
+          phaseCost: 737779,
+        },
+        sourceReductionResults: { workDays: 3.1266676106084326, onSiteDays: 3.1266676106084326, phaseCost: 528415 },
+        decontaminationResults: {
+          workDays: 3.4478282650112706,
+          onSiteDays: 4.610295015529332,
+          suppliesCost: 167915,
+          otherCosts: 215464,
+        },
+        incidentCommandResults: { onSiteDays: 70.51845701719218, phaseCost: 213404 },
+        otherResults: { otherCosts: 82383 },
+        generalResults: { totalCost: 1945360, areaContaminated: 14057.28818128288, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 11714.373564070036,
-          onSiteDays: 318261.55310939386,
-          phaseCost: 2223047687.572751,
-        },
-        sourceReductionResults: {
-          workDays: 789.7198363232446,
-          onSiteDays: 789.7198363232446,
-          phaseCost: 65446754.255432904,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.804506228611313,
+          onSiteDays: 23.6555378381102,
+          phaseCost: 1086982,
         },
-        decontaminationResults: {
-          workDays: 26.20966473180094,
-          onSiteDays: 29.197403147396955,
-          phaseCost: 549656806.832193,
-        },
-        incidentCommandResults: {
-          onSiteDays: 319088.4703488645,
-          phaseCost: 787084682.1188977,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.4816996112003418,
+          onSiteDays: 15.721918577858148,
+          phaseCost: 693574,
         },
-        otherResults: {
-          otherCosts: 65800045.34096845,
+        totalCharacterizationSamplingResults: {
+          workDays: 7.286205839811655,
+          onSiteDays: 39.37745641596835,
+          phaseCost: 1780556,
         },
-        generalResults: {
-          totalCost: 3691035976.1202435,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.6903519220610709, onSiteDays: 0.6903519220610709, phaseCost: 82260 },
+        decontaminationResults: {
+          workDays: 4.917803512867029,
+          onSiteDays: 5.187859735495379,
+          suppliesCost: 429781,
+          otherCosts: 229534,
         },
+        incidentCommandResults: { onSiteDays: 53.255668073524795, phaseCost: 162921 },
+        otherResults: { otherCosts: 44605 },
+        generalResults: { totalCost: 2729657, areaContaminated: 14057.28818128288, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 22658.798067032225,
-        onSiteDays: 349492.8016296223,
-        phaseCost: 9294274978.423359,
-      },
-      sourceReductionResults: {
-        workDays: 26964.19096181085,
-        onSiteDays: 26964.19096181085,
-        phaseCost: 1476324787.0391269,
-      },
-      decontaminationResults: {
-        workDays: 10.559154725530918,
-        onSiteDays: 13.113619773907963,
-        phaseCost: 1074927801.6004224,
-      },
-      incidentCommandResults: {
-        onSiteDays: 376478.10621120705,
-        phaseCost: 912992333.291568,
-      },
-      otherResults: {
-        otherCosts: 127508571.3391161,
-      },
-      generalResults: {
-        totalCost: 12886028471.693592,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.7276027235184284,
+        onSiteDays: 12.899624327288423,
+        phaseCost: 433102,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.8025950799685315,
+        onSiteDays: 14.391517492754623,
+        phaseCost: 566050,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.53019780348696,
+        onSiteDays: 27.291141820043045,
+        phaseCost: 999152,
+      },
+      sourceReductionResults: { workDays: 1.761101248279516, onSiteDays: 1.761101248279516, phaseCost: 137026 },
+      decontaminationResults: {
+        workDays: 12.988898177162953,
+        onSiteDays: 15.400270316610175,
+        suppliesCost: 26112,
+        otherCosts: 589645,
+      },
+      incidentCommandResults: { onSiteDays: 52.452513384932736, phaseCost: 160108 },
+      otherResults: { otherCosts: 141388 },
+      generalResults: { totalCost: 2053431, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 22826.54229709858,
-        onSiteDays: 1798210.3741837565,
-        phaseCost: 5662949768.549512,
-      },
-      sourceReductionResults: {
-        workDays: 6257.644248894991,
-        onSiteDays: 6257.644248894991,
-        phaseCost: 995600521.1497777,
-      },
-      decontaminationResults: {
-        workDays: 15.020310367229467,
-        onSiteDays: 15.88514969891057,
-        phaseCost: 1033230693.5691818,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1804491.9035823504,
-        phaseCost: 4423477330.472053,
-      },
-      otherResults: {
-        otherCosts: 593039060.5358284,
-      },
-      generalResults: {
-        totalCost: 12708297374.276352,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.610930321306113,
+        onSiteDays: 49.14236235635444,
+        phaseCost: 1023887,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 17.732562001309773,
+        onSiteDays: 61.61706885178419,
+        phaseCost: 946309,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 21.343492322615887,
+        onSiteDays: 110.75943120813864,
+        phaseCost: 1970196,
+      },
+      sourceReductionResults: { workDays: 0.5000480605802099, onSiteDays: 0.5000480605802099, phaseCost: 59351 },
+      decontaminationResults: {
+        workDays: 7.0597282552765055,
+        onSiteDays: 8.40095415255077,
+        suppliesCost: 130773,
+        otherCosts: 301431,
+      },
+      incidentCommandResults: { onSiteDays: 127.66043342126962, phaseCost: 389309 },
+      otherResults: { otherCosts: 152183 },
+      generalResults: { totalCost: 3003243, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 16373.129134219515,
-          onSiteDays: 2085640.0397082043,
-          phaseCost: 6116896159.698227,
-        },
-        sourceReductionResults: {
-          workDays: 3985.791308566569,
-          onSiteDays: 3985.791308566569,
-          phaseCost: 620508967.2357321,
-        },
-        decontaminationResults: {
-          workDays: 25.366988714636996,
-          onSiteDays: 27.202488271333852,
-          phaseCost: 964565152.0442876,
-        },
-        incidentCommandResults: {
-          onSiteDays: 2089661.033505042,
-          phaseCost: 5162843621.6688385,
-        },
-        otherResults: {
-          otherCosts: 661915785.8392984,
-        },
-        generalResults: {
-          totalCost: 13526729686.486383,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.007955030470786,
+          onSiteDays: 13.247424720523618,
+          phaseCost: 319108,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.3635830487608066,
+          onSiteDays: 6.069761004994233,
+          phaseCost: 140106,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 2.3715380792315925,
+          onSiteDays: 19.317185725517852,
+          phaseCost: 459214,
+        },
+        sourceReductionResults: { workDays: 0.40909382106762204, onSiteDays: 0.40909382106762204, phaseCost: 86171 },
+        decontaminationResults: {
+          workDays: 8.529846302357,
+          onSiteDays: 9.121974136243102,
+          suppliesCost: 171121,
+          otherCosts: 286337,
+        },
+        incidentCommandResults: { onSiteDays: 36.84825368282858, phaseCost: 113827 },
+        otherResults: { otherCosts: 108820 },
+        generalResults: { totalCost: 1225490, areaContaminated: 6573.533313715256, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 18214.93118624814,
-          onSiteDays: 331602.2353527139,
-          phaseCost: 1458523994.27022,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.0008114415953,
+          onSiteDays: 13.401315117980452,
+          phaseCost: 337554,
         },
-        sourceReductionResults: {
-          workDays: 1828.5280198554317,
-          onSiteDays: 1828.5280198554317,
-          phaseCost: 186151637.9848168,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.731155594117368,
+          onSiteDays: 5.534334207481331,
+          phaseCost: 176546,
         },
-        decontaminationResults: {
-          workDays: 19.843517664550692,
-          onSiteDays: 21.87012541547188,
-          phaseCost: 1420861054.1881661,
-        },
-        incidentCommandResults: {
-          onSiteDays: 333460.6334979848,
-          phaseCost: 816191091.68851,
+        totalCharacterizationSamplingResults: {
+          workDays: 6.731967035712668,
+          onSiteDays: 18.93564932546178,
+          phaseCost: 514100,
         },
-        otherResults: {
-          otherCosts: 101181050.71827072,
-        },
-        generalResults: {
-          totalCost: 3982908828.8499837,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.2017510744884249, onSiteDays: 0.2017510744884249, phaseCost: 15072 },
+        decontaminationResults: {
+          workDays: 7.087879176504883,
+          onSiteDays: 8.606706791465802,
+          suppliesCost: 246019,
+          otherCosts: 561778,
         },
+        incidentCommandResults: { onSiteDays: 35.744107191416006, phaseCost: 110709 },
+        otherResults: { otherCosts: 85721 },
+        generalResults: { totalCost: 1533399, areaContaminated: 6573.533313715256, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 27626.96782393924,
-        onSiteDays: 922015.6317268106,
-        phaseCost: 9189482822.936674,
-      },
-      sourceReductionResults: {
-        workDays: 11853.972688144751,
-        onSiteDays: 11853.972688144751,
-        phaseCost: 1171451253.7246914,
-      },
-      decontaminationResults: {
-        workDays: 12.480499512860668,
-        onSiteDays: 14.102053391770937,
-        phaseCost: 1483564859.0649254,
-      },
-      incidentCommandResults: {
-        onSiteDays: 933891.7064683471,
-        phaseCost: 2260917750.4176855,
-      },
-      otherResults: {
-        otherCosts: 296476836.0920429,
-      },
-      generalResults: {
-        totalCost: 14401893522.236021,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.463365844588267,
+        onSiteDays: 16.607319448298284,
+        phaseCost: 232739,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 0.980249921951218,
+        onSiteDays: 10.285032896945822,
+        phaseCost: 156262,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 2.4436157665394846,
+        onSiteDays: 26.892352345244106,
+        phaseCost: 389001,
+      },
+      sourceReductionResults: { workDays: 1.651786465877815, onSiteDays: 1.651786465877815, phaseCost: 347737 },
+      decontaminationResults: {
+        workDays: 18.78180645866827,
+        onSiteDays: 19.532668909181996,
+        suppliesCost: 332654,
+        otherCosts: 836100,
+      },
+      incidentCommandResults: { onSiteDays: 56.07680772030392, phaseCost: 173175 },
+      otherResults: { otherCosts: 90504 },
+      generalResults: { totalCost: 2169171, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 60306.40278627406,
-        onSiteDays: 1390763.1428717342,
-        phaseCost: 11256660518.445955,
-      },
-      sourceReductionResults: {
-        workDays: 10180.968867829055,
-        onSiteDays: 10180.968867829055,
-        phaseCost: 1356917159.4326224,
-      },
-      decontaminationResults: {
-        workDays: 18.35025316182297,
-        onSiteDays: 21.158277432936774,
-        phaseCost: 630110765.4543617,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1400973.2700169962,
-        phaseCost: 3469990136.473589,
-      },
-      otherResults: {
-        otherCosts: 251101021.8423753,
-      },
-      generalResults: {
-        totalCost: 16964779601.648903,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.960596634448331,
+        onSiteDays: 10.249988580589047,
+        phaseCost: 348968,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 12.15515137463046,
+        onSiteDays: 65.98106376803527,
+        phaseCost: 2663602,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 14.115748009078791,
+        onSiteDays: 76.23105234862432,
+        phaseCost: 3012570,
+      },
+      sourceReductionResults: { workDays: 0.4582959390651217, onSiteDays: 0.4582959390651217, phaseCost: 69890 },
+      decontaminationResults: {
+        workDays: 13.170759079319135,
+        onSiteDays: 13.279102787906094,
+        suppliesCost: 372331,
+        otherCosts: 405608,
+      },
+      incidentCommandResults: { onSiteDays: 97.96845107559554, phaseCost: 302034 },
+      otherResults: { otherCosts: 91580 },
+      generalResults: { totalCost: 4254013, areaContaminated: 10000, decontaminationRounds: 3 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 15383.01520823711,
-          onSiteDays: 214197.0012111439,
-          phaseCost: 4348367737.830425,
-        },
-        sourceReductionResults: {
-          workDays: 13915.803769852313,
-          onSiteDays: 13915.803769852313,
-          phaseCost: 727765872.2263728,
-        },
-        decontaminationResults: {
-          workDays: 25.559288987787276,
-          onSiteDays: 27.47916403191145,
-          phaseCost: 651088043.5515121,
-        },
-        incidentCommandResults: {
-          onSiteDays: 228148.28414502816,
-          phaseCost: 557087450.100778,
-        },
-        otherResults: {
-          otherCosts: 68906306.79779424,
-        },
-        generalResults: {
-          totalCost: 6353215410.506882,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.3034894806260784,
+          onSiteDays: 27.70763598877148,
+          phaseCost: 1001473,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 16.30753544345024,
+          onSiteDays: 54.20447069658783,
+          phaseCost: 1712551,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 19.611024924076318,
+          onSiteDays: 81.9121066853593,
+          phaseCost: 2714024,
+        },
+        sourceReductionResults: { workDays: 4.933693777582824, onSiteDays: 4.933693777582824, phaseCost: 330396 },
+        decontaminationResults: {
+          workDays: 7.504970232375192,
+          onSiteDays: 9.183833037080204,
+          suppliesCost: 341740,
+          otherCosts: 453470,
+        },
+        incidentCommandResults: { onSiteDays: 104.02963350002233, phaseCost: 320606 },
+        otherResults: { otherCosts: 69691 },
+        generalResults: { totalCost: 4229927, areaContaminated: 13973.187298740537, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 20781.853224253908,
-          onSiteDays: 209748.18636007392,
-          phaseCost: 4360040686.866619,
-        },
-        sourceReductionResults: {
-          workDays: 1619.3686178661499,
-          onSiteDays: 1619.3686178661499,
-          phaseCost: 230020440.06698668,
-        },
-        decontaminationResults: {
-          workDays: 16.766808419666905,
-          onSiteDays: 19.615797341246108,
-          phaseCost: 1089865781.4777286,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.4018332065512675,
+          onSiteDays: 15.481551242985745,
+          phaseCost: 790665,
         },
-        incidentCommandResults: {
-          onSiteDays: 211395.17077528132,
-          phaseCost: 520199871.7916397,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.9919862801583839,
+          onSiteDays: 12.62025096611228,
+          phaseCost: 542300,
         },
-        otherResults: {
-          otherCosts: 62414537.44142754,
+        totalCharacterizationSamplingResults: {
+          workDays: 5.393819486709651,
+          onSiteDays: 28.101802209098025,
+          phaseCost: 1332965,
         },
-        generalResults: {
-          totalCost: 6262541317.644402,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.9505823135171305, onSiteDays: 0.9505823135171305, phaseCost: 173937 },
+        decontaminationResults: {
+          workDays: 4.199598048161622,
+          onSiteDays: 4.637991139115298,
+          suppliesCost: 308212,
+          otherCosts: 88695,
         },
+        incidentCommandResults: { onSiteDays: 41.69037566173046, phaseCost: 129092 },
+        otherResults: { otherCosts: 95879 },
+        generalResults: { totalCost: 2128780, areaContaminated: 13973.187298740537, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 43200.3352458993,
-        onSiteDays: 527565.9747878608,
-        phaseCost: 1592816072.7973528,
-      },
-      sourceReductionResults: {
-        workDays: 20138.289999521934,
-        onSiteDays: 20138.289999521934,
-        phaseCost: 546672901.631427,
-      },
-      decontaminationResults: {
-        workDays: 12.1806827865496,
-        onSiteDays: 12.83808702017136,
-        phaseCost: 434539079.7208901,
-      },
-      incidentCommandResults: {
-        onSiteDays: 547725.1028744029,
-        phaseCost: 1346331256.7580953,
-      },
-      otherResults: {
-        otherCosts: 140524770.18077335,
-      },
-      generalResults: {
-        totalCost: 4060884081.0885386,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 7.491168240052616,
+        onSiteDays: 14.97003748493384,
+        phaseCost: 657498,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.116042356280769,
+        onSiteDays: 12.284044019811581,
+        phaseCost: 835756,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.607210596333385,
+        onSiteDays: 27.25408150474542,
+        phaseCost: 1493254,
+      },
+      sourceReductionResults: { workDays: 0.2593755491990873, onSiteDays: 0.2593755491990873, phaseCost: 9701 },
+      decontaminationResults: {
+        workDays: 4.546039562566681,
+        onSiteDays: 5.747119452046957,
+        suppliesCost: 151801,
+        otherCosts: 221027,
+      },
+      incidentCommandResults: { onSiteDays: 41.260576505991466, phaseCost: 126451 },
+      otherResults: { otherCosts: 64244 },
+      generalResults: { totalCost: 2066478, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 26732.951000717767,
-        onSiteDays: 424816.06769671355,
-        phaseCost: 11095106486.37255,
-      },
-      sourceReductionResults: {
-        workDays: 4434.356497787761,
-        onSiteDays: 4434.356497787761,
-        phaseCost: 989571304.2639582,
-      },
-      decontaminationResults: {
-        workDays: 17.593128647793346,
-        onSiteDays: 18.46878747629672,
-        phaseCost: 998610975.4656962,
-      },
-      incidentCommandResults: {
-        onSiteDays: 429276.8929819776,
-        phaseCost: 1055997719.0575175,
-      },
-      otherResults: {
-        otherCosts: 106281428.63430482,
-      },
-      generalResults: {
-        totalCost: 14245567913.794025,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.8530462676969157,
+        onSiteDays: 40.18228944890298,
+        phaseCost: 692679,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.191513378254391,
+        onSiteDays: 27.041536696716836,
+        phaseCost: 406695,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.044559645951306,
+        onSiteDays: 67.22382614561981,
+        phaseCost: 1099374,
+      },
+      sourceReductionResults: { workDays: 0.042349291284835854, onSiteDays: 0.042349291284835854, phaseCost: 10786 },
+      decontaminationResults: {
+        workDays: 7.582935905918232,
+        onSiteDays: 10.141647839718882,
+        suppliesCost: 340179,
+        otherCosts: 226595,
+      },
+      incidentCommandResults: { onSiteDays: 85.40782327662353, phaseCost: 258009 },
+      otherResults: { otherCosts: 128865 },
+      generalResults: { totalCost: 2063808, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 8161.5529374089565,
-          onSiteDays: 116195.65914598163,
-          phaseCost: 4405704550.387003,
-        },
-        sourceReductionResults: {
-          workDays: 2057.5447457478595,
-          onSiteDays: 2057.5447457478595,
-          phaseCost: 533293744.1193838,
-        },
-        decontaminationResults: {
-          workDays: 21.298104042955234,
-          onSiteDays: 22.954822919088144,
-          phaseCost: 372478789.2405695,
-        },
-        incidentCommandResults: {
-          onSiteDays: 118284.15871464857,
-          phaseCost: 292995019.9808626,
-        },
-        otherResults: {
-          otherCosts: 40351792.290583864,
-        },
-        generalResults: {
-          totalCost: 5644823896.018402,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.7794746804828394,
+          onSiteDays: 10.507951302233213,
+          phaseCost: 527370,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 6.440983578856248,
+          onSiteDays: 36.6797520202612,
+          phaseCost: 1569646,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 8.220458259339088,
+          onSiteDays: 47.187703322494414,
+          phaseCost: 2097016,
+        },
+        sourceReductionResults: { workDays: 3.262247320039577, onSiteDays: 3.262247320039577, phaseCost: 183169 },
+        decontaminationResults: {
+          workDays: 10.264372657813219,
+          onSiteDays: 13.012598325035675,
+          suppliesCost: 332950,
+          otherCosts: 254953,
+        },
+        incidentCommandResults: { onSiteDays: 71.46254896756966, phaseCost: 215529 },
+        otherResults: { otherCosts: 58406 },
+        generalResults: { totalCost: 3142023, areaContaminated: 13432.080573037287, decontaminationRounds: 2 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 9615.192070467012,
-          onSiteDays: 2088406.3236088632,
-          phaseCost: 1771885697.4001794,
-        },
-        sourceReductionResults: {
-          workDays: 1680.281434914601,
-          onSiteDays: 1680.281434914601,
-          phaseCost: 99213997.7970534,
-        },
-        decontaminationResults: {
-          workDays: 13.671882357837605,
-          onSiteDays: 14.395101574574388,
-          phaseCost: 782240390.8319563,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.937785834121179,
+          onSiteDays: 46.79584173337379,
+          phaseCost: 1097157,
         },
-        incidentCommandResults: {
-          onSiteDays: 2090109.0001453522,
-          phaseCost: 5101567856.479364,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.698230967882487,
+          onSiteDays: 29.832513391412803,
+          phaseCost: 587047,
         },
-        otherResults: {
-          otherCosts: 387021295.8393447,
+        totalCharacterizationSamplingResults: {
+          workDays: 9.636016802003667,
+          onSiteDays: 76.6283551247866,
+          phaseCost: 1684204,
         },
-        generalResults: {
-          totalCost: 8141929238.3478985,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.8445203986286687, onSiteDays: 1.8445203986286687, phaseCost: 301670 },
+        decontaminationResults: {
+          workDays: 3.997452503768134,
+          onSiteDays: 4.597537922346391,
+          suppliesCost: 200732,
+          otherCosts: 95840,
         },
+        incidentCommandResults: { onSiteDays: 91.07041344576166, phaseCost: 281807 },
+        otherResults: { otherCosts: 104631 },
+        generalResults: { totalCost: 2668884, areaContaminated: 13432.080573037287, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 31129.837073473813,
-        onSiteDays: 864914.3438024631,
-        phaseCost: 15709508709.859646,
-      },
-      sourceReductionResults: {
-        workDays: 1354.2600310310002,
-        onSiteDays: 1354.2600310310002,
-        phaseCost: 211108396.97890365,
-      },
-      decontaminationResults: {
-        workDays: 12.09865934939558,
-        onSiteDays: 13.111371998933928,
-        phaseCost: 763625113.706477,
-      },
-      incidentCommandResults: {
-        onSiteDays: 866289.715205493,
-        phaseCost: 2145768359.6588478,
-      },
-      otherResults: {
-        otherCosts: 161545461.3296013,
-      },
-      generalResults: {
-        totalCost: 18991556041.533474,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 8.667231789190033,
+        onSiteDays: 37.30961891352774,
+        phaseCost: 952982,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 13.372267874708811,
+        onSiteDays: 46.68367075162538,
+        phaseCost: 1192289,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 22.039499663898845,
+        onSiteDays: 83.99328966515313,
+        phaseCost: 2145271,
+      },
+      sourceReductionResults: { workDays: 0.8059690336776846, onSiteDays: 0.8059690336776846, phaseCost: 114611 },
+      decontaminationResults: {
+        workDays: 21.364049336492098,
+        onSiteDays: 22.07969209297553,
+        suppliesCost: 123746,
+        otherCosts: 1050639,
+      },
+      incidentCommandResults: { onSiteDays: 114.87895079180635, phaseCost: 348102 },
+      otherResults: { otherCosts: 127847 },
+      generalResults: { totalCost: 3910216, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 66075.15987340485,
-        onSiteDays: 673334.4358516224,
-        phaseCost: 4409648102.861845,
-      },
-      sourceReductionResults: {
-        workDays: 1342.0801629025266,
-        onSiteDays: 1342.0801629025266,
-        phaseCost: 281310494.5010075,
-      },
-      decontaminationResults: {
-        workDays: 17.14745360034226,
-        onSiteDays: 20.073086707404137,
-        phaseCost: 532178182.58101356,
-      },
-      incidentCommandResults: {
-        onSiteDays: 674704.5891012322,
-        phaseCost: 1635060576.9426332,
-      },
-      otherResults: {
-        otherCosts: 132503023.7880762,
-      },
-      generalResults: {
-        totalCost: 6990700380.674576,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.9066419687894556,
+        onSiteDays: 7.489223122485859,
+        phaseCost: 151474,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.3935659094628607,
+        onSiteDays: 19.239911004365318,
+        phaseCost: 675360,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.3002078782523165,
+        onSiteDays: 26.72913412685118,
+        phaseCost: 826834,
+      },
+      sourceReductionResults: { workDays: 0.7788045942158496, onSiteDays: 0.7788045942158496, phaseCost: 100846 },
+      decontaminationResults: {
+        workDays: 3.078442547954256,
+        onSiteDays: 4.376734229823745,
+        suppliesCost: 208226,
+        otherCosts: 133637,
+      },
+      incidentCommandResults: { onSiteDays: 39.884672950890774, phaseCost: 122870 },
+      otherResults: { otherCosts: 74816 },
+      generalResults: { totalCost: 1467229, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 11810.759638853446,
-          onSiteDays: 761437.163696092,
-          phaseCost: 5506989432.277838,
-        },
-        sourceReductionResults: {
-          workDays: 720.5551283324688,
-          onSiteDays: 720.5551283324688,
-          phaseCost: 140283916.1760865,
-        },
-        decontaminationResults: {
-          workDays: 16.437159746521424,
-          onSiteDays: 19.000902787782465,
-          phaseCost: 495704381.4594061,
-        },
-        incidentCommandResults: {
-          onSiteDays: 762184.7197272122,
-          phaseCost: 1875763043.135808,
-        },
-        otherResults: {
-          otherCosts: 256998852.28603542,
-        },
-        generalResults: {
-          totalCost: 8275739625.335174,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.9018176980521533,
+          onSiteDays: 10.797020272860207,
+          phaseCost: 646089,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.151575675306034,
+          onSiteDays: 7.274807576578029,
+          phaseCost: 330044,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 8.053393373358187,
+          onSiteDays: 18.071827849438236,
+          phaseCost: 976133,
+        },
+        sourceReductionResults: { workDays: 1.6093167324280213, onSiteDays: 1.6093167324280213, phaseCost: 232322 },
+        decontaminationResults: {
+          workDays: 7.271914856338853,
+          onSiteDays: 7.775793326733585,
+          suppliesCost: 466857,
+          otherCosts: 374692,
+        },
+        incidentCommandResults: { onSiteDays: 35.45693790859984, phaseCost: 106661 },
+        otherResults: { otherCosts: 83772 },
+        generalResults: { totalCost: 2240437, areaContaminated: 13149.25334140408, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 44521.50313018838,
-          onSiteDays: 554708.1163624497,
-          phaseCost: 2999067420.8213925,
-        },
-        sourceReductionResults: {
-          workDays: 1203.0437038331067,
-          onSiteDays: 1203.0437038331067,
-          phaseCost: 118686209.46277626,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.706988719854853,
+          onSiteDays: 11.748454120664775,
+          phaseCost: 253321,
         },
-        decontaminationResults: {
-          workDays: 26.273350992769316,
-          onSiteDays: 26.911066294394214,
-          phaseCost: 441285727.84993047,
-        },
-        incidentCommandResults: {
-          onSiteDays: 555946.0711325773,
-          phaseCost: 1361703066.3048925,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.089276884825169,
+          onSiteDays: 9.179018063886632,
+          phaseCost: 321401,
         },
-        otherResults: {
-          otherCosts: 180310613.68120313,
+        totalCharacterizationSamplingResults: {
+          workDays: 3.796265604680022,
+          onSiteDays: 20.927472184551405,
+          phaseCost: 574722,
         },
-        generalResults: {
-          totalCost: 5101053038.120194,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.024888550317234, onSiteDays: 1.024888550317234, phaseCost: 117318 },
+        decontaminationResults: {
+          workDays: 7.507287869580856,
+          onSiteDays: 10.203591094399709,
+          suppliesCost: 281271,
+          otherCosts: 200723,
         },
+        incidentCommandResults: { onSiteDays: 40.155951829268346, phaseCost: 123653 },
+        otherResults: { otherCosts: 116496 },
+        generalResults: { totalCost: 1414183, areaContaminated: 13149.25334140408, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 39942.55307425906,
-        onSiteDays: 24857013.255062032,
-        phaseCost: 9255119660.425283,
-      },
-      sourceReductionResults: {
-        workDays: 121.98378974713218,
-        onSiteDays: 121.98378974713218,
-        phaseCost: 10410236.750534467,
-      },
-      decontaminationResults: {
-        workDays: 13.962535207616757,
-        onSiteDays: 16.451888653554928,
-        phaseCost: 435860801.87012166,
-      },
-      incidentCommandResults: {
-        onSiteDays: 24857159.690740433,
-        phaseCost: 61369542404.957214,
-      },
-      otherResults: {
-        otherCosts: 5848685288.625634,
-      },
-      generalResults: {
-        totalCost: 76919618392.6288,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.2240901947318061,
+        onSiteDays: 20.120830392346768,
+        phaseCost: 355571,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 0.9851177743747397,
+        onSiteDays: 11.484082241974805,
+        phaseCost: 185279,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 2.209207969106546,
+        onSiteDays: 31.604912634321572,
+        phaseCost: 540850,
+      },
+      sourceReductionResults: { workDays: 3.6165201060164307, onSiteDays: 3.6165201060164307, phaseCost: 241006 },
+      decontaminationResults: {
+        workDays: 15.625432067929168,
+        onSiteDays: 17.8815399836473,
+        suppliesCost: 326856,
+        otherCosts: 648048,
+      },
+      incidentCommandResults: { onSiteDays: 61.1029727239853, phaseCost: 186157 },
+      otherResults: { otherCosts: 125748 },
+      generalResults: { totalCost: 2068665, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 91088.27238389767,
-        onSiteDays: 2673024.2634787546,
-        phaseCost: 7747424245.469606,
-      },
-      sourceReductionResults: {
-        workDays: 3030.6663620179334,
-        onSiteDays: 3030.6663620179334,
-        phaseCost: 259443267.1820063,
-      },
-      decontaminationResults: {
-        workDays: 19.966086128951538,
-        onSiteDays: 22.294763535562616,
-        phaseCost: 3449878105.2303834,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2676085.224604308,
-        phaseCost: 6539587300.458527,
-      },
-      otherResults: {
-        otherCosts: 709871390.4359047,
-      },
-      generalResults: {
-        totalCost: 18706204308.77643,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.8246457361178072,
+        onSiteDays: 19.884686301336238,
+        phaseCost: 480300,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.837036234670154,
+        onSiteDays: 27.48646935682858,
+        phaseCost: 670471,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.661681970787961,
+        onSiteDays: 47.37115565816482,
+        phaseCost: 1150771,
+      },
+      sourceReductionResults: { workDays: 2.9756661284117283, onSiteDays: 2.9756661284117283, phaseCost: 139552 },
+      decontaminationResults: {
+        workDays: 4.46712278515732,
+        onSiteDays: 5.501360679627713,
+        suppliesCost: 290679,
+        otherCosts: 118318,
+      },
+      incidentCommandResults: { onSiteDays: 63.848182466204264, phaseCost: 194016 },
+      otherResults: { otherCosts: 102447 },
+      generalResults: { totalCost: 1995783, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 70551.8496125261,
-          onSiteDays: 6007838.974302584,
-          phaseCost: 4157728459.471878,
-        },
-        sourceReductionResults: {
-          workDays: 2156.246456628357,
-          onSiteDays: 2156.246456628357,
-          phaseCost: 147749479.50540143,
-        },
-        decontaminationResults: {
-          workDays: 29.035059198745305,
-          onSiteDays: 29.177224459400684,
-          phaseCost: 1419319433.2300506,
-        },
-        incidentCommandResults: {
-          onSiteDays: 6010032.397983672,
-          phaseCost: 14905605494.41746,
-        },
-        otherResults: {
-          otherCosts: 1795617513.8608334,
-        },
-        generalResults: {
-          totalCost: 22426020380.485622,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.012900376506093,
+          onSiteDays: 10.377639239022054,
+          phaseCost: 153940,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.1085515255099825,
+          onSiteDays: 32.26723770160081,
+          phaseCost: 628543,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 5.121451902016076,
+          onSiteDays: 42.644876940622865,
+          phaseCost: 782483,
+        },
+        sourceReductionResults: { workDays: 1.753597271979155, onSiteDays: 1.753597271979155, phaseCost: 131121 },
+        decontaminationResults: {
+          workDays: 9.756603240677297,
+          onSiteDays: 11.021927767205502,
+          suppliesCost: 86648,
+          otherCosts: 342324,
+        },
+        incidentCommandResults: { onSiteDays: 63.42040197980752, phaseCost: 192778 },
+        otherResults: { otherCosts: 88580 },
+        generalResults: { totalCost: 1623934, areaContaminated: 7577.945814136869, decontaminationRounds: 2 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 7611.306082549911,
-          onSiteDays: 311602.2314591831,
-          phaseCost: 3415081647.301216,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.5736582765955824,
+          onSiteDays: 19.89525565688077,
+          phaseCost: 637457,
         },
-        sourceReductionResults: {
-          workDays: 780.4912011039405,
-          onSiteDays: 780.4912011039405,
-          phaseCost: 61832354.76405409,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 10.805686673261418,
+          onSiteDays: 29.505249639112364,
+          phaseCost: 603479,
         },
-        decontaminationResults: {
-          workDays: 19.615938176078707,
-          onSiteDays: 21.203364949022273,
-          phaseCost: 808786779.8921856,
-        },
-        incidentCommandResults: {
-          onSiteDays: 312411.9260252361,
-          phaseCost: 758683594.1026227,
+        totalCharacterizationSamplingResults: {
+          workDays: 13.379344949857,
+          onSiteDays: 49.400505295993135,
+          phaseCost: 1240936,
         },
-        otherResults: {
-          otherCosts: 97983708.77814142,
-        },
-        generalResults: {
-          totalCost: 5142368084.83822,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.3424850520304719, onSiteDays: 1.3424850520304719, phaseCost: 104832 },
+        decontaminationResults: {
+          workDays: 8.80925409002445,
+          onSiteDays: 10.318193080676298,
+          suppliesCost: 163256,
+          otherCosts: 554220,
         },
+        incidentCommandResults: { onSiteDays: 69.0611834286999, phaseCost: 212663 },
+        otherResults: { otherCosts: 74586 },
+        generalResults: { totalCost: 2350493, areaContaminated: 7577.945814136869, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 108023.6984435455,
-        onSiteDays: 647452.405759891,
-        phaseCost: 5582387818.850742,
-      },
-      sourceReductionResults: {
-        workDays: 10329.832979412866,
-        onSiteDays: 10329.832979412866,
-        phaseCost: 361262832.88046294,
-      },
-      decontaminationResults: {
-        workDays: 17.67113070321994,
-        onSiteDays: 18.863416048433496,
-        phaseCost: 344910861.4383812,
-      },
-      incidentCommandResults: {
-        onSiteDays: 657809.1021553524,
-        phaseCost: 1605666885.7771785,
-      },
-      otherResults: {
-        otherCosts: 211917217.35604256,
-      },
-      generalResults: {
-        totalCost: 8106145616.302808,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 14.003233541749843,
+        onSiteDays: 26.172724025383495,
+        phaseCost: 1073604,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.0990136810098923,
+        onSiteDays: 10.261537310025592,
+        phaseCost: 494227,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 17.102247222759736,
+        onSiteDays: 36.43426133540909,
+        phaseCost: 1567831,
+      },
+      sourceReductionResults: { workDays: 1.9716054782815253, onSiteDays: 1.9716054782815253, phaseCost: 312761 },
+      decontaminationResults: {
+        workDays: 9.584037349462518,
+        onSiteDays: 10.206118274760925,
+        suppliesCost: 140586,
+        otherCosts: 506521,
+      },
+      incidentCommandResults: { onSiteDays: 56.61198508845154, phaseCost: 170560 },
+      otherResults: { otherCosts: 59064 },
+      generalResults: { totalCost: 2757323, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 25305.403572304338,
-        onSiteDays: 5601356.6465950655,
-        phaseCost: 4004401134.585452,
-      },
-      sourceReductionResults: {
-        workDays: 5155.053823658332,
-        onSiteDays: 5155.053823658332,
-        phaseCost: 817805114.1268747,
-      },
-      decontaminationResults: {
-        workDays: 14.54236365029178,
-        onSiteDays: 17.092525958337944,
-        phaseCost: 459656449.2579694,
-      },
-      incidentCommandResults: {
-        onSiteDays: 5606536.792944682,
-        phaseCost: 13829006132.42294,
-      },
-      otherResults: {
-        otherCosts: 1440149463.3867428,
-      },
-      generalResults: {
-        totalCost: 20551018293.779976,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.8940709581000394,
+        onSiteDays: 35.96362565225921,
+        phaseCost: 821976,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 6.803329063616609,
+        onSiteDays: 27.289585553610333,
+        phaseCost: 529092,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 10.697400021716648,
+        onSiteDays: 63.25321120586955,
+        phaseCost: 1351068,
+      },
+      sourceReductionResults: { workDays: 0.46669555001131113, onSiteDays: 0.46669555001131113, phaseCost: 85720 },
+      decontaminationResults: {
+        workDays: 12.532110880951423,
+        onSiteDays: 12.74784742220022,
+        suppliesCost: 346491,
+        otherCosts: 326890,
+      },
+      incidentCommandResults: { onSiteDays: 84.46775417808108, phaseCost: 261445 },
+      otherResults: { otherCosts: 79682 },
+      generalResults: { totalCost: 2451296, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 15790.191121452237,
-          onSiteDays: 195202.42325564346,
-          phaseCost: 3841793923.985278,
-        },
-        sourceReductionResults: {
-          workDays: 1334.3339431488566,
-          onSiteDays: 1334.3339431488566,
-          phaseCost: 89449501.76567547,
-        },
-        decontaminationResults: {
-          workDays: 21.066257701736472,
-          onSiteDays: 21.473837343620566,
-          phaseCost: 1112167297.4922683,
-        },
-        incidentCommandResults: {
-          onSiteDays: 196566.23103613593,
-          phaseCost: 481938760.01035595,
-        },
-        otherResults: {
-          otherCosts: 60086435.854716666,
-        },
-        generalResults: {
-          totalCost: 5585435919.1082945,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.293982794260528,
+          onSiteDays: 18.718440974206818,
+          phaseCost: 874101,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.2376311239806155,
+          onSiteDays: 18.202483927145728,
+          phaseCost: 897684,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 6.531613918241144,
+          onSiteDays: 36.92092490135255,
+          phaseCost: 1771785,
+        },
+        sourceReductionResults: { workDays: 2.5795060313855918, onSiteDays: 2.5795060313855918, phaseCost: 283493 },
+        decontaminationResults: {
+          workDays: 4.030697766465763,
+          onSiteDays: 6.7872582200884946,
+          suppliesCost: 279003,
+          otherCosts: 226585,
+        },
+        incidentCommandResults: { onSiteDays: 54.28768915282664, phaseCost: 164502 },
+        otherResults: { otherCosts: 84336 },
+        generalResults: { totalCost: 2809704, areaContaminated: 7881.11265350159, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 58501.28722843321,
-          onSiteDays: 436763.21662299614,
-          phaseCost: 3161539599.6322803,
-        },
-        sourceReductionResults: {
-          workDays: 5548.105420931497,
-          onSiteDays: 5548.105420931497,
-          phaseCost: 455311264.88376606,
-        },
-        decontaminationResults: {
-          workDays: 11.720799639988876,
-          onSiteDays: 13.726341641211494,
-          phaseCost: 149735983.3778969,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.984965865761565,
+          onSiteDays: 15.907773567948043,
+          phaseCost: 553131,
         },
-        incidentCommandResults: {
-          onSiteDays: 442333.04838556884,
-          phaseCost: 1089534252.4199915,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.1951959525732332,
+          onSiteDays: 8.315709886552687,
+          phaseCost: 297245,
         },
-        otherResults: {
-          otherCosts: 88704341.98282112,
+        totalCharacterizationSamplingResults: {
+          workDays: 3.180161818334798,
+          onSiteDays: 24.22348345450073,
+          phaseCost: 850376,
         },
-        generalResults: {
-          totalCost: 4944825442.296756,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 3.286087792311796, onSiteDays: 3.286087792311796, phaseCost: 238403 },
+        decontaminationResults: {
+          workDays: 4.04167760886291,
+          onSiteDays: 5.412748169948522,
+          suppliesCost: 182260,
+          otherCosts: 194252,
         },
+        incidentCommandResults: { onSiteDays: 40.92231941676105, phaseCost: 123754 },
+        otherResults: { otherCosts: 60551 },
+        generalResults: { totalCost: 1649596, areaContaminated: 7881.11265350159, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 62449.81278735465,
-        onSiteDays: 327092.6757498926,
-        phaseCost: 5811958327.736973,
-      },
-      sourceReductionResults: {
-        workDays: 10202.547235299724,
-        onSiteDays: 10202.547235299724,
-        phaseCost: 989096932.4894729,
-      },
-      decontaminationResults: {
-        workDays: 26.197962555614758,
-        onSiteDays: 27.32932941809514,
-        phaseCost: 929030689.857646,
-      },
-      incidentCommandResults: {
-        onSiteDays: 337330.5523146104,
-        phaseCost: 833780725.5226238,
-      },
-      otherResults: {
-        otherCosts: 98988091.90960065,
-      },
-      generalResults: {
-        totalCost: 8662854767.516317,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.1929449644912067,
+        onSiteDays: 19.786448375506954,
+        phaseCost: 1124485,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 8.717184407219763,
+        onSiteDays: 24.47374985459119,
+        phaseCost: 1076315,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.910129371710969,
+        onSiteDays: 44.26019823009814,
+        phaseCost: 2200800,
+      },
+      sourceReductionResults: { workDays: 1.3068258126982415, onSiteDays: 1.3068258126982415, phaseCost: 61223 },
+      decontaminationResults: {
+        workDays: 6.395214485562224,
+        onSiteDays: 7.643737005219735,
+        suppliesCost: 262834,
+        otherCosts: 267941,
+      },
+      incidentCommandResults: { onSiteDays: 61.21076104801612, phaseCost: 187335 },
+      otherResults: { otherCosts: 79713 },
+      generalResults: { totalCost: 3059846, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 81113.51893274262,
-        onSiteDays: 248668.76599956708,
-        phaseCost: 4606577543.943513,
-      },
-      sourceReductionResults: {
-        workDays: 2206.0907671304867,
-        onSiteDays: 2206.0907671304867,
-        phaseCost: 353876167.59083116,
-      },
-      decontaminationResults: {
-        workDays: 18.850220210815365,
-        onSiteDays: 20.304984319560457,
-        phaseCost: 2154813614.0513124,
-      },
-      incidentCommandResults: {
-        onSiteDays: 250903.16175101712,
-        phaseCost: 608628810.2593629,
-      },
-      otherResults: {
-        otherCosts: 59460721.81721345,
-      },
-      generalResults: {
-        totalCost: 7783356857.662232,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.1595150977173077,
+        onSiteDays: 9.145108843135676,
+        phaseCost: 255282,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 6.407611745162072,
+        onSiteDays: 22.17891073418037,
+        phaseCost: 488382,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.56712684287938,
+        onSiteDays: 31.324019577316044,
+        phaseCost: 743664,
+      },
+      sourceReductionResults: { workDays: 2.287729091555269, onSiteDays: 2.287729091555269, phaseCost: 372734 },
+      decontaminationResults: {
+        workDays: 8.530809012830911,
+        onSiteDays: 8.844772660370165,
+        suppliesCost: 338168,
+        otherCosts: 437128,
+      },
+      incidentCommandResults: { onSiteDays: 50.45652132924148, phaseCost: 155587 },
+      otherResults: { otherCosts: 115336 },
+      generalResults: { totalCost: 2162617, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 8237.467552304635,
-          onSiteDays: 947962.8396184609,
-          phaseCost: 3927264563.830862,
-        },
-        sourceReductionResults: {
-          workDays: 2243.216115269142,
-          onSiteDays: 2243.216115269142,
-          phaseCost: 473155613.9051171,
-        },
-        decontaminationResults: {
-          workDays: 24.959533144011985,
-          onSiteDays: 27.940419070175945,
-          phaseCost: 278039124.45927364,
-        },
-        incidentCommandResults: {
-          onSiteDays: 950241.9961528002,
-          phaseCost: 2332409003.480034,
-        },
-        otherResults: {
-          otherCosts: 219406725.76197374,
-        },
-        generalResults: {
-          totalCost: 7230275031.43726,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.6621820633176605,
+          onSiteDays: 12.330393472995524,
+          phaseCost: 451151,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 6.435351649567248,
+          onSiteDays: 17.091315668068987,
+          phaseCost: 440786,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 8.097533712884909,
+          onSiteDays: 29.42170914106451,
+          phaseCost: 891937,
+        },
+        sourceReductionResults: { workDays: 1.0806249479223056, onSiteDays: 1.0806249479223056, phaseCost: 78083 },
+        decontaminationResults: {
+          workDays: 8.151109579985754,
+          onSiteDays: 10.342384136827286,
+          suppliesCost: 256043,
+          otherCosts: 145769,
+        },
+        incidentCommandResults: { onSiteDays: 48.844718225814105, phaseCost: 147771 },
+        otherResults: { otherCosts: 97101 },
+        generalResults: { totalCost: 1616704, areaContaminated: 6353.766185081044, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 25871.303377146287,
-          onSiteDays: 804690.4985440931,
-          phaseCost: 2714859485.5086145,
-        },
-        sourceReductionResults: {
-          workDays: 205.2479002600512,
-          onSiteDays: 205.2479002600512,
-          phaseCost: 21763779.072344355,
-        },
-        decontaminationResults: {
-          workDays: 20.71670212264096,
-          onSiteDays: 22.763033148311784,
-          phaseCost: 524159864.4537871,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.486251753007351,
+          onSiteDays: 19.877150457264325,
+          phaseCost: 380977,
         },
-        incidentCommandResults: {
-          onSiteDays: 804926.5094775015,
-          phaseCost: 1967357825.708253,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.2188394334844577,
+          onSiteDays: 25.95928809391771,
+          phaseCost: 598832,
         },
-        otherResults: {
-          otherCosts: 191172533.5453909,
+        totalCharacterizationSamplingResults: {
+          workDays: 4.705091186491808,
+          onSiteDays: 45.836438551182034,
+          phaseCost: 979809,
         },
-        generalResults: {
-          totalCost: 5419313488.28839,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.5096060671618715, onSiteDays: 0.5096060671618715, phaseCost: 24960 },
+        decontaminationResults: {
+          workDays: 4.213106240893971,
+          onSiteDays: 4.219292772053576,
+          suppliesCost: 195673,
+          otherCosts: 158489,
         },
+        incidentCommandResults: { onSiteDays: 58.56533739039748, phaseCost: 178723 },
+        otherResults: { otherCosts: 50477 },
+        generalResults: { totalCost: 1588131, areaContaminated: 6353.766185081044, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 24580.996047312685,
-        onSiteDays: 704661.4136382688,
-        phaseCost: 7174068925.462704,
-      },
-      sourceReductionResults: {
-        workDays: 3880.6338068345176,
-        onSiteDays: 3880.6338068345176,
-        phaseCost: 275007406.18120253,
-      },
-      decontaminationResults: {
-        workDays: 20.827303805813962,
-        onSiteDays: 23.217600378957016,
-        phaseCost: 1269584145.923093,
-      },
-      incidentCommandResults: {
-        onSiteDays: 708573.2650454822,
-        phaseCost: 1735154602.2686546,
-      },
-      otherResults: {
-        otherCosts: 135050032.30479175,
-      },
-      generalResults: {
-        totalCost: 10588865112.140446,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 6.556415699684164,
+        onSiteDays: 23.24918605631096,
+        phaseCost: 402812,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.725946573018621,
+        onSiteDays: 47.075754859646125,
+        phaseCost: 1067480,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.282362272702786,
+        onSiteDays: 70.32494091595709,
+        phaseCost: 1470292,
+      },
+      sourceReductionResults: { workDays: 1.0915140721257712, onSiteDays: 1.0915140721257712, phaseCost: 54157 },
+      decontaminationResults: {
+        workDays: 7.660546557898761,
+        onSiteDays: 8.699520582496078,
+        suppliesCost: 83124,
+        otherCosts: 305139,
+      },
+      incidentCommandResults: { onSiteDays: 88.11597557057894, phaseCost: 270967 },
+      otherResults: { otherCosts: 108082 },
+      generalResults: { totalCost: 2291761, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 49890.402722196755,
-        onSiteDays: 3262718.7718737563,
-        phaseCost: 4715657410.049813,
-      },
-      sourceReductionResults: {
-        workDays: 26094.023125771233,
-        onSiteDays: 26094.023125771233,
-        phaseCost: 1147154957.7330136,
-      },
-      decontaminationResults: {
-        workDays: 20.617622980293262,
-        onSiteDays: 21.339880943610304,
-        phaseCost: 1356865117.621545,
-      },
-      incidentCommandResults: {
-        onSiteDays: 3288842.1348804715,
-        phaseCost: 7985623303.932268,
-      },
-      otherResults: {
-        otherCosts: 608376713.627647,
-      },
-      generalResults: {
-        totalCost: 15813677502.964287,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 6.79636868386862,
+        onSiteDays: 21.364947500390137,
+        phaseCost: 677112,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.417171892452696,
+        onSiteDays: 13.754016215967738,
+        phaseCost: 495492,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.213540576321316,
+        onSiteDays: 35.118963716357875,
+        phaseCost: 1172604,
+      },
+      sourceReductionResults: { workDays: 2.9242182621685893, onSiteDays: 2.9242182621685893, phaseCost: 335424 },
+      decontaminationResults: {
+        workDays: 4.472289084799655,
+        onSiteDays: 5.3692893151588015,
+        suppliesCost: 157720,
+        otherCosts: 289188,
+      },
+      incidentCommandResults: { onSiteDays: 51.412471293685265, phaseCost: 156717 },
+      otherResults: { otherCosts: 78756 },
+      generalResults: { totalCost: 2190409, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 7770.330812025108,
-          onSiteDays: 255011.06169814963,
-          phaseCost: 4292762377.5737734,
-        },
-        sourceReductionResults: {
-          workDays: 6567.69981585617,
-          onSiteDays: 6567.69981585617,
-          phaseCost: 1597602363.1912234,
-        },
-        decontaminationResults: {
-          workDays: 20.703049514839208,
-          onSiteDays: 22.989372589157284,
-          phaseCost: 689595762.7947726,
-        },
-        incidentCommandResults: {
-          onSiteDays: 261609.75088659496,
-          phaseCost: 648605581.9487602,
-        },
-        otherResults: {
-          otherCosts: 51787860.56949242,
-        },
-        generalResults: {
-          totalCost: 7280353946.078021,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.3549117641038697,
+          onSiteDays: 6.464959412677377,
+          phaseCost: 71413,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.6632762650924329,
+          onSiteDays: 10.718086295363875,
+          phaseCost: 185915,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 2.0181880291963026,
+          onSiteDays: 17.183045708041252,
+          phaseCost: 257328,
+        },
+        sourceReductionResults: { workDays: 0.7362217393498326, onSiteDays: 0.7362217393498326, phaseCost: 35006 },
+        decontaminationResults: {
+          workDays: 3.520798483053408,
+          onSiteDays: 4.515065737654237,
+          suppliesCost: 240083,
+          otherCosts: 96934,
+        },
+        incidentCommandResults: { onSiteDays: 30.434333185045322, phaseCost: 93703 },
+        otherResults: { otherCosts: 51709 },
+        generalResults: { totalCost: 774763, areaContaminated: 6341.127057406382, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 6607.429876564333,
-          onSiteDays: 133630.3281725431,
-          phaseCost: 2892800663.7254734,
-        },
-        sourceReductionResults: {
-          workDays: 25095.720380115486,
-          onSiteDays: 25095.720380115486,
-          phaseCost: 968794028.1744952,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.52446249104672,
+          onSiteDays: 20.539112658983036,
+          phaseCost: 548628,
         },
-        decontaminationResults: {
-          workDays: 24.012029375418095,
-          onSiteDays: 24.158545837774533,
-          phaseCost: 900353828.0249996,
-        },
-        incidentCommandResults: {
-          onSiteDays: 158758.20709849635,
-          phaseCost: 385230540.14205736,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.5782265892962539,
+          onSiteDays: 7.057957508345048,
+          phaseCost: 263081,
         },
-        otherResults: {
-          otherCosts: 46736620.171148494,
+        totalCharacterizationSamplingResults: {
+          workDays: 5.102689080342975,
+          onSiteDays: 27.597070167328084,
+          phaseCost: 811709,
         },
-        generalResults: {
-          totalCost: 5193915680.238174,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.19283000873604608, onSiteDays: 0.19283000873604608, phaseCost: 32457 },
+        decontaminationResults: {
+          workDays: 4.502298773150494,
+          onSiteDays: 7.0408822656704295,
+          suppliesCost: 65335,
+          otherCosts: 293779,
         },
+        incidentCommandResults: { onSiteDays: 42.830782441734556, phaseCost: 130249 },
+        otherResults: { otherCosts: 39689 },
+        generalResults: { totalCost: 1373218, areaContaminated: 6341.127057406382, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 39855.319451958974,
-        onSiteDays: 511602.7872973477,
-        phaseCost: 3168602411.3979077,
-      },
-      sourceReductionResults: {
-        workDays: 778.6131946191956,
-        onSiteDays: 778.6131946191956,
-        phaseCost: 382579178.59098,
-      },
-      decontaminationResults: {
-        workDays: 16.65547369342658,
-        onSiteDays: 19.39278981983494,
-        phaseCost: 1793533264.6973135,
-      },
-      incidentCommandResults: {
-        onSiteDays: 512408.7932817867,
-        phaseCost: 1263944367.362296,
-      },
-      otherResults: {
-        otherCosts: 120360615.72472246,
-      },
-      generalResults: {
-        totalCost: 6729019837.77322,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.6046768731090075,
+        onSiteDays: 12.886133084606751,
+        phaseCost: 489842,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.931341246921949,
+        onSiteDays: 24.9330125944151,
+        phaseCost: 1009084,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.536018120030956,
+        onSiteDays: 37.81914567902185,
+        phaseCost: 1498926,
+      },
+      sourceReductionResults: { workDays: 0.15153022513239336, onSiteDays: 0.15153022513239336, phaseCost: 45217 },
+      decontaminationResults: {
+        workDays: 3.91362500258573,
+        onSiteDays: 5.290512955116693,
+        suppliesCost: 175198,
+        otherCosts: 258664,
+      },
+      incidentCommandResults: { onSiteDays: 51.26118885927093, phaseCost: 157113 },
+      otherResults: { otherCosts: 144099 },
+      generalResults: { totalCost: 2279217, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 92055.63919287408,
-        onSiteDays: 434584.32639093813,
-        phaseCost: 6113673670.454882,
-      },
-      sourceReductionResults: {
-        workDays: 15628.96320061407,
-        onSiteDays: 15628.96320061407,
-        phaseCost: 6563816456.972774,
-      },
-      decontaminationResults: {
-        workDays: 21.385266403757328,
-        onSiteDays: 21.898352204798336,
-        phaseCost: 1783827531.967606,
-      },
-      incidentCommandResults: {
-        onSiteDays: 450243.18794375705,
-        phaseCost: 1091956736.3957539,
-      },
-      otherResults: {
-        otherCosts: 85463270.13923591,
-      },
-      generalResults: {
-        totalCost: 15638737665.93025,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.481871070809184,
+        onSiteDays: 17.103542905557035,
+        phaseCost: 1117032,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.0294154458590001,
+        onSiteDays: 4.804582719455162,
+        phaseCost: 247545,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.511286516668184,
+        onSiteDays: 21.908125625012197,
+        phaseCost: 1364577,
+      },
+      sourceReductionResults: { workDays: 0.5473926545573402, onSiteDays: 0.5473926545573402, phaseCost: 103428 },
+      decontaminationResults: {
+        workDays: 3.924019428650853,
+        onSiteDays: 6.006025706186431,
+        suppliesCost: 42978,
+        otherCosts: 269297,
+      },
+      incidentCommandResults: { onSiteDays: 36.461543985755966, phaseCost: 112523 },
+      otherResults: { otherCosts: 77795 },
+      generalResults: { totalCost: 1970598, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 7226.150899864881,
-          onSiteDays: 71437.40023647573,
-          phaseCost: 687869547.3800805,
-        },
-        sourceReductionResults: {
-          workDays: 773.8486573127038,
-          onSiteDays: 773.8486573127038,
-          phaseCost: 154749638.63582838,
-        },
-        decontaminationResults: {
-          workDays: 20.11134605135567,
-          onSiteDays: 22.280929004838907,
-          phaseCost: 190767895.47225386,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.7204626473839366,
+          onSiteDays: 12.049912900034247,
+          phaseCost: 318276,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.6879227875380051,
+          onSiteDays: 7.640739927637199,
+          phaseCost: 231952,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.4083854349219416,
+          onSiteDays: 19.690652827671446,
+          phaseCost: 550228,
+        },
+        sourceReductionResults: { workDays: 0.940580061655886, onSiteDays: 0.940580061655886, phaseCost: 43175 },
+        decontaminationResults: {
+          workDays: 8.101914761611706,
+          onSiteDays: 8.305522919470798,
+          suppliesCost: 321719,
+          otherCosts: 511036,
+        },
+        incidentCommandResults: { onSiteDays: 36.93675580879813, phaseCost: 113221 },
+        otherResults: { otherCosts: 107385 },
+        generalResults: { totalCost: 1646764, areaContaminated: 8496.214806450582, decontaminationRounds: 1 },
+      },
+      Industrial: {
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.9469573190872274,
+          onSiteDays: 9.821371792706032,
+          phaseCost: 587793,
         },
-        incidentCommandResults: {
-          onSiteDays: 72241.52982279327,
-          phaseCost: 177624138.7250507,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 13.695148154639377,
+          onSiteDays: 26.734297120353194,
+          phaseCost: 1055669,
         },
-        otherResults: {
-          otherCosts: 22077828.08800579,
+        totalCharacterizationSamplingResults: {
+          workDays: 15.642105473726604,
+          onSiteDays: 36.55566891305922,
+          phaseCost: 1643462,
         },
-        generalResults: {
-          totalCost: 1233089048.3012192,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.3374393893001933, onSiteDays: 0.3374393893001933, phaseCost: 20719 },
+        decontaminationResults: {
+          workDays: 4.739256908125071,
+          onSiteDays: 6.786160270400849,
+          suppliesCost: 272303,
+          otherCosts: 188828,
         },
+        incidentCommandResults: { onSiteDays: 51.679268572760265, phaseCost: 156167 },
+        otherResults: { otherCosts: 62853 },
+        generalResults: { totalCost: 2344332, areaContaminated: 8496.214806450582, decontaminationRounds: 1 },
+      },
+    },
+    Outdoor: {
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.9927258326901023,
+        onSiteDays: 14.57349724076926,
+        phaseCost: 885203,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 9.630109261840998,
+        onSiteDays: 43.8999382128252,
+        phaseCost: 2570447,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 12.6228350945311,
+        onSiteDays: 58.47343545359446,
+        phaseCost: 3455650,
+      },
+      sourceReductionResults: { workDays: 1.63315128344712, onSiteDays: 1.63315128344712, phaseCost: 158023 },
+      decontaminationResults: {
+        workDays: 21.704613086931552,
+        onSiteDays: 23.386063205633796,
+        suppliesCost: 409290,
+        otherCosts: 560874,
+      },
+      incidentCommandResults: { onSiteDays: 91.49264994267537, phaseCost: 275601 },
+      otherResults: { otherCosts: 137688 },
+      generalResults: { totalCost: 4997126, areaContaminated: 10000, decontaminationRounds: 2 },
+    },
+    Underground: {
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.730182349927351,
+        onSiteDays: 42.826969231381796,
+        phaseCost: 583232,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 6.201234813318616,
+        onSiteDays: 21.996170870055593,
+        phaseCost: 243998,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 10.931417163245968,
+        onSiteDays: 64.82314010143739,
+        phaseCost: 827230,
+      },
+      sourceReductionResults: { workDays: 1.0438032264192605, onSiteDays: 1.0438032264192605, phaseCost: 66833 },
+      decontaminationResults: {
+        workDays: 3.69973903724452,
+        onSiteDays: 5.048675524082192,
+        suppliesCost: 153380,
+        otherCosts: 167865,
+      },
+      incidentCommandResults: { onSiteDays: 78.91561885193883, phaseCost: 237399 },
+      otherResults: { otherCosts: 71458 },
+      generalResults: { totalCost: 1524165, areaContaminated: 10000, decontaminationRounds: 1 },
+    },
+  },
+  {
+    Indoor: {
+      Commercial: {
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.8032922585626248,
+          onSiteDays: 6.825293782158714,
+          phaseCost: 291068,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.7533988486240997,
+          onSiteDays: 5.616210513184164,
+          phaseCost: 196099,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 1.5566911071867244,
+          onSiteDays: 12.441504295342877,
+          phaseCost: 487167,
+        },
+        sourceReductionResults: { workDays: 2.711845013407181, onSiteDays: 2.711845013407181, phaseCost: 289002 },
+        decontaminationResults: {
+          workDays: 8.717735030855456,
+          onSiteDays: 9.77968448837746,
+          suppliesCost: 62612,
+          otherCosts: 383403,
+        },
+        incidentCommandResults: { onSiteDays: 32.93303379712752, phaseCost: 99427 },
+        otherResults: { otherCosts: 45692 },
+        generalResults: { totalCost: 1367303, areaContaminated: 7770.246547360497, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 12526.40128557057,
-          onSiteDays: 100511.7175496287,
-          phaseCost: 2125766483.3688207,
-        },
-        sourceReductionResults: {
-          workDays: 4791.457403162851,
-          onSiteDays: 4791.457403162851,
-          phaseCost: 1248113962.0427513,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 5.0098573693294775,
+          onSiteDays: 17.42698387360992,
+          phaseCost: 600116,
         },
-        decontaminationResults: {
-          workDays: 21.836552100450863,
-          onSiteDays: 21.949729460512692,
-          phaseCost: 582553206.4912966,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.92511880127014,
+          onSiteDays: 18.830851760925423,
+          phaseCost: 637508,
         },
-        incidentCommandResults: {
-          onSiteDays: 105333.12468225205,
-          phaseCost: 257354368.18202752,
+        totalCharacterizationSamplingResults: {
+          workDays: 10.934976170599619,
+          onSiteDays: 36.25783563453534,
+          phaseCost: 1237624,
         },
-        otherResults: {
-          otherCosts: 34709117.94955003,
-        },
-        generalResults: {
-          totalCost: 4248497138.0344462,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.12871178751170104, onSiteDays: 0.12871178751170104, phaseCost: 15323 },
+        decontaminationResults: {
+          workDays: 7.857491627302368,
+          onSiteDays: 10.098804756789189,
+          suppliesCost: 293850,
+          otherCosts: 629059,
         },
+        incidentCommandResults: { onSiteDays: 54.48535217883622, phaseCost: 164203 },
+        otherResults: { otherCosts: 103412 },
+        generalResults: { totalCost: 2443471, areaContaminated: 7770.246547360497, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 25501.442974652164,
-        onSiteDays: 670815.3931099676,
-        phaseCost: 11161106818.846634,
-      },
-      sourceReductionResults: {
-        workDays: 3065.4280997543024,
-        onSiteDays: 3065.4280997543024,
-        phaseCost: 786339697.1794692,
-      },
-      decontaminationResults: {
-        workDays: 17.193380069963958,
-        onSiteDays: 18.503178863670488,
-        phaseCost: 1863140517.877465,
-      },
-      incidentCommandResults: {
-        onSiteDays: 673907.3243885855,
-        phaseCost: 1670267865.4429626,
-      },
-      otherResults: {
-        otherCosts: 172663309.49259865,
-      },
-      generalResults: {
-        totalCost: 15653518208.83913,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.5466388484972944,
+        onSiteDays: 25.13463458310334,
+        phaseCost: 554862,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.3189332593276326,
+        onSiteDays: 19.229864383571723,
+        phaseCost: 383520,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.865572107824927,
+        onSiteDays: 44.364498966675065,
+        phaseCost: 938382,
+      },
+      sourceReductionResults: { workDays: 0.7376646841674214, onSiteDays: 0.7376646841674214, phaseCost: 100072 },
+      decontaminationResults: {
+        workDays: 14.543527482204029,
+        onSiteDays: 15.444936437170238,
+        suppliesCost: 110698,
+        otherCosts: 961495,
+      },
+      incidentCommandResults: { onSiteDays: 68.54710008801273, phaseCost: 211781 },
+      otherResults: { otherCosts: 110257 },
+      generalResults: { totalCost: 2432685, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 38107.25694730542,
-        onSiteDays: 345642.4964088313,
-        phaseCost: 9645129043.747313,
-      },
-      sourceReductionResults: {
-        workDays: 344.96668966687304,
-        onSiteDays: 344.96668966687304,
-        phaseCost: 43290183.557556346,
-      },
-      decontaminationResults: {
-        workDays: 16.21247473503753,
-        onSiteDays: 18.71728839532409,
-        phaseCost: 522631969.11618423,
-      },
-      incidentCommandResults: {
-        onSiteDays: 346014.1803868935,
-        phaseCost: 858083964.857913,
-      },
-      otherResults: {
-        otherCosts: 64298548.98353972,
-      },
-      generalResults: {
-        totalCost: 11133433710.262505,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.991347656063431,
+        onSiteDays: 18.56131293697073,
+        phaseCost: 1072777,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.974326927418388,
+        onSiteDays: 15.294253925255653,
+        phaseCost: 1029210,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.965674583481819,
+        onSiteDays: 33.85556686222638,
+        phaseCost: 2101987,
+      },
+      sourceReductionResults: { workDays: 2.644332429903239, onSiteDays: 2.644332429903239, phaseCost: 205543 },
+      decontaminationResults: {
+        workDays: 3.701148117590032,
+        onSiteDays: 5.8136207216450995,
+        suppliesCost: 230350,
+        otherCosts: 173951,
+      },
+      incidentCommandResults: { onSiteDays: 50.31352001377472, phaseCost: 151861 },
+      otherResults: { otherCosts: 101156 },
+      generalResults: { totalCost: 2964848, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 8834.774216520495,
-          onSiteDays: 280182.33957217133,
-          phaseCost: 2011038144.6300368,
-        },
-        sourceReductionResults: {
-          workDays: 502.9007712213923,
-          onSiteDays: 502.9007712213923,
-          phaseCost: 142606299.44090116,
-        },
-        decontaminationResults: {
-          workDays: 25.272259997965833,
-          onSiteDays: 27.576282237557763,
-          phaseCost: 540384986.2381642,
-        },
-        incidentCommandResults: {
-          onSiteDays: 280720.81662563025,
-          phaseCost: 679323944.5107448,
-        },
-        otherResults: {
-          otherCosts: 50569199.669657186,
-        },
-        generalResults: {
-          totalCost: 3423922574.4895043,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.576951448232237,
+          onSiteDays: 17.018779146394984,
+          phaseCost: 740879,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.952911557369257,
+          onSiteDays: 20.783873661436296,
+          phaseCost: 810241,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 9.529863005601493,
+          onSiteDays: 37.80265280783128,
+          phaseCost: 1551120,
+        },
+        sourceReductionResults: { workDays: 0.72293294979416, onSiteDays: 0.72293294979416, phaseCost: 32780 },
+        decontaminationResults: {
+          workDays: 4.966480724040065,
+          onSiteDays: 7.5641703739678885,
+          suppliesCost: 257716,
+          otherCosts: 200361,
+        },
+        incidentCommandResults: { onSiteDays: 54.08975613159333, phaseCost: 162624 },
+        otherResults: { otherCosts: 89133 },
+        generalResults: { totalCost: 2293734, areaContaminated: 13799.836029950491, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 39925.1290951551,
-          onSiteDays: 607830.0119158729,
-          phaseCost: 1582956420.5621958,
-        },
-        sourceReductionResults: {
-          workDays: 3716.6564029484884,
-          onSiteDays: 3716.6564029484884,
-          phaseCost: 596204858.854687,
-        },
-        decontaminationResults: {
-          workDays: 17.30173996842972,
-          onSiteDays: 18.32767228463843,
-          phaseCost: 206407068.66632915,
-        },
-        incidentCommandResults: {
-          onSiteDays: 611572.9959911061,
-          phaseCost: 1503524346.3048725,
-        },
-        otherResults: {
-          otherCosts: 205095068.83384675,
-        },
-        generalResults: {
-          totalCost: 4094187763.221931,
-          areaContaminated: 17860000,
-        },
-      },
-    },
-    Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 19910.8463148373,
-        onSiteDays: 542618.5256292961,
-        phaseCost: 6590434560.676569,
-      },
-      sourceReductionResults: {
-        workDays: 6533.4655800427945,
-        onSiteDays: 6533.4655800427945,
-        phaseCost: 879891095.9539467,
-      },
-      decontaminationResults: {
-        workDays: 7.848098646348365,
-        onSiteDays: 8.419853978189606,
-        phaseCost: 1457390272.585885,
-      },
-      incidentCommandResults: {
-        onSiteDays: 549168.4110633171,
-        phaseCost: 1357136615.994616,
-      },
-      otherResults: {
-        otherCosts: 148132633.60728252,
-      },
-      generalResults: {
-        totalCost: 10432985178.818298,
-        areaContaminated: 34460000,
-      },
-    },
-    Underground: {
-      characterizationSamplingResults: {
-        workDays: 99065.33234669469,
-        onSiteDays: 12770033.599319708,
-        phaseCost: 5768325907.27086,
-      },
-      sourceReductionResults: {
-        workDays: 7442.537669777569,
-        onSiteDays: 7442.537669777569,
-        phaseCost: 2746806593.805018,
-      },
-      decontaminationResults: {
-        workDays: 12.779400661536354,
-        onSiteDays: 13.747776566480235,
-        phaseCost: 1400913059.7462306,
-      },
-      incidentCommandResults: {
-        onSiteDays: 12777497.884766052,
-        phaseCost: 31614452976.92446,
-      },
-      otherResults: {
-        otherCosts: 2683919992.202556,
-      },
-      generalResults: {
-        totalCost: 44214418529.94912,
-        areaContaminated: 40860000,
-      },
-    },
-  },
-  {
-    Indoor: {
-      Commercial: {
-        characterizationSamplingResults: {
-          workDays: 19345.65077051529,
-          onSiteDays: 161906.9982483627,
-          phaseCost: 5767698330.617455,
-        },
-        sourceReductionResults: {
-          workDays: 5752.7666401582665,
-          onSiteDays: 5752.7666401582665,
-          phaseCost: 1086595384.1443539,
-        },
-        decontaminationResults: {
-          workDays: 16.14048898083635,
-          onSiteDays: 17.39399466137262,
-          phaseCost: 154952341.83081207,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.8423529583168348,
+          onSiteDays: 28.666684410416206,
+          phaseCost: 914454,
         },
-        incidentCommandResults: {
-          onSiteDays: 167685.15888318233,
-          phaseCost: 411533989.5258199,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 7.651547668459214,
+          onSiteDays: 50.335669074151284,
+          phaseCost: 1897067,
         },
-        otherResults: {
-          otherCosts: 42442685.03623895,
+        totalCharacterizationSamplingResults: {
+          workDays: 11.49390062677605,
+          onSiteDays: 79.0023534845675,
+          phaseCost: 2811521,
         },
-        generalResults: {
-          totalCost: 7463222731.154679,
-          areaContaminated: 17860000,
-        },
-      },
-      Industrial: {
-        characterizationSamplingResults: {
-          workDays: 10746.970769789754,
-          onSiteDays: 96901.66327490615,
-          phaseCost: 2654145342.8175116,
-        },
-        sourceReductionResults: {
-          workDays: 1563.4739433823675,
-          onSiteDays: 1563.4739433823675,
-          phaseCost: 279809098.5956829,
-        },
+        sourceReductionResults: { workDays: 1.6462994226531813, onSiteDays: 1.6462994226531813, phaseCost: 86544 },
         decontaminationResults: {
-          workDays: 14.315214009563256,
-          onSiteDays: 16.399759309459423,
-          phaseCost: 493471104.6180564,
-        },
-        incidentCommandResults: {
-          onSiteDays: 98489.53697759798,
-          phaseCost: 243567277.55776227,
-        },
-        otherResults: {
-          otherCosts: 22124034.10482188,
-        },
-        generalResults: {
-          totalCost: 3693116857.693835,
-          areaContaminated: 17860000,
+          workDays: 13.76236966875437,
+          onSiteDays: 15.78602606495517,
+          suppliesCost: 212983,
+          otherCosts: 945464,
         },
+        incidentCommandResults: { onSiteDays: 104.43467897217585, phaseCost: 314393 },
+        otherResults: { otherCosts: 89545 },
+        generalResults: { totalCost: 4460450, areaContaminated: 13799.836029950491, decontaminationRounds: 2 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 28638.438093566165,
-        onSiteDays: 176564.49935221334,
-        phaseCost: 4011773280.1907015,
-      },
-      sourceReductionResults: {
-        workDays: 4829.703483584406,
-        onSiteDays: 4829.703483584406,
-        phaseCost: 702797294.9777539,
-      },
-      decontaminationResults: {
-        workDays: 19.930958372291865,
-        onSiteDays: 20.164900438665622,
-        phaseCost: 268545505.20882285,
-      },
-      incidentCommandResults: {
-        onSiteDays: 181422.3677362364,
-        phaseCost: 441063531.3257184,
-      },
-      otherResults: {
-        otherCosts: 60516646.16556026,
-      },
-      generalResults: {
-        totalCost: 5484696257.868558,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.2687260767134676,
+        onSiteDays: 33.51296973898271,
+        phaseCost: 1246573,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.152769999446449,
+        onSiteDays: 13.477717844455894,
+        phaseCost: 508916,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.421496076159917,
+        onSiteDays: 46.99068758343861,
+        phaseCost: 1755489,
+      },
+      sourceReductionResults: { workDays: 0.7898358047305926, onSiteDays: 0.7898358047305926, phaseCost: 31165 },
+      decontaminationResults: {
+        workDays: 8.025002313783625,
+        onSiteDays: 8.341467909128747,
+        suppliesCost: 324432,
+        otherCosts: 166936,
+      },
+      incidentCommandResults: { onSiteDays: 64.12199129729794, phaseCost: 195712 },
+      otherResults: { otherCosts: 109740 },
+      generalResults: { totalCost: 2583474, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 86831.78784622787,
-        onSiteDays: 1754474.2511060357,
-        phaseCost: 10310004174.140696,
-      },
-      sourceReductionResults: {
-        workDays: 1365.4864976899153,
-        onSiteDays: 1365.4864976899153,
-        phaseCost: 372085350.9608499,
-      },
-      decontaminationResults: {
-        workDays: 17.14939310195609,
-        onSiteDays: 18.13779643018213,
-        phaseCost: 1253187110.867523,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1755865.8754001558,
-        phaseCost: 4264812826.8382006,
-      },
-      otherResults: {
-        otherCosts: 377977947.6023095,
-      },
-      generalResults: {
-        totalCost: 16578067410.40958,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 8.786719130097305,
+        onSiteDays: 27.129820479206998,
+        phaseCost: 1115667,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 9.932477228921998,
+        onSiteDays: 50.325514354409805,
+        phaseCost: 2320279,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 18.719196359019303,
+        onSiteDays: 77.4553348336168,
+        phaseCost: 3435946,
+      },
+      sourceReductionResults: { workDays: 0.6204437949952465, onSiteDays: 0.6204437949952465, phaseCost: 121134 },
+      decontaminationResults: {
+        workDays: 18.786165097678584,
+        onSiteDays: 19.374133604898613,
+        suppliesCost: 61207,
+        otherCosts: 1004128,
+      },
+      incidentCommandResults: { onSiteDays: 105.44991223351067, phaseCost: 318171 },
+      otherResults: { otherCosts: 56024 },
+      generalResults: { totalCost: 4996610, areaContaminated: 10000, decontaminationRounds: 3 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 13812.829117081297,
-          onSiteDays: 253448.0112058225,
-          phaseCost: 5322723213.549721,
-        },
-        sourceReductionResults: {
-          workDays: 3208.2472406603947,
-          onSiteDays: 3208.2472406603947,
-          phaseCost: 112853879.41438553,
-        },
-        decontaminationResults: {
-          workDays: 24.385528263260035,
-          onSiteDays: 26.34229969497358,
-          phaseCost: 640074865.8196821,
-        },
-        incidentCommandResults: {
-          onSiteDays: 256690.60074617786,
-          phaseCost: 625610776.2247071,
-        },
-        otherResults: {
-          otherCosts: 84715985.35459216,
-        },
-        generalResults: {
-          totalCost: 6785978720.363088,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 5.644553718863662,
+          onSiteDays: 15.991099776222791,
+          phaseCost: 412965,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.664761401401247,
+          onSiteDays: 19.922818094615593,
+          phaseCost: 749758,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 9.309315120264909,
+          onSiteDays: 35.91391787083838,
+          phaseCost: 1162723,
+        },
+        sourceReductionResults: { workDays: 1.8039478673718268, onSiteDays: 1.8039478673718268, phaseCost: 265931 },
+        decontaminationResults: {
+          workDays: 4.535230363145292,
+          onSiteDays: 6.575081252859691,
+          suppliesCost: 569081,
+          otherCosts: 223649,
+        },
+        incidentCommandResults: { onSiteDays: 52.2929469910699, phaseCost: 159286 },
+        otherResults: { otherCosts: 117961 },
+        generalResults: { totalCost: 2498631, areaContaminated: 13243.585903719902, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 8481.040057011378,
-          onSiteDays: 319012.9890847742,
-          phaseCost: 4465732582.034094,
-        },
-        sourceReductionResults: {
-          workDays: 1413.9021844338217,
-          onSiteDays: 1413.9021844338217,
-          phaseCost: 279654490.6459111,
-        },
-        decontaminationResults: {
-          workDays: 16.21710081077579,
-          onSiteDays: 18.567624549280765,
-          phaseCost: 470250424.4860269,
-        },
-        incidentCommandResults: {
-          onSiteDays: 320453.4588937573,
-          phaseCost: 788652541.4571433,
-        },
-        otherResults: {
-          otherCosts: 76099473.47909705,
-        },
-        generalResults: {
-          totalCost: 6080389512.102272,
-          areaContaminated: 17860000,
-        },
-      },
-    },
-    Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 19121.40494885785,
-        onSiteDays: 161366.01496936896,
-        phaseCost: 6022695466.687883,
-      },
-      sourceReductionResults: {
-        workDays: 49751.22823154907,
-        onSiteDays: 49751.22823154907,
-        phaseCost: 1151668178.1708703,
-      },
-      decontaminationResults: {
-        workDays: 11.506538772142152,
-        onSiteDays: 11.975437708193304,
-        phaseCost: 1248819557.3175418,
-      },
-      incidentCommandResults: {
-        onSiteDays: 211137.21863862622,
-        phaseCost: 522126950.84646106,
-      },
-      otherResults: {
-        otherCosts: 56236878.463536076,
-      },
-      generalResults: {
-        totalCost: 9001547031.486292,
-        areaContaminated: 34460000,
-      },
-    },
-    Underground: {
-      characterizationSamplingResults: {
-        workDays: 22830.798416189285,
-        onSiteDays: 595179.1598720716,
-        phaseCost: 7006334601.16464,
-      },
-      sourceReductionResults: {
-        workDays: 8826.322276336628,
-        onSiteDays: 8826.322276336628,
-        phaseCost: 1374880755.008587,
-      },
-      decontaminationResults: {
-        workDays: 19.723024962172616,
-        onSiteDays: 20.29114649800843,
-        phaseCost: 1068549062.1554763,
-      },
-      incidentCommandResults: {
-        onSiteDays: 604033.7732949062,
-        phaseCost: 1485937672.91018,
-      },
-      otherResults: {
-        otherCosts: 152048161.7006631,
-      },
-      generalResults: {
-        totalCost: 11087750252.939547,
-        areaContaminated: 40860000,
-      },
-    },
-  },
-  {
-    Indoor: {
-      Commercial: {
-        characterizationSamplingResults: {
-          workDays: 27352.405604072293,
-          onSiteDays: 158660.01644845778,
-          phaseCost: 2881665889.8822813,
-        },
-        sourceReductionResults: {
-          workDays: 140.06686205900598,
-          onSiteDays: 140.06686205900598,
-          phaseCost: 27557128.965005253,
-        },
-        decontaminationResults: {
-          workDays: 20.290939848704948,
-          onSiteDays: 22.839208831507527,
-          phaseCost: 122434389.06612074,
-        },
-        incidentCommandResults: {
-          onSiteDays: 158830.9225193483,
-          phaseCost: 388593587.4869978,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 9.261170758450193,
+          onSiteDays: 36.39715628841721,
+          phaseCost: 720597,
         },
-        otherResults: {
-          otherCosts: 29906946.18771898,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 21.304422504421908,
+          onSiteDays: 71.46226909235784,
+          phaseCost: 1318360,
         },
-        generalResults: {
-          totalCost: 3450157941.588124,
-          areaContaminated: 17860000,
+        totalCharacterizationSamplingResults: {
+          workDays: 30.5655932628721,
+          onSiteDays: 107.85942538077505,
+          phaseCost: 2038957,
         },
-      },
-      Industrial: {
-        characterizationSamplingResults: {
-          workDays: 13930.749376380807,
-          onSiteDays: 2392484.4138152692,
-          phaseCost: 5908289087.073949,
-        },
-        sourceReductionResults: {
-          workDays: 749.3584837987304,
-          onSiteDays: 749.3584837987304,
-          phaseCost: 41599780.427942604,
-        },
+        sourceReductionResults: { workDays: 4.5815790564082794, onSiteDays: 4.5815790564082794, phaseCost: 345209 },
         decontaminationResults: {
-          workDays: 24.758430264601117,
-          onSiteDays: 27.079766027182284,
-          phaseCost: 489488052.547471,
+          workDays: 4.051505355874893,
+          onSiteDays: 4.147382559289081,
+          suppliesCost: 287662,
+          otherCosts: 96115,
         },
-        incidentCommandResults: {
-          onSiteDays: 2393268.852065095,
-          phaseCost: 5800308462.063017,
-        },
-        otherResults: {
-          otherCosts: 814149608.1182657,
-        },
-        generalResults: {
-          totalCost: 13053834990.230644,
-          areaContaminated: 17860000,
-        },
+        incidentCommandResults: { onSiteDays: 124.58838699647241, phaseCost: 384384 },
+        otherResults: { otherCosts: 82518 },
+        generalResults: { totalCost: 3234845, areaContaminated: 13243.585903719902, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 35967.0081131609,
-        onSiteDays: 794968.1205874688,
-        phaseCost: 10458505638.76854,
-      },
-      sourceReductionResults: {
-        workDays: 32140.25415705967,
-        onSiteDays: 32140.25415705967,
-        phaseCost: 3889569770.1078167,
-      },
-      decontaminationResults: {
-        workDays: 20.028807772097366,
-        onSiteDays: 20.787518968290538,
-        phaseCost: 2266726516.611015,
-      },
-      incidentCommandResults: {
-        onSiteDays: 827137.1622634969,
-        phaseCost: 2007765801.4607737,
-      },
-      otherResults: {
-        otherCosts: 182769149.77738136,
-      },
-      generalResults: {
-        totalCost: 18805336876.72553,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.5595608616677765,
+        onSiteDays: 21.984356190116532,
+        phaseCost: 705041,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.512897514058671,
+        onSiteDays: 30.815644487772627,
+        phaseCost: 971232,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.072458375726447,
+        onSiteDays: 52.80000067788916,
+        phaseCost: 1676273,
+      },
+      sourceReductionResults: { workDays: 0.30130975181241115, onSiteDays: 0.30130975181241115, phaseCost: 14215 },
+      decontaminationResults: {
+        workDays: 16.290302067597,
+        onSiteDays: 16.681181784412168,
+        suppliesCost: 132305,
+        otherCosts: 580548,
+      },
+      incidentCommandResults: { onSiteDays: 77.78249221411374, phaseCost: 240087 },
+      otherResults: { otherCosts: 105981 },
+      generalResults: { totalCost: 2749409, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 27581.077373112046,
-        onSiteDays: 6630876.995463883,
-        phaseCost: 9208200086.149326,
-      },
-      sourceReductionResults: {
-        workDays: 23930.160153998477,
-        onSiteDays: 23930.160153998477,
-        phaseCost: 763664746.5664415,
-      },
-      decontaminationResults: {
-        workDays: 20.22958810609523,
-        onSiteDays: 22.714949688109325,
-        phaseCost: 3348339889.6175656,
-      },
-      incidentCommandResults: {
-        onSiteDays: 6654837.870567569,
-        phaseCost: 16456369918.413464,
-      },
-      otherResults: {
-        otherCosts: 2165296983.1184406,
-      },
-      generalResults: {
-        totalCost: 31941871623.865234,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.5214890751830072,
+        onSiteDays: 10.883151311012478,
+        phaseCost: 505295,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.907785937632185,
+        onSiteDays: 17.99154207346357,
+        phaseCost: 688069,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.429275012815192,
+        onSiteDays: 28.874693384476046,
+        phaseCost: 1193364,
+      },
+      sourceReductionResults: { workDays: 5.326176336840841, onSiteDays: 5.326176336840841, phaseCost: 307334 },
+      decontaminationResults: {
+        workDays: 4.311256040658629,
+        onSiteDays: 5.9299144029919795,
+        suppliesCost: 132889,
+        otherCosts: 172077,
+      },
+      incidentCommandResults: { onSiteDays: 48.13078412430886, phaseCost: 147122 },
+      otherResults: { otherCosts: 96707 },
+      generalResults: { totalCost: 2049493, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 11668.669490637467,
-          onSiteDays: 953179.6858781194,
-          phaseCost: 5817591470.556458,
-        },
-        sourceReductionResults: {
-          workDays: 1231.7522730781288,
-          onSiteDays: 1231.7522730781288,
-          phaseCost: 270331670.4426933,
-        },
-        decontaminationResults: {
-          workDays: 21.88151955811342,
-          onSiteDays: 22.106870471990405,
-          phaseCost: 214800207.49339944,
-        },
-        incidentCommandResults: {
-          onSiteDays: 954441.5450216695,
-          phaseCost: 2345587104.9827003,
-        },
-        otherResults: {
-          otherCosts: 169863753.01669675,
-        },
-        generalResults: {
-          totalCost: 8818174206.49195,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.6346298399911827,
+          onSiteDays: 13.42010234623474,
+          phaseCost: 603163,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.421609273106458,
+          onSiteDays: 15.182352734433545,
+          phaseCost: 802801,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 5.056239113097641,
+          onSiteDays: 28.602455080668285,
+          phaseCost: 1405964,
+        },
+        sourceReductionResults: { workDays: 0.7113250560585497, onSiteDays: 0.7113250560585497, phaseCost: 97079 },
+        decontaminationResults: {
+          workDays: 4.937404099837273,
+          onSiteDays: 5.007947929903853,
+          suppliesCost: 256808,
+          otherCosts: 245452,
+        },
+        incidentCommandResults: { onSiteDays: 42.32172806663068, phaseCost: 128186 },
+        otherResults: { otherCosts: 71304 },
+        generalResults: { totalCost: 2204793, areaContaminated: 9717.402910980723, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 11740.038769924484,
-          onSiteDays: 486674.9733308339,
-          phaseCost: 2757997003.1511993,
-        },
-        sourceReductionResults: {
-          workDays: 5448.361551263738,
-          onSiteDays: 5448.361551263738,
-          phaseCost: 244839395.78400302,
-        },
-        decontaminationResults: {
-          workDays: 21.995544625910824,
-          onSiteDays: 24.033393411439235,
-          phaseCost: 288363208.89697486,
-        },
-        incidentCommandResults: {
-          onSiteDays: 492155.36827550904,
-          phaseCost: 1202581082.7851295,
-        },
-        otherResults: {
-          otherCosts: 144718819.0345116,
-        },
-        generalResults: {
-          totalCost: 4638499509.651819,
-          areaContaminated: 17860000,
-        },
-      },
-    },
-    Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 122026.26261673,
-        onSiteDays: 1008119.6201691739,
-        phaseCost: 5606627590.744043,
-      },
-      sourceReductionResults: {
-        workDays: 1343.3442019252327,
-        onSiteDays: 1343.3442019252327,
-        phaseCost: 45452880.034577236,
-      },
-      decontaminationResults: {
-        workDays: 16.10235012837275,
-        onSiteDays: 18.482492841659695,
-        phaseCost: 1417912571.0916252,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1009489.4468639408,
-        phaseCost: 2453712529.4259963,
-      },
-      otherResults: {
-        otherCosts: 308520634.3948421,
-      },
-      generalResults: {
-        totalCost: 9832226205.691084,
-        areaContaminated: 34460000,
-      },
-    },
-    Underground: {
-      characterizationSamplingResults: {
-        workDays: 75576.74566649695,
-        onSiteDays: 15735199.808318067,
-        phaseCost: 9092925688.92012,
-      },
-      sourceReductionResults: {
-        workDays: 8091.189354463684,
-        onSiteDays: 8091.189354463684,
-        phaseCost: 954661124.3113577,
-      },
-      decontaminationResults: {
-        workDays: 14.955716955232369,
-        onSiteDays: 15.013991457413415,
-        phaseCost: 179066431.34427193,
-      },
-      incidentCommandResults: {
-        onSiteDays: 15743314.01166399,
-        phaseCost: 38465329259.297226,
-      },
-      otherResults: {
-        otherCosts: 4037562064.3843856,
-      },
-      generalResults: {
-        totalCost: 52729544568.25736,
-        areaContaminated: 40860000,
-      },
-    },
-  },
-  {
-    Indoor: {
-      Commercial: {
-        characterizationSamplingResults: {
-          workDays: 10485.511220087743,
-          onSiteDays: 201586.0645859006,
-          phaseCost: 3620712977.6039734,
-        },
-        sourceReductionResults: {
-          workDays: 1398.9317085870996,
-          onSiteDays: 1398.9317085870996,
-          phaseCost: 435442669.85868376,
-        },
-        decontaminationResults: {
-          workDays: 24.515177340366684,
-          onSiteDays: 24.90777494779503,
-          phaseCost: 1026504431.403653,
-        },
-        incidentCommandResults: {
-          onSiteDays: 203017.9040694355,
-          phaseCost: 503620549.09479845,
-        },
-        otherResults: {
-          otherCosts: 53872193.33354883,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.6631633480155426,
+          onSiteDays: 13.87001248469116,
+          phaseCost: 808171,
         },
-        generalResults: {
-          totalCost: 5640152821.294657,
-          areaContaminated: 17860000,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 9.79456072141719,
+          onSiteDays: 18.243844278464344,
+          phaseCost: 628710,
         },
-      },
-      Industrial: {
-        characterizationSamplingResults: {
-          workDays: 34387.388656946176,
-          onSiteDays: 593457.3246585854,
-          phaseCost: 4924282695.442455,
+        totalCharacterizationSamplingResults: {
+          workDays: 13.457724069432732,
+          onSiteDays: 32.1138567631555,
+          phaseCost: 1436881,
         },
-        sourceReductionResults: {
-          workDays: 5061.71087606279,
-          onSiteDays: 5061.71087606279,
-          phaseCost: 789073927.8161116,
-        },
+        sourceReductionResults: { workDays: 1.7144078786416912, onSiteDays: 1.7144078786416912, phaseCost: 284183 },
         decontaminationResults: {
-          workDays: 16.884382290040232,
-          onSiteDays: 18.607855484729598,
-          phaseCost: 484515427.15582496,
-        },
-        incidentCommandResults: {
-          onSiteDays: 598545.6433901328,
-          phaseCost: 1464293878.3650756,
+          workDays: 7.702885928494597,
+          onSiteDays: 8.532025660279213,
+          suppliesCost: 60193,
+          otherCosts: 465039,
         },
-        otherResults: {
-          otherCosts: 179857265.42989093,
-        },
-        generalResults: {
-          totalCost: 7842023194.209357,
-          areaContaminated: 17860000,
-        },
+        incidentCommandResults: { onSiteDays: 50.36029030207641, phaseCost: 152671 },
+        otherResults: { otherCosts: 90137 },
+        generalResults: { totalCost: 2489104, areaContaminated: 9717.402910980723, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 26266.632997210465,
-        onSiteDays: 1022023.1227307715,
-        phaseCost: 8487088682.326241,
-      },
-      sourceReductionResults: {
-        workDays: 3374.5910661517614,
-        onSiteDays: 3374.5910661517614,
-        phaseCost: 198907418.32433575,
-      },
-      decontaminationResults: {
-        workDays: 14.703906689468749,
-        onSiteDays: 15.545438412005415,
-        phaseCost: 1020592360.3423895,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1025421.2592353353,
-        phaseCost: 2529963305.0296335,
-      },
-      otherResults: {
-        otherCosts: 348276950.646767,
-      },
-      generalResults: {
-        totalCost: 12584828716.669365,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.676441407486923,
+        onSiteDays: 13.138662591376598,
+        phaseCost: 245895,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.9617088096902915,
+        onSiteDays: 23.81851077542329,
+        phaseCost: 619292,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.638150217177214,
+        onSiteDays: 36.95717336679989,
+        phaseCost: 865187,
+      },
+      sourceReductionResults: { workDays: 0.16541732267524337, onSiteDays: 0.16541732267524337, phaseCost: 19119 },
+      decontaminationResults: {
+        workDays: 8.096000818558037,
+        onSiteDays: 10.407995059017091,
+        suppliesCost: 409592,
+        otherCosts: 218012,
+      },
+      incidentCommandResults: { onSiteDays: 55.53058574849223, phaseCost: 170082 },
+      otherResults: { otherCosts: 59916 },
+      generalResults: { totalCost: 1741908, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 72579.09756788725,
-        onSiteDays: 903241.7942983572,
-        phaseCost: 5603149677.863138,
-      },
-      sourceReductionResults: {
-        workDays: 32301.144295278682,
-        onSiteDays: 32301.144295278682,
-        phaseCost: 2516741946.1728625,
-      },
-      decontaminationResults: {
-        workDays: 15.874520114128135,
-        onSiteDays: 16.55073334685311,
-        phaseCost: 1577539586.632152,
-      },
-      incidentCommandResults: {
-        onSiteDays: 935567.4893269828,
-        phaseCost: 2308761741.0562115,
-      },
-      otherResults: {
-        otherCosts: 262477803.06114772,
-      },
-      generalResults: {
-        totalCost: 12268670754.785513,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.2037542433865112,
+        onSiteDays: 6.987059811350761,
+        phaseCost: 330587,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.5333569637668547,
+        onSiteDays: 16.113083911675965,
+        phaseCost: 820492,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.737111207153366,
+        onSiteDays: 23.100143723026726,
+        phaseCost: 1151079,
+      },
+      sourceReductionResults: { workDays: 0.12415562340212623, onSiteDays: 0.12415562340212623, phaseCost: 12190 },
+      decontaminationResults: {
+        workDays: 7.885731394841738,
+        onSiteDays: 9.031406166039268,
+        suppliesCost: 261729,
+        otherCosts: 525231,
+      },
+      incidentCommandResults: { onSiteDays: 40.25570551246812, phaseCost: 122575 },
+      otherResults: { otherCosts: 72206 },
+      generalResults: { totalCost: 2145010, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 18762.90526284791,
-          onSiteDays: 484233.322861282,
-          phaseCost: 1892096649.9338083,
-        },
-        sourceReductionResults: {
-          workDays: 2269.7561354393433,
-          onSiteDays: 2269.7561354393433,
-          phaseCost: 185010042.31005093,
-        },
-        decontaminationResults: {
-          workDays: 12.753866462445322,
-          onSiteDays: 14.666382441452328,
-          phaseCost: 523347584.41915,
-        },
-        incidentCommandResults: {
-          onSiteDays: 486525.7453791628,
-          phaseCost: 1177440586.5606968,
-        },
-        otherResults: {
-          otherCosts: 115054600.07924686,
-        },
-        generalResults: {
-          totalCost: 3892949463.3029532,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.3563071817740364,
+          onSiteDays: 12.35029885938664,
+          phaseCost: 788509,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.7927440335321858,
+          onSiteDays: 7.298904750777155,
+          phaseCost: 413582,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 4.149051215306223,
+          onSiteDays: 19.649203610163795,
+          phaseCost: 1202091,
+        },
+        sourceReductionResults: { workDays: 3.8205623691127575, onSiteDays: 3.8205623691127575, phaseCost: 125587 },
+        decontaminationResults: {
+          workDays: 3.129723436229332,
+          onSiteDays: 5.822856411529438,
+          suppliesCost: 191958,
+          otherCosts: 225270,
+        },
+        incidentCommandResults: { onSiteDays: 37.29262239080599, phaseCost: 114406 },
+        otherResults: { otherCosts: 86901 },
+        generalResults: { totalCost: 1946213, areaContaminated: 6985.398871355083, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 21747.38791457004,
-          onSiteDays: 447283.02138614986,
-          phaseCost: 6971726075.428849,
-        },
-        sourceReductionResults: {
-          workDays: 382.03501014049925,
-          onSiteDays: 382.03501014049925,
-          phaseCost: 73229091.16184714,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.3530176952896675,
+          onSiteDays: 8.875290705328505,
+          phaseCost: 175818,
         },
-        decontaminationResults: {
-          workDays: 27.609697874311752,
-          onSiteDays: 28.456072328019903,
-          phaseCost: 714358016.0271163,
-        },
-        incidentCommandResults: {
-          onSiteDays: 447701.5124686184,
-          phaseCost: 1102861828.3315947,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.4771183394635656,
+          onSiteDays: 21.789740998631757,
+          phaseCost: 681351,
         },
-        otherResults: {
-          otherCosts: 134874903.7513062,
+        totalCharacterizationSamplingResults: {
+          workDays: 5.830136034753233,
+          onSiteDays: 30.66503170396026,
+          phaseCost: 857169,
         },
-        generalResults: {
-          totalCost: 8997049914.700714,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.4139801843515081, onSiteDays: 0.4139801843515081, phaseCost: 60973 },
+        decontaminationResults: {
+          workDays: 6.724792380054666,
+          onSiteDays: 6.938821891541319,
+          suppliesCost: 119565,
+          otherCosts: 305065,
         },
+        incidentCommandResults: { onSiteDays: 46.017833779853085, phaseCost: 139160 },
+        otherResults: { otherCosts: 71866 },
+        generalResults: { totalCost: 1553798, areaContaminated: 6985.398871355083, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 58298.884431611645,
-        onSiteDays: 307809.3807399942,
-        phaseCost: 7239089568.643479,
-      },
-      sourceReductionResults: {
-        workDays: 7853.410475629069,
-        onSiteDays: 7853.410475629069,
-        phaseCost: 1467567100.5092301,
-      },
-      decontaminationResults: {
-        workDays: 16.201040532486754,
-        onSiteDays: 17.6457645412641,
-        phaseCost: 1242009174.5727532,
-      },
-      incidentCommandResults: {
-        onSiteDays: 315688.43698016455,
-        phaseCost: 775248394.6201056,
-      },
-      otherResults: {
-        otherCosts: 58539868.35477106,
-      },
-      generalResults: {
-        totalCost: 10782454106.70034,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.282089620305767,
+        onSiteDays: 21.451732685967052,
+        phaseCost: 453043,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.5581451965665014,
+        onSiteDays: 46.218564795378256,
+        phaseCost: 1004118,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.840234816872268,
+        onSiteDays: 67.6702974813453,
+        phaseCost: 1457161,
+      },
+      sourceReductionResults: { workDays: 0.534739831096281, onSiteDays: 0.534739831096281, phaseCost: 23992 },
+      decontaminationResults: {
+        workDays: 6.894471567332388,
+        onSiteDays: 7.578819016595096,
+        suppliesCost: 212328,
+        otherCosts: 333331,
+      },
+      incidentCommandResults: { onSiteDays: 83.78385632903667, phaseCost: 255644 },
+      otherResults: { otherCosts: 62620 },
+      generalResults: { totalCost: 2345076, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 22085.800616773908,
-        onSiteDays: 485375.2103149673,
-        phaseCost: 2797125276.6701107,
-      },
-      sourceReductionResults: {
-        workDays: 1743.5636696478382,
-        onSiteDays: 1743.5636696478382,
-        phaseCost: 69798439.11163926,
-      },
-      decontaminationResults: {
-        workDays: 19.360181731721426,
-        onSiteDays: 21.715710663636145,
-        phaseCost: 2009677504.5944839,
-      },
-      incidentCommandResults: {
-        onSiteDays: 487148.4896952788,
-        phaseCost: 1208650337.4270215,
-      },
-      otherResults: {
-        otherCosts: 88915619.46930596,
-      },
-      generalResults: {
-        totalCost: 6174167177.272561,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.2585791824796893,
+        onSiteDays: 11.20373647065188,
+        phaseCost: 400084,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.754793782558285,
+        onSiteDays: 10.652089763657024,
+        phaseCost: 450367,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.013372965037974,
+        onSiteDays: 21.855826234308903,
+        phaseCost: 850451,
+      },
+      sourceReductionResults: { workDays: 1.0363369546578556, onSiteDays: 1.0363369546578556, phaseCost: 193225 },
+      decontaminationResults: {
+        workDays: 3.091730229577918,
+        onSiteDays: 3.5546412087405663,
+        suppliesCost: 98696,
+        otherCosts: 114434,
+      },
+      incidentCommandResults: { onSiteDays: 34.446804397707325, phaseCost: 105076 },
+      otherResults: { otherCosts: 38667 },
+      generalResults: { totalCost: 1400549, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 11079.084373442387,
-          onSiteDays: 396127.4274433867,
-          phaseCost: 2666470055.6055117,
-        },
-        sourceReductionResults: {
-          workDays: 14072.596484775982,
-          onSiteDays: 14072.596484775982,
-          phaseCost: 948250498.7983401,
-        },
-        decontaminationResults: {
-          workDays: 29.59831630405931,
-          onSiteDays: 31.947431530791206,
-          phaseCost: 940375707.4356154,
-        },
-        incidentCommandResults: {
-          onSiteDays: 410239.9713596935,
-          phaseCost: 996203445.435439,
-        },
-        otherResults: {
-          otherCosts: 73154399.80917294,
-        },
-        generalResults: {
-          totalCost: 5624454107.084079,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.061414523932566,
+          onSiteDays: 8.800909283097054,
+          phaseCost: 292476,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.0773130494863192,
+          onSiteDays: 9.998624285089697,
+          phaseCost: 580507,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 7.138727573418885,
+          onSiteDays: 18.799533568186753,
+          phaseCost: 872983,
+        },
+        sourceReductionResults: { workDays: 0.5305377199112918, onSiteDays: 0.5305377199112918, phaseCost: 25060 },
+        decontaminationResults: {
+          workDays: 7.339089501960922,
+          onSiteDays: 9.040564170349521,
+          suppliesCost: 130318,
+          otherCosts: 286357,
+        },
+        incidentCommandResults: { onSiteDays: 36.370635458447566, phaseCost: 111553 },
+        otherResults: { otherCosts: 66949 },
+        generalResults: { totalCost: 1493220, areaContaminated: 7942.6512035873375, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 20957.763702630116,
-          onSiteDays: 1010641.6984742936,
-          phaseCost: 3489701136.587722,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.7637249600476155,
+          onSiteDays: 20.986804594567765,
+          phaseCost: 456123,
         },
-        sourceReductionResults: {
-          workDays: 2667.04813321165,
-          onSiteDays: 2667.04813321165,
-          phaseCost: 398527380.5192522,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.001647694274251,
+          onSiteDays: 14.624825426844717,
+          phaseCost: 315333,
         },
-        decontaminationResults: {
-          workDays: 17.14332363082639,
-          onSiteDays: 17.99905417021342,
-          phaseCost: 362616594.33787024,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1013334.7456616755,
-          phaseCost: 2472018783.746741,
+        totalCharacterizationSamplingResults: {
+          workDays: 3.765372654321866,
+          onSiteDays: 35.61163002141248,
+          phaseCost: 771456,
         },
-        otherResults: {
-          otherCosts: 195330127.41516447,
-        },
-        generalResults: {
-          totalCost: 6918194022.6067505,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.0747172337629198, onSiteDays: 0.0747172337629198, phaseCost: 14570 },
+        decontaminationResults: {
+          workDays: 8.066808352728097,
+          onSiteDays: 8.38035092418556,
+          suppliesCost: 200313,
+          otherCosts: 458166,
         },
+        incidentCommandResults: { onSiteDays: 52.066698179360955, phaseCost: 157868 },
+        otherResults: { otherCosts: 121091 },
+        generalResults: { totalCost: 1723464, areaContaminated: 7942.6512035873375, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 47701.7294377963,
-        onSiteDays: 2079276.8085856114,
-        phaseCost: 6721251250.464148,
-      },
-      sourceReductionResults: {
-        workDays: 5863.324555120063,
-        onSiteDays: 5863.324555120063,
-        phaseCost: 255948341.5647701,
-      },
-      decontaminationResults: {
-        workDays: 16.535482018379376,
-        onSiteDays: 17.910086080411006,
-        phaseCost: 534235031.28635466,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2085166.0432268118,
-        phaseCost: 5120671852.183195,
-      },
-      otherResults: {
-        otherCosts: 451574637.38984245,
-      },
-      generalResults: {
-        totalCost: 13083681112.88831,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 8.537198509623172,
+        onSiteDays: 28.056338156334405,
+        phaseCost: 744667,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.1782932123967018,
+        onSiteDays: 7.456651558353403,
+        phaseCost: 222597,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 9.715491722019873,
+        onSiteDays: 35.512989714687805,
+        phaseCost: 967264,
+      },
+      sourceReductionResults: { workDays: 2.0728443832589956, onSiteDays: 2.0728443832589956, phaseCost: 224102 },
+      decontaminationResults: {
+        workDays: 9.61512488210926,
+        onSiteDays: 12.414382649216424,
+        suppliesCost: 207833,
+        otherCosts: 582209,
+      },
+      incidentCommandResults: { onSiteDays: 58.00021674716322, phaseCost: 174504 },
+      otherResults: { otherCosts: 107798 },
+      generalResults: { totalCost: 2263710, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 47249.76255645708,
-        onSiteDays: 208841.4045776251,
-        phaseCost: 2701937316.6032667,
-      },
-      sourceReductionResults: {
-        workDays: 4092.7424243469745,
-        onSiteDays: 4092.7424243469745,
-        phaseCost: 1088140996.389326,
-      },
-      decontaminationResults: {
-        workDays: 16.038169384011574,
-        onSiteDays: 16.385541972561168,
-        phaseCost: 525263872.67319876,
-      },
-      incidentCommandResults: {
-        onSiteDays: 212958.53254394463,
-        phaseCost: 526047064.1125051,
-      },
-      otherResults: {
-        otherCosts: 55216700.058077015,
-      },
-      generalResults: {
-        totalCost: 4896605949.836373,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.777883367262577,
+        onSiteDays: 23.314952326051696,
+        phaseCost: 507885,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.449072122534683,
+        onSiteDays: 28.540154250199887,
+        phaseCost: 688804,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 10.226955489797259,
+        onSiteDays: 51.855106576251586,
+        phaseCost: 1196689,
+      },
+      sourceReductionResults: { workDays: 0.06343279888640956, onSiteDays: 0.06343279888640956, phaseCost: 15703 },
+      decontaminationResults: {
+        workDays: 3.3340371382269165,
+        onSiteDays: 5.175147468264948,
+        suppliesCost: 259194,
+        otherCosts: 188969,
+      },
+      incidentCommandResults: { onSiteDays: 65.09368684340293, phaseCost: 196736 },
+      otherResults: { otherCosts: 92102 },
+      generalResults: { totalCost: 1949393, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 16955.508887870823,
-          onSiteDays: 897431.811561108,
-          phaseCost: 3634147529.5898924,
-        },
-        sourceReductionResults: {
-          workDays: 1277.8906530966472,
-          onSiteDays: 1277.8906530966472,
-          phaseCost: 85307684.94623646,
-        },
-        decontaminationResults: {
-          workDays: 27.15108368339741,
-          onSiteDays: 29.26578133210209,
-          phaseCost: 394004335.36914766,
-        },
-        incidentCommandResults: {
-          onSiteDays: 898746.9679955367,
-          phaseCost: 2220821486.8955975,
-        },
-        otherResults: {
-          otherCosts: 265181798.82228184,
-        },
-        generalResults: {
-          totalCost: 6599462835.623157,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.82295957095115,
+          onSiteDays: 25.950731705275032,
+          phaseCost: 1071746,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 7.5863015287972715,
+          onSiteDays: 24.185877498646416,
+          phaseCost: 847614,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 12.409261099748422,
+          onSiteDays: 50.13660920392145,
+          phaseCost: 1919360,
+        },
+        sourceReductionResults: { workDays: 5.688731672713008, onSiteDays: 5.688731672713008, phaseCost: 233057 },
+        decontaminationResults: {
+          workDays: 8.368514088068277,
+          onSiteDays: 11.314601031670954,
+          suppliesCost: 406918,
+          otherCosts: 562823,
+        },
+        incidentCommandResults: { onSiteDays: 75.13994190830542, phaseCost: 226955 },
+        otherResults: { otherCosts: 91221 },
+        generalResults: { totalCost: 3440334, areaContaminated: 12134.435169197255, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 12508.863457205978,
-          onSiteDays: 239191.4395123978,
-          phaseCost: 4849667994.847196,
-        },
-        sourceReductionResults: {
-          workDays: 6378.763379800531,
-          onSiteDays: 6378.763379800531,
-          phaseCost: 1022529991.287056,
-        },
-        decontaminationResults: {
-          workDays: 20.94244916898721,
-          onSiteDays: 23.557925841202476,
-          phaseCost: 734688064.4711577,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.589230662659869,
+          onSiteDays: 35.43579128625801,
+          phaseCost: 1233534,
         },
-        incidentCommandResults: {
-          onSiteDays: 245601.76081803953,
-          phaseCost: 599498967.5716965,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.2316520058660227,
+          onSiteDays: 17.934904299496356,
+          phaseCost: 589547,
         },
-        otherResults: {
-          otherCosts: 78779703.85244912,
+        totalCharacterizationSamplingResults: {
+          workDays: 6.820882668525892,
+          onSiteDays: 53.37069558575436,
+          phaseCost: 1823081,
         },
-        generalResults: {
-          totalCost: 7285164722.029555,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 6.484884465554599, onSiteDays: 6.484884465554599, phaseCost: 409558 },
+        decontaminationResults: {
+          workDays: 4.555029273395201,
+          onSiteDays: 5.758108938289366,
+          suppliesCost: 370393,
+          otherCosts: 153307,
         },
+        incidentCommandResults: { onSiteDays: 73.61368898959833, phaseCost: 226508 },
+        otherResults: { otherCosts: 107991 },
+        generalResults: { totalCost: 3090838, areaContaminated: 12134.435169197255, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 66155.25983219937,
-        onSiteDays: 402512.5625637658,
-        phaseCost: 8124722963.215334,
-      },
-      sourceReductionResults: {
-        workDays: 11288.888622217872,
-        onSiteDays: 11288.888622217872,
-        phaseCost: 2049770355.618231,
-      },
-      decontaminationResults: {
-        workDays: 17.022833743836458,
-        onSiteDays: 18.563163916013007,
-        phaseCost: 1320594479.4316587,
-      },
-      incidentCommandResults: {
-        onSiteDays: 413828.01434989966,
-        phaseCost: 1022001603.0990309,
-      },
-      otherResults: {
-        otherCosts: 100262703.28008482,
-      },
-      generalResults: {
-        totalCost: 12617352104.64434,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 9.216294003963926,
+        onSiteDays: 20.8464047039066,
+        phaseCost: 1186591,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.249857889920559,
+        onSiteDays: 5.386380299465092,
+        phaseCost: 352549,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 10.466151893884485,
+        onSiteDays: 26.232785003371692,
+        phaseCost: 1539140,
+      },
+      sourceReductionResults: { workDays: 1.6825766621111686, onSiteDays: 1.6825766621111686, phaseCost: 148449 },
+      decontaminationResults: {
+        workDays: 16.096707912650125,
+        onSiteDays: 17.212739715867848,
+        suppliesCost: 132825,
+        otherCosts: 651978,
+      },
+      incidentCommandResults: { onSiteDays: 53.12810138135071, phaseCost: 161006 },
+      otherResults: { otherCosts: 78936 },
+      generalResults: { totalCost: 2712334, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 72857.68890658785,
-        onSiteDays: 793191.2812338842,
-        phaseCost: 4034814908.880684,
-      },
-      sourceReductionResults: {
-        workDays: 11515.247790051837,
-        onSiteDays: 11515.247790051837,
-        phaseCost: 511875420.63072246,
-      },
-      decontaminationResults: {
-        workDays: 17.897058202861125,
-        onSiteDays: 19.515816227420192,
-        phaseCost: 970851462.404128,
-      },
-      incidentCommandResults: {
-        onSiteDays: 804734.0448401634,
-        phaseCost: 1973319308.3903046,
-      },
-      otherResults: {
-        otherCosts: 143352252.6583705,
-      },
-      generalResults: {
-        totalCost: 7634213352.964209,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.584728991417512,
+        onSiteDays: 25.44006741084148,
+        phaseCost: 715167,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 8.955554892924201,
+        onSiteDays: 63.82324709734175,
+        phaseCost: 1854761,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.540283884341713,
+        onSiteDays: 89.26331450818323,
+        phaseCost: 2569928,
+      },
+      sourceReductionResults: { workDays: 0.1520456621069056, onSiteDays: 0.1520456621069056, phaseCost: 29341 },
+      decontaminationResults: {
+        workDays: 9.433885680146954,
+        onSiteDays: 10.681011951454218,
+        suppliesCost: 375756,
+        otherCosts: 174635,
+      },
+      incidentCommandResults: { onSiteDays: 108.09637212174435, phaseCost: 331783 },
+      otherResults: { otherCosts: 142850 },
+      generalResults: { totalCost: 3624293, areaContaminated: 10000, decontaminationRounds: 2 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 19739.871494201652,
-          onSiteDays: 158551.877259748,
-          phaseCost: 2272372282.0391636,
-        },
-        sourceReductionResults: {
-          workDays: 3586.0458810973887,
-          onSiteDays: 3586.0458810973887,
-          phaseCost: 282023262.96685845,
-        },
-        decontaminationResults: {
-          workDays: 20.99082893086384,
-          onSiteDays: 22.17171817975392,
-          phaseCost: 694509846.8574238,
-        },
-        incidentCommandResults: {
-          onSiteDays: 162168.09485902512,
-          phaseCost: 397631779.1877823,
-        },
-        otherResults: {
-          otherCosts: 29294323.59899155,
-        },
-        generalResults: {
-          totalCost: 3675831494.6502194,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.3888420109932524,
+          onSiteDays: 13.988726245645475,
+          phaseCost: 498533,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.7756444655460001,
+          onSiteDays: 4.655879473774945,
+          phaseCost: 137378,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.1644864765392526,
+          onSiteDays: 18.64460571942042,
+          phaseCost: 635911,
+        },
+        sourceReductionResults: { workDays: 1.4778216628598284, onSiteDays: 1.4778216628598284, phaseCost: 50555 },
+        decontaminationResults: {
+          workDays: 13.103256351338526,
+          onSiteDays: 13.16193923939996,
+          suppliesCost: 50775,
+          otherCosts: 483601,
+        },
+        incidentCommandResults: { onSiteDays: 41.284366621680206, phaseCost: 127919 },
+        otherResults: { otherCosts: 85150 },
+        generalResults: { totalCost: 1433911, areaContaminated: 6581.662653847986, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 51958.168887767024,
-          onSiteDays: 1348811.4889783144,
-          phaseCost: 3835858897.727873,
-        },
-        sourceReductionResults: {
-          workDays: 1838.4724349236733,
-          onSiteDays: 1838.4724349236733,
-          phaseCost: 292711657.71783125,
-        },
-        decontaminationResults: {
-          workDays: 17.80537681626281,
-          onSiteDays: 19.425213634368315,
-          phaseCost: 571709716.1932834,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.521586576041964,
+          onSiteDays: 22.541680385390848,
+          phaseCost: 773055,
         },
-        incidentCommandResults: {
-          onSiteDays: 1350677.3866268725,
-          phaseCost: 3270862578.722559,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.942369484868932,
+          onSiteDays: 32.173163528638916,
+          phaseCost: 1834143,
         },
-        otherResults: {
-          otherCosts: 274628544.141046,
+        totalCharacterizationSamplingResults: {
+          workDays: 11.463956060910895,
+          onSiteDays: 54.714843914029764,
+          phaseCost: 2607198,
         },
-        generalResults: {
-          totalCost: 8245771394.502592,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.7766891682547473, onSiteDays: 0.7766891682547473, phaseCost: 81390 },
+        decontaminationResults: {
+          workDays: 15.172751632792117,
+          onSiteDays: 17.146085343357658,
+          suppliesCost: 75538,
+          otherCosts: 907418,
         },
+        incidentCommandResults: { onSiteDays: 80.63761842564217, phaseCost: 249426 },
+        otherResults: { otherCosts: 110506 },
+        generalResults: { totalCost: 4031476, areaContaminated: 6581.662653847986, decontaminationRounds: 2 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 21110.639379513916,
-        onSiteDays: 2987590.227262019,
-        phaseCost: 4307305624.427271,
-      },
-      sourceReductionResults: {
-        workDays: 303.295859524451,
-        onSiteDays: 303.295859524451,
-        phaseCost: 12786974.997807797,
-      },
-      decontaminationResults: {
-        workDays: 17.040578741822525,
-        onSiteDays: 17.280462522124978,
-        phaseCost: 937947527.6653626,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2987918.8035840658,
-        phaseCost: 7253282900.741433,
-      },
-      otherResults: {
-        otherCosts: 671599203.0046961,
-      },
-      generalResults: {
-        totalCost: 13182922230.83657,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.8720975954978885,
+        onSiteDays: 15.890622767554206,
+        phaseCost: 1018958,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.7755304125799034,
+        onSiteDays: 19.665226189143347,
+        phaseCost: 1168466,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.647628008077792,
+        onSiteDays: 35.55584895669755,
+        phaseCost: 2187424,
+      },
+      sourceReductionResults: { workDays: 0.20947411529954138, onSiteDays: 0.20947411529954138, phaseCost: 16623 },
+      decontaminationResults: {
+        workDays: 3.413010144702394,
+        onSiteDays: 5.64181134119672,
+        suppliesCost: 320013,
+        otherCosts: 102907,
+      },
+      incidentCommandResults: { onSiteDays: 49.407134413193816, phaseCost: 150402 },
+      otherResults: { otherCosts: 65914 },
+      generalResults: { totalCost: 2843283, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 22274.28224294761,
-        onSiteDays: 478472.1217466374,
-        phaseCost: 7478046694.929526,
-      },
-      sourceReductionResults: {
-        workDays: 807.9334799576428,
-        onSiteDays: 807.9334799576428,
-        phaseCost: 88014060.73096037,
-      },
-      decontaminationResults: {
-        workDays: 11.874866714904751,
-        onSiteDays: 14.088518549010278,
-        phaseCost: 1685804783.274927,
-      },
-      incidentCommandResults: {
-        onSiteDays: 479302.143745144,
-        phaseCost: 1178716532.5113106,
-      },
-      otherResults: {
-        otherCosts: 154564215.91213354,
-      },
-      generalResults: {
-        totalCost: 10585146287.358858,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.1996191243646475,
+        onSiteDays: 10.050265909019124,
+        phaseCost: 199783,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.5458946486961507,
+        onSiteDays: 28.4612144558333,
+        phaseCost: 620853,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.745513773060798,
+        onSiteDays: 38.511480364852424,
+        phaseCost: 820636,
+      },
+      sourceReductionResults: { workDays: 6.109284302226928, onSiteDays: 6.109284302226928, phaseCost: 280568 },
+      decontaminationResults: {
+        workDays: 4.0673499598790315,
+        onSiteDays: 6.781509929751397,
+        suppliesCost: 321774,
+        otherCosts: 243123,
+      },
+      incidentCommandResults: { onSiteDays: 59.40227459683075, phaseCost: 181173 },
+      otherResults: { otherCosts: 54985 },
+      generalResults: { totalCost: 1902259, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 22241.510200035744,
-          onSiteDays: 1394347.403036759,
-          phaseCost: 5148705223.868368,
-        },
-        sourceReductionResults: {
-          workDays: 14393.214080130256,
-          onSiteDays: 14393.214080130256,
-          phaseCost: 935735989.4483285,
-        },
-        decontaminationResults: {
-          workDays: 22.597655526501512,
-          onSiteDays: 24.507526331932173,
-          phaseCost: 280890205.1377239,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1408773.1246432213,
-          phaseCost: 3424920350.674151,
-        },
-        otherResults: {
-          otherCosts: 249719928.26211077,
-        },
-        generalResults: {
-          totalCost: 10039971697.390682,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.1860230336388677,
+          onSiteDays: 35.749378613847256,
+          phaseCost: 758919,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 6.62780728820878,
+          onSiteDays: 53.22565849879599,
+          phaseCost: 1031736,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 9.813830321847648,
+          onSiteDays: 88.97503711264324,
+          phaseCost: 1790655,
+        },
+        sourceReductionResults: { workDays: 1.1102121874144086, onSiteDays: 1.1102121874144086, phaseCost: 109383 },
+        decontaminationResults: {
+          workDays: 4.058838367708688,
+          onSiteDays: 4.5523759626206886,
+          suppliesCost: 266256,
+          otherCosts: 235763,
+        },
+        incidentCommandResults: { onSiteDays: 102.63762526267833, phaseCost: 313011 },
+        otherResults: { otherCosts: 143832 },
+        generalResults: { totalCost: 2858900, areaContaminated: 13272.625074785348, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 7883.500928441219,
-          onSiteDays: 165664.57752394755,
-          phaseCost: 3927150355.811331,
-        },
-        sourceReductionResults: {
-          workDays: 1707.6334484293452,
-          onSiteDays: 1707.6334484293452,
-          phaseCost: 469799807.0164233,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.627545463308733,
+          onSiteDays: 37.27648946503468,
+          phaseCost: 1186217,
         },
-        decontaminationResults: {
-          workDays: 15.934360163736708,
-          onSiteDays: 16.54294307891814,
-          phaseCost: 435073243.01978225,
-        },
-        incidentCommandResults: {
-          onSiteDays: 167396.7539154558,
-          phaseCost: 410635269.40466774,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 26.058619944644253,
+          onSiteDays: 97.59408280785327,
+          phaseCost: 2524696,
         },
-        otherResults: {
-          otherCosts: 52140164.49712107,
+        totalCharacterizationSamplingResults: {
+          workDays: 30.686165407952984,
+          onSiteDays: 134.87057227288796,
+          phaseCost: 3710913,
         },
-        generalResults: {
-          totalCost: 5294798839.749325,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.966405757828898, onSiteDays: 1.966405757828898, phaseCost: 203774 },
+        decontaminationResults: {
+          workDays: 12.25042701215726,
+          onSiteDays: 15.068346082947297,
+          suppliesCost: 328132,
+          otherCosts: 468169,
         },
+        incidentCommandResults: { onSiteDays: 159.90532411366416, phaseCost: 489986 },
+        otherResults: { otherCosts: 107857 },
+        generalResults: { totalCost: 5308831, areaContaminated: 13272.625074785348, decontaminationRounds: 2 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 42373.96718650205,
-        onSiteDays: 1720346.4170316062,
-        phaseCost: 5395632462.752737,
-      },
-      sourceReductionResults: {
-        workDays: 3074.8975499603107,
-        onSiteDays: 3074.8975499603107,
-        phaseCost: 552177406.5247612,
-      },
-      decontaminationResults: {
-        workDays: 13.657614346281068,
-        onSiteDays: 14.742095372346716,
-        phaseCost: 569609826.5630732,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1723444.056676939,
-        phaseCost: 4238409150.8316574,
-      },
-      otherResults: {
-        otherCosts: 504524104.5981855,
-      },
-      generalResults: {
-        totalCost: 11260352951.270414,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.424728296003958,
+        onSiteDays: 23.232817428527216,
+        phaseCost: 941332,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.5065266151840078,
+        onSiteDays: 19.107673236221093,
+        phaseCost: 724911,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.931254911187965,
+        onSiteDays: 42.34049066474831,
+        phaseCost: 1666243,
+      },
+      sourceReductionResults: { workDays: 7.131417725848852, onSiteDays: 7.131417725848852, phaseCost: 368839 },
+      decontaminationResults: {
+        workDays: 15.201999330707359,
+        onSiteDays: 15.292765528963125,
+        suppliesCost: 413218,
+        otherCosts: 931618,
+      },
+      incidentCommandResults: { onSiteDays: 72.7646739195603, phaseCost: 220219 },
+      otherResults: { otherCosts: 105725 },
+      generalResults: { totalCost: 3705862, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 33084.83951912307,
-        onSiteDays: 549069.2525576166,
-        phaseCost: 9553814328.303066,
-      },
-      sourceReductionResults: {
-        workDays: 428.235770174163,
-        onSiteDays: 428.235770174163,
-        phaseCost: 86751145.11418165,
-      },
-      decontaminationResults: {
-        workDays: 16.43435949749182,
-        onSiteDays: 17.980349762826307,
-        phaseCost: 383958813.0806309,
-      },
-      incidentCommandResults: {
-        onSiteDays: 549523.4686775536,
-        phaseCost: 1346891554.2121675,
-      },
-      otherResults: {
-        otherCosts: 109176202.19741915,
-      },
-      generalResults: {
-        totalCost: 11480592042.907465,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.9481263970327607,
+        onSiteDays: 28.386525721704665,
+        phaseCost: 599071,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.9087363317634338,
+        onSiteDays: 23.35365931759675,
+        phaseCost: 584854,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.8568627287961945,
+        onSiteDays: 51.740185039301416,
+        phaseCost: 1183925,
+      },
+      sourceReductionResults: { workDays: 0.8187225205510781, onSiteDays: 0.8187225205510781, phaseCost: 35493 },
+      decontaminationResults: {
+        workDays: 7.529995727243366,
+        onSiteDays: 7.592123303700267,
+        suppliesCost: 145384,
+        otherCosts: 305916,
+      },
+      incidentCommandResults: { onSiteDays: 68.15103086355276, phaseCost: 208823 },
+      otherResults: { otherCosts: 60326 },
+      generalResults: { totalCost: 1939867, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 28585.583404592315,
-          onSiteDays: 195744.7376162676,
-          phaseCost: 1599917741.0217252,
-        },
-        sourceReductionResults: {
-          workDays: 3872.2347483838557,
-          onSiteDays: 3872.2347483838557,
-          phaseCost: 384908499.3596537,
-        },
-        decontaminationResults: {
-          workDays: 20.94920312099839,
-          onSiteDays: 23.49987575213888,
-          phaseCost: 384206460.8578661,
-        },
-        incidentCommandResults: {
-          onSiteDays: 199648.47224040361,
-          phaseCost: 490577301.54328465,
-        },
-        otherResults: {
-          otherCosts: 38130229.37926252,
-        },
-        generalResults: {
-          totalCost: 2897740232.1617923,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.4577312333227852,
+          onSiteDays: 4.861566931075837,
+          phaseCost: 256439,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.5033701549537235,
+          onSiteDays: 10.07451743413399,
+          phaseCost: 739367,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.961101388276509,
+          onSiteDays: 14.936084365209826,
+          phaseCost: 995806,
+        },
+        sourceReductionResults: { workDays: 0.2598166227025899, onSiteDays: 0.2598166227025899, phaseCost: 59734 },
+        decontaminationResults: {
+          workDays: 4.656064657414348,
+          onSiteDays: 7.1174500226316635,
+          suppliesCost: 422465,
+          otherCosts: 252433,
+        },
+        incidentCommandResults: { onSiteDays: 30.313351010544082, phaseCost: 93566 },
+        otherResults: { otherCosts: 81853 },
+        generalResults: { totalCost: 1905857, areaContaminated: 9686.615808095461, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 85229.59396675233,
-          onSiteDays: 715302.3994359692,
-          phaseCost: 3703852610.9598446,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.0357323859290313,
+          onSiteDays: 7.688457343113891,
+          phaseCost: 352568,
         },
-        sourceReductionResults: {
-          workDays: 580.4826325661483,
-          onSiteDays: 580.4826325661483,
-          phaseCost: 55662614.45475916,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.543230520142762,
+          onSiteDays: 13.377445437787786,
+          phaseCost: 969820,
         },
-        decontaminationResults: {
-          workDays: 23.035674577354378,
-          onSiteDays: 23.83309992771435,
-          phaseCost: 256007063.69739905,
-        },
-        incidentCommandResults: {
-          onSiteDays: 715914.7151684631,
-          phaseCost: 1743595108.9249039,
+        totalCharacterizationSamplingResults: {
+          workDays: 7.578962906071793,
+          onSiteDays: 21.065902780901677,
+          phaseCost: 1322388,
         },
-        otherResults: {
-          otherCosts: 180317877.39870715,
-        },
-        generalResults: {
-          totalCost: 5939435275.435615,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.0862805180179185, onSiteDays: 1.0862805180179185, phaseCost: 100066 },
+        decontaminationResults: {
+          workDays: 4.1634486674246025,
+          onSiteDays: 4.874448684946272,
+          suppliesCost: 318084,
+          otherCosts: 165567,
         },
+        incidentCommandResults: { onSiteDays: 35.02663198386587, phaseCost: 108024 },
+        otherResults: { otherCosts: 51155 },
+        generalResults: { totalCost: 2065284, areaContaminated: 9686.615808095461, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 34562.969829525224,
-        onSiteDays: 2749903.9827072746,
-        phaseCost: 17778275676.427464,
-      },
-      sourceReductionResults: {
-        workDays: 26913.189091813616,
-        onSiteDays: 26913.189091813616,
-        phaseCost: 2115958188.5052443,
-      },
-      decontaminationResults: {
-        workDays: 16.596694499858817,
-        onSiteDays: 19.4853057003313,
-        phaseCost: 456122518.8971716,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2776844.657104789,
-        phaseCost: 6800345951.626373,
-      },
-      otherResults: {
-        otherCosts: 528151217.19875103,
-      },
-      generalResults: {
-        totalCost: 27678853552.655003,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.6222889345540017,
+        onSiteDays: 15.836646716498757,
+        phaseCost: 292466,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.159408309190528,
+        onSiteDays: 17.14116288885753,
+        phaseCost: 231690,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.78169724374453,
+        onSiteDays: 32.977809605356285,
+        phaseCost: 524156,
+      },
+      sourceReductionResults: { workDays: 5.21998606810363, onSiteDays: 5.21998606810363, phaseCost: 297620 },
+      decontaminationResults: {
+        workDays: 13.702492183237915,
+        onSiteDays: 16.508018146387304,
+        suppliesCost: 365507,
+        otherCosts: 310295,
+      },
+      incidentCommandResults: { onSiteDays: 62.70581381984722, phaseCost: 188800 },
+      otherResults: { otherCosts: 118973 },
+      generalResults: { totalCost: 1805351, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 99645.71825479968,
-        onSiteDays: 1245307.2719328997,
-        phaseCost: 5880679955.828875,
-      },
-      sourceReductionResults: {
-        workDays: 13808.838066965232,
-        onSiteDays: 13808.838066965232,
-        phaseCost: 4017939995.7080574,
-      },
-      decontaminationResults: {
-        workDays: 14.683605719516894,
-        onSiteDays: 14.92902818949172,
-        phaseCost: 3269096426.3693967,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1259139.0390280546,
-        phaseCost: 3075003782.9754696,
-      },
-      otherResults: {
-        otherCosts: 406932798.68105376,
-      },
-      generalResults: {
-        totalCost: 16649652959.56285,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 10.147851112222588,
+        onSiteDays: 27.231413330043928,
+        phaseCost: 1092196,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.155398125280214,
+        onSiteDays: 8.268763879841318,
+        phaseCost: 444351,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.303249237502802,
+        onSiteDays: 35.500177209885244,
+        phaseCost: 1536547,
+      },
+      sourceReductionResults: { workDays: 0.6344558844828726, onSiteDays: 0.6344558844828726, phaseCost: 79330 },
+      decontaminationResults: {
+        workDays: 3.046825685549254,
+        onSiteDays: 5.510002387107816,
+        suppliesCost: 419948,
+        otherCosts: 207085,
+      },
+      incidentCommandResults: { onSiteDays: 49.64463548147594, phaseCost: 149434 },
+      otherResults: { otherCosts: 55969 },
+      generalResults: { totalCost: 2448313, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 18488.8378986483,
-          onSiteDays: 297623.4255566534,
-          phaseCost: 6499212075.891428,
-        },
-        sourceReductionResults: {
-          workDays: 7695.039170359572,
-          onSiteDays: 7695.039170359572,
-          phaseCost: 1392795245.7407033,
-        },
-        decontaminationResults: {
-          workDays: 25.005347345724083,
-          onSiteDays: 27.774562430049887,
-          phaseCost: 775067873.1960961,
-        },
-        incidentCommandResults: {
-          onSiteDays: 305354.239289443,
-          phaseCost: 742153589.9438231,
-        },
-        otherResults: {
-          otherCosts: 61583288.18635206,
-        },
-        generalResults: {
-          totalCost: 9470812072.958403,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.0213770347758064,
+          onSiteDays: 21.368709828253852,
+          phaseCost: 574102,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.214639243437081,
+          onSiteDays: 43.26501736499337,
+          phaseCost: 1294556,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 7.236016278212888,
+          onSiteDays: 64.63372719324722,
+          phaseCost: 1868658,
+        },
+        sourceReductionResults: { workDays: 1.622968450451732, onSiteDays: 1.622968450451732, phaseCost: 102579 },
+        decontaminationResults: {
+          workDays: 7.005036866992022,
+          onSiteDays: 9.058515735217025,
+          suppliesCost: 413874,
+          otherCosts: 205529,
+        },
+        incidentCommandResults: { onSiteDays: 83.31521137891599, phaseCost: 255391 },
+        otherResults: { otherCosts: 70831 },
+        generalResults: { totalCost: 2916862, areaContaminated: 11142.740139305299, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 9214.889257957471,
-          onSiteDays: 405925.36875778454,
-          phaseCost: 1007963380.3554384,
-        },
-        sourceReductionResults: {
-          workDays: 2315.8193083381175,
-          onSiteDays: 2315.8193083381175,
-          phaseCost: 704853989.721488,
-        },
-        decontaminationResults: {
-          workDays: 16.166402720419317,
-          onSiteDays: 18.78877854691557,
-          phaseCost: 379940198.83279616,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.2946916728316022,
+          onSiteDays: 26.723801510691565,
+          phaseCost: 542891,
         },
-        incidentCommandResults: {
-          onSiteDays: 408267.97684466955,
-          phaseCost: 1004819475.221328,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.052031541098153,
+          onSiteDays: 37.79602649415747,
+          phaseCost: 717084,
         },
-        otherResults: {
-          otherCosts: 129317949.81146929,
+        totalCharacterizationSamplingResults: {
+          workDays: 6.346723213929756,
+          onSiteDays: 64.51982800484905,
+          phaseCost: 1259975,
         },
-        generalResults: {
-          totalCost: 3226894993.942519,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 4.775673603799742, onSiteDays: 4.775673603799742, phaseCost: 326915 },
+        decontaminationResults: {
+          workDays: 9.300129962922103,
+          onSiteDays: 11.616319276070296,
+          suppliesCost: 356415,
+          otherCosts: 576709,
         },
+        incidentCommandResults: { onSiteDays: 88.91182088471909, phaseCost: 275215 },
+        otherResults: { otherCosts: 97378 },
+        generalResults: { totalCost: 2892607, areaContaminated: 11142.740139305299, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 41470.238846302556,
-        onSiteDays: 9658044.557257758,
-        phaseCost: 7033455762.765655,
-      },
-      sourceReductionResults: {
-        workDays: 7834.136605927817,
-        onSiteDays: 7834.136605927817,
-        phaseCost: 676724476.3395377,
-      },
-      decontaminationResults: {
-        workDays: 13.834479834147375,
-        onSiteDays: 16.5209023862893,
-        phaseCost: 1554447232.0670345,
-      },
-      incidentCommandResults: {
-        onSiteDays: 9665903.214766072,
-        phaseCost: 23769769608.08953,
-      },
-      otherResults: {
-        otherCosts: 3266698844.513932,
-      },
-      generalResults: {
-        totalCost: 36301095923.77569,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.5819153403531647,
+        onSiteDays: 25.865579202183568,
+        phaseCost: 948996,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.458093411726908,
+        onSiteDays: 32.23669735187225,
+        phaseCost: 1041053,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.040008752080073,
+        onSiteDays: 58.10227655405582,
+        phaseCost: 1990049,
+      },
+      sourceReductionResults: { workDays: 0.5988307888460165, onSiteDays: 0.5988307888460165, phaseCost: 41567 },
+      decontaminationResults: {
+        workDays: 3.458978788102739,
+        onSiteDays: 4.720278316345131,
+        suppliesCost: 266704,
+        otherCosts: 188681,
+      },
+      incidentCommandResults: { onSiteDays: 71.42138565924697, phaseCost: 216458 },
+      otherResults: { otherCosts: 53305 },
+      generalResults: { totalCost: 2756764, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 34581.16929413735,
-        onSiteDays: 392554.3249018979,
-        phaseCost: 11869219717.117634,
-      },
-      sourceReductionResults: {
-        workDays: 65098.3944623544,
-        onSiteDays: 65098.3944623544,
-        phaseCost: 1392877903.1323338,
-      },
-      decontaminationResults: {
-        workDays: 17.205745152478514,
-        onSiteDays: 18.009581425927948,
-        phaseCost: 1903888833.7108302,
-      },
-      incidentCommandResults: {
-        onSiteDays: 457678.7289456783,
-        phaseCost: 1126722998.45799,
-      },
-      otherResults: {
-        otherCosts: 119573490.26497078,
-      },
-      generalResults: {
-        totalCost: 16412282942.68376,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 14.359156557135538,
+        onSiteDays: 26.84043405708661,
+        phaseCost: 1003211,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.8219863535413008,
+        onSiteDays: 8.555210884952611,
+        phaseCost: 640291,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 16.18114291067684,
+        onSiteDays: 35.395644942039226,
+        phaseCost: 1643502,
+      },
+      sourceReductionResults: { workDays: 2.221650524927215, onSiteDays: 2.221650524927215, phaseCost: 458217 },
+      decontaminationResults: {
+        workDays: 4.823787798132698,
+        onSiteDays: 5.846289425819714,
+        suppliesCost: 433585,
+        otherCosts: 89205,
+      },
+      incidentCommandResults: { onSiteDays: 51.46358489278615, phaseCost: 155350 },
+      otherResults: { otherCosts: 69517 },
+      generalResults: { totalCost: 2849376, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 7507.916311783427,
-          onSiteDays: 254930.79628010376,
-          phaseCost: 2734775740.1472597,
-        },
-        sourceReductionResults: {
-          workDays: 20235.15424405738,
-          onSiteDays: 20235.15424405738,
-          phaseCost: 1189731435.9718862,
-        },
-        decontaminationResults: {
-          workDays: 20.65362844235581,
-          onSiteDays: 22.444822453298798,
-          phaseCost: 69589329.8460662,
-        },
-        incidentCommandResults: {
-          onSiteDays: 275196.3953466145,
-          phaseCost: 668842209.0999699,
-        },
-        otherResults: {
-          otherCosts: 70623791.1391373,
-        },
-        generalResults: {
-          totalCost: 4733562506.204319,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.6978501295325374,
+          onSiteDays: 29.733427931383982,
+          phaseCost: 953160,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.9309265219586096,
+          onSiteDays: 24.57771009736626,
+          phaseCost: 742327,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 6.6287766514911475,
+          onSiteDays: 54.31113802875024,
+          phaseCost: 1695487,
+        },
+        sourceReductionResults: { workDays: 1.6025810624276575, onSiteDays: 1.6025810624276575, phaseCost: 196404 },
+        decontaminationResults: {
+          workDays: 3.849299200542574,
+          onSiteDays: 4.965800867408002,
+          suppliesCost: 369752,
+          otherCosts: 143818,
+        },
+        incidentCommandResults: { onSiteDays: 68.8795199585859, phaseCost: 208522 },
+        otherResults: { otherCosts: 73150 },
+        generalResults: { totalCost: 2687133, areaContaminated: 10449.60567621738, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 10961.127073442676,
-          onSiteDays: 399979.74375137634,
-          phaseCost: 1896962231.483361,
-        },
-        sourceReductionResults: {
-          workDays: 2418.4675391649353,
-          onSiteDays: 2418.4675391649353,
-          phaseCost: 463369062.5291703,
-        },
-        decontaminationResults: {
-          workDays: 26.412451709251023,
-          onSiteDays: 27.43955883091305,
-          phaseCost: 95889262.95192885,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 8.831482586336394,
+          onSiteDays: 25.57793669985614,
+          phaseCost: 1322705,
         },
-        incidentCommandResults: {
-          onSiteDays: 402433.6508493722,
-          phaseCost: 977902373.4312575,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.6280488419010157,
+          onSiteDays: 15.005468359411093,
+          phaseCost: 950642,
         },
-        otherResults: {
-          otherCosts: 93146454.11274178,
+        totalCharacterizationSamplingResults: {
+          workDays: 11.45953142823741,
+          onSiteDays: 40.583405059267236,
+          phaseCost: 2273347,
         },
-        generalResults: {
-          totalCost: 3527269384.5084596,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.9736264610028796, onSiteDays: 0.9736264610028796, phaseCost: 124421 },
+        decontaminationResults: {
+          workDays: 7.251482500520414,
+          onSiteDays: 8.548696138325308,
+          suppliesCost: 235814,
+          otherCosts: 210712,
         },
+        incidentCommandResults: { onSiteDays: 58.10572765859543, phaseCost: 178082 },
+        otherResults: { otherCosts: 62194 },
+        generalResults: { totalCost: 3084570, areaContaminated: 10449.60567621738, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 15483.076386320656,
-        onSiteDays: 1638935.761373982,
-        phaseCost: 6570851271.709111,
-      },
-      sourceReductionResults: {
-        workDays: 3808.733946509321,
-        onSiteDays: 3808.733946509321,
-        phaseCost: 1401317334.163169,
-      },
-      decontaminationResults: {
-        workDays: 18.46027899148415,
-        onSiteDays: 20.49881022179006,
-        phaseCost: 856235795.7278622,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1642772.9941307132,
-        phaseCost: 3994978216.348379,
-      },
-      otherResults: {
-        otherCosts: 382275131.2599675,
-      },
-      generalResults: {
-        totalCost: 13205657749.208488,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.533386588454443,
+        onSiteDays: 40.809470312356204,
+        phaseCost: 1159725,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.8753265761173668,
+        onSiteDays: 19.68335607984988,
+        phaseCost: 538423,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.408713164571809,
+        onSiteDays: 60.492826392206084,
+        phaseCost: 1698148,
+      },
+      sourceReductionResults: { workDays: 0.4765972358186891, onSiteDays: 0.4765972358186891, phaseCost: 45776 },
+      decontaminationResults: {
+        workDays: 12.490077542022355,
+        onSiteDays: 15.244256384727606,
+        suppliesCost: 125512,
+        otherCosts: 491598,
+      },
+      incidentCommandResults: { onSiteDays: 84.21368001275238, phaseCost: 259515 },
+      otherResults: { otherCosts: 102313 },
+      generalResults: { totalCost: 2722862, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 80262.4557226389,
-        onSiteDays: 987566.8501594788,
-        phaseCost: 8467031196.364342,
-      },
-      sourceReductionResults: {
-        workDays: 3434.6076739980717,
-        onSiteDays: 3434.6076739980717,
-        phaseCost: 740291400.3952256,
-      },
-      decontaminationResults: {
-        workDays: 10.51844892034271,
-        onSiteDays: 13.000064529944225,
-        phaseCost: 2446881523.302037,
-      },
-      incidentCommandResults: {
-        onSiteDays: 991022.4578980069,
-        phaseCost: 2449529625.0016155,
-      },
-      otherResults: {
-        otherCosts: 193146536.45125863,
-      },
-      generalResults: {
-        totalCost: 14296880281.514477,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.0827506817682693,
+        onSiteDays: 30.513808833487154,
+        phaseCost: 605047,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.2881389415936413,
+        onSiteDays: 45.44087098734587,
+        phaseCost: 805721,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.370889623361911,
+        onSiteDays: 75.95467982083302,
+        phaseCost: 1410768,
+      },
+      sourceReductionResults: { workDays: 2.1179094088073738, onSiteDays: 2.1179094088073738, phaseCost: 334636 },
+      decontaminationResults: {
+        workDays: 7.936382126979619,
+        onSiteDays: 8.31933711267061,
+        suppliesCost: 52592,
+        otherCosts: 189428,
+      },
+      incidentCommandResults: { onSiteDays: 94.39192634231101, phaseCost: 289864 },
+      otherResults: { otherCosts: 55282 },
+      generalResults: { totalCost: 2332570, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 23898.897255176096,
-          onSiteDays: 144228.18781896122,
-          phaseCost: 2602862240.3841443,
-        },
-        sourceReductionResults: {
-          workDays: 5135.865638898176,
-          onSiteDays: 5135.865638898176,
-          phaseCost: 348986551.66827047,
-        },
-        decontaminationResults: {
-          workDays: 28.47822195279371,
-          onSiteDays: 29.25485244050037,
-          phaseCost: 982018501.1048946,
-        },
-        incidentCommandResults: {
-          onSiteDays: 149401.30831029988,
-          phaseCost: 364675615.86428154,
-        },
-        otherResults: {
-          otherCosts: 37433223.34777807,
-        },
-        generalResults: {
-          totalCost: 4335976132.3693695,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.0924261857290323,
+          onSiteDays: 15.955584083456943,
+          phaseCost: 856014,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 15.275618583391537,
+          onSiteDays: 49.545679831970574,
+          phaseCost: 1984805,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 18.36804476912057,
+          onSiteDays: 65.50126391542751,
+          phaseCost: 2840819,
+        },
+        sourceReductionResults: { workDays: 2.169686830078532, onSiteDays: 2.169686830078532, phaseCost: 259250 },
+        decontaminationResults: {
+          workDays: 13.673297099925879,
+          onSiteDays: 14.594204321641987,
+          suppliesCost: 492005,
+          otherCosts: 822346,
+        },
+        incidentCommandResults: { onSiteDays: 90.26515506714803, phaseCost: 277343 },
+        otherResults: { otherCosts: 63292 },
+        generalResults: { totalCost: 4755055, areaContaminated: 12306.884032978418, decontaminationRounds: 2 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 35060.42747280971,
-          onSiteDays: 447143.1631102633,
-          phaseCost: 5425224719.684135,
-        },
-        sourceReductionResults: {
-          workDays: 9189.407173828158,
-          onSiteDays: 9189.407173828158,
-          phaseCost: 292895475.66511774,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.6457015293876562,
+          onSiteDays: 4.891961788657183,
+          phaseCost: 247792,
         },
-        decontaminationResults: {
-          workDays: 24.839891279777486,
-          onSiteDays: 25.676408294745816,
-          phaseCost: 807448635.882216,
-        },
-        incidentCommandResults: {
-          onSiteDays: 456366.2466923862,
-          phaseCost: 1132670480.1327453,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.955322315746357,
+          onSiteDays: 18.29381006258699,
+          phaseCost: 1145230,
         },
-        otherResults: {
-          otherCosts: 155127592.9399742,
+        totalCharacterizationSamplingResults: {
+          workDays: 5.601023845134013,
+          onSiteDays: 23.185771851244173,
+          phaseCost: 1393022,
         },
-        generalResults: {
-          totalCost: 7813366904.304188,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.2151827214351827, onSiteDays: 0.2151827214351827, phaseCost: 34272 },
+        decontaminationResults: {
+          workDays: 9.177953749238036,
+          onSiteDays: 9.719413813138242,
+          suppliesCost: 493019,
+          otherCosts: 468978,
         },
+        incidentCommandResults: { onSiteDays: 41.1203683858176, phaseCost: 123915 },
+        otherResults: { otherCosts: 72348 },
+        generalResults: { totalCost: 2585554, areaContaminated: 12306.884032978418, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 28020.19055951325,
-        onSiteDays: 875896.4662996064,
-        phaseCost: 8238609853.88744,
-      },
-      sourceReductionResults: {
-        workDays: 7500.2610076371075,
-        onSiteDays: 7500.2610076371075,
-        phaseCost: 1663632051.7033415,
-      },
-      decontaminationResults: {
-        workDays: 20.05810978893612,
-        onSiteDays: 21.332250766533484,
-        phaseCost: 236300698.15579954,
-      },
-      incidentCommandResults: {
-        onSiteDays: 883426.0595580101,
-        phaseCost: 2164135103.2524223,
-      },
-      otherResults: {
-        otherCosts: 205759739.60186073,
-      },
-      generalResults: {
-        totalCost: 12508437446.600864,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.161675982507906,
+        onSiteDays: 16.63682364062218,
+        phaseCost: 495206,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.178527664278201,
+        onSiteDays: 16.77045353908826,
+        phaseCost: 459361,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.340203646786108,
+        onSiteDays: 33.407277179710434,
+        phaseCost: 954567,
+      },
+      sourceReductionResults: { workDays: 0.6049998373114308, onSiteDays: 0.6049998373114308, phaseCost: 104824 },
+      decontaminationResults: {
+        workDays: 11.490754186290026,
+        onSiteDays: 13.756376894832677,
+        suppliesCost: 90613,
+        otherCosts: 382323,
+      },
+      incidentCommandResults: { onSiteDays: 55.76865391185454, phaseCost: 170139 },
+      otherResults: { otherCosts: 161687 },
+      generalResults: { totalCost: 1864153, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 27021.491904143786,
-        onSiteDays: 1876871.0092037208,
-        phaseCost: 5968839261.705877,
-      },
-      sourceReductionResults: {
-        workDays: 8315.436507880879,
-        onSiteDays: 8315.436507880879,
-        phaseCost: 584860980.2334557,
-      },
-      decontaminationResults: {
-        workDays: 19.72931352554106,
-        onSiteDays: 21.174005111719946,
-        phaseCost: 1640622841.2443993,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1885215.6197167134,
-        phaseCost: 4641631477.373933,
-      },
-      otherResults: {
-        otherCosts: 487068452.9216561,
-      },
-      generalResults: {
-        totalCost: 13323023013.47932,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.3056132833190106,
+        onSiteDays: 7.994726179999777,
+        phaseCost: 170278,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.732183835920212,
+        onSiteDays: 31.32365814521718,
+        phaseCost: 854802,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.037797119239222,
+        onSiteDays: 39.318384325216954,
+        phaseCost: 1025080,
+      },
+      sourceReductionResults: { workDays: 1.6986570656511597, onSiteDays: 1.6986570656511597, phaseCost: 58542 },
+      decontaminationResults: {
+        workDays: 3.8624707387905732,
+        onSiteDays: 6.576457316422941,
+        suppliesCost: 402277,
+        otherCosts: 202014,
+      },
+      incidentCommandResults: { onSiteDays: 55.593498707291054, phaseCost: 171807 },
+      otherResults: { otherCosts: 97766 },
+      generalResults: { totalCost: 1957486, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 24712.58403428112,
-          onSiteDays: 352732.7300485809,
-          phaseCost: 4972597801.520235,
-        },
-        sourceReductionResults: {
-          workDays: 4343.043709431928,
-          onSiteDays: 4343.043709431928,
-          phaseCost: 1126189565.7441752,
-        },
-        decontaminationResults: {
-          workDays: 19.628541954473718,
-          onSiteDays: 21.204626419163453,
-          phaseCost: 287080664.3545923,
-        },
-        incidentCommandResults: {
-          onSiteDays: 357104.97838443203,
-          phaseCost: 866257312.7185296,
-        },
-        otherResults: {
-          otherCosts: 70373446.57418959,
-        },
-        generalResults: {
-          totalCost: 7322498790.911721,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 7.481155714816642,
+          onSiteDays: 25.423405655756767,
+          phaseCost: 665038,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.866399000509848,
+          onSiteDays: 35.416088576803816,
+          phaseCost: 1198247,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 13.347554715326488,
+          onSiteDays: 60.83949423256058,
+          phaseCost: 1863285,
+        },
+        sourceReductionResults: { workDays: 1.0782300964962512, onSiteDays: 1.0782300964962512, phaseCost: 46353 },
+        decontaminationResults: {
+          workDays: 8.583285340709445,
+          onSiteDays: 11.210381934701088,
+          suppliesCost: 259496,
+          otherCosts: 259035,
+        },
+        incidentCommandResults: { onSiteDays: 81.12810626375791, phaseCost: 246878 },
+        otherResults: { otherCosts: 85583 },
+        generalResults: { totalCost: 2760630, areaContaminated: 11461.69083576223, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 11336.771262879825,
-          onSiteDays: 262527.06086510257,
-          phaseCost: 6042069221.484479,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 5.174172497744378,
+          onSiteDays: 30.58960315135289,
+          phaseCost: 1114434,
         },
-        sourceReductionResults: {
-          workDays: 6239.6881345667425,
-          onSiteDays: 6239.6881345667425,
-          phaseCost: 931782843.679901,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.684898304442841,
+          onSiteDays: 21.77380856924006,
+          phaseCost: 688303,
         },
-        decontaminationResults: {
-          workDays: 14.606900088630361,
-          onSiteDays: 16.923041972080956,
-          phaseCost: 589610746.3323255,
-        },
-        incidentCommandResults: {
-          onSiteDays: 268791.67204164143,
-          phaseCost: 663963134.2731382,
+        totalCharacterizationSamplingResults: {
+          workDays: 10.859070802187219,
+          onSiteDays: 52.36341172059295,
+          phaseCost: 1802737,
         },
-        otherResults: {
-          otherCosts: 88089476.75492561,
-        },
-        generalResults: {
-          totalCost: 8315515422.52477,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.9586023431439786, onSiteDays: 0.9586023431439786, phaseCost: 236065 },
+        decontaminationResults: {
+          workDays: 7.25255797366904,
+          onSiteDays: 8.999017827445412,
+          suppliesCost: 401515,
+          otherCosts: 398710,
         },
+        incidentCommandResults: { onSiteDays: 70.32103189118234, phaseCost: 213857 },
+        otherResults: { otherCosts: 92181 },
+        generalResults: { totalCost: 3145065, areaContaminated: 11461.69083576223, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 12767.603790589841,
-        onSiteDays: 849799.0513959706,
-        phaseCost: 2900094478.8230705,
-      },
-      sourceReductionResults: {
-        workDays: 14488.901988450796,
-        onSiteDays: 14488.901988450796,
-        phaseCost: 1076400903.721903,
-      },
-      decontaminationResults: {
-        workDays: 26.27789359359953,
-        onSiteDays: 28.336469374908244,
-        phaseCost: 560996680.2624037,
-      },
-      incidentCommandResults: {
-        onSiteDays: 864324.2898537964,
-        phaseCost: 2096369881.480203,
-      },
-      otherResults: {
-        otherCosts: 224633661.164966,
-      },
-      generalResults: {
-        totalCost: 6858495605.452545,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.015253436735648,
+        onSiteDays: 30.002549930651952,
+        phaseCost: 598946,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.868013996164016,
+        onSiteDays: 37.16949151293239,
+        phaseCost: 810460,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.883267432899665,
+        onSiteDays: 67.17204144358433,
+        phaseCost: 1409406,
+      },
+      sourceReductionResults: { workDays: 0.8894541628444101, onSiteDays: 0.8894541628444101, phaseCost: 180701 },
+      decontaminationResults: {
+        workDays: 8.349478430661717,
+        onSiteDays: 10.130771924073523,
+        suppliesCost: 357591,
+        otherCosts: 192777,
+      },
+      incidentCommandResults: { onSiteDays: 86.19226753050228, phaseCost: 265438 },
+      otherResults: { otherCosts: 115749 },
+      generalResults: { totalCost: 2521662, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 18981.004299088727,
-        onSiteDays: 407428.53150336555,
-        phaseCost: 6109531423.141676,
-      },
-      sourceReductionResults: {
-        workDays: 2757.197368471968,
-        onSiteDays: 2757.197368471968,
-        phaseCost: 438699483.8251121,
-      },
-      decontaminationResults: {
-        workDays: 21.197990743023805,
-        onSiteDays: 22.412716063534074,
-        phaseCost: 1913747816.8632567,
-      },
-      incidentCommandResults: {
-        onSiteDays: 410216.14158790105,
-        phaseCost: 1007029615.9101295,
-      },
-      otherResults: {
-        otherCosts: 77916331.86105584,
-      },
-      generalResults: {
-        totalCost: 9546924671.601229,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.9695533249187345,
+        onSiteDays: 15.336593805113012,
+        phaseCost: 534029,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 6.935763501132229,
+        onSiteDays: 45.571161379908276,
+        phaseCost: 2081830,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 10.905316826050964,
+        onSiteDays: 60.90775518502129,
+        phaseCost: 2615859,
+      },
+      sourceReductionResults: { workDays: 0.7020451798279306, onSiteDays: 0.7020451798279306, phaseCost: 134054 },
+      decontaminationResults: {
+        workDays: 17.955953077170058,
+        onSiteDays: 19.96040900376635,
+        suppliesCost: 224806,
+        otherCosts: 1022250,
+      },
+      incidentCommandResults: { onSiteDays: 89.57020936861556, phaseCost: 272003 },
+      otherResults: { otherCosts: 129101 },
+      generalResults: { totalCost: 4398073, areaContaminated: 10000, decontaminationRounds: 4 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 14538.070828116031,
-          onSiteDays: 476733.7459863332,
-          phaseCost: 4215214367.807706,
-        },
-        sourceReductionResults: {
-          workDays: 1031.541894040102,
-          onSiteDays: 1031.541894040102,
-          phaseCost: 341147258.2216144,
-        },
-        decontaminationResults: {
-          workDays: 14.019609035462981,
-          onSiteDays: 16.09202324112226,
-          phaseCost: 496870115.2846546,
-        },
-        incidentCommandResults: {
-          onSiteDays: 477789.3799036144,
-          phaseCost: 1175364231.5502343,
-        },
-        otherResults: {
-          otherCosts: 125585039.278147,
-        },
-        generalResults: {
-          totalCost: 6354181012.142357,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.554495562131752,
+          onSiteDays: 8.504472704958793,
+          phaseCost: 137379,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.4839848310031167,
+          onSiteDays: 16.99326143291703,
+          phaseCost: 420976,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.0384803931348685,
+          onSiteDays: 25.497734137875824,
+          phaseCost: 558355,
+        },
+        sourceReductionResults: { workDays: 1.0850870195759887, onSiteDays: 1.0850870195759887, phaseCost: 56906 },
+        decontaminationResults: {
+          workDays: 7.454991635739569,
+          onSiteDays: 8.358471409035491,
+          suppliesCost: 391840,
+          otherCosts: 450912,
+        },
+        incidentCommandResults: { onSiteDays: 42.941292566487306, phaseCost: 131678 },
+        otherResults: { otherCosts: 47637 },
+        generalResults: { totalCost: 1637328, areaContaminated: 9791.863084489447, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 18764.676888246468,
-          onSiteDays: 225155.55490479997,
-          phaseCost: 2675909964.4611044,
-        },
-        sourceReductionResults: {
-          workDays: 3367.9232270247608,
-          onSiteDays: 3367.9232270247608,
-          phaseCost: 592306773.4531121,
-        },
-        decontaminationResults: {
-          workDays: 20.51184438576732,
-          onSiteDays: 21.864505766626564,
-          phaseCost: 987807241.0995386,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.2635804326980082,
+          onSiteDays: 16.326684388243514,
+          phaseCost: 658236,
         },
-        incidentCommandResults: {
-          onSiteDays: 228553.34263759136,
-          phaseCost: 564666006.6896904,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.4402345067169957,
+          onSiteDays: 17.458456390727974,
+          phaseCost: 921199,
         },
-        otherResults: {
-          otherCosts: 48238716.00252062,
+        totalCharacterizationSamplingResults: {
+          workDays: 6.703814939415004,
+          onSiteDays: 33.78514077897149,
+          phaseCost: 1579435,
         },
-        generalResults: {
-          totalCost: 4868928701.705966,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.6309231028954907, onSiteDays: 1.6309231028954907, phaseCost: 200268 },
+        decontaminationResults: {
+          workDays: 3.495088901951697,
+          onSiteDays: 4.986199305156758,
+          suppliesCost: 281712,
+          otherCosts: 176986,
         },
+        incidentCommandResults: { onSiteDays: 48.40226318702374, phaseCost: 149090 },
+        otherResults: { otherCosts: 39273 },
+        generalResults: { totalCost: 2426764, areaContaminated: 9791.863084489447, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 12556.203758895892,
-        onSiteDays: 366910.07748798165,
-        phaseCost: 4353750639.60467,
-      },
-      sourceReductionResults: {
-        workDays: 861.716219084216,
-        onSiteDays: 861.716219084216,
-        phaseCost: 25999032.797941107,
-      },
-      decontaminationResults: {
-        workDays: 20.197458947821858,
-        onSiteDays: 20.986498082519155,
-        phaseCost: 2386495676.5445085,
-      },
-      incidentCommandResults: {
-        onSiteDays: 367800.7802051484,
-        phaseCost: 889976286.3832988,
-      },
-      otherResults: {
-        otherCosts: 92250515.5634894,
-      },
-      generalResults: {
-        totalCost: 7748472150.893907,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.412991316466897,
+        onSiteDays: 24.283952242276094,
+        phaseCost: 399192,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.311982265403083,
+        onSiteDays: 36.91115397193527,
+        phaseCost: 746038,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 9.72497358186998,
+        onSiteDays: 61.195106214211364,
+        phaseCost: 1145230,
+      },
+      sourceReductionResults: { workDays: 2.442434320243394, onSiteDays: 2.442434320243394, phaseCost: 94710 },
+      decontaminationResults: {
+        workDays: 3.287775271173514,
+        onSiteDays: 4.450634238880741,
+        suppliesCost: 370742,
+        otherCosts: 160403,
+      },
+      incidentCommandResults: { onSiteDays: 76.0881747733355, phaseCost: 231044 },
+      otherResults: { otherCosts: 80150 },
+      generalResults: { totalCost: 2082279, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 36495.30193819257,
-        onSiteDays: 948700.8506632742,
-        phaseCost: 14053754597.539583,
-      },
-      sourceReductionResults: {
-        workDays: 2701.449055261665,
-        onSiteDays: 2701.449055261665,
-        phaseCost: 63317700.41896035,
-      },
-      decontaminationResults: {
-        workDays: 15.887058452676763,
-        onSiteDays: 18.257787741082208,
-        phaseCost: 1704409552.4585924,
-      },
-      incidentCommandResults: {
-        onSiteDays: 951428.557506277,
-        phaseCost: 2334193797.540868,
-      },
-      otherResults: {
-        otherCosts: 185783275.57402128,
-      },
-      generalResults: {
-        totalCost: 18341458923.532024,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.2976034635942093,
+        onSiteDays: 21.312101312442028,
+        phaseCost: 486978,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 12.018097729460177,
+        onSiteDays: 37.61571425927808,
+        phaseCost: 655542,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 14.315701193054386,
+        onSiteDays: 58.9278155717201,
+        phaseCost: 1142520,
+      },
+      sourceReductionResults: { workDays: 0.5161461560804558, onSiteDays: 0.5161461560804558, phaseCost: 45199 },
+      decontaminationResults: {
+        workDays: 3.7826711150777226,
+        onSiteDays: 5.302336545964316,
+        suppliesCost: 126569,
+        otherCosts: 126169,
+      },
+      incidentCommandResults: { onSiteDays: 72.74629827376486, phaseCost: 225550 },
+      otherResults: { otherCosts: 105222 },
+      generalResults: { totalCost: 1771229, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 10025.964235809857,
-          onSiteDays: 137844.75671006873,
-          phaseCost: 3704726864.13672,
-        },
-        sourceReductionResults: {
-          workDays: 3548.5833765965876,
-          onSiteDays: 3548.5833765965876,
-          phaseCost: 341583785.06137353,
-        },
-        decontaminationResults: {
-          workDays: 19.84187224433801,
-          onSiteDays: 20.00636780029311,
-          phaseCost: 482025872.95285535,
-        },
-        incidentCommandResults: {
-          onSiteDays: 141421.34645446562,
-          phaseCost: 345718722.1972587,
-        },
-        otherResults: {
-          otherCosts: 35414106.83830334,
-        },
-        generalResults: {
-          totalCost: 4909469351.186512,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.149446777207503,
+          onSiteDays: 26.406113292478665,
+          phaseCost: 1856725,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 7.6519081243092995,
+          onSiteDays: 20.0561895675772,
+          phaseCost: 1042895,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 13.801354901516802,
+          onSiteDays: 46.462302860055864,
+          phaseCost: 2899620,
+        },
+        sourceReductionResults: { workDays: 1.3286546368719974, onSiteDays: 1.3286546368719974, phaseCost: 181089 },
+        decontaminationResults: {
+          workDays: 3.1273028524888917,
+          onSiteDays: 4.702338002785654,
+          suppliesCost: 498565,
+          otherCosts: 172047,
+        },
+        incidentCommandResults: { onSiteDays: 60.49329549971351, phaseCost: 183604 },
+        otherResults: { otherCosts: 67482 },
+        generalResults: { totalCost: 4002407, areaContaminated: 14677.755020018143, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 32382.148478089046,
-          onSiteDays: 374764.67709836445,
-          phaseCost: 1514726928.1690838,
-        },
-        sourceReductionResults: {
-          workDays: 1064.0805336927165,
-          onSiteDays: 1064.0805336927165,
-          phaseCost: 40154615.389177814,
-        },
-        decontaminationResults: {
-          workDays: 19.331203582773732,
-          onSiteDays: 20.320171171641018,
-          phaseCost: 1061075889.7285848,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 9.141190496257765,
+          onSiteDays: 32.84713381448342,
+          phaseCost: 686628,
         },
-        incidentCommandResults: {
-          onSiteDays: 375857.0778032288,
-          phaseCost: 931476460.6646913,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 9.227652957926901,
+          onSiteDays: 59.94490786671985,
+          phaseCost: 1533556,
         },
-        otherResults: {
-          otherCosts: 64962853.51009111,
+        totalCharacterizationSamplingResults: {
+          workDays: 18.368843454184667,
+          onSiteDays: 92.79204168120327,
+          phaseCost: 2220184,
         },
-        generalResults: {
-          totalCost: 3612396747.461629,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 3.0447486107405863, onSiteDays: 3.0447486107405863, phaseCost: 277983 },
+        decontaminationResults: {
+          workDays: 12.683154948913296,
+          onSiteDays: 13.62868217556474,
+          suppliesCost: 191765,
+          otherCosts: 623195,
         },
+        incidentCommandResults: { onSiteDays: 117.46547246750859, phaseCost: 354745 },
+        otherResults: { otherCosts: 74587 },
+        generalResults: { totalCost: 3742459, areaContaminated: 14677.755020018143, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 48723.89918980493,
-        onSiteDays: 512087.3049145639,
-        phaseCost: 9006684418.038706,
-      },
-      sourceReductionResults: {
-        workDays: 3497.7239801083824,
-        onSiteDays: 3497.7239801083824,
-        phaseCost: 948836369.5590787,
-      },
-      decontaminationResults: {
-        workDays: 19.661402616803862,
-        onSiteDays: 20.942068843856006,
-        phaseCost: 794340546.5586827,
-      },
-      incidentCommandResults: {
-        onSiteDays: 515613.97096351616,
-        phaseCost: 1275509776.7712681,
-      },
-      otherResults: {
-        otherCosts: 101402486.47844775,
-      },
-      generalResults: {
-        totalCost: 12126773597.406183,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.882151963838347,
+        onSiteDays: 43.070840971143056,
+        phaseCost: 789929,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.276856512599921,
+        onSiteDays: 34.71202170956093,
+        phaseCost: 637186,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 10.159008476438268,
+        onSiteDays: 77.78286268070399,
+        phaseCost: 1427115,
+      },
+      sourceReductionResults: { workDays: 2.292460570038366, onSiteDays: 2.292460570038366, phaseCost: 90029 },
+      decontaminationResults: {
+        workDays: 11.919132665945014,
+        onSiteDays: 13.68300217475812,
+        suppliesCost: 31647,
+        otherCosts: 672861,
+      },
+      incidentCommandResults: { onSiteDays: 101.75832542550047, phaseCost: 306819 },
+      otherResults: { otherCosts: 68784 },
+      generalResults: { totalCost: 2597255, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 53894.602040957136,
-        onSiteDays: 499904.4889544143,
-        phaseCost: 12551189930.710531,
-      },
-      sourceReductionResults: {
-        workDays: 3021.0872003507357,
-        onSiteDays: 3021.0872003507357,
-        phaseCost: 132011620.56842214,
-      },
-      decontaminationResults: {
-        workDays: 11.138431909060671,
-        onSiteDays: 12.677244344883887,
-        phaseCost: 874872464.0062177,
-      },
-      incidentCommandResults: {
-        onSiteDays: 502946.25339910993,
-        phaseCost: 1228393930.9167886,
-      },
-      otherResults: {
-        otherCosts: 160665684.54331765,
-      },
-      generalResults: {
-        totalCost: 14947133630.745277,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.3342593005983934,
+        onSiteDays: 7.356884546840552,
+        phaseCost: 403163,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 16.661276605138806,
+        onSiteDays: 99.50451667167206,
+        phaseCost: 7390099,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 17.9955359057372,
+        onSiteDays: 106.86140121851261,
+        phaseCost: 7793262,
+      },
+      sourceReductionResults: { workDays: 0.3106838058425838, onSiteDays: 0.3106838058425838, phaseCost: 81005 },
+      decontaminationResults: {
+        workDays: 27.568879364423655,
+        onSiteDays: 29.09292500258724,
+        suppliesCost: 366744,
+        otherCosts: 1935483,
+      },
+      incidentCommandResults: { onSiteDays: 144.26501002694243, phaseCost: 442217 },
+      otherResults: { otherCosts: 115465 },
+      generalResults: { totalCost: 10734176, areaContaminated: 10000, decontaminationRounds: 5 },
     },
   },
   {
     Indoor: {
-      Commercial: {
-        characterizationSamplingResults: {
-          workDays: 13211.154317398197,
-          onSiteDays: 238741.7757781887,
-          phaseCost: 7437276664.974344,
-        },
-        sourceReductionResults: {
-          workDays: 2572.295502693167,
-          onSiteDays: 2572.295502693167,
-          phaseCost: 505516215.8465553,
-        },
-        decontaminationResults: {
-          workDays: 20.2862719263151,
-          onSiteDays: 21.931466932392553,
-          phaseCost: 451651262.8480544,
-        },
-        incidentCommandResults: {
-          onSiteDays: 241344.00274781423,
-          phaseCost: 585492400.9222243,
-        },
-        otherResults: {
-          otherCosts: 65858157.64765317,
-        },
-        generalResults: {
-          totalCost: 9045794702.238832,
-          areaContaminated: 17860000,
-        },
+      Commercial: {
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.6612925463566448,
+          onSiteDays: 5.939156693605994,
+          phaseCost: 267757,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.972442101204913,
+          onSiteDays: 12.026343808254612,
+          phaseCost: 550149,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 6.633734647561558,
+          onSiteDays: 17.965500501860607,
+          phaseCost: 817906,
+        },
+        sourceReductionResults: { workDays: 0.1659333589678873, onSiteDays: 0.1659333589678873, phaseCost: 28211 },
+        decontaminationResults: {
+          workDays: 8.816391373243274,
+          onSiteDays: 9.534180401948788,
+          suppliesCost: 199970,
+          otherCosts: 314391,
+        },
+        incidentCommandResults: { onSiteDays: 35.66561426277728, phaseCost: 108026 },
+        otherResults: { otherCosts: 82179 },
+        generalResults: { totalCost: 1550683, areaContaminated: 5314.060456658262, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 8972.005676414394,
-          onSiteDays: 378240.8698270813,
-          phaseCost: 2896120815.073808,
-        },
-        sourceReductionResults: {
-          workDays: 2383.3620648176634,
-          onSiteDays: 2383.3620648176634,
-          phaseCost: 724033439.6428556,
-        },
-        decontaminationResults: {
-          workDays: 27.060871620443855,
-          onSiteDays: 29.245481012213393,
-          phaseCost: 98236819.41858011,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.089698737498711,
+          onSiteDays: 10.282796945683206,
+          phaseCost: 362698,
         },
-        incidentCommandResults: {
-          onSiteDays: 380661.4773729112,
-          phaseCost: 933153655.9674654,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.6860074000256992,
+          onSiteDays: 5.037534603023072,
+          phaseCost: 176737,
         },
-        otherResults: {
-          otherCosts: 80733025.97272895,
+        totalCharacterizationSamplingResults: {
+          workDays: 4.77570613752441,
+          onSiteDays: 15.320331548706278,
+          phaseCost: 539435,
         },
-        generalResults: {
-          totalCost: 4732277756.075438,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.18516681155208153, onSiteDays: 0.18516681155208153, phaseCost: 22659 },
+        decontaminationResults: {
+          workDays: 7.174884728895241,
+          onSiteDays: 9.799563277931782,
+          suppliesCost: 207683,
+          otherCosts: 412933,
         },
+        incidentCommandResults: { onSiteDays: 33.30506163819014, phaseCost: 103066 },
+        otherResults: { otherCosts: 82145 },
+        generalResults: { totalCost: 1367921, areaContaminated: 5314.060456658262, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 35229.6921320818,
-        onSiteDays: 558609.9348443364,
-        phaseCost: 8555420377.326075,
-      },
-      sourceReductionResults: {
-        workDays: 1100.54695008518,
-        onSiteDays: 1100.54695008518,
-        phaseCost: 38341068.85171532,
-      },
-      decontaminationResults: {
-        workDays: 20.851328273269193,
-        onSiteDays: 20.947916343097557,
-        phaseCost: 1217751500.0528054,
-      },
-      incidentCommandResults: {
-        onSiteDays: 559739.4297107647,
-        phaseCost: 1379099190.473865,
-      },
-      otherResults: {
-        otherCosts: 169488037.09281546,
-      },
-      generalResults: {
-        totalCost: 11360100173.797276,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.8647271556668352,
+        onSiteDays: 12.591946175282015,
+        phaseCost: 285087,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 8.498982595858347,
+        onSiteDays: 31.6364966432489,
+        phaseCost: 634265,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.363709751525182,
+        onSiteDays: 44.228442818530915,
+        phaseCost: 919352,
+      },
+      sourceReductionResults: { workDays: 1.722591908917366, onSiteDays: 1.722591908917366, phaseCost: 302745 },
+      decontaminationResults: {
+        workDays: 12.748360123892398,
+        onSiteDays: 15.576296683767879,
+        suppliesCost: 72638,
+        otherCosts: 661259,
+      },
+      incidentCommandResults: { onSiteDays: 69.52733141121615, phaseCost: 212872 },
+      otherResults: { otherCosts: 69146 },
+      generalResults: { totalCost: 2238012, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 114890.2921673767,
-        onSiteDays: 17257608.232165433,
-        phaseCost: 10594296243.804356,
-      },
-      sourceReductionResults: {
-        workDays: 15611.651175498202,
-        onSiteDays: 15611.651175498202,
-        phaseCost: 3893701042.3564467,
-      },
-      decontaminationResults: {
-        workDays: 16.094170037678946,
-        onSiteDays: 16.531348190626908,
-        phaseCost: 273753940.9455418,
-      },
-      incidentCommandResults: {
-        onSiteDays: 17273244.414689124,
-        phaseCost: 42557384178.21613,
-      },
-      otherResults: {
-        otherCosts: 4682927178.671714,
-      },
-      generalResults: {
-        totalCost: 62002062583.994194,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.667602270335128,
+        onSiteDays: 22.228199225990945,
+        phaseCost: 551512,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.043102522941194,
+        onSiteDays: 8.096618705051602,
+        phaseCost: 195216,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.710704793276323,
+        onSiteDays: 30.324817931042546,
+        phaseCost: 746728,
+      },
+      sourceReductionResults: { workDays: 0.762786371235104, onSiteDays: 0.762786371235104, phaseCost: 53050 },
+      decontaminationResults: {
+        workDays: 3.7414575020646343,
+        onSiteDays: 3.851735208381837,
+        suppliesCost: 82491,
+        otherCosts: 79290,
+      },
+      incidentCommandResults: { onSiteDays: 42.93933951065949, phaseCost: 132099 },
+      otherResults: { otherCosts: 94857 },
+      generalResults: { totalCost: 1188515, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 54752.60321965176,
-          onSiteDays: 680845.4541720753,
-          phaseCost: 3915895930.317175,
-        },
-        sourceReductionResults: {
-          workDays: 1828.1726244226877,
-          onSiteDays: 1828.1726244226877,
-          phaseCost: 442912090.16048396,
-        },
-        decontaminationResults: {
-          workDays: 18.997634835540698,
-          onSiteDays: 21.45650286098395,
-          phaseCost: 1072973815.3699878,
-        },
-        incidentCommandResults: {
-          onSiteDays: 682703.083299359,
-          phaseCost: 1687807966.20854,
-        },
-        otherResults: {
-          otherCosts: 201119947.82958513,
-        },
-        generalResults: {
-          totalCost: 7320709749.885772,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 8.455250993464379,
+          onSiteDays: 27.42500714832544,
+          phaseCost: 524685,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.888288979456362,
+          onSiteDays: 16.213879670957137,
+          phaseCost: 323287,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 11.343539972920741,
+          onSiteDays: 43.638886819282575,
+          phaseCost: 847972,
+        },
+        sourceReductionResults: { workDays: 0.8829899138549636, onSiteDays: 0.8829899138549636, phaseCost: 84689 },
+        decontaminationResults: {
+          workDays: 12.725578115723463,
+          onSiteDays: 12.910352616317187,
+          suppliesCost: 76880,
+          otherCosts: 319675,
+        },
+        incidentCommandResults: { onSiteDays: 65.43222934945473, phaseCost: 198398 },
+        otherResults: { otherCosts: 90427 },
+        generalResults: { totalCost: 1618041, areaContaminated: 6725.920697610341, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 9870.182206299205,
-          onSiteDays: 198984.92908921634,
-          phaseCost: 1424772717.7800808,
-        },
-        sourceReductionResults: {
-          workDays: 713.4487498075753,
-          onSiteDays: 713.4487498075753,
-          phaseCost: 124313001.59715006,
-        },
-        decontaminationResults: {
-          workDays: 26.028045751626614,
-          onSiteDays: 28.284361196980896,
-          phaseCost: 97618003.29307304,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.1497784872579504,
+          onSiteDays: 31.43837268263226,
+          phaseCost: 531017,
         },
-        incidentCommandResults: {
-          onSiteDays: 199734.6622002209,
-          phaseCost: 483188611.291227,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.6887199761791455,
+          onSiteDays: 11.698704350009372,
+          phaseCost: 202671,
         },
-        otherResults: {
-          otherCosts: 37914030.412718244,
+        totalCharacterizationSamplingResults: {
+          workDays: 3.8384984634370958,
+          onSiteDays: 43.13707703264163,
+          phaseCost: 733688,
         },
-        generalResults: {
-          totalCost: 2167806364.374249,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.11707632936170624, onSiteDays: 0.11707632936170624, phaseCost: 14813 },
+        decontaminationResults: {
+          workDays: 8.904751758301806,
+          onSiteDays: 11.36035452814781,
+          suppliesCost: 229479,
+          otherCosts: 382900,
         },
+        incidentCommandResults: { onSiteDays: 62.614507890151145, phaseCost: 193304 },
+        otherResults: { otherCosts: 86220 },
+        generalResults: { totalCost: 1640404, areaContaminated: 6725.920697610341, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 20403.574610200027,
-        onSiteDays: 2282970.8112615137,
-        phaseCost: 8936080871.569408,
-      },
-      sourceReductionResults: {
-        workDays: 3704.155666978443,
-        onSiteDays: 3704.155666978443,
-        phaseCost: 911233982.4333682,
-      },
-      decontaminationResults: {
-        workDays: 19.838793800407743,
-        onSiteDays: 21.478257018019974,
-        phaseCost: 1260867004.2843497,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2286704.4451855104,
-        phaseCost: 5555466072.336018,
-      },
-      otherResults: {
-        otherCosts: 569509112.6827251,
-      },
-      generalResults: {
-        totalCost: 17233157043.30587,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.754192116151862,
+        onSiteDays: 15.563735198314507,
+        phaseCost: 685557,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 6.143018609826843,
+        onSiteDays: 13.74177813652243,
+        phaseCost: 505624,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 10.897210725978706,
+        onSiteDays: 29.305513334836938,
+        phaseCost: 1191181,
+      },
+      sourceReductionResults: { workDays: 0.5148680186266839, onSiteDays: 0.5148680186266839, phaseCost: 82195 },
+      decontaminationResults: {
+        workDays: 8.419180863634493,
+        onSiteDays: 9.976272766240005,
+        suppliesCost: 269830,
+        otherCosts: 468458,
+      },
+      incidentCommandResults: { onSiteDays: 47.796654119703625, phaseCost: 146969 },
+      otherResults: { otherCosts: 93437 },
+      generalResults: { totalCost: 2252070, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 86561.98220332901,
-        onSiteDays: 646479.9608261418,
-        phaseCost: 11041813224.673338,
-      },
-      sourceReductionResults: {
-        workDays: 6799.433557310323,
-        onSiteDays: 6799.433557310323,
-        phaseCost: 562527514.1258321,
-      },
-      decontaminationResults: {
-        workDays: 17.629096355668523,
-        onSiteDays: 17.739142631352678,
-        phaseCost: 932102529.2820787,
-      },
-      incidentCommandResults: {
-        onSiteDays: 653305.1335260834,
-        phaseCost: 1598031101.258231,
-      },
-      otherResults: {
-        otherCosts: 201828613.4770841,
-      },
-      generalResults: {
-        totalCost: 14336302982.816563,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.018510014812396,
+        onSiteDays: 12.447832106356138,
+        phaseCost: 267510,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.9929142125670145,
+        onSiteDays: 35.1473102741083,
+        phaseCost: 808699,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.01142422737941,
+        onSiteDays: 47.59514238046444,
+        phaseCost: 1076209,
+      },
+      sourceReductionResults: { workDays: 0.6935025199086676, onSiteDays: 0.6935025199086676, phaseCost: 83453 },
+      decontaminationResults: {
+        workDays: 4.49823796597734,
+        onSiteDays: 4.614749226629443,
+        suppliesCost: 121813,
+        otherCosts: 229927,
+      },
+      incidentCommandResults: { onSiteDays: 60.90339412700255, phaseCost: 188510 },
+      otherResults: { otherCosts: 81610 },
+      generalResults: { totalCost: 1781522, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 13505.24450030876,
-          onSiteDays: 378601.6149667555,
-          phaseCost: 1531449335.1914394,
-        },
-        sourceReductionResults: {
-          workDays: 3012.877591415892,
-          onSiteDays: 3012.877591415892,
-          phaseCost: 257335512.946368,
-        },
-        decontaminationResults: {
-          workDays: 16.780727140787228,
-          onSiteDays: 18.850624937063696,
-          phaseCost: 566457871.4727147,
-        },
-        incidentCommandResults: {
-          onSiteDays: 381641.34318310843,
-          phaseCost: 929406249.725292,
-        },
-        otherResults: {
-          otherCosts: 78351558.11296129,
-        },
-        generalResults: {
-          totalCost: 3363000527.448776,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.2050145377528407,
+          onSiteDays: 8.255300741320998,
+          phaseCost: 209975,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.904373376004359,
+          onSiteDays: 22.875932221824716,
+          phaseCost: 953987,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 8.1093879137572,
+          onSiteDays: 31.131232963145713,
+          phaseCost: 1163962,
+        },
+        sourceReductionResults: { workDays: 0.6241462742598562, onSiteDays: 0.6241462742598562, phaseCost: 70314 },
+        decontaminationResults: {
+          workDays: 3.848953264031781,
+          onSiteDays: 4.395058631057632,
+          suppliesCost: 211942,
+          otherCosts: 119716,
+        },
+        incidentCommandResults: { onSiteDays: 44.1504378684632, phaseCost: 135094 },
+        otherResults: { otherCosts: 66947 },
+        generalResults: { totalCost: 1767975, areaContaminated: 10451.232049486422, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 20888.883715141696,
-          onSiteDays: 245858.88550068048,
-          phaseCost: 6153532148.480696,
-        },
-        sourceReductionResults: {
-          workDays: 5107.5487184250505,
-          onSiteDays: 5107.5487184250505,
-          phaseCost: 588693755.3732377,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.445452929134482,
+          onSiteDays: 22.740852187926734,
+          phaseCost: 650522,
         },
-        decontaminationResults: {
-          workDays: 23.950605824112568,
-          onSiteDays: 26.03439474944826,
-          phaseCost: 614399298.3445765,
-        },
-        incidentCommandResults: {
-          onSiteDays: 251000.46861385496,
-          phaseCost: 610209536.9689558,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.4384772139402284,
+          onSiteDays: 8.539670375139046,
+          phaseCost: 201454,
         },
-        otherResults: {
-          otherCosts: 74107577.24808118,
+        totalCharacterizationSamplingResults: {
+          workDays: 5.883930143074711,
+          onSiteDays: 31.28052256306578,
+          phaseCost: 851976,
         },
-        generalResults: {
-          totalCost: 8040942316.415547,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.6448456558761855, onSiteDays: 1.6448456558761855, phaseCost: 78832 },
+        decontaminationResults: {
+          workDays: 8.456582982665063,
+          onSiteDays: 9.153343152523354,
+          suppliesCost: 185866,
+          otherCosts: 521593,
         },
+        incidentCommandResults: { onSiteDays: 50.078711371465324, phaseCost: 153547 },
+        otherResults: { otherCosts: 36845 },
+        generalResults: { totalCost: 1828659, areaContaminated: 10451.232049486422, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 31991.86970848762,
-        onSiteDays: 393438.9262152278,
-        phaseCost: 8569549357.211988,
-      },
-      sourceReductionResults: {
-        workDays: 1849.7275449641566,
-        onSiteDays: 1849.7275449641566,
-        phaseCost: 452284663.0170221,
-      },
-      decontaminationResults: {
-        workDays: 11.389776405037795,
-        onSiteDays: 12.876390128833332,
-        phaseCost: 461142013.74280643,
-      },
-      incidentCommandResults: {
-        onSiteDays: 395309.53015032085,
-        phaseCost: 969929689.1422744,
-      },
-      otherResults: {
-        otherCosts: 74097852.75542198,
-      },
-      generalResults: {
-        totalCost: 10527003575.869514,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.8255608784388713,
+        onSiteDays: 10.598213610842794,
+        phaseCost: 325042,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.6224390204301025,
+        onSiteDays: 16.710203940964618,
+        phaseCost: 735413,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.447999898868973,
+        onSiteDays: 27.308417551807413,
+        phaseCost: 1060455,
+      },
+      sourceReductionResults: { workDays: 1.4033752712029428, onSiteDays: 1.4033752712029428, phaseCost: 229054 },
+      decontaminationResults: {
+        workDays: 16.387582661674262,
+        onSiteDays: 19.21431359094901,
+        suppliesCost: 253898,
+        otherCosts: 391711,
+      },
+      incidentCommandResults: { onSiteDays: 55.92610641395937, phaseCost: 172127 },
+      otherResults: { otherCosts: 141276 },
+      generalResults: { totalCost: 2248521, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 65748.96485813726,
-        onSiteDays: 4114609.1866919026,
-        phaseCost: 11738006403.073578,
-      },
-      sourceReductionResults: {
-        workDays: 2257.3798339621253,
-        onSiteDays: 2257.3798339621253,
-        phaseCost: 518574880.55507123,
-      },
-      decontaminationResults: {
-        workDays: 16.207000650979346,
-        onSiteDays: 17.76386789064013,
-        phaseCost: 202235601.82786673,
-      },
-      incidentCommandResults: {
-        onSiteDays: 4116892.3303937553,
-        phaseCost: 10154164167.109337,
-      },
-      otherResults: {
-        otherCosts: 873335618.0821067,
-      },
-      generalResults: {
-        totalCost: 23486316670.64796,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.120757683745661,
+        onSiteDays: 43.06829725064558,
+        phaseCost: 964116,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.492242853332289,
+        onSiteDays: 46.26491519532394,
+        phaseCost: 1011816,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.6130005370779505,
+        onSiteDays: 89.33321244596951,
+        phaseCost: 1975932,
+      },
+      sourceReductionResults: { workDays: 3.107472954988232, onSiteDays: 3.107472954988232, phaseCost: 332400 },
+      decontaminationResults: {
+        workDays: 4.057566841379173,
+        onSiteDays: 6.653992732207755,
+        suppliesCost: 326031,
+        otherCosts: 119860,
+      },
+      incidentCommandResults: { onSiteDays: 107.09467813316549, phaseCost: 329050 },
+      otherResults: { otherCosts: 134758 },
+      generalResults: { totalCost: 3218031, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 27320.182056174595,
-          onSiteDays: 336043.70275882067,
-          phaseCost: 3459336155.7400284,
-        },
-        sourceReductionResults: {
-          workDays: 983.4212514590505,
-          onSiteDays: 983.4212514590505,
-          phaseCost: 316102529.7907294,
-        },
-        decontaminationResults: {
-          workDays: 22.82293401491431,
-          onSiteDays: 23.190919840054335,
-          phaseCost: 977370146.8056633,
-        },
-        incidentCommandResults: {
-          onSiteDays: 337058.3149301198,
-          phaseCost: 821119054.3767453,
-        },
-        otherResults: {
-          otherCosts: 96714223.32055739,
-        },
-        generalResults: {
-          totalCost: 5670642110.033724,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.733795216228499,
+          onSiteDays: 17.680025897741153,
+          phaseCost: 847761,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.0828509552029573,
+          onSiteDays: 4.835659185098557,
+          phaseCost: 143042,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 5.816646171431456,
+          onSiteDays: 22.51568508283971,
+          phaseCost: 990803,
+        },
+        sourceReductionResults: { workDays: 1.1329345068629175, onSiteDays: 1.1329345068629175, phaseCost: 151285 },
+        decontaminationResults: {
+          workDays: 8.960158516410775,
+          onSiteDays: 11.86577007311065,
+          suppliesCost: 185195,
+          otherCosts: 805334,
+        },
+        incidentCommandResults: { onSiteDays: 43.51438966281327, phaseCost: 132708 },
+        otherResults: { otherCosts: 62995 },
+        generalResults: { totalCost: 2328320, areaContaminated: 9394.781837331779, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 7039.048479387874,
-          onSiteDays: 204426.8854024103,
-          phaseCost: 1983937440.2173178,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.34866121924979,
+          onSiteDays: 19.475580018898142,
+          phaseCost: 717629,
         },
-        sourceReductionResults: {
-          workDays: 79.5341037650936,
-          onSiteDays: 79.5341037650936,
-          phaseCost: 21461672.1298275,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 6.945604284953996,
+          onSiteDays: 33.166386724635345,
+          phaseCost: 1336964,
         },
-        decontaminationResults: {
-          workDays: 18.123621662408958,
-          onSiteDays: 18.444659418297157,
-          phaseCost: 545092625.0094036,
-        },
-        incidentCommandResults: {
-          onSiteDays: 204532.8641655937,
-          phaseCost: 499467392.8627577,
+        totalCharacterizationSamplingResults: {
+          workDays: 11.294265504203786,
+          onSiteDays: 52.64196674353349,
+          phaseCost: 2054593,
         },
-        otherResults: {
-          otherCosts: 46879921.80345727,
-        },
-        generalResults: {
-          totalCost: 3096839052.0227637,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.1185316020871359, onSiteDays: 1.1185316020871359, phaseCost: 73055 },
+        decontaminationResults: {
+          workDays: 12.674023715703287,
+          onSiteDays: 14.846027728134306,
+          suppliesCost: 55960,
+          otherCosts: 471349,
         },
+        incidentCommandResults: { onSiteDays: 76.60652607375494, phaseCost: 237440 },
+        otherResults: { otherCosts: 61581 },
+        generalResults: { totalCost: 2953978, areaContaminated: 9394.781837331779, decontaminationRounds: 2 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 19762.149437402855,
-        onSiteDays: 1232486.8050219645,
-        phaseCost: 8992925492.264902,
-      },
-      sourceReductionResults: {
-        workDays: 9352.579671942869,
-        onSiteDays: 9352.579671942869,
-        phaseCost: 416358076.18304265,
-      },
-      decontaminationResults: {
-        workDays: 17.165782259582958,
-        onSiteDays: 18.798349470318843,
-        phaseCost: 1488690408.9412045,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1241866.1830433777,
-        phaseCost: 3061959543.633584,
-      },
-      otherResults: {
-        otherCosts: 251382293.50885442,
-      },
-      generalResults: {
-        totalCost: 14211315814.531586,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 12.88412835260128,
+        onSiteDays: 23.951680392143416,
+        phaseCost: 841392,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.5213115226456106,
+        onSiteDays: 8.935088245721314,
+        phaseCost: 563625,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 14.405439875246891,
+        onSiteDays: 32.88676863786473,
+        phaseCost: 1405017,
+      },
+      sourceReductionResults: { workDays: 0.13479813742609248, onSiteDays: 0.13479813742609248, phaseCost: 23218 },
+      decontaminationResults: {
+        workDays: 11.639374967813346,
+        onSiteDays: 13.244355155910448,
+        suppliesCost: 130174,
+        otherCosts: 921275,
+      },
+      incidentCommandResults: { onSiteDays: 54.26592193120128, phaseCost: 164970 },
+      otherResults: { otherCosts: 90433 },
+      generalResults: { totalCost: 2735087, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 106129.99886002889,
-        onSiteDays: 573957.3429538833,
-        phaseCost: 7303702819.612235,
-      },
-      sourceReductionResults: {
-        workDays: 567.2228303945195,
-        onSiteDays: 567.2228303945195,
-        phaseCost: 154462933.736637,
-      },
-      decontaminationResults: {
-        workDays: 24.54706626956981,
-        onSiteDays: 26.258026920784737,
-        phaseCost: 2069787663.6585915,
-      },
-      incidentCommandResults: {
-        onSiteDays: 574558.8238111987,
-        phaseCost: 1397021735.2277966,
-      },
-      otherResults: {
-        otherCosts: 168856908.35752594,
-      },
-      generalResults: {
-        totalCost: 11093832060.592787,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.505937937585044,
+        onSiteDays: 29.495597453873334,
+        phaseCost: 639900,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 11.984479341367484,
+        onSiteDays: 126.0646589356402,
+        phaseCost: 3569599,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 14.490417278952528,
+        onSiteDays: 155.56025638951354,
+        phaseCost: 4209499,
+      },
+      sourceReductionResults: { workDays: 4.58596382735345, onSiteDays: 4.58596382735345, phaseCost: 174110 },
+      decontaminationResults: {
+        workDays: 18.58364714951805,
+        onSiteDays: 19.937238177037155,
+        suppliesCost: 233441,
+        otherCosts: 527362,
+      },
+      incidentCommandResults: { onSiteDays: 188.08345839390415, phaseCost: 578495 },
+      otherResults: { otherCosts: 128115 },
+      generalResults: { totalCost: 5851022, areaContaminated: 10000, decontaminationRounds: 4 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 19787.01503535363,
-          onSiteDays: 589682.7431406332,
-          phaseCost: 4539952982.2632885,
-        },
-        sourceReductionResults: {
-          workDays: 15722.047575048196,
-          onSiteDays: 15722.047575048196,
-          phaseCost: 528991737.7122952,
-        },
-        decontaminationResults: {
-          workDays: 19.925658731471202,
-          onSiteDays: 21.727290309436455,
-          phaseCost: 914992830.4011436,
-        },
-        incidentCommandResults: {
-          onSiteDays: 605434.5180059908,
-          phaseCost: 1469468465.0042396,
-        },
-        otherResults: {
-          otherCosts: 141908968.75173524,
-        },
-        generalResults: {
-          totalCost: 7595314984.132704,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.408050305344389,
+          onSiteDays: 14.217219632033819,
+          phaseCost: 380169,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.159429687073806,
+          onSiteDays: 13.885563031278014,
+          phaseCost: 506143,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 7.567479992418195,
+          onSiteDays: 28.102782663311835,
+          phaseCost: 886312,
+        },
+        sourceReductionResults: { workDays: 2.6329180943332244, onSiteDays: 2.6329180943332244, phaseCost: 169630 },
+        decontaminationResults: {
+          workDays: 11.807721594536613,
+          onSiteDays: 13.263270213795657,
+          suppliesCost: 189089,
+          otherCosts: 435579,
+        },
+        incidentCommandResults: { onSiteDays: 51.99897097144071, phaseCost: 158159 },
+        otherResults: { otherCosts: 85072 },
+        generalResults: { totalCost: 1923841, areaContaminated: 5379.6641343225865, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 6282.7799471560575,
-          onSiteDays: 720998.8733484106,
-          phaseCost: 2362790492.753319,
-        },
-        sourceReductionResults: {
-          workDays: 2558.6767112418356,
-          onSiteDays: 2558.6767112418356,
-          phaseCost: 195360944.23183516,
-        },
-        decontaminationResults: {
-          workDays: 26.418658014018703,
-          onSiteDays: 27.555699286646135,
-          phaseCost: 1189193723.4773374,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.6109167869567416,
+          onSiteDays: 13.909420769430293,
+          phaseCost: 506925,
         },
-        incidentCommandResults: {
-          onSiteDays: 723593.105758939,
-          phaseCost: 1786702236.9451284,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.560670962578694,
+          onSiteDays: 12.028156386100116,
+          phaseCost: 381562,
         },
-        otherResults: {
-          otherCosts: 145853873.47239575,
+        totalCharacterizationSamplingResults: {
+          workDays: 3.1715877495354357,
+          onSiteDays: 25.93757715553041,
+          phaseCost: 888487,
         },
-        generalResults: {
-          totalCost: 5679901270.880015,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.6954339031985508, onSiteDays: 0.6954339031985508, phaseCost: 45498 },
+        decontaminationResults: {
+          workDays: 8.688294132400372,
+          onSiteDays: 10.731975912286895,
+          suppliesCost: 153876,
+          otherCosts: 355530,
         },
+        incidentCommandResults: { onSiteDays: 45.36498697101585, phaseCost: 138868 },
+        otherResults: { otherCosts: 88077 },
+        generalResults: { totalCost: 1670336, areaContaminated: 5379.6641343225865, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 75743.5113309123,
-        onSiteDays: 633142.3625215683,
-        phaseCost: 6807153495.350277,
-      },
-      sourceReductionResults: {
-        workDays: 7072.310768200859,
-        onSiteDays: 7072.310768200859,
-        phaseCost: 747469107.6648943,
-      },
-      decontaminationResults: {
-        workDays: 26.8136791304717,
-        onSiteDays: 27.847554567700147,
-        phaseCost: 717663227.8034674,
-      },
-      incidentCommandResults: {
-        onSiteDays: 640250.520844337,
-        phaseCost: 1564064237.426109,
-      },
-      otherResults: {
-        otherCosts: 175639963.77380347,
-      },
-      generalResults: {
-        totalCost: 10011990032.01855,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 11.10370316386011,
+        onSiteDays: 35.87459754005462,
+        phaseCost: 639929,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.2970972238353946,
+        onSiteDays: 9.074305856628927,
+        phaseCost: 201058,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 12.400800387695504,
+        onSiteDays: 44.94890339668355,
+        phaseCost: 840987,
+      },
+      sourceReductionResults: { workDays: 0.12679386973750312, onSiteDays: 0.12679386973750312, phaseCost: 23723 },
+      decontaminationResults: {
+        workDays: 11.979589489051046,
+        onSiteDays: 12.697962112654459,
+        suppliesCost: 272865,
+        otherCosts: 753473,
+      },
+      incidentCommandResults: { onSiteDays: 65.77365937907551, phaseCost: 200130 },
+      otherResults: { otherCosts: 91252 },
+      generalResults: { totalCost: 2182430, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 17488.9666473891,
-        onSiteDays: 807623.1584764017,
-        phaseCost: 8807319579.756298,
-      },
-      sourceReductionResults: {
-        workDays: 25927.963734852678,
-        onSiteDays: 25927.963734852678,
-        phaseCost: 2001098169.2482948,
-      },
-      decontaminationResults: {
-        workDays: 16.430407610356436,
-        onSiteDays: 17.76160774700381,
-        phaseCost: 578102853.9295732,
-      },
-      incidentCommandResults: {
-        onSiteDays: 833576.8838190015,
-        phaseCost: 2050232263.3375301,
-      },
-      otherResults: {
-        otherCosts: 213413329.23975024,
-      },
-      generalResults: {
-        totalCost: 13650166195.511446,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.0184390063576494,
+        onSiteDays: 11.014479758552062,
+        phaseCost: 620915,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 16.906708818038027,
+        onSiteDays: 51.5104448602151,
+        phaseCost: 2919268,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 18.925147824395676,
+        onSiteDays: 62.524924618767166,
+        phaseCost: 3540183,
+      },
+      sourceReductionResults: { workDays: 0.8814163880641408, onSiteDays: 0.8814163880641408, phaseCost: 29733 },
+      decontaminationResults: {
+        workDays: 15.935411693047595,
+        onSiteDays: 17.56967781916486,
+        suppliesCost: 158916,
+        otherCosts: 952805,
+      },
+      incidentCommandResults: { onSiteDays: 88.97601882599616, phaseCost: 269015 },
+      otherResults: { otherCosts: 93091 },
+      generalResults: { totalCost: 5043743, areaContaminated: 10000, decontaminationRounds: 2 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 8431.52028758104,
-          onSiteDays: 94914.3664522844,
-          phaseCost: 2854160271.3798523,
-        },
-        sourceReductionResults: {
-          workDays: 287.35854312564317,
-          onSiteDays: 287.35854312564317,
-          phaseCost: 97619545.91614887,
-        },
-        decontaminationResults: {
-          workDays: 15.521457267348062,
-          onSiteDays: 17.855824228808242,
-          phaseCost: 234602561.81335685,
-        },
-        incidentCommandResults: {
-          onSiteDays: 95227.58081963885,
-          phaseCost: 234163748.68344772,
-        },
-        otherResults: {
-          otherCosts: 19358382.90813761,
-        },
-        generalResults: {
-          totalCost: 3439904510.7009435,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.606821392612635,
+          onSiteDays: 40.318370280845706,
+          phaseCost: 1565903,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.8237344082183746,
+          onSiteDays: 34.32252543980479,
+          phaseCost: 1539757,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 8.430555800831009,
+          onSiteDays: 74.64089572065049,
+          phaseCost: 3105660,
+        },
+        sourceReductionResults: { workDays: 0.8057466355865688, onSiteDays: 0.8057466355865688, phaseCost: 60053 },
+        decontaminationResults: {
+          workDays: 3.4023637064738113,
+          onSiteDays: 5.247147233050118,
+          suppliesCost: 262249,
+          otherCosts: 98848,
+        },
+        incidentCommandResults: { onSiteDays: 88.69378958928718, phaseCost: 269502 },
+        otherResults: { otherCosts: 63630 },
+        generalResults: { totalCost: 3859942, areaContaminated: 13267.487762092494, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 21862.4280499344,
-          onSiteDays: 1850741.8973651873,
-          phaseCost: 4603653035.290272,
-        },
-        sourceReductionResults: {
-          workDays: 3008.1367966750154,
-          onSiteDays: 3008.1367966750154,
-          phaseCost: 1076224440.43849,
-        },
-        decontaminationResults: {
-          workDays: 12.02339382959143,
-          onSiteDays: 14.26359410496978,
-          phaseCost: 235499692.5752463,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.816579831613255,
+          onSiteDays: 32.52846670988853,
+          phaseCost: 1296135,
         },
-        incidentCommandResults: {
-          onSiteDays: 1853772.2977559671,
-          phaseCost: 4560566585.395988,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 7.353188173687407,
+          onSiteDays: 36.487129862191935,
+          phaseCost: 1575254,
         },
-        otherResults: {
-          otherCosts: 510994877.3896235,
+        totalCharacterizationSamplingResults: {
+          workDays: 14.16976800530066,
+          onSiteDays: 69.01559657208045,
+          phaseCost: 2871389,
         },
-        generalResults: {
-          totalCost: 10986938631.08962,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.2540942174939183, onSiteDays: 1.2540942174939183, phaseCost: 69564 },
+        decontaminationResults: {
+          workDays: 12.46296481542824,
+          onSiteDays: 13.686484921883439,
+          suppliesCost: 206824,
+          otherCosts: 349646,
         },
+        incidentCommandResults: { onSiteDays: 91.9561757114578, phaseCost: 276714 },
+        otherResults: { otherCosts: 56739 },
+        generalResults: { totalCost: 3830876, areaContaminated: 13267.487762092494, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 29375.102039575395,
-        onSiteDays: 682417.536860069,
-        phaseCost: 11764623189.630234,
-      },
-      sourceReductionResults: {
-        workDays: 10740.659625007791,
-        onSiteDays: 10740.659625007791,
-        phaseCost: 2295439287.586404,
-      },
-      decontaminationResults: {
-        workDays: 16.80555420480798,
-        onSiteDays: 19.77647130302537,
-        phaseCost: 1509936958.0814548,
-      },
-      incidentCommandResults: {
-        onSiteDays: 693185.9729563799,
-        phaseCost: 1699205752.4865751,
-      },
-      otherResults: {
-        otherCosts: 175280849.01420343,
-      },
-      generalResults: {
-        totalCost: 17444486036.79887,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.000532117802492,
+        onSiteDays: 14.535163410318514,
+        phaseCost: 977604,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.195748462890735,
+        onSiteDays: 11.339550064833585,
+        phaseCost: 595183,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.196280580693227,
+        onSiteDays: 25.8747134751521,
+        phaseCost: 1572787,
+      },
+      sourceReductionResults: { workDays: 0.26593328299482516, onSiteDays: 0.26593328299482516, phaseCost: 17453 },
+      decontaminationResults: {
+        workDays: 8.982123191231423,
+        onSiteDays: 11.692555348782928,
+        suppliesCost: 293613,
+        otherCosts: 392711,
+      },
+      incidentCommandResults: { onSiteDays: 45.83320210692985, phaseCost: 140323 },
+      otherResults: { otherCosts: 76627 },
+      generalResults: { totalCost: 2493514, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 26653.42500229236,
-        onSiteDays: 633141.6246313666,
-        phaseCost: 15925078009.625042,
-      },
-      sourceReductionResults: {
-        workDays: 6146.628948322523,
-        onSiteDays: 6146.628948322523,
-        phaseCost: 650468846.2407786,
-      },
-      decontaminationResults: {
-        workDays: 24.21692225388645,
-        onSiteDays: 24.50318763626348,
-        phaseCost: 3292985688.3115025,
-      },
-      incidentCommandResults: {
-        onSiteDays: 639320.7567673253,
-        phaseCost: 1582712944.6343136,
-      },
-      otherResults: {
-        otherCosts: 115841038.5521544,
-      },
-      generalResults: {
-        totalCost: 21567086527.363792,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 7.800967265869088,
+        onSiteDays: 22.07254445249519,
+        phaseCost: 654614,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.381755433652189,
+        onSiteDays: 16.851789134391712,
+        phaseCost: 633874,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 10.182722699521277,
+        onSiteDays: 38.9243335868869,
+        phaseCost: 1288488,
+      },
+      sourceReductionResults: { workDays: 0.37121710498998234, onSiteDays: 0.37121710498998234, phaseCost: 88027 },
+      decontaminationResults: {
+        workDays: 8.69944970791681,
+        onSiteDays: 10.002911639633334,
+        suppliesCost: 238507,
+        otherCosts: 426878,
+      },
+      incidentCommandResults: { onSiteDays: 57.298462331510216, phaseCost: 176286 },
+      otherResults: { otherCosts: 153215 },
+      generalResults: { totalCost: 2371401, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 14645.884652144105,
-          onSiteDays: 2110567.7056956748,
-          phaseCost: 3962887958.539198,
-        },
-        sourceReductionResults: {
-          workDays: 7621.720380602955,
-          onSiteDays: 7621.720380602955,
-          phaseCost: 621081848.0192608,
-        },
-        decontaminationResults: {
-          workDays: 25.086082609623226,
-          onSiteDays: 26.25230234401587,
-          phaseCost: 339292830.5146138,
-        },
-        incidentCommandResults: {
-          onSiteDays: 2118223.6783786216,
-          phaseCost: 5253368392.979506,
-        },
-        otherResults: {
-          otherCosts: 487838485.90192825,
-        },
-        generalResults: {
-          totalCost: 10664469515.954506,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.8242435637383981,
+          onSiteDays: 7.603547302806411,
+          phaseCost: 333298,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.2038060251473075,
+          onSiteDays: 13.397633983955679,
+          phaseCost: 533527,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 5.028049588885706,
+          onSiteDays: 21.00118128676209,
+          phaseCost: 866825,
+        },
+        sourceReductionResults: { workDays: 2.1441438941678475, onSiteDays: 2.1441438941678475, phaseCost: 64701 },
+        decontaminationResults: {
+          workDays: 7.131387552509873,
+          onSiteDays: 8.098056953656034,
+          suppliesCost: 135109,
+          otherCosts: 451841,
+        },
+        incidentCommandResults: { onSiteDays: 39.24338213458597, phaseCost: 120076 },
+        otherResults: { otherCosts: 67627 },
+        generalResults: { totalCost: 1706179, areaContaminated: 6854.96504461741, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 35395.28870195668,
-          onSiteDays: 264759.19007879414,
-          phaseCost: 4348718313.17573,
-        },
-        sourceReductionResults: {
-          workDays: 1411.4654188418504,
-          onSiteDays: 1411.4654188418504,
-          phaseCost: 88066757.75625071,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.5777259022190796,
+          onSiteDays: 7.57245601257476,
+          phaseCost: 183048,
         },
-        decontaminationResults: {
-          workDays: 25.235390570302354,
-          onSiteDays: 28.094232801137082,
-          phaseCost: 1013387295.341826,
-        },
-        incidentCommandResults: {
-          onSiteDays: 266206.7497304371,
-          phaseCost: 659531408.2439837,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.19351409180992,
+          onSiteDays: 25.02898338125387,
+          phaseCost: 629588,
         },
-        otherResults: {
-          otherCosts: 78286976.8348732,
+        totalCharacterizationSamplingResults: {
+          workDays: 3.7712399940289996,
+          onSiteDays: 32.60143939382863,
+          phaseCost: 812636,
         },
-        generalResults: {
-          totalCost: 6187990751.352663,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.681539376496442, onSiteDays: 0.681539376496442, phaseCost: 73958 },
+        decontaminationResults: {
+          workDays: 4.481678419625777,
+          onSiteDays: 5.0253788475006305,
+          suppliesCost: 222443,
+          otherCosts: 272714,
         },
+        incidentCommandResults: { onSiteDays: 46.308357617825706, phaseCost: 139356 },
+        otherResults: { otherCosts: 121249 },
+        generalResults: { totalCost: 1642356, areaContaminated: 6854.96504461741, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 16090.038875072083,
-        onSiteDays: 173553.49576754766,
-        phaseCost: 3346314707.0345783,
-      },
-      sourceReductionResults: {
-        workDays: 407.6609133367752,
-        onSiteDays: 407.6609133367752,
-        phaseCost: 53990946.21681325,
-      },
-      decontaminationResults: {
-        workDays: 19.892659716981616,
-        onSiteDays: 22.2466875422389,
-        phaseCost: 1110206666.8173416,
-      },
-      incidentCommandResults: {
-        onSiteDays: 173991.4033684267,
-        phaseCost: 430375919.26714003,
-      },
-      otherResults: {
-        otherCosts: 34282725.051355466,
-      },
-      generalResults: {
-        totalCost: 4975170964.387229,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.396659452478678,
+        onSiteDays: 11.004188478263277,
+        phaseCost: 824681,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.501382410048852,
+        onSiteDays: 14.855376970226875,
+        phaseCost: 894150,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.89804186252753,
+        onSiteDays: 25.85956544849015,
+        phaseCost: 1718831,
+      },
+      sourceReductionResults: { workDays: 0.1842971061995669, onSiteDays: 0.1842971061995669, phaseCost: 38199 },
+      decontaminationResults: {
+        workDays: 6.96344020985147,
+        onSiteDays: 9.673147007281226,
+        suppliesCost: 102021,
+        otherCosts: 244763,
+      },
+      incidentCommandResults: { onSiteDays: 43.71700956197094, phaseCost: 135526 },
+      otherResults: { otherCosts: 54726 },
+      generalResults: { totalCost: 2294066, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 100344.44165358375,
-        onSiteDays: 1466555.1811567552,
-        phaseCost: 9512215515.044752,
-      },
-      sourceReductionResults: {
-        workDays: 9588.83671291157,
-        onSiteDays: 9588.83671291157,
-        phaseCost: 918012835.4385934,
-      },
-      decontaminationResults: {
-        workDays: 16.436051600248565,
-        onSiteDays: 18.434012063879987,
-        phaseCost: 186277675.6295175,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1476170.4518817305,
-        phaseCost: 3632922290.370653,
-      },
-      otherResults: {
-        otherCosts: 383617372.0155497,
-      },
-      generalResults: {
-        totalCost: 14633045688.499065,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.9203732267211324,
+        onSiteDays: 12.338446307182446,
+        phaseCost: 608784,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.2071216932257363,
+        onSiteDays: 8.599932461834996,
+        phaseCost: 460950,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 3.1274949199468685,
+        onSiteDays: 20.93837876901744,
+        phaseCost: 1069734,
+      },
+      sourceReductionResults: { workDays: 0.9034943670049156, onSiteDays: 0.9034943670049156, phaseCost: 214864 },
+      decontaminationResults: {
+        workDays: 6.756772296213725,
+        onSiteDays: 7.860483015389295,
+        suppliesCost: 29342,
+        otherCosts: 471339,
+      },
+      incidentCommandResults: { onSiteDays: 37.70235615141165, phaseCost: 114128 },
+      otherResults: { otherCosts: 54421 },
+      generalResults: { totalCost: 1953828, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 24963.18197850036,
-          onSiteDays: 159112.0177003871,
-          phaseCost: 1096843677.9315298,
-        },
-        sourceReductionResults: {
-          workDays: 370.85135153471725,
-          onSiteDays: 370.85135153471725,
-          phaseCost: 77091467.49292375,
-        },
-        decontaminationResults: {
-          workDays: 15.318067555157018,
-          onSiteDays: 15.31840640965812,
-          phaseCost: 1037265575.2411758,
-        },
-        incidentCommandResults: {
-          onSiteDays: 159506.1874583315,
-          phaseCost: 393291556.3567103,
-        },
-        otherResults: {
-          otherCosts: 48527485.194205955,
-        },
-        generalResults: {
-          totalCost: 2653019762.2165456,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.7696084351631747,
+          onSiteDays: 18.063969514475133,
+          phaseCost: 500252,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.6919798075858243,
+          onSiteDays: 16.492754583644924,
+          phaseCost: 464286,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.461588242748999,
+          onSiteDays: 34.55672409812006,
+          phaseCost: 964538,
+        },
+        sourceReductionResults: { workDays: 0.19947473128673393, onSiteDays: 0.19947473128673393, phaseCost: 39904 },
+        decontaminationResults: {
+          workDays: 9.434719855765515,
+          onSiteDays: 11.648289047099718,
+          suppliesCost: 19815,
+          otherCosts: 808236,
+        },
+        incidentCommandResults: { onSiteDays: 54.40448787650651, phaseCost: 167226 },
+        otherResults: { otherCosts: 53890 },
+        generalResults: { totalCost: 2053609, areaContaminated: 5850.483188603652, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 32390.75732190079,
-          onSiteDays: 1405024.0668890926,
-          phaseCost: 1352446881.4397163,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.977062662370049,
+          onSiteDays: 16.48163373765548,
+          phaseCost: 395957,
         },
-        sourceReductionResults: {
-          workDays: 9149.70814634203,
-          onSiteDays: 9149.70814634203,
-          phaseCost: 694572794.2283987,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.822552681421456,
+          onSiteDays: 30.341530155298756,
+          phaseCost: 757319,
         },
-        decontaminationResults: {
-          workDays: 14.064735969543628,
-          onSiteDays: 15.565093155616218,
-          phaseCost: 490106998.5298392,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1414197.3401285904,
-          phaseCost: 3469084355.650762,
+        totalCharacterizationSamplingResults: {
+          workDays: 6.799615343791505,
+          onSiteDays: 46.823163892954234,
+          phaseCost: 1153276,
         },
-        otherResults: {
-          otherCosts: 465748173.72840333,
-        },
-        generalResults: {
-          totalCost: 6471959203.57712,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.5858141437830586, onSiteDays: 0.5858141437830586, phaseCost: 70996 },
+        decontaminationResults: {
+          workDays: 10.230473946135135,
+          onSiteDays: 12.118053071693994,
+          suppliesCost: 38894,
+          otherCosts: 398688,
         },
+        incidentCommandResults: { onSiteDays: 67.52703110843129, phaseCost: 207422 },
+        otherResults: { otherCosts: 80691 },
+        generalResults: { totalCost: 1949967, areaContaminated: 5850.483188603652, decontaminationRounds: 2 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 48575.79633549035,
-        onSiteDays: 1963360.701798962,
-        phaseCost: 4358427668.7968,
-      },
-      sourceReductionResults: {
-        workDays: 16154.86321483458,
-        onSiteDays: 16154.86321483458,
-        phaseCost: 1632442027.0470982,
-      },
-      decontaminationResults: {
-        workDays: 18.714243718356418,
-        onSiteDays: 20.267849141794223,
-        phaseCost: 223921975.75547272,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1979543.8328629383,
-        phaseCost: 4804574703.6854,
-      },
-      otherResults: {
-        otherCosts: 403633603.69500434,
-      },
-      generalResults: {
-        totalCost: 11422999978.979774,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.877792880646651,
+        onSiteDays: 19.42111243843265,
+        phaseCost: 1061004,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.555616122230932,
+        onSiteDays: 16.315194536825572,
+        phaseCost: 790886,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 10.433409002877582,
+        onSiteDays: 35.73630697525822,
+        phaseCost: 1851890,
+      },
+      sourceReductionResults: { workDays: 0.8320441285917068, onSiteDays: 0.8320441285917068, phaseCost: 116813 },
+      decontaminationResults: {
+        workDays: 10.336878941239993,
+        onSiteDays: 12.364315107782444,
+        suppliesCost: 115332,
+        otherCosts: 349818,
+      },
+      incidentCommandResults: { onSiteDays: 56.93266621163237, phaseCost: 171964 },
+      otherResults: { otherCosts: 109689 },
+      generalResults: { totalCost: 2715506, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 51413.08976978619,
-        onSiteDays: 542351.9644339057,
-        phaseCost: 4101069723.5373764,
-      },
-      sourceReductionResults: {
-        workDays: 216.98053614076724,
-        onSiteDays: 216.98053614076724,
-        phaseCost: 5179901.571560705,
-      },
-      decontaminationResults: {
-        workDays: 17.38605112009357,
-        onSiteDays: 18.245218387163526,
-        phaseCost: 919430819.8781967,
-      },
-      incidentCommandResults: {
-        onSiteDays: 542595.1901884335,
-        phaseCost: 1316782094.4773946,
-      },
-      otherResults: {
-        otherCosts: 109687487.22679012,
-      },
-      generalResults: {
-        totalCost: 6452150026.691319,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.80144928175574,
+        onSiteDays: 24.721158641174974,
+        phaseCost: 840649,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.876171415323343,
+        onSiteDays: 19.31593535855386,
+        phaseCost: 856908,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.6776206970790835,
+        onSiteDays: 44.03709399972883,
+        phaseCost: 1697557,
+      },
+      sourceReductionResults: { workDays: 0.09674822985294931, onSiteDays: 0.09674822985294931, phaseCost: 13544 },
+      decontaminationResults: {
+        workDays: 13.432431090258163,
+        onSiteDays: 13.47505093609799,
+        suppliesCost: 298280,
+        otherCosts: 1079577,
+      },
+      incidentCommandResults: { onSiteDays: 65.60889316567977, phaseCost: 201153 },
+      otherResults: { otherCosts: 63801 },
+      generalResults: { totalCost: 3353912, areaContaminated: 10000, decontaminationRounds: 2 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 12027.229384886168,
-          onSiteDays: 626290.5715237778,
-          phaseCost: 4701309746.520616,
-        },
-        sourceReductionResults: {
-          workDays: 4755.64294852592,
-          onSiteDays: 4755.64294852592,
-          phaseCost: 83229087.48174013,
-        },
-        decontaminationResults: {
-          workDays: 23.266171175815668,
-          onSiteDays: 26.18872077627776,
-          phaseCost: 750631906.5563667,
-        },
-        incidentCommandResults: {
-          onSiteDays: 631080.40319308,
-          phaseCost: 1526938143.8927302,
-        },
-        otherResults: {
-          otherCosts: 116217256.93752939,
-        },
-        generalResults: {
-          totalCost: 7178326141.388982,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.4119169655247745,
+          onSiteDays: 19.247953853441132,
+          phaseCost: 580868,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.4615913579898976,
+          onSiteDays: 16.735955395643103,
+          phaseCost: 520196,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 4.873508323514672,
+          onSiteDays: 35.983909249084235,
+          phaseCost: 1101064,
+        },
+        sourceReductionResults: { workDays: 0.020902903299836278, onSiteDays: 0.020902903299836278, phaseCost: 4597 },
+        decontaminationResults: {
+          workDays: 8.431279491733592,
+          onSiteDays: 10.264165354488457,
+          suppliesCost: 266925,
+          otherCosts: 337913,
+        },
+        incidentCommandResults: { onSiteDays: 54.268977506872524, phaseCost: 163829 },
+        otherResults: { otherCosts: 66901 },
+        generalResults: { totalCost: 1941229, areaContaminated: 14666.34945936183, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 22851.671832420026,
-          onSiteDays: 1366919.5164044418,
-          phaseCost: 6881707245.315729,
-        },
-        sourceReductionResults: {
-          workDays: 14379.140724029468,
-          onSiteDays: 14379.140724029468,
-          phaseCost: 550851302.0901425,
-        },
-        decontaminationResults: {
-          workDays: 20.75383710902041,
-          onSiteDays: 21.300207840115814,
-          phaseCost: 1118227640.5027766,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.961721095516656,
+          onSiteDays: 28.83624734023877,
+          phaseCost: 717166,
         },
-        incidentCommandResults: {
-          onSiteDays: 1381327.9573363112,
-          phaseCost: 3365198063.517847,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.851338757102275,
+          onSiteDays: 26.484052820028637,
+          phaseCost: 635176,
         },
-        otherResults: {
-          otherCosts: 429135266.5343613,
+        totalCharacterizationSamplingResults: {
+          workDays: 8.813059852618931,
+          onSiteDays: 55.32030016026741,
+          phaseCost: 1352342,
         },
-        generalResults: {
-          totalCost: 12345119517.960855,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 2.2651326157159968, onSiteDays: 2.2651326157159968, phaseCost: 273270 },
+        decontaminationResults: {
+          workDays: 9.518861574474457,
+          onSiteDays: 11.8060218682061,
+          suppliesCost: 66559,
+          otherCosts: 361338,
         },
+        incidentCommandResults: { onSiteDays: 77.39145464418951, phaseCost: 232962 },
+        otherResults: { otherCosts: 112357 },
+        generalResults: { totalCost: 2398828, areaContaminated: 14666.34945936183, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 22360.21033677673,
-        onSiteDays: 761177.9423771524,
-        phaseCost: 9350569622.160006,
-      },
-      sourceReductionResults: {
-        workDays: 1462.7548837206605,
-        onSiteDays: 1462.7548837206605,
-        phaseCost: 167895264.0718209,
-      },
-      decontaminationResults: {
-        workDays: 19.03064772301136,
-        onSiteDays: 19.202120013349255,
-        phaseCost: 421452398.78083557,
-      },
-      incidentCommandResults: {
-        onSiteDays: 762667.8993808863,
-        phaseCost: 1880110299.2861161,
-      },
-      otherResults: {
-        otherCosts: 159707478.7224701,
-      },
-      generalResults: {
-        totalCost: 11979735063.021248,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 5.310653708018977,
+        onSiteDays: 27.545469001653892,
+        phaseCost: 846748,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 6.54646524364423,
+        onSiteDays: 32.45711526894028,
+        phaseCost: 934445,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.857118951663207,
+        onSiteDays: 60.00258427059417,
+        phaseCost: 1781193,
+      },
+      sourceReductionResults: { workDays: 0.02913097793657445, onSiteDays: 0.02913097793657445, phaseCost: 11940 },
+      decontaminationResults: {
+        workDays: 8.597897767228517,
+        onSiteDays: 8.639003689083971,
+        suppliesCost: 199111,
+        otherCosts: 256113,
+      },
+      incidentCommandResults: { onSiteDays: 76.67071893761471, phaseCost: 236573 },
+      otherResults: { otherCosts: 115544 },
+      generalResults: { totalCost: 2600474, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 103035.18538762651,
-        onSiteDays: 761450.3769283135,
-        phaseCost: 9450739207.886723,
-      },
-      sourceReductionResults: {
-        workDays: 3402.99471016055,
-        onSiteDays: 3402.99471016055,
-        phaseCost: 221355269.32545638,
-      },
-      decontaminationResults: {
-        workDays: 21.463612862039263,
-        onSiteDays: 21.84253498302831,
-        phaseCost: 2119342851.0602016,
-      },
-      incidentCommandResults: {
-        onSiteDays: 764883.2141734571,
-        phaseCost: 1853845210.247305,
-      },
-      otherResults: {
-        otherCosts: 183866181.04078868,
-      },
-      generalResults: {
-        totalCost: 13829148719.560474,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.6862189611824054,
+        onSiteDays: 8.617904368967269,
+        phaseCost: 574513,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.1471665381023746,
+        onSiteDays: 6.988004612130034,
+        phaseCost: 236410,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.8333854992847805,
+        onSiteDays: 15.605908981097302,
+        phaseCost: 810923,
+      },
+      sourceReductionResults: { workDays: 0.1369737092463575, onSiteDays: 0.1369737092463575, phaseCost: 33940 },
+      decontaminationResults: {
+        workDays: 4.92254064789101,
+        onSiteDays: 7.187689161437491,
+        suppliesCost: 89963,
+        otherCosts: 197603,
+      },
+      incidentCommandResults: { onSiteDays: 30.93057185178115, phaseCost: 93571 },
+      otherResults: { otherCosts: 85185 },
+      generalResults: { totalCost: 1311185, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 13825.352275272147,
-          onSiteDays: 133399.44097593144,
-          phaseCost: 7354534414.072826,
-        },
-        sourceReductionResults: {
-          workDays: 1344.7416660163851,
-          onSiteDays: 1344.7416660163851,
-          phaseCost: 64325409.04435327,
-        },
-        decontaminationResults: {
-          workDays: 15.463666977235972,
-          onSiteDays: 16.653869452340036,
-          phaseCost: 579674231.2765338,
-        },
-        incidentCommandResults: {
-          onSiteDays: 134768.83651140015,
-          phaseCost: 327185661.8174714,
-        },
-        otherResults: {
-          otherCosts: 35411036.25896291,
-        },
-        generalResults: {
-          totalCost: 8361130752.470148,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.7848910306900323,
+          onSiteDays: 15.086426394170687,
+          phaseCost: 494729,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 8.158200788808568,
+          onSiteDays: 38.725987279702935,
+          phaseCost: 1428296,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 9.9430918194986,
+          onSiteDays: 53.81241367387362,
+          phaseCost: 1923025,
+        },
+        sourceReductionResults: { workDays: 1.503438018440332, onSiteDays: 1.503438018440332, phaseCost: 240699 },
+        decontaminationResults: {
+          workDays: 3.6825850812444894,
+          onSiteDays: 4.811576730993478,
+          suppliesCost: 165441,
+          otherCosts: 193697,
+        },
+        incidentCommandResults: { onSiteDays: 68.12742842330744, phaseCost: 208052 },
+        otherResults: { otherCosts: 108220 },
+        generalResults: { totalCost: 2839134, areaContaminated: 13425.632540235676, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 25107.040133944596,
-          onSiteDays: 309379.2331496967,
-          phaseCost: 2678860251.0289526,
-        },
-        sourceReductionResults: {
-          workDays: 511.36775239037746,
-          onSiteDays: 511.36775239037746,
-          phaseCost: 79602030.28460166,
-        },
-        decontaminationResults: {
-          workDays: 21.707612250397823,
-          onSiteDays: 23.339618090153582,
-          phaseCost: 436426341.60878503,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.6941020308859205,
+          onSiteDays: 40.07582999887217,
+          phaseCost: 1218413,
         },
-        incidentCommandResults: {
-          onSiteDays: 309921.94052017725,
-          phaseCost: 768992194.5461069,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.222919887740562,
+          onSiteDays: 48.88553984859687,
+          phaseCost: 1514382,
         },
-        otherResults: {
-          otherCosts: 73392489.58498126,
+        totalCharacterizationSamplingResults: {
+          workDays: 8.917021918626482,
+          onSiteDays: 88.96136984746904,
+          phaseCost: 2732795,
         },
-        generalResults: {
-          totalCost: 4037273307.0534277,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.5909824741885146, onSiteDays: 1.5909824741885146, phaseCost: 142102 },
+        decontaminationResults: {
+          workDays: 8.695418325880407,
+          onSiteDays: 11.16380341704092,
+          suppliesCost: 469506,
+          otherCosts: 396999,
         },
+        incidentCommandResults: { onSiteDays: 109.71615573869849, phaseCost: 333479 },
+        otherResults: { otherCosts: 116484 },
+        generalResults: { totalCost: 4191365, areaContaminated: 13425.632540235676, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 52022.430362369836,
-        onSiteDays: 631001.3186147239,
-        phaseCost: 4026759287.895101,
-      },
-      sourceReductionResults: {
-        workDays: 8752.414030989099,
-        onSiteDays: 8752.414030989099,
-        phaseCost: 1222385382.3931084,
-      },
-      decontaminationResults: {
-        workDays: 16.038707061679734,
-        onSiteDays: 18.156616894564735,
-        phaseCost: 1205411060.8182228,
-      },
-      incidentCommandResults: {
-        onSiteDays: 639779.8892626074,
-        phaseCost: 1576737272.8338866,
-      },
-      otherResults: {
-        otherCosts: 130001226.8141845,
-      },
-      generalResults: {
-        totalCost: 8161294230.754503,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 9.401379330612622,
+        onSiteDays: 38.407213008404874,
+        phaseCost: 1088831,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.1324495812098285,
+        onSiteDays: 23.604041100802814,
+        phaseCost: 757695,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.53382891182245,
+        onSiteDays: 62.011254109207684,
+        phaseCost: 1846526,
+      },
+      sourceReductionResults: { workDays: 1.2381689138529544, onSiteDays: 1.2381689138529544, phaseCost: 136220 },
+      decontaminationResults: {
+        workDays: 11.047140870719948,
+        onSiteDays: 12.547770743153006,
+        suppliesCost: 31752,
+        otherCosts: 329016,
+      },
+      incidentCommandResults: { onSiteDays: 83.79719376621364, phaseCost: 256625 },
+      otherResults: { otherCosts: 81316 },
+      generalResults: { totalCost: 2681455, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 26591.203042779798,
-        onSiteDays: 260604.18573364633,
-        phaseCost: 5561696945.525244,
-      },
-      sourceReductionResults: {
-        workDays: 4041.5237766663477,
-        onSiteDays: 4041.5237766663477,
-        phaseCost: 395196370.7211685,
-      },
-      decontaminationResults: {
-        workDays: 16.611336249069154,
-        onSiteDays: 19.249410298245355,
-        phaseCost: 499340306.7598686,
-      },
-      incidentCommandResults: {
-        onSiteDays: 264672.9589206109,
-        phaseCost: 646301493.9071116,
-      },
-      otherResults: {
-        otherCosts: 81345584.02135704,
-      },
-      generalResults: {
-        totalCost: 7183880700.93475,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.125428368626255,
+        onSiteDays: 12.329571179207143,
+        phaseCost: 910630,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.898459857742252,
+        onSiteDays: 17.974692203415877,
+        phaseCost: 1246448,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 9.023888226368507,
+        onSiteDays: 30.30426338262302,
+        phaseCost: 2157078,
+      },
+      sourceReductionResults: { workDays: 0.5421938840532736, onSiteDays: 0.5421938840532736, phaseCost: 69769 },
+      decontaminationResults: {
+        workDays: 12.219477442377125,
+        onSiteDays: 13.879547170800983,
+        suppliesCost: 127922,
+        otherCosts: 424848,
+      },
+      incidentCommandResults: { onSiteDays: 52.72600443747727, phaseCost: 162909 },
+      otherResults: { otherCosts: 81237 },
+      generalResults: { totalCost: 3023763, areaContaminated: 10000, decontaminationRounds: 2 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 10069.109426896666,
-          onSiteDays: 272108.86241021747,
-          phaseCost: 5446694495.539998,
-        },
-        sourceReductionResults: {
-          workDays: 6328.270103850917,
-          onSiteDays: 6328.270103850917,
-          phaseCost: 457571474.9140901,
-        },
-        decontaminationResults: {
-          workDays: 21.088304493131186,
-          onSiteDays: 23.348908568580846,
-          phaseCost: 731267566.6986098,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.987261869876017,
+          onSiteDays: 19.790868258183124,
+          phaseCost: 850461,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.5701805444038354,
+          onSiteDays: 4.299270972208032,
+          phaseCost: 180549,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 7.557442414279852,
+          onSiteDays: 24.090139230391156,
+          phaseCost: 1031010,
+        },
+        sourceReductionResults: { workDays: 2.658083134255782, onSiteDays: 2.658083134255782, phaseCost: 262608 },
+        decontaminationResults: {
+          workDays: 4.44939738312955,
+          onSiteDays: 6.366626982662508,
+          suppliesCost: 80255,
+          otherCosts: 117618,
+        },
+        incidentCommandResults: { onSiteDays: 41.114849347309445, phaseCost: 125153 },
+        otherResults: { otherCosts: 101366 },
+        generalResults: { totalCost: 1718010, areaContaminated: 11080.400854367856, decontaminationRounds: 1 },
+      },
+      Industrial: {
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.071926680234192,
+          onSiteDays: 13.569305335886613,
+          phaseCost: 280619,
         },
-        incidentCommandResults: {
-          onSiteDays: 278468.48142263695,
-          phaseCost: 684824022.8488591,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.9496073050605047,
+          onSiteDays: 8.059966385089181,
+          phaseCost: 188151,
         },
-        otherResults: {
-          otherCosts: 83183108.07558644,
+        totalCharacterizationSamplingResults: {
+          workDays: 3.0215339852946967,
+          onSiteDays: 21.629271720975794,
+          phaseCost: 468770,
         },
-        generalResults: {
-          totalCost: 7403540668.077144,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 2.074291395793516, onSiteDays: 2.074291395793516, phaseCost: 188480 },
+        decontaminationResults: {
+          workDays: 9.372093487850412,
+          onSiteDays: 10.955819770683492,
+          suppliesCost: 288284,
+          otherCosts: 262298,
         },
+        incidentCommandResults: { onSiteDays: 42.6593828874528, phaseCost: 128282 },
+        otherResults: { otherCosts: 43093 },
+        generalResults: { totalCost: 1379207, areaContaminated: 11080.400854367856, decontaminationRounds: 1 },
+      },
+    },
+    Outdoor: {
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.9829103266786987,
+        onSiteDays: 11.008718479356208,
+        phaseCost: 328699,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.2934271499548131,
+        onSiteDays: 6.039034718313248,
+        phaseCost: 226159,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.276337476633512,
+        onSiteDays: 17.047753197669458,
+        phaseCost: 554858,
+      },
+      sourceReductionResults: { workDays: 1.8665569828138089, onSiteDays: 1.8665569828138089, phaseCost: 83593 },
+      decontaminationResults: {
+        workDays: 9.555152090628434,
+        onSiteDays: 12.282064311737676,
+        suppliesCost: 285616,
+        otherCosts: 433664,
+      },
+      incidentCommandResults: { onSiteDays: 39.19637449222094, phaseCost: 118491 },
+      otherResults: { otherCosts: 65175 },
+      generalResults: { totalCost: 1541397, areaContaminated: 10000, decontaminationRounds: 1 },
+    },
+    Underground: {
+      preDeconCharacterizationSamplingResults: {
+        workDays: 10.834538226631368,
+        onSiteDays: 26.88677101720424,
+        phaseCost: 680770,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.633996851057772,
+        onSiteDays: 34.37386698517997,
+        phaseCost: 1388605,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 16.46853507768914,
+        onSiteDays: 61.26063800238421,
+        phaseCost: 2069375,
+      },
+      sourceReductionResults: { workDays: 1.8443525022268457, onSiteDays: 1.8443525022268457, phaseCost: 243435 },
+      decontaminationResults: {
+        workDays: 11.321031526737155,
+        onSiteDays: 13.871264340558849,
+        suppliesCost: 191249,
+        otherCosts: 454830,
+      },
+      incidentCommandResults: { onSiteDays: 84.9762548451699, phaseCost: 256674 },
+      otherResults: { otherCosts: 103905 },
+      generalResults: { totalCost: 3319468, areaContaminated: 10000, decontaminationRounds: 2 },
+    },
+  },
+  {
+    Indoor: {
+      Commercial: {
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.9944240715769608,
+          onSiteDays: 13.263112669032129,
+          phaseCost: 361210,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.119222872007131,
+          onSiteDays: 17.6628341754824,
+          phaseCost: 487666,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 5.113646943584092,
+          onSiteDays: 30.925946844514527,
+          phaseCost: 848876,
+        },
+        sourceReductionResults: { workDays: 0.6067890886740099, onSiteDays: 0.6067890886740099, phaseCost: 54996 },
+        decontaminationResults: {
+          workDays: 3.410806208013279,
+          onSiteDays: 4.685665108190306,
+          suppliesCost: 271151,
+          otherCosts: 275406,
+        },
+        incidentCommandResults: { onSiteDays: 44.21840104137884, phaseCost: 133185 },
+        otherResults: { otherCosts: 63684 },
+        generalResults: { totalCost: 1647298, areaContaminated: 10017.791852591976, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 23625.05067893521,
-          onSiteDays: 144475.67759506268,
-          phaseCost: 1005039502.132674,
-        },
-        sourceReductionResults: {
-          workDays: 1262.090945938897,
-          onSiteDays: 1262.090945938897,
-          phaseCost: 43558699.23936751,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.367238146269667,
+          onSiteDays: 17.65100015298607,
+          phaseCost: 382517,
         },
-        decontaminationResults: {
-          workDays: 20.710459436222553,
-          onSiteDays: 21.04191730591513,
-          phaseCost: 639451338.5526614,
-        },
-        incidentCommandResults: {
-          onSiteDays: 145766.81045830747,
-          phaseCost: 357518493.9461776,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.7315398937800128,
+          onSiteDays: 25.69221358699548,
+          phaseCost: 573132,
         },
-        otherResults: {
-          otherCosts: 46843855.892245404,
+        totalCharacterizationSamplingResults: {
+          workDays: 3.09877804004968,
+          onSiteDays: 43.34321373998155,
+          phaseCost: 955649,
         },
-        generalResults: {
-          totalCost: 2092411889.763126,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.8053484864310312, onSiteDays: 0.8053484864310312, phaseCost: 144745 },
+        decontaminationResults: {
+          workDays: 8.38049443028413,
+          onSiteDays: 9.820150245870499,
+          suppliesCost: 384701,
+          otherCosts: 244584,
         },
+        incidentCommandResults: { onSiteDays: 61.96871247228308, phaseCost: 186475 },
+        otherResults: { otherCosts: 58884 },
+        generalResults: { totalCost: 1975038, areaContaminated: 10017.791852591976, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 45408.84571026899,
-        onSiteDays: 1079963.5759282226,
-        phaseCost: 2376758375.9616623,
-      },
-      sourceReductionResults: {
-        workDays: 28322.16741567141,
-        onSiteDays: 28322.16741567141,
-        phaseCost: 683671731.5683779,
-      },
-      decontaminationResults: {
-        workDays: 16.31287861529572,
-        onSiteDays: 16.817611920372027,
-        phaseCost: 2300838627.292947,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1108310.5609558146,
-        phaseCost: 2718442832.2154074,
-      },
-      otherResults: {
-        otherCosts: 275882526.6308533,
-      },
-      generalResults: {
-        totalCost: 8355594093.669248,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 8.89417682360156,
+        onSiteDays: 29.314275040632218,
+        phaseCost: 719413,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 10.5329445511423,
+        onSiteDays: 28.460639981681236,
+        phaseCost: 663808,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 19.427121374743862,
+        onSiteDays: 57.77491502231345,
+        phaseCost: 1383221,
+      },
+      sourceReductionResults: { workDays: 0.26966862032966743, onSiteDays: 0.26966862032966743, phaseCost: 32088 },
+      decontaminationResults: {
+        workDays: 10.697231302433003,
+        onSiteDays: 13.318109979927101,
+        suppliesCost: 138706,
+        otherCosts: 303573,
+      },
+      incidentCommandResults: { onSiteDays: 79.36269362257022, phaseCost: 241499 },
+      otherResults: { otherCosts: 102160 },
+      generalResults: { totalCost: 2201247, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 83756.66873197953,
-        onSiteDays: 2707266.8599018157,
-        phaseCost: 8888056390.41509,
-      },
-      sourceReductionResults: {
-        workDays: 13881.81173689653,
-        onSiteDays: 13881.81173689653,
-        phaseCost: 1519138051.737238,
-      },
-      decontaminationResults: {
-        workDays: 19.619227816029273,
-        onSiteDays: 21.75078335794406,
-        phaseCost: 2217795731.676761,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2721178.42242207,
-        phaseCost: 6705547466.402842,
-      },
-      otherResults: {
-        otherCosts: 564655826.8986113,
-      },
-      generalResults: {
-        totalCost: 19895193467.130547,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 6.522284427147962,
+        onSiteDays: 21.371250955468874,
+        phaseCost: 790766,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.596213378718332,
+        onSiteDays: 16.79943849424071,
+        phaseCost: 554728,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 12.118497805866294,
+        onSiteDays: 38.170689449709585,
+        phaseCost: 1345494,
+      },
+      sourceReductionResults: { workDays: 0.4885059312567864, onSiteDays: 0.4885059312567864, phaseCost: 59703 },
+      decontaminationResults: {
+        workDays: 3.0400016806181522,
+        onSiteDays: 4.380396137801091,
+        suppliesCost: 420862,
+        otherCosts: 160156,
+      },
+      incidentCommandResults: { onSiteDays: 51.039591518767466, phaseCost: 154824 },
+      otherResults: { otherCosts: 69463 },
+      generalResults: { totalCost: 2210502, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 14205.088388366716,
-          onSiteDays: 2029973.4900789727,
-          phaseCost: 4861938167.651014,
-        },
-        sourceReductionResults: {
-          workDays: 3018.368234238473,
-          onSiteDays: 3018.368234238473,
-          phaseCost: 730059856.4621474,
-        },
-        decontaminationResults: {
-          workDays: 19.60439089047825,
-          onSiteDays: 21.999339309520867,
-          phaseCost: 204501502.01815397,
-        },
-        incidentCommandResults: {
-          onSiteDays: 2033021.8576525208,
-          phaseCost: 4954191788.335619,
-        },
-        otherResults: {
-          otherCosts: 620405282.5143895,
-        },
-        generalResults: {
-          totalCost: 11371096596.981323,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 12.756111732506865,
+          onSiteDays: 27.703085541057042,
+          phaseCost: 1406194,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.942474844492093,
+          onSiteDays: 3.97552179308046,
+          phaseCost: 224409,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 13.698586576998958,
+          onSiteDays: 31.678607334137503,
+          phaseCost: 1630603,
+        },
+        sourceReductionResults: { workDays: 4.8260668656596195, onSiteDays: 4.8260668656596195, phaseCost: 531455 },
+        decontaminationResults: {
+          workDays: 3.089653229827446,
+          onSiteDays: 5.316631093462145,
+          suppliesCost: 55542,
+          otherCosts: 229972,
+        },
+        incidentCommandResults: { onSiteDays: 49.821305293259265, phaseCost: 152762 },
+        otherResults: { otherCosts: 87396 },
+        generalResults: { totalCost: 2687730, areaContaminated: 13114.8703322082, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 14145.973002269266,
-          onSiteDays: 477846.93827337015,
-          phaseCost: 2896183546.322815,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.1417865032417565,
+          onSiteDays: 17.876972409894815,
+          phaseCost: 546890,
         },
-        sourceReductionResults: {
-          workDays: 133.13754969492558,
-          onSiteDays: 133.13754969492558,
-          phaseCost: 23757909.079204462,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 6.76285696698973,
+          onSiteDays: 16.104286349282376,
+          phaseCost: 324269,
         },
-        decontaminationResults: {
-          workDays: 20.279732995964523,
-          onSiteDays: 21.848867740446902,
-          phaseCost: 1138692075.3802958,
-        },
-        incidentCommandResults: {
-          onSiteDays: 478009.9246908055,
-          phaseCost: 1166516780.8639145,
+        totalCharacterizationSamplingResults: {
+          workDays: 9.904643470231488,
+          onSiteDays: 33.981258759177194,
+          phaseCost: 871159,
         },
-        otherResults: {
-          otherCosts: 108146763.89892505,
-        },
-        generalResults: {
-          totalCost: 5333297075.545155,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.552104889409441, onSiteDays: 1.552104889409441, phaseCost: 36536 },
+        decontaminationResults: {
+          workDays: 7.206128752605554,
+          onSiteDays: 8.567967132098966,
+          suppliesCost: 319664,
+          otherCosts: 318501,
         },
+        incidentCommandResults: { onSiteDays: 52.1013307806856, phaseCost: 158059 },
+        otherResults: { otherCosts: 45050 },
+        generalResults: { totalCost: 1748969, areaContaminated: 13114.8703322082, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 9278.289937593272,
-        onSiteDays: 619065.6528892422,
-        phaseCost: 3707712196.111932,
-      },
-      sourceReductionResults: {
-        workDays: 5711.071127672826,
-        onSiteDays: 5711.071127672826,
-        phaseCost: 1234692909.0665994,
-      },
-      decontaminationResults: {
-        workDays: 18.22601588098938,
-        onSiteDays: 18.557509990538822,
-        phaseCost: 1382639466.4930828,
-      },
-      incidentCommandResults: {
-        onSiteDays: 624803.2815269055,
-        phaseCost: 1535135891.3190289,
-      },
-      otherResults: {
-        otherCosts: 208910932.1388801,
-      },
-      generalResults: {
-        totalCost: 8069091395.129523,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.136247088876865,
+        onSiteDays: 5.838576662307174,
+        phaseCost: 234362,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.1660541129389395,
+        onSiteDays: 5.2929748273765185,
+        phaseCost: 137210,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 3.3023012018158044,
+        onSiteDays: 11.131551489683693,
+        phaseCost: 371572,
+      },
+      sourceReductionResults: { workDays: 0.11140605079998703, onSiteDays: 0.11140605079998703, phaseCost: 19169 },
+      decontaminationResults: {
+        workDays: 18.706712039817756,
+        onSiteDays: 21.214526987917377,
+        suppliesCost: 119110,
+        otherCosts: 710970,
+      },
+      incidentCommandResults: { onSiteDays: 40.457484528401054, phaseCost: 124544 },
+      otherResults: { otherCosts: 152463 },
+      generalResults: { totalCost: 1497828, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 26714.71769314831,
-        onSiteDays: 1103215.947928559,
-        phaseCost: 14148512774.089691,
-      },
-      sourceReductionResults: {
-        workDays: 7243.607708221749,
-        onSiteDays: 7243.607708221749,
-        phaseCost: 871810662.5922679,
-      },
-      decontaminationResults: {
-        workDays: 15.32407821093781,
-        onSiteDays: 15.69097689834679,
-        phaseCost: 2008139548.0904737,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1110483.2466136792,
-        phaseCost: 2686441627.907815,
-      },
-      otherResults: {
-        otherCosts: 347927079.06525064,
-      },
-      generalResults: {
-        totalCost: 20062831691.7455,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.1001519506611235,
+        onSiteDays: 41.804283612972824,
+        phaseCost: 689770,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.331090668858253,
+        onSiteDays: 36.28292032611251,
+        phaseCost: 620741,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.431242619519376,
+        onSiteDays: 78.08720393908533,
+        phaseCost: 1310511,
+      },
+      sourceReductionResults: { workDays: 0.8852307575086292, onSiteDays: 0.8852307575086292, phaseCost: 105987 },
+      decontaminationResults: {
+        workDays: 3.887003718616209,
+        onSiteDays: 4.540452675321245,
+        suppliesCost: 370690,
+        otherCosts: 254807,
+      },
+      incidentCommandResults: { onSiteDays: 91.5128873719152, phaseCost: 282004 },
+      otherResults: { otherCosts: 102428 },
+      generalResults: { totalCost: 2426427, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 37063.88490882241,
-          onSiteDays: 923094.8651725878,
-          phaseCost: 2798095971.8633432,
-        },
-        sourceReductionResults: {
-          workDays: 2984.047067762941,
-          onSiteDays: 2984.047067762941,
-          phaseCost: 264834004.50127426,
-        },
-        decontaminationResults: {
-          workDays: 22.009420025630252,
-          onSiteDays: 23.764728526064363,
-          phaseCost: 750906431.8770863,
-        },
-        incidentCommandResults: {
-          onSiteDays: 926110.6769688769,
-          phaseCost: 2279488240.304758,
-        },
-        otherResults: {
-          otherCosts: 213529035.69264123,
-        },
-        generalResults: {
-          totalCost: 6306853684.239102,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.252460320259399,
+          onSiteDays: 25.524659531559852,
+          phaseCost: 775261,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.39052640580631315,
+          onSiteDays: 4.3039718897237975,
+          phaseCost: 120235,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 6.642986726065712,
+          onSiteDays: 29.82863142128365,
+          phaseCost: 895496,
+        },
+        sourceReductionResults: { workDays: 0.29389999864173944, onSiteDays: 0.29389999864173944, phaseCost: 12844 },
+        decontaminationResults: {
+          workDays: 8.436435611088863,
+          onSiteDays: 9.432959625365436,
+          suppliesCost: 260827,
+          otherCosts: 384197,
+        },
+        incidentCommandResults: { onSiteDays: 47.55549104529082, phaseCost: 146019 },
+        otherResults: { otherCosts: 71716 },
+        generalResults: { totalCost: 1771099, areaContaminated: 9901.120698754938, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 5160.728512483746,
-          onSiteDays: 423397.1326155299,
-          phaseCost: 1644541195.3434076,
-        },
-        sourceReductionResults: {
-          workDays: 12063.093689424271,
-          onSiteDays: 12063.093689424271,
-          phaseCost: 1407987012.7423773,
-        },
-        decontaminationResults: {
-          workDays: 16.123954161564807,
-          onSiteDays: 17.640647512078434,
-          phaseCost: 1028042636.939949,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.6680739674124028,
+          onSiteDays: 15.954825665244705,
+          phaseCost: 1460262,
         },
-        incidentCommandResults: {
-          onSiteDays: 435485.86695246625,
-          phaseCost: 1062609158.7018402,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 11.170879838949137,
+          onSiteDays: 23.930321653142194,
+          phaseCost: 1438283,
         },
-        otherResults: {
-          otherCosts: 128444562.83258675,
+        totalCharacterizationSamplingResults: {
+          workDays: 14.83895380636154,
+          onSiteDays: 39.8851473183869,
+          phaseCost: 2898545,
         },
-        generalResults: {
-          totalCost: 5271624566.560161,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.09976999923049701, onSiteDays: 0.09976999923049701, phaseCost: 7585 },
+        decontaminationResults: {
+          workDays: 4.0403814020195,
+          onSiteDays: 6.982896126569923,
+          suppliesCost: 394683,
+          otherCosts: 103940,
         },
+        incidentCommandResults: { onSiteDays: 54.967813444187314, phaseCost: 170248 },
+        otherResults: { otherCosts: 81869 },
+        generalResults: { totalCost: 3656870, areaContaminated: 9901.120698754938, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 29664.647204695826,
-        onSiteDays: 629773.7573297346,
-        phaseCost: 5620499179.720678,
-      },
-      sourceReductionResults: {
-        workDays: 2346.974035201792,
-        onSiteDays: 2346.974035201792,
-        phaseCost: 215478627.14574754,
-      },
-      decontaminationResults: {
-        workDays: 15.792473704040162,
-        onSiteDays: 18.494773355660676,
-        phaseCost: 951835791.3833455,
-      },
-      incidentCommandResults: {
-        onSiteDays: 632147.2261382921,
-        phaseCost: 1555860411.1105607,
-      },
-      otherResults: {
-        otherCosts: 115974002.63945337,
-      },
-      generalResults: {
-        totalCost: 8459648011.999784,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 7.489325292513501,
+        onSiteDays: 26.82010668895333,
+        phaseCost: 728767,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.9890538749306321,
+        onSiteDays: 15.076671648613466,
+        phaseCost: 542845,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 9.478379167444134,
+        onSiteDays: 41.8967783375668,
+        phaseCost: 1271612,
+      },
+      sourceReductionResults: { workDays: 5.015612382844095, onSiteDays: 5.015612382844095, phaseCost: 88527 },
+      decontaminationResults: {
+        workDays: 11.52614793333368,
+        onSiteDays: 14.398370939399667,
+        suppliesCost: 179402,
+        otherCosts: 399478,
+      },
+      incidentCommandResults: { onSiteDays: 69.31076165981057, phaseCost: 214204 },
+      otherResults: { otherCosts: 66423 },
+      generalResults: { totalCost: 2219646, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 77976.59695509062,
-        onSiteDays: 1638971.3791956396,
-        phaseCost: 8656284441.808788,
-      },
-      sourceReductionResults: {
-        workDays: 304.5650129799224,
-        onSiteDays: 304.5650129799224,
-        phaseCost: 10068704.062318254,
-      },
-      decontaminationResults: {
-        workDays: 17.342248538355868,
-        onSiteDays: 18.338754912917214,
-        phaseCost: 1788726541.5326083,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1639302.2829635325,
-        phaseCost: 4008906503.4991207,
-      },
-      otherResults: {
-        otherCosts: 524100546.1189842,
-      },
-      generalResults: {
-        totalCost: 14988086737.02182,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.8533497679663573,
+        onSiteDays: 15.371968216754627,
+        phaseCost: 529938,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 13.2685001714732,
+        onSiteDays: 38.302071356643715,
+        phaseCost: 1053992,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 15.121849939439556,
+        onSiteDays: 53.674039573398346,
+        phaseCost: 1583930,
+      },
+      sourceReductionResults: { workDays: 2.2754586294329338, onSiteDays: 2.2754586294329338, phaseCost: 385880 },
+      decontaminationResults: {
+        workDays: 9.170305605318934,
+        onSiteDays: 10.911051951560902,
+        suppliesCost: 322036,
+        otherCosts: 556038,
+      },
+      incidentCommandResults: { onSiteDays: 74.86055015439219, phaseCost: 230970 },
+      otherResults: { otherCosts: 111573 },
+      generalResults: { totalCost: 3190427, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 14593.005035716702,
-          onSiteDays: 808569.2660894545,
-          phaseCost: 5806556667.791082,
-        },
-        sourceReductionResults: {
-          workDays: 4727.676795505232,
-          onSiteDays: 4727.676795505232,
-          phaseCost: 797448583.4402188,
-        },
-        decontaminationResults: {
-          workDays: 16.323824786190833,
-          onSiteDays: 17.358580489493576,
-          phaseCost: 201455709.86552483,
-        },
-        incidentCommandResults: {
-          onSiteDays: 813322.3014654493,
-          phaseCost: 1991150882.0736825,
-        },
-        otherResults: {
-          otherCosts: 188143003.18829197,
-        },
-        generalResults: {
-          totalCost: 8984754846.3588,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.513887882982719,
+          onSiteDays: 7.67678258373539,
+          phaseCost: 481365,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.9879359788186152,
+          onSiteDays: 5.7861173539693755,
+          phaseCost: 183658,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 2.501823861801334,
+          onSiteDays: 13.462899937704766,
+          phaseCost: 665023,
+        },
+        sourceReductionResults: { workDays: 6.817680570746483, onSiteDays: 6.817680570746483, phaseCost: 324569 },
+        decontaminationResults: {
+          workDays: 7.126913342887283,
+          onSiteDays: 7.604981165287314,
+          suppliesCost: 134061,
+          otherCosts: 287004,
+        },
+        incidentCommandResults: { onSiteDays: 35.885561673738565, phaseCost: 109729 },
+        otherResults: { otherCosts: 131164 },
+        generalResults: { totalCost: 1651550, areaContaminated: 8325.11461184479, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 19217.109669904126,
-          onSiteDays: 572701.5824506393,
-          phaseCost: 6018997729.336559,
-        },
-        sourceReductionResults: {
-          workDays: 2922.816524554499,
-          onSiteDays: 2922.816524554499,
-          phaseCost: 150655214.06598228,
-        },
-        decontaminationResults: {
-          workDays: 22.166700996497344,
-          onSiteDays: 23.018888351046222,
-          phaseCost: 980948241.4896175,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.5433889831805625,
+          onSiteDays: 9.02734364390082,
+          phaseCost: 204393,
         },
-        incidentCommandResults: {
-          onSiteDays: 575655.4178635449,
-          phaseCost: 1399701220.7344606,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 6.728629627535643,
+          onSiteDays: 40.94703556856977,
+          phaseCost: 2064268,
         },
-        otherResults: {
-          otherCosts: 104757296.62244116,
+        totalCharacterizationSamplingResults: {
+          workDays: 9.272018610716206,
+          onSiteDays: 49.97437921247059,
+          phaseCost: 2268661,
         },
-        generalResults: {
-          totalCost: 8655059702.24906,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.4664213953212666, onSiteDays: 1.4664213953212666, phaseCost: 158054 },
+        decontaminationResults: {
+          workDays: 14.125158842449345,
+          onSiteDays: 16.078096080822426,
+          suppliesCost: 148381,
+          otherCosts: 482888,
         },
+        incidentCommandResults: { onSiteDays: 75.51889668861429, phaseCost: 230433 },
+        otherResults: { otherCosts: 104920 },
+        generalResults: { totalCost: 3393337, areaContaminated: 8325.11461184479, decontaminationRounds: 2 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 12181.904842685162,
-        onSiteDays: 1002970.7232981034,
-        phaseCost: 3457539572.329542,
-      },
-      sourceReductionResults: {
-        workDays: 3708.623700700312,
-        onSiteDays: 3708.623700700312,
-        phaseCost: 798162722.0759668,
-      },
-      decontaminationResults: {
-        workDays: 16.840049411365776,
-        onSiteDays: 17.392404330287224,
-        phaseCost: 723651088.7550184,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1006704.7394031341,
-        phaseCost: 2439271750.716527,
-      },
-      otherResults: {
-        otherCosts: 255506789.9314357,
-      },
-      generalResults: {
-        totalCost: 7674131923.80849,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 0.7900238446144554,
+        onSiteDays: 6.547841854883689,
+        phaseCost: 270429,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.6973964465465565,
+        onSiteDays: 15.95499112495947,
+        phaseCost: 529147,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.487420291161012,
+        onSiteDays: 22.50283297984316,
+        phaseCost: 799576,
+      },
+      sourceReductionResults: { workDays: 1.6451957092885, onSiteDays: 1.6451957092885, phaseCost: 311211 },
+      decontaminationResults: {
+        workDays: 7.245088259513743,
+        onSiteDays: 10.018375465883494,
+        suppliesCost: 403449,
+        otherCosts: 235760,
+      },
+      incidentCommandResults: { onSiteDays: 42.16640415501516, phaseCost: 130729 },
+      otherResults: { otherCosts: 100091 },
+      generalResults: { totalCost: 1980816, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 71886.4351200796,
-        onSiteDays: 256109.58438476012,
-        phaseCost: 4971336491.81304,
-      },
-      sourceReductionResults: {
-        workDays: 16835.862317715135,
-        onSiteDays: 16835.862317715135,
-        phaseCost: 2772602465.251213,
-      },
-      decontaminationResults: {
-        workDays: 20.441740236115116,
-        onSiteDays: 22.43187555750643,
-        phaseCost: 1886424638.5160058,
-      },
-      incidentCommandResults: {
-        onSiteDays: 272975.8785780328,
-        phaseCost: 667523455.5141159,
-      },
-      otherResults: {
-        otherCosts: 61409369.146305814,
-      },
-      generalResults: {
-        totalCost: 10359296420.24068,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.69366638452952,
+        onSiteDays: 11.334952632742782,
+        phaseCost: 741827,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.048697012658537,
+        onSiteDays: 7.795744448634899,
+        phaseCost: 270078,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.742363397188058,
+        onSiteDays: 19.130697081377683,
+        phaseCost: 1011905,
+      },
+      sourceReductionResults: { workDays: 5.590530099294237, onSiteDays: 5.590530099294237, phaseCost: 236369 },
+      decontaminationResults: {
+        workDays: 4.670336921156928,
+        onSiteDays: 7.537595173702016,
+        suppliesCost: 235185,
+        otherCosts: 263365,
+      },
+      incidentCommandResults: { onSiteDays: 40.25882235437393, phaseCost: 124894 },
+      otherResults: { otherCosts: 71266 },
+      generalResults: { totalCost: 1942984, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 16861.27931737862,
-          onSiteDays: 277939.947955586,
-          phaseCost: 5377131608.439154,
-        },
-        sourceReductionResults: {
-          workDays: 796.4988282983126,
-          onSiteDays: 796.4988282983126,
-          phaseCost: 159141594.8216325,
-        },
-        decontaminationResults: {
-          workDays: 17.47830279787963,
-          onSiteDays: 19.206205975777983,
-          phaseCost: 591741263.8170679,
-        },
-        incidentCommandResults: {
-          onSiteDays: 278763.6529898601,
-          phaseCost: 687957704.9622171,
-        },
-        otherResults: {
-          otherCosts: 63144777.444716066,
-        },
-        generalResults: {
-          totalCost: 6879116949.484788,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.1700620842804552,
+          onSiteDays: 5.618632427562143,
+          phaseCost: 184566,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.4036023739352568,
+          onSiteDays: 10.144940600096364,
+          phaseCost: 388429,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.573664458215712,
+          onSiteDays: 15.763573027658506,
+          phaseCost: 572995,
+        },
+        sourceReductionResults: { workDays: 4.878596680220207, onSiteDays: 4.878596680220207, phaseCost: 544569 },
+        decontaminationResults: {
+          workDays: 4.525235425570336,
+          onSiteDays: 5.57253715455824,
+          suppliesCost: 242761,
+          otherCosts: 271309,
+        },
+        incidentCommandResults: { onSiteDays: 34.214706862436955, phaseCost: 103546 },
+        otherResults: { otherCosts: 57025 },
+        generalResults: { totalCost: 1792205, areaContaminated: 14616.707304869013, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 16326.805610211635,
-          onSiteDays: 1187317.8892874462,
-          phaseCost: 7234287467.238312,
-        },
-        sourceReductionResults: {
-          workDays: 495.2418310598698,
-          onSiteDays: 495.2418310598698,
-          phaseCost: 74377619.12393561,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 5.948397607868786,
+          onSiteDays: 40.08780937523544,
+          phaseCost: 971828,
         },
-        decontaminationResults: {
-          workDays: 17.750356045260645,
-          onSiteDays: 18.83558135289596,
-          phaseCost: 500459087.50434655,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1187839.966699859,
-          phaseCost: 2939043256.877143,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 8.916177795760081,
+          onSiteDays: 38.13800079277603,
+          phaseCost: 807475,
         },
-        otherResults: {
-          otherCosts: 274830260.4938672,
+        totalCharacterizationSamplingResults: {
+          workDays: 14.864575403628868,
+          onSiteDays: 78.22581016801146,
+          phaseCost: 1779303,
         },
-        generalResults: {
-          totalCost: 11022997691.237604,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 4.591516024869615, onSiteDays: 4.591516024869615, phaseCost: 218471 },
+        decontaminationResults: {
+          workDays: 8.442627394674957,
+          onSiteDays: 9.644529476213393,
+          suppliesCost: 363253,
+          otherCosts: 302440,
         },
+        incidentCommandResults: { onSiteDays: 100.46185566909448, phaseCost: 309109 },
+        otherResults: { otherCosts: 67550 },
+        generalResults: { totalCost: 3040126, areaContaminated: 14616.707304869013, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 50689.17007461893,
-        onSiteDays: 2165357.736496076,
-        phaseCost: 4535379293.423866,
-      },
-      sourceReductionResults: {
-        workDays: 20053.507323556885,
-        onSiteDays: 20053.507323556885,
-        phaseCost: 1364894369.2689433,
-      },
-      decontaminationResults: {
-        workDays: 28.39177560023772,
-        onSiteDays: 29.822010554098995,
-        phaseCost: 2815730275.070414,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2185449.065830187,
-        phaseCost: 5380126011.931482,
-      },
-      otherResults: {
-        otherCosts: 630589440.5724045,
-      },
-      generalResults: {
-        totalCost: 14726719390.26711,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 7.7012127722450945,
+        onSiteDays: 18.55908903678983,
+        phaseCost: 690800,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.6524635306954707,
+        onSiteDays: 14.985955305115308,
+        phaseCost: 727379,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.353676302940565,
+        onSiteDays: 33.54504434190514,
+        phaseCost: 1418179,
+      },
+      sourceReductionResults: { workDays: 3.643488607226591, onSiteDays: 3.643488607226591, phaseCost: 435352 },
+      decontaminationResults: {
+        workDays: 8.632995046822586,
+        onSiteDays: 10.443918540711495,
+        suppliesCost: 45865,
+        otherCosts: 402090,
+      },
+      incidentCommandResults: { onSiteDays: 55.63245148984323, phaseCost: 170978 },
+      otherResults: { otherCosts: 99097 },
+      generalResults: { totalCost: 2571561, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 34855.84407553704,
-        onSiteDays: 864972.8405057999,
-        phaseCost: 6981280281.747541,
-      },
-      sourceReductionResults: {
-        workDays: 2344.121684438153,
-        onSiteDays: 2344.121684438153,
-        phaseCost: 631321432.137046,
-      },
-      decontaminationResults: {
-        workDays: 15.717627934114454,
-        onSiteDays: 17.382401564946026,
-        phaseCost: 3200064264.0833583,
-      },
-      incidentCommandResults: {
-        onSiteDays: 867342.344591803,
-        phaseCost: 2145667171.8234627,
-      },
-      otherResults: {
-        otherCosts: 175475317.5326369,
-      },
-      generalResults: {
-        totalCost: 13133808467.324045,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 7.418583333113309,
+        onSiteDays: 21.818206206145085,
+        phaseCost: 572584,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.760445343897255,
+        onSiteDays: 23.87396028057747,
+        phaseCost: 812737,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 12.179028677010564,
+        onSiteDays: 45.692166486722556,
+        phaseCost: 1385321,
+      },
+      sourceReductionResults: { workDays: 1.5386741504206878, onSiteDays: 1.5386741504206878, phaseCost: 198511 },
+      decontaminationResults: {
+        workDays: 4.2871470081822824,
+        onSiteDays: 7.228613908921512,
+        suppliesCost: 287431,
+        otherCosts: 213211,
+      },
+      incidentCommandResults: { onSiteDays: 62.459454546064755, phaseCost: 191107 },
+      otherResults: { otherCosts: 66999 },
+      generalResults: { totalCost: 2342580, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 11816.580627107738,
-          onSiteDays: 1137609.790396333,
-          phaseCost: 2807284443.566245,
-        },
-        sourceReductionResults: {
-          workDays: 1206.7934815652754,
-          onSiteDays: 1206.7934815652754,
-          phaseCost: 94862187.36632016,
-        },
-        decontaminationResults: {
-          workDays: 23.928434793355045,
-          onSiteDays: 26.113828671889806,
-          phaseCost: 1092925024.1040165,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1138850.6977065702,
-          phaseCost: 2762590073.4061294,
-        },
-        otherResults: {
-          otherCosts: 362850308.43178767,
-        },
-        generalResults: {
-          totalCost: 7120512036.874498,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.339893723565414,
+          onSiteDays: 16.189918738523808,
+          phaseCost: 572740,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.818485362410785,
+          onSiteDays: 19.323705595015056,
+          phaseCost: 679010,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 7.158379085976199,
+          onSiteDays: 35.513624333538864,
+          phaseCost: 1251750,
+        },
+        sourceReductionResults: { workDays: 0.2772759137926982, onSiteDays: 0.2772759137926982, phaseCost: 22026 },
+        decontaminationResults: {
+          workDays: 8.055848712114582,
+          onSiteDays: 8.711600382279512,
+          suppliesCost: 320422,
+          otherCosts: 532872,
+        },
+        incidentCommandResults: { onSiteDays: 52.50250062961108, phaseCost: 160795 },
+        otherResults: { otherCosts: 83713 },
+        generalResults: { totalCost: 2371578, areaContaminated: 8519.249691981648, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 18859.256338280426,
-          onSiteDays: 285515.07392662455,
-          phaseCost: 7261333891.616634,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.8619238490722014,
+          onSiteDays: 24.14956097915906,
+          phaseCost: 596959,
         },
-        sourceReductionResults: {
-          workDays: 3252.7568353950414,
-          onSiteDays: 3252.7568353950414,
-          phaseCost: 797155209.061973,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.225889603317866,
+          onSiteDays: 13.639876944155649,
+          phaseCost: 365190,
         },
-        decontaminationResults: {
-          workDays: 22.062304251376148,
-          onSiteDays: 23.832505746007087,
-          phaseCost: 1322595085.9126828,
-        },
-        incidentCommandResults: {
-          onSiteDays: 288799.6632677656,
-          phaseCost: 702997216.9729527,
+        totalCharacterizationSamplingResults: {
+          workDays: 4.087813452390067,
+          onSiteDays: 37.78943792331471,
+          phaseCost: 962149,
         },
-        otherResults: {
-          otherCosts: 64735011.85170814,
-        },
-        generalResults: {
-          totalCost: 10148816415.415949,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.7435774782355327, onSiteDays: 0.7435774782355327, phaseCost: 76940 },
+        decontaminationResults: {
+          workDays: 7.66873950363806,
+          onSiteDays: 9.272207923296888,
+          suppliesCost: 355453,
+          otherCosts: 179043,
         },
+        incidentCommandResults: { onSiteDays: 55.80522332484713, phaseCost: 170337 },
+        otherResults: { otherCosts: 70284 },
+        generalResults: { totalCost: 1814206, areaContaminated: 8519.249691981648, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 42411.13274882069,
-        onSiteDays: 470283.3429610154,
-        phaseCost: 7140277288.733657,
-      },
-      sourceReductionResults: {
-        workDays: 3356.019241585033,
-        onSiteDays: 3356.019241585033,
-        phaseCost: 242372818.02036324,
-      },
-      decontaminationResults: {
-        workDays: 23.99838367290757,
-        onSiteDays: 26.034733551329634,
-        phaseCost: 1647285588.7704515,
-      },
-      incidentCommandResults: {
-        onSiteDays: 473673.3969361518,
-        phaseCost: 1175729124.1734169,
-      },
-      otherResults: {
-        otherCosts: 113357321.89380717,
-      },
-      generalResults: {
-        totalCost: 10319022141.591694,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.9778568940746595,
+        onSiteDays: 25.799853013213095,
+        phaseCost: 618039,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.5500058451779606,
+        onSiteDays: 19.511362799992003,
+        phaseCost: 396189,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 3.52786273925262,
+        onSiteDays: 45.311215813205095,
+        phaseCost: 1014228,
+      },
+      sourceReductionResults: { workDays: 0.6476291128156485, onSiteDays: 0.6476291128156485, phaseCost: 124288 },
+      decontaminationResults: {
+        workDays: 7.3974465102417035,
+        onSiteDays: 10.013047711693925,
+        suppliesCost: 439133,
+        otherCosts: 482813,
+      },
+      incidentCommandResults: { onSiteDays: 63.971892637714674, phaseCost: 198313 },
+      otherResults: { otherCosts: 96141 },
+      generalResults: { totalCost: 2354916, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 141051.21851923704,
-        onSiteDays: 8445292.719635535,
-        phaseCost: 8852870775.640041,
-      },
-      sourceReductionResults: {
-        workDays: 3863.167530678979,
-        onSiteDays: 3863.167530678979,
-        phaseCost: 115526935.97807766,
-      },
-      decontaminationResults: {
-        workDays: 20.5594489340576,
-        onSiteDays: 22.278039841278932,
-        phaseCost: 1928231028.2031708,
-      },
-      incidentCommandResults: {
-        onSiteDays: 8449186.165206054,
-        phaseCost: 20805577720.582848,
-      },
-      otherResults: {
-        otherCosts: 1898279783.6699703,
-      },
-      generalResults: {
-        totalCost: 33600486244.07411,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.9403420729779115,
+        onSiteDays: 11.363702025635178,
+        phaseCost: 918371,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.7315369803396985,
+        onSiteDays: 12.971455091288167,
+        phaseCost: 1032235,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.67187905331761,
+        onSiteDays: 24.335157116923344,
+        phaseCost: 1950606,
+      },
+      sourceReductionResults: { workDays: 0.006658836876013101, onSiteDays: 0.006658836876013101, phaseCost: 7963 },
+      decontaminationResults: {
+        workDays: 4.590637643726225,
+        onSiteDays: 6.18967116977779,
+        suppliesCost: 253073,
+        otherCosts: 276016,
+      },
+      incidentCommandResults: { onSiteDays: 38.53148712357715, phaseCost: 116906 },
+      otherResults: { otherCosts: 110076 },
+      generalResults: { totalCost: 2714640, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 41504.94845229085,
-          onSiteDays: 605749.1316072347,
-          phaseCost: 3207244913.933404,
-        },
-        sourceReductionResults: {
-          workDays: 2067.382247675951,
-          onSiteDays: 2067.382247675951,
-          phaseCost: 428694905.570071,
-        },
-        decontaminationResults: {
-          workDays: 24.035739931751912,
-          onSiteDays: 24.938625205992402,
-          phaseCost: 1204314472.4848604,
-        },
-        incidentCommandResults: {
-          onSiteDays: 607849.4524801166,
-          phaseCost: 1482855342.1354012,
-        },
-        otherResults: {
-          otherCosts: 183186450.7149856,
-        },
-        generalResults: {
-          totalCost: 6506296084.838723,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.268311852764322,
+          onSiteDays: 28.060640993481016,
+          phaseCost: 541010,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.6532084252777717,
+          onSiteDays: 8.636632771244157,
+          phaseCost: 175866,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 2.9215202780420935,
+          onSiteDays: 36.697273764725175,
+          phaseCost: 716876,
+        },
+        sourceReductionResults: { workDays: 0.7752574792454868, onSiteDays: 0.7752574792454868, phaseCost: 99466 },
+        decontaminationResults: {
+          workDays: 4.002713503549507,
+          onSiteDays: 6.49349940975511,
+          suppliesCost: 394215,
+          otherCosts: 304606,
+        },
+        incidentCommandResults: { onSiteDays: 51.966030653725774, phaseCost: 159605 },
+        otherResults: { otherCosts: 82942 },
+        generalResults: { totalCost: 1757710, areaContaminated: 9515.465913460466, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 10314.252678460598,
-          onSiteDays: 192780.4448105032,
-          phaseCost: 1145953586.3973453,
-        },
-        sourceReductionResults: {
-          workDays: 337.5371498712793,
-          onSiteDays: 337.5371498712793,
-          phaseCost: 77291847.51647702,
-        },
-        decontaminationResults: {
-          workDays: 23.645986029795832,
-          onSiteDays: 24.551835955249107,
-          phaseCost: 57200492.68021068,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 9.091094947825313,
+          onSiteDays: 26.252313383657885,
+          phaseCost: 957539,
         },
-        incidentCommandResults: {
-          onSiteDays: 193150.53379632972,
-          phaseCost: 467159774.05651444,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.871878148046525,
+          onSiteDays: 19.245253143620797,
+          phaseCost: 897131,
         },
-        otherResults: {
-          otherCosts: 44777668.01366917,
+        totalCharacterizationSamplingResults: {
+          workDays: 11.962973095871838,
+          onSiteDays: 45.49756652727868,
+          phaseCost: 1854670,
         },
-        generalResults: {
-          totalCost: 1792383368.6642168,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 2.4462259290927455, onSiteDays: 2.4462259290927455, phaseCost: 159059 },
+        decontaminationResults: {
+          workDays: 7.800083001097684,
+          onSiteDays: 9.834372672679455,
+          suppliesCost: 136449,
+          otherCosts: 309944,
         },
+        incidentCommandResults: { onSiteDays: 65.77816512905088, phaseCost: 203735 },
+        otherResults: { otherCosts: 61617 },
+        generalResults: { totalCost: 2725474, areaContaminated: 9515.465913460466, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 49528.144609755895,
-        onSiteDays: 495684.64115416596,
-        phaseCost: 3447864936.526486,
-      },
-      sourceReductionResults: {
-        workDays: 7928.713779475053,
-        onSiteDays: 7928.713779475053,
-        phaseCost: 374369399.14279103,
-      },
-      decontaminationResults: {
-        workDays: 24.86014741306662,
-        onSiteDays: 27.073929261666237,
-        phaseCost: 2109650969.688657,
-      },
-      incidentCommandResults: {
-        onSiteDays: 503648.4288629027,
-        phaseCost: 1245543041.265758,
-      },
-      otherResults: {
-        otherCosts: 99818227.72583881,
-      },
-      generalResults: {
-        totalCost: 7277246574.34953,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.589608366857792,
+        onSiteDays: 24.675384848269555,
+        phaseCost: 747756,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.6121973949194803,
+        onSiteDays: 24.19190132311145,
+        phaseCost: 705998,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.201805761777273,
+        onSiteDays: 48.867286171381004,
+        phaseCost: 1453754,
+      },
+      sourceReductionResults: { workDays: 0.1678012665779524, onSiteDays: 0.1678012665779524, phaseCost: 41668 },
+      decontaminationResults: {
+        workDays: 15.013649702773813,
+        onSiteDays: 16.55680398260169,
+        suppliesCost: 164753,
+        otherCosts: 581618,
+      },
+      incidentCommandResults: { onSiteDays: 73.59189142056064, phaseCost: 227307 },
+      otherResults: { otherCosts: 70562 },
+      generalResults: { totalCost: 2539662, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 18505.349936875467,
-        onSiteDays: 153813.074691918,
-        phaseCost: 3049559886.5734897,
-      },
-      sourceReductionResults: {
-        workDays: 988.3766423832247,
-        onSiteDays: 988.3766423832247,
-        phaseCost: 310950391.8181919,
-      },
-      decontaminationResults: {
-        workDays: 22.09347271665313,
-        onSiteDays: 23.3121170881931,
-        phaseCost: 3080729267.0712843,
-      },
-      incidentCommandResults: {
-        onSiteDays: 154832.76345138942,
-        phaseCost: 376880424.95907474,
-      },
-      otherResults: {
-        otherCosts: 48029675.75260774,
-      },
-      generalResults: {
-        totalCost: 6866149646.174648,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 5.259996193838116,
+        onSiteDays: 22.280647486201374,
+        phaseCost: 1002610,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.1073270057019364,
+        onSiteDays: 6.398410011105672,
+        phaseCost: 274354,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.367323199540053,
+        onSiteDays: 28.679057497307046,
+        phaseCost: 1276964,
+      },
+      sourceReductionResults: { workDays: 0.6693753908466512, onSiteDays: 0.6693753908466512, phaseCost: 148456 },
+      decontaminationResults: {
+        workDays: 3.2650009040406442,
+        onSiteDays: 3.476233802613857,
+        suppliesCost: 106738,
+        otherCosts: 152982,
+      },
+      incidentCommandResults: { onSiteDays: 40.82466669076755, phaseCost: 125575 },
+      otherResults: { otherCosts: 73520 },
+      generalResults: { totalCost: 1884235, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 10872.290847761025,
-          onSiteDays: 705605.5714912998,
-          phaseCost: 5206924949.578916,
-        },
-        sourceReductionResults: {
-          workDays: 10679.365371489237,
-          onSiteDays: 10679.365371489237,
-          phaseCost: 929972679.4826965,
-        },
-        decontaminationResults: {
-          workDays: 20.36678691705847,
-          onSiteDays: 22.636615675090958,
-          phaseCost: 530662421.68918085,
-        },
-        incidentCommandResults: {
-          onSiteDays: 716315.573478464,
-          phaseCost: 1760475726.0902305,
-        },
-        otherResults: {
-          otherCosts: 123504473.65440953,
-        },
-        generalResults: {
-          totalCost: 8551540250.495434,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.1332379659690908,
+          onSiteDays: 8.17222413465276,
+          phaseCost: 308334,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 7.738961985921929,
+          onSiteDays: 28.497582442807257,
+          phaseCost: 1003209,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 8.87219995189102,
+          onSiteDays: 36.669806577460015,
+          phaseCost: 1311543,
+        },
+        sourceReductionResults: { workDays: 0.17629107735760416, onSiteDays: 0.17629107735760416, phaseCost: 22531 },
+        decontaminationResults: {
+          workDays: 4.575698452437226,
+          onSiteDays: 4.844778302089493,
+          suppliesCost: 452196,
+          otherCosts: 97187,
+        },
+        incidentCommandResults: { onSiteDays: 49.690875956907114, phaseCost: 153908 },
+        otherResults: { otherCosts: 84686 },
+        generalResults: { totalCost: 2122051, areaContaminated: 11653.165001574245, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 20126.683702826886,
-          onSiteDays: 332177.1139554975,
-          phaseCost: 4222451837.541883,
-        },
-        sourceReductionResults: {
-          workDays: 803.0926383573511,
-          onSiteDays: 803.0926383573511,
-          phaseCost: 146044325.7154301,
-        },
-        decontaminationResults: {
-          workDays: 22.815714107550612,
-          onSiteDays: 24.036890272758175,
-          phaseCost: 580072715.3630645,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.229100154362221,
+          onSiteDays: 17.173735792086948,
+          phaseCost: 786011,
         },
-        incidentCommandResults: {
-          onSiteDays: 333012.2434841276,
-          phaseCost: 814581835.2610304,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.4554580920303994,
+          onSiteDays: 10.815512378627723,
+          phaseCost: 295909,
         },
-        otherResults: {
-          otherCosts: 97307213.12169997,
+        totalCharacterizationSamplingResults: {
+          workDays: 5.684558246392621,
+          onSiteDays: 27.98924817071467,
+          phaseCost: 1081920,
         },
-        generalResults: {
-          totalCost: 5860457927.003108,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.48291658620178124, onSiteDays: 0.48291658620178124, phaseCost: 84314 },
+        decontaminationResults: {
+          workDays: 12.257782042785031,
+          onSiteDays: 12.916663708378715,
+          suppliesCost: 308917,
+          otherCosts: 699579,
         },
+        incidentCommandResults: { onSiteDays: 49.38882846529517, phaseCost: 152356 },
+        otherResults: { otherCosts: 80878 },
+        generalResults: { totalCost: 2407964, areaContaminated: 11653.165001574245, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 51608.859500975595,
-        onSiteDays: 16450937.899482833,
-        phaseCost: 7688147898.461842,
-      },
-      sourceReductionResults: {
-        workDays: 1968.175156981455,
-        onSiteDays: 1968.175156981455,
-        phaseCost: 425584736.3512272,
-      },
-      decontaminationResults: {
-        workDays: 18.231536113478136,
-        onSiteDays: 18.633122888075448,
-        phaseCost: 2737671466.6285768,
-      },
-      incidentCommandResults: {
-        onSiteDays: 16452932.707762701,
-        phaseCost: 39894947128.44665,
-      },
-      otherResults: {
-        otherCosts: 3099935628.0462604,
-      },
-      generalResults: {
-        totalCost: 53846286857.93455,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.5365263651025596,
+        onSiteDays: 12.91093383783121,
+        phaseCost: 498975,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 8.627785367372745,
+        onSiteDays: 61.34054954867951,
+        phaseCost: 3234572,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.164311732475305,
+        onSiteDays: 74.25148338651073,
+        phaseCost: 3733547,
+      },
+      sourceReductionResults: { workDays: 4.7963720627257755, onSiteDays: 4.7963720627257755, phaseCost: 191390 },
+      decontaminationResults: {
+        workDays: 28.561751260552963,
+        onSiteDays: 29.37756172669529,
+        suppliesCost: 429658,
+        otherCosts: 1168198,
+      },
+      incidentCommandResults: { onSiteDays: 116.4254171759318, phaseCost: 354036 },
+      otherResults: { otherCosts: 113120 },
+      generalResults: { totalCost: 5989949, areaContaminated: 10000, decontaminationRounds: 3 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 59864.08330588063,
-        onSiteDays: 10764529.315707508,
-        phaseCost: 6115140293.931633,
-      },
-      sourceReductionResults: {
-        workDays: 32467.81383784314,
-        onSiteDays: 32467.81383784314,
-        phaseCost: 1841085804.4935982,
-      },
-      decontaminationResults: {
-        workDays: 19.035560401164823,
-        onSiteDays: 19.48962175368555,
-        phaseCost: 701332186.8349469,
-      },
-      incidentCommandResults: {
-        onSiteDays: 10797024.619167104,
-        phaseCost: 26458623905.812656,
-      },
-      otherResults: {
-        otherCosts: 3189936725.043353,
-      },
-      generalResults: {
-        totalCost: 38306118916.11618,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.8208748668421197,
+        onSiteDays: 8.805183723798166,
+        phaseCost: 165047,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 6.650627080585744,
+        onSiteDays: 25.7301234326222,
+        phaseCost: 671741,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 9.471501947427864,
+        onSiteDays: 34.535307156420366,
+        phaseCost: 836788,
+      },
+      sourceReductionResults: { workDays: 6.504996887973534, onSiteDays: 6.504996887973534, phaseCost: 289425 },
+      decontaminationResults: {
+        workDays: 7.443913828452097,
+        onSiteDays: 8.93582720820229,
+        suppliesCost: 416846,
+        otherCosts: 272504,
+      },
+      incidentCommandResults: { onSiteDays: 57.97613125259619, phaseCost: 176417 },
+      otherResults: { otherCosts: 96795 },
+      generalResults: { totalCost: 2088775, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 28908.429859682477,
-          onSiteDays: 614709.5988052177,
-          phaseCost: 4460306983.011089,
-        },
-        sourceReductionResults: {
-          workDays: 2041.1709582481901,
-          onSiteDays: 2041.1709582481901,
-          phaseCost: 207083603.31126747,
-        },
-        decontaminationResults: {
-          workDays: 10.36970010338577,
-          onSiteDays: 11.962516071266148,
-          phaseCost: 444074572.5385068,
-        },
-        incidentCommandResults: {
-          onSiteDays: 616770.7322795371,
-          phaseCost: 1521820208.6885095,
-        },
-        otherResults: {
-          otherCosts: 141869948.76454484,
-        },
-        generalResults: {
-          totalCost: 6775155316.313918,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.449798121469952,
+          onSiteDays: 21.81600910118626,
+          phaseCost: 778300,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 13.902498807424248,
+          onSiteDays: 34.855702797821515,
+          phaseCost: 866144,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 16.352296928894198,
+          onSiteDays: 56.671711899007775,
+          phaseCost: 1644444,
+        },
+        sourceReductionResults: { workDays: 0.8370007982271664, onSiteDays: 0.8370007982271664, phaseCost: 59684 },
+        decontaminationResults: {
+          workDays: 8.600094886636384,
+          onSiteDays: 11.08049898852606,
+          suppliesCost: 117378,
+          otherCosts: 727634,
+        },
+        incidentCommandResults: { onSiteDays: 76.589211685761, phaseCost: 237310 },
+        otherResults: { otherCosts: 127450 },
+        generalResults: { totalCost: 2913900, areaContaminated: 14255.894643546988, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 10320.229210337475,
-          onSiteDays: 462892.58379674004,
-          phaseCost: 3131952294.1477165,
-        },
-        sourceReductionResults: {
-          workDays: 14366.15652886129,
-          onSiteDays: 14366.15652886129,
-          phaseCost: 403420204.54666716,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.7575917330458644,
+          onSiteDays: 4.155641509630716,
+          phaseCost: 207904,
         },
-        decontaminationResults: {
-          workDays: 25.322525303653098,
-          onSiteDays: 26.269087525612928,
-          phaseCost: 608423890.0538331,
-        },
-        incidentCommandResults: {
-          onSiteDays: 477293.0094131269,
-          phaseCost: 1155746526.0678494,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.7044670180563575,
+          onSiteDays: 17.926264514201996,
+          phaseCost: 1013546,
         },
-        otherResults: {
-          otherCosts: 141112688.80880263,
+        totalCharacterizationSamplingResults: {
+          workDays: 6.462058751102222,
+          onSiteDays: 22.081906023832712,
+          phaseCost: 1221450,
         },
-        generalResults: {
-          totalCost: 5440655603.624868,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.5958781940490159, onSiteDays: 0.5958781940490159, phaseCost: 93314 },
+        decontaminationResults: {
+          workDays: 3.0688338615160515,
+          onSiteDays: 4.325964503531802,
+          suppliesCost: 192539,
+          otherCosts: 130286,
         },
+        incidentCommandResults: { onSiteDays: 35.00374872141353, phaseCost: 106962 },
+        otherResults: { otherCosts: 54325 },
+        generalResults: { totalCost: 1798876, areaContaminated: 14255.894643546988, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 10316.242863595106,
-        onSiteDays: 146061.17150598328,
-        phaseCost: 2302024149.6293435,
-      },
-      sourceReductionResults: {
-        workDays: 20360.900493379006,
-        onSiteDays: 20360.900493379006,
-        phaseCost: 1669287377.4899383,
-      },
-      decontaminationResults: {
-        workDays: 15.913279824404343,
-        onSiteDays: 18.557384333703055,
-        phaseCost: 180695545.73689485,
-      },
-      incidentCommandResults: {
-        onSiteDays: 166448.62938369598,
-        phaseCost: 403389892.24875116,
-      },
-      otherResults: {
-        otherCosts: 45582514.46100016,
-      },
-      generalResults: {
-        totalCost: 4600979479.5659275,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 5.686181923334904,
+        onSiteDays: 14.786570851987882,
+        phaseCost: 527187,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 8.815351487925206,
+        onSiteDays: 25.047459843127385,
+        phaseCost: 949964,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 14.501533411260109,
+        onSiteDays: 39.83403069511527,
+        phaseCost: 1477151,
+      },
+      sourceReductionResults: { workDays: 0.6687676449435689, onSiteDays: 0.6687676449435689, phaseCost: 117274 },
+      decontaminationResults: {
+        workDays: 9.946006228436252,
+        onSiteDays: 11.84450236937136,
+        suppliesCost: 249383,
+        otherCosts: 387195,
+      },
+      incidentCommandResults: { onSiteDays: 60.3473007094302, phaseCost: 182945 },
+      otherResults: { otherCosts: 100847 },
+      generalResults: { totalCost: 2514795, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 58899.19041592307,
-        onSiteDays: 362242.2714068426,
-        phaseCost: 2996246455.430553,
-      },
-      sourceReductionResults: {
-        workDays: 20745.998221832444,
-        onSiteDays: 20745.998221832444,
-        phaseCost: 1519726654.2101874,
-      },
-      decontaminationResults: {
-        workDays: 16.922456478914818,
-        onSiteDays: 17.263863217845525,
-        phaseCost: 928155558.6192819,
-      },
-      incidentCommandResults: {
-        onSiteDays: 383013.5334918929,
-        phaseCost: 939140814.368544,
-      },
-      otherResults: {
-        otherCosts: 89219244.18601674,
-      },
-      generalResults: {
-        totalCost: 6472488726.814583,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.3801415804761463,
+        onSiteDays: 8.361898764670979,
+        phaseCost: 380229,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.427439570530228,
+        onSiteDays: 16.46769865766897,
+        phaseCost: 757808,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.807581151006374,
+        onSiteDays: 24.829597422339948,
+        phaseCost: 1138037,
+      },
+      sourceReductionResults: { workDays: 0.4018845487537185, onSiteDays: 0.4018845487537185, phaseCost: 77179 },
+      decontaminationResults: {
+        workDays: 4.719418913526325,
+        onSiteDays: 6.582062458987828,
+        suppliesCost: 104951,
+        otherCosts: 144664,
+      },
+      incidentCommandResults: { onSiteDays: 39.81354443008149, phaseCost: 120475 },
+      otherResults: { otherCosts: 71865 },
+      generalResults: { totalCost: 1657171, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 21818.6761688037,
-          onSiteDays: 1014681.2977574466,
-          phaseCost: 4776964000.174999,
-        },
-        sourceReductionResults: {
-          workDays: 5995.569069687099,
-          onSiteDays: 5995.569069687099,
-          phaseCost: 470942687.4988301,
-        },
-        decontaminationResults: {
-          workDays: 16.1403031996778,
-          onSiteDays: 16.279676189944073,
-          phaseCost: 117069898.32739976,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1020701.1465033237,
-          phaseCost: 2499679866.682892,
-        },
-        otherResults: {
-          otherCosts: 288315830.56447077,
-        },
-        generalResults: {
-          totalCost: 8152972283.248592,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.867039626371333,
+          onSiteDays: 15.106155556231231,
+          phaseCost: 715943,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.167738956209918,
+          onSiteDays: 4.6271147073203425,
+          phaseCost: 100619,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 4.034778582581251,
+          onSiteDays: 19.733270263551574,
+          phaseCost: 816562,
+        },
+        sourceReductionResults: { workDays: 0.07818126655780423, onSiteDays: 0.07818126655780423, phaseCost: 12214 },
+        decontaminationResults: {
+          workDays: 7.168166890081057,
+          onSiteDays: 7.506686446840569,
+          suppliesCost: 186825,
+          otherCosts: 156427,
+        },
+        incidentCommandResults: { onSiteDays: 35.31813797694995, phaseCost: 108865 },
+        otherResults: { otherCosts: 57104 },
+        generalResults: { totalCost: 1337997, areaContaminated: 6329.513565015401, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 27502.716060336705,
-          onSiteDays: 176362.35496381417,
-          phaseCost: 1894212923.4904356,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.1487362650595334,
+          onSiteDays: 15.400712882435,
+          phaseCost: 649906,
         },
-        sourceReductionResults: {
-          workDays: 298.9366959893246,
-          onSiteDays: 298.9366959893246,
-          phaseCost: 51377157.485226974,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.383888603624244,
+          onSiteDays: 13.91409393702471,
+          phaseCost: 591268,
         },
-        decontaminationResults: {
-          workDays: 17.979635039572518,
-          onSiteDays: 18.329889075674554,
-          phaseCost: 234215565.8379971,
-        },
-        incidentCommandResults: {
-          onSiteDays: 176687.6215488792,
-          phaseCost: 436537574.55782604,
+        totalCharacterizationSamplingResults: {
+          workDays: 4.532624868683778,
+          onSiteDays: 29.31480681945971,
+          phaseCost: 1241174,
         },
-        otherResults: {
-          otherCosts: 47875967.51558093,
-        },
-        generalResults: {
-          totalCost: 2664219188.887067,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.17871972023310498, onSiteDays: 0.17871972023310498, phaseCost: 23513 },
+        decontaminationResults: {
+          workDays: 8.70342183129476,
+          onSiteDays: 9.511367601694392,
+          suppliesCost: 194898,
+          otherCosts: 312271,
         },
+        incidentCommandResults: { onSiteDays: 47.00489414138721, phaseCost: 143040 },
+        otherResults: { otherCosts: 73447 },
+        generalResults: { totalCost: 1988343, areaContaminated: 6329.513565015401, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 25953.15359597138,
-        onSiteDays: 15588966.707964165,
-        phaseCost: 4217942749.150546,
-      },
-      sourceReductionResults: {
-        workDays: 4730.726010588114,
-        onSiteDays: 4730.726010588114,
-        phaseCost: 641269494.4918524,
-      },
-      decontaminationResults: {
-        workDays: 15.330834811397558,
-        onSiteDays: 15.710603452918727,
-        phaseCost: 1664101435.647023,
-      },
-      incidentCommandResults: {
-        onSiteDays: 15593721.144578207,
-        phaseCost: 38497220224.809265,
-      },
-      otherResults: {
-        otherCosts: 5254514154.922067,
-      },
-      generalResults: {
-        totalCost: 50275048059.02075,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 7.813764124731964,
+        onSiteDays: 18.46141886010544,
+        phaseCost: 812558,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.2307679568369565,
+        onSiteDays: 18.62780053934899,
+        phaseCost: 1098902,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 13.04453208156892,
+        onSiteDays: 37.08921939945443,
+        phaseCost: 1911460,
+      },
+      sourceReductionResults: { workDays: 1.2527690589726503, onSiteDays: 1.2527690589726503, phaseCost: 225610 },
+      decontaminationResults: {
+        workDays: 10.518858123924318,
+        onSiteDays: 11.37457851492208,
+        suppliesCost: 379793,
+        otherCosts: 415816,
+      },
+      incidentCommandResults: { onSiteDays: 57.71656697334916, phaseCost: 178093 },
+      otherResults: { otherCosts: 68787 },
+      generalResults: { totalCost: 3179559, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 35190.64138229467,
-        onSiteDays: 4101702.143780066,
-        phaseCost: 6388371358.317183,
-      },
-      sourceReductionResults: {
-        workDays: 7763.853083895257,
-        onSiteDays: 7763.853083895257,
-        phaseCost: 3137906834.878737,
-      },
-      decontaminationResults: {
-        workDays: 17.11922058023494,
-        onSiteDays: 17.726974456740304,
-        phaseCost: 2552255184.0212555,
-      },
-      incidentCommandResults: {
-        onSiteDays: 4109491.723838418,
-        phaseCost: 10003750827.626114,
-      },
-      otherResults: {
-        otherCosts: 864213606.8001543,
-      },
-      generalResults: {
-        totalCost: 22946497811.643444,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.8794248955311232,
+        onSiteDays: 15.49134504050437,
+        phaseCost: 823092,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.4777425434288305,
+        onSiteDays: 8.858213026489153,
+        phaseCost: 393904,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.357167438959953,
+        onSiteDays: 24.349558066993524,
+        phaseCost: 1216996,
+      },
+      sourceReductionResults: { workDays: 0.6950681940156404, onSiteDays: 0.6950681940156404, phaseCost: 126782 },
+      decontaminationResults: {
+        workDays: 10.981164996042189,
+        onSiteDays: 12.600431016320464,
+        suppliesCost: 374856,
+        otherCosts: 584885,
+      },
+      incidentCommandResults: { onSiteDays: 45.64505727732963, phaseCost: 138672 },
+      otherResults: { otherCosts: 68686 },
+      generalResults: { totalCost: 2510877, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 32515.48068011918,
-          onSiteDays: 346674.692629377,
-          phaseCost: 6048878742.299196,
-        },
-        sourceReductionResults: {
-          workDays: 680.43657959462,
-          onSiteDays: 680.43657959462,
-          phaseCost: 107554972.34422308,
-        },
-        decontaminationResults: {
-          workDays: 24.085364908465504,
-          onSiteDays: 26.092926124830946,
-          phaseCost: 438101268.4011754,
-        },
-        incidentCommandResults: {
-          onSiteDays: 347389.22213509644,
-          phaseCost: 840359187.4323926,
-        },
-        otherResults: {
-          otherCosts: 63769363.57392427,
-        },
-        generalResults: {
-          totalCost: 7498663534.050912,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 10.50343584931699,
+          onSiteDays: 32.05445736021159,
+          phaseCost: 1376418,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.7299921605031041,
+          onSiteDays: 6.3465854752223,
+          phaseCost: 249594,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 11.233428009820093,
+          onSiteDays: 38.40104283543389,
+          phaseCost: 1626012,
+        },
+        sourceReductionResults: { workDays: 2.1997150982845746, onSiteDays: 2.1997150982845746, phaseCost: 302149 },
+        decontaminationResults: {
+          workDays: 3.200693664653388,
+          onSiteDays: 5.09623474327294,
+          suppliesCost: 443657,
+          otherCosts: 113130,
+        },
+        incidentCommandResults: { onSiteDays: 53.69699267699141, phaseCost: 166348 },
+        otherResults: { otherCosts: 70514 },
+        generalResults: { totalCost: 2721810, areaContaminated: 14436.522633637422, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 12149.226823960005,
-          onSiteDays: 158457.36279910366,
-          phaseCost: 4260601626.2559824,
-        },
-        sourceReductionResults: {
-          workDays: 522.1577471511238,
-          onSiteDays: 522.1577471511238,
-          phaseCost: 25618467.49461095,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 5.114868776013333,
+          onSiteDays: 76.76156835239075,
+          phaseCost: 1454890,
         },
-        decontaminationResults: {
-          workDays: 18.29916070594898,
-          onSiteDays: 20.357724273427788,
-          phaseCost: 819644864.8975146,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.5801669563968916,
+          onSiteDays: 13.444647132393673,
+          phaseCost: 200415,
         },
-        incidentCommandResults: {
-          onSiteDays: 159007.87827052822,
-          phaseCost: 394120503.84122473,
+        totalCharacterizationSamplingResults: {
+          workDays: 7.695035732410225,
+          onSiteDays: 90.20621548478442,
+          phaseCost: 1655305,
         },
-        otherResults: {
-          otherCosts: 46700674.808422744,
-        },
-        generalResults: {
-          totalCost: 5546686137.297755,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.053927357960409095, onSiteDays: 0.053927357960409095, phaseCost: 7012 },
+        decontaminationResults: {
+          workDays: 3.700077504082601,
+          onSiteDays: 4.215504172308255,
+          suppliesCost: 321334,
+          otherCosts: 99195,
         },
+        incidentCommandResults: { onSiteDays: 102.47564701505308, phaseCost: 315318 },
+        otherResults: { otherCosts: 64478 },
+        generalResults: { totalCost: 2462642, areaContaminated: 14436.522633637422, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 7132.139502145732,
-        onSiteDays: 95058.17455887559,
-        phaseCost: 3381547753.96723,
-      },
-      sourceReductionResults: {
-        workDays: 822.1462998721582,
-        onSiteDays: 822.1462998721582,
-        phaseCost: 322807364.9021221,
-      },
-      decontaminationResults: {
-        workDays: 21.336713122748005,
-        onSiteDays: 23.56991418417774,
-        phaseCost: 2471589472.688356,
-      },
-      incidentCommandResults: {
-        onSiteDays: 95911.89077293192,
-        phaseCost: 236151310.254498,
-      },
-      otherResults: {
-        otherCosts: 25279006.67030851,
-      },
-      generalResults: {
-        totalCost: 6437374908.482514,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.0912186329545608,
+        onSiteDays: 4.392809364683454,
+        phaseCost: 331314,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.9227503719715324,
+        onSiteDays: 6.735643007365963,
+        phaseCost: 194536,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.013969004926093,
+        onSiteDays: 11.128452372049416,
+        phaseCost: 525850,
+      },
+      sourceReductionResults: { workDays: 1.982445750311411, onSiteDays: 1.982445750311411, phaseCost: 283864 },
+      decontaminationResults: {
+        workDays: 11.655392252992696,
+        onSiteDays: 13.776390635589227,
+        suppliesCost: 114636,
+        otherCosts: 545728,
+      },
+      incidentCommandResults: { onSiteDays: 34.88728875795005, phaseCost: 107685 },
+      otherResults: { otherCosts: 125442 },
+      generalResults: { totalCost: 1703205, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 24599.48142093944,
-        onSiteDays: 1260346.8020340046,
-        phaseCost: 8728115609.328789,
-      },
-      sourceReductionResults: {
-        workDays: 8162.505864540684,
-        onSiteDays: 8162.505864540684,
-        phaseCost: 1110744404.8528929,
-      },
-      decontaminationResults: {
-        workDays: 16.845026251591047,
-        onSiteDays: 19.3012963215125,
-        phaseCost: 244859039.7581823,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1268536.6091948666,
-        phaseCost: 3082362680.4996223,
-      },
-      otherResults: {
-        otherCosts: 378392570.82918817,
-      },
-      generalResults: {
-        totalCost: 13544474305.268675,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 11.107731395012204,
+        onSiteDays: 30.02172224854467,
+        phaseCost: 665664,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.6329991228776195,
+        onSiteDays: 16.886038672646727,
+        phaseCost: 431887,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 14.740730517889823,
+        onSiteDays: 46.9077609211914,
+        phaseCost: 1097551,
+      },
+      sourceReductionResults: { workDays: 0.706431057339425, onSiteDays: 0.706431057339425, phaseCost: 72674 },
+      decontaminationResults: {
+        workDays: 3.804274940119189,
+        onSiteDays: 4.921532838354244,
+        suppliesCost: 111818,
+        otherCosts: 243420,
+      },
+      incidentCommandResults: { onSiteDays: 60.535724816885065, phaseCost: 184851 },
+      otherResults: { otherCosts: 111372 },
+      generalResults: { totalCost: 1821686, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 21106.82530584283,
-          onSiteDays: 1120182.5324247065,
-          phaseCost: 1867554176.1698923,
-        },
-        sourceReductionResults: {
-          workDays: 4375.2122883548345,
-          onSiteDays: 4375.2122883548345,
-          phaseCost: 584598364.7555188,
-        },
-        decontaminationResults: {
-          workDays: 25.937047893865277,
-          onSiteDays: 26.135799822894807,
-          phaseCost: 791917647.8483714,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1124591.8805128841,
-          phaseCost: 2787275356.7363076,
-        },
-        otherResults: {
-          otherCosts: 374995271.769665,
-        },
-        generalResults: {
-          totalCost: 6406340817.279755,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.5936589164550057,
+          onSiteDays: 10.909855305099,
+          phaseCost: 460631,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 7.436255947962216,
+          onSiteDays: 19.963275022182017,
+          phaseCost: 604093,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 9.029914864417222,
+          onSiteDays: 30.873130327281018,
+          phaseCost: 1064724,
+        },
+        sourceReductionResults: { workDays: 0.7266754375609971, onSiteDays: 0.7266754375609971, phaseCost: 31298 },
+        decontaminationResults: {
+          workDays: 6.927016135055343,
+          onSiteDays: 6.974111653159865,
+          suppliesCost: 64190,
+          otherCosts: 286971,
+        },
+        incidentCommandResults: { onSiteDays: 46.57391741800188, phaseCost: 142053 },
+        otherResults: { otherCosts: 45636 },
+        generalResults: { totalCost: 1634872, areaContaminated: 5235.949235557566, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 5802.372936101083,
-          onSiteDays: 361194.44858584815,
-          phaseCost: 1614465606.4968433,
-        },
-        sourceReductionResults: {
-          workDays: 1723.9680918147756,
-          onSiteDays: 1723.9680918147756,
-          phaseCost: 258987588.74338567,
-        },
-        decontaminationResults: {
-          workDays: 16.088188093176157,
-          onSiteDays: 17.182527923533353,
-          phaseCost: 395973915.5107983,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.5206829540341662,
+          onSiteDays: 8.336319376494114,
+          phaseCost: 320281,
         },
-        incidentCommandResults: {
-          onSiteDays: 362943.5992055865,
-          phaseCost: 888704668.4707882,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.2401579745523774,
+          onSiteDays: 5.76547490854465,
+          phaseCost: 164731,
         },
-        otherResults: {
-          otherCosts: 99525584.36932474,
+        totalCharacterizationSamplingResults: {
+          workDays: 2.7608409285865436,
+          onSiteDays: 14.101794285038764,
+          phaseCost: 485012,
         },
-        generalResults: {
-          totalCost: 3257657363.5911407,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 2.238471902344006, onSiteDays: 2.238471902344006, phaseCost: 144441 },
+        decontaminationResults: {
+          workDays: 8.278110524704239,
+          onSiteDays: 10.759809622950806,
+          suppliesCost: 194674,
+          otherCosts: 401503,
         },
+        incidentCommandResults: { onSiteDays: 35.10007581033358, phaseCost: 107015 },
+        otherResults: { otherCosts: 65276 },
+        generalResults: { totalCost: 1397921, areaContaminated: 5235.949235557566, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 22579.586374678995,
-        onSiteDays: 1067107.8105595028,
-        phaseCost: 5121307367.831773,
-      },
-      sourceReductionResults: {
-        workDays: 3832.5191163088584,
-        onSiteDays: 3832.5191163088584,
-        phaseCost: 230691099.98973528,
-      },
-      decontaminationResults: {
-        workDays: 22.110580805016355,
-        onSiteDays: 22.84270224134501,
-        phaseCost: 1432344687.2938743,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1070971.172378053,
-        phaseCost: 2638080427.3752775,
-      },
-      otherResults: {
-        otherCosts: 335610651.6224509,
-      },
-      generalResults: {
-        totalCost: 9758034234.113113,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.008258442151994,
+        onSiteDays: 16.400280527433807,
+        phaseCost: 675844,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.2103338153798333,
+        onSiteDays: 24.704984687840575,
+        phaseCost: 1174547,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.218592257531827,
+        onSiteDays: 41.105265215274386,
+        phaseCost: 1850391,
+      },
+      sourceReductionResults: { workDays: 0.2014074676354033, onSiteDays: 0.2014074676354033, phaseCost: 16284 },
+      decontaminationResults: {
+        workDays: 7.957305609238638,
+        onSiteDays: 8.6404509175663,
+        suppliesCost: 149005,
+        otherCosts: 164707,
+      },
+      incidentCommandResults: { onSiteDays: 57.94712360047609, phaseCost: 179088 },
+      otherResults: { otherCosts: 66420 },
+      generalResults: { totalCost: 2425895, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 22357.588177852842,
-        onSiteDays: 761443.3362586137,
-        phaseCost: 8983885139.930298,
-      },
-      sourceReductionResults: {
-        workDays: 15384.656446959287,
-        onSiteDays: 15384.656446959287,
-        phaseCost: 2252341246.0195274,
-      },
-      decontaminationResults: {
-        workDays: 15.440668102223581,
-        onSiteDays: 17.789468862300147,
-        phaseCost: 1329705959.1997283,
-      },
-      incidentCommandResults: {
-        onSiteDays: 776853.7821744353,
-        phaseCost: 1903692299.484281,
-      },
-      otherResults: {
-        otherCosts: 238827897.21893698,
-      },
-      generalResults: {
-        totalCost: 14708452541.852772,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 8.071046720535245,
+        onSiteDays: 27.571029067825002,
+        phaseCost: 1005370,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.7458760071324155,
+        onSiteDays: 18.206787761685888,
+        phaseCost: 743287,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.81692272766766,
+        onSiteDays: 45.77781682951089,
+        phaseCost: 1748657,
+      },
+      sourceReductionResults: { workDays: 0.49032025590870554, onSiteDays: 0.49032025590870554, phaseCost: 73675 },
+      decontaminationResults: {
+        workDays: 7.7271289135625425,
+        onSiteDays: 8.431234211528496,
+        suppliesCost: 120257,
+        otherCosts: 358418,
+      },
+      incidentCommandResults: { onSiteDays: 62.699371296948094, phaseCost: 192389 },
+      otherResults: { otherCosts: 113366 },
+      generalResults: { totalCost: 2606762, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 11475.12150049045,
-          onSiteDays: 114037.4805969534,
-          phaseCost: 3522172110.2624445,
-        },
-        sourceReductionResults: {
-          workDays: 487.55265466144647,
-          onSiteDays: 487.55265466144647,
-          phaseCost: 11298149.506683093,
-        },
-        decontaminationResults: {
-          workDays: 14.81991305686997,
-          onSiteDays: 16.250510101963417,
-          phaseCost: 103811348.3825175,
-        },
-        incidentCommandResults: {
-          onSiteDays: 114549.28376171681,
-          phaseCost: 278070003.99568474,
-        },
-        otherResults: {
-          otherCosts: 35982035.614081934,
-        },
-        generalResults: {
-          totalCost: 3951333647.761411,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.8672841433283995,
+          onSiteDays: 11.624775201211605,
+          phaseCost: 425606,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.2849989244175353,
+          onSiteDays: 5.3232264762083545,
+          phaseCost: 127649,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 5.152283067745935,
+          onSiteDays: 16.94800167741996,
+          phaseCost: 553255,
+        },
+        sourceReductionResults: { workDays: 3.539460452398325, onSiteDays: 3.539460452398325, phaseCost: 168932 },
+        decontaminationResults: {
+          workDays: 8.879437915719915,
+          onSiteDays: 10.397883617644638,
+          suppliesCost: 52576,
+          otherCosts: 376055,
+        },
+        incidentCommandResults: { onSiteDays: 38.88534574746292, phaseCost: 117571 },
+        otherResults: { otherCosts: 82549 },
+        generalResults: { totalCost: 1350938, areaContaminated: 5241.990890410261, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 6623.892542055727,
-          onSiteDays: 1959208.9945205953,
-          phaseCost: 1741466232.0727868,
-        },
-        sourceReductionResults: {
-          workDays: 1388.8034133355522,
-          onSiteDays: 1388.8034133355522,
-          phaseCost: 141000839.15701872,
-        },
-        decontaminationResults: {
-          workDays: 25.306610995276504,
-          onSiteDays: 26.18718931502364,
-          phaseCost: 313214075.7629803,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.9325544895012945,
+          onSiteDays: 8.154286253221086,
+          phaseCost: 252445,
         },
-        incidentCommandResults: {
-          onSiteDays: 1960631.9851232457,
-          phaseCost: 4796162628.238994,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.2594166268218723,
+          onSiteDays: 11.585635926925717,
+          phaseCost: 398951,
         },
-        otherResults: {
-          otherCosts: 350283168.2709893,
+        totalCharacterizationSamplingResults: {
+          workDays: 2.1919711163231668,
+          onSiteDays: 19.739922180146802,
+          phaseCost: 651396,
         },
-        generalResults: {
-          totalCost: 7342126943.5027685,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.011863149385594641, onSiteDays: 0.011863149385594641, phaseCost: 2797 },
+        decontaminationResults: {
+          workDays: 4.873980720032468,
+          onSiteDays: 5.054888949742282,
+          suppliesCost: 229425,
+          otherCosts: 184622,
         },
+        incidentCommandResults: { onSiteDays: 32.806674279274674, phaseCost: 99194 },
+        otherResults: { otherCosts: 71245 },
+        generalResults: { totalCost: 1238679, areaContaminated: 5241.990890410261, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 53944.31870564082,
-        onSiteDays: 734604.4122239727,
-        phaseCost: 8495599825.15018,
-      },
-      sourceReductionResults: {
-        workDays: 5091.753922602088,
-        onSiteDays: 5091.753922602088,
-        phaseCost: 144545769.64387208,
-      },
-      decontaminationResults: {
-        workDays: 21.4781242342382,
-        onSiteDays: 24.11446978689974,
-        phaseCost: 2802573845.180155,
-      },
-      incidentCommandResults: {
-        onSiteDays: 739728.2806163616,
-        phaseCost: 1825825519.1407347,
-      },
-      otherResults: {
-        otherCosts: 171564382.57646665,
-      },
-      generalResults: {
-        totalCost: 13440109341.691408,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.383848575215125,
+        onSiteDays: 13.335457805945818,
+        phaseCost: 397734,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.8446927922966143,
+        onSiteDays: 26.605453157665544,
+        phaseCost: 1205842,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.228541367511738,
+        onSiteDays: 39.94091096361136,
+        phaseCost: 1603576,
+      },
+      sourceReductionResults: { workDays: 5.039992115894609, onSiteDays: 5.039992115894609, phaseCost: 326321 },
+      decontaminationResults: {
+        workDays: 4.733664585681089,
+        onSiteDays: 5.4067410958015225,
+        suppliesCost: 225062,
+        otherCosts: 271636,
+      },
+      incidentCommandResults: { onSiteDays: 58.387644175307486, phaseCost: 178066 },
+      otherResults: { otherCosts: 79688 },
+      generalResults: { totalCost: 2684349, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 47326.37708333498,
-        onSiteDays: 2491525.2881109337,
-        phaseCost: 9926603697.184816,
-      },
-      sourceReductionResults: {
-        workDays: 9727.231761224997,
-        onSiteDays: 9727.231761224997,
-        phaseCost: 2127781075.7540898,
-      },
-      decontaminationResults: {
-        workDays: 13.287977197973051,
-        onSiteDays: 14.673149727907298,
-        phaseCost: 1017975026.304773,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2501275.1930218865,
-        phaseCost: 6058460585.101055,
-      },
-      otherResults: {
-        otherCosts: 741956956.3873408,
-      },
-      generalResults: {
-        totalCost: 19872777340.732075,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.8536376352155233,
+        onSiteDays: 38.050539558382965,
+        phaseCost: 800109,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 5.679364407690221,
+        onSiteDays: 20.14360775998376,
+        phaseCost: 316035,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 9.533002042905744,
+        onSiteDays: 58.194147318366724,
+        phaseCost: 1116144,
+      },
+      sourceReductionResults: { workDays: 0.28172172194361794, onSiteDays: 0.28172172194361794, phaseCost: 30361 },
+      decontaminationResults: {
+        workDays: 3.6654695446289773,
+        onSiteDays: 4.7067324427670645,
+        suppliesCost: 406055,
+        otherCosts: 164793,
+      },
+      incidentCommandResults: { onSiteDays: 71.1826014830774, phaseCost: 218816 },
+      otherResults: { otherCosts: 95705 },
+      generalResults: { totalCost: 2031874, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 36522.47536652288,
-          onSiteDays: 1730927.5256676206,
-          phaseCost: 2247127597.080014,
-        },
-        sourceReductionResults: {
-          workDays: 7867.271720296054,
-          onSiteDays: 7867.271720296054,
-          phaseCost: 642877942.3896351,
-        },
-        decontaminationResults: {
-          workDays: 12.148998985800194,
-          onSiteDays: 12.457158388909223,
-          phaseCost: 140426923.6995087,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1738815.2545463054,
-          phaseCost: 4303899808.178479,
-        },
-        otherResults: {
-          otherCosts: 428876791.4145353,
-        },
-        generalResults: {
-          totalCost: 7763209062.762173,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.1917645913833788,
+          onSiteDays: 14.53986205657188,
+          phaseCost: 1157694,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 9.311564806992184,
+          onSiteDays: 26.942985580842265,
+          phaseCost: 1879341,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 12.503329398375563,
+          onSiteDays: 41.482847637414146,
+          phaseCost: 3037035,
+        },
+        sourceReductionResults: { workDays: 0.4263239536377643, onSiteDays: 0.4263239536377643, phaseCost: 32193 },
+        decontaminationResults: {
+          workDays: 12.518404552600906,
+          onSiteDays: 15.083696660372357,
+          suppliesCost: 146045,
+          otherCosts: 552342,
+        },
+        incidentCommandResults: { onSiteDays: 64.99286825142427, phaseCost: 201311 },
+        otherResults: { otherCosts: 95481 },
+        generalResults: { totalCost: 4064407, areaContaminated: 10668.083372448587, decontaminationRounds: 2 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 12687.790151706831,
-          onSiteDays: 3857329.1282991543,
-          phaseCost: 2537399011.8796597,
-        },
-        sourceReductionResults: {
-          workDays: 1034.9926478534026,
-          onSiteDays: 1034.9926478534026,
-          phaseCost: 401481236.32046676,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 17.73345234968492,
+          onSiteDays: 45.66017762456333,
+          phaseCost: 1201214,
         },
-        decontaminationResults: {
-          workDays: 25.38384498967413,
-          onSiteDays: 25.45737983622993,
-          phaseCost: 391741599.61237067,
-        },
-        incidentCommandResults: {
-          onSiteDays: 3858397.5783268437,
-          phaseCost: 9564970875.743225,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.2518872167211192,
+          onSiteDays: 22.187968773917444,
+          phaseCost: 918965,
         },
-        otherResults: {
-          otherCosts: 1216137769.109722,
+        totalCharacterizationSamplingResults: {
+          workDays: 19.98533956640604,
+          onSiteDays: 67.84814639848078,
+          phaseCost: 2120179,
         },
-        generalResults: {
-          totalCost: 14111730492.665443,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 4.438163077787083, onSiteDays: 4.438163077787083, phaseCost: 212149 },
+        decontaminationResults: {
+          workDays: 7.128476685641445,
+          onSiteDays: 7.210317890674416,
+          suppliesCost: 214179,
+          otherCosts: 563845,
         },
+        incidentCommandResults: { onSiteDays: 87.49662736694228, phaseCost: 271236 },
+        otherResults: { otherCosts: 137404 },
+        generalResults: { totalCost: 3518992, areaContaminated: 10668.083372448587, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 16509.761053875503,
-        onSiteDays: 137488.53484310117,
-        phaseCost: 3331964511.120518,
-      },
-      sourceReductionResults: {
-        workDays: 475.268662320055,
-        onSiteDays: 475.268662320055,
-        phaseCost: 41338930.4958674,
-      },
-      decontaminationResults: {
-        workDays: 13.596592381502639,
-        onSiteDays: 15.09127368291171,
-        phaseCost: 1297408419.605507,
-      },
-      incidentCommandResults: {
-        onSiteDays: 137986.89477910413,
-        phaseCost: 342116072.13090587,
-      },
-      otherResults: {
-        otherCosts: 25131870.20935075,
-      },
-      generalResults: {
-        totalCost: 5037959803.562149,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.9539244913358242,
+        onSiteDays: 17.236776908605243,
+        phaseCost: 850336,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.7991240345826007,
+        onSiteDays: 10.82706030580086,
+        phaseCost: 559600,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.753048525918425,
+        onSiteDays: 28.063837214406103,
+        phaseCost: 1409936,
+      },
+      sourceReductionResults: { workDays: 0.6742306736622892, onSiteDays: 0.6742306736622892, phaseCost: 41621 },
+      decontaminationResults: {
+        workDays: 11.449445573252031,
+        onSiteDays: 11.95900881801709,
+        suppliesCost: 433168,
+        otherCosts: 405138,
+      },
+      incidentCommandResults: { onSiteDays: 48.69707670608548, phaseCost: 148431 },
+      otherResults: { otherCosts: 77653 },
+      generalResults: { totalCost: 2515947, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 15752.927131749126,
-        onSiteDays: 514132.5387012753,
-        phaseCost: 6613705504.495599,
-      },
-      sourceReductionResults: {
-        workDays: 6236.43603859951,
-        onSiteDays: 6236.43603859951,
-        phaseCost: 675223785.0769324,
-      },
-      decontaminationResults: {
-        workDays: 18.340152660696805,
-        onSiteDays: 20.618918601334776,
-        phaseCost: 393708099.25726384,
-      },
-      incidentCommandResults: {
-        onSiteDays: 520397.59365847614,
-        phaseCost: 1261731291.0525198,
-      },
-      otherResults: {
-        otherCosts: 172436930.29187188,
-      },
-      generalResults: {
-        totalCost: 9116805610.174187,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.1242748471512125,
+        onSiteDays: 38.49520030844691,
+        phaseCost: 674782,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.98095930670626,
+        onSiteDays: 27.370286005736745,
+        phaseCost: 374356,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.105234153857472,
+        onSiteDays: 65.86548631418366,
+        phaseCost: 1049138,
+      },
+      sourceReductionResults: { workDays: 0.8799862347705221, onSiteDays: 0.8799862347705221, phaseCost: 169341 },
+      decontaminationResults: {
+        workDays: 8.506204581471673,
+        onSiteDays: 8.69340467981375,
+        suppliesCost: 120013,
+        otherCosts: 271371,
+      },
+      incidentCommandResults: { onSiteDays: 83.43887722876794, phaseCost: 258202 },
+      otherResults: { otherCosts: 104472 },
+      generalResults: { totalCost: 1972537, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 28276.5225442643,
-          onSiteDays: 2200232.198813562,
-          phaseCost: 6176082240.470368,
-        },
-        sourceReductionResults: {
-          workDays: 2226.9426943438048,
-          onSiteDays: 2226.9426943438048,
-          phaseCost: 728213609.6969938,
-        },
-        decontaminationResults: {
-          workDays: 17.54941990053035,
-          onSiteDays: 18.695185150181686,
-          phaseCost: 385263104.09388936,
-        },
-        incidentCommandResults: {
-          onSiteDays: 2202485.8366930555,
-          phaseCost: 5414256239.607148,
-        },
-        otherResults: {
-          otherCosts: 626123802.1555879,
-        },
-        generalResults: {
-          totalCost: 13329938996.023989,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 5.145545896612982,
+          onSiteDays: 33.27331474460224,
+          phaseCost: 1458713,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 6.779313011285597,
+          onSiteDays: 35.291685331821256,
+          phaseCost: 1332375,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 11.924858907898578,
+          onSiteDays: 68.5650000764235,
+          phaseCost: 2791088,
+        },
+        sourceReductionResults: { workDays: 5.320035672852117, onSiteDays: 5.320035672852117, phaseCost: 175334 },
+        decontaminationResults: {
+          workDays: 4.749726307054452,
+          onSiteDays: 7.498081392258889,
+          suppliesCost: 275026,
+          otherCosts: 137550,
+        },
+        incidentCommandResults: { onSiteDays: 89.38311714153451, phaseCost: 274430 },
+        otherResults: { otherCosts: 99342 },
+        generalResults: { totalCost: 3752770, areaContaminated: 12202.565450501294, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 7466.8883468847935,
-          onSiteDays: 7335543.564857282,
-          phaseCost: 1933387248.5865107,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 9.634556991742128,
+          onSiteDays: 22.485224584613448,
+          phaseCost: 683275,
         },
-        sourceReductionResults: {
-          workDays: 6467.843153976502,
-          onSiteDays: 6467.843153976502,
-          phaseCost: 333443228.92278004,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.609760435053728,
+          onSiteDays: 11.15883936618668,
+          phaseCost: 254452,
         },
-        decontaminationResults: {
-          workDays: 16.434789074220415,
-          onSiteDays: 17.007292355412456,
-          phaseCost: 977100999.3820333,
-        },
-        incidentCommandResults: {
-          onSiteDays: 7342036.415303614,
-          phaseCost: 17798292278.02042,
+        totalCharacterizationSamplingResults: {
+          workDays: 14.244317426795856,
+          onSiteDays: 33.64406395080013,
+          phaseCost: 937727,
         },
-        otherResults: {
-          otherCosts: 1313620124.176854,
-        },
-        generalResults: {
-          totalCost: 22355843879.088596,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.0527538386644632, onSiteDays: 0.0527538386644632, phaseCost: 13617 },
+        decontaminationResults: {
+          workDays: 3.764786597985026,
+          onSiteDays: 4.092313849621525,
+          suppliesCost: 62505,
+          otherCosts: 170495,
         },
+        incidentCommandResults: { onSiteDays: 45.78913163908612, phaseCost: 141315 },
+        otherResults: { otherCosts: 66381 },
+        generalResults: { totalCost: 1392040, areaContaminated: 12202.565450501294, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 40163.73225059799,
-        onSiteDays: 19596866.317390844,
-        phaseCost: 6788081419.496527,
-      },
-      sourceReductionResults: {
-        workDays: 1903.832349742044,
-        onSiteDays: 1903.832349742044,
-        phaseCost: 667498136.2542067,
-      },
-      decontaminationResults: {
-        workDays: 22.007961209632445,
-        onSiteDays: 24.868542761511293,
-        phaseCost: 2177663587.5626974,
-      },
-      incidentCommandResults: {
-        onSiteDays: 19598803.01828335,
-        phaseCost: 48450202138.05464,
-      },
-      otherResults: {
-        otherCosts: 4566572018.508132,
-      },
-      generalResults: {
-        totalCost: 62650017299.876205,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.9115865968474166,
+        onSiteDays: 11.127132837397035,
+        phaseCost: 323267,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.3559358325383917,
+        onSiteDays: 18.657071739426655,
+        phaseCost: 525545,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.267522429385808,
+        onSiteDays: 29.78420457682369,
+        phaseCost: 848812,
+      },
+      sourceReductionResults: { workDays: 0.1536105951889631, onSiteDays: 0.1536105951889631, phaseCost: 12530 },
+      decontaminationResults: {
+        workDays: 4.6780532919052185,
+        onSiteDays: 7.380782003370296,
+        suppliesCost: 43732,
+        otherCosts: 239860,
+      },
+      incidentCommandResults: { onSiteDays: 45.31859717538295, phaseCost: 139291 },
+      otherResults: { otherCosts: 145508 },
+      generalResults: { totalCost: 1429733, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 67752.98604143436,
-        onSiteDays: 1699014.6493139034,
-        phaseCost: 6885430130.755132,
-      },
-      sourceReductionResults: {
-        workDays: 26912.07054426881,
-        onSiteDays: 26912.07054426881,
-        phaseCost: 1737288083.420238,
-      },
-      decontaminationResults: {
-        workDays: 16.766521650079294,
-        onSiteDays: 19.252510194259816,
-        phaseCost: 3000549518.50582,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1725953.9723683663,
-        phaseCost: 4185262349.8322687,
-      },
-      otherResults: {
-        otherCosts: 476465598.9472808,
-      },
-      generalResults: {
-        totalCost: 16284995681.46074,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.4975755801214112,
+        onSiteDays: 49.42639873951477,
+        phaseCost: 917771,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.765648976797904,
+        onSiteDays: 23.04505393760082,
+        phaseCost: 354273,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.263224556919315,
+        onSiteDays: 72.4714526771156,
+        phaseCost: 1272044,
+      },
+      sourceReductionResults: { workDays: 0.1852323975855298, onSiteDays: 0.1852323975855298, phaseCost: 24221 },
+      decontaminationResults: {
+        workDays: 8.83067391087084,
+        onSiteDays: 10.423120477800984,
+        suppliesCost: 271989,
+        otherCosts: 584723,
+      },
+      incidentCommandResults: { onSiteDays: 91.0798055525021, phaseCost: 281628 },
+      otherResults: { otherCosts: 97580 },
+      generalResults: { totalCost: 2532185, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 7680.690680219029,
-          onSiteDays: 721364.9863141332,
-          phaseCost: 2567113382.188766,
-        },
-        sourceReductionResults: {
-          workDays: 1172.9181595441955,
-          onSiteDays: 1172.9181595441955,
-          phaseCost: 73519685.58165577,
-        },
-        decontaminationResults: {
-          workDays: 26.53608302179167,
-          onSiteDays: 28.665870461302312,
-          phaseCost: 1362950641.108843,
-        },
-        incidentCommandResults: {
-          onSiteDays: 722574.5703441387,
-          phaseCost: 1774266721.1794686,
-        },
-        otherResults: {
-          otherCosts: 143713195.79732195,
-        },
-        generalResults: {
-          totalCost: 5921563625.856055,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 5.915104016486182,
+          onSiteDays: 18.23109379158625,
+          phaseCost: 876619,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 8.651344352463262,
+          onSiteDays: 25.522861828159762,
+          phaseCost: 1074593,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 14.566448368949445,
+          onSiteDays: 43.75395561974601,
+          phaseCost: 1951212,
+        },
+        sourceReductionResults: { workDays: 6.391239770893006, onSiteDays: 6.391239770893006, phaseCost: 165729 },
+        decontaminationResults: {
+          workDays: 4.054895401246588,
+          onSiteDays: 6.373256380989508,
+          suppliesCost: 140462,
+          otherCosts: 286302,
+        },
+        incidentCommandResults: { onSiteDays: 64.51845177162852, phaseCost: 196815 },
+        otherResults: { otherCosts: 91735 },
+        generalResults: { totalCost: 2832255, areaContaminated: 13687.209246840142, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 58228.05830339092,
-          onSiteDays: 183920.71500952158,
-          phaseCost: 3284673005.1759253,
-        },
-        sourceReductionResults: {
-          workDays: 1693.4432538332,
-          onSiteDays: 1693.4432538332,
-          phaseCost: 91818736.19883242,
-        },
-        decontaminationResults: {
-          workDays: 21.166197413151664,
-          onSiteDays: 21.95657258759173,
-          phaseCost: 559354984.5890398,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 7.753729783448728,
+          onSiteDays: 27.52625449054367,
+          phaseCost: 608874,
         },
-        incidentCommandResults: {
-          onSiteDays: 185644.11483594237,
-          phaseCost: 457427352.0054469,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 9.49991253976955,
+          onSiteDays: 82.05342624018684,
+          phaseCost: 3208350,
         },
-        otherResults: {
-          otherCosts: 37413514.48212439,
+        totalCharacterizationSamplingResults: {
+          workDays: 17.25364232321828,
+          onSiteDays: 109.5796807307305,
+          phaseCost: 3817224,
         },
-        generalResults: {
-          totalCost: 4430687592.451368,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.17445919504095134, onSiteDays: 0.17445919504095134, phaseCost: 10348 },
+        decontaminationResults: {
+          workDays: 16.105568729831273,
+          onSiteDays: 17.989591369170135,
+          suppliesCost: 416001,
+          otherCosts: 487696,
         },
+        incidentCommandResults: { onSiteDays: 135.7437312949416, phaseCost: 414035 },
+        otherResults: { otherCosts: 71860 },
+        generalResults: { totalCost: 5217164, areaContaminated: 13687.209246840142, decontaminationRounds: 3 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 13030.176409474157,
-        onSiteDays: 185258.35397395026,
-        phaseCost: 4509906223.553259,
-      },
-      sourceReductionResults: {
-        workDays: 150.77966605426082,
-        onSiteDays: 150.77966605426082,
-        phaseCost: 70612890.11330724,
-      },
-      decontaminationResults: {
-        workDays: 12.945273127859757,
-        onSiteDays: 13.933170715098544,
-        phaseCost: 501322169.06771517,
-      },
-      incidentCommandResults: {
-        onSiteDays: 185431.0668107196,
-        phaseCost: 450611573.1474143,
-      },
-      otherResults: {
-        otherCosts: 49599882.245348535,
-      },
-      generalResults: {
-        totalCost: 5582052738.127045,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 6.1490214927721265,
+        onSiteDays: 29.943796210435252,
+        phaseCost: 956164,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.6971533147336662,
+        onSiteDays: 7.878691629591784,
+        phaseCost: 243980,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.846174807505792,
+        onSiteDays: 37.82248784002704,
+        phaseCost: 1200144,
+      },
+      sourceReductionResults: { workDays: 0.14763167262308888, onSiteDays: 0.14763167262308888, phaseCost: 8527 },
+      decontaminationResults: {
+        workDays: 12.214037573247692,
+        onSiteDays: 13.819601401644666,
+        suppliesCost: 54105,
+        otherCosts: 316370,
+      },
+      incidentCommandResults: { onSiteDays: 59.7897209142948, phaseCost: 181955 },
+      otherResults: { otherCosts: 79309 },
+      generalResults: { totalCost: 1840410, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 15364.287775862998,
-        onSiteDays: 255489.34385784945,
-        phaseCost: 7419302060.2884245,
-      },
-      sourceReductionResults: {
-        workDays: 9026.086732594333,
-        onSiteDays: 9026.086732594333,
-        phaseCost: 2379754750.411824,
-      },
-      decontaminationResults: {
-        workDays: 12.047534968947883,
-        onSiteDays: 12.88233823815415,
-        phaseCost: 1136864066.745858,
-      },
-      incidentCommandResults: {
-        onSiteDays: 264536.31292868196,
-        phaseCost: 641203583.6683457,
-      },
-      otherResults: {
-        otherCosts: 56061914.96206142,
-      },
-      generalResults: {
-        totalCost: 11633186376.076513,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 7.21330773549138,
+        onSiteDays: 26.69451466522543,
+        phaseCost: 1146495,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.768159765124884,
+        onSiteDays: 16.396038084263687,
+        phaseCost: 635474,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.981467500616265,
+        onSiteDays: 43.09055274948912,
+        phaseCost: 1781969,
+      },
+      sourceReductionResults: { workDays: 2.5100887674609647, onSiteDays: 2.5100887674609647, phaseCost: 203852 },
+      decontaminationResults: {
+        workDays: 4.3422377555030955,
+        onSiteDays: 6.9698283425462035,
+        suppliesCost: 30292,
+        otherCosts: 203025,
+      },
+      incidentCommandResults: { onSiteDays: 60.570469859496285, phaseCost: 182714 },
+      otherResults: { otherCosts: 115354 },
+      generalResults: { totalCost: 2517206, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 10700.65634490009,
-          onSiteDays: 290337.1354829235,
-          phaseCost: 3705531038.85313,
-        },
-        sourceReductionResults: {
-          workDays: 1645.328261602568,
-          onSiteDays: 1645.328261602568,
-          phaseCost: 182737089.7351616,
-        },
-        decontaminationResults: {
-          workDays: 19.580022414815616,
-          onSiteDays: 21.925795348576685,
-          phaseCost: 1183018291.2350242,
-        },
-        incidentCommandResults: {
-          onSiteDays: 292012.3895398746,
-          phaseCost: 723285555.9324629,
-        },
-        otherResults: {
-          otherCosts: 85365414.83436091,
-        },
-        generalResults: {
-          totalCost: 5879937390.590139,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.187211901548772,
+          onSiteDays: 13.86411509303019,
+          phaseCost: 645585,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.6068600352310218,
+          onSiteDays: 8.028662626453198,
+          phaseCost: 342832,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.794071936779794,
+          onSiteDays: 21.892777719483387,
+          phaseCost: 988417,
+        },
+        sourceReductionResults: { workDays: 0.026735334381248615, onSiteDays: 0.026735334381248615, phaseCost: 7076 },
+        decontaminationResults: {
+          workDays: 3.49403595889314,
+          onSiteDays: 4.696866537373714,
+          suppliesCost: 54069,
+          otherCosts: 118525,
+        },
+        incidentCommandResults: { onSiteDays: 34.616379591238356, phaseCost: 105008 },
+        otherResults: { otherCosts: 48447 },
+        generalResults: { totalCost: 1321542, areaContaminated: 6564.873170937615, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 34377.507857948614,
-          onSiteDays: 614707.4024486027,
-          phaseCost: 2383435228.4154167,
-        },
-        sourceReductionResults: {
-          workDays: 800.2261479170996,
-          onSiteDays: 800.2261479170996,
-          phaseCost: 61337783.658071175,
-        },
-        decontaminationResults: {
-          workDays: 12.772649803145939,
-          onSiteDays: 15.637874181996535,
-          phaseCost: 855170201.0130421,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.601266148913192,
+          onSiteDays: 3.029463427164094,
+          phaseCost: 113930,
         },
-        incidentCommandResults: {
-          onSiteDays: 615531.2664707018,
-          phaseCost: 1497789824.9754205,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.060563769373311,
+          onSiteDays: 15.39323767736521,
+          phaseCost: 724563,
         },
-        otherResults: {
-          otherCosts: 149829979.45106256,
+        totalCharacterizationSamplingResults: {
+          workDays: 2.661829918286503,
+          onSiteDays: 18.422701104529303,
+          phaseCost: 838493,
         },
-        generalResults: {
-          totalCost: 4947563017.513013,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 2.6925284807800773, onSiteDays: 2.6925284807800773, phaseCost: 188413 },
+        decontaminationResults: {
+          workDays: 6.692587931801702,
+          onSiteDays: 8.387636651142415,
+          suppliesCost: 247397,
+          otherCosts: 250351,
         },
+        incidentCommandResults: { onSiteDays: 37.502866236451794, phaseCost: 115581 },
+        otherResults: { otherCosts: 53567 },
+        generalResults: { totalCost: 1693802, areaContaminated: 6564.873170937615, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 35114.00562144791,
-        onSiteDays: 1181414.7909962058,
-        phaseCost: 5703967573.306852,
-      },
-      sourceReductionResults: {
-        workDays: 12730.041711827025,
-        onSiteDays: 12730.041711827025,
-        phaseCost: 729759376.197345,
-      },
-      decontaminationResults: {
-        workDays: 16.683490945651076,
-        onSiteDays: 18.093567151365235,
-        phaseCost: 1039613815.4470488,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1194170.9262751841,
-        phaseCost: 2917268857.748592,
-      },
-      otherResults: {
-        otherCosts: 208823784.45852166,
-      },
-      generalResults: {
-        totalCost: 10599433407.15836,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.6913205838499197,
+        onSiteDays: 22.809645702841497,
+        phaseCost: 632238,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 10.555923508354086,
+        onSiteDays: 33.374401164804766,
+        phaseCost: 740507,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 13.247244092204006,
+        onSiteDays: 56.18404686764626,
+        phaseCost: 1372745,
+      },
+      sourceReductionResults: { workDays: 1.8956949607130118, onSiteDays: 1.8956949607130118, phaseCost: 84871 },
+      decontaminationResults: {
+        workDays: 7.87104334446393,
+        onSiteDays: 8.672911917248953,
+        suppliesCost: 25048,
+        otherCosts: 299188,
+      },
+      incidentCommandResults: { onSiteDays: 74.75265374560823, phaseCost: 224774 },
+      otherResults: { otherCosts: 77536 },
+      generalResults: { totalCost: 2084162, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 48983.14802641875,
-        onSiteDays: 10053777.885623386,
-        phaseCost: 8741801511.847286,
-      },
-      sourceReductionResults: {
-        workDays: 18685.455644043832,
-        onSiteDays: 18685.455644043832,
-        phaseCost: 3186632976.8748217,
-      },
-      decontaminationResults: {
-        workDays: 16.119550833040744,
-        onSiteDays: 18.694313989182543,
-        phaseCost: 1693099651.3766065,
-      },
-      incidentCommandResults: {
-        onSiteDays: 10072490.03558142,
-        phaseCost: 24657327094.93229,
-      },
-      otherResults: {
-        otherCosts: 1850726828.3304303,
-      },
-      generalResults: {
-        totalCost: 40129588063.361435,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 5.826035383906752,
+        onSiteDays: 18.463578041445007,
+        phaseCost: 724666,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.0712667666027988,
+        onSiteDays: 7.3635875999745295,
+        phaseCost: 304801,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.89730215050955,
+        onSiteDays: 25.827165641419537,
+        phaseCost: 1029467,
+      },
+      sourceReductionResults: { workDays: 1.0181593374939608, onSiteDays: 1.0181593374939608, phaseCost: 85819 },
+      decontaminationResults: {
+        workDays: 7.808030891653157,
+        onSiteDays: 9.87370372607226,
+        suppliesCost: 328077,
+        otherCosts: 307096,
+      },
+      incidentCommandResults: { onSiteDays: 44.71902870498576, phaseCost: 134671 },
+      otherResults: { otherCosts: 97389 },
+      generalResults: { totalCost: 1982519, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 84827.77627246149,
-          onSiteDays: 2297386.17794323,
-          phaseCost: 4713695112.714309,
-        },
-        sourceReductionResults: {
-          workDays: 1861.9541066474894,
-          onSiteDays: 1861.9541066474894,
-          phaseCost: 579000925.0625783,
-        },
-        decontaminationResults: {
-          workDays: 18.972330381156024,
-          onSiteDays: 21.409790930200785,
-          phaseCost: 951648563.0387775,
-        },
-        incidentCommandResults: {
-          onSiteDays: 2299277.541840808,
-          phaseCost: 5565842408.142156,
-        },
-        otherResults: {
-          otherCosts: 453971076.6156585,
-        },
-        generalResults: {
-          totalCost: 12264158085.573479,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.3188195283996684,
+          onSiteDays: 18.30658820988919,
+          phaseCost: 590732,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.510066582723363,
+          onSiteDays: 35.71336471665532,
+          phaseCost: 1252956,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 6.8288861111230315,
+          onSiteDays: 54.019952926544505,
+          phaseCost: 1843688,
+        },
+        sourceReductionResults: { workDays: 10.491733559177803, onSiteDays: 10.491733559177803, phaseCost: 520897 },
+        decontaminationResults: {
+          workDays: 8.33312213754587,
+          onSiteDays: 10.925532325619258,
+          suppliesCost: 149321,
+          otherCosts: 487586,
+        },
+        incidentCommandResults: { onSiteDays: 83.43721881134157, phaseCost: 255390 },
+        otherResults: { otherCosts: 91428 },
+        generalResults: { totalCost: 3348310, areaContaminated: 12581.816089242187, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 39659.32599502976,
-          onSiteDays: 721309.0458330947,
-          phaseCost: 3970728658.046215,
-        },
-        sourceReductionResults: {
-          workDays: 3196.941454220509,
-          onSiteDays: 3196.941454220509,
-          phaseCost: 199998500.40974003,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.5428139877524827,
+          onSiteDays: 8.363308954819558,
+          phaseCost: 580964,
         },
-        decontaminationResults: {
-          workDays: 23.596778881176554,
-          onSiteDays: 25.533779173282387,
-          phaseCost: 540445081.1837077,
-        },
-        incidentCommandResults: {
-          onSiteDays: 724539.5210664886,
-          phaseCost: 1795774809.836988,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.7816897510197367,
+          onSiteDays: 9.602226809741339,
+          phaseCost: 596152,
         },
-        otherResults: {
-          otherCosts: 243361105.2974582,
+        totalCharacterizationSamplingResults: {
+          workDays: 5.324503738772219,
+          onSiteDays: 17.965535764560897,
+          phaseCost: 1177116,
         },
-        generalResults: {
-          totalCost: 6750308154.774109,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.1011587108877057, onSiteDays: 0.1011587108877057, phaseCost: 13039 },
+        decontaminationResults: {
+          workDays: 4.663998653568327,
+          onSiteDays: 6.842793688839952,
+          suppliesCost: 471760,
+          otherCosts: 228119,
         },
+        incidentCommandResults: { onSiteDays: 32.909488164288554, phaseCost: 100620 },
+        otherResults: { otherCosts: 85106 },
+        generalResults: { totalCost: 2075760, areaContaminated: 12581.816089242187, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 45411.02423112876,
-        onSiteDays: 22009108.973160665,
-        phaseCost: 3712632233.7825956,
-      },
-      sourceReductionResults: {
-        workDays: 978.9458082139561,
-        onSiteDays: 978.9458082139561,
-        phaseCost: 196876751.17288256,
-      },
-      decontaminationResults: {
-        workDays: 19.73608989471944,
-        onSiteDays: 20.076041593932555,
-        phaseCost: 1884713726.4968996,
-      },
-      incidentCommandResults: {
-        onSiteDays: 22010115.995010473,
-        phaseCost: 54505755748.93564,
-      },
-      otherResults: {
-        otherCosts: 7038129101.560306,
-      },
-      generalResults: {
-        totalCost: 67338107561.94832,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 5.568092633348253,
+        onSiteDays: 33.30093111296434,
+        phaseCost: 1194980,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 0.6693125714266577,
+        onSiteDays: 5.200872733088834,
+        phaseCost: 200536,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.237405204774911,
+        onSiteDays: 38.50180384605318,
+        phaseCost: 1395516,
+      },
+      sourceReductionResults: { workDays: 0.9846912952924977, onSiteDays: 0.9846912952924977, phaseCost: 112260 },
+      decontaminationResults: {
+        workDays: 12.790527581654146,
+        onSiteDays: 12.968967031447441,
+        suppliesCost: 343485,
+        otherCosts: 729466,
+      },
+      incidentCommandResults: { onSiteDays: 60.45546217279312, phaseCost: 183775 },
+      otherResults: { otherCosts: 52696 },
+      generalResults: { totalCost: 2817198, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 129227.58030745418,
-        onSiteDays: 949180.5636550784,
-        phaseCost: 5522513737.097798,
-      },
-      sourceReductionResults: {
-        workDays: 12421.569292400145,
-        onSiteDays: 12421.569292400145,
-        phaseCost: 780894065.0017521,
-      },
-      decontaminationResults: {
-        workDays: 16.13566052078634,
-        onSiteDays: 18.495079822953578,
-        phaseCost: 1021954942.0935663,
-      },
-      incidentCommandResults: {
-        onSiteDays: 961628.6280273015,
-        phaseCost: 2345249608.444923,
-      },
-      otherResults: {
-        otherCosts: 233859231.32559896,
-      },
-      generalResults: {
-        totalCost: 9904471583.963638,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.4163708519092477,
+        onSiteDays: 21.916963137607844,
+        phaseCost: 1067856,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.345733696273996,
+        onSiteDays: 28.11964614023604,
+        phaseCost: 1656753,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.762104548183244,
+        onSiteDays: 50.03660927784388,
+        phaseCost: 2724609,
+      },
+      sourceReductionResults: { workDays: 1.8921116500840527, onSiteDays: 1.8921116500840527, phaseCost: 246844 },
+      decontaminationResults: {
+        workDays: 9.834908537295393,
+        onSiteDays: 11.917365423850102,
+        suppliesCost: 157761,
+        otherCosts: 502932,
+      },
+      incidentCommandResults: { onSiteDays: 71.84608635177804, phaseCost: 218413 },
+      otherResults: { otherCosts: 129552 },
+      generalResults: { totalCost: 3980111, areaContaminated: 10000, decontaminationRounds: 2 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 17098.917756069855,
-          onSiteDays: 401842.0050146256,
-          phaseCost: 2821476359.2990355,
-        },
-        sourceReductionResults: {
-          workDays: 644.6387137911978,
-          onSiteDays: 644.6387137911978,
-          phaseCost: 188328484.14434835,
-        },
-        decontaminationResults: {
-          workDays: 25.167127784613317,
-          onSiteDays: 25.767095860039603,
-          phaseCost: 361178061.18973446,
-        },
-        incidentCommandResults: {
-          onSiteDays: 402520.41082427686,
-          phaseCost: 979897257.1233325,
-        },
-        otherResults: {
-          otherCosts: 115389690.18187657,
-        },
-        generalResults: {
-          totalCost: 4466269851.938327,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.7985145566242895,
+          onSiteDays: 5.787167806300367,
+          phaseCost: 196589,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.0036177486292264,
+          onSiteDays: 16.233338812151338,
+          phaseCost: 598120,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.802132305253516,
+          onSiteDays: 22.020506618451705,
+          phaseCost: 794709,
+        },
+        sourceReductionResults: { workDays: 0.5888678998351137, onSiteDays: 0.5888678998351137, phaseCost: 82849 },
+        decontaminationResults: {
+          workDays: 4.179139828118295,
+          onSiteDays: 4.5822555205277755,
+          suppliesCost: 416906,
+          otherCosts: 294741,
+        },
+        incidentCommandResults: { onSiteDays: 35.191630038814594, phaseCost: 106699 },
+        otherResults: { otherCosts: 31595 },
+        generalResults: { totalCost: 1727499, areaContaminated: 12456.11420540514, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 14548.395884659983,
-          onSiteDays: 308237.5215647609,
-          phaseCost: 1652900899.2695532,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.5929691427213362,
+          onSiteDays: 5.6944417321531695,
+          phaseCost: 232260,
         },
-        sourceReductionResults: {
-          workDays: 713.766690078929,
-          onSiteDays: 713.766690078929,
-          phaseCost: 201628516.01024008,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.586076597600259,
+          onSiteDays: 11.801547043658712,
+          phaseCost: 531001,
         },
-        decontaminationResults: {
-          workDays: 14.924402782908736,
-          onSiteDays: 17.625221565278533,
-          phaseCost: 524459136.0546855,
-        },
-        incidentCommandResults: {
-          onSiteDays: 308976.91347640514,
-          phaseCost: 761674631.5502524,
+        totalCharacterizationSamplingResults: {
+          workDays: 7.1790457403215955,
+          onSiteDays: 17.49598877581188,
+          phaseCost: 763261,
         },
-        otherResults: {
-          otherCosts: 74230079.28764261,
-        },
-        generalResults: {
-          totalCost: 3214893262.172374,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.7468766520263755, onSiteDays: 0.7468766520263755, phaseCost: 121170 },
+        decontaminationResults: {
+          workDays: 8.54693933682212,
+          onSiteDays: 9.590118644663626,
+          suppliesCost: 336757,
+          otherCosts: 477355,
         },
+        incidentCommandResults: { onSiteDays: 35.83298407250189, phaseCost: 109504 },
+        otherResults: { otherCosts: 68844 },
+        generalResults: { totalCost: 1876891, areaContaminated: 12456.11420540514, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 33082.43139859366,
-        onSiteDays: 455022.1380214592,
-        phaseCost: 6703084972.923546,
-      },
-      sourceReductionResults: {
-        workDays: 10112.245671344033,
-        onSiteDays: 10112.245671344033,
-        phaseCost: 1635771911.6500187,
-      },
-      decontaminationResults: {
-        workDays: 22.17066674031566,
-        onSiteDays: 25.032988730825718,
-        phaseCost: 1468308255.4148662,
-      },
-      incidentCommandResults: {
-        onSiteDays: 465167.4166815341,
-        phaseCost: 1135351118.4205308,
-      },
-      otherResults: {
-        otherCosts: 90773501.5940606,
-      },
-      generalResults: {
-        totalCost: 11033289760.003021,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.2077215267779267,
+        onSiteDays: 9.801548680849205,
+        phaseCost: 320179,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.217576387672649,
+        onSiteDays: 29.168222283530312,
+        phaseCost: 1007194,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.425297914450575,
+        onSiteDays: 38.96977096437952,
+        phaseCost: 1327373,
+      },
+      sourceReductionResults: { workDays: 5.2039765866243135, onSiteDays: 5.2039765866243135, phaseCost: 280443 },
+      decontaminationResults: {
+        workDays: 20.214034242838164,
+        onSiteDays: 20.28945936921273,
+        suppliesCost: 259326,
+        otherCosts: 893646,
+      },
+      incidentCommandResults: { onSiteDays: 72.46320692021656, phaseCost: 221586 },
+      otherResults: { otherCosts: 57121 },
+      generalResults: { totalCost: 3039495, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 24216.30967460369,
-        onSiteDays: 2765977.741776875,
-        phaseCost: 10684982880.934553,
-      },
-      sourceReductionResults: {
-        workDays: 4578.6971840980195,
-        onSiteDays: 4578.6971840980195,
-        phaseCost: 1332776122.6367855,
-      },
-      decontaminationResults: {
-        workDays: 26.242020624746107,
-        onSiteDays: 27.492857925708606,
-        phaseCost: 410523915.9192004,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2770591.931818899,
-        phaseCost: 6779782019.773939,
-      },
-      otherResults: {
-        otherCosts: 804053540.1502564,
-      },
-      generalResults: {
-        totalCost: 20012118479.414738,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.7448602950471317,
+        onSiteDays: 9.302238067312407,
+        phaseCost: 410984,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.5767906695456517,
+        onSiteDays: 7.826563702271628,
+        phaseCost: 284237,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.321650964592783,
+        onSiteDays: 17.128801769584037,
+        phaseCost: 695221,
+      },
+      sourceReductionResults: { workDays: 4.87308845111771, onSiteDays: 4.87308845111771, phaseCost: 213320 },
+      decontaminationResults: {
+        workDays: 7.037551230526891,
+        onSiteDays: 8.1032932568582,
+        suppliesCost: 56352,
+        otherCosts: 262120,
+      },
+      incidentCommandResults: { onSiteDays: 38.10518347755995, phaseCost: 116848 },
+      otherResults: { otherCosts: 77390 },
+      generalResults: { totalCost: 1421251, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 41678.112833466555,
-          onSiteDays: 3672181.6045819055,
-          phaseCost: 2461543650.6055355,
-        },
-        sourceReductionResults: {
-          workDays: 3908.49149685698,
-          onSiteDays: 3908.49149685698,
-          phaseCost: 810812896.6298652,
-        },
-        decontaminationResults: {
-          workDays: 24.10695109053211,
-          onSiteDays: 26.04607604072571,
-          phaseCost: 513428833.9476002,
-        },
-        incidentCommandResults: {
-          onSiteDays: 3676124.142154803,
-          phaseCost: 9121209709.075905,
-        },
-        otherResults: {
-          otherCosts: 1234090104.6968296,
-        },
-        generalResults: {
-          totalCost: 14141085194.955734,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.6871454436397433,
+          onSiteDays: 7.4801328291932005,
+          phaseCost: 133357,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 10.541510599465514,
+          onSiteDays: 69.90197435575122,
+          phaseCost: 1957788,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 13.228656043105257,
+          onSiteDays: 77.38210718494442,
+          phaseCost: 2091145,
+        },
+        sourceReductionResults: { workDays: 0.1724657894384936, onSiteDays: 0.1724657894384936, phaseCost: 40961 },
+        decontaminationResults: {
+          workDays: 22.374806200707056,
+          onSiteDays: 24.117530374349453,
+          suppliesCost: 214064,
+          otherCosts: 896372,
+        },
+        incidentCommandResults: { onSiteDays: 109.67210334873236, phaseCost: 339978 },
+        otherResults: { otherCosts: 73234 },
+        generalResults: { totalCost: 3655754, areaContaminated: 5198.930157394831, decontaminationRounds: 4 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 12969.678788786394,
-          onSiteDays: 2592540.8298895187,
-          phaseCost: 3065593771.00612,
-        },
-        sourceReductionResults: {
-          workDays: 3369.0785420873817,
-          onSiteDays: 3369.0785420873817,
-          phaseCost: 321477914.7317608,
-        },
-        decontaminationResults: {
-          workDays: 21.46160801603962,
-          onSiteDays: 23.545200132891814,
-          phaseCost: 380067970.5732139,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.3588031032942114,
+          onSiteDays: 7.688392921633034,
+          phaseCost: 118611,
         },
-        incidentCommandResults: {
-          onSiteDays: 2595941.4536317387,
-          phaseCost: 6436301562.463341,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.7703068624973819,
+          onSiteDays: 5.451629533605829,
+          phaseCost: 65247,
         },
-        otherResults: {
-          otherCosts: 528967412.74277747,
+        totalCharacterizationSamplingResults: {
+          workDays: 2.129109965791593,
+          onSiteDays: 13.140022455238864,
+          phaseCost: 183858,
         },
-        generalResults: {
-          totalCost: 10732408631.517214,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.27351190138131204, onSiteDays: 0.27351190138131204, phaseCost: 26165 },
+        decontaminationResults: {
+          workDays: 4.404431252135995,
+          onSiteDays: 6.725848883559427,
+          suppliesCost: 209500,
+          otherCosts: 218880,
         },
+        incidentCommandResults: { onSiteDays: 28.1393832401796, phaseCost: 86100 },
+        otherResults: { otherCosts: 90101 },
+        generalResults: { totalCost: 814604, areaContaminated: 5198.930157394831, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 30926.21266683507,
-        onSiteDays: 3683985.656472824,
-        phaseCost: 8872714265.106201,
-      },
-      sourceReductionResults: {
-        workDays: 1270.25302934074,
-        onSiteDays: 1270.25302934074,
-        phaseCost: 125828116.09521183,
-      },
-      decontaminationResults: {
-        workDays: 14.854941988097256,
-        onSiteDays: 16.818533771629102,
-        phaseCost: 1626546204.8391361,
-      },
-      incidentCommandResults: {
-        onSiteDays: 3685280.7280359366,
-        phaseCost: 8933593159.190344,
-      },
-      otherResults: {
-        otherCosts: 894367144.1448363,
-      },
-      generalResults: {
-        totalCost: 20453048889.37573,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 6.3689403092432,
+        onSiteDays: 37.659723805028854,
+        phaseCost: 1075583,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.85476046092314,
+        onSiteDays: 23.708833372625435,
+        phaseCost: 606141,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.22370077016634,
+        onSiteDays: 61.36855717765429,
+        phaseCost: 1681724,
+      },
+      sourceReductionResults: { workDays: 8.033557816363903, onSiteDays: 8.033557816363903, phaseCost: 211348 },
+      decontaminationResults: {
+        workDays: 19.62086007339434,
+        onSiteDays: 21.87757795138228,
+        suppliesCost: 409496,
+        otherCosts: 609410,
+      },
+      incidentCommandResults: { onSiteDays: 99.27969294540047, phaseCost: 307623 },
+      otherResults: { otherCosts: 94086 },
+      generalResults: { totalCost: 3313687, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 47201.43391791773,
-        onSiteDays: 975940.0979390941,
-        phaseCost: 12441109449.88103,
-      },
-      sourceReductionResults: {
-        workDays: 6981.8728827455825,
-        onSiteDays: 6981.8728827455825,
-        phaseCost: 1606910648.9300022,
-      },
-      decontaminationResults: {
-        workDays: 11.80950652873365,
-        onSiteDays: 11.952671790950157,
-        phaseCost: 1451215974.5419385,
-      },
-      incidentCommandResults: {
-        onSiteDays: 982941.9234936306,
-        phaseCost: 2402001822.791397,
-      },
-      otherResults: {
-        otherCosts: 239048016.69251198,
-      },
-      generalResults: {
-        totalCost: 18140285912.83688,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.009797882597108,
+        onSiteDays: 4.784917543539516,
+        phaseCost: 268877,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.3182524348320321,
+        onSiteDays: 6.411779762178745,
+        phaseCost: 315337,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 2.32805031742914,
+        onSiteDays: 11.19669730571826,
+        phaseCost: 584214,
+      },
+      sourceReductionResults: { workDays: 1.3197468154653273, onSiteDays: 1.3197468154653273, phaseCost: 83338 },
+      decontaminationResults: {
+        workDays: 3.5816455433568093,
+        onSiteDays: 4.121678355643916,
+        suppliesCost: 202372,
+        otherCosts: 134736,
+      },
+      incidentCommandResults: { onSiteDays: 24.638122476827505, phaseCost: 75551 },
+      otherResults: { otherCosts: 70296 },
+      generalResults: { totalCost: 1150507, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 28912.066433164728,
-          onSiteDays: 435586.4146149965,
-          phaseCost: 5077254216.4896555,
-        },
-        sourceReductionResults: {
-          workDays: 7834.024875941749,
-          onSiteDays: 7834.024875941749,
-          phaseCost: 464359519.12477326,
-        },
-        decontaminationResults: {
-          workDays: 24.07642668068326,
-          onSiteDays: 25.141346755936127,
-          phaseCost: 1090858850.9502816,
-        },
-        incidentCommandResults: {
-          onSiteDays: 443453.58083769423,
-          phaseCost: 1100254086.5599065,
-        },
-        otherResults: {
-          otherCosts: 121581100.02009061,
-        },
-        generalResults: {
-          totalCost: 7854307773.144708,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.09683263059579,
+          onSiteDays: 36.59718312586902,
+          phaseCost: 754032,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 7.444306090301014,
+          onSiteDays: 31.002394006972594,
+          phaseCost: 625517,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 13.541138720896804,
+          onSiteDays: 67.59957713284162,
+          phaseCost: 1379549,
+        },
+        sourceReductionResults: { workDays: 0.3102097343165204, onSiteDays: 0.3102097343165204, phaseCost: 31946 },
+        decontaminationResults: {
+          workDays: 9.11914017310346,
+          onSiteDays: 9.967719051280925,
+          suppliesCost: 299133,
+          otherCosts: 450081,
+        },
+        incidentCommandResults: { onSiteDays: 85.87750591843906, phaseCost: 265625 },
+        otherResults: { otherCosts: 61862 },
+        generalResults: { totalCost: 2488196, areaContaminated: 7066.292511780349, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 11110.323062380365,
-          onSiteDays: 1571222.3794764692,
-          phaseCost: 2331675522.1233907,
-        },
-        sourceReductionResults: {
-          workDays: 1837.3416314358442,
-          onSiteDays: 1837.3416314358442,
-          phaseCost: 314983737.01635194,
-        },
-        decontaminationResults: {
-          workDays: 14.456650387136417,
-          onSiteDays: 15.68803640820273,
-          phaseCost: 954989730.8887495,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.4054548323342875,
+          onSiteDays: 15.753005524437272,
+          phaseCost: 438166,
         },
-        incidentCommandResults: {
-          onSiteDays: 1573083.4091443133,
-          phaseCost: 3856117295.2050295,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.9429482163124905,
+          onSiteDays: 12.143868662204493,
+          phaseCost: 290078,
         },
-        otherResults: {
-          otherCosts: 326776637.7459749,
+        totalCharacterizationSamplingResults: {
+          workDays: 3.348403048646778,
+          onSiteDays: 27.896874186641767,
+          phaseCost: 728244,
         },
-        generalResults: {
-          totalCost: 7784542922.979497,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.6741225210373498, onSiteDays: 0.6741225210373498, phaseCost: 62802 },
+        decontaminationResults: {
+          workDays: 8.919551575770498,
+          onSiteDays: 11.515910363876241,
+          suppliesCost: 242959,
+          otherCosts: 427173,
         },
+        incidentCommandResults: { onSiteDays: 48.08690707155536, phaseCost: 145890 },
+        otherResults: { otherCosts: 47016 },
+        generalResults: { totalCost: 1654084, areaContaminated: 7066.292511780349, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 56735.41162118223,
-        onSiteDays: 1201466.562331649,
-        phaseCost: 12207347383.657003,
-      },
-      sourceReductionResults: {
-        workDays: 705.8486945689859,
-        onSiteDays: 705.8486945689859,
-        phaseCost: 117697263.03201255,
-      },
-      decontaminationResults: {
-        workDays: 21.724137779493848,
-        onSiteDays: 24.22255620342273,
-        phaseCost: 248723213.5428214,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1202204.6335824213,
-        phaseCost: 2933792915.208888,
-      },
-      otherResults: {
-        otherCosts: 243412093.50086698,
-      },
-      generalResults: {
-        totalCost: 15750972868.941595,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 2.9928228905676075,
+        onSiteDays: 11.57759588121146,
+        phaseCost: 356383,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.718105087965881,
+        onSiteDays: 17.34081243099906,
+        phaseCost: 583560,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.710927978533489,
+        onSiteDays: 28.918408312210516,
+        phaseCost: 939943,
+      },
+      sourceReductionResults: { workDays: 4.611949940230579, onSiteDays: 4.611949940230579, phaseCost: 140332 },
+      decontaminationResults: {
+        workDays: 15.584681103374967,
+        onSiteDays: 17.4560330676511,
+        suppliesCost: 40047,
+        otherCosts: 801112,
+      },
+      incidentCommandResults: { onSiteDays: 58.986391320092196, phaseCost: 182961 },
+      otherResults: { otherCosts: 113073 },
+      generalResults: { totalCost: 2217468, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 186849.4193159035,
-        onSiteDays: 2658477.777190978,
-        phaseCost: 7451353310.6140785,
-      },
-      sourceReductionResults: {
-        workDays: 1786.6532148676047,
-        onSiteDays: 1786.6532148676047,
-        phaseCost: 69622720.05564551,
-      },
-      decontaminationResults: {
-        workDays: 15.359593314900899,
-        onSiteDays: 17.86862332883026,
-        phaseCost: 1557849529.6408482,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2660290.2990291747,
-        phaseCost: 6495413660.029409,
-      },
-      otherResults: {
-        otherCosts: 869676992.8851748,
-      },
-      generalResults: {
-        totalCost: 16443916213.225159,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 0.7414898765111165,
+        onSiteDays: 4.8182029104454625,
+        phaseCost: 308633,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.678530042539582,
+        onSiteDays: 6.605785821005279,
+        phaseCost: 533179,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 2.4200199190506986,
+        onSiteDays: 11.423988731450741,
+        phaseCost: 841812,
+      },
+      sourceReductionResults: { workDays: 0.9704679665859811, onSiteDays: 0.9704679665859811, phaseCost: 131998 },
+      decontaminationResults: {
+        workDays: 9.194298334232137,
+        onSiteDays: 11.718718082578556,
+        suppliesCost: 281868,
+        otherCosts: 528155,
+      },
+      incidentCommandResults: { onSiteDays: 32.11317478061528, phaseCost: 98538 },
+      otherResults: { otherCosts: 80620 },
+      generalResults: { totalCost: 1962991, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 42158.96176294513,
-          onSiteDays: 1920019.9230096813,
-          phaseCost: 4376871924.18679,
-        },
-        sourceReductionResults: {
-          workDays: 9455.860623783938,
-          onSiteDays: 9455.860623783938,
-          phaseCost: 434205127.6358969,
-        },
-        decontaminationResults: {
-          workDays: 18.396518151600965,
-          onSiteDays: 19.968153803834728,
-          phaseCost: 704456875.6552265,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1929503.751787269,
-          phaseCost: 4733309775.8590975,
-        },
-        otherResults: {
-          otherCosts: 346245344.47875017,
-        },
-        generalResults: {
-          totalCost: 10595089047.815762,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.358232297377251,
+          onSiteDays: 11.86285049655739,
+          phaseCost: 273051,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.6015664108368,
+          onSiteDays: 20.60288876423066,
+          phaseCost: 562786,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 6.959798708214051,
+          onSiteDays: 32.46573926078805,
+          phaseCost: 835837,
+        },
+        sourceReductionResults: { workDays: 0.35960780740498416, onSiteDays: 0.35960780740498416, phaseCost: 17448 },
+        decontaminationResults: {
+          workDays: 9.323326866450563,
+          onSiteDays: 9.535365213531852,
+          suppliesCost: 97280,
+          otherCosts: 581313,
+        },
+        incidentCommandResults: { onSiteDays: 50.36071228172489, phaseCost: 152168 },
+        otherResults: { otherCosts: 106773 },
+        generalResults: { totalCost: 1790819, areaContaminated: 9313.831456078642, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 7530.620856690695,
-          onSiteDays: 860293.8720972026,
-          phaseCost: 2143502435.0919867,
-        },
-        sourceReductionResults: {
-          workDays: 648.5355842553163,
-          onSiteDays: 648.5355842553163,
-          phaseCost: 228417204.7520916,
-        },
-        decontaminationResults: {
-          workDays: 24.96541273849211,
-          onSiteDays: 27.956934404316574,
-          phaseCost: 885145706.4415855,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.2621693646240124,
+          onSiteDays: 13.3310407045459,
+          phaseCost: 694539,
         },
-        incidentCommandResults: {
-          onSiteDays: 860978.3646158623,
-          phaseCost: 2125151135.614862,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.0569563513726266,
+          onSiteDays: 14.871140240783372,
+          phaseCost: 841659,
         },
-        otherResults: {
-          otherCosts: 189267279.5599446,
+        totalCharacterizationSamplingResults: {
+          workDays: 6.319125715996639,
+          onSiteDays: 28.202180945329275,
+          phaseCost: 1536198,
         },
-        generalResults: {
-          totalCost: 5571483761.46047,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.8556119116328103, onSiteDays: 1.8556119116328103, phaseCost: 107546 },
+        decontaminationResults: {
+          workDays: 4.3820725948042405,
+          onSiteDays: 4.773414361237878,
+          suppliesCost: 136617,
+          otherCosts: 101598,
         },
+        incidentCommandResults: { onSiteDays: 42.831207218199964, phaseCost: 132317 },
+        otherResults: { otherCosts: 113485 },
+        generalResults: { totalCost: 2127761, areaContaminated: 9313.831456078642, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 11558.634142844814,
-        onSiteDays: 194151.23287483843,
-        phaseCost: 2584061699.5723763,
-      },
-      sourceReductionResults: {
-        workDays: 9202.041606398994,
-        onSiteDays: 9202.041606398994,
-        phaseCost: 817850232.3223357,
-      },
-      decontaminationResults: {
-        workDays: 14.72679464256549,
-        onSiteDays: 16.846354112924622,
-        phaseCost: 150270438.72948602,
-      },
-      incidentCommandResults: {
-        onSiteDays: 203378.12083535036,
-        phaseCost: 495885504.88492006,
-      },
-      otherResults: {
-        otherCosts: 67907205.83641216,
-      },
-      generalResults: {
-        totalCost: 4115975081.34553,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 0.7949317325737947,
+        onSiteDays: 10.558277475381438,
+        phaseCost: 242013,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.1038119754385978,
+        onSiteDays: 45.13769251163391,
+        phaseCost: 1127053,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 3.8987437080123923,
+        onSiteDays: 55.695969987015346,
+        phaseCost: 1369066,
+      },
+      sourceReductionResults: { workDays: 0.19324215825314423, onSiteDays: 0.19324215825314423, phaseCost: 27873 },
+      decontaminationResults: {
+        workDays: 22.899532075249482,
+        onSiteDays: 25.166160334871655,
+        suppliesCost: 313309,
+        otherCosts: 868083,
+      },
+      incidentCommandResults: { onSiteDays: 89.05537248014014, phaseCost: 275828 },
+      otherResults: { otherCosts: 110451 },
+      generalResults: { totalCost: 2964610, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 20523.880380373717,
-        onSiteDays: 283216.20444674784,
-        phaseCost: 8707684211.424307,
-      },
-      sourceReductionResults: {
-        workDays: 7676.441586966127,
-        onSiteDays: 7676.441586966127,
-        phaseCost: 903620589.7155972,
-      },
-      decontaminationResults: {
-        workDays: 16.07448851086071,
-        onSiteDays: 18.574181880237113,
-        phaseCost: 177698957.61142656,
-      },
-      incidentCommandResults: {
-        onSiteDays: 290919.22021559416,
-        phaseCost: 717599913.3203876,
-      },
-      otherResults: {
-        otherCosts: 89310356.53843197,
-      },
-      generalResults: {
-        totalCost: 10595914028.61015,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 5.2961586257121995,
+        onSiteDays: 19.673358207657387,
+        phaseCost: 1202581,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 8.628344947414007,
+        onSiteDays: 22.511022892883545,
+        phaseCost: 1060315,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 13.924503573126206,
+        onSiteDays: 42.18438110054093,
+        phaseCost: 2262896,
+      },
+      sourceReductionResults: { workDays: 1.2618869349321842, onSiteDays: 1.2618869349321842, phaseCost: 123845 },
+      decontaminationResults: {
+        workDays: 6.739128388170881,
+        onSiteDays: 9.581834864472466,
+        suppliesCost: 166341,
+        otherCosts: 341272,
+      },
+      incidentCommandResults: { onSiteDays: 61.02810289994558, phaseCost: 185278 },
+      otherResults: { otherCosts: 110931 },
+      generalResults: { totalCost: 3190563, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 18920.35632094603,
-          onSiteDays: 569279.2592174391,
-          phaseCost: 7542398765.471184,
-        },
-        sourceReductionResults: {
-          workDays: 2605.998755659822,
-          onSiteDays: 2605.998755659822,
-          phaseCost: 323346255.1635195,
-        },
-        decontaminationResults: {
-          workDays: 18.69867064843389,
-          onSiteDays: 19.68594498808634,
-          phaseCost: 392838544.37467486,
-        },
-        incidentCommandResults: {
-          onSiteDays: 571912.9439180869,
-          phaseCost: 1404499223.1156063,
-        },
-        otherResults: {
-          otherCosts: 181597656.25731015,
-        },
-        generalResults: {
-          totalCost: 9844680444.382296,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.4346386641347095,
+          onSiteDays: 18.688815996293332,
+          phaseCost: 785755,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.577456174589042,
+          onSiteDays: 21.14176683559996,
+          phaseCost: 797788,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 7.012094838723751,
+          onSiteDays: 39.830582831893295,
+          phaseCost: 1583543,
+        },
+        sourceReductionResults: { workDays: 4.104149518857625, onSiteDays: 4.104149518857625, phaseCost: 172023 },
+        decontaminationResults: {
+          workDays: 3.5155378716335486,
+          onSiteDays: 4.373463979310697,
+          suppliesCost: 89116,
+          otherCosts: 202093,
+        },
+        incidentCommandResults: { onSiteDays: 56.30819633006162, phaseCost: 174318 },
+        otherResults: { otherCosts: 84564 },
+        generalResults: { totalCost: 2305657, areaContaminated: 7654.205507751135, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 15919.668192890309,
-          onSiteDays: 227588.35000715923,
-          phaseCost: 1692079652.6187735,
-        },
-        sourceReductionResults: {
-          workDays: 24.227643039634273,
-          onSiteDays: 24.227643039634273,
-          phaseCost: 1494444.352469869,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 5.47660948827952,
+          onSiteDays: 30.45350994231893,
+          phaseCost: 521234,
         },
-        decontaminationResults: {
-          workDays: 16.350253188132832,
-          onSiteDays: 16.627623884153465,
-          phaseCost: 1140175501.1504266,
-        },
-        incidentCommandResults: {
-          onSiteDays: 227637.205274083,
-          phaseCost: 553804221.5909477,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.8012662693272157,
+          onSiteDays: 8.795591332034075,
+          phaseCost: 121811,
         },
-        otherResults: {
-          otherCosts: 53376060.078965105,
+        totalCharacterizationSamplingResults: {
+          workDays: 7.277875757606735,
+          onSiteDays: 39.24910127435301,
+          phaseCost: 643045,
         },
-        generalResults: {
-          totalCost: 3440929879.7915826,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.5086083080528168, onSiteDays: 1.5086083080528168, phaseCost: 111313 },
+        decontaminationResults: {
+          workDays: 3.102240059548579,
+          onSiteDays: 4.732334905008863,
+          suppliesCost: 245224,
+          otherCosts: 109606,
         },
+        incidentCommandResults: { onSiteDays: 53.490044487414686, phaseCost: 164911 },
+        otherResults: { otherCosts: 46963 },
+        generalResults: { totalCost: 1321062, areaContaminated: 7654.205507751135, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 20453.3231561806,
-        onSiteDays: 368648.8071012867,
-        phaseCost: 7181998013.215347,
-      },
-      sourceReductionResults: {
-        workDays: 1838.612792765825,
-        onSiteDays: 1838.612792765825,
-        phaseCost: 107062834.52302617,
-      },
-      decontaminationResults: {
-        workDays: 15.300385762774475,
-        onSiteDays: 15.529933829449567,
-        phaseCost: 1769468033.6268167,
-      },
-      incidentCommandResults: {
-        onSiteDays: 370510.949827882,
-        phaseCost: 901848773.042397,
-      },
-      otherResults: {
-        otherCosts: 109319794.67142956,
-      },
-      generalResults: {
-        totalCost: 10069697449.079016,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 0.9587785659852115,
+        onSiteDays: 8.827834322592567,
+        phaseCost: 276823,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.8892362866703802,
+        onSiteDays: 21.03375565607992,
+        phaseCost: 643314,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.8480148526555915,
+        onSiteDays: 29.861589978672484,
+        phaseCost: 920137,
+      },
+      sourceReductionResults: { workDays: 0.7311374028278093, onSiteDays: 0.7311374028278093, phaseCost: 87628 },
+      decontaminationResults: {
+        workDays: 11.02958459780309,
+        onSiteDays: 11.862952621854598,
+        suppliesCost: 259000,
+        otherCosts: 438610,
+      },
+      incidentCommandResults: { onSiteDays: 50.45568000335489, phaseCost: 155718 },
+      otherResults: { otherCosts: 47785 },
+      generalResults: { totalCost: 1908878, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 45095.56749586006,
-        onSiteDays: 988336.6419486156,
-        phaseCost: 9009409904.393806,
-      },
-      sourceReductionResults: {
-        workDays: 1608.7242441602536,
-        onSiteDays: 1608.7242441602536,
-        phaseCost: 255687627.30025956,
-      },
-      decontaminationResults: {
-        workDays: 15.843464357741983,
-        onSiteDays: 16.748240480373667,
-        phaseCost: 1619262768.044177,
-      },
-      incidentCommandResults: {
-        onSiteDays: 989970.1144332561,
-        phaseCost: 2451686554.5819597,
-      },
-      otherResults: {
-        otherCosts: 261941906.55708265,
-      },
-      generalResults: {
-        totalCost: 13597988760.877285,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.825208324481375,
+        onSiteDays: 28.315745755162943,
+        phaseCost: 590840,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.3502175885202397,
+        onSiteDays: 12.549882578472085,
+        phaseCost: 260643,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.1754259130016145,
+        onSiteDays: 40.86562833363503,
+        phaseCost: 851483,
+      },
+      sourceReductionResults: { workDays: 0.9465133827067331, onSiteDays: 0.9465133827067331, phaseCost: 137076 },
+      decontaminationResults: {
+        workDays: 7.871038538373783,
+        onSiteDays: 8.579884175579037,
+        suppliesCost: 141765,
+        otherCosts: 293959,
+      },
+      incidentCommandResults: { onSiteDays: 58.3920258919208, phaseCost: 176808 },
+      otherResults: { otherCosts: 74392 },
+      generalResults: { totalCost: 1675483, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 34976.226116749895,
-          onSiteDays: 8004146.059667819,
-          phaseCost: 3910754422.343912,
-        },
-        sourceReductionResults: {
-          workDays: 5708.386969247069,
-          onSiteDays: 5708.386969247069,
-          phaseCost: 1393706057.376242,
-        },
-        decontaminationResults: {
-          workDays: 20.322090893826,
-          onSiteDays: 22.46008835440969,
-          phaseCost: 435578420.49552035,
-        },
-        incidentCommandResults: {
-          onSiteDays: 8009884.906725421,
-          phaseCost: 19823000829.75723,
-        },
-        otherResults: {
-          otherCosts: 1696649330.162398,
-        },
-        generalResults: {
-          totalCost: 27259689060.135303,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.1853308799007851,
+          onSiteDays: 6.346353499300806,
+          phaseCost: 208512,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.6762615094010975,
+          onSiteDays: 43.98038556374551,
+          phaseCost: 2114340,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 6.861592389301883,
+          onSiteDays: 50.32673906304631,
+          phaseCost: 2322852,
+        },
+        sourceReductionResults: { workDays: 0.39779494851021396, onSiteDays: 0.39779494851021396, phaseCost: 31808 },
+        decontaminationResults: {
+          workDays: 11.56660986472075,
+          onSiteDays: 12.767561112243579,
+          suppliesCost: 478701,
+          otherCosts: 647652,
+        },
+        incidentCommandResults: { onSiteDays: 71.49209512380011, phaseCost: 221562 },
+        otherResults: { otherCosts: 52134 },
+        generalResults: { totalCost: 3754709, areaContaminated: 11350.6946843934, decontaminationRounds: 2 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 13406.807122815157,
-          onSiteDays: 1399678.883971572,
-          phaseCost: 4762310749.31776,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.814641993579184,
+          onSiteDays: 29.931407816886484,
+          phaseCost: 1006036,
         },
-        sourceReductionResults: {
-          workDays: 925.1975822430414,
-          onSiteDays: 925.1975822430414,
-          phaseCost: 39303094.68293609,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 8.00190950478899,
+          onSiteDays: 70.45315456572914,
+          phaseCost: 3183958,
         },
-        decontaminationResults: {
-          workDays: 20.213129863425422,
-          onSiteDays: 20.848996325360844,
-          phaseCost: 121754228.64272642,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1400632.9305501403,
-          phaseCost: 3458353463.765752,
+        totalCharacterizationSamplingResults: {
+          workDays: 14.816551498368174,
+          onSiteDays: 100.38456238261563,
+          phaseCost: 4189994,
         },
-        otherResults: {
-          otherCosts: 373558899.71127963,
-        },
-        generalResults: {
-          totalCost: 8755280436.120455,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 3.5789181446398084, onSiteDays: 3.5789181446398084, phaseCost: 162565 },
+        decontaminationResults: {
+          workDays: 12.382562070941217,
+          onSiteDays: 13.344178265040782,
+          suppliesCost: 121071,
+          otherCosts: 421905,
         },
+        incidentCommandResults: { onSiteDays: 125.30765879229622, phaseCost: 382150 },
+        otherResults: { otherCosts: 145829 },
+        generalResults: { totalCost: 5423514, areaContaminated: 11350.6946843934, decontaminationRounds: 2 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 23346.987102261955,
-        onSiteDays: 1583844.2650500203,
-        phaseCost: 4278518068.7890987,
-      },
-      sourceReductionResults: {
-        workDays: 18712.640914156753,
-        onSiteDays: 18712.640914156753,
-        phaseCost: 1252003670.1776075,
-      },
-      decontaminationResults: {
-        workDays: 16.470678946112905,
-        onSiteDays: 18.542899482311423,
-        phaseCost: 411294156.1379704,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1602583.4488636595,
-        phaseCost: 3895326999.684547,
-      },
-      otherResults: {
-        otherCosts: 492560954.06448096,
-      },
-      generalResults: {
-        totalCost: 10329703848.853704,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 1.5766693499817723,
+        onSiteDays: 10.108492377426405,
+        phaseCost: 526584,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 3.9187379050629536,
+        onSiteDays: 9.394722077870629,
+        phaseCost: 310387,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.495407255044726,
+        onSiteDays: 19.503214455297034,
+        phaseCost: 836971,
+      },
+      sourceReductionResults: { workDays: 0.8103407702889182, onSiteDays: 0.8103407702889182, phaseCost: 79784 },
+      decontaminationResults: {
+        workDays: 12.769970918486354,
+        onSiteDays: 13.031852103311534,
+        suppliesCost: 419180,
+        otherCosts: 343237,
+      },
+      incidentCommandResults: { onSiteDays: 41.34540732889749, phaseCost: 126725 },
+      otherResults: { otherCosts: 61097 },
+      generalResults: { totalCost: 1866994, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 69039.77727778949,
-        onSiteDays: 1285562.5561747572,
-        phaseCost: 4931876637.862302,
-      },
-      sourceReductionResults: {
-        workDays: 14981.827775544942,
-        onSiteDays: 14981.827775544942,
-        phaseCost: 2537177887.988242,
-      },
-      decontaminationResults: {
-        workDays: 25.069735738232207,
-        onSiteDays: 25.20080765760523,
-        phaseCost: 1905670420.2414887,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1300577.5847579597,
-        phaseCost: 3159077614.8807735,
-      },
-      otherResults: {
-        otherCosts: 386255596.78287524,
-      },
-      generalResults: {
-        totalCost: 12920058157.755682,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.3192530017900186,
+        onSiteDays: 46.93769539581551,
+        phaseCost: 874927,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.587288591094194,
+        onSiteDays: 46.530242874569986,
+        phaseCost: 918155,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.906541592884213,
+        onSiteDays: 93.4679382703855,
+        phaseCost: 1793082,
+      },
+      sourceReductionResults: { workDays: 0.9206293724239443, onSiteDays: 0.9206293724239443, phaseCost: 177177 },
+      decontaminationResults: {
+        workDays: 3.419872700800158,
+        onSiteDays: 4.883789216373998,
+        suppliesCost: 337731,
+        otherCosts: 186239,
+      },
+      incidentCommandResults: { onSiteDays: 107.27235685918345, phaseCost: 323924 },
+      otherResults: { otherCosts: 86757 },
+      generalResults: { totalCost: 2904910, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 13787.778568986349,
-          onSiteDays: 67807.25021996179,
-          phaseCost: 2249103933.3869095,
-        },
-        sourceReductionResults: {
-          workDays: 3525.861778781479,
-          onSiteDays: 3525.861778781479,
-          phaseCost: 260720568.86927432,
-        },
-        decontaminationResults: {
-          workDays: 19.39944756831961,
-          onSiteDays: 20.653290908237288,
-          phaseCost: 923996080.1782397,
-        },
-        incidentCommandResults: {
-          onSiteDays: 71361.76528965149,
-          phaseCost: 174715583.63464716,
-        },
-        otherResults: {
-          otherCosts: 15859227.87828546,
-        },
-        generalResults: {
-          totalCost: 3624395393.947356,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.2745889594898503,
+          onSiteDays: 12.681280074387963,
+          phaseCost: 448248,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.5533118089948156,
+          onSiteDays: 3.2304801359187345,
+          phaseCost: 76169,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 3.8279007684846658,
+          onSiteDays: 15.911760210306698,
+          phaseCost: 524417,
+        },
+        sourceReductionResults: { workDays: 0.5533952426662623, onSiteDays: 0.5533952426662623, phaseCost: 40252 },
+        decontaminationResults: {
+          workDays: 3.423937374358982,
+          onSiteDays: 6.2245303723552565,
+          suppliesCost: 74004,
+          otherCosts: 182603,
+        },
+        incidentCommandResults: { onSiteDays: 30.689685825328215, phaseCost: 93930 },
+        otherResults: { otherCosts: 51985 },
+        generalResults: { totalCost: 967191, areaContaminated: 5400.646580476466, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 51457.60208623097,
-          onSiteDays: 199913.1280654336,
-          phaseCost: 2198166341.188368,
-        },
-        sourceReductionResults: {
-          workDays: 3870.582662799286,
-          onSiteDays: 3870.582662799286,
-          phaseCost: 1155812075.1016598,
-        },
-        decontaminationResults: {
-          workDays: 19.69376208276808,
-          onSiteDays: 21.145655907957266,
-          phaseCost: 542455381.1659412,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.9104565779902414,
+          onSiteDays: 19.216441318926115,
+          phaseCost: 429590,
         },
-        incidentCommandResults: {
-          onSiteDays: 203812.85638414082,
-          phaseCost: 502598786.41872597,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 4.234746231914314,
+          onSiteDays: 40.82891537928825,
+          phaseCost: 1321523,
         },
-        otherResults: {
-          otherCosts: 67714370.03325191,
+        totalCharacterizationSamplingResults: {
+          workDays: 8.145202809904555,
+          onSiteDays: 60.04535669821436,
+          phaseCost: 1751113,
         },
-        generalResults: {
-          totalCost: 4466746953.907947,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.04239979397618105, onSiteDays: 0.04239979397618105, phaseCost: 4787 },
+        decontaminationResults: {
+          workDays: 19.51708458981409,
+          onSiteDays: 19.55426514068485,
+          suppliesCost: 98799,
+          otherCosts: 1064367,
         },
+        incidentCommandResults: { onSiteDays: 87.6420216328754, phaseCost: 265370 },
+        otherResults: { otherCosts: 88820 },
+        generalResults: { totalCost: 3273256, areaContaminated: 5400.646580476466, decontaminationRounds: 3 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 27773.985042875924,
-        onSiteDays: 2445978.7145827725,
-        phaseCost: 5675853397.890369,
-      },
-      sourceReductionResults: {
-        workDays: 10166.08234388742,
-        onSiteDays: 10166.08234388742,
-        phaseCost: 3099609416.880554,
-      },
-      decontaminationResults: {
-        workDays: 11.745991914706769,
-        onSiteDays: 13.130335054623508,
-        phaseCost: 1032254530.3192141,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2456165.927261715,
-        phaseCost: 6075763080.26417,
-      },
-      otherResults: {
-        otherCosts: 464105628.64433736,
-      },
-      generalResults: {
-        totalCost: 16347586053.998644,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 5.280070853296447,
+        onSiteDays: 33.44759703845588,
+        phaseCost: 867781,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.2728032731102783,
+        onSiteDays: 9.076356587918275,
+        phaseCost: 223163,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.552874126406725,
+        onSiteDays: 42.52395362637416,
+        phaseCost: 1090944,
+      },
+      sourceReductionResults: { workDays: 3.5003186785039238, onSiteDays: 3.5003186785039238, phaseCost: 257850 },
+      decontaminationResults: {
+        workDays: 4.785465822970836,
+        onSiteDays: 6.267256591298445,
+        suppliesCost: 226602,
+        otherCosts: 156932,
+      },
+      incidentCommandResults: { onSiteDays: 60.29152889617653, phaseCost: 183487 },
+      otherResults: { otherCosts: 63250 },
+      generalResults: { totalCost: 1979065, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 49442.328942849126,
-        onSiteDays: 703058.6472700709,
-        phaseCost: 4278950727.4201202,
-      },
-      sourceReductionResults: {
-        workDays: 4460.082090628977,
-        onSiteDays: 4460.082090628977,
-        phaseCost: 238380576.71328515,
-      },
-      decontaminationResults: {
-        workDays: 26.57761182696037,
-        onSiteDays: 28.45867423933434,
-        phaseCost: 639915546.920817,
-      },
-      incidentCommandResults: {
-        onSiteDays: 707555.1880349392,
-        phaseCost: 1712669820.9551444,
-      },
-      otherResults: {
-        otherCosts: 129478470.61836912,
-      },
-      generalResults: {
-        totalCost: 6999395142.627736,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.3606881949925977,
+        onSiteDays: 27.22523127715001,
+        phaseCost: 550449,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 13.640279653998295,
+        onSiteDays: 44.79204580064404,
+        phaseCost: 784518,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 17.000967848990893,
+        onSiteDays: 72.01727707779405,
+        phaseCost: 1334967,
+      },
+      sourceReductionResults: { workDays: 2.2509132511944907, onSiteDays: 2.2509132511944907, phaseCost: 120117 },
+      decontaminationResults: {
+        workDays: 7.839056239425916,
+        onSiteDays: 9.744217152182063,
+        suppliesCost: 392588,
+        otherCosts: 359624,
+      },
+      incidentCommandResults: { onSiteDays: 92.0124074811706, phaseCost: 283139 },
+      otherResults: { otherCosts: 71285 },
+      generalResults: { totalCost: 2561720, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 8349.684006003743,
-          onSiteDays: 586338.3325455298,
-          phaseCost: 2391810988.4683437,
-        },
-        sourceReductionResults: {
-          workDays: 985.8622022087079,
-          onSiteDays: 985.8622022087079,
-          phaseCost: 51297788.382951505,
-        },
-        decontaminationResults: {
-          workDays: 19.166670761575613,
-          onSiteDays: 21.49206015991328,
-          phaseCost: 931848085.1675675,
-        },
-        incidentCommandResults: {
-          onSiteDays: 587353.6868078985,
-          phaseCost: 1445045413.5509582,
-        },
-        otherResults: {
-          otherCosts: 138586676.05113947,
-        },
-        generalResults: {
-          totalCost: 4958588951.62096,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.5498929543002724,
+          onSiteDays: 22.18470314523608,
+          phaseCost: 787978,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.1401054461821105,
+          onSiteDays: 30.90591366392298,
+          phaseCost: 1054399,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 5.6899984004823825,
+          onSiteDays: 53.09061680915906,
+          phaseCost: 1842377,
+        },
+        sourceReductionResults: { workDays: 3.0053341602850026, onSiteDays: 3.0053341602850026, phaseCost: 462336 },
+        decontaminationResults: {
+          workDays: 7.043954053671088,
+          onSiteDays: 7.979221084848796,
+          suppliesCost: 369964,
+          otherCosts: 289004,
+        },
+        incidentCommandResults: { onSiteDays: 72.07517205429286, phaseCost: 217397 },
+        otherResults: { otherCosts: 88855 },
+        generalResults: { totalCost: 3269933, areaContaminated: 12149.267684935889, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 49469.50733146454,
-          onSiteDays: 3171847.209406712,
-          phaseCost: 3278164116.4889555,
-        },
-        sourceReductionResults: {
-          workDays: 3797.36205454532,
-          onSiteDays: 3797.36205454532,
-          phaseCost: 788832858.52745,
-        },
-        decontaminationResults: {
-          workDays: 15.371477813313595,
-          onSiteDays: 16.417435462916604,
-          phaseCost: 940084740.1774776,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.8976456367602195,
+          onSiteDays: 27.26814940862643,
+          phaseCost: 1099095,
         },
-        incidentCommandResults: {
-          onSiteDays: 3175668.9888967206,
-          phaseCost: 7865526887.887604,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 17.479917680711267,
+          onSiteDays: 46.71224206199395,
+          phaseCost: 1478015,
         },
-        otherResults: {
-          otherCosts: 920346187.8854668,
+        totalCharacterizationSamplingResults: {
+          workDays: 22.377563317471488,
+          onSiteDays: 73.98039147062038,
+          phaseCost: 2577110,
         },
-        generalResults: {
-          totalCost: 13792954790.966953,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 2.1088250794358765, onSiteDays: 2.1088250794358765, phaseCost: 144766 },
+        decontaminationResults: {
+          workDays: 4.506903706934979,
+          onSiteDays: 5.810605168996986,
+          suppliesCost: 158395,
+          otherCosts: 105992,
         },
+        incidentCommandResults: { onSiteDays: 89.89982171905324, phaseCost: 273373 },
+        otherResults: { otherCosts: 111068 },
+        generalResults: { totalCost: 3370704, areaContaminated: 12149.267684935889, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 20183.765791919563,
-        onSiteDays: 261713.71365346032,
-        phaseCost: 2799846518.983762,
-      },
-      sourceReductionResults: {
-        workDays: 17627.99872788267,
-        onSiteDays: 17627.99872788267,
-        phaseCost: 3179941847.853946,
-      },
-      decontaminationResults: {
-        workDays: 22.143412749083577,
-        onSiteDays: 23.856499918470277,
-        phaseCost: 2781135990.7925577,
-      },
-      incidentCommandResults: {
-        onSiteDays: 279373.56888126145,
-        phaseCost: 687435970.4845067,
-      },
-      otherResults: {
-        otherCosts: 58728505.44371596,
-      },
-      generalResults: {
-        totalCost: 9507088833.558487,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 0.9788472886871584,
+        onSiteDays: 4.306156639191825,
+        phaseCost: 126940,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 0.9131203686901008,
+        onSiteDays: 4.975720721848726,
+        phaseCost: 215348,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 1.8919676573772592,
+        onSiteDays: 9.28187736104055,
+        phaseCost: 342288,
+      },
+      sourceReductionResults: { workDays: 0.21796744407578847, onSiteDays: 0.21796744407578847, phaseCost: 37717 },
+      decontaminationResults: {
+        workDays: 17.914465148447654,
+        onSiteDays: 19.834967445310895,
+        suppliesCost: 53854,
+        otherCosts: 597850,
+      },
+      incidentCommandResults: { onSiteDays: 37.334812250427234, phaseCost: 115068 },
+      otherResults: { otherCosts: 56408 },
+      generalResults: { totalCost: 1203185, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 21892.015803443952,
-        onSiteDays: 392047.064440556,
-        phaseCost: 7629101725.614522,
-      },
-      sourceReductionResults: {
-        workDays: 9062.016440578223,
-        onSiteDays: 9062.016440578223,
-        phaseCost: 410722967.22193635,
-      },
-      decontaminationResults: {
-        workDays: 18.290749842368704,
-        onSiteDays: 19.00903397333087,
-        phaseCost: 1660986605.6755679,
-      },
-      incidentCommandResults: {
-        onSiteDays: 401136.0899151075,
-        phaseCost: 986424289.5144496,
-      },
-      otherResults: {
-        otherCosts: 130285353.50789577,
-      },
-      generalResults: {
-        totalCost: 10817520941.534372,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.7139709944741783,
+        onSiteDays: 9.007237281866622,
+        phaseCost: 337415,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.677794459673148,
+        onSiteDays: 20.68727087335006,
+        phaseCost: 1112751,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.391765454147325,
+        onSiteDays: 29.69450815521668,
+        phaseCost: 1450166,
+      },
+      sourceReductionResults: { workDays: 0.3444394574305711, onSiteDays: 0.3444394574305711, phaseCost: 81078 },
+      decontaminationResults: {
+        workDays: 3.5959881177628388,
+        onSiteDays: 6.082283929940845,
+        suppliesCost: 52731,
+        otherCosts: 245386,
+      },
+      incidentCommandResults: { onSiteDays: 44.1212315425881, phaseCost: 134946 },
+      otherResults: { otherCosts: 88448 },
+      generalResults: { totalCost: 2052755, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 7636.048333561884,
-          onSiteDays: 164870.3007231924,
-          phaseCost: 3927485151.0008545,
-        },
-        sourceReductionResults: {
-          workDays: 2712.609618347857,
-          onSiteDays: 2712.609618347857,
-          phaseCost: 528158607.1116007,
-        },
-        decontaminationResults: {
-          workDays: 19.638860048409285,
-          onSiteDays: 22.0333069635167,
-          phaseCost: 457734318.0623232,
-        },
-        incidentCommandResults: {
-          onSiteDays: 167612.94364850377,
-          phaseCost: 411916838.2375468,
-        },
-        otherResults: {
-          otherCosts: 32906598.846241333,
-        },
-        generalResults: {
-          totalCost: 5358201513.258567,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.6188119922396123,
+          onSiteDays: 15.042096952665613,
+          phaseCost: 365706,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.4517057413531536,
+          onSiteDays: 19.36223036668393,
+          phaseCost: 412995,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 6.070517733592766,
+          onSiteDays: 34.40432731934955,
+          phaseCost: 778701,
+        },
+        sourceReductionResults: { workDays: 0.004177791353801113, onSiteDays: 0.004177791353801113, phaseCost: 4402 },
+        decontaminationResults: {
+          workDays: 4.659867714545658,
+          onSiteDays: 6.977080879261969,
+          suppliesCost: 204925,
+          otherCosts: 270758,
+        },
+        incidentCommandResults: { onSiteDays: 49.38558598996532, phaseCost: 148877 },
+        otherResults: { otherCosts: 82610 },
+        generalResults: { totalCost: 1490273, areaContaminated: 5586.205786230556, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 15641.139854156216,
-          onSiteDays: 1700430.752893472,
-          phaseCost: 6337737715.406536,
-        },
-        sourceReductionResults: {
-          workDays: 4268.545549624712,
-          onSiteDays: 4268.545549624712,
-          phaseCost: 714944503.7838051,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 0.5151550269417482,
+          onSiteDays: 4.8190865676177,
+          phaseCost: 153115,
         },
-        decontaminationResults: {
-          workDays: 16.05783407391464,
-          onSiteDays: 18.676984199713214,
-          phaseCost: 331117312.5680068,
-        },
-        incidentCommandResults: {
-          onSiteDays: 1704725.9754272965,
-          phaseCost: 4175605301.6859107,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.16515228953317,
+          onSiteDays: 17.55090918150053,
+          phaseCost: 436090,
         },
-        otherResults: {
-          otherCosts: 574988194.0268182,
+        totalCharacterizationSamplingResults: {
+          workDays: 3.6803073164749183,
+          onSiteDays: 22.369995749118228,
+          phaseCost: 589205,
         },
-        generalResults: {
-          totalCost: 12134393027.471075,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 1.2369455305564363, onSiteDays: 1.2369455305564363, phaseCost: 30228 },
+        decontaminationResults: {
+          workDays: 4.470714435789435,
+          onSiteDays: 5.119225081084116,
+          suppliesCost: 24003,
+          otherCosts: 216871,
         },
+        incidentCommandResults: { onSiteDays: 36.72616636075878, phaseCost: 113898 },
+        otherResults: { otherCosts: 72536 },
+        generalResults: { totalCost: 1046741, areaContaminated: 5586.205786230556, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 42689.998198224435,
-        onSiteDays: 1264052.5521031406,
-        phaseCost: 12360159278.114853,
-      },
-      sourceReductionResults: {
-        workDays: 50.60839388728313,
-        onSiteDays: 50.60839388728313,
-        phaseCost: 4189666.6993701556,
-      },
-      decontaminationResults: {
-        workDays: 20.019399100686286,
-        onSiteDays: 22.008447024507554,
-        phaseCost: 972701324.4794765,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1264133.1689440524,
-        phaseCost: 3127153904.3291254,
-      },
-      otherResults: {
-        otherCosts: 346016197.3450583,
-      },
-      generalResults: {
-        totalCost: 16810220370.967884,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.448647312737897,
+        onSiteDays: 22.91878076269484,
+        phaseCost: 1227597,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 7.407036990192392,
+        onSiteDays: 21.670460731223375,
+        phaseCost: 873659,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 10.855684302930289,
+        onSiteDays: 44.589241493918216,
+        phaseCost: 2101256,
+      },
+      sourceReductionResults: { workDays: 0.3721204505572616, onSiteDays: 0.3721204505572616, phaseCost: 34243 },
+      decontaminationResults: {
+        workDays: 8.834349499278318,
+        onSiteDays: 10.54882277002298,
+        suppliesCost: 28072,
+        otherCosts: 321545,
+      },
+      incidentCommandResults: { onSiteDays: 63.51018471449846, phaseCost: 195860 },
+      otherResults: { otherCosts: 87869 },
+      generalResults: { totalCost: 2768845, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 46925.00835662355,
-        onSiteDays: 4746471.458561779,
-        phaseCost: 8546535690.691994,
-      },
-      sourceReductionResults: {
-        workDays: 15452.468674503378,
-        onSiteDays: 15452.468674503378,
-        phaseCost: 2086908038.4847991,
-      },
-      decontaminationResults: {
-        workDays: 23.68317284055128,
-        onSiteDays: 25.279878068780498,
-        phaseCost: 1169224896.851818,
-      },
-      incidentCommandResults: {
-        onSiteDays: 4761957.207114351,
-        phaseCost: 11814799127.118832,
-      },
-      otherResults: {
-        otherCosts: 1549773963.7492213,
-      },
-      generalResults: {
-        totalCost: 25167241716.896664,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.2504726344770525,
+        onSiteDays: 12.499137122709211,
+        phaseCost: 295559,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 0.8643056430259243,
+        onSiteDays: 7.359783057504794,
+        phaseCost: 205008,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.114778277502976,
+        onSiteDays: 19.858920180214007,
+        phaseCost: 500567,
+      },
+      sourceReductionResults: { workDays: 1.4361106284499132, onSiteDays: 1.4361106284499132, phaseCost: 237078 },
+      decontaminationResults: {
+        workDays: 7.1168711341723965,
+        onSiteDays: 8.986304245420337,
+        suppliesCost: 138938,
+        otherCosts: 152954,
+      },
+      incidentCommandResults: { onSiteDays: 38.28133505408426, phaseCost: 118716 },
+      otherResults: { otherCosts: 107991 },
+      generalResults: { totalCost: 1256244, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 15409.011463744322,
-          onSiteDays: 3302778.7793874484,
-          phaseCost: 2125235421.4500988,
-        },
-        sourceReductionResults: {
-          workDays: 2012.7928498434824,
-          onSiteDays: 2012.7928498434824,
-          phaseCost: 62043555.80054105,
-        },
-        decontaminationResults: {
-          workDays: 21.77394284256127,
-          onSiteDays: 22.76415389374926,
-          phaseCost: 933672210.2411053,
-        },
-        incidentCommandResults: {
-          onSiteDays: 3304822.3363911854,
-          phaseCost: 8042792858.581497,
-        },
-        otherResults: {
-          otherCosts: 894538952.9929628,
-        },
-        generalResults: {
-          totalCost: 12058282999.066204,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 1.6386919082509364,
+          onSiteDays: 13.493358989794611,
+          phaseCost: 515835,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.5787026119469565,
+          onSiteDays: 15.447837135740173,
+          phaseCost: 524144,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 4.217394520197892,
+          onSiteDays: 28.941196125534784,
+          phaseCost: 1039979,
+        },
+        sourceReductionResults: { workDays: 0.4295406423627896, onSiteDays: 0.4295406423627896, phaseCost: 21462 },
+        decontaminationResults: {
+          workDays: 8.115945403025473,
+          onSiteDays: 8.910135471473945,
+          suppliesCost: 111446,
+          otherCosts: 479349,
+        },
+        incidentCommandResults: { onSiteDays: 46.28087223937152, phaseCost: 142596 },
+        otherResults: { otherCosts: 99644 },
+        generalResults: { totalCost: 1894476, areaContaminated: 10980.311074755227, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 62924.15197408797,
-          onSiteDays: 263857.4481767324,
-          phaseCost: 3549730827.485305,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 2.37527826232524,
+          onSiteDays: 17.298000873016992,
+          phaseCost: 564180,
         },
-        sourceReductionResults: {
-          workDays: 886.0667327397923,
-          onSiteDays: 886.0667327397923,
-          phaseCost: 99762962.16694805,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 5.144119896130942,
+          onSiteDays: 24.029743987430273,
+          phaseCost: 774408,
         },
-        decontaminationResults: {
-          workDays: 15.985654438376812,
-          onSiteDays: 16.716759659749634,
-          phaseCost: 291084702.41111785,
-        },
-        incidentCommandResults: {
-          onSiteDays: 264768.23166913196,
-          phaseCost: 647221492.559937,
+        totalCharacterizationSamplingResults: {
+          workDays: 7.519398158456182,
+          onSiteDays: 41.32774486044727,
+          phaseCost: 1338588,
         },
-        otherResults: {
-          otherCosts: 55316678.55106161,
-        },
-        generalResults: {
-          totalCost: 4643116663.17437,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 2.344592218291535, onSiteDays: 2.344592218291535, phaseCost: 185344 },
+        decontaminationResults: {
+          workDays: 4.79130901158585,
+          onSiteDays: 6.19945016554544,
+          suppliesCost: 121459,
+          otherCosts: 257895,
         },
+        incidentCommandResults: { onSiteDays: 57.87178724428425, phaseCost: 179508 },
+        otherResults: { otherCosts: 74762 },
+        generalResults: { totalCost: 2157556, areaContaminated: 10980.311074755227, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 27947.809919105664,
-        onSiteDays: 1694764.4377158466,
-        phaseCost: 8965761513.60154,
-      },
-      sourceReductionResults: {
-        workDays: 8870.341048685688,
-        onSiteDays: 8870.341048685688,
-        phaseCost: 2295561600.711477,
-      },
-      decontaminationResults: {
-        workDays: 15.12530473971863,
-        onSiteDays: 15.53890287027203,
-        phaseCost: 948266832.8336613,
-      },
-      incidentCommandResults: {
-        onSiteDays: 1703658.3176674026,
-        phaseCost: 4160830789.1401787,
-      },
-      otherResults: {
-        otherCosts: 369570714.9325047,
-      },
-      generalResults: {
-        totalCost: 16739991451.219362,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.0133992872585456,
+        onSiteDays: 30.700692622465553,
+        phaseCost: 642988,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.4585027200095246,
+        onSiteDays: 15.155448289321539,
+        phaseCost: 303462,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 5.471902007268071,
+        onSiteDays: 45.856140911787094,
+        phaseCost: 946450,
+      },
+      sourceReductionResults: { workDays: 3.006727337337165, onSiteDays: 3.006727337337165, phaseCost: 414620 },
+      decontaminationResults: {
+        workDays: 16.518669197456603,
+        onSiteDays: 19.25872612168517,
+        suppliesCost: 359064,
+        otherCosts: 764441,
+      },
+      incidentCommandResults: { onSiteDays: 76.12159437080943, phaseCost: 235158 },
+      otherResults: { otherCosts: 131134 },
+      generalResults: { totalCost: 2850867, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 48443.66308412254,
-        onSiteDays: 2956206.6122076814,
-        phaseCost: 3937046689.249566,
-      },
-      sourceReductionResults: {
-        workDays: 5346.549001442426,
-        onSiteDays: 5346.549001442426,
-        phaseCost: 137139328.11585882,
-      },
-      decontaminationResults: {
-        workDays: 18.054020930792674,
-        onSiteDays: 21.020810086284953,
-        phaseCost: 237385062.57316363,
-      },
-      incidentCommandResults: {
-        onSiteDays: 2961582.18201921,
-        phaseCost: 7351332524.53121,
-      },
-      otherResults: {
-        otherCosts: 863206889.4955373,
-      },
-      generalResults: {
-        totalCost: 12526110493.965336,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 7.309883281430787,
+        onSiteDays: 36.28147361622458,
+        phaseCost: 804961,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.0278700173786295,
+        onSiteDays: 8.57295426210697,
+        phaseCost: 208961,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 8.337753298809417,
+        onSiteDays: 44.85442787833155,
+        phaseCost: 1013922,
+      },
+      sourceReductionResults: { workDays: 2.7250898864635156, onSiteDays: 2.7250898864635156, phaseCost: 237538 },
+      decontaminationResults: {
+        workDays: 3.696822025975404,
+        onSiteDays: 6.39945929506781,
+        suppliesCost: 116835,
+        otherCosts: 225526,
+      },
+      incidentCommandResults: { onSiteDays: 61.97897705986287, phaseCost: 189923 },
+      otherResults: { otherCosts: 100482 },
+      generalResults: { totalCost: 1884226, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 19662.21184210316,
-          onSiteDays: 922200.5786794472,
-          phaseCost: 3703845721.814994,
-        },
-        sourceReductionResults: {
-          workDays: 4409.585637188785,
-          onSiteDays: 4409.585637188785,
-          phaseCost: 202937683.51462695,
-        },
-        decontaminationResults: {
-          workDays: 16.30289638049502,
-          onSiteDays: 17.39865824752456,
-          phaseCost: 254230304.22624007,
-        },
-        incidentCommandResults: {
-          onSiteDays: 926635.5629748835,
-          phaseCost: 2284605073.075948,
-        },
-        otherResults: {
-          otherCosts: 177445867.6326445,
-        },
-        generalResults: {
-          totalCost: 6623064650.264454,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.859583381679759,
+          onSiteDays: 28.44070207113837,
+          phaseCost: 612016,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 1.58532268922563,
+          onSiteDays: 16.01398494058007,
+          phaseCost: 387680,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 6.444906070905389,
+          onSiteDays: 44.45468701171844,
+          phaseCost: 999696,
+        },
+        sourceReductionResults: { workDays: 8.193639971180176, onSiteDays: 8.193639971180176, phaseCost: 274664 },
+        decontaminationResults: {
+          workDays: 3.3278636006470452,
+          onSiteDays: 5.756316590531803,
+          suppliesCost: 116931,
+          otherCosts: 189843,
+        },
+        incidentCommandResults: { onSiteDays: 66.40464357343042, phaseCost: 202665 },
+        otherResults: { otherCosts: 100970 },
+        generalResults: { totalCost: 1884769, areaContaminated: 9440.843666540655, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 19576.591479839793,
-          onSiteDays: 1700140.6631990613,
-          phaseCost: 1830528899.484612,
-        },
-        sourceReductionResults: {
-          workDays: 4450.6623232841075,
-          onSiteDays: 4450.6623232841075,
-          phaseCost: 387654124.3124987,
-        },
-        decontaminationResults: {
-          workDays: 19.48885596322102,
-          onSiteDays: 20.992443990891903,
-          phaseCost: 108991644.37361108,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.568754983920103,
+          onSiteDays: 15.636585450905892,
+          phaseCost: 780765,
         },
-        incidentCommandResults: {
-          onSiteDays: 1704620.3179663364,
-          phaseCost: 4135181434.6403975,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 0.8769517202618009,
+          onSiteDays: 6.774350612544064,
+          phaseCost: 294589,
         },
-        otherResults: {
-          otherCosts: 313647053.29434603,
+        totalCharacterizationSamplingResults: {
+          workDays: 5.445706704181903,
+          onSiteDays: 22.410936063449956,
+          phaseCost: 1075354,
         },
-        generalResults: {
-          totalCost: 6776003156.105465,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 6.50666249647982, onSiteDays: 6.50666249647982, phaseCost: 244190 },
+        decontaminationResults: {
+          workDays: 7.929279063346161,
+          onSiteDays: 8.125622859719586,
+          suppliesCost: 76362,
+          otherCosts: 387655,
         },
+        incidentCommandResults: { onSiteDays: 45.04322141964936, phaseCost: 136627 },
+        otherResults: { otherCosts: 150994 },
+        generalResults: { totalCost: 2071182, areaContaminated: 9440.843666540655, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 15847.683706362623,
-        onSiteDays: 183037.1445045717,
-        phaseCost: 4743280959.253785,
-      },
-      sourceReductionResults: {
-        workDays: 1630.1885294775238,
-        onSiteDays: 1630.1885294775238,
-        phaseCost: 190466609.51895183,
-      },
-      decontaminationResults: {
-        workDays: 13.292651371167194,
-        onSiteDays: 14.976310372114256,
-        phaseCost: 694961751.0304431,
-      },
-      incidentCommandResults: {
-        onSiteDays: 184690.30934442134,
-        phaseCost: 453106702.88613963,
-      },
-      otherResults: {
-        otherCosts: 44364927.11227978,
-      },
-      generalResults: {
-        totalCost: 6126180949.8015995,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 0.9422107837754111,
+        onSiteDays: 6.945775438889038,
+        phaseCost: 255885,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.70606893832455,
+        onSiteDays: 19.219904550940054,
+        phaseCost: 797543,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 3.648279722099961,
+        onSiteDays: 26.165679989829094,
+        phaseCost: 1053428,
+      },
+      sourceReductionResults: { workDays: 0.11953196894165131, onSiteDays: 0.11953196894165131, phaseCost: 11342 },
+      decontaminationResults: {
+        workDays: 13.880437917746706,
+        onSiteDays: 16.36395834837201,
+        suppliesCost: 290211,
+        otherCosts: 709829,
+      },
+      incidentCommandResults: { onSiteDays: 50.649170307142754, phaseCost: 155304 },
+      otherResults: { otherCosts: 135082 },
+      generalResults: { totalCost: 2355196, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 7568.637033189831,
-        onSiteDays: 469789.36315380706,
-        phaseCost: 1856910844.7126575,
-      },
-      sourceReductionResults: {
-        workDays: 11698.187339195305,
-        onSiteDays: 11698.187339195305,
-        phaseCost: 339548050.5792459,
-      },
-      decontaminationResults: {
-        workDays: 20.96632679318225,
-        onSiteDays: 21.003627552418884,
-        phaseCost: 514633218.0176788,
-      },
-      incidentCommandResults: {
-        onSiteDays: 481516.55412055476,
-        phaseCost: 1189508574.3827157,
-      },
-      otherResults: {
-        otherCosts: 115530298.88672166,
-      },
-      generalResults: {
-        totalCost: 4016130986.5790195,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 0.8253504649531294,
+        onSiteDays: 10.023608918964408,
+        phaseCost: 240862,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 10.527390014794335,
+        onSiteDays: 48.98828802431066,
+        phaseCost: 1315573,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 11.352740479747464,
+        onSiteDays: 59.01189694327507,
+        phaseCost: 1556435,
+      },
+      sourceReductionResults: { workDays: 3.0092512964298797, onSiteDays: 3.0092512964298797, phaseCost: 604728 },
+      decontaminationResults: {
+        workDays: 12.325815824169156,
+        onSiteDays: 12.760277227675607,
+        suppliesCost: 141989,
+        otherCosts: 542456,
+      },
+      incidentCommandResults: { onSiteDays: 82.78142546738056, phaseCost: 254465 },
+      otherResults: { otherCosts: 86112 },
+      generalResults: { totalCost: 3186185, areaContaminated: 10000, decontaminationRounds: 2 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 7947.935593757297,
-          onSiteDays: 2887567.5637826556,
-          phaseCost: 1543499127.0705886,
-        },
-        sourceReductionResults: {
-          workDays: 3414.121687593964,
-          onSiteDays: 3414.121687593964,
-          phaseCost: 824181637.9431653,
-        },
-        decontaminationResults: {
-          workDays: 24.89404271191313,
-          onSiteDays: 26.329913551995975,
-          phaseCost: 576441013.3979089,
-        },
-        incidentCommandResults: {
-          onSiteDays: 2891016.0153838014,
-          phaseCost: 7051737003.590678,
-        },
-        otherResults: {
-          otherCosts: 607993287.8063874,
-        },
-        generalResults: {
-          totalCost: 10603852069.80873,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 3.9170575071229465,
+          onSiteDays: 12.124156314965763,
+          phaseCost: 281877,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.521578759934121,
+          onSiteDays: 18.305384043775998,
+          phaseCost: 648669,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 7.438636267057067,
+          onSiteDays: 30.42954035874176,
+          phaseCost: 930546,
+        },
+        sourceReductionResults: { workDays: 1.1173024889778953, onSiteDays: 1.1173024889778953, phaseCost: 140790 },
+        decontaminationResults: {
+          workDays: 6.547567174897429,
+          onSiteDays: 7.512984440548575,
+          suppliesCost: 145184,
+          otherCosts: 366872,
+        },
+        incidentCommandResults: { onSiteDays: 47.05982728826823, phaseCost: 141634 },
+        otherResults: { otherCosts: 66251 },
+        generalResults: { totalCost: 1791277, areaContaminated: 13521.039867429303, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 23741.720307352898,
-          onSiteDays: 3420365.144004141,
-          phaseCost: 3425847347.064206,
-        },
-        sourceReductionResults: {
-          workDays: 4417.804353204015,
-          onSiteDays: 4417.804353204015,
-          phaseCost: 366660642.949385,
-        },
-        decontaminationResults: {
-          workDays: 23.160154729420356,
-          onSiteDays: 24.59329359992251,
-          phaseCost: 79129202.03292781,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.411943743131207,
+          onSiteDays: 19.608712269429503,
+          phaseCost: 1035264,
         },
-        incidentCommandResults: {
-          onSiteDays: 3424815.541650945,
-          phaseCost: 8449459298.8623905,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 2.080284321894393,
+          onSiteDays: 12.27868610910282,
+          phaseCost: 670776,
         },
-        otherResults: {
-          otherCosts: 725419892.2022501,
+        totalCharacterizationSamplingResults: {
+          workDays: 6.4922280650256,
+          onSiteDays: 31.887398378532325,
+          phaseCost: 1706040,
         },
-        generalResults: {
-          totalCost: 13046516383.111158,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 0.22073397420406898, onSiteDays: 0.22073397420406898, phaseCost: 38743 },
+        decontaminationResults: {
+          workDays: 4.360463385786969,
+          onSiteDays: 4.454029692209798,
+          suppliesCost: 560471,
+          otherCosts: 215304,
         },
+        incidentCommandResults: { onSiteDays: 44.56216204494619, phaseCost: 137858 },
+        otherResults: { otherCosts: 49583 },
+        generalResults: { totalCost: 2707999, areaContaminated: 13521.039867429303, decontaminationRounds: 1 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 16671.312557424968,
-        onSiteDays: 505884.69699520787,
-        phaseCost: 5025990842.263563,
-      },
-      sourceReductionResults: {
-        workDays: 7310.647122515742,
-        onSiteDays: 7310.647122515742,
-        phaseCost: 699275699.071434,
-      },
-      decontaminationResults: {
-        workDays: 20.930316721538617,
-        onSiteDays: 22.542167750546277,
-        phaseCost: 891235343.8983451,
-      },
-      incidentCommandResults: {
-        onSiteDays: 513225.8862854741,
-        phaseCost: 1273262558.3183289,
-      },
-      otherResults: {
-        otherCosts: 149868921.82354617,
-      },
-      generalResults: {
-        totalCost: 8039633365.375217,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 4.056509275883252,
+        onSiteDays: 15.37394314964308,
+        phaseCost: 849291,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 2.396985694323034,
+        onSiteDays: 7.818922865548467,
+        phaseCost: 318278,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 6.453494970206286,
+        onSiteDays: 23.192866015191548,
+        phaseCost: 1167569,
+      },
+      sourceReductionResults: { workDays: 0.6512005690926722, onSiteDays: 0.6512005690926722, phaseCost: 163206 },
+      decontaminationResults: {
+        workDays: 17.629274381238332,
+        onSiteDays: 19.937358090173767,
+        suppliesCost: 175074,
+        otherCosts: 939468,
+      },
+      incidentCommandResults: { onSiteDays: 51.78142467445799, phaseCost: 156039 },
+      otherResults: { otherCosts: 92516 },
+      generalResults: { totalCost: 2693872, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 43065.56468686692,
-        onSiteDays: 651418.0867240287,
-        phaseCost: 4490213220.006828,
-      },
-      sourceReductionResults: {
-        workDays: 20908.484291529865,
-        onSiteDays: 20908.484291529865,
-        phaseCost: 2396744556.1376896,
-      },
-      decontaminationResults: {
-        workDays: 15.04210969829981,
-        onSiteDays: 17.005404593424267,
-        phaseCost: 3115398413.670586,
-      },
-      incidentCommandResults: {
-        onSiteDays: 672351.576420152,
-        phaseCost: 1630643479.664133,
-      },
-      otherResults: {
-        otherCosts: 125670301.08751647,
-      },
-      generalResults: {
-        totalCost: 11758669970.566753,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.2218538472201974,
+        onSiteDays: 8.846214646766246,
+        phaseCost: 255312,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 1.1047796673367052,
+        onSiteDays: 7.967404112129039,
+        phaseCost: 347453,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 4.326633514556903,
+        onSiteDays: 16.813618758895284,
+        phaseCost: 602765,
+      },
+      sourceReductionResults: { workDays: 0.014559544529632588, onSiteDays: 0.014559544529632588, phaseCost: 10354 },
+      decontaminationResults: {
+        workDays: 11.934683228594876,
+        onSiteDays: 13.63921514727157,
+        suppliesCost: 282648,
+        otherCosts: 816626,
+      },
+      incidentCommandResults: { onSiteDays: 38.467393450696484, phaseCost: 117234 },
+      otherResults: { otherCosts: 92114 },
+      generalResults: { totalCost: 1921741, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
   {
     Indoor: {
       Commercial: {
-        characterizationSamplingResults: {
-          workDays: 5937.188474037905,
-          onSiteDays: 99962.16229547534,
-          phaseCost: 1405288109.062841,
-        },
-        sourceReductionResults: {
-          workDays: 6090.571706782271,
-          onSiteDays: 6090.571706782271,
-          phaseCost: 2832753201.1080995,
-        },
-        decontaminationResults: {
-          workDays: 16.796259912614772,
-          onSiteDays: 18.39969031824723,
-          phaseCost: 177110946.64045265,
-        },
-        incidentCommandResults: {
-          onSiteDays: 106079.13369257585,
-          phaseCost: 260870314.57328933,
-        },
-        otherResults: {
-          otherCosts: 35322954.40065291,
-        },
-        generalResults: {
-          totalCost: 4711345525.785335,
-          areaContaminated: 17860000,
-        },
+        preDeconCharacterizationSamplingResults: {
+          workDays: 4.078561018365108,
+          onSiteDays: 45.49778793031142,
+          phaseCost: 1159153,
+        },
+        postDeconCharacterizationSamplingResults: {
+          workDays: 3.2017039641964473,
+          onSiteDays: 11.962552986552987,
+          phaseCost: 197380,
+        },
+        totalCharacterizationSamplingResults: {
+          workDays: 7.2802649825615555,
+          onSiteDays: 57.4603409168644,
+          phaseCost: 1356533,
+        },
+        sourceReductionResults: { workDays: 4.656003651725848, onSiteDays: 4.656003651725848, phaseCost: 396447 },
+        decontaminationResults: {
+          workDays: 10.191918185258265,
+          onSiteDays: 11.950514452986074,
+          suppliesCost: 482212,
+          otherCosts: 214453,
+        },
+        incidentCommandResults: { onSiteDays: 82.06685902157632, phaseCost: 252029 },
+        otherResults: { otherCosts: 119457 },
+        generalResults: { totalCost: 2821131, areaContaminated: 13278.291215719257, decontaminationRounds: 1 },
       },
       Industrial: {
-        characterizationSamplingResults: {
-          workDays: 8524.2832760318,
-          onSiteDays: 392791.0706828232,
-          phaseCost: 1930774815.6877751,
-        },
-        sourceReductionResults: {
-          workDays: 1033.751578893697,
-          onSiteDays: 1033.751578893697,
-          phaseCost: 62755041.61761452,
+        preDeconCharacterizationSamplingResults: {
+          workDays: 6.304420655441547,
+          onSiteDays: 15.305302227665306,
+          phaseCost: 830899,
         },
-        decontaminationResults: {
-          workDays: 20.11364178525136,
-          onSiteDays: 22.143993663867935,
-          phaseCost: 720027084.0040175,
-        },
-        incidentCommandResults: {
-          onSiteDays: 393854.9662553808,
-          phaseCost: 971175168.1740005,
+        postDeconCharacterizationSamplingResults: {
+          workDays: 11.84908284758616,
+          onSiteDays: 68.44771560411904,
+          phaseCost: 6161054,
         },
-        otherResults: {
-          otherCosts: 94734096.34919144,
+        totalCharacterizationSamplingResults: {
+          workDays: 18.153503503027707,
+          onSiteDays: 83.75301783178435,
+          phaseCost: 6991953,
         },
-        generalResults: {
-          totalCost: 3779466205.8325996,
-          areaContaminated: 17860000,
+        sourceReductionResults: { workDays: 3.0353065296958244, onSiteDays: 3.0353065296958244, phaseCost: 449456 },
+        decontaminationResults: {
+          workDays: 14.767392967540628,
+          onSiteDays: 17.46843404706298,
+          suppliesCost: 79929,
+          otherCosts: 490270,
         },
+        incidentCommandResults: { onSiteDays: 112.25675840854316, phaseCost: 347024 },
+        otherResults: { otherCosts: 63189 },
+        generalResults: { totalCost: 8421821, areaContaminated: 13278.291215719257, decontaminationRounds: 3 },
       },
     },
     Outdoor: {
-      characterizationSamplingResults: {
-        workDays: 18060.512374286245,
-        onSiteDays: 262603.5493131227,
-        phaseCost: 4362249253.979831,
-      },
-      sourceReductionResults: {
-        workDays: 17088.626450315955,
-        onSiteDays: 17088.626450315955,
-        phaseCost: 494142255.8814255,
-      },
-      decontaminationResults: {
-        workDays: 18.4240484715961,
-        onSiteDays: 20.110702446687664,
-        phaseCost: 310398753.29024327,
-      },
-      incidentCommandResults: {
-        onSiteDays: 279720.2864658853,
-        phaseCost: 693297199.0227196,
-      },
-      otherResults: {
-        otherCosts: 53070599.4046375,
-      },
-      generalResults: {
-        totalCost: 5913158061.578856,
-        areaContaminated: 34460000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 3.1561087818810822,
+        onSiteDays: 17.567355664018827,
+        phaseCost: 289459,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 4.734653325811454,
+        onSiteDays: 38.27556801808241,
+        phaseCost: 751978,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 7.890762107692536,
+        onSiteDays: 55.84292368210124,
+        phaseCost: 1041437,
+      },
+      sourceReductionResults: { workDays: 0.8394737908322627, onSiteDays: 0.8394737908322627, phaseCost: 49848 },
+      decontaminationResults: {
+        workDays: 8.320806354824642,
+        onSiteDays: 11.15459581607827,
+        suppliesCost: 72218,
+        otherCosts: 274405,
+      },
+      incidentCommandResults: { onSiteDays: 75.83699328901177, phaseCost: 235230 },
+      otherResults: { otherCosts: 51462 },
+      generalResults: { totalCost: 1724600, areaContaminated: 10000, decontaminationRounds: 1 },
     },
     Underground: {
-      characterizationSamplingResults: {
-        workDays: 34129.25399543601,
-        onSiteDays: 5623381.491024268,
-        phaseCost: 17955652375.395515,
-      },
-      sourceReductionResults: {
-        workDays: 13151.436102736812,
-        onSiteDays: 13151.436102736812,
-        phaseCost: 1667590165.557803,
-      },
-      decontaminationResults: {
-        workDays: 19.14510521342631,
-        onSiteDays: 21.358173840995452,
-        phaseCost: 2259211427.8742104,
-      },
-      incidentCommandResults: {
-        onSiteDays: 5636562.285300845,
-        phaseCost: 13753645738.661259,
-      },
-      otherResults: {
-        otherCosts: 1085068950.6193945,
-      },
-      generalResults: {
-        totalCost: 36721168658.10818,
-        areaContaminated: 40860000,
-      },
+      preDeconCharacterizationSamplingResults: {
+        workDays: 9.835264223225897,
+        onSiteDays: 35.928573922621666,
+        phaseCost: 689942,
+      },
+      postDeconCharacterizationSamplingResults: {
+        workDays: 10.61397044700287,
+        onSiteDays: 43.779059906487085,
+        phaseCost: 791453,
+      },
+      totalCharacterizationSamplingResults: {
+        workDays: 20.44923467022877,
+        onSiteDays: 79.70763382910874,
+        phaseCost: 1481395,
+      },
+      sourceReductionResults: { workDays: 1.6149792951190756, onSiteDays: 1.6149792951190756, phaseCost: 82242 },
+      decontaminationResults: {
+        workDays: 4.9255469846365845,
+        onSiteDays: 7.626709598262494,
+        suppliesCost: 174547,
+        otherCosts: 369073,
+      },
+      incidentCommandResults: { onSiteDays: 96.94932272249031, phaseCost: 295359 },
+      otherResults: { otherCosts: 70004 },
+      generalResults: { totalCost: 2472620, areaContaminated: 10000, decontaminationRounds: 1 },
     },
   },
 ];

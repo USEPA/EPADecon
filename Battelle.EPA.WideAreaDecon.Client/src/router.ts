@@ -6,6 +6,7 @@ import LoadPreDefinedScenario from '@/components/modals/load/LoadPreDefinedScena
 import LoadPreviousScenario from '@/components/modals/load/LoadPreviousScenario.vue';
 import Home from '@/components/base/Home.vue';
 import ViewResults from '@/components/results/ViewResults.vue';
+import RealizationSummary from '@/components/results/RealizationSummary.vue';
 import store from '@/store';
 
 Vue.use(Router);
@@ -50,6 +51,11 @@ export default new Router({
           next();
         }
       },
+    },
+    {
+      path: '/JobSummary',
+      name: 'jobSummary',
+      component: RealizationSummary,
     },
   ],
 });

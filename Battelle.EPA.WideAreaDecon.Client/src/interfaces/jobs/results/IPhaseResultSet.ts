@@ -5,7 +5,9 @@ import IOtherResult from './phase/IOtherResult';
 import IPhaseResult from './phase/IPhaseResult';
 
 export default interface IPhaseResultSet {
-  characterizationSamplingResults: IGenericPhaseResult;
+  preDeconCharacterizationSamplingResults: IGenericPhaseResult;
+  postDeconCharacterizationSamplingResults: IGenericPhaseResult;
+  totalCharacterizationSamplingResults: IGenericPhaseResult;
   sourceReductionResults: IGenericPhaseResult;
   decontaminationResults: IGenericPhaseResult;
   incidentCommandResults: IIncidentCommandResult;
