@@ -15,13 +15,20 @@ export default class JobResultProvider implements IJobResultProvider {
 
     // Headers for each phase
     const phaseHeaders = [
-      'Characterization Sampling',
+      'Pre-Decon Characterization Sampling',
+      '',
+      '',
+      'Post-Decon Characterization Sampling',
+      '',
+      '',
+      'Total Characterization Sampling',
       '',
       '',
       'Source Reduction',
       '',
       '',
       'Decontamination',
+      '',
       '',
       '',
       'Incident Command',
