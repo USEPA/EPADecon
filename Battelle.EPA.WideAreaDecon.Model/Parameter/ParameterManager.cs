@@ -5,6 +5,8 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
@@ -17,6 +19,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
         private readonly ParameterFilter[] _otherParameters;
         private readonly ParameterFilter[] _incidentCommandParameters;
         private readonly ParameterFilter[] _costParameters;
+        private readonly IParameter[] _treatmentMethodParameters;
 
         public ParameterManager(
             ParameterFilter[] csParameters,
@@ -25,7 +28,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
             IParameter[] effParameters,
             ParameterFilter[] otParameters,
             ParameterFilter[] icParameters,
-            ParameterFilter[] costParameters)
+            ParameterFilter[] costParameters,
+            IParameter[] treatmentParameters)
         {
             _characterizationSamplingParameters = csParameters;
             _sourceReductionParameters = srParameters;
@@ -34,6 +38,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             _otherParameters = otParameters;
             _incidentCommandParameters = icParameters;
             _costParameters = costParameters;
+            _treatmentMethodParameters = treatmentParameters;
         }
 
         public CalculatorManager RedrawParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails,
@@ -328,31 +333,47 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 perDiem);
         }
 
+        //private Dictionary<SurfaceType, ApplicationMethod> SetTreatmentMethods(SurfaceType[] surfaces)
+        //{
+        //    Random random = new Random();
+
+        //    var treatmentMethods = new Dictionary<SurfaceType, ApplicationMethod>();
+        //    List<ApplicationMethod> applicationMethods = Enum.GetValues(typeof(ApplicationMethod)).Cast<ApplicationMethod>().ToList();
+
+        //    while (treatmentMethods.Count < surfaces.Length)
+        //    {
+        //        var methodIndex = random.Next(0, applicationMethods.Count);
+
+        //        foreach (SurfaceType surface in surfaces)
+        //        {
+        //            if (!treatmentMethods.ContainsKey(surface))
+        //            {
+        //                List<ApplicationMethod> applicableSurfaces = ApplicableApplicationMethodHelper.GetApplicationMethodsForSurface(surface);
+
+        //                if (applicableSurfaces.Contains(applicationMethods[methodIndex]))
+        //                {
+        //                    treatmentMethods.Add(surface, applicationMethods[methodIndex]);
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    return treatmentMethods;
+        //}
+
         private Dictionary<SurfaceType, ApplicationMethod> SetTreatmentMethods(SurfaceType[] surfaces)
         {
-            Random random = new Random();
-
             var treatmentMethods = new Dictionary<SurfaceType, ApplicationMethod>();
-            List<ApplicationMethod> applicationMethods = Enum.GetValues(typeof(ApplicationMethod)).Cast<ApplicationMethod>().ToList();
 
-            while (treatmentMethods.Count < surfaces.Length)
+            foreach (SurfaceType surface in surfaces)
             {
-                var methodIndex = random.Next(0, applicationMethods.Count);
+                string surfaceName = surface.ToString();
 
-                foreach (SurfaceType surface in surfaces)
-                {
-                    if (!treatmentMethods.ContainsKey(surface))
-                    {
-                        List<ApplicationMethod> applicableSurfaces = ApplicableApplicationMethodHelper.GetApplicationMethodsForSurface(surface);
+                var deconData = _treatmentMethodParameters.First(p => p.MetaData.Name == "Decontamination Method by Surface") as EnumeratedParameter<SurfaceType>;
 
-                        if (applicableSurfaces.Contains(applicationMethods[methodIndex]))
-                        {
-                            treatmentMethods.Add(surface, applicationMethods[methodIndex]);
-                        }
-                    }
-                }
+                treatmentMethods.Add(surface, deconData.Values[surface].GetTextValue().ParseEnum<ApplicationMethod>());
             }
-
+            
             return treatmentMethods;
         }
     }

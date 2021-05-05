@@ -33,7 +33,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 _scenarioParameters.Filters.First(f => f.Name == "Efficacy").Parameters,
                 _scenarioParameters.Filters.First(f => f.Name == "Other").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Incident Command").Filters,
-                _scenarioParameters.Filters.First(f => f.Name == "Cost per Parameter").Filters);
+                _scenarioParameters.Filters.First(f => f.Name == "Cost per Parameter").Filters,
+                _scenarioParameters.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
 
             var calculatorManager = parameterManager.RedrawParameters(_buildingDetails, _phase);
 

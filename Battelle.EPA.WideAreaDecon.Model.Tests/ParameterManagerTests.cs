@@ -41,7 +41,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                 scenarioDetails.Filters.First(f => f.Name == "Efficacy").Parameters,
                 scenarioDetails.Filters.First(f => f.Name == "Other").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Incident Command").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Cost per Parameter").Filters);
+                scenarioDetails.Filters.First(f => f.Name == "Cost per Parameter").Filters,
+                scenarioDetails.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
         }
 
         [Test]

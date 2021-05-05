@@ -113,7 +113,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters);
+                        Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters,
+                        Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
 
                     var scenarioResults = new List<object>();
 
