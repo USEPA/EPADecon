@@ -64,5 +64,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter
         }
 
         public IDistribution CreateDistribution();
+
+        public string GetTextValue();
     }
 }

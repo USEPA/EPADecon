@@ -52,5 +52,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
             }
             throw new ArgumentNullException();
         }
+
+        public string GetTextValue()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

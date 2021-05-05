@@ -41,5 +41,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         {
             throw new NotImplementedException();
         }
+
+        public string GetTextValue()
+        {
+            return Value;
+        }
     }
 }
