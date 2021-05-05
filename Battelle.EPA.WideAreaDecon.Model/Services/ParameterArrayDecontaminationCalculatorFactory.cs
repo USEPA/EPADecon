@@ -13,7 +13,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
         public LaborCostCalculator Calculator_labor { get; set; }
         public WorkDaysCalculator Calculator_workDays { get; set; }
         public EntranceExitCostCalculator Calculator_entEx { get; set; }
-        public EntExitLaborCostCalculator Calculator_entExLabor { get; set; }
         public EfficacyCalculator Calculator_efficacy { get; set; }
 
         public ParameterArrayDecontaminationCalculatorFactory(
@@ -46,21 +45,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 Calculator_workDays
             );
 
-            Calculator_entExLabor = new EntExitLaborCostCalculator(
-                dcParameters.personnelReqPerTeam,
-                dcParameters.numEntriesPerTeamPerDay,
-                dcParameters.hoursPerEntryPerTeam,
-                dcParameters.hoursPerExitPerTeam,
-                costParameters.hourlyRate
-            );
-
             Calculator_entEx = new EntranceExitCostCalculator(
                 dcParameters.personnelReqPerTeam,
                 dcParameters.numEntriesPerTeamPerDay,
                 dcParameters.respiratorsPerPerson,
                 costParameters.respiratorCost,
-                costParameters.ppeCost,
-                Calculator_entExLabor
+                costParameters.ppeCost
             );
         }
         public DecontaminationCostCalculator GetCalculator()

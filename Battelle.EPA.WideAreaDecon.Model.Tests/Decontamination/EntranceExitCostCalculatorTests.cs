@@ -6,14 +6,6 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
-    internal class MockEntExitLaborCostCalculator : IEntExitLaborCostCalculator
-    {
-        public double CalculateEntExitLaborCost(double _numberTeams, double workDays)
-        {
-            return 154800;
-        }
-    }
-
     public class EntranceExitCostCalculatorTests
     {
         private EntranceExitCostCalculator Calculator { get; set; }
@@ -46,8 +38,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 numberEntriesPerTeamPerDay,
                 respiratorsPerPerson,
                 costPerRespirator,
-                costPerPpe,
-                new MockEntExitLaborCostCalculator()
+                costPerPpe
             );
         }
 
@@ -64,7 +55,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             };
             var numTeams = 2.0;
             
-            Assert.AreEqual(195317.336, Calculator.CalculateEntranceExitCost(workDays, numTeams, ppePerLevelPerTeam), 
+            Assert.AreEqual(40517.336, Calculator.CalculateEntranceExitCost(workDays, numTeams, ppePerLevelPerTeam), 
                 1e-6, "Incorrect cost calculated");
         }
     }
