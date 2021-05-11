@@ -144,7 +144,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <chart-options @createChart="setChartData" v-model="showModal" />
+    <chart-options @createChart="setChartData" v-model="showModal" :selected="selectedResults" />
   </v-container>
 </template>
 

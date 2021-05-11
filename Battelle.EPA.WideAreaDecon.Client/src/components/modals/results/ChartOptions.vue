@@ -17,10 +17,10 @@
                 <tr v-for="(result, i) in phaseResultNames" :key="result">
                   <td class="text-left">{{ result }}</td>
                   <td class="text-center">
-                    <v-checkbox :ripple="false" v-model="selectedX" :value="phaseResultValues[i]" />
+                    <v-checkbox :ripple="false" v-model="selected.x" :value="phaseResultValues[i]" />
                   </td>
                   <td class="text-center">
-                    <v-checkbox :ripple="false" v-model="selectedY" :value="phaseResultValues[i]" />
+                    <v-checkbox :ripple="false" v-model="selected.y" :value="phaseResultValues[i]" />
                   </td>
                 </tr>
               </tbody>
@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { Component, VModel, Vue } from 'vue-property-decorator';
+import { Component, Prop, VModel, Vue } from 'vue-property-decorator';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import container from '@/dependencyInjection/config';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
@@ -50,14 +50,17 @@ import TYPES from '@/dependencyInjection/types';
 export default class ChartOptions extends Vue {
   @VModel({ default: () => false }) isVisible!: boolean;
 
+  @Prop({
+    default: () => {
+      return { x: null, y: null };
+    },
+  })
+  selected!: { x: PhaseResult | null; y: PhaseResult | null };
+
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
-  selectedX: PhaseResult | null = null;
-
-  selectedY: PhaseResult | null = null;
-
   get canCreateChart(): boolean {
-    return Object.values(this.selectedOptions).some((o) => o);
+    return Object.values(this.selected).some((o) => o);
   }
 
   get phaseResultNames(): string[] {
@@ -69,23 +72,16 @@ export default class ChartOptions extends Vue {
     return Object.values(PhaseResult);
   }
 
-  get selectedOptions(): { x: PhaseResult | null; y: PhaseResult | null } {
-    return {
-      x: this.selectedX,
-      y: this.selectedY,
-    };
-  }
-
   get createText(): string {
-    if (this.selectedX && !this.selectedY) {
+    if (this.selected.x && !this.selected.y) {
       return 'Create Histogram';
     }
 
-    if (!this.selectedX && this.selectedY) {
+    if (!this.selected.x && this.selected.y) {
       return 'Create Pie Chart';
     }
 
-    if (this.selectedX && this.selectedY) {
+    if (this.selected.x && this.selected.y) {
       return 'Create Scatter Plot';
     }
 
@@ -93,7 +89,7 @@ export default class ChartOptions extends Vue {
   }
 
   createChart(): void {
-    this.$emit('createChart', this.selectedOptions);
+    this.$emit('createChart', this.selected);
     this.isVisible = false;
   }
 }
