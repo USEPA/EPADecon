@@ -11,6 +11,14 @@ import store from '@/store';
 
 Vue.use(Router);
 
+const pageRequiresResults = (to: Route, from: Route, next: NavigationGuardNext) => {
+  if (!store.getters.hasResults) {
+    next({ name: 'defineScenario' });
+  } else {
+    next();
+  }
+};
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -44,18 +52,13 @@ export default new Router({
       path: '/ViewResults',
       name: 'viewResults',
       component: ViewResults,
-      beforeEnter: (to: Route, from: Route, next: NavigationGuardNext) => {
-        if (!store.getters.hasResults) {
-          next({ name: 'defineScenario' });
-        } else {
-          next();
-        }
-      },
+      beforeEnter: pageRequiresResults,
     },
     {
       path: '/JobSummary',
       name: 'jobSummary',
       component: RealizationSummary,
+      beforeEnter: pageRequiresResults,
     },
   ],
 });
