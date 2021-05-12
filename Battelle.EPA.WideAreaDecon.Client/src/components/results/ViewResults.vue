@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="3">
+      <v-col cols="3" sm="6" md="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.TotalCost)"
           icon="mdi-currency-usd"
@@ -9,7 +9,7 @@
           :value="`$${averageTotalCost}`"
         />
       </v-col>
-      <v-col cols="3">
+      <v-col cols="3" sm="6" md="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.AreaContaminated)"
           icon="mdi-earth"
@@ -17,7 +17,7 @@
           :value="`${averageTotalAreaContaminated} m^2`"
         />
       </v-col>
-      <v-col cols="3">
+      <v-col cols="3" sm="6" md="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.Workdays)"
           icon="mdi-calendar"
@@ -25,7 +25,7 @@
           :value="averageTotalWorkdays"
         />
       </v-col>
-      <v-col cols="3">
+      <v-col cols="3" sm="6" md="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.DecontaminationRounds)"
           icon="mdi-hand-water"
@@ -36,31 +36,31 @@
     </v-row>
 
     <v-row>
-      <v-col cols="6">
+      <v-col cols="6" sm="12" md="6">
         <dashboard-chart-card text="Cost Breakdown By Element" :data="getPhaseBreakdownChartData('phaseCost')" />
       </v-col>
-      <v-col cols="6">
+      <v-col cols="6" sm="12" md="6">
         <dashboard-chart-card text="Workday Breakdown By Element" :data="getPhaseBreakdownChartData('workDays')" />
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col cols="3">
+      <v-col cols="3" sm="6" md="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.OnSiteDays)"
           icon="mdi-tent"
-          text="Average Number of Days Spent on Setup and Teardown"
+          text="Average Number of Onsite Days"
           :value="averageTotalOnSiteDays"
         />
       </v-col>
-      <v-col cols="3">
+      <v-col cols="3" sm="6" md="3">
         <dashboard-result-card icon="mdi-replay" text="Number of Realizations" :value="currentJob.numberRealizations" />
       </v-col>
-      <v-col cols="6">
-        <v-card>
+      <v-col cols="6" sm="12" md="6">
+        <v-card style="height: 100%">
           <v-card-title class="headline pl-5" v-text="'Actions'"></v-card-title>
-          <v-card-text class="d-flex justify-space-between px-5">
-            <v-btn color="secondary" v-text="'Summary'" @click="navigate('jobSummary')"></v-btn>
+          <v-card-text class="d-flex justify-space-between flex-wrap px-5">
+            <v-btn color="secondary" class="mb-2" v-text="'Summary'" @click="navigate('jobSummary')"></v-btn>
             <v-btn color="secondary" v-text="'View Parameters'" @click="viewParameters"></v-btn>
             <v-btn color="secondary" v-text="'Run Job Again'"></v-btn>
             <v-btn color="secondary" v-text="'Export Results'" @click="exportResults"></v-btn>
@@ -188,12 +188,13 @@ export default class ViewResults extends Vue {
     this.averageTotalAreaContaminated = this.getAverageFormatted(PhaseResult.AreaContaminated);
     this.averageTotalWorkdays = this.getAverageFormatted(PhaseResult.Workdays);
     this.averageDeconRounds = this.getAverageFormatted(PhaseResult.DecontaminationRounds);
+    this.averageTotalOnSiteDays = this.getAverageFormatted(PhaseResult.OnSiteDays);
 
-    const avgOnSiteDays =
-      this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.OnSiteDays)?.mean ?? 0;
-    const avgWorkdays = this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.Workdays)?.mean ?? 0;
+    // const avgOnSiteDays =
+    //   this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.OnSiteDays)?.mean ?? 0;
+    // const avgWorkdays = this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.Workdays)?.mean ?? 0;
 
-    this.averageTotalOnSiteDays = this.resultProvider.formatNumber(avgOnSiteDays - avgWorkdays);
+    // this.averageTotalOnSiteDays = this.resultProvider.formatNumber(avgOnSiteDays - avgWorkdays);
   }
 
   created(): void {
