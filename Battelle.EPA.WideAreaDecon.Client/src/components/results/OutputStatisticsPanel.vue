@@ -43,13 +43,16 @@ export default class OutputStatisticsPanel extends Vue {
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
   get resultsFormatted(): (string | null)[] {
-    return Object.values(this.results).map((r) => {
-      return r ? this.resultProvider.convertCamelToTitleCase(r as string) : r;
-    });
+    return [
+      ...new Set(
+        Object.values(this.results).map((r) => {
+          return r ? this.resultProvider.convertCamelToTitleCase(r as string) : r;
+        }),
+      ),
+    ];
   }
 
   get detailsWithoutValues(): ({ mean: number; minimum: number; maximum: number; stdDev: number } | null)[] {
-    // return this.details.map((d) => omit(d, ['values']));
     return Object.values(this.details).map((d) => {
       return d ? omit(d, ['values']) : d;
     });
