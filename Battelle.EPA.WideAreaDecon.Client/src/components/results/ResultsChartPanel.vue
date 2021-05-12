@@ -41,7 +41,7 @@
         class="px-6"
         id="xLabel"
         close
-        v-text="chartLabels.x"
+        v-text="resultProvider.convertCamelToTitleCase(chartLabels.x)"
         @click="onLabelClicked('x')"
       ></v-chip>
 
@@ -50,7 +50,7 @@
         class="px-6"
         id="yLabel"
         close
-        v-text="chartLabels.y"
+        v-text="resultProvider.convertCamelToTitleCase(chartLabels.y)"
         @click="onLabelClicked('y')"
       ></v-chip>
     </div>
@@ -63,6 +63,9 @@ import ChartOptions from '@/components/modals/results/ChartOptions.vue';
 import { ChartData } from 'chart.js';
 import { ChartJsWrapper, DefaultChartOptions, ScatterPlotWrapper } from 'battelle-common-vue-charting/src';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
+import container from '@/dependencyInjection/config';
+import TYPES from '@/dependencyInjection/types';
+import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 
 @Component({ components: { ChartJsWrapper, ChartOptions, ScatterPlotWrapper } })
 export default class ResultsChartPanel extends Vue {
@@ -71,6 +74,8 @@ export default class ResultsChartPanel extends Vue {
   @Prop() chartType!: string;
 
   @Prop() chartLabels!: { x: PhaseResult | null; y: PhaseResult | null };
+
+  private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
   chartKey = 0;
 
