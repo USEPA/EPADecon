@@ -113,12 +113,14 @@ export default class ResultsChartPanel extends Vue {
 #xLabel {
   position: absolute;
   left: 50%;
+  transform: translateX(-50%);
 }
 
 #yLabel {
   position: absolute;
   left: 0;
   top: 50%;
+  transform: translateY(-50%);
   transform: rotate(-90deg);
 }
 </style>
