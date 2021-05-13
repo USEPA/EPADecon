@@ -11,7 +11,7 @@
       </v-col>
       <v-col cols="9">
         <results-chart-panel
-          @showModal="showModal = true"
+          @showModal="showOptionsModal = true"
           @removeLabel="removeSelectedResult"
           :chartData="chartData"
           :chartType="chartType"
@@ -74,7 +74,7 @@
                       Run {{ runNumber }}
                       <v-icon class="ml-1" small @click="removeRunFromTable(runNumber)">mdi-close-circle</v-icon>
 
-                      <!-- <v-btn class="d-block ml-auto" x-small>Summary</v-btn> -->
+                      <v-btn class="d-block" x-small @click="showRealizationSummary(runNumber)">Summary</v-btn>
                     </th>
                   </tr>
                 </thead>
@@ -102,13 +102,15 @@
                   <tr>
                     <th></th>
                     <th
-                      class="text-center text-body-1 border-right"
+                      :class="`text-center text-body-1 border-right ${getHeaderClass()}`"
                       :colspan="locations.length"
                       v-for="runNumber in displayedRunNumbers"
                       :key="runNumber"
                     >
                       Run {{ runNumber }}
                       <v-icon class="ml-1" small @click="removeRunFromTable(runNumber)">mdi-close-circle</v-icon>
+
+                      <!-- <v-btn class="d-block" x-small @click="showRealizationSummary(runNumber)">Summary</v-btn> -->
                     </th>
                   </tr>
 
@@ -157,7 +159,8 @@
         </v-card>
       </v-col>
     </v-row>
-    <chart-options @createChart="setChartData" v-model="showModal" :selected="selectedResults" />
+    <chart-options @createChart="setChartData" v-model="showOptionsModal" :selected="selectedResults" />
+    <realization-details v-model="showSummaryModal" :realizationNumber="selectedRealization" />
   </v-container>
 </template>
 
@@ -180,11 +183,12 @@ import {
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import ChartOptions from '@/components/modals/results/ChartOptions.vue';
+import RealizationDetails from '@/components/modals/results/RealizationDetails.vue';
 import { range } from 'lodash';
 import OutputStatisticsPanel from './OutputStatisticsPanel.vue';
 import ResultsChartPanel from './ResultsChartPanel.vue';
 
-@Component({ components: { ChartOptions, OutputStatisticsPanel, ResultsChartPanel } })
+@Component({ components: { ChartOptions, OutputStatisticsPanel, RealizationDetails, ResultsChartPanel } })
 export default class RealizationSummary extends Vue {
   @State((state) => state.currentJob.results) results!: IJobResultRealization[];
 
@@ -196,7 +200,11 @@ export default class RealizationSummary extends Vue {
 
   outputStatistics: { x: IResultDetails | null; y: IResultDetails | null } = { x: null, y: null };
 
-  showModal = false;
+  showOptionsModal = false;
+
+  showSummaryModal = false;
+
+  selectedRealization = 0;
 
   runNumber = 1;
 
@@ -334,8 +342,17 @@ export default class RealizationSummary extends Vue {
     this.getOutputStatistics(x, y);
   }
 
+  showRealizationSummary(realization: number): void {
+    this.selectedRealization = realization;
+    this.showSummaryModal = true;
+  }
+
   getCellClass(cellNumber: number): string {
     return cellNumber && cellNumber % this.locations.length === 0 && cellNumber ? 'border-right' : '';
+  }
+
+  getHeaderClass(): string {
+    return this.displayedRunNumbers.length === 1 ? 'padding-adjust' : '';
   }
 
   getLocationResults(runNumber: number, location?: string): IPhaseResultSet {
@@ -396,6 +413,7 @@ export default class RealizationSummary extends Vue {
     position: sticky;
     background: #cfd8dc;
     z-index: 1;
+    min-width: 250px;
 
     &:not(th):hover {
       background-color: #b0bec5;
@@ -406,8 +424,14 @@ export default class RealizationSummary extends Vue {
     width: 100%;
   }
 
-  & > thead > tr > th:not(:first-child) {
-    border-bottom: thin solid rgba(0, 0, 0, 0.12);
+  & > thead > tr > th {
+    &.padding-adjust {
+      padding-right: 30%;
+    }
+
+    &:not(:first-child) {
+      border-bottom: thin solid rgba(0, 0, 0, 0.12);
+    }
   }
 }
 
