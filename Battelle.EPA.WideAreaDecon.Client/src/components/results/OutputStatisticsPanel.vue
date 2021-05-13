@@ -3,7 +3,7 @@
     <v-card-title v-text="'Output Statistics'"></v-card-title>
     <v-divider class="mx-4" color="grey"></v-divider>
     <v-card-text>
-      <div v-if="!results.x && !results.y">Statistics will be displayed when a chart has been created</div>
+      <div v-if="hideStats">Statistics will be displayed when a chart has been created</div>
       <div v-else>
         <v-simple-table v-for="(result, index) in resultsFormatted" :key="`${result}-${index}`">
           <template v-slot:default v-if="result">
@@ -50,6 +50,10 @@ export default class OutputStatisticsPanel extends Vue {
         }),
       ),
     ];
+  }
+
+  get hideStats(): boolean {
+    return this.detailsWithoutValues.every((d) => !d);
   }
 
   get detailsWithoutValues(): ({ mean: number; minimum: number; maximum: number; stdDev: number } | null)[] {
