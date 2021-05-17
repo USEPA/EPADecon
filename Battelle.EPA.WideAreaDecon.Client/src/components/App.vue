@@ -6,7 +6,7 @@
     <!-- Content Router -->
     <v-main>
       <run-scenario v-model="showRunModal" />
-      <router-view />
+      <router-view @showRunModal="showRunModal = true" />
     </v-main>
 
     <footer-bar />

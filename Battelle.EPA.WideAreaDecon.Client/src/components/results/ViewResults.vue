@@ -62,7 +62,7 @@
           <v-card-text class="d-flex justify-space-between flex-wrap px-5">
             <v-btn color="secondary" class="mb-2" v-text="'Summary'" @click="navigate('jobSummary')"></v-btn>
             <v-btn color="secondary" v-text="'View Parameters'" @click="viewParameters"></v-btn>
-            <v-btn color="secondary" v-text="'Run Job Again'"></v-btn>
+            <v-btn color="secondary" v-text="'Run Job Again'" @click="runJobAgain"></v-btn>
             <v-btn color="secondary" v-text="'Export Results'" @click="exportResults"></v-btn>
           </v-card-text>
         </v-card>
@@ -74,7 +74,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import { Action, State } from 'vuex-class';
 import JobRequest from '@/implementations/jobs/JobRequest';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
@@ -104,6 +104,8 @@ export default class ViewResults extends Vue {
   @Action setScenarioDefinition!: (newDefinition: ParameterWrapperList) => void;
 
   @Action setScenarioParameters!: (newParameters: ParameterWrapperList) => void;
+
+  @Action setRepeatRun!: (newValue: boolean) => void;
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
@@ -158,6 +160,11 @@ export default class ViewResults extends Vue {
     this.resultProvider.exportJobResults(this.currentJob.results);
   }
 
+  runJobAgain(): void {
+    this.setRepeatRun(true);
+    this.$emit('showRunModal');
+  }
+
   showResultDetails($event: string, result: PhaseResult): void {
     const details = this.resultProvider.getResultDetails(this.currentJob.results, result);
     if (details) {
@@ -169,8 +176,8 @@ export default class ViewResults extends Vue {
 
   viewParameters(): void {
     const { modifyParameter, defineScenario } = this.currentJob;
-    this.setScenarioDefinition(defineScenario as ParameterWrapperList);
-    this.setScenarioParameters(modifyParameter as ParameterWrapperList);
+    this.setScenarioDefinition(defineScenario);
+    this.setScenarioParameters(modifyParameter);
     this.navigate('defineScenario');
   }
 
@@ -183,6 +190,7 @@ export default class ViewResults extends Vue {
     return this.resultProvider.formatNumber(avg);
   }
 
+  @Watch('currentJob')
   setValues(): void {
     this.averageTotalCost = this.getAverageFormatted(PhaseResult.TotalCost);
     this.averageTotalAreaContaminated = this.getAverageFormatted(PhaseResult.AreaContaminated);

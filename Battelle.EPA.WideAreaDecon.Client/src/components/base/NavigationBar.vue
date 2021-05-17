@@ -21,7 +21,7 @@
     <v-spacer></v-spacer>
 
     <!-- Run button -->
-    <v-tooltip bottom :color="canRun ? 'info' : 'error'">
+    <v-tooltip v-if="!onResultsPage" bottom :color="canRun ? 'info' : 'error'">
       <template v-slot:activator="{ on }">
         <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'" :color="canRun ? 'secondary' : ''">
           <v-btn v-on="on" @click="displayRunModal" :disabled="!canRun" :color="canRun ? 'secondary' : ''">
@@ -137,6 +137,11 @@ export default class NavigationBar extends Vue {
     const items = this.navigationItems;
     items[items.length - 1].enabled = newValue;
     store.commit('setNavigationItems', items);
+  }
+
+  get onResultsPage(): boolean {
+    const resultPageNames = ['viewResults', 'jobSummary'];
+    return resultPageNames.includes(this.$route.name ?? '');
   }
 
   displayRunModal(): void {
