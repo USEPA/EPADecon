@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="3" sm="6" md="3">
+      <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.TotalCost)"
           icon="mdi-currency-usd"
@@ -9,7 +9,7 @@
           :value="`$${averageTotalCost}`"
         />
       </v-col>
-      <v-col cols="3" sm="6" md="3">
+      <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.AreaContaminated)"
           icon="mdi-earth"
@@ -17,7 +17,7 @@
           :value="`${averageTotalAreaContaminated} m^2`"
         />
       </v-col>
-      <v-col cols="3" sm="6" md="3">
+      <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.Workdays)"
           icon="mdi-calendar"
@@ -25,7 +25,7 @@
           :value="averageTotalWorkdays"
         />
       </v-col>
-      <v-col cols="3" sm="6" md="3">
+      <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.DecontaminationRounds)"
           icon="mdi-hand-water"
@@ -36,16 +36,16 @@
     </v-row>
 
     <v-row>
-      <v-col cols="6" sm="12" md="6">
+      <v-col cols="6" sm="12" lg="6">
         <dashboard-chart-card text="Cost Breakdown By Element" :data="getPhaseBreakdownChartData('phaseCost')" />
       </v-col>
-      <v-col cols="6" sm="12" md="6">
+      <v-col cols="6" sm="12" lg="6">
         <dashboard-chart-card text="Workday Breakdown By Element" :data="getPhaseBreakdownChartData('workDays')" />
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col cols="3" sm="6" md="3">
+      <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.OnSiteDays)"
           icon="mdi-tent"
@@ -53,10 +53,10 @@
           :value="averageTotalOnSiteDays"
         />
       </v-col>
-      <v-col cols="3" sm="6" md="3">
+      <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card icon="mdi-replay" text="Number of Realizations" :value="currentJob.numberRealizations" />
       </v-col>
-      <v-col cols="6" sm="12" md="6">
+      <v-col cols="6" sm="12" lg="6">
         <v-card style="height: 100%">
           <v-card-title class="headline pl-5" v-text="'Actions'"></v-card-title>
           <v-card-text class="d-flex justify-space-between flex-wrap px-5">
