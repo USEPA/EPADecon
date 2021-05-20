@@ -6,22 +6,36 @@
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col class="chart">
+              <v-col cols="6" sm="12" md="6">
                 <h3 class="text-subtitle-1 mb-2">Cost Breakdown by Element</h3>
-                <chart-js-wrapper type="pie" :data="costChartData" :options="options" :plugins="[]" :key="chartKey" />
+                <div class="chart">
+                  <chart-js-wrapper
+                    type="pie"
+                    :data="costChartData"
+                    :options="chartOptions"
+                    :plugins="[]"
+                    :key="chartKey"
+                    ref="costChart"
+                  />
+                </div>
+                <div ref="costLegend" class="chartLegend" v-html="costLegend" :key="chartKey"></div>
               </v-col>
-              <v-col class="chart">
+              <v-col cols="6" sm="12" md="6">
                 <h3 class="text-subtitle-1 mb-2">Workday Breakdown by Element</h3>
-                <chart-js-wrapper
-                  type="pie"
-                  :data="workdayChartData"
-                  :options="options"
-                  :plugins="[]"
-                  :key="chartKey + 1"
-                />
+                <div class="chart">
+                  <chart-js-wrapper
+                    type="pie"
+                    :data="workdayChartData"
+                    :options="chartOptions"
+                    :plugins="[]"
+                    :key="chartKey + 1"
+                    ref="workdayChart"
+                  />
+                </div>
+                <div ref="workdayLegend" class="chartLegend" v-html="workdayLegend" :key="chartKey + 1"></div>
               </v-col>
             </v-row>
-            <v-row>
+            <v-row class="mt-15">
               <v-col>
                 <p class="text-body-2 mb-0">${{ resultProvider.formatNumber(totalCost) }}</p>
                 <p class="text-subtitle-1">Total Cost</p>
@@ -57,9 +71,9 @@ import {
   CycleColorProvider,
   DefaultChartData,
   DefaultChartOptions,
-  PositionType,
 } from 'battelle-common-vue-charting/src';
-import { ChartData } from 'chart.js';
+import IChartJsWrapper from '@/interfaces/component/IChartJsWrapper';
+import Chart, { ChartColor, ChartData, ChartOptions } from 'chart.js';
 import container from '@/dependencyInjection/config';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import TYPES from '@/dependencyInjection/types';
@@ -79,6 +93,8 @@ export default class RealizationDetails extends Vue {
 
   results: IJobResultRealization | null = null;
 
+  disabledClass = 'disabled';
+
   totalCost = 0;
 
   areaContaminated = 0;
@@ -87,7 +103,9 @@ export default class RealizationDetails extends Vue {
 
   deconRounds = 0;
 
-  options = new DefaultChartOptions();
+  costLegend: unknown = null;
+
+  workdayLegend: unknown = null;
 
   @Watch('realizationNumber')
   setValues(): void {
@@ -125,21 +143,88 @@ export default class RealizationDetails extends Vue {
     };
   }
 
+  getChartInstance(isCost: boolean): Chart {
+    return ((isCost ? this.$refs.costChart : this.$refs.workdayChart) as IChartJsWrapper)?.chart;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getListChildren(ref: Element): Element[] {
+    return Object.values(ref.firstElementChild?.children ?? {});
+  }
+
   initializeChart(): void {
-    this.options.legend.position = PositionType.Bottom;
-    this.options.legend.fullWidth = false;
-    this.options.tooltips.enabled = true;
+    this.costLegend = this.getChartInstance(true).generateLegend();
+    this.workdayLegend = this.getChartInstance(false).generateLegend();
+
+    this.initializeLegend(this.$refs.costLegend as Element, true);
+    this.initializeLegend(this.$refs.workdayLegend as Element, false);
+  }
+
+  initializeLegend(ref: Element, isCost: boolean): void {
+    const children = this.getListChildren(ref);
+    for (let i = 0; i < children.length; i += 1) {
+      const child = children[i]; // child is <li> element in chart legend
+
+      child.addEventListener('click', () => {
+        this.toggleLegendLabel(child, i, isCost);
+      });
+    }
+  }
+
+  toggleChartData(index: number, isCost: boolean): void {
+    const chart = this.getChartInstance(isCost);
+
+    const meta = chart.getDatasetMeta(0).data[index];
+    meta.hidden = !meta.hidden;
+
+    chart.update();
+  }
+
+  toggleLegendLabel(li: Element, index: number, isCost: boolean): void {
+    if (li?.classList.contains(this.disabledClass) ?? false) {
+      li?.classList.remove(this.disabledClass);
+    } else {
+      li?.classList.add(this.disabledClass);
+    }
+
+    this.toggleChartData(index, isCost);
   }
 
   get costChartData(): ChartData {
-    return this.getResultChartData(PhaseResult.TotalCost);
+    return this.getResultChartData(PhaseResult.PhaseCost);
   }
 
   get workdayChartData(): ChartData {
     return this.getResultChartData(PhaseResult.Workdays);
   }
 
-  created(): void {
+  // eslint-disable-next-line class-methods-use-this
+  get chartOptions(): ChartOptions {
+    const options = new DefaultChartOptions();
+    options.legend.display = false;
+    options.tooltips.enabled = true;
+    options.legendCallback = (chart) => {
+      const text = [];
+      text.push('<ul>');
+      for (let i = 0; i < (chart.data.datasets?.[0].data?.length ?? 0); i += 1) {
+        if (chart.data.datasets?.[0].data?.[i]) {
+          text.push(
+            `<li><span style="background-color: ${
+              (chart.data.datasets?.[0].backgroundColor as ChartColor[])?.[i]
+            }"></span>`,
+          );
+          text.push(chart.data.labels?.[i]);
+          text.push('</li>');
+        }
+      }
+      text.push('</ul>');
+      return text.join('');
+    };
+
+    return options;
+  }
+
+  updated(): void {
     this.initializeChart();
   }
 }
@@ -148,5 +233,27 @@ export default class RealizationDetails extends Vue {
 <style lang="scss" scoped>
 .chart {
   height: 400px;
+}
+
+.chartLegend ::v-deep {
+  & > ul {
+    list-style: none;
+
+    & > li {
+      display: flex;
+      align-items: center;
+
+      &.disabled {
+        text-decoration: line-through;
+      }
+
+      & > span {
+        display: inline-block;
+        width: 32px;
+        height: 13px;
+        margin-right: 10px;
+      }
+    }
+  }
 }
 </style>

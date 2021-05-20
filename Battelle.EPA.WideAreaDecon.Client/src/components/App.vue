@@ -30,6 +30,7 @@ export default class App extends Vue {
   showRunModal = false;
 }
 </script>
+
 <style scoped lang="scss">
 .disabled-tool-tip {
   cursor: no-drop;
