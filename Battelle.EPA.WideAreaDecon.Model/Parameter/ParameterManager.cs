@@ -98,6 +98,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 [PersonnelLevel.PL4] = _characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
             };
             var personnelOverheadDays = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Personnel Overhead Days").CreateDistribution().Draw();
+            var roundtripDays = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
             var entriesPerTeam = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Entries per Team per Day").CreateDistribution().Draw();
             var hoursEntering = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
             var hoursExiting = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
@@ -127,6 +128,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 resultTransmissionToIC,
                 personnelReqPerTeam,
                 personnelOverheadDays,
+                roundtripDays,
                 entriesPerTeam,
                 hoursEntering,
                 hoursExiting,
@@ -155,7 +157,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             };
 
             var personnelOverheadDays = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Personnel Overhead Days").CreateDistribution().Draw();
-
+            var roundtripDays = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
             var ppeRequired = new Dictionary<PpeLevel, double>
             {
                 [PpeLevel.A] = _sourceReductionParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Fraction PPE Required (A)").CreateDistribution().Draw(),
@@ -175,6 +177,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 numTeams,
                 personnelReqPerTeam,
                 personnelOverheadDays,
+                roundtripDays,
                 ppeRequired);
         }
 
@@ -207,6 +210,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             };
 
             var personnelOverhead = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Personnel Overhead Days").CreateDistribution().Draw();
+            var roundtripDays = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
             var numEntriesPerTeamPerDay = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Entries per Team per Day").CreateDistribution().Draw();
             var hoursPerEntryPerTeam = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
             var hoursPerExitPerTeam = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
@@ -231,6 +235,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 treatmentDaysPerAm,
                 personnelReqPerTeam,
                 personnelOverhead,
+                roundtripDays,
                 numEntriesPerTeamPerDay,
                 hoursPerEntryPerTeam,
                 hoursPerExitPerTeam,
@@ -253,10 +258,12 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 [PersonnelLevel.PL4] = _incidentCommandParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
             };
             var personnelOverheadDays = _incidentCommandParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Personnel Overhead Days").CreateDistribution().Draw();
+            var roundtripDays = _incidentCommandParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
 
             return new IncidentCommandParameters(
                 personnelReqPerTeam,
-                personnelOverheadDays);
+                personnelOverheadDays,
+                roundtripDays);
         }
 
         private OtherParameters SetOtherParameters()
