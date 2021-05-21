@@ -8,8 +8,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
     public class OtherParameters
     {
         public double personnelPerRentalCar;
-        public double roundtripDays;
-        public Dictionary<PersonnelLevel, double> totalAvailablePersonnel;
+        //public double roundtripDays;
+        //public Dictionary<PersonnelLevel, double> totalAvailablePersonnel;
 
         public OtherParameters(
             double _personnelPerRentalCar,
@@ -17,8 +17,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             Dictionary<PersonnelLevel, double> _totalAvailablePersonnel)
         {
             personnelPerRentalCar = _personnelPerRentalCar;
-            roundtripDays = _roundtripDays;
-            totalAvailablePersonnel = _totalAvailablePersonnel;
+            //roundtripDays = _roundtripDays;
+            //totalAvailablePersonnel = _totalAvailablePersonnel;
         }
     }
 }
