@@ -45,9 +45,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
-            var entExitLaborCost = _laborCostCalculator.CalculateEntExitLaborCost(workDays, _numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
+            //var entExitLaborCost = _laborCostCalculator.CalculateEntExitLaborCost(workDays, _numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
 
-            return entExitLaborCost + totalPersonnel * _respiratorsPerPerson * _costPerRespirator + totalCostPpe;
+            //return entExitLaborCost + totalPersonnel * _respiratorsPerPerson * _costPerRespirator + totalCostPpe;
+
+            return (totalPersonnel * _respiratorsPerPerson * _costPerRespirator) + totalCostPpe;
         }
     }
 }

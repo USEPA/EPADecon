@@ -1,8 +1,14 @@
-﻿namespace Battelle.EPA.WideAreaDecon.Model.Other
+﻿using System.Collections.Generic;
+using System.Linq;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+
+namespace Battelle.EPA.WideAreaDecon.Model.Other
 {
     public interface ITransportationCostCalculator
     {
-        public double CalculateTransportationCost(double[] personnelAvailableByType, double costPerRoundTripTicket,
-            double totalOnSiteDays);
+        public double CalculatePerDiem(Dictionary<PersonnelLevel, double> personnelAvailableByType, double totalOnSiteDays);
+
+        public double CalculateTransportationCost(Dictionary<PersonnelLevel, double> personnelAvailableByType, double personnelRoundTripDays,
+            double costPerRoundTripTicket);
     }
 }

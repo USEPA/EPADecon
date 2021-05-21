@@ -18,10 +18,13 @@ export default class JobResultProvider implements IJobResultProvider {
       'Pre-Decon Characterization Sampling',
       '',
       '',
+      '',
       'Post-Decon Characterization Sampling',
       '',
       '',
+      '',
       'Total Characterization Sampling',
+      '',
       '',
       '',
       'Source Reduction',
@@ -34,6 +37,7 @@ export default class JobResultProvider implements IJobResultProvider {
       'Incident Command',
       '',
       'Other',
+      '',
       'General',
     ];
 

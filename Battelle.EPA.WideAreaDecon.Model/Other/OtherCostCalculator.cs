@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.Model.Services;
 
@@ -8,10 +9,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Other
     {
         public TransportationCostCalculator Calculator { get; set; }
 
-        public double CalculateCost(Dictionary<PersonnelLevel, double> personnelAvailableByType, double personnelRoundTripDays,
+        public Tuple<double, double> CalculateCost(Dictionary<PersonnelLevel, double> personnelAvailableByType, double personnelRoundTripDays,
             double costPerRoundTripTicket, double totalOnSiteDays)
         {
-            return (Calculator.CalculateTransportationCost( personnelAvailableByType,personnelRoundTripDays,costPerRoundTripTicket,totalOnSiteDays));
+            var otherCosts = new Tuple<double, double>
+            (
+                Calculator.CalculatePerDiem(personnelAvailableByType, totalOnSiteDays),
+                Calculator.CalculateTransportationCost(personnelAvailableByType, personnelRoundTripDays, costPerRoundTripTicket)
+            );
+            
+            return otherCosts;
         }
 
         public OtherCostCalculator GetCalculator()
