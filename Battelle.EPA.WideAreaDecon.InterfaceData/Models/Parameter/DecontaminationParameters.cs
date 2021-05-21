@@ -15,6 +15,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public Dictionary<ApplicationMethod, double> treatmentDaysPerAm;
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
         public double personnelOverhead;
+        public double roundtripDays;
         public double numEntriesPerTeamPerDay;
         public double hoursPerEntryPerTeam;
         public double hoursPerExitPerTeam;
@@ -33,6 +34,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             Dictionary<ApplicationMethod, double> _treatmentDaysPerAm,
             Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
             double _personnelOverhead,
+            double _roundtripDays,
             double _numEntriesPerTeamPerDay,
             double _hoursPerEntryPerTeam,
             double _hoursPerExitPerTeam,
@@ -51,6 +53,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             desiredSporeThreshold = _desiredSporeThreshold;
             personnelReqPerTeam = _personnelReqPerTeam;
             personnelOverhead = _personnelOverhead;
+            roundtripDays = _roundtripDays;
             numEntriesPerTeamPerDay = _numEntriesPerTeamPerDay;
             hoursPerEntryPerTeam = _hoursPerEntryPerTeam;
             hoursPerExitPerTeam = _hoursPerExitPerTeam;

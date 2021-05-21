@@ -21,6 +21,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double resultTransmissionToIC;
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
         public double personnelOverheadDays;
+        public double roundtripDays;
         public double entriesPerTeam;
         public double hoursEntering;
         public double hoursExiting;
@@ -43,6 +44,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _resultTransmissionToIC,
             Dictionary<PersonnelLevel, double> _personnelPerTeam,
             double _personnelOverheadDays,
+            double _roundtripDays,
             double _entriesPerTeam,
             double _hoursEntering,
             double _hoursExiting,
@@ -64,6 +66,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             resultTransmissionToIC = _resultTransmissionToIC;
             personnelReqPerTeam = _personnelPerTeam;
             personnelOverheadDays = _personnelOverheadDays;
+            roundtripDays = _roundtripDays;
             entriesPerTeam = _entriesPerTeam;
             hoursEntering = _hoursEntering;
             hoursExiting = _hoursExiting;

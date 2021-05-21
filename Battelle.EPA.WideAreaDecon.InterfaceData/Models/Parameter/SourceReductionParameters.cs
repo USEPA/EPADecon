@@ -17,6 +17,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double numTeams;
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
         public double personnelOverheadDays;
+        public double roundtripDays;
         public Dictionary<PpeLevel, double> ppeRequired;
 
         public SourceReductionParameters(
@@ -30,6 +31,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _numTeams,
             Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
             double _personnelOverheadDays,
+            double _roundtripDays,
             Dictionary<PpeLevel, double> _ppeRequired)
         {
             surfaceAreaToBeSourceReduced = _surfaceAreaToBeSourceReduced;
@@ -42,6 +44,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             numTeams = _numTeams;
             personnelReqPerTeam = _personnelReqPerTeam;
             personnelOverheadDays = _personnelOverheadDays;
+            roundtripDays = _roundtripDays;
             ppeRequired = _ppeRequired;
         }
     }
