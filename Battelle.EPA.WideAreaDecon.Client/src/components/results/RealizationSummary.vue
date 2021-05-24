@@ -65,12 +65,12 @@
 
             <v-divider color="grey"></v-divider>
 
-            <v-simple-table v-if="displayedRunNumbers.length" dense class="overflow-x-auto">
+            <v-simple-table v-if="displayedRunNumbers.length" dense class="overflow-x-hidden" ref="table">
               <template v-if="selectedLocation !== 'All'" v-slot:default>
                 <thead>
                   <tr>
                     <th></th>
-                    <th class="text-body-1" v-for="runNumber in displayedRunNumbers" :key="runNumber">
+                    <th class="text-body-1 py-3" v-for="runNumber in displayedRunNumbers" :key="runNumber">
                       Run {{ runNumber }}
                       <v-icon class="ml-1" small @click="removeRunFromTable(runNumber)">mdi-close-circle</v-icon>
 
@@ -102,7 +102,7 @@
                   <tr>
                     <th></th>
                     <th
-                      :class="`text-center text-body-1 border-right ${getHeaderClass()}`"
+                      class="text-body-1 py-3 border-right"
                       :colspan="locations.length"
                       v-for="runNumber in displayedRunNumbers"
                       :key="runNumber"
@@ -110,7 +110,7 @@
                       Run {{ runNumber }}
                       <v-icon class="ml-1" small @click="removeRunFromTable(runNumber)">mdi-close-circle</v-icon>
 
-                      <!-- <v-btn class="d-block" x-small @click="showRealizationSummary(runNumber)">Summary</v-btn> -->
+                      <v-btn class="d-block" x-small @click="showRealizationSummary(runNumber)">Summary</v-btn>
                     </th>
                   </tr>
 
@@ -155,6 +155,11 @@
             </v-simple-table>
 
             <v-card-text v-else>Please select at least one realization to display a summary for</v-card-text>
+
+            <!-- Table Scrollbar -->
+            <div class="scrollbarContainer" style="" ref="scroll">
+              <div class="scrollbar" :style="`width: ${tableWidth}px`"></div>
+            </div>
           </v-container>
         </v-card>
       </v-col>
@@ -166,7 +171,7 @@
 
 <script lang="ts">
 import { State } from 'vuex-class';
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
@@ -214,6 +219,8 @@ export default class RealizationSummary extends Vue {
 
   selectedResults: { x: PhaseResult | null; y: PhaseResult | null } = { x: null, y: null };
 
+  tableWidth = 0;
+
   get locations(): string[] {
     const outUnd = Object.keys(this.results[0]).splice(1);
     return [...Object.keys(this.results[0].Indoor).map((l) => `${l} Building`), ...outUnd];
@@ -222,6 +229,15 @@ export default class RealizationSummary extends Vue {
   get tableLocations(): string[] {
     const { length } = this.displayedRunNumbers;
     return [...Array(length)].flatMap(() => this.locations);
+  }
+
+  @Watch('displayedRunNumbers.length')
+  @Watch('selectedLocation')
+  onTableLegnthChanged(): void {
+    this.$nextTick(() => {
+      // get width of table
+      this.tableWidth = (this.$refs.table as Vue)?.$el.firstElementChild?.firstElementChild?.clientWidth ?? 0;
+    });
   }
 
   addRunToTable(): void {
@@ -351,10 +367,6 @@ export default class RealizationSummary extends Vue {
     return cellNumber && cellNumber % this.locations.length === 0 && cellNumber ? 'border-right' : '';
   }
 
-  getHeaderClass(): string {
-    return this.displayedRunNumbers.length === 1 ? 'padding-adjust' : '';
-  }
-
   getLocationResults(runNumber: number, location?: string): IPhaseResultSet {
     const run = this.resultProvider.getRealizationResults(this.results, runNumber);
     const selectedLocation = (location !== undefined ? location : this.selectedLocation).replace(/ Building$/, '');
@@ -400,6 +412,13 @@ export default class RealizationSummary extends Vue {
     }
     return true;
   }
+
+  mounted(): void {
+    (this.$refs.scroll as Element).addEventListener('scroll', () => {
+      const { scrollLeft } = this.$refs.scroll as Element;
+      (this.$refs.table as Vue).$el.scroll({ left: scrollLeft });
+    });
+  }
 }
 </script>
 
@@ -425,10 +444,6 @@ export default class RealizationSummary extends Vue {
   }
 
   & > thead > tr > th {
-    &.padding-adjust {
-      padding-right: 30%;
-    }
-
     &:not(:first-child) {
       border-bottom: thin solid rgba(0, 0, 0, 0.12);
     }
@@ -437,5 +452,17 @@ export default class RealizationSummary extends Vue {
 
 .border-right:not(:last-child) {
   border-right: 2px solid rgba(0, 0, 0, 0.12);
+}
+
+.scrollbarContainer {
+  width: 100%;
+  overflow-x: auto;
+  position: sticky;
+  bottom: 36px; // anything under 36px is the footer
+  z-index: 2;
+
+  & > .scrollbar {
+    height: 5px;
+  }
 }
 </style>
