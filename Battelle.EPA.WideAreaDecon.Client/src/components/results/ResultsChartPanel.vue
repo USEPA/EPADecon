@@ -36,23 +36,13 @@
         :key="chartKey"
       />
 
-      <v-chip
-        v-if="chartLabels.x"
-        class="px-6"
-        id="xLabel"
-        close
-        v-text="resultProvider.convertCamelToTitleCase(chartLabels.x)"
-        @click="onLabelClicked('x')"
-      ></v-chip>
+      <v-chip v-if="chartLabels.x" class="px-6" id="xLabel" close @click:close="onLabelClicked('x')">
+        {{ resultProvider.convertCamelToTitleCase(chartLabels.x) }}
+      </v-chip>
 
-      <v-chip
-        v-if="chartLabels.y"
-        class="px-6"
-        id="yLabel"
-        close
-        v-text="resultProvider.convertCamelToTitleCase(chartLabels.y)"
-        @click="onLabelClicked('y')"
-      ></v-chip>
+      <v-chip v-if="chartLabels.y" class="px-6" id="yLabel" close @click:close="onLabelClicked('y')">
+        {{ resultProvider.convertCamelToTitleCase(chartLabels.y) }}
+      </v-chip>
     </div>
   </v-card>
 </template>

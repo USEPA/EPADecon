@@ -312,6 +312,10 @@ export default class RealizationSummary extends Vue {
     const colorProvider = new CycleColorProvider();
     const colors = phaseResults.map(() => colorProvider.getNextColor());
     const numberRealizations = values.length;
+    const labels =
+      phaseResults.length > 1
+        ? phaseResults.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase))
+        : ['Total Cost'];
 
     return {
       datasets: [
@@ -320,7 +324,7 @@ export default class RealizationSummary extends Vue {
           backgroundColor: colors,
         },
       ],
-      labels: phaseResults.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase)),
+      labels,
     };
   }
 
