@@ -72,8 +72,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 
             Assert.AreEqual(121767.74958828, Calculator.CalculateLaborCost(workDays, _numberTeams, roundtripDays, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-4,
                 "Incorrect labor cost calculated");
-            Assert.AreEqual(68458.4997255202, Calculator.CalculateEntExitLaborCost(workDays, _numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-4,
-                "Incorrect ent/exit labor cost calculated");
             Assert.AreEqual(3.1909787627956, Calculator.CalculateLaborDays(workDays), 1e-4,
                 "Incorrect labor days calculated");
         }
