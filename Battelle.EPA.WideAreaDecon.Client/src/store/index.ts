@@ -9,6 +9,7 @@ import appSettingsMutations from './appSettings/mutations';
 import clientConfigurationMutations from './clientConfiguration/mutations';
 import runSettingsMutations from './runSettings/mutations';
 import runSettingsGetters from './runSettings/getters';
+import runSettingsActions from './runSettings/actions';
 import NavigationSettings from './navigationSettings/NavigationSettings';
 import navigationSettingsMutations from './navigationSettings/mutations';
 import parameterSelectionMutations from './parameterSelection/mutations';
@@ -43,6 +44,7 @@ const store: StoreOptions<IRootState> = {
   },
   actions: {
     ...parameterSelectionActions,
+    ...runSettingsActions,
     ...jobRequestActions,
   },
 };

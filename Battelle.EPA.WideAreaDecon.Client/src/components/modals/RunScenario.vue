@@ -14,7 +14,7 @@
                     type="number"
                     :rules="[validationRulesRealizations]"
                     hide-details="auto"
-                    :disabled="isRunning || hasResults"
+                    :disabled="disableInputs"
                   >
                   </v-text-field>
                   <v-btn-toggle>
@@ -31,7 +31,7 @@
                     v-model.number="seed1"
                     type="number"
                     hide-details="auto"
-                    :disabled="isRunning || hasResults"
+                    :disabled="disableInputs"
                   >
                   </v-text-field>
                 </v-col>
@@ -41,7 +41,7 @@
                     v-model.number="seed2"
                     type="number"
                     hide-details="auto"
-                    :disabled="isRunning || hasResults"
+                    :disabled="disableInputs"
                   >
                   </v-text-field>
                 </v-col>
@@ -56,7 +56,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            v-if="!hasResults"
+            v-if="!hasResults || repeatRun"
             outlined
             color="primary darken-1"
             text
@@ -99,11 +99,15 @@ export default class RunScenario extends Vue {
 
   @Action UpdateJobProgress!: (progress: number) => void;
 
+  @Action setRepeatRun!: (newValue: boolean) => void;
+
   @Getter canRun!: boolean;
 
   @Getter hasResults!: boolean;
 
   @State currentJob!: JobRequest;
+
+  @State((s) => s.runSettings.repeatRun) repeatRun!: boolean;
 
   jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
 
@@ -147,7 +151,14 @@ export default class RunScenario extends Vue {
       await this.postCurrentJobRequest(this.jobProvider);
       this.jobManager = new JobManager(this.currentJob.id, this.UpdateJobStatus, this.UpdateJobProgress);
       await this.jobManager.StartWatchJobProgress();
+      if (this.repeatRun) {
+        this.setRepeatRun(false);
+      }
     }
+  }
+
+  get disableInputs(): boolean {
+    return (this.isRunning || this.hasResults) && !this.repeatRun;
   }
 
   // eslint-disable-next-line class-methods-use-this

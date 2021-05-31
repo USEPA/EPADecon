@@ -3,7 +3,6 @@ import IJobRequest from '@/interfaces/jobs/IJobRequest';
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
-import mockResults from '@/dataMocks/mockResults';
 
 @Serializable()
 export default class JobRequest implements IJobRequest {
@@ -52,6 +51,6 @@ export default class JobRequest implements IJobRequest {
     this.numberRealizations = numberRealizations;
     this.seed1 = seed1;
     this.seed2 = seed2;
-    this.results = []; // mockResults;
+    this.results = [];
   }
 }

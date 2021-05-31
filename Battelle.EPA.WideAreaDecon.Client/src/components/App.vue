@@ -6,7 +6,7 @@
     <!-- Content Router -->
     <v-main>
       <run-scenario v-model="showRunModal" />
-      <router-view />
+      <router-view @showRunModal="showRunModal = true" />
     </v-main>
 
     <footer-bar />
@@ -30,6 +30,7 @@ export default class App extends Vue {
   showRunModal = false;
 }
 </script>
+
 <style scoped lang="scss">
 .disabled-tool-tip {
   cursor: no-drop;
