@@ -45,10 +45,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
-            //EntExitLabor declared as local double as input is needed to calculate
-            //var entExitLabor = _entExitLaborCostCalculator.CalculateEntExitLaborCost(workDays, _numberTeams);
-
-            //return entExitLabor + totalPersonnel * _respiratorsPerPerson * _costPerRespirator + totalCostPpe;
             return (totalPersonnel * _respiratorsPerPerson * _costPerRespirator) + totalCostPpe;
         }
     }
