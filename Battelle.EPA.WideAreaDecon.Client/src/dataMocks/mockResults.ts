@@ -23,8 +23,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.079790366599287,
           onSiteDays: 10.016591866504537,
-          suppliesCost: 206373,
-          otherCosts: 261145,
+          phaseCost: 206373,
         },
         incidentCommandResults: { onSiteDays: 44.041092546577985, phaseCost: 135409 },
         otherResults: { otherCosts: 79666 },
@@ -50,8 +49,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 17.20423640874313,
           onSiteDays: 17.867549093409338,
-          suppliesCost: 185310,
-          otherCosts: 587794,
+          phaseCost: 185310,
         },
         incidentCommandResults: { onSiteDays: 106.29658615138815, phaseCost: 328526 },
         otherResults: { otherCosts: 82155 },
@@ -78,8 +76,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 15.282976340335555,
         onSiteDays: 16.109954848678306,
-        suppliesCost: 316060,
-        otherCosts: 933355,
+        phaseCost: 185310,
       },
       incidentCommandResults: { onSiteDays: 86.34278899194811, phaseCost: 265624 },
       otherResults: { otherCosts: 56453 },
@@ -105,8 +102,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.913242122371039,
         onSiteDays: 6.408245293751416,
-        suppliesCost: 102166,
-        otherCosts: 180471,
+        phaseCost: 102166,
       },
       incidentCommandResults: { onSiteDays: 39.851187773808704, phaseCost: 121737 },
       otherResults: { otherCosts: 78130 },
@@ -135,8 +131,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.038037374391695,
           onSiteDays: 6.974580359639269,
-          suppliesCost: 240917,
-          otherCosts: 210437,
+          phaseCost: 240917,
         },
         incidentCommandResults: { onSiteDays: 36.12470716853901, phaseCost: 110651 },
         otherResults: { otherCosts: 89102 },
@@ -162,8 +157,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.743933647578567,
           onSiteDays: 4.178979241796532,
-          suppliesCost: 390601,
-          otherCosts: 201425,
+          phaseCost: 390601,
         },
         incidentCommandResults: { onSiteDays: 70.87831799327341, phaseCost: 219061 },
         otherResults: { otherCosts: 93695 },
@@ -190,8 +184,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.277583924186784,
         onSiteDays: 13.974753277603245,
-        suppliesCost: 72680,
-        otherCosts: 489296,
+        phaseCost: 72680,
       },
       incidentCommandResults: { onSiteDays: 62.376753220318406, phaseCost: 190565 },
       otherResults: { otherCosts: 133264 },
@@ -217,8 +210,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.868087687033249,
         onSiteDays: 14.420178643059959,
-        suppliesCost: 399578,
-        otherCosts: 830101,
+        phaseCost: 399578,
       },
       incidentCommandResults: { onSiteDays: 101.2863824124374, phaseCost: 309125 },
       otherResults: { otherCosts: 87130 },
@@ -247,8 +239,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.784175262270536,
           onSiteDays: 5.726690359815651,
-          suppliesCost: 63701,
-          otherCosts: 130048,
+          phaseCost: 63701,
         },
         incidentCommandResults: { onSiteDays: 61.746855618522225, phaseCost: 188478 },
         otherResults: { otherCosts: 106046 },
@@ -274,8 +265,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.920975984987098,
           onSiteDays: 6.688576012777299,
-          suppliesCost: 159229,
-          otherCosts: 327756,
+          phaseCost: 159229,
         },
         incidentCommandResults: { onSiteDays: 79.82487698776825, phaseCost: 244640 },
         otherResults: { otherCosts: 108695 },
@@ -302,8 +292,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.030553502736277,
         onSiteDays: 4.25749952002836,
-        suppliesCost: 187750,
-        otherCosts: 178990,
+        phaseCost: 187750,
       },
       incidentCommandResults: { onSiteDays: 39.00530933990679, phaseCost: 117763 },
       otherResults: { otherCosts: 133206 },
@@ -329,8 +318,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.594328046914732,
         onSiteDays: 5.9483197405814,
-        suppliesCost: 433474,
-        otherCosts: 122788,
+        phaseCost: 433474,
       },
       incidentCommandResults: { onSiteDays: 34.14649987429715, phaseCost: 103229 },
       otherResults: { otherCosts: 47642 },
@@ -359,8 +347,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.434288931645986,
           onSiteDays: 11.17370769548549,
-          suppliesCost: 196270,
-          otherCosts: 262193,
+          phaseCost: 196270,
         },
         incidentCommandResults: { onSiteDays: 68.82713697618632, phaseCost: 209561 },
         otherResults: { otherCosts: 78063 },
@@ -386,8 +373,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.4065300958246296,
           onSiteDays: 5.1841587739028405,
-          suppliesCost: 351164,
-          otherCosts: 136980,
+          phaseCost: 351164,
         },
         incidentCommandResults: { onSiteDays: 75.31431177488501, phaseCost: 229822 },
         otherResults: { otherCosts: 76496 },
@@ -414,8 +400,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 16.96051398500812,
         onSiteDays: 16.978866120795455,
-        suppliesCost: 154605,
-        otherCosts: 776040,
+        phaseCost: 154605,
       },
       incidentCommandResults: { onSiteDays: 50.44801999847101, phaseCost: 153727 },
       otherResults: { otherCosts: 44853 },
@@ -441,8 +426,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.547466763655532,
         onSiteDays: 9.254033357196962,
-        suppliesCost: 336630,
-        otherCosts: 363854,
+        phaseCost: 336630,
       },
       incidentCommandResults: { onSiteDays: 42.94266276964138, phaseCost: 129855 },
       otherResults: { otherCosts: 146525 },
@@ -471,8 +455,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.132841160784672,
           onSiteDays: 4.478822973668302,
-          suppliesCost: 125639,
-          otherCosts: 222875,
+          phaseCost: 125639,
         },
         incidentCommandResults: { onSiteDays: 25.025207875356823, phaseCost: 77419 },
         otherResults: { otherCosts: 33750 },
@@ -498,8 +481,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.48231814207563,
           onSiteDays: 10.973257771686942,
-          suppliesCost: 215049,
-          otherCosts: 462892,
+          phaseCost: 215049,
         },
         incidentCommandResults: { onSiteDays: 68.63494977565223, phaseCost: 208091 },
         otherResults: { otherCosts: 94096 },
@@ -526,8 +508,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.201908712322338,
         onSiteDays: 13.9077872403217,
-        suppliesCost: 319214,
-        otherCosts: 358515,
+        phaseCost: 319214,
       },
       incidentCommandResults: { onSiteDays: 60.9916676201663, phaseCost: 186384 },
       otherResults: { otherCosts: 55822 },
@@ -553,8 +534,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.799282630625945,
         onSiteDays: 6.355709458551302,
-        suppliesCost: 380132,
-        otherCosts: 224336,
+        phaseCost: 380132,
       },
       incidentCommandResults: { onSiteDays: 44.82222499174578, phaseCost: 138650 },
       otherResults: { otherCosts: 88544 },
@@ -583,8 +563,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 15.263501068871353,
           onSiteDays: 15.740151525414586,
-          suppliesCost: 307183,
-          otherCosts: 837573,
+          phaseCost: 307183,
         },
         incidentCommandResults: { onSiteDays: 167.7768576721481, phaseCost: 507638 },
         otherResults: { otherCosts: 124466 },
@@ -610,8 +589,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.543756851587388,
           onSiteDays: 5.776333149703297,
-          suppliesCost: 47283,
-          otherCosts: 236890,
+          phaseCost: 47283,
         },
         incidentCommandResults: { onSiteDays: 44.21073946654707, phaseCost: 133415 },
         otherResults: { otherCosts: 117345 },
@@ -638,8 +616,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 14.13511445469575,
         onSiteDays: 14.334777226283862,
-        suppliesCost: 416794,
-        otherCosts: 381705,
+        phaseCost: 416794,
       },
       incidentCommandResults: { onSiteDays: 126.98535952423308, phaseCost: 384931 },
       otherResults: { otherCosts: 106250 },
@@ -665,8 +642,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.95199939141795,
         onSiteDays: 5.195953158474516,
-        suppliesCost: 70669,
-        otherCosts: 320404,
+        phaseCost: 70669,
       },
       incidentCommandResults: { onSiteDays: 66.45270285338401, phaseCost: 200348 },
       otherResults: { otherCosts: 58072 },
@@ -695,8 +671,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.535157513230843,
           onSiteDays: 8.102083392930702,
-          suppliesCost: 182629,
-          otherCosts: 336593,
+          phaseCost: 182629,
         },
         incidentCommandResults: { onSiteDays: 48.97738601501893, phaseCost: 149289 },
         otherResults: { otherCosts: 90574 },
@@ -722,8 +697,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.531778201817483,
           onSiteDays: 5.304547586782031,
-          suppliesCost: 275012,
-          otherCosts: 244699,
+          phaseCost: 275012,
         },
         incidentCommandResults: { onSiteDays: 45.47374914030177, phaseCost: 140496 },
         otherResults: { otherCosts: 57126 },
@@ -750,8 +724,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 14.26672112575423,
         onSiteDays: 14.846560983417222,
-        suppliesCost: 314405,
-        otherCosts: 311316,
+        phaseCost: 314405,
       },
       incidentCommandResults: { onSiteDays: 61.872724198900876, phaseCost: 186234 },
       otherResults: { otherCosts: 78657 },
@@ -777,8 +750,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.8662142587979824,
         onSiteDays: 6.7336696460223,
-        suppliesCost: 114728,
-        otherCosts: 226957,
+        phaseCost: 114728,
       },
       incidentCommandResults: { onSiteDays: 33.15506142586209, phaseCost: 100420 },
       otherResults: { otherCosts: 29906 },
@@ -807,8 +779,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.65930825557078,
           onSiteDays: 9.04362684070217,
-          suppliesCost: 76162,
-          otherCosts: 438536,
+          phaseCost: 76162,
         },
         incidentCommandResults: { onSiteDays: 32.02437654944052, phaseCost: 99182 },
         otherResults: { otherCosts: 45927 },
@@ -834,8 +805,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.458722239467018,
           onSiteDays: 5.569338321818351,
-          suppliesCost: 58967,
-          otherCosts: 134951,
+          phaseCost: 58967,
         },
         incidentCommandResults: { onSiteDays: 30.97477273004818, phaseCost: 93821 },
         otherResults: { otherCosts: 46350 },
@@ -862,8 +832,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.7344297959316592,
         onSiteDays: 4.119238972458811,
-        suppliesCost: 323405,
-        otherCosts: 182079,
+        phaseCost: 323405,
       },
       incidentCommandResults: { onSiteDays: 43.87788908297678, phaseCost: 134777 },
       otherResults: { otherCosts: 118913 },
@@ -889,8 +858,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.304755773000595,
         onSiteDays: 4.031516406692452,
-        suppliesCost: 244603,
-        otherCosts: 191795,
+        phaseCost: 244603191795,
       },
       incidentCommandResults: { onSiteDays: 43.05685322381012, phaseCost: 133192 },
       otherResults: { otherCosts: 38204 },
@@ -919,7 +887,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.293138473595757,
           onSiteDays: 11.262294603805591,
-          suppliesCost: 491241,
+          phaseCost: 491241,
           otherCosts: 465863,
         },
         incidentCommandResults: { onSiteDays: 67.22394890082745, phaseCost: 207620 },
@@ -946,7 +914,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.1141687599276584,
           onSiteDays: 5.700219697947665,
-          suppliesCost: 241020,
+          phaseCost: 241020,
           otherCosts: 115849,
         },
         incidentCommandResults: { onSiteDays: 69.41580319279795, phaseCost: 210434 },
@@ -974,8 +942,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.393040169354771,
         onSiteDays: 13.816536853978537,
-        suppliesCost: 389681,
-        otherCosts: 471470,
+        phaseCost: 389681,
       },
       incidentCommandResults: { onSiteDays: 125.62856252297675, phaseCost: 378689 },
       otherResults: { otherCosts: 79266 },
@@ -1001,8 +968,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 16.604587746924857,
         onSiteDays: 18.875348068279063,
-        suppliesCost: 211982,
-        otherCosts: 959910,
+        phaseCost: 211982959910,
       },
       incidentCommandResults: { onSiteDays: 117.54176991096858, phaseCost: 357764 },
       otherResults: { otherCosts: 83987 },
@@ -1031,7 +997,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.27482460096358,
           onSiteDays: 7.26380276779267,
-          suppliesCost: 466382,
+          phaseCost: 466382,
           otherCosts: 304655,
         },
         incidentCommandResults: { onSiteDays: 72.65571927535322, phaseCost: 225006 },
@@ -1058,7 +1024,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.267736041747904,
           onSiteDays: 11.699876492773154,
-          suppliesCost: 364892,
+          phaseCost: 364892,
           otherCosts: 563780,
         },
         incidentCommandResults: { onSiteDays: 70.69683028439312, phaseCost: 214345 },
@@ -1086,8 +1052,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.242853115602129,
         onSiteDays: 9.774422746797656,
-        suppliesCost: 179477,
-        otherCosts: 392207,
+        phaseCost: 179477392207,
       },
       incidentCommandResults: { onSiteDays: 59.03766167942674, phaseCost: 181600 },
       otherResults: { otherCosts: 115704 },
@@ -1113,8 +1078,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 10.850206363445661,
         onSiteDays: 11.128191740049093,
-        suppliesCost: 45462,
-        otherCosts: 538160,
+        phaseCost: 45462538160,
       },
       incidentCommandResults: { onSiteDays: 79.75253847420987, phaseCost: 245286 },
       otherResults: { otherCosts: 55400 },
@@ -1143,7 +1107,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 18.30512878608544,
           onSiteDays: 20.82718528337479,
-          suppliesCost: 563500,
+          phaseCost: 563500,
           otherCosts: 970070,
         },
         incidentCommandResults: { onSiteDays: 100.9424704937746, phaseCost: 306667 },
@@ -1170,7 +1134,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.090435009237946,
           onSiteDays: 7.634875119113102,
-          suppliesCost: 159197,
+          phaseCost: 159197,
           otherCosts: 211224,
         },
         incidentCommandResults: { onSiteDays: 63.47355290341227, phaseCost: 191845 },
@@ -1198,8 +1162,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.021018142816848,
         onSiteDays: 11.927999611927197,
-        suppliesCost: 46568,
-        otherCosts: 904429,
+        phaseCost: 46568904429,
       },
       incidentCommandResults: { onSiteDays: 75.58650320815433, phaseCost: 229544 },
       otherResults: { otherCosts: 78694 },
@@ -1225,8 +1188,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.610312790519165,
         onSiteDays: 5.35082136312286,
-        suppliesCost: 334802,
-        otherCosts: 286730,
+        phaseCost: 334802286730,
       },
       incidentCommandResults: { onSiteDays: 44.58994297718113, phaseCost: 137944 },
       otherResults: { otherCosts: 64067 },
@@ -1255,7 +1217,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.110648572237848,
           onSiteDays: 4.305978735281616,
-          suppliesCost: 431551,
+          phaseCost: 431551,
           otherCosts: 221380,
         },
         incidentCommandResults: { onSiteDays: 84.75275202982337, phaseCost: 256466 },
@@ -1282,7 +1244,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 13.062958778362479,
           onSiteDays: 15.168865676310116,
-          suppliesCost: 234904,
+          phaseCost: 234904,
           otherCosts: 902544,
         },
         incidentCommandResults: { onSiteDays: 79.23666988766252, phaseCost: 243337 },
@@ -1310,8 +1272,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.275484578282452,
         onSiteDays: 9.782427921607724,
-        suppliesCost: 169790,
-        otherCosts: 500501,
+        phaseCost: 169790500501,
       },
       incidentCommandResults: { onSiteDays: 30.65467487656781, phaseCost: 93201 },
       otherResults: { otherCosts: 93516 },
@@ -1337,8 +1298,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.3999959524720897,
         onSiteDays: 5.124563037214001,
-        suppliesCost: 86640,
-        otherCosts: 174997,
+        phaseCost: 86640174997,
       },
       incidentCommandResults: { onSiteDays: 51.03023197814279, phaseCost: 154848 },
       otherResults: { otherCosts: 99531 },
@@ -1367,7 +1327,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.049409344338209,
           onSiteDays: 5.025386950938354,
-          suppliesCost: 160848,
+          phaseCost: 160848,
           otherCosts: 107056,
         },
         incidentCommandResults: { onSiteDays: 59.53059999470065, phaseCost: 181468 },
@@ -1394,7 +1354,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.374235734197832,
           onSiteDays: 12.016119937416194,
-          suppliesCost: 84797,
+          phaseCost: 84797,
           otherCosts: 202201,
         },
         incidentCommandResults: { onSiteDays: 68.77785336936356, phaseCost: 211115 },
@@ -1422,8 +1382,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.316539367036087,
         onSiteDays: 9.4602952181502,
-        suppliesCost: 320514,
-        otherCosts: 298105,
+        phaseCost: 320514298105,
       },
       incidentCommandResults: { onSiteDays: 38.13981155806097, phaseCost: 118185 },
       otherResults: { otherCosts: 81692 },
@@ -1449,8 +1408,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.794523536179803,
         onSiteDays: 5.84574270757049,
-        suppliesCost: 175400,
-        otherCosts: 226017,
+        phaseCost: 175400226017,
       },
       incidentCommandResults: { onSiteDays: 58.64278700595155, phaseCost: 178730 },
       otherResults: { otherCosts: 58548 },
@@ -1479,7 +1437,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.18889658087606,
           onSiteDays: 9.479336808314393,
-          suppliesCost: 165748,
+          phaseCost: 165748,
           otherCosts: 522209,
         },
         incidentCommandResults: { onSiteDays: 44.68011641650466, phaseCost: 136388 },
@@ -1506,7 +1464,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 6.738059787251535,
           onSiteDays: 8.873918597557097,
-          suppliesCost: 101226,
+          phaseCost: 101226,
           otherCosts: 269186,
         },
         incidentCommandResults: { onSiteDays: 32.03544073218244, phaseCost: 98341 },
@@ -1534,8 +1492,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 13.400901452265892,
         onSiteDays: 14.708980046843408,
-        suppliesCost: 254055,
-        otherCosts: 778937,
+        phaseCost: 254055778937,
       },
       incidentCommandResults: { onSiteDays: 58.740877913631465, phaseCost: 180306 },
       otherResults: { otherCosts: 92415 },
@@ -1561,8 +1518,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.635096885644621,
         onSiteDays: 7.310358845701059,
-        suppliesCost: 328516,
-        otherCosts: 270135,
+        phaseCost: 328516270135,
       },
       incidentCommandResults: { onSiteDays: 44.31920438956512, phaseCost: 135610 },
       otherResults: { otherCosts: 78760 },
@@ -1591,7 +1547,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.268510144033588,
           onSiteDays: 4.744340500501995,
-          suppliesCost: 48422,
+          phaseCost: 48422,
           otherCosts: 282720,
         },
         incidentCommandResults: { onSiteDays: 32.071823306776096, phaseCost: 97743 },
@@ -1618,7 +1574,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.015996916456148,
           onSiteDays: 4.2396779966633025,
-          suppliesCost: 73533,
+          phaseCost: 73533,
           otherCosts: 262288,
         },
         incidentCommandResults: { onSiteDays: 34.93441609573146, phaseCost: 107779 },
@@ -1646,8 +1602,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 16.272176853910132,
         onSiteDays: 19.009980588455218,
-        suppliesCost: 77587,
-        otherCosts: 577301,
+        phaseCost: 77587577301,
       },
       incidentCommandResults: { onSiteDays: 76.00223970060638, phaseCost: 232980 },
       otherResults: { otherCosts: 87012 },
@@ -1673,8 +1628,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.016910416078034,
         onSiteDays: 9.01427675225173,
-        suppliesCost: 215637,
-        otherCosts: 176261,
+        phaseCost: 215637176261,
       },
       incidentCommandResults: { onSiteDays: 45.215142745935495, phaseCost: 138409 },
       otherResults: { otherCosts: 101808 },
@@ -1703,7 +1657,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.628820735641946,
           onSiteDays: 3.7106608929370206,
-          suppliesCost: 189995,
+          phaseCost: 189995,
           otherCosts: 119559,
         },
         incidentCommandResults: { onSiteDays: 65.72731583385897, phaseCost: 201302 },
@@ -1730,7 +1684,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.274484382074904,
           onSiteDays: 8.923712661472083,
-          suppliesCost: 245766,
+          phaseCost: 245766,
           otherCosts: 162736,
         },
         incidentCommandResults: { onSiteDays: 37.915078086778244, phaseCost: 116823 },
@@ -1758,8 +1712,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 16.733662534210286,
         onSiteDays: 18.85694313651345,
-        suppliesCost: 309340,
-        otherCosts: 386643,
+        phaseCost: 309340386643,
       },
       incidentCommandResults: { onSiteDays: 66.5282973711997, phaseCost: 202425 },
       otherResults: { otherCosts: 97930 },
@@ -1785,8 +1738,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.343047587048041,
         onSiteDays: 6.663298403067351,
-        suppliesCost: 250361,
-        otherCosts: 272386,
+        phaseCost: 250361272386,
       },
       incidentCommandResults: { onSiteDays: 49.99487211932547, phaseCost: 153954 },
       otherResults: { otherCosts: 96184 },
@@ -1815,7 +1767,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.194095270054903,
           onSiteDays: 8.991351477799785,
-          suppliesCost: 470064,
+          phaseCost: 470064,
           otherCosts: 587056,
         },
         incidentCommandResults: { onSiteDays: 30.122822833775764, phaseCost: 92690 },
@@ -1842,7 +1794,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.4965859606155627,
           onSiteDays: 5.503180928645465,
-          suppliesCost: 297557,
+          phaseCost: 297557,
           otherCosts: 120759,
         },
         incidentCommandResults: { onSiteDays: 41.24495676037785, phaseCost: 126342 },
@@ -1870,8 +1822,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.675059049314601,
         onSiteDays: 12.94436241359086,
-        suppliesCost: 193424,
-        otherCosts: 667035,
+        phaseCost: 193424667035,
       },
       incidentCommandResults: { onSiteDays: 54.675634751189016, phaseCost: 167781 },
       otherResults: { otherCosts: 69830 },
@@ -1897,8 +1848,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 9.00269910483684,
         onSiteDays: 9.452264813811581,
-        suppliesCost: 399915,
-        otherCosts: 750448,
+        phaseCost: 399915750448,
       },
       incidentCommandResults: { onSiteDays: 48.150263271922014, phaseCost: 149062 },
       otherResults: { otherCosts: 34874 },
@@ -1927,7 +1877,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.268961411032118,
           onSiteDays: 9.895491153675945,
-          suppliesCost: 319574,
+          phaseCost: 319574,
           otherCosts: 668566,
         },
         incidentCommandResults: { onSiteDays: 50.84571665170887, phaseCost: 154906 },
@@ -1954,7 +1904,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 14.558782511520846,
           onSiteDays: 16.523536064551102,
-          suppliesCost: 140108,
+          phaseCost: 140108,
           otherCosts: 921737,
         },
         incidentCommandResults: { onSiteDays: 87.85471853620386, phaseCost: 268794 },
@@ -1982,8 +1932,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.3920701584760264,
         onSiteDays: 4.334914275755853,
-        suppliesCost: 342908,
-        otherCosts: 153402,
+        phaseCost: 342908153402,
       },
       incidentCommandResults: { onSiteDays: 55.297605090885995, phaseCost: 170020 },
       otherResults: { otherCosts: 54913 },
@@ -2009,8 +1958,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 9.05157396221803,
         onSiteDays: 10.335979184446852,
-        suppliesCost: 218672,
-        otherCosts: 322609,
+        phaseCost: 218672322609,
       },
       incidentCommandResults: { onSiteDays: 41.7006221269492, phaseCost: 129343 },
       otherResults: { otherCosts: 51214 },
@@ -2039,7 +1987,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.349408538394936,
           onSiteDays: 10.483852623841692,
-          suppliesCost: 546836,
+          phaseCost: 546836,
           otherCosts: 572233,
         },
         incidentCommandResults: { onSiteDays: 38.63263360287025, phaseCost: 116937 },
@@ -2066,7 +2014,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.721586101623622,
           onSiteDays: 6.701410435303443,
-          suppliesCost: 410207,
+          phaseCost: 410207,
           otherCosts: 123204,
         },
         incidentCommandResults: { onSiteDays: 26.964418820028225, phaseCost: 82615 },
@@ -2094,8 +2042,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 13.678444034112255,
         onSiteDays: 14.500376974814658,
-        suppliesCost: 178278,
-        otherCosts: 484138,
+        phaseCost: 178278484138,
       },
       incidentCommandResults: { onSiteDays: 55.271999015875004, phaseCost: 169286 },
       otherResults: { otherCosts: 76295 },
@@ -2121,8 +2068,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.94234092206283,
         onSiteDays: 4.951186702109684,
-        suppliesCost: 78718,
-        otherCosts: 146981,
+        phaseCost: 78718146981,
       },
       incidentCommandResults: { onSiteDays: 84.38470138449736, phaseCost: 259492 },
       otherResults: { otherCosts: 87479 },
@@ -2151,7 +2097,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.5737038307296354,
           onSiteDays: 4.700337331206616,
-          suppliesCost: 418392,
+          phaseCost: 418392,
           otherCosts: 230273,
         },
         incidentCommandResults: { onSiteDays: 29.68842275129151, phaseCost: 90823 },
@@ -2178,7 +2124,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.016208566030535,
           onSiteDays: 10.01021013804949,
-          suppliesCost: 222639,
+          phaseCost: 222639,
           otherCosts: 299553,
         },
         incidentCommandResults: { onSiteDays: 40.86093132252985, phaseCost: 125665 },
@@ -2206,8 +2152,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 14.062446688083572,
         onSiteDays: 14.96505203749171,
-        suppliesCost: 408832,
-        otherCosts: 912290,
+        phaseCost: 408832912290,
       },
       incidentCommandResults: { onSiteDays: 54.3000108643983, phaseCost: 163866 },
       otherResults: { otherCosts: 31115 },
@@ -2233,8 +2178,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 6.950183957570742,
         onSiteDays: 7.479940490908907,
-        suppliesCost: 66556,
-        otherCosts: 390215,
+        phaseCost: 66556390215,
       },
       incidentCommandResults: { onSiteDays: 54.13706213586724, phaseCost: 166610 },
       otherResults: { otherCosts: 77130 },
@@ -2263,7 +2207,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 18.52116036450517,
           onSiteDays: 19.799413260025766,
-          suppliesCost: 197828,
+          phaseCost: 197828,
           otherCosts: 645376,
         },
         incidentCommandResults: { onSiteDays: 74.52132873293122, phaseCost: 226451 },
@@ -2290,7 +2234,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.16561887999196,
           onSiteDays: 11.667015567344384,
-          suppliesCost: 101712,
+          phaseCost: 101712,
           otherCosts: 384197,
         },
         incidentCommandResults: { onSiteDays: 38.77117198511691, phaseCost: 118048 },
@@ -2318,8 +2262,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.552466686012332,
         onSiteDays: 13.129336365994376,
-        suppliesCost: 331279,
-        otherCosts: 616956,
+        phaseCost: 331279616956,
       },
       incidentCommandResults: { onSiteDays: 42.344306390300154, phaseCost: 130115 },
       otherResults: { otherCosts: 79941 },
@@ -2345,8 +2288,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.1166102593104843,
         onSiteDays: 4.478435080377021,
-        suppliesCost: 345510,
-        otherCosts: 126167,
+        phaseCost: 345510126167,
       },
       incidentCommandResults: { onSiteDays: 73.03755068719269, phaseCost: 222953 },
       otherResults: { otherCosts: 64596 },
@@ -2375,7 +2317,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 11.153623800294852,
           onSiteDays: 13.869764838570209,
-          suppliesCost: 208696,
+          phaseCost: 208696,
           otherCosts: 217148,
         },
         incidentCommandResults: { onSiteDays: 94.42568688344393, phaseCost: 289541 },
@@ -2402,7 +2344,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 13.833707462491866,
           onSiteDays: 15.560299904216151,
-          suppliesCost: 329633,
+          phaseCost: 329633,
           otherCosts: 1014731,
         },
         incidentCommandResults: { onSiteDays: 178.57179038734188, phaseCost: 542390 },
@@ -2430,8 +2372,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 15.397447369852438,
         onSiteDays: 16.78271514125697,
-        suppliesCost: 280368,
-        otherCosts: 447876,
+        phaseCost: 280368447876,
       },
       incidentCommandResults: { onSiteDays: 94.14807375294049, phaseCost: 286952 },
       otherResults: { otherCosts: 157570 },
@@ -2457,8 +2398,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.641041773753483,
         onSiteDays: 6.541393780508403,
-        suppliesCost: 356341,
-        otherCosts: 369816,
+        phaseCost: 356341369816,
       },
       incidentCommandResults: { onSiteDays: 29.10790717349004, phaseCost: 90232 },
       otherResults: { otherCosts: 70027 },
@@ -2487,7 +2427,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.227255724656223,
           onSiteDays: 5.839726401222807,
-          suppliesCost: 298020,
+          phaseCost: 298020,
           otherCosts: 298949,
         },
         incidentCommandResults: { onSiteDays: 91.49715412128536, phaseCost: 275361 },
@@ -2514,7 +2454,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.602129674423982,
           onSiteDays: 6.732641913865843,
-          suppliesCost: 172148,
+          phaseCost: 172148,
           otherCosts: 194092,
         },
         incidentCommandResults: { onSiteDays: 64.62002096029036, phaseCost: 199519 },
@@ -2542,8 +2482,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.42188244904901,
         onSiteDays: 7.723450533748476,
-        suppliesCost: 333181,
-        otherCosts: 238326,
+        phaseCost: 333181238326,
       },
       incidentCommandResults: { onSiteDays: 41.722468391164966, phaseCost: 126598 },
       otherResults: { otherCosts: 113837 },
@@ -2569,8 +2508,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.032321491519064,
         onSiteDays: 9.928281210579044,
-        suppliesCost: 254490,
-        otherCosts: 275249,
+        phaseCost: 254490275249,
       },
       incidentCommandResults: { onSiteDays: 80.69410487905304, phaseCost: 242750 },
       otherResults: { otherCosts: 95237 },
@@ -2599,7 +2537,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 6.465786415260701,
           onSiteDays: 8.536941639505546,
-          suppliesCost: 90147,
+          phaseCost: 90147,
           otherCosts: 266181,
         },
         incidentCommandResults: { onSiteDays: 72.18528331315176, phaseCost: 219623 },
@@ -2626,7 +2564,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.452419272030801,
           onSiteDays: 5.915068952346935,
-          suppliesCost: 156189,
+          phaseCost: 156189,
           otherCosts: 168597,
         },
         incidentCommandResults: { onSiteDays: 103.07279066036321, phaseCost: 316497 },
@@ -2654,8 +2592,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.497935105231111,
         onSiteDays: 14.044186758120588,
-        suppliesCost: 401056,
-        otherCosts: 509895,
+        phaseCost: 401056509895,
       },
       incidentCommandResults: { onSiteDays: 40.49005302533926, phaseCost: 123145 },
       otherResults: { otherCosts: 164604 },
@@ -2681,8 +2618,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 10.278054604604387,
         onSiteDays: 11.303839667538144,
-        suppliesCost: 225574,
-        otherCosts: 290661,
+        phaseCost: 225574290661,
       },
       incidentCommandResults: { onSiteDays: 91.55859386782885, phaseCost: 275435 },
       otherResults: { otherCosts: 98621 },
@@ -2711,7 +2647,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 12.97584829548743,
           onSiteDays: 13.003479438369043,
-          suppliesCost: 134009,
+          phaseCost: 134009,
           otherCosts: 1032908,
         },
         incidentCommandResults: { onSiteDays: 68.92945948164461, phaseCost: 209971 },
@@ -2738,7 +2674,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.8014356751929586,
           onSiteDays: 5.878265146137743,
-          suppliesCost: 159799,
+          phaseCost: 159799,
           otherCosts: 143172,
         },
         incidentCommandResults: { onSiteDays: 38.744288161621924, phaseCost: 119154 },
@@ -2766,8 +2702,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 16.54806782969927,
         onSiteDays: 17.05264856178608,
-        suppliesCost: 339419,
-        otherCosts: 591796,
+        phaseCost: 339419591796,
       },
       incidentCommandResults: { onSiteDays: 106.70373079581103, phaseCost: 320881 },
       otherResults: { otherCosts: 70254 },
@@ -2793,8 +2728,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.804213214154405,
         onSiteDays: 6.872244433935789,
-        suppliesCost: 160408,
-        otherCosts: 236460,
+        phaseCost: 160408236460,
       },
       incidentCommandResults: { onSiteDays: 64.1811401657892, phaseCost: 196191 },
       otherResults: { otherCosts: 66312 },
@@ -2823,7 +2757,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.4689354851071106,
           onSiteDays: 5.575037746358438,
-          suppliesCost: 348729,
+          phaseCost: 348729,
           otherCosts: 301852,
         },
         incidentCommandResults: { onSiteDays: 46.70602522712261, phaseCost: 143857 },
@@ -2850,7 +2784,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 6.316680260076346,
           onSiteDays: 7.5920359591469255,
-          suppliesCost: 168925,
+          phaseCost: 168925,
           otherCosts: 413263,
         },
         incidentCommandResults: { onSiteDays: 68.2393241424723, phaseCost: 211484 },
@@ -2878,8 +2812,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.828180500266184,
         onSiteDays: 9.441635794807606,
-        suppliesCost: 73709,
-        otherCosts: 202309,
+        phaseCost: 73709202309,
       },
       incidentCommandResults: { onSiteDays: 43.32636302466618, phaseCost: 132139 },
       otherResults: { otherCosts: 77328 },
@@ -2905,8 +2838,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 16.10992467638802,
         onSiteDays: 16.259503732495826,
-        suppliesCost: 179299,
-        otherCosts: 625799,
+        phaseCost: 179299625799,
       },
       incidentCommandResults: { onSiteDays: 142.1368510403704, phaseCost: 437403 },
       otherResults: { otherCosts: 135341 },
@@ -2935,7 +2867,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.121730332058326,
           onSiteDays: 6.188853990097729,
-          suppliesCost: 146722,
+          phaseCost: 146722,
           otherCosts: 215319,
         },
         incidentCommandResults: { onSiteDays: 53.49014992108444, phaseCost: 163545 },
@@ -2962,7 +2894,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.972659553394807,
           onSiteDays: 10.780916657713455,
-          suppliesCost: 239441,
+          phaseCost: 239441,
           otherCosts: 254067,
         },
         incidentCommandResults: { onSiteDays: 80.46378578689793, phaseCost: 249515 },
@@ -2990,8 +2922,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 16.133369498451557,
         onSiteDays: 18.993880297987225,
-        suppliesCost: 216291,
-        otherCosts: 979346,
+        phaseCost: 216291979346,
       },
       incidentCommandResults: { onSiteDays: 50.7283892802782, phaseCost: 157221 },
       otherResults: { otherCosts: 61833 },
@@ -3017,8 +2948,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.932512100537427,
         onSiteDays: 5.336885987859426,
-        suppliesCost: 378137,
-        otherCosts: 249514,
+        phaseCost: 378137249514,
       },
       incidentCommandResults: { onSiteDays: 27.437165178601145, phaseCost: 82534 },
       otherResults: { otherCosts: 64538 },
@@ -3047,7 +2977,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.628286894557133,
           onSiteDays: 6.00677844835603,
-          suppliesCost: 270468,
+          phaseCost: 270468,
           otherCosts: 346044,
         },
         incidentCommandResults: { onSiteDays: 41.164386186894106, phaseCost: 127411 },
@@ -3074,7 +3004,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.832095854876585,
           onSiteDays: 6.414928547203291,
-          suppliesCost: 385778,
+          phaseCost: 385778,
           otherCosts: 326119,
         },
         incidentCommandResults: { onSiteDays: 97.95240543342385, phaseCost: 302724 },
@@ -3102,8 +3032,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.32592778637212,
         onSiteDays: 15.224441607534988,
-        suppliesCost: 312199,
-        otherCosts: 432142,
+        phaseCost: 312199432142,
       },
       incidentCommandResults: { onSiteDays: 45.45685559408854, phaseCost: 140199 },
       otherResults: { otherCosts: 106132 },
@@ -3129,8 +3058,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.521605412830041,
         onSiteDays: 6.397910738223677,
-        suppliesCost: 427866,
-        otherCosts: 210509,
+        phaseCost: 427866210509,
       },
       incidentCommandResults: { onSiteDays: 52.80967239770652, phaseCost: 159193 },
       otherResults: { otherCosts: 101608 },
@@ -3159,7 +3087,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.23315209924084,
           onSiteDays: 5.05991719175594,
-          suppliesCost: 114215,
+          phaseCost: 114215,
           otherCosts: 235332,
         },
         incidentCommandResults: { onSiteDays: 44.81210861209664, phaseCost: 138392 },
@@ -3186,7 +3114,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.2415218162912693,
           onSiteDays: 3.9805169084529664,
-          suppliesCost: 189626,
+          phaseCost: 189626,
           otherCosts: 128729,
         },
         incidentCommandResults: { onSiteDays: 81.57978954672122, phaseCost: 250173 },
@@ -3214,8 +3142,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.796838451129579,
         onSiteDays: 9.062199158841324,
-        suppliesCost: 53058,
-        otherCosts: 343179,
+        phaseCost: 53058343179,
       },
       incidentCommandResults: { onSiteDays: 42.880996744436686, phaseCost: 131652 },
       otherResults: { otherCosts: 64715 },
@@ -3241,8 +3168,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.146469086908379,
         onSiteDays: 5.340483843661026,
-        suppliesCost: 51404,
-        otherCosts: 218614,
+        phaseCost: 51404218614,
       },
       incidentCommandResults: { onSiteDays: 64.70349797804786, phaseCost: 198263 },
       otherResults: { otherCosts: 93120 },
@@ -3271,7 +3197,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.393451707529241,
           onSiteDays: 10.518844276321783,
-          suppliesCost: 49072,
+          phaseCost: 49072,
           otherCosts: 378340,
         },
         incidentCommandResults: { onSiteDays: 37.66087672947765, phaseCost: 116839 },
@@ -3298,7 +3224,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.7754494726600707,
           onSiteDays: 4.501046214136538,
-          suppliesCost: 41561,
+          phaseCost: 41561,
           otherCosts: 278525,
         },
         incidentCommandResults: { onSiteDays: 52.76352147586978, phaseCost: 158634 },
@@ -3326,8 +3252,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 9.813059883148656,
         onSiteDays: 12.690545492267828,
-        suppliesCost: 305635,
-        otherCosts: 323862,
+        phaseCost: 305635323862,
       },
       incidentCommandResults: { onSiteDays: 70.19150320213524, phaseCost: 217002 },
       otherResults: { otherCosts: 83121 },
@@ -3353,8 +3278,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.114304117419362,
         onSiteDays: 4.947128404618038,
-        suppliesCost: 250572,
-        otherCosts: 106130,
+        phaseCost: 250572106130,
       },
       incidentCommandResults: { onSiteDays: 40.28870712571516, phaseCost: 123634 },
       otherResults: { otherCosts: 56137 },
@@ -3383,7 +3307,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.505669972744228,
           onSiteDays: 10.270012875383257,
-          suppliesCost: 252669,
+          phaseCost: 252669,
           otherCosts: 668140,
         },
         incidentCommandResults: { onSiteDays: 73.0283305932035, phaseCost: 219791 },
@@ -3410,7 +3334,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.90203172292142,
           onSiteDays: 7.0519655696237376,
-          suppliesCost: 59019,
+          phaseCost: 59019,
           otherCosts: 258005,
         },
         incidentCommandResults: { onSiteDays: 58.08859736905558, phaseCost: 178786 },
@@ -3438,8 +3362,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.91181348960656,
         onSiteDays: 5.053463226895189,
-        suppliesCost: 387346,
-        otherCosts: 132236,
+        phaseCost: 387346132236,
       },
       incidentCommandResults: { onSiteDays: 61.81534996344642, phaseCost: 186561 },
       otherResults: { otherCosts: 104901 },
@@ -3465,8 +3388,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.195614350772373,
         onSiteDays: 8.299880253686542,
-        suppliesCost: 128108,
-        otherCosts: 500047,
+        phaseCost: 128108500047,
       },
       incidentCommandResults: { onSiteDays: 38.34221454185397, phaseCost: 116926 },
       otherResults: { otherCosts: 36545 },
@@ -3495,7 +3417,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.29466482514857,
           onSiteDays: 9.26761851209859,
-          suppliesCost: 92111,
+          phaseCost: 92111,
           otherCosts: 495907,
         },
         incidentCommandResults: { onSiteDays: 128.243832492387, phaseCost: 392293 },
@@ -3522,7 +3444,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.278008495289368,
           onSiteDays: 7.513731570801169,
-          suppliesCost: 216178,
+          phaseCost: 216178,
           otherCosts: 256265,
         },
         incidentCommandResults: { onSiteDays: 49.13149993313027, phaseCost: 148824 },
@@ -3550,8 +3472,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.751877295494051,
         onSiteDays: 13.06963535376583,
-        suppliesCost: 36773,
-        otherCosts: 532731,
+        phaseCost: 36773532731,
       },
       incidentCommandResults: { onSiteDays: 77.71002459193899, phaseCost: 239980 },
       otherResults: { otherCosts: 106091 },
@@ -3577,8 +3498,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.358360831476366,
         onSiteDays: 6.126788430411086,
-        suppliesCost: 265192,
-        otherCosts: 324421,
+        phaseCost: 265192324421,
       },
       incidentCommandResults: { onSiteDays: 46.934581400951245, phaseCost: 142517 },
       otherResults: { otherCosts: 59966 },
@@ -3607,7 +3527,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.4478282650112706,
           onSiteDays: 4.610295015529332,
-          suppliesCost: 167915,
+          phaseCost: 167915,
           otherCosts: 215464,
         },
         incidentCommandResults: { onSiteDays: 70.51845701719218, phaseCost: 213404 },
@@ -3634,7 +3554,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.917803512867029,
           onSiteDays: 5.187859735495379,
-          suppliesCost: 429781,
+          phaseCost: 429781,
           otherCosts: 229534,
         },
         incidentCommandResults: { onSiteDays: 53.255668073524795, phaseCost: 162921 },
@@ -3662,8 +3582,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.988898177162953,
         onSiteDays: 15.400270316610175,
-        suppliesCost: 26112,
-        otherCosts: 589645,
+        phaseCost: 26112589645,
       },
       incidentCommandResults: { onSiteDays: 52.452513384932736, phaseCost: 160108 },
       otherResults: { otherCosts: 141388 },
@@ -3689,8 +3608,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.0597282552765055,
         onSiteDays: 8.40095415255077,
-        suppliesCost: 130773,
-        otherCosts: 301431,
+        phaseCost: 130773301431,
       },
       incidentCommandResults: { onSiteDays: 127.66043342126962, phaseCost: 389309 },
       otherResults: { otherCosts: 152183 },
@@ -3719,7 +3637,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.529846302357,
           onSiteDays: 9.121974136243102,
-          suppliesCost: 171121,
+          phaseCost: 171121,
           otherCosts: 286337,
         },
         incidentCommandResults: { onSiteDays: 36.84825368282858, phaseCost: 113827 },
@@ -3746,7 +3664,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.087879176504883,
           onSiteDays: 8.606706791465802,
-          suppliesCost: 246019,
+          phaseCost: 246019,
           otherCosts: 561778,
         },
         incidentCommandResults: { onSiteDays: 35.744107191416006, phaseCost: 110709 },
@@ -3774,8 +3692,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 18.78180645866827,
         onSiteDays: 19.532668909181996,
-        suppliesCost: 332654,
-        otherCosts: 836100,
+        phaseCost: 332654836100,
       },
       incidentCommandResults: { onSiteDays: 56.07680772030392, phaseCost: 173175 },
       otherResults: { otherCosts: 90504 },
@@ -3801,8 +3718,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 13.170759079319135,
         onSiteDays: 13.279102787906094,
-        suppliesCost: 372331,
-        otherCosts: 405608,
+        phaseCost: 372331405608,
       },
       incidentCommandResults: { onSiteDays: 97.96845107559554, phaseCost: 302034 },
       otherResults: { otherCosts: 91580 },
@@ -3831,7 +3747,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.504970232375192,
           onSiteDays: 9.183833037080204,
-          suppliesCost: 341740,
+          phaseCost: 341740,
           otherCosts: 453470,
         },
         incidentCommandResults: { onSiteDays: 104.02963350002233, phaseCost: 320606 },
@@ -3858,7 +3774,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.199598048161622,
           onSiteDays: 4.637991139115298,
-          suppliesCost: 308212,
+          phaseCost: 308212,
           otherCosts: 88695,
         },
         incidentCommandResults: { onSiteDays: 41.69037566173046, phaseCost: 129092 },
@@ -3886,8 +3802,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.546039562566681,
         onSiteDays: 5.747119452046957,
-        suppliesCost: 151801,
-        otherCosts: 221027,
+        phaseCost: 151801221027,
       },
       incidentCommandResults: { onSiteDays: 41.260576505991466, phaseCost: 126451 },
       otherResults: { otherCosts: 64244 },
@@ -3913,8 +3828,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.582935905918232,
         onSiteDays: 10.141647839718882,
-        suppliesCost: 340179,
-        otherCosts: 226595,
+        phaseCost: 340179226595,
       },
       incidentCommandResults: { onSiteDays: 85.40782327662353, phaseCost: 258009 },
       otherResults: { otherCosts: 128865 },
@@ -3943,7 +3857,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 10.264372657813219,
           onSiteDays: 13.012598325035675,
-          suppliesCost: 332950,
+          phaseCost: 332950,
           otherCosts: 254953,
         },
         incidentCommandResults: { onSiteDays: 71.46254896756966, phaseCost: 215529 },
@@ -3970,7 +3884,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.997452503768134,
           onSiteDays: 4.597537922346391,
-          suppliesCost: 200732,
+          phaseCost: 200732,
           otherCosts: 95840,
         },
         incidentCommandResults: { onSiteDays: 91.07041344576166, phaseCost: 281807 },
@@ -3998,8 +3912,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 21.364049336492098,
         onSiteDays: 22.07969209297553,
-        suppliesCost: 123746,
-        otherCosts: 1050639,
+        phaseCost: 1237461050639,
       },
       incidentCommandResults: { onSiteDays: 114.87895079180635, phaseCost: 348102 },
       otherResults: { otherCosts: 127847 },
@@ -4025,8 +3938,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.078442547954256,
         onSiteDays: 4.376734229823745,
-        suppliesCost: 208226,
-        otherCosts: 133637,
+        phaseCost: 208226133637,
       },
       incidentCommandResults: { onSiteDays: 39.884672950890774, phaseCost: 122870 },
       otherResults: { otherCosts: 74816 },
@@ -4055,7 +3967,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.271914856338853,
           onSiteDays: 7.775793326733585,
-          suppliesCost: 466857,
+          phaseCost: 466857,
           otherCosts: 374692,
         },
         incidentCommandResults: { onSiteDays: 35.45693790859984, phaseCost: 106661 },
@@ -4082,7 +3994,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.507287869580856,
           onSiteDays: 10.203591094399709,
-          suppliesCost: 281271,
+          phaseCost: 281271,
           otherCosts: 200723,
         },
         incidentCommandResults: { onSiteDays: 40.155951829268346, phaseCost: 123653 },
@@ -4110,8 +4022,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 15.625432067929168,
         onSiteDays: 17.8815399836473,
-        suppliesCost: 326856,
-        otherCosts: 648048,
+        phaseCost: 326856648048,
       },
       incidentCommandResults: { onSiteDays: 61.1029727239853, phaseCost: 186157 },
       otherResults: { otherCosts: 125748 },
@@ -4137,8 +4048,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.46712278515732,
         onSiteDays: 5.501360679627713,
-        suppliesCost: 290679,
-        otherCosts: 118318,
+        phaseCost: 290679118318,
       },
       incidentCommandResults: { onSiteDays: 63.848182466204264, phaseCost: 194016 },
       otherResults: { otherCosts: 102447 },
@@ -4167,7 +4077,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.756603240677297,
           onSiteDays: 11.021927767205502,
-          suppliesCost: 86648,
+          phaseCost: 86648,
           otherCosts: 342324,
         },
         incidentCommandResults: { onSiteDays: 63.42040197980752, phaseCost: 192778 },
@@ -4194,7 +4104,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.80925409002445,
           onSiteDays: 10.318193080676298,
-          suppliesCost: 163256,
+          phaseCost: 163256,
           otherCosts: 554220,
         },
         incidentCommandResults: { onSiteDays: 69.0611834286999, phaseCost: 212663 },
@@ -4222,8 +4132,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 9.584037349462518,
         onSiteDays: 10.206118274760925,
-        suppliesCost: 140586,
-        otherCosts: 506521,
+        phaseCost: 140586506521,
       },
       incidentCommandResults: { onSiteDays: 56.61198508845154, phaseCost: 170560 },
       otherResults: { otherCosts: 59064 },
@@ -4249,8 +4158,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.532110880951423,
         onSiteDays: 12.74784742220022,
-        suppliesCost: 346491,
-        otherCosts: 326890,
+        phaseCost: 346491326890,
       },
       incidentCommandResults: { onSiteDays: 84.46775417808108, phaseCost: 261445 },
       otherResults: { otherCosts: 79682 },
@@ -4279,7 +4187,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.030697766465763,
           onSiteDays: 6.7872582200884946,
-          suppliesCost: 279003,
+          phaseCost: 279003,
           otherCosts: 226585,
         },
         incidentCommandResults: { onSiteDays: 54.28768915282664, phaseCost: 164502 },
@@ -4306,7 +4214,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.04167760886291,
           onSiteDays: 5.412748169948522,
-          suppliesCost: 182260,
+          phaseCost: 182260,
           otherCosts: 194252,
         },
         incidentCommandResults: { onSiteDays: 40.92231941676105, phaseCost: 123754 },
@@ -4334,8 +4242,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 6.395214485562224,
         onSiteDays: 7.643737005219735,
-        suppliesCost: 262834,
-        otherCosts: 267941,
+        phaseCost: 262834267941,
       },
       incidentCommandResults: { onSiteDays: 61.21076104801612, phaseCost: 187335 },
       otherResults: { otherCosts: 79713 },
@@ -4361,8 +4268,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.530809012830911,
         onSiteDays: 8.844772660370165,
-        suppliesCost: 338168,
-        otherCosts: 437128,
+        phaseCost: 338168437128,
       },
       incidentCommandResults: { onSiteDays: 50.45652132924148, phaseCost: 155587 },
       otherResults: { otherCosts: 115336 },
@@ -4391,7 +4297,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.151109579985754,
           onSiteDays: 10.342384136827286,
-          suppliesCost: 256043,
+          phaseCost: 256043,
           otherCosts: 145769,
         },
         incidentCommandResults: { onSiteDays: 48.844718225814105, phaseCost: 147771 },
@@ -4418,7 +4324,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.213106240893971,
           onSiteDays: 4.219292772053576,
-          suppliesCost: 195673,
+          phaseCost: 195673,
           otherCosts: 158489,
         },
         incidentCommandResults: { onSiteDays: 58.56533739039748, phaseCost: 178723 },
@@ -4446,8 +4352,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.660546557898761,
         onSiteDays: 8.699520582496078,
-        suppliesCost: 83124,
-        otherCosts: 305139,
+        phaseCost: 83124305139,
       },
       incidentCommandResults: { onSiteDays: 88.11597557057894, phaseCost: 270967 },
       otherResults: { otherCosts: 108082 },
@@ -4473,8 +4378,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.472289084799655,
         onSiteDays: 5.3692893151588015,
-        suppliesCost: 157720,
-        otherCosts: 289188,
+        phaseCost: 157720289188,
       },
       incidentCommandResults: { onSiteDays: 51.412471293685265, phaseCost: 156717 },
       otherResults: { otherCosts: 78756 },
@@ -4503,7 +4407,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.520798483053408,
           onSiteDays: 4.515065737654237,
-          suppliesCost: 240083,
+          phaseCost: 240083,
           otherCosts: 96934,
         },
         incidentCommandResults: { onSiteDays: 30.434333185045322, phaseCost: 93703 },
@@ -4530,7 +4434,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.502298773150494,
           onSiteDays: 7.0408822656704295,
-          suppliesCost: 65335,
+          phaseCost: 65335,
           otherCosts: 293779,
         },
         incidentCommandResults: { onSiteDays: 42.830782441734556, phaseCost: 130249 },
@@ -4558,8 +4462,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.91362500258573,
         onSiteDays: 5.290512955116693,
-        suppliesCost: 175198,
-        otherCosts: 258664,
+        phaseCost: 175198258664,
       },
       incidentCommandResults: { onSiteDays: 51.26118885927093, phaseCost: 157113 },
       otherResults: { otherCosts: 144099 },
@@ -4585,8 +4488,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.924019428650853,
         onSiteDays: 6.006025706186431,
-        suppliesCost: 42978,
-        otherCosts: 269297,
+        phaseCost: 42978269297,
       },
       incidentCommandResults: { onSiteDays: 36.461543985755966, phaseCost: 112523 },
       otherResults: { otherCosts: 77795 },
@@ -4615,7 +4517,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.101914761611706,
           onSiteDays: 8.305522919470798,
-          suppliesCost: 321719,
+          phaseCost: 321719,
           otherCosts: 511036,
         },
         incidentCommandResults: { onSiteDays: 36.93675580879813, phaseCost: 113221 },
@@ -4642,7 +4544,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.739256908125071,
           onSiteDays: 6.786160270400849,
-          suppliesCost: 272303,
+          phaseCost: 272303,
           otherCosts: 188828,
         },
         incidentCommandResults: { onSiteDays: 51.679268572760265, phaseCost: 156167 },
@@ -4670,8 +4572,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 21.704613086931552,
         onSiteDays: 23.386063205633796,
-        suppliesCost: 409290,
-        otherCosts: 560874,
+        phaseCost: 409290560874,
       },
       incidentCommandResults: { onSiteDays: 91.49264994267537, phaseCost: 275601 },
       otherResults: { otherCosts: 137688 },
@@ -4697,8 +4598,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.69973903724452,
         onSiteDays: 5.048675524082192,
-        suppliesCost: 153380,
-        otherCosts: 167865,
+        phaseCost: 153380167865,
       },
       incidentCommandResults: { onSiteDays: 78.91561885193883, phaseCost: 237399 },
       otherResults: { otherCosts: 71458 },
@@ -4727,7 +4627,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.717735030855456,
           onSiteDays: 9.77968448837746,
-          suppliesCost: 62612,
+          phaseCost: 62612,
           otherCosts: 383403,
         },
         incidentCommandResults: { onSiteDays: 32.93303379712752, phaseCost: 99427 },
@@ -4754,7 +4654,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.857491627302368,
           onSiteDays: 10.098804756789189,
-          suppliesCost: 293850,
+          phaseCost: 293850,
           otherCosts: 629059,
         },
         incidentCommandResults: { onSiteDays: 54.48535217883622, phaseCost: 164203 },
@@ -4782,8 +4682,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 14.543527482204029,
         onSiteDays: 15.444936437170238,
-        suppliesCost: 110698,
-        otherCosts: 961495,
+        phaseCost: 110698961495,
       },
       incidentCommandResults: { onSiteDays: 68.54710008801273, phaseCost: 211781 },
       otherResults: { otherCosts: 110257 },
@@ -4809,8 +4708,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.701148117590032,
         onSiteDays: 5.8136207216450995,
-        suppliesCost: 230350,
-        otherCosts: 173951,
+        phaseCost: 230350173951,
       },
       incidentCommandResults: { onSiteDays: 50.31352001377472, phaseCost: 151861 },
       otherResults: { otherCosts: 101156 },
@@ -4839,7 +4737,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.966480724040065,
           onSiteDays: 7.5641703739678885,
-          suppliesCost: 257716,
+          phaseCost: 257716,
           otherCosts: 200361,
         },
         incidentCommandResults: { onSiteDays: 54.08975613159333, phaseCost: 162624 },
@@ -4866,7 +4764,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 13.76236966875437,
           onSiteDays: 15.78602606495517,
-          suppliesCost: 212983,
+          phaseCost: 212983,
           otherCosts: 945464,
         },
         incidentCommandResults: { onSiteDays: 104.43467897217585, phaseCost: 314393 },
@@ -4894,8 +4792,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.025002313783625,
         onSiteDays: 8.341467909128747,
-        suppliesCost: 324432,
-        otherCosts: 166936,
+        phaseCost: 324432166936,
       },
       incidentCommandResults: { onSiteDays: 64.12199129729794, phaseCost: 195712 },
       otherResults: { otherCosts: 109740 },
@@ -4921,8 +4818,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 18.786165097678584,
         onSiteDays: 19.374133604898613,
-        suppliesCost: 61207,
-        otherCosts: 1004128,
+        phaseCost: 612071004128,
       },
       incidentCommandResults: { onSiteDays: 105.44991223351067, phaseCost: 318171 },
       otherResults: { otherCosts: 56024 },
@@ -4951,7 +4847,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.535230363145292,
           onSiteDays: 6.575081252859691,
-          suppliesCost: 569081,
+          phaseCost: 569081,
           otherCosts: 223649,
         },
         incidentCommandResults: { onSiteDays: 52.2929469910699, phaseCost: 159286 },
@@ -4978,7 +4874,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.051505355874893,
           onSiteDays: 4.147382559289081,
-          suppliesCost: 287662,
+          phaseCost: 287662,
           otherCosts: 96115,
         },
         incidentCommandResults: { onSiteDays: 124.58838699647241, phaseCost: 384384 },
@@ -5006,8 +4902,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 16.290302067597,
         onSiteDays: 16.681181784412168,
-        suppliesCost: 132305,
-        otherCosts: 580548,
+        phaseCost: 132305580548,
       },
       incidentCommandResults: { onSiteDays: 77.78249221411374, phaseCost: 240087 },
       otherResults: { otherCosts: 105981 },
@@ -5033,8 +4928,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.311256040658629,
         onSiteDays: 5.9299144029919795,
-        suppliesCost: 132889,
-        otherCosts: 172077,
+        phaseCost: 132889172077,
       },
       incidentCommandResults: { onSiteDays: 48.13078412430886, phaseCost: 147122 },
       otherResults: { otherCosts: 96707 },
@@ -5063,7 +4957,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.937404099837273,
           onSiteDays: 5.007947929903853,
-          suppliesCost: 256808,
+          phaseCost: 256808,
           otherCosts: 245452,
         },
         incidentCommandResults: { onSiteDays: 42.32172806663068, phaseCost: 128186 },
@@ -5090,7 +4984,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.702885928494597,
           onSiteDays: 8.532025660279213,
-          suppliesCost: 60193,
+          phaseCost: 60193,
           otherCosts: 465039,
         },
         incidentCommandResults: { onSiteDays: 50.36029030207641, phaseCost: 152671 },
@@ -5118,8 +5012,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.096000818558037,
         onSiteDays: 10.407995059017091,
-        suppliesCost: 409592,
-        otherCosts: 218012,
+        phaseCost: 409592218012,
       },
       incidentCommandResults: { onSiteDays: 55.53058574849223, phaseCost: 170082 },
       otherResults: { otherCosts: 59916 },
@@ -5145,8 +5038,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.885731394841738,
         onSiteDays: 9.031406166039268,
-        suppliesCost: 261729,
-        otherCosts: 525231,
+        phaseCost: 261729525231,
       },
       incidentCommandResults: { onSiteDays: 40.25570551246812, phaseCost: 122575 },
       otherResults: { otherCosts: 72206 },
@@ -5175,7 +5067,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.129723436229332,
           onSiteDays: 5.822856411529438,
-          suppliesCost: 191958,
+          phaseCost: 191958,
           otherCosts: 225270,
         },
         incidentCommandResults: { onSiteDays: 37.29262239080599, phaseCost: 114406 },
@@ -5202,7 +5094,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 6.724792380054666,
           onSiteDays: 6.938821891541319,
-          suppliesCost: 119565,
+          phaseCost: 119565,
           otherCosts: 305065,
         },
         incidentCommandResults: { onSiteDays: 46.017833779853085, phaseCost: 139160 },
@@ -5230,8 +5122,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 6.894471567332388,
         onSiteDays: 7.578819016595096,
-        suppliesCost: 212328,
-        otherCosts: 333331,
+        phaseCost: 212328333331,
       },
       incidentCommandResults: { onSiteDays: 83.78385632903667, phaseCost: 255644 },
       otherResults: { otherCosts: 62620 },
@@ -5257,8 +5148,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.091730229577918,
         onSiteDays: 3.5546412087405663,
-        suppliesCost: 98696,
-        otherCosts: 114434,
+        phaseCost: 98696114434,
       },
       incidentCommandResults: { onSiteDays: 34.446804397707325, phaseCost: 105076 },
       otherResults: { otherCosts: 38667 },
@@ -5287,7 +5177,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.339089501960922,
           onSiteDays: 9.040564170349521,
-          suppliesCost: 130318,
+          phaseCost: 130318,
           otherCosts: 286357,
         },
         incidentCommandResults: { onSiteDays: 36.370635458447566, phaseCost: 111553 },
@@ -5314,7 +5204,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.066808352728097,
           onSiteDays: 8.38035092418556,
-          suppliesCost: 200313,
+          phaseCost: 200313,
           otherCosts: 458166,
         },
         incidentCommandResults: { onSiteDays: 52.066698179360955, phaseCost: 157868 },
@@ -5342,8 +5232,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 9.61512488210926,
         onSiteDays: 12.414382649216424,
-        suppliesCost: 207833,
-        otherCosts: 582209,
+        phaseCost: 207833582209,
       },
       incidentCommandResults: { onSiteDays: 58.00021674716322, phaseCost: 174504 },
       otherResults: { otherCosts: 107798 },
@@ -5369,8 +5258,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.3340371382269165,
         onSiteDays: 5.175147468264948,
-        suppliesCost: 259194,
-        otherCosts: 188969,
+        phaseCost: 259194188969,
       },
       incidentCommandResults: { onSiteDays: 65.09368684340293, phaseCost: 196736 },
       otherResults: { otherCosts: 92102 },
@@ -5399,7 +5287,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.368514088068277,
           onSiteDays: 11.314601031670954,
-          suppliesCost: 406918,
+          phaseCost: 406918,
           otherCosts: 562823,
         },
         incidentCommandResults: { onSiteDays: 75.13994190830542, phaseCost: 226955 },
@@ -5426,7 +5314,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.555029273395201,
           onSiteDays: 5.758108938289366,
-          suppliesCost: 370393,
+          phaseCost: 370393,
           otherCosts: 153307,
         },
         incidentCommandResults: { onSiteDays: 73.61368898959833, phaseCost: 226508 },
@@ -5454,8 +5342,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 16.096707912650125,
         onSiteDays: 17.212739715867848,
-        suppliesCost: 132825,
-        otherCosts: 651978,
+        phaseCost: 132825651978,
       },
       incidentCommandResults: { onSiteDays: 53.12810138135071, phaseCost: 161006 },
       otherResults: { otherCosts: 78936 },
@@ -5481,8 +5368,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 9.433885680146954,
         onSiteDays: 10.681011951454218,
-        suppliesCost: 375756,
-        otherCosts: 174635,
+        phaseCost: 375756174635,
       },
       incidentCommandResults: { onSiteDays: 108.09637212174435, phaseCost: 331783 },
       otherResults: { otherCosts: 142850 },
@@ -5511,7 +5397,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 13.103256351338526,
           onSiteDays: 13.16193923939996,
-          suppliesCost: 50775,
+          phaseCost: 50775,
           otherCosts: 483601,
         },
         incidentCommandResults: { onSiteDays: 41.284366621680206, phaseCost: 127919 },
@@ -5538,7 +5424,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 15.172751632792117,
           onSiteDays: 17.146085343357658,
-          suppliesCost: 75538,
+          phaseCost: 75538,
           otherCosts: 907418,
         },
         incidentCommandResults: { onSiteDays: 80.63761842564217, phaseCost: 249426 },
@@ -5566,8 +5452,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.413010144702394,
         onSiteDays: 5.64181134119672,
-        suppliesCost: 320013,
-        otherCosts: 102907,
+        phaseCost: 320013102907,
       },
       incidentCommandResults: { onSiteDays: 49.407134413193816, phaseCost: 150402 },
       otherResults: { otherCosts: 65914 },
@@ -5593,8 +5478,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.0673499598790315,
         onSiteDays: 6.781509929751397,
-        suppliesCost: 321774,
-        otherCosts: 243123,
+        phaseCost: 321774243123,
       },
       incidentCommandResults: { onSiteDays: 59.40227459683075, phaseCost: 181173 },
       otherResults: { otherCosts: 54985 },
@@ -5623,7 +5507,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.058838367708688,
           onSiteDays: 4.5523759626206886,
-          suppliesCost: 266256,
+          phaseCost: 266256,
           otherCosts: 235763,
         },
         incidentCommandResults: { onSiteDays: 102.63762526267833, phaseCost: 313011 },
@@ -5650,7 +5534,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 12.25042701215726,
           onSiteDays: 15.068346082947297,
-          suppliesCost: 328132,
+          phaseCost: 328132,
           otherCosts: 468169,
         },
         incidentCommandResults: { onSiteDays: 159.90532411366416, phaseCost: 489986 },
@@ -5678,8 +5562,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 15.201999330707359,
         onSiteDays: 15.292765528963125,
-        suppliesCost: 413218,
-        otherCosts: 931618,
+        phaseCost: 413218931618,
       },
       incidentCommandResults: { onSiteDays: 72.7646739195603, phaseCost: 220219 },
       otherResults: { otherCosts: 105725 },
@@ -5705,8 +5588,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.529995727243366,
         onSiteDays: 7.592123303700267,
-        suppliesCost: 145384,
-        otherCosts: 305916,
+        phaseCost: 145384305916,
       },
       incidentCommandResults: { onSiteDays: 68.15103086355276, phaseCost: 208823 },
       otherResults: { otherCosts: 60326 },
@@ -5735,7 +5617,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.656064657414348,
           onSiteDays: 7.1174500226316635,
-          suppliesCost: 422465,
+          phaseCost: 422465,
           otherCosts: 252433,
         },
         incidentCommandResults: { onSiteDays: 30.313351010544082, phaseCost: 93566 },
@@ -5762,7 +5644,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.1634486674246025,
           onSiteDays: 4.874448684946272,
-          suppliesCost: 318084,
+          phaseCost: 318084,
           otherCosts: 165567,
         },
         incidentCommandResults: { onSiteDays: 35.02663198386587, phaseCost: 108024 },
@@ -5790,8 +5672,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 13.702492183237915,
         onSiteDays: 16.508018146387304,
-        suppliesCost: 365507,
-        otherCosts: 310295,
+        phaseCost: 365507310295,
       },
       incidentCommandResults: { onSiteDays: 62.70581381984722, phaseCost: 188800 },
       otherResults: { otherCosts: 118973 },
@@ -5817,8 +5698,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.046825685549254,
         onSiteDays: 5.510002387107816,
-        suppliesCost: 419948,
-        otherCosts: 207085,
+        phaseCost: 419948207085,
       },
       incidentCommandResults: { onSiteDays: 49.64463548147594, phaseCost: 149434 },
       otherResults: { otherCosts: 55969 },
@@ -5847,7 +5727,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.005036866992022,
           onSiteDays: 9.058515735217025,
-          suppliesCost: 413874,
+          phaseCost: 413874,
           otherCosts: 205529,
         },
         incidentCommandResults: { onSiteDays: 83.31521137891599, phaseCost: 255391 },
@@ -5874,7 +5754,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.300129962922103,
           onSiteDays: 11.616319276070296,
-          suppliesCost: 356415,
+          phaseCost: 356415,
           otherCosts: 576709,
         },
         incidentCommandResults: { onSiteDays: 88.91182088471909, phaseCost: 275215 },
@@ -5902,8 +5782,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.458978788102739,
         onSiteDays: 4.720278316345131,
-        suppliesCost: 266704,
-        otherCosts: 188681,
+        phaseCost: 266704188681,
       },
       incidentCommandResults: { onSiteDays: 71.42138565924697, phaseCost: 216458 },
       otherResults: { otherCosts: 53305 },
@@ -5929,8 +5808,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.823787798132698,
         onSiteDays: 5.846289425819714,
-        suppliesCost: 433585,
-        otherCosts: 89205,
+        phaseCost: 43358589205,
       },
       incidentCommandResults: { onSiteDays: 51.46358489278615, phaseCost: 155350 },
       otherResults: { otherCosts: 69517 },
@@ -5959,7 +5837,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.849299200542574,
           onSiteDays: 4.965800867408002,
-          suppliesCost: 369752,
+          phaseCost: 369752,
           otherCosts: 143818,
         },
         incidentCommandResults: { onSiteDays: 68.8795199585859, phaseCost: 208522 },
@@ -5986,7 +5864,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.251482500520414,
           onSiteDays: 8.548696138325308,
-          suppliesCost: 235814,
+          phaseCost: 235814,
           otherCosts: 210712,
         },
         incidentCommandResults: { onSiteDays: 58.10572765859543, phaseCost: 178082 },
@@ -6014,8 +5892,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.490077542022355,
         onSiteDays: 15.244256384727606,
-        suppliesCost: 125512,
-        otherCosts: 491598,
+        phaseCost: 125512491598,
       },
       incidentCommandResults: { onSiteDays: 84.21368001275238, phaseCost: 259515 },
       otherResults: { otherCosts: 102313 },
@@ -6041,8 +5918,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.936382126979619,
         onSiteDays: 8.31933711267061,
-        suppliesCost: 52592,
-        otherCosts: 189428,
+        phaseCost: 52592189428,
       },
       incidentCommandResults: { onSiteDays: 94.39192634231101, phaseCost: 289864 },
       otherResults: { otherCosts: 55282 },
@@ -6071,7 +5947,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 13.673297099925879,
           onSiteDays: 14.594204321641987,
-          suppliesCost: 492005,
+          phaseCost: 492005,
           otherCosts: 822346,
         },
         incidentCommandResults: { onSiteDays: 90.26515506714803, phaseCost: 277343 },
@@ -6098,7 +5974,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.177953749238036,
           onSiteDays: 9.719413813138242,
-          suppliesCost: 493019,
+          phaseCost: 493019,
           otherCosts: 468978,
         },
         incidentCommandResults: { onSiteDays: 41.1203683858176, phaseCost: 123915 },
@@ -6126,8 +6002,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.490754186290026,
         onSiteDays: 13.756376894832677,
-        suppliesCost: 90613,
-        otherCosts: 382323,
+        phaseCost: 90613382323,
       },
       incidentCommandResults: { onSiteDays: 55.76865391185454, phaseCost: 170139 },
       otherResults: { otherCosts: 161687 },
@@ -6153,8 +6028,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.8624707387905732,
         onSiteDays: 6.576457316422941,
-        suppliesCost: 402277,
-        otherCosts: 202014,
+        phaseCost: 402277202014,
       },
       incidentCommandResults: { onSiteDays: 55.593498707291054, phaseCost: 171807 },
       otherResults: { otherCosts: 97766 },
@@ -6183,7 +6057,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.583285340709445,
           onSiteDays: 11.210381934701088,
-          suppliesCost: 259496,
+          phaseCost: 259496,
           otherCosts: 259035,
         },
         incidentCommandResults: { onSiteDays: 81.12810626375791, phaseCost: 246878 },
@@ -6210,7 +6084,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.25255797366904,
           onSiteDays: 8.999017827445412,
-          suppliesCost: 401515,
+          phaseCost: 401515,
           otherCosts: 398710,
         },
         incidentCommandResults: { onSiteDays: 70.32103189118234, phaseCost: 213857 },
@@ -6238,8 +6112,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.349478430661717,
         onSiteDays: 10.130771924073523,
-        suppliesCost: 357591,
-        otherCosts: 192777,
+        phaseCost: 357591192777,
       },
       incidentCommandResults: { onSiteDays: 86.19226753050228, phaseCost: 265438 },
       otherResults: { otherCosts: 115749 },
@@ -6265,8 +6138,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 17.955953077170058,
         onSiteDays: 19.96040900376635,
-        suppliesCost: 224806,
-        otherCosts: 1022250,
+        phaseCost: 2248061022250,
       },
       incidentCommandResults: { onSiteDays: 89.57020936861556, phaseCost: 272003 },
       otherResults: { otherCosts: 129101 },
@@ -6295,7 +6167,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.454991635739569,
           onSiteDays: 8.358471409035491,
-          suppliesCost: 391840,
+          phaseCost: 391840,
           otherCosts: 450912,
         },
         incidentCommandResults: { onSiteDays: 42.941292566487306, phaseCost: 131678 },
@@ -6322,7 +6194,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.495088901951697,
           onSiteDays: 4.986199305156758,
-          suppliesCost: 281712,
+          phaseCost: 281712,
           otherCosts: 176986,
         },
         incidentCommandResults: { onSiteDays: 48.40226318702374, phaseCost: 149090 },
@@ -6350,8 +6222,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.287775271173514,
         onSiteDays: 4.450634238880741,
-        suppliesCost: 370742,
-        otherCosts: 160403,
+        phaseCost: 370742160403,
       },
       incidentCommandResults: { onSiteDays: 76.0881747733355, phaseCost: 231044 },
       otherResults: { otherCosts: 80150 },
@@ -6377,8 +6248,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.7826711150777226,
         onSiteDays: 5.302336545964316,
-        suppliesCost: 126569,
-        otherCosts: 126169,
+        phaseCost: 126569126169,
       },
       incidentCommandResults: { onSiteDays: 72.74629827376486, phaseCost: 225550 },
       otherResults: { otherCosts: 105222 },
@@ -6407,7 +6277,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.1273028524888917,
           onSiteDays: 4.702338002785654,
-          suppliesCost: 498565,
+          phaseCost: 498565,
           otherCosts: 172047,
         },
         incidentCommandResults: { onSiteDays: 60.49329549971351, phaseCost: 183604 },
@@ -6434,7 +6304,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 12.683154948913296,
           onSiteDays: 13.62868217556474,
-          suppliesCost: 191765,
+          phaseCost: 191765,
           otherCosts: 623195,
         },
         incidentCommandResults: { onSiteDays: 117.46547246750859, phaseCost: 354745 },
@@ -6462,8 +6332,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.919132665945014,
         onSiteDays: 13.68300217475812,
-        suppliesCost: 31647,
-        otherCosts: 672861,
+        phaseCost: 31647672861,
       },
       incidentCommandResults: { onSiteDays: 101.75832542550047, phaseCost: 306819 },
       otherResults: { otherCosts: 68784 },
@@ -6489,8 +6358,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 27.568879364423655,
         onSiteDays: 29.09292500258724,
-        suppliesCost: 366744,
-        otherCosts: 1935483,
+        phaseCost: 3667441935483,
       },
       incidentCommandResults: { onSiteDays: 144.26501002694243, phaseCost: 442217 },
       otherResults: { otherCosts: 115465 },
@@ -6519,7 +6387,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.816391373243274,
           onSiteDays: 9.534180401948788,
-          suppliesCost: 199970,
+          phaseCost: 199970,
           otherCosts: 314391,
         },
         incidentCommandResults: { onSiteDays: 35.66561426277728, phaseCost: 108026 },
@@ -6546,7 +6414,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.174884728895241,
           onSiteDays: 9.799563277931782,
-          suppliesCost: 207683,
+          phaseCost: 207683,
           otherCosts: 412933,
         },
         incidentCommandResults: { onSiteDays: 33.30506163819014, phaseCost: 103066 },
@@ -6574,8 +6442,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.748360123892398,
         onSiteDays: 15.576296683767879,
-        suppliesCost: 72638,
-        otherCosts: 661259,
+        phaseCost: 72638661259,
       },
       incidentCommandResults: { onSiteDays: 69.52733141121615, phaseCost: 212872 },
       otherResults: { otherCosts: 69146 },
@@ -6601,8 +6468,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.7414575020646343,
         onSiteDays: 3.851735208381837,
-        suppliesCost: 82491,
-        otherCosts: 79290,
+        phaseCost: 8249179290,
       },
       incidentCommandResults: { onSiteDays: 42.93933951065949, phaseCost: 132099 },
       otherResults: { otherCosts: 94857 },
@@ -6631,7 +6497,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 12.725578115723463,
           onSiteDays: 12.910352616317187,
-          suppliesCost: 76880,
+          phaseCost: 76880,
           otherCosts: 319675,
         },
         incidentCommandResults: { onSiteDays: 65.43222934945473, phaseCost: 198398 },
@@ -6658,7 +6524,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.904751758301806,
           onSiteDays: 11.36035452814781,
-          suppliesCost: 229479,
+          phaseCost: 229479,
           otherCosts: 382900,
         },
         incidentCommandResults: { onSiteDays: 62.614507890151145, phaseCost: 193304 },
@@ -6686,8 +6552,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.419180863634493,
         onSiteDays: 9.976272766240005,
-        suppliesCost: 269830,
-        otherCosts: 468458,
+        phaseCost: 269830468458,
       },
       incidentCommandResults: { onSiteDays: 47.796654119703625, phaseCost: 146969 },
       otherResults: { otherCosts: 93437 },
@@ -6713,8 +6578,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.49823796597734,
         onSiteDays: 4.614749226629443,
-        suppliesCost: 121813,
-        otherCosts: 229927,
+        phaseCost: 121813229927,
       },
       incidentCommandResults: { onSiteDays: 60.90339412700255, phaseCost: 188510 },
       otherResults: { otherCosts: 81610 },
@@ -6743,7 +6607,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.848953264031781,
           onSiteDays: 4.395058631057632,
-          suppliesCost: 211942,
+          phaseCost: 211942,
           otherCosts: 119716,
         },
         incidentCommandResults: { onSiteDays: 44.1504378684632, phaseCost: 135094 },
@@ -6770,7 +6634,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.456582982665063,
           onSiteDays: 9.153343152523354,
-          suppliesCost: 185866,
+          phaseCost: 185866,
           otherCosts: 521593,
         },
         incidentCommandResults: { onSiteDays: 50.078711371465324, phaseCost: 153547 },
@@ -6798,8 +6662,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 16.387582661674262,
         onSiteDays: 19.21431359094901,
-        suppliesCost: 253898,
-        otherCosts: 391711,
+        phaseCost: 253898391711,
       },
       incidentCommandResults: { onSiteDays: 55.92610641395937, phaseCost: 172127 },
       otherResults: { otherCosts: 141276 },
@@ -6825,8 +6688,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.057566841379173,
         onSiteDays: 6.653992732207755,
-        suppliesCost: 326031,
-        otherCosts: 119860,
+        phaseCost: 326031119860,
       },
       incidentCommandResults: { onSiteDays: 107.09467813316549, phaseCost: 329050 },
       otherResults: { otherCosts: 134758 },
@@ -6855,7 +6717,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.960158516410775,
           onSiteDays: 11.86577007311065,
-          suppliesCost: 185195,
+          phaseCost: 185195,
           otherCosts: 805334,
         },
         incidentCommandResults: { onSiteDays: 43.51438966281327, phaseCost: 132708 },
@@ -6882,7 +6744,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 12.674023715703287,
           onSiteDays: 14.846027728134306,
-          suppliesCost: 55960,
+          phaseCost: 55960,
           otherCosts: 471349,
         },
         incidentCommandResults: { onSiteDays: 76.60652607375494, phaseCost: 237440 },
@@ -6910,8 +6772,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.639374967813346,
         onSiteDays: 13.244355155910448,
-        suppliesCost: 130174,
-        otherCosts: 921275,
+        phaseCost: 130174921275,
       },
       incidentCommandResults: { onSiteDays: 54.26592193120128, phaseCost: 164970 },
       otherResults: { otherCosts: 90433 },
@@ -6937,8 +6798,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 18.58364714951805,
         onSiteDays: 19.937238177037155,
-        suppliesCost: 233441,
-        otherCosts: 527362,
+        phaseCost: 233441527362,
       },
       incidentCommandResults: { onSiteDays: 188.08345839390415, phaseCost: 578495 },
       otherResults: { otherCosts: 128115 },
@@ -6967,7 +6827,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 11.807721594536613,
           onSiteDays: 13.263270213795657,
-          suppliesCost: 189089,
+          phaseCost: 189089,
           otherCosts: 435579,
         },
         incidentCommandResults: { onSiteDays: 51.99897097144071, phaseCost: 158159 },
@@ -6994,7 +6854,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.688294132400372,
           onSiteDays: 10.731975912286895,
-          suppliesCost: 153876,
+          phaseCost: 153876,
           otherCosts: 355530,
         },
         incidentCommandResults: { onSiteDays: 45.36498697101585, phaseCost: 138868 },
@@ -7022,8 +6882,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.979589489051046,
         onSiteDays: 12.697962112654459,
-        suppliesCost: 272865,
-        otherCosts: 753473,
+        phaseCost: 272865753473,
       },
       incidentCommandResults: { onSiteDays: 65.77365937907551, phaseCost: 200130 },
       otherResults: { otherCosts: 91252 },
@@ -7049,8 +6908,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 15.935411693047595,
         onSiteDays: 17.56967781916486,
-        suppliesCost: 158916,
-        otherCosts: 952805,
+        phaseCost: 158916952805,
       },
       incidentCommandResults: { onSiteDays: 88.97601882599616, phaseCost: 269015 },
       otherResults: { otherCosts: 93091 },
@@ -7079,7 +6937,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.4023637064738113,
           onSiteDays: 5.247147233050118,
-          suppliesCost: 262249,
+          phaseCost: 262249,
           otherCosts: 98848,
         },
         incidentCommandResults: { onSiteDays: 88.69378958928718, phaseCost: 269502 },
@@ -7106,7 +6964,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 12.46296481542824,
           onSiteDays: 13.686484921883439,
-          suppliesCost: 206824,
+          phaseCost: 206824,
           otherCosts: 349646,
         },
         incidentCommandResults: { onSiteDays: 91.9561757114578, phaseCost: 276714 },
@@ -7134,8 +6992,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.982123191231423,
         onSiteDays: 11.692555348782928,
-        suppliesCost: 293613,
-        otherCosts: 392711,
+        phaseCost: 293613392711,
       },
       incidentCommandResults: { onSiteDays: 45.83320210692985, phaseCost: 140323 },
       otherResults: { otherCosts: 76627 },
@@ -7161,8 +7018,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.69944970791681,
         onSiteDays: 10.002911639633334,
-        suppliesCost: 238507,
-        otherCosts: 426878,
+        phaseCost: 238507426878,
       },
       incidentCommandResults: { onSiteDays: 57.298462331510216, phaseCost: 176286 },
       otherResults: { otherCosts: 153215 },
@@ -7191,7 +7047,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.131387552509873,
           onSiteDays: 8.098056953656034,
-          suppliesCost: 135109,
+          phaseCost: 135109,
           otherCosts: 451841,
         },
         incidentCommandResults: { onSiteDays: 39.24338213458597, phaseCost: 120076 },
@@ -7218,7 +7074,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.481678419625777,
           onSiteDays: 5.0253788475006305,
-          suppliesCost: 222443,
+          phaseCost: 222443,
           otherCosts: 272714,
         },
         incidentCommandResults: { onSiteDays: 46.308357617825706, phaseCost: 139356 },
@@ -7246,8 +7102,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 6.96344020985147,
         onSiteDays: 9.673147007281226,
-        suppliesCost: 102021,
-        otherCosts: 244763,
+        phaseCost: 102021244763,
       },
       incidentCommandResults: { onSiteDays: 43.71700956197094, phaseCost: 135526 },
       otherResults: { otherCosts: 54726 },
@@ -7273,8 +7128,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 6.756772296213725,
         onSiteDays: 7.860483015389295,
-        suppliesCost: 29342,
-        otherCosts: 471339,
+        phaseCost: 29342471339,
       },
       incidentCommandResults: { onSiteDays: 37.70235615141165, phaseCost: 114128 },
       otherResults: { otherCosts: 54421 },
@@ -7303,7 +7157,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.434719855765515,
           onSiteDays: 11.648289047099718,
-          suppliesCost: 19815,
+          phaseCost: 19815,
           otherCosts: 808236,
         },
         incidentCommandResults: { onSiteDays: 54.40448787650651, phaseCost: 167226 },
@@ -7330,7 +7184,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 10.230473946135135,
           onSiteDays: 12.118053071693994,
-          suppliesCost: 38894,
+          phaseCost: 38894,
           otherCosts: 398688,
         },
         incidentCommandResults: { onSiteDays: 67.52703110843129, phaseCost: 207422 },
@@ -7358,8 +7212,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 10.336878941239993,
         onSiteDays: 12.364315107782444,
-        suppliesCost: 115332,
-        otherCosts: 349818,
+        phaseCost: 115332349818,
       },
       incidentCommandResults: { onSiteDays: 56.93266621163237, phaseCost: 171964 },
       otherResults: { otherCosts: 109689 },
@@ -7385,8 +7238,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 13.432431090258163,
         onSiteDays: 13.47505093609799,
-        suppliesCost: 298280,
-        otherCosts: 1079577,
+        phaseCost: 2982801079577,
       },
       incidentCommandResults: { onSiteDays: 65.60889316567977, phaseCost: 201153 },
       otherResults: { otherCosts: 63801 },
@@ -7415,7 +7267,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.431279491733592,
           onSiteDays: 10.264165354488457,
-          suppliesCost: 266925,
+          phaseCost: 266925,
           otherCosts: 337913,
         },
         incidentCommandResults: { onSiteDays: 54.268977506872524, phaseCost: 163829 },
@@ -7442,7 +7294,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.518861574474457,
           onSiteDays: 11.8060218682061,
-          suppliesCost: 66559,
+          phaseCost: 66559,
           otherCosts: 361338,
         },
         incidentCommandResults: { onSiteDays: 77.39145464418951, phaseCost: 232962 },
@@ -7470,8 +7322,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.597897767228517,
         onSiteDays: 8.639003689083971,
-        suppliesCost: 199111,
-        otherCosts: 256113,
+        phaseCost: 199111256113,
       },
       incidentCommandResults: { onSiteDays: 76.67071893761471, phaseCost: 236573 },
       otherResults: { otherCosts: 115544 },
@@ -7497,8 +7348,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.92254064789101,
         onSiteDays: 7.187689161437491,
-        suppliesCost: 89963,
-        otherCosts: 197603,
+        phaseCost: 89963197603,
       },
       incidentCommandResults: { onSiteDays: 30.93057185178115, phaseCost: 93571 },
       otherResults: { otherCosts: 85185 },
@@ -7527,7 +7377,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.6825850812444894,
           onSiteDays: 4.811576730993478,
-          suppliesCost: 165441,
+          phaseCost: 165441,
           otherCosts: 193697,
         },
         incidentCommandResults: { onSiteDays: 68.12742842330744, phaseCost: 208052 },
@@ -7554,7 +7404,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.695418325880407,
           onSiteDays: 11.16380341704092,
-          suppliesCost: 469506,
+          phaseCost: 469506,
           otherCosts: 396999,
         },
         incidentCommandResults: { onSiteDays: 109.71615573869849, phaseCost: 333479 },
@@ -7582,8 +7432,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.047140870719948,
         onSiteDays: 12.547770743153006,
-        suppliesCost: 31752,
-        otherCosts: 329016,
+        phaseCost: 31752329016,
       },
       incidentCommandResults: { onSiteDays: 83.79719376621364, phaseCost: 256625 },
       otherResults: { otherCosts: 81316 },
@@ -7609,8 +7458,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.219477442377125,
         onSiteDays: 13.879547170800983,
-        suppliesCost: 127922,
-        otherCosts: 424848,
+        phaseCost: 127922424848,
       },
       incidentCommandResults: { onSiteDays: 52.72600443747727, phaseCost: 162909 },
       otherResults: { otherCosts: 81237 },
@@ -7639,7 +7487,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.44939738312955,
           onSiteDays: 6.366626982662508,
-          suppliesCost: 80255,
+          phaseCost: 80255,
           otherCosts: 117618,
         },
         incidentCommandResults: { onSiteDays: 41.114849347309445, phaseCost: 125153 },
@@ -7666,7 +7514,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.372093487850412,
           onSiteDays: 10.955819770683492,
-          suppliesCost: 288284,
+          phaseCost: 288284,
           otherCosts: 262298,
         },
         incidentCommandResults: { onSiteDays: 42.6593828874528, phaseCost: 128282 },
@@ -7694,8 +7542,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 9.555152090628434,
         onSiteDays: 12.282064311737676,
-        suppliesCost: 285616,
-        otherCosts: 433664,
+        phaseCost: 285616433664,
       },
       incidentCommandResults: { onSiteDays: 39.19637449222094, phaseCost: 118491 },
       otherResults: { otherCosts: 65175 },
@@ -7721,8 +7568,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.321031526737155,
         onSiteDays: 13.871264340558849,
-        suppliesCost: 191249,
-        otherCosts: 454830,
+        phaseCost: 191249454830,
       },
       incidentCommandResults: { onSiteDays: 84.9762548451699, phaseCost: 256674 },
       otherResults: { otherCosts: 103905 },
@@ -7751,7 +7597,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.410806208013279,
           onSiteDays: 4.685665108190306,
-          suppliesCost: 271151,
+          phaseCost: 271151,
           otherCosts: 275406,
         },
         incidentCommandResults: { onSiteDays: 44.21840104137884, phaseCost: 133185 },
@@ -7778,7 +7624,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.38049443028413,
           onSiteDays: 9.820150245870499,
-          suppliesCost: 384701,
+          phaseCost: 384701,
           otherCosts: 244584,
         },
         incidentCommandResults: { onSiteDays: 61.96871247228308, phaseCost: 186475 },
@@ -7806,8 +7652,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 10.697231302433003,
         onSiteDays: 13.318109979927101,
-        suppliesCost: 138706,
-        otherCosts: 303573,
+        phaseCost: 138706303573,
       },
       incidentCommandResults: { onSiteDays: 79.36269362257022, phaseCost: 241499 },
       otherResults: { otherCosts: 102160 },
@@ -7833,8 +7678,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.0400016806181522,
         onSiteDays: 4.380396137801091,
-        suppliesCost: 420862,
-        otherCosts: 160156,
+        phaseCost: 420862160156,
       },
       incidentCommandResults: { onSiteDays: 51.039591518767466, phaseCost: 154824 },
       otherResults: { otherCosts: 69463 },
@@ -7863,7 +7707,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.089653229827446,
           onSiteDays: 5.316631093462145,
-          suppliesCost: 55542,
+          phaseCost: 55542,
           otherCosts: 229972,
         },
         incidentCommandResults: { onSiteDays: 49.821305293259265, phaseCost: 152762 },
@@ -7890,7 +7734,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.206128752605554,
           onSiteDays: 8.567967132098966,
-          suppliesCost: 319664,
+          phaseCost: 319664,
           otherCosts: 318501,
         },
         incidentCommandResults: { onSiteDays: 52.1013307806856, phaseCost: 158059 },
@@ -7918,8 +7762,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 18.706712039817756,
         onSiteDays: 21.214526987917377,
-        suppliesCost: 119110,
-        otherCosts: 710970,
+        phaseCost: 119110710970,
       },
       incidentCommandResults: { onSiteDays: 40.457484528401054, phaseCost: 124544 },
       otherResults: { otherCosts: 152463 },
@@ -7945,8 +7788,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.887003718616209,
         onSiteDays: 4.540452675321245,
-        suppliesCost: 370690,
-        otherCosts: 254807,
+        phaseCost: 370690254807,
       },
       incidentCommandResults: { onSiteDays: 91.5128873719152, phaseCost: 282004 },
       otherResults: { otherCosts: 102428 },
@@ -7975,7 +7817,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.436435611088863,
           onSiteDays: 9.432959625365436,
-          suppliesCost: 260827,
+          phaseCost: 260827,
           otherCosts: 384197,
         },
         incidentCommandResults: { onSiteDays: 47.55549104529082, phaseCost: 146019 },
@@ -8002,7 +7844,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.0403814020195,
           onSiteDays: 6.982896126569923,
-          suppliesCost: 394683,
+          phaseCost: 394683,
           otherCosts: 103940,
         },
         incidentCommandResults: { onSiteDays: 54.967813444187314, phaseCost: 170248 },
@@ -8030,8 +7872,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.52614793333368,
         onSiteDays: 14.398370939399667,
-        suppliesCost: 179402,
-        otherCosts: 399478,
+        phaseCost: 179402399478,
       },
       incidentCommandResults: { onSiteDays: 69.31076165981057, phaseCost: 214204 },
       otherResults: { otherCosts: 66423 },
@@ -8057,8 +7898,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 9.170305605318934,
         onSiteDays: 10.911051951560902,
-        suppliesCost: 322036,
-        otherCosts: 556038,
+        phaseCost: 322036556038,
       },
       incidentCommandResults: { onSiteDays: 74.86055015439219, phaseCost: 230970 },
       otherResults: { otherCosts: 111573 },
@@ -8087,7 +7927,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.126913342887283,
           onSiteDays: 7.604981165287314,
-          suppliesCost: 134061,
+          phaseCost: 134061,
           otherCosts: 287004,
         },
         incidentCommandResults: { onSiteDays: 35.885561673738565, phaseCost: 109729 },
@@ -8114,7 +7954,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 14.125158842449345,
           onSiteDays: 16.078096080822426,
-          suppliesCost: 148381,
+          phaseCost: 148381,
           otherCosts: 482888,
         },
         incidentCommandResults: { onSiteDays: 75.51889668861429, phaseCost: 230433 },
@@ -8142,8 +7982,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.245088259513743,
         onSiteDays: 10.018375465883494,
-        suppliesCost: 403449,
-        otherCosts: 235760,
+        phaseCost: 403449235760,
       },
       incidentCommandResults: { onSiteDays: 42.16640415501516, phaseCost: 130729 },
       otherResults: { otherCosts: 100091 },
@@ -8169,8 +8008,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.670336921156928,
         onSiteDays: 7.537595173702016,
-        suppliesCost: 235185,
-        otherCosts: 263365,
+        phaseCost: 235185263365,
       },
       incidentCommandResults: { onSiteDays: 40.25882235437393, phaseCost: 124894 },
       otherResults: { otherCosts: 71266 },
@@ -8199,7 +8037,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.525235425570336,
           onSiteDays: 5.57253715455824,
-          suppliesCost: 242761,
+          phaseCost: 242761,
           otherCosts: 271309,
         },
         incidentCommandResults: { onSiteDays: 34.214706862436955, phaseCost: 103546 },
@@ -8226,7 +8064,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.442627394674957,
           onSiteDays: 9.644529476213393,
-          suppliesCost: 363253,
+          phaseCost: 363253,
           otherCosts: 302440,
         },
         incidentCommandResults: { onSiteDays: 100.46185566909448, phaseCost: 309109 },
@@ -8254,8 +8092,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.632995046822586,
         onSiteDays: 10.443918540711495,
-        suppliesCost: 45865,
-        otherCosts: 402090,
+        phaseCost: 45865402090,
       },
       incidentCommandResults: { onSiteDays: 55.63245148984323, phaseCost: 170978 },
       otherResults: { otherCosts: 99097 },
@@ -8281,8 +8118,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.2871470081822824,
         onSiteDays: 7.228613908921512,
-        suppliesCost: 287431,
-        otherCosts: 213211,
+        phaseCost: 287431213211,
       },
       incidentCommandResults: { onSiteDays: 62.459454546064755, phaseCost: 191107 },
       otherResults: { otherCosts: 66999 },
@@ -8311,7 +8147,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.055848712114582,
           onSiteDays: 8.711600382279512,
-          suppliesCost: 320422,
+          phaseCost: 320422,
           otherCosts: 532872,
         },
         incidentCommandResults: { onSiteDays: 52.50250062961108, phaseCost: 160795 },
@@ -8338,7 +8174,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.66873950363806,
           onSiteDays: 9.272207923296888,
-          suppliesCost: 355453,
+          phaseCost: 355453,
           otherCosts: 179043,
         },
         incidentCommandResults: { onSiteDays: 55.80522332484713, phaseCost: 170337 },
@@ -8366,8 +8202,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.3974465102417035,
         onSiteDays: 10.013047711693925,
-        suppliesCost: 439133,
-        otherCosts: 482813,
+        phaseCost: 439133482813,
       },
       incidentCommandResults: { onSiteDays: 63.971892637714674, phaseCost: 198313 },
       otherResults: { otherCosts: 96141 },
@@ -8393,8 +8228,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.590637643726225,
         onSiteDays: 6.18967116977779,
-        suppliesCost: 253073,
-        otherCosts: 276016,
+        phaseCost: 253073276016,
       },
       incidentCommandResults: { onSiteDays: 38.53148712357715, phaseCost: 116906 },
       otherResults: { otherCosts: 110076 },
@@ -8423,7 +8257,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.002713503549507,
           onSiteDays: 6.49349940975511,
-          suppliesCost: 394215,
+          phaseCost: 394215,
           otherCosts: 304606,
         },
         incidentCommandResults: { onSiteDays: 51.966030653725774, phaseCost: 159605 },
@@ -8450,7 +8284,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.800083001097684,
           onSiteDays: 9.834372672679455,
-          suppliesCost: 136449,
+          phaseCost: 136449,
           otherCosts: 309944,
         },
         incidentCommandResults: { onSiteDays: 65.77816512905088, phaseCost: 203735 },
@@ -8478,8 +8312,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 15.013649702773813,
         onSiteDays: 16.55680398260169,
-        suppliesCost: 164753,
-        otherCosts: 581618,
+        phaseCost: 164753581618,
       },
       incidentCommandResults: { onSiteDays: 73.59189142056064, phaseCost: 227307 },
       otherResults: { otherCosts: 70562 },
@@ -8505,8 +8338,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.2650009040406442,
         onSiteDays: 3.476233802613857,
-        suppliesCost: 106738,
-        otherCosts: 152982,
+        phaseCost: 106738152982,
       },
       incidentCommandResults: { onSiteDays: 40.82466669076755, phaseCost: 125575 },
       otherResults: { otherCosts: 73520 },
@@ -8535,7 +8367,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.575698452437226,
           onSiteDays: 4.844778302089493,
-          suppliesCost: 452196,
+          phaseCost: 452196,
           otherCosts: 97187,
         },
         incidentCommandResults: { onSiteDays: 49.690875956907114, phaseCost: 153908 },
@@ -8562,7 +8394,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 12.257782042785031,
           onSiteDays: 12.916663708378715,
-          suppliesCost: 308917,
+          phaseCost: 308917,
           otherCosts: 699579,
         },
         incidentCommandResults: { onSiteDays: 49.38882846529517, phaseCost: 152356 },
@@ -8590,8 +8422,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 28.561751260552963,
         onSiteDays: 29.37756172669529,
-        suppliesCost: 429658,
-        otherCosts: 1168198,
+        phaseCost: 4296581168198,
       },
       incidentCommandResults: { onSiteDays: 116.4254171759318, phaseCost: 354036 },
       otherResults: { otherCosts: 113120 },
@@ -8617,8 +8448,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.443913828452097,
         onSiteDays: 8.93582720820229,
-        suppliesCost: 416846,
-        otherCosts: 272504,
+        phaseCost: 416846272504,
       },
       incidentCommandResults: { onSiteDays: 57.97613125259619, phaseCost: 176417 },
       otherResults: { otherCosts: 96795 },
@@ -8647,7 +8477,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.600094886636384,
           onSiteDays: 11.08049898852606,
-          suppliesCost: 117378,
+          phaseCost: 117378,
           otherCosts: 727634,
         },
         incidentCommandResults: { onSiteDays: 76.589211685761, phaseCost: 237310 },
@@ -8674,7 +8504,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.0688338615160515,
           onSiteDays: 4.325964503531802,
-          suppliesCost: 192539,
+          phaseCost: 192539,
           otherCosts: 130286,
         },
         incidentCommandResults: { onSiteDays: 35.00374872141353, phaseCost: 106962 },
@@ -8702,8 +8532,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 9.946006228436252,
         onSiteDays: 11.84450236937136,
-        suppliesCost: 249383,
-        otherCosts: 387195,
+        phaseCost: 249383387195,
       },
       incidentCommandResults: { onSiteDays: 60.3473007094302, phaseCost: 182945 },
       otherResults: { otherCosts: 100847 },
@@ -8729,8 +8558,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.719418913526325,
         onSiteDays: 6.582062458987828,
-        suppliesCost: 104951,
-        otherCosts: 144664,
+        phaseCost: 104951144664,
       },
       incidentCommandResults: { onSiteDays: 39.81354443008149, phaseCost: 120475 },
       otherResults: { otherCosts: 71865 },
@@ -8759,7 +8587,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.168166890081057,
           onSiteDays: 7.506686446840569,
-          suppliesCost: 186825,
+          phaseCost: 186825,
           otherCosts: 156427,
         },
         incidentCommandResults: { onSiteDays: 35.31813797694995, phaseCost: 108865 },
@@ -8786,7 +8614,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.70342183129476,
           onSiteDays: 9.511367601694392,
-          suppliesCost: 194898,
+          phaseCost: 194898,
           otherCosts: 312271,
         },
         incidentCommandResults: { onSiteDays: 47.00489414138721, phaseCost: 143040 },
@@ -8814,8 +8642,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 10.518858123924318,
         onSiteDays: 11.37457851492208,
-        suppliesCost: 379793,
-        otherCosts: 415816,
+        phaseCost: 379793415816,
       },
       incidentCommandResults: { onSiteDays: 57.71656697334916, phaseCost: 178093 },
       otherResults: { otherCosts: 68787 },
@@ -8841,8 +8668,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 10.981164996042189,
         onSiteDays: 12.600431016320464,
-        suppliesCost: 374856,
-        otherCosts: 584885,
+        phaseCost: 374856584885,
       },
       incidentCommandResults: { onSiteDays: 45.64505727732963, phaseCost: 138672 },
       otherResults: { otherCosts: 68686 },
@@ -8871,7 +8697,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.200693664653388,
           onSiteDays: 5.09623474327294,
-          suppliesCost: 443657,
+          phaseCost: 443657,
           otherCosts: 113130,
         },
         incidentCommandResults: { onSiteDays: 53.69699267699141, phaseCost: 166348 },
@@ -8898,7 +8724,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.700077504082601,
           onSiteDays: 4.215504172308255,
-          suppliesCost: 321334,
+          phaseCost: 321334,
           otherCosts: 99195,
         },
         incidentCommandResults: { onSiteDays: 102.47564701505308, phaseCost: 315318 },
@@ -8926,8 +8752,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.655392252992696,
         onSiteDays: 13.776390635589227,
-        suppliesCost: 114636,
-        otherCosts: 545728,
+        phaseCost: 114636545728,
       },
       incidentCommandResults: { onSiteDays: 34.88728875795005, phaseCost: 107685 },
       otherResults: { otherCosts: 125442 },
@@ -8953,8 +8778,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.804274940119189,
         onSiteDays: 4.921532838354244,
-        suppliesCost: 111818,
-        otherCosts: 243420,
+        phaseCost: 111818243420,
       },
       incidentCommandResults: { onSiteDays: 60.535724816885065, phaseCost: 184851 },
       otherResults: { otherCosts: 111372 },
@@ -8983,7 +8807,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 6.927016135055343,
           onSiteDays: 6.974111653159865,
-          suppliesCost: 64190,
+          phaseCost: 64190,
           otherCosts: 286971,
         },
         incidentCommandResults: { onSiteDays: 46.57391741800188, phaseCost: 142053 },
@@ -9010,7 +8834,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.278110524704239,
           onSiteDays: 10.759809622950806,
-          suppliesCost: 194674,
+          phaseCost: 194674,
           otherCosts: 401503,
         },
         incidentCommandResults: { onSiteDays: 35.10007581033358, phaseCost: 107015 },
@@ -9038,8 +8862,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.957305609238638,
         onSiteDays: 8.6404509175663,
-        suppliesCost: 149005,
-        otherCosts: 164707,
+        phaseCost: 149005164707,
       },
       incidentCommandResults: { onSiteDays: 57.94712360047609, phaseCost: 179088 },
       otherResults: { otherCosts: 66420 },
@@ -9065,8 +8888,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.7271289135625425,
         onSiteDays: 8.431234211528496,
-        suppliesCost: 120257,
-        otherCosts: 358418,
+        phaseCost: 120257358418,
       },
       incidentCommandResults: { onSiteDays: 62.699371296948094, phaseCost: 192389 },
       otherResults: { otherCosts: 113366 },
@@ -9095,7 +8917,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.879437915719915,
           onSiteDays: 10.397883617644638,
-          suppliesCost: 52576,
+          phaseCost: 52576,
           otherCosts: 376055,
         },
         incidentCommandResults: { onSiteDays: 38.88534574746292, phaseCost: 117571 },
@@ -9122,7 +8944,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.873980720032468,
           onSiteDays: 5.054888949742282,
-          suppliesCost: 229425,
+          phaseCost: 229425,
           otherCosts: 184622,
         },
         incidentCommandResults: { onSiteDays: 32.806674279274674, phaseCost: 99194 },
@@ -9150,8 +8972,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.733664585681089,
         onSiteDays: 5.4067410958015225,
-        suppliesCost: 225062,
-        otherCosts: 271636,
+        phaseCost: 225062271636,
       },
       incidentCommandResults: { onSiteDays: 58.387644175307486, phaseCost: 178066 },
       otherResults: { otherCosts: 79688 },
@@ -9177,8 +8998,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.6654695446289773,
         onSiteDays: 4.7067324427670645,
-        suppliesCost: 406055,
-        otherCosts: 164793,
+        phaseCost: 406055164793,
       },
       incidentCommandResults: { onSiteDays: 71.1826014830774, phaseCost: 218816 },
       otherResults: { otherCosts: 95705 },
@@ -9207,7 +9027,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 12.518404552600906,
           onSiteDays: 15.083696660372357,
-          suppliesCost: 146045,
+          phaseCost: 146045,
           otherCosts: 552342,
         },
         incidentCommandResults: { onSiteDays: 64.99286825142427, phaseCost: 201311 },
@@ -9234,7 +9054,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.128476685641445,
           onSiteDays: 7.210317890674416,
-          suppliesCost: 214179,
+          phaseCost: 214179,
           otherCosts: 563845,
         },
         incidentCommandResults: { onSiteDays: 87.49662736694228, phaseCost: 271236 },
@@ -9262,8 +9082,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.449445573252031,
         onSiteDays: 11.95900881801709,
-        suppliesCost: 433168,
-        otherCosts: 405138,
+        phaseCost: 433168405138,
       },
       incidentCommandResults: { onSiteDays: 48.69707670608548, phaseCost: 148431 },
       otherResults: { otherCosts: 77653 },
@@ -9289,8 +9108,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.506204581471673,
         onSiteDays: 8.69340467981375,
-        suppliesCost: 120013,
-        otherCosts: 271371,
+        phaseCost: 120013271371,
       },
       incidentCommandResults: { onSiteDays: 83.43887722876794, phaseCost: 258202 },
       otherResults: { otherCosts: 104472 },
@@ -9319,7 +9137,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.749726307054452,
           onSiteDays: 7.498081392258889,
-          suppliesCost: 275026,
+          phaseCost: 275026,
           otherCosts: 137550,
         },
         incidentCommandResults: { onSiteDays: 89.38311714153451, phaseCost: 274430 },
@@ -9346,7 +9164,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.764786597985026,
           onSiteDays: 4.092313849621525,
-          suppliesCost: 62505,
+          phaseCost: 62505,
           otherCosts: 170495,
         },
         incidentCommandResults: { onSiteDays: 45.78913163908612, phaseCost: 141315 },
@@ -9374,8 +9192,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.6780532919052185,
         onSiteDays: 7.380782003370296,
-        suppliesCost: 43732,
-        otherCosts: 239860,
+        phaseCost: 43732239860,
       },
       incidentCommandResults: { onSiteDays: 45.31859717538295, phaseCost: 139291 },
       otherResults: { otherCosts: 145508 },
@@ -9401,8 +9218,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.83067391087084,
         onSiteDays: 10.423120477800984,
-        suppliesCost: 271989,
-        otherCosts: 584723,
+        phaseCost: 271989584723,
       },
       incidentCommandResults: { onSiteDays: 91.0798055525021, phaseCost: 281628 },
       otherResults: { otherCosts: 97580 },
@@ -9431,7 +9247,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.054895401246588,
           onSiteDays: 6.373256380989508,
-          suppliesCost: 140462,
+          phaseCost: 140462,
           otherCosts: 286302,
         },
         incidentCommandResults: { onSiteDays: 64.51845177162852, phaseCost: 196815 },
@@ -9458,7 +9274,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 16.105568729831273,
           onSiteDays: 17.989591369170135,
-          suppliesCost: 416001,
+          phaseCost: 416001,
           otherCosts: 487696,
         },
         incidentCommandResults: { onSiteDays: 135.7437312949416, phaseCost: 414035 },
@@ -9486,8 +9302,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.214037573247692,
         onSiteDays: 13.819601401644666,
-        suppliesCost: 54105,
-        otherCosts: 316370,
+        phaseCost: 54105316370,
       },
       incidentCommandResults: { onSiteDays: 59.7897209142948, phaseCost: 181955 },
       otherResults: { otherCosts: 79309 },
@@ -9513,8 +9328,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.3422377555030955,
         onSiteDays: 6.9698283425462035,
-        suppliesCost: 30292,
-        otherCosts: 203025,
+        phaseCost: 30292203025,
       },
       incidentCommandResults: { onSiteDays: 60.570469859496285, phaseCost: 182714 },
       otherResults: { otherCosts: 115354 },
@@ -9543,7 +9357,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.49403595889314,
           onSiteDays: 4.696866537373714,
-          suppliesCost: 54069,
+          phaseCost: 54069,
           otherCosts: 118525,
         },
         incidentCommandResults: { onSiteDays: 34.616379591238356, phaseCost: 105008 },
@@ -9570,7 +9384,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 6.692587931801702,
           onSiteDays: 8.387636651142415,
-          suppliesCost: 247397,
+          phaseCost: 247397,
           otherCosts: 250351,
         },
         incidentCommandResults: { onSiteDays: 37.502866236451794, phaseCost: 115581 },
@@ -9598,8 +9412,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.87104334446393,
         onSiteDays: 8.672911917248953,
-        suppliesCost: 25048,
-        otherCosts: 299188,
+        phaseCost: 25048299188,
       },
       incidentCommandResults: { onSiteDays: 74.75265374560823, phaseCost: 224774 },
       otherResults: { otherCosts: 77536 },
@@ -9625,8 +9438,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.808030891653157,
         onSiteDays: 9.87370372607226,
-        suppliesCost: 328077,
-        otherCosts: 307096,
+        phaseCost: 328077307096,
       },
       incidentCommandResults: { onSiteDays: 44.71902870498576, phaseCost: 134671 },
       otherResults: { otherCosts: 97389 },
@@ -9655,7 +9467,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.33312213754587,
           onSiteDays: 10.925532325619258,
-          suppliesCost: 149321,
+          phaseCost: 149321,
           otherCosts: 487586,
         },
         incidentCommandResults: { onSiteDays: 83.43721881134157, phaseCost: 255390 },
@@ -9682,7 +9494,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.663998653568327,
           onSiteDays: 6.842793688839952,
-          suppliesCost: 471760,
+          phaseCost: 471760,
           otherCosts: 228119,
         },
         incidentCommandResults: { onSiteDays: 32.909488164288554, phaseCost: 100620 },
@@ -9710,8 +9522,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.790527581654146,
         onSiteDays: 12.968967031447441,
-        suppliesCost: 343485,
-        otherCosts: 729466,
+        phaseCost: 343485729466,
       },
       incidentCommandResults: { onSiteDays: 60.45546217279312, phaseCost: 183775 },
       otherResults: { otherCosts: 52696 },
@@ -9737,8 +9548,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 9.834908537295393,
         onSiteDays: 11.917365423850102,
-        suppliesCost: 157761,
-        otherCosts: 502932,
+        phaseCost: 157761502932,
       },
       incidentCommandResults: { onSiteDays: 71.84608635177804, phaseCost: 218413 },
       otherResults: { otherCosts: 129552 },
@@ -9767,7 +9577,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.179139828118295,
           onSiteDays: 4.5822555205277755,
-          suppliesCost: 416906,
+          phaseCost: 416906,
           otherCosts: 294741,
         },
         incidentCommandResults: { onSiteDays: 35.191630038814594, phaseCost: 106699 },
@@ -9794,7 +9604,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.54693933682212,
           onSiteDays: 9.590118644663626,
-          suppliesCost: 336757,
+          phaseCost: 336757,
           otherCosts: 477355,
         },
         incidentCommandResults: { onSiteDays: 35.83298407250189, phaseCost: 109504 },
@@ -9822,8 +9632,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 20.214034242838164,
         onSiteDays: 20.28945936921273,
-        suppliesCost: 259326,
-        otherCosts: 893646,
+        phaseCost: 259326893646,
       },
       incidentCommandResults: { onSiteDays: 72.46320692021656, phaseCost: 221586 },
       otherResults: { otherCosts: 57121 },
@@ -9849,8 +9658,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.037551230526891,
         onSiteDays: 8.1032932568582,
-        suppliesCost: 56352,
-        otherCosts: 262120,
+        phaseCost: 56352262120,
       },
       incidentCommandResults: { onSiteDays: 38.10518347755995, phaseCost: 116848 },
       otherResults: { otherCosts: 77390 },
@@ -9879,7 +9687,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 22.374806200707056,
           onSiteDays: 24.117530374349453,
-          suppliesCost: 214064,
+          phaseCost: 214064,
           otherCosts: 896372,
         },
         incidentCommandResults: { onSiteDays: 109.67210334873236, phaseCost: 339978 },
@@ -9906,7 +9714,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.404431252135995,
           onSiteDays: 6.725848883559427,
-          suppliesCost: 209500,
+          phaseCost: 209500,
           otherCosts: 218880,
         },
         incidentCommandResults: { onSiteDays: 28.1393832401796, phaseCost: 86100 },
@@ -9934,8 +9742,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 19.62086007339434,
         onSiteDays: 21.87757795138228,
-        suppliesCost: 409496,
-        otherCosts: 609410,
+        phaseCost: 409496609410,
       },
       incidentCommandResults: { onSiteDays: 99.27969294540047, phaseCost: 307623 },
       otherResults: { otherCosts: 94086 },
@@ -9961,8 +9768,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.5816455433568093,
         onSiteDays: 4.121678355643916,
-        suppliesCost: 202372,
-        otherCosts: 134736,
+        phaseCost: 202372134736,
       },
       incidentCommandResults: { onSiteDays: 24.638122476827505, phaseCost: 75551 },
       otherResults: { otherCosts: 70296 },
@@ -9991,7 +9797,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.11914017310346,
           onSiteDays: 9.967719051280925,
-          suppliesCost: 299133,
+          phaseCost: 299133,
           otherCosts: 450081,
         },
         incidentCommandResults: { onSiteDays: 85.87750591843906, phaseCost: 265625 },
@@ -10018,7 +9824,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.919551575770498,
           onSiteDays: 11.515910363876241,
-          suppliesCost: 242959,
+          phaseCost: 242959,
           otherCosts: 427173,
         },
         incidentCommandResults: { onSiteDays: 48.08690707155536, phaseCost: 145890 },
@@ -10046,8 +9852,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 15.584681103374967,
         onSiteDays: 17.4560330676511,
-        suppliesCost: 40047,
-        otherCosts: 801112,
+        phaseCost: 40047801112,
       },
       incidentCommandResults: { onSiteDays: 58.986391320092196, phaseCost: 182961 },
       otherResults: { otherCosts: 113073 },
@@ -10073,8 +9878,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 9.194298334232137,
         onSiteDays: 11.718718082578556,
-        suppliesCost: 281868,
-        otherCosts: 528155,
+        phaseCost: 281868528155,
       },
       incidentCommandResults: { onSiteDays: 32.11317478061528, phaseCost: 98538 },
       otherResults: { otherCosts: 80620 },
@@ -10103,7 +9907,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 9.323326866450563,
           onSiteDays: 9.535365213531852,
-          suppliesCost: 97280,
+          phaseCost: 97280,
           otherCosts: 581313,
         },
         incidentCommandResults: { onSiteDays: 50.36071228172489, phaseCost: 152168 },
@@ -10130,7 +9934,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.3820725948042405,
           onSiteDays: 4.773414361237878,
-          suppliesCost: 136617,
+          phaseCost: 136617,
           otherCosts: 101598,
         },
         incidentCommandResults: { onSiteDays: 42.831207218199964, phaseCost: 132317 },
@@ -10158,8 +9962,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 22.899532075249482,
         onSiteDays: 25.166160334871655,
-        suppliesCost: 313309,
-        otherCosts: 868083,
+        phaseCost: 313309868083,
       },
       incidentCommandResults: { onSiteDays: 89.05537248014014, phaseCost: 275828 },
       otherResults: { otherCosts: 110451 },
@@ -10185,8 +9988,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 6.739128388170881,
         onSiteDays: 9.581834864472466,
-        suppliesCost: 166341,
-        otherCosts: 341272,
+        phaseCost: 166341341272,
       },
       incidentCommandResults: { onSiteDays: 61.02810289994558, phaseCost: 185278 },
       otherResults: { otherCosts: 110931 },
@@ -10215,7 +10017,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.5155378716335486,
           onSiteDays: 4.373463979310697,
-          suppliesCost: 89116,
+          phaseCost: 89116,
           otherCosts: 202093,
         },
         incidentCommandResults: { onSiteDays: 56.30819633006162, phaseCost: 174318 },
@@ -10242,7 +10044,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.102240059548579,
           onSiteDays: 4.732334905008863,
-          suppliesCost: 245224,
+          phaseCost: 245224,
           otherCosts: 109606,
         },
         incidentCommandResults: { onSiteDays: 53.490044487414686, phaseCost: 164911 },
@@ -10270,8 +10072,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.02958459780309,
         onSiteDays: 11.862952621854598,
-        suppliesCost: 259000,
-        otherCosts: 438610,
+        phaseCost: 259000438610,
       },
       incidentCommandResults: { onSiteDays: 50.45568000335489, phaseCost: 155718 },
       otherResults: { otherCosts: 47785 },
@@ -10297,8 +10098,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.871038538373783,
         onSiteDays: 8.579884175579037,
-        suppliesCost: 141765,
-        otherCosts: 293959,
+        phaseCost: 141765293959,
       },
       incidentCommandResults: { onSiteDays: 58.3920258919208, phaseCost: 176808 },
       otherResults: { otherCosts: 74392 },
@@ -10327,7 +10127,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 11.56660986472075,
           onSiteDays: 12.767561112243579,
-          suppliesCost: 478701,
+          phaseCost: 478701,
           otherCosts: 647652,
         },
         incidentCommandResults: { onSiteDays: 71.49209512380011, phaseCost: 221562 },
@@ -10354,7 +10154,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 12.382562070941217,
           onSiteDays: 13.344178265040782,
-          suppliesCost: 121071,
+          phaseCost: 121071,
           otherCosts: 421905,
         },
         incidentCommandResults: { onSiteDays: 125.30765879229622, phaseCost: 382150 },
@@ -10382,8 +10182,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.769970918486354,
         onSiteDays: 13.031852103311534,
-        suppliesCost: 419180,
-        otherCosts: 343237,
+        phaseCost: 419180343237,
       },
       incidentCommandResults: { onSiteDays: 41.34540732889749, phaseCost: 126725 },
       otherResults: { otherCosts: 61097 },
@@ -10409,8 +10208,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.419872700800158,
         onSiteDays: 4.883789216373998,
-        suppliesCost: 337731,
-        otherCosts: 186239,
+        phaseCost: 337731186239,
       },
       incidentCommandResults: { onSiteDays: 107.27235685918345, phaseCost: 323924 },
       otherResults: { otherCosts: 86757 },
@@ -10439,7 +10237,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.423937374358982,
           onSiteDays: 6.2245303723552565,
-          suppliesCost: 74004,
+          phaseCost: 74004,
           otherCosts: 182603,
         },
         incidentCommandResults: { onSiteDays: 30.689685825328215, phaseCost: 93930 },
@@ -10466,7 +10264,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 19.51708458981409,
           onSiteDays: 19.55426514068485,
-          suppliesCost: 98799,
+          phaseCost: 98799,
           otherCosts: 1064367,
         },
         incidentCommandResults: { onSiteDays: 87.6420216328754, phaseCost: 265370 },
@@ -10494,8 +10292,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.785465822970836,
         onSiteDays: 6.267256591298445,
-        suppliesCost: 226602,
-        otherCosts: 156932,
+        phaseCost: 226602156932,
       },
       incidentCommandResults: { onSiteDays: 60.29152889617653, phaseCost: 183487 },
       otherResults: { otherCosts: 63250 },
@@ -10521,8 +10318,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.839056239425916,
         onSiteDays: 9.744217152182063,
-        suppliesCost: 392588,
-        otherCosts: 359624,
+        phaseCost: 392588359624,
       },
       incidentCommandResults: { onSiteDays: 92.0124074811706, phaseCost: 283139 },
       otherResults: { otherCosts: 71285 },
@@ -10551,7 +10347,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.043954053671088,
           onSiteDays: 7.979221084848796,
-          suppliesCost: 369964,
+          phaseCost: 369964,
           otherCosts: 289004,
         },
         incidentCommandResults: { onSiteDays: 72.07517205429286, phaseCost: 217397 },
@@ -10578,7 +10374,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.506903706934979,
           onSiteDays: 5.810605168996986,
-          suppliesCost: 158395,
+          phaseCost: 158395,
           otherCosts: 105992,
         },
         incidentCommandResults: { onSiteDays: 89.89982171905324, phaseCost: 273373 },
@@ -10606,8 +10402,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 17.914465148447654,
         onSiteDays: 19.834967445310895,
-        suppliesCost: 53854,
-        otherCosts: 597850,
+        phaseCost: 53854597850,
       },
       incidentCommandResults: { onSiteDays: 37.334812250427234, phaseCost: 115068 },
       otherResults: { otherCosts: 56408 },
@@ -10633,8 +10428,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.5959881177628388,
         onSiteDays: 6.082283929940845,
-        suppliesCost: 52731,
-        otherCosts: 245386,
+        phaseCost: 52731245386,
       },
       incidentCommandResults: { onSiteDays: 44.1212315425881, phaseCost: 134946 },
       otherResults: { otherCosts: 88448 },
@@ -10663,7 +10457,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.659867714545658,
           onSiteDays: 6.977080879261969,
-          suppliesCost: 204925,
+          phaseCost: 204925,
           otherCosts: 270758,
         },
         incidentCommandResults: { onSiteDays: 49.38558598996532, phaseCost: 148877 },
@@ -10690,7 +10484,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.470714435789435,
           onSiteDays: 5.119225081084116,
-          suppliesCost: 24003,
+          phaseCost: 24003,
           otherCosts: 216871,
         },
         incidentCommandResults: { onSiteDays: 36.72616636075878, phaseCost: 113898 },
@@ -10718,8 +10512,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.834349499278318,
         onSiteDays: 10.54882277002298,
-        suppliesCost: 28072,
-        otherCosts: 321545,
+        phaseCost: 28072321545,
       },
       incidentCommandResults: { onSiteDays: 63.51018471449846, phaseCost: 195860 },
       otherResults: { otherCosts: 87869 },
@@ -10745,8 +10538,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 7.1168711341723965,
         onSiteDays: 8.986304245420337,
-        suppliesCost: 138938,
-        otherCosts: 152954,
+        phaseCost: 138938152954,
       },
       incidentCommandResults: { onSiteDays: 38.28133505408426, phaseCost: 118716 },
       otherResults: { otherCosts: 107991 },
@@ -10775,7 +10567,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 8.115945403025473,
           onSiteDays: 8.910135471473945,
-          suppliesCost: 111446,
+          phaseCost: 111446,
           otherCosts: 479349,
         },
         incidentCommandResults: { onSiteDays: 46.28087223937152, phaseCost: 142596 },
@@ -10802,7 +10594,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.79130901158585,
           onSiteDays: 6.19945016554544,
-          suppliesCost: 121459,
+          phaseCost: 121459,
           otherCosts: 257895,
         },
         incidentCommandResults: { onSiteDays: 57.87178724428425, phaseCost: 179508 },
@@ -10830,8 +10622,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 16.518669197456603,
         onSiteDays: 19.25872612168517,
-        suppliesCost: 359064,
-        otherCosts: 764441,
+        phaseCost: 359064764441,
       },
       incidentCommandResults: { onSiteDays: 76.12159437080943, phaseCost: 235158 },
       otherResults: { otherCosts: 131134 },
@@ -10857,8 +10648,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 3.696822025975404,
         onSiteDays: 6.39945929506781,
-        suppliesCost: 116835,
-        otherCosts: 225526,
+        phaseCost: 116835225526,
       },
       incidentCommandResults: { onSiteDays: 61.97897705986287, phaseCost: 189923 },
       otherResults: { otherCosts: 100482 },
@@ -10887,7 +10677,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 3.3278636006470452,
           onSiteDays: 5.756316590531803,
-          suppliesCost: 116931,
+          phaseCost: 116931,
           otherCosts: 189843,
         },
         incidentCommandResults: { onSiteDays: 66.40464357343042, phaseCost: 202665 },
@@ -10914,7 +10704,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 7.929279063346161,
           onSiteDays: 8.125622859719586,
-          suppliesCost: 76362,
+          phaseCost: 76362,
           otherCosts: 387655,
         },
         incidentCommandResults: { onSiteDays: 45.04322141964936, phaseCost: 136627 },
@@ -10942,8 +10732,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 13.880437917746706,
         onSiteDays: 16.36395834837201,
-        suppliesCost: 290211,
-        otherCosts: 709829,
+        phaseCost: 290211709829,
       },
       incidentCommandResults: { onSiteDays: 50.649170307142754, phaseCost: 155304 },
       otherResults: { otherCosts: 135082 },
@@ -10969,8 +10758,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 12.325815824169156,
         onSiteDays: 12.760277227675607,
-        suppliesCost: 141989,
-        otherCosts: 542456,
+        phaseCost: 141989542456,
       },
       incidentCommandResults: { onSiteDays: 82.78142546738056, phaseCost: 254465 },
       otherResults: { otherCosts: 86112 },
@@ -10999,7 +10787,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 6.547567174897429,
           onSiteDays: 7.512984440548575,
-          suppliesCost: 145184,
+          phaseCost: 145184,
           otherCosts: 366872,
         },
         incidentCommandResults: { onSiteDays: 47.05982728826823, phaseCost: 141634 },
@@ -11026,7 +10814,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 4.360463385786969,
           onSiteDays: 4.454029692209798,
-          suppliesCost: 560471,
+          phaseCost: 560471,
           otherCosts: 215304,
         },
         incidentCommandResults: { onSiteDays: 44.56216204494619, phaseCost: 137858 },
@@ -11054,8 +10842,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 17.629274381238332,
         onSiteDays: 19.937358090173767,
-        suppliesCost: 175074,
-        otherCosts: 939468,
+        phaseCost: 175074939468,
       },
       incidentCommandResults: { onSiteDays: 51.78142467445799, phaseCost: 156039 },
       otherResults: { otherCosts: 92516 },
@@ -11081,8 +10868,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 11.934683228594876,
         onSiteDays: 13.63921514727157,
-        suppliesCost: 282648,
-        otherCosts: 816626,
+        phaseCost: 282648816626,
       },
       incidentCommandResults: { onSiteDays: 38.467393450696484, phaseCost: 117234 },
       otherResults: { otherCosts: 92114 },
@@ -11111,7 +10897,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 10.191918185258265,
           onSiteDays: 11.950514452986074,
-          suppliesCost: 482212,
+          phaseCost: 482212,
           otherCosts: 214453,
         },
         incidentCommandResults: { onSiteDays: 82.06685902157632, phaseCost: 252029 },
@@ -11138,7 +10924,7 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: {
           workDays: 14.767392967540628,
           onSiteDays: 17.46843404706298,
-          suppliesCost: 79929,
+          phaseCost: 79929,
           otherCosts: 490270,
         },
         incidentCommandResults: { onSiteDays: 112.25675840854316, phaseCost: 347024 },
@@ -11166,8 +10952,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 8.320806354824642,
         onSiteDays: 11.15459581607827,
-        suppliesCost: 72218,
-        otherCosts: 274405,
+        phaseCost: 72218274405,
       },
       incidentCommandResults: { onSiteDays: 75.83699328901177, phaseCost: 235230 },
       otherResults: { otherCosts: 51462 },
@@ -11193,8 +10978,7 @@ const mockResults: IJobResultRealization[] = [
       decontaminationResults: {
         workDays: 4.9255469846365845,
         onSiteDays: 7.626709598262494,
-        suppliesCost: 174547,
-        otherCosts: 369073,
+        phaseCost: 174547369073,
       },
       incidentCommandResults: { onSiteDays: 96.94932272249031, phaseCost: 295359 },
       otherResults: { otherCosts: 70004 },
