@@ -7,12 +7,19 @@ export default interface IJobResultProvider {
    * @param {string} name - The camel case string to be converted.
    * @returns The string in title case.
    */
-   convertCamelToTitleCase(name: string): string;
+  convertCamelToTitleCase(name: string): string;
 
   /** Exports job results to a Microsoft Excel file.
    * @param {IJobResultRealization[]} results - The job results to be exported.
    */
   exportJobResults(results: IJobResultRealization[]): void;
+
+  /** Finds all values of a given result.
+   * @param {IJobResultRealization} realization - The job result realization to parse.
+   * @param {PhaseResult} result - The result to look for.
+   * @returns An array holding all the found values.
+   */
+  getResultValues(realization: IJobResultRealization, result: PhaseResult): number[];
 
   /** Rounds number to 2 decimal places and adds commas where necessary.
    * @param {number} number - The number to be converted.

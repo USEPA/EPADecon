@@ -149,11 +149,18 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   getClass(cateogry: string): string {
     const param = this.parameterValue.values[cateogry];
+    if (param.isSet === undefined) {
+      return '';
+    }
     return param.isSet ? '' : `error lighten-2`;
   }
 
   @Watch('selectedCategory', { deep: true })
   checkErrorHighligtingOnSelect(): void {
+    if (this.selectedCategory.isSet === undefined) {
+      return;
+    }
+
     const el = (this.$refs.categorySelect as Vue).$el.children[1].children[0];
     const errorClasses = ['error', 'lighten-2'];
 

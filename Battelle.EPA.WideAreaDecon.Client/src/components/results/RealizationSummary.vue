@@ -11,7 +11,7 @@
       </v-col>
       <v-col cols="9">
         <results-chart-panel
-          @showModal="showModal = true"
+          @showModal="showOptionsModal = true"
           @removeLabel="removeSelectedResult"
           :chartData="chartData"
           :chartType="chartType"
@@ -20,131 +20,11 @@
       </v-col>
     </v-row>
 
-    <!-- TODO MAKE OWN COMPONENT -->
-    <v-row>
-      <v-col>
-        <v-card>
-          <v-row dense>
-            <v-col cols="auto" class="mr-auto">
-              <v-card-title v-text="'Realization Comparison'" />
-            </v-col>
-
-            <v-col style="margin-top: 7px" cols="2">
-              <v-select
-                label="Building"
-                :items="['All', ...locations]"
-                v-model="selectedLocation"
-                outlined
-                hide-details="auto"
-              ></v-select>
-            </v-col>
-
-            <v-col style="margin-top: 7px" cols="2" class="d-inline-flex">
-              <v-text-field
-                label="Run Number"
-                v-model.number="runNumber"
-                type="number"
-                :rules="[validationRulesRunNumber]"
-                hide-details="auto"
-                outlined
-              ></v-text-field>
-
-              <v-btn
-                height="45"
-                color="secondary"
-                @click="addRunToTable"
-                :disabled="validationRulesRunNumber(runNumber) !== true"
-              >
-                View
-              </v-btn>
-            </v-col>
-          </v-row>
-
-          <v-divider color="grey"></v-divider>
-
-          <v-simple-table v-if="displayedRunNumbers.length" dense class="overflow-x-auto">
-            <template v-if="selectedLocation !== 'All'" v-slot:default>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th class="text-right text-body-1" v-for="runNumber in displayedRunNumbers" :key="runNumber">
-                    Run {{ runNumber }}
-                    <v-icon class="ml-1" small @click="removeRunFromTable(runNumber)">mdi-close-circle</v-icon>
-
-                    <v-btn class="d-block ml-auto" x-small>Summary</v-btn>
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody v-for="(phaseResult, phaseName) in results[0].Outdoor" :key="phaseName">
-                <tr>
-                  <td class="text-subtitle-1 font-weight-medium">
-                    {{ resultProvider.convertCamelToTitleCase(phaseName) }}
-                  </td>
-                  <td :colspan="displayedRunNumbers.length"></td>
-                </tr>
-
-                <tr v-for="(_, result) in phaseResult" :key="result">
-                  <td class="pl-8">{{ resultProvider.convertCamelToTitleCase(result) }}</td>
-
-                  <td class="text-right" v-for="runNumber in displayedRunNumbers" :key="runNumber">
-                    {{ getLocationResults(runNumber)[phaseName][result] }}
-                  </td>
-                </tr>
-              </tbody>
-            </template>
-
-            <template v-else v-slot:default>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th
-                    class="text-center text-body-1"
-                    :colspan="locations.length"
-                    v-for="runNumber in displayedRunNumbers"
-                    :key="runNumber"
-                  >
-                    Run {{ runNumber }}
-                    <v-icon class="ml-1" small @click="removeRunFromTable(runNumber)">mdi-close-circle</v-icon>
-                  </th>
-                </tr>
-
-                <tr>
-                  <th></th>
-                  <th
-                    class="text-right text-body-1"
-                    v-for="(location, i) in tableLocations"
-                    :key="`${location} - ${i}`"
-                  >
-                    {{ location }}
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody v-for="(phaseResult, phaseName) in results[0].Outdoor" :key="phaseName">
-                <tr>
-                  <td class="text-subtitle-1 font-weight-medium">
-                    {{ resultProvider.convertCamelToTitleCase(phaseName) }}
-                  </td>
-                  <td :colspan="locations.length * displayedRunNumbers.length"></td>
-                </tr>
-
-                <tr v-for="(_, result) in phaseResult" :key="result">
-                  <td>{{ resultProvider.convertCamelToTitleCase(result) }}</td>
-
-                  <td class="text-right" v-for="(location, i) in tableLocations" :key="`${location} - ${i}`">
-                    {{ getLocationResults(calculateRunNumber(i), location)[phaseName][result] }}
-                  </td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
-
-          <v-card-text v-else>Please select at least one realization to display a summary for</v-card-text>
-        </v-card>
-      </v-col>
+    <v-row class="mb-8">
+      <realization-table />
     </v-row>
-    <chart-options @createChart="setChartData" v-model="showModal" />
+
+    <chart-options @createChart="setChartData" v-model="showOptionsModal" :selected="selectedResults" />
   </v-container>
 </template>
 
@@ -155,8 +35,6 @@ import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealizati
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
-import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
-import BuildingCategory from '@/enums/parameter/buildingCategory';
 import { ChartData } from 'chart.js';
 import {
   ChartPoint2D,
@@ -164,15 +42,15 @@ import {
   DefaultChartData,
   ScatterChartDataset,
 } from 'battelle-common-vue-charting/src';
-// import mockResults from '@/dataMocks/mockResults';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import ChartOptions from '@/components/modals/results/ChartOptions.vue';
 import { range } from 'lodash';
 import OutputStatisticsPanel from './OutputStatisticsPanel.vue';
 import ResultsChartPanel from './ResultsChartPanel.vue';
+import RealizationTable from './RealizationTable.vue';
 
-@Component({ components: { ChartOptions, OutputStatisticsPanel, ResultsChartPanel } })
+@Component({ components: { ChartOptions, OutputStatisticsPanel, RealizationTable, ResultsChartPanel } })
 export default class RealizationSummary extends Vue {
   @State((state) => state.currentJob.results) results!: IJobResultRealization[];
 
@@ -184,40 +62,12 @@ export default class RealizationSummary extends Vue {
 
   outputStatistics: { x: IResultDetails | null; y: IResultDetails | null } = { x: null, y: null };
 
-  showModal = false;
-
-  runNumber = 1;
-
-  displayedRunNumbers: number[] = [];
-
-  selectedLocation = 'All';
+  showOptionsModal = false;
 
   selectedResults: { x: PhaseResult | null; y: PhaseResult | null } = { x: null, y: null };
 
-  get locations(): string[] {
-    const outUnd = Object.keys(this.results[0]).splice(1);
-    return [...Object.keys(this.results[0].Indoor).map((l) => `${l} Building`), ...outUnd];
-  }
-
-  get tableLocations(): string[] {
-    const { length } = this.displayedRunNumbers;
-    return [...Array(length)].flatMap(() => this.locations);
-  }
-
-  addRunToTable(): void {
-    const run = this.resultProvider.getRealizationResults(this.results, this.runNumber);
-    if (run !== undefined && !this.displayedRunNumbers.includes(this.runNumber)) {
-      this.displayedRunNumbers.push(this.runNumber);
-    }
-  }
-
-  calculateRunNumber(index: number): number {
-    const { length } = this.locations;
-    return Math.floor((index + length) / length);
-  }
-
-  createHistogram({ values, minimum, maximum }: IResultDetails, label: PhaseResult | null): ChartData {
-    const xLabel = this.resultProvider.convertCamelToTitleCase(label as string);
+  // eslint-disable-next-line class-methods-use-this
+  createHistogram({ values, minimum, maximum }: IResultDetails): ChartData {
     const color = new CycleColorProvider().getNextColor();
 
     const numberOfBins = 10;
@@ -246,7 +96,7 @@ export default class RealizationSummary extends Vue {
       labels: bins,
       datasets: [
         {
-          // label: 'Number of Realizations',
+          label: 'Number of Realizations',
           data: binVals,
           backgroundColor: color,
           barPercentage: 1,
@@ -276,6 +126,10 @@ export default class RealizationSummary extends Vue {
     const colorProvider = new CycleColorProvider();
     const colors = phaseResults.map(() => colorProvider.getNextColor());
     const numberRealizations = values.length;
+    const labels =
+      phaseResults.length > 1
+        ? phaseResults.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase))
+        : ['Total Cost'];
 
     return {
       datasets: [
@@ -284,7 +138,7 @@ export default class RealizationSummary extends Vue {
           backgroundColor: colors,
         },
       ],
-      labels: phaseResults.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase)),
+      labels,
     };
   }
 
@@ -306,7 +160,7 @@ export default class RealizationSummary extends Vue {
     if (xDetails && !yDetails) {
       // histogram
       this.chartType = 'bar';
-      this.chartData = this.createHistogram(xDetails, x);
+      this.chartData = this.createHistogram(xDetails);
     } else if (!xDetails && yDetails) {
       // pie chart
       this.chartType = 'pie';
@@ -320,13 +174,6 @@ export default class RealizationSummary extends Vue {
     }
 
     this.getOutputStatistics(x, y);
-  }
-
-  getLocationResults(runNumber: number, location?: string): IPhaseResultSet {
-    const run = this.resultProvider.getRealizationResults(this.results, runNumber);
-    const selectedLocation = (location !== undefined ? location : this.selectedLocation).replace(/ Building$/, '');
-    const isIndoor = Object.keys(BuildingCategory).includes(selectedLocation);
-    return isIndoor ? run.Indoor[selectedLocation] : (run[selectedLocation] as IPhaseResultSet);
   }
 
   getOutputStatistics(xLabel: PhaseResult | null, yLabel: PhaseResult | null): void {
@@ -344,48 +191,11 @@ export default class RealizationSummary extends Vue {
     this.$set(this, 'outputStatistics', stats);
   }
 
-  removeRunFromTable(runNumber: number): void {
-    const index = this.displayedRunNumbers.indexOf(runNumber);
-    this.displayedRunNumbers.splice(index, 1);
-  }
-
   removeSelectedResult(axis: string): void {
     this.$set(this.selectedResults, axis, null);
     this.setChartData(this.selectedResults);
   }
-
-  // eslint-disable-next-line class-methods-use-this
-  validationRulesRunNumber(runNumber: number): boolean | string {
-    if (`${runNumber}`.length === 0) {
-      return 'Value is required';
-    }
-    if (runNumber <= 0) {
-      return 'Value must be greater than 0';
-    }
-    if (runNumber % 1 !== 0) {
-      return 'Value must be a whole number';
-    }
-    return true;
-  }
 }
 </script>
 
-<style lang="scss" scoped>
-.v-data-table__wrapper > table {
-  position: relative;
-
-  & > thead > tr > th:first-child {
-    width: 250px;
-  }
-
-  & > tbody > tr > td:first-child {
-    left: 0;
-    position: sticky;
-    background: #fff;
-
-    &:hover {
-      background-color: green;
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

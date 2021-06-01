@@ -15,16 +15,13 @@ export default class JobResultProvider implements IJobResultProvider {
 
     // Headers for each phase
     const phaseHeaders = [
-      'Pre-Decon Characterization Sampling',
+      'Pre Decon Characterization Sampling',
       '',
       '',
-      '',
-      'Post-Decon Characterization Sampling',
-      '',
+      'Post Decon Characterization Sampling',
       '',
       '',
       'Total Characterization Sampling',
-      '',
       '',
       '',
       'Source Reduction',
@@ -33,11 +30,9 @@ export default class JobResultProvider implements IJobResultProvider {
       'Decontamination',
       '',
       '',
-      '',
       'Incident Command',
       '',
       'Other',
-      '',
       'General',
     ];
 
@@ -185,6 +180,16 @@ export default class JobResultProvider implements IJobResultProvider {
       minimum,
       stdDev,
     };
+  }
+
+  getResultValues(realization: IJobResultRealization, result: PhaseResult): number[] {
+    const values: number[] = [];
+    this.findResultValues(realization, result, (value) => {
+      if (value) {
+        values.push(value);
+      }
+    });
+    return values;
   }
 
   getUnits(result: PhaseResult): string | undefined {

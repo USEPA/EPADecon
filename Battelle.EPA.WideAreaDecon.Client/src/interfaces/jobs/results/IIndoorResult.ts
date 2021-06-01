@@ -1,4 +1,4 @@
-import BuildingCategory from '@/enums/parameter/buildingCategory';
+// import BuildingCategory from '@/enums/parameter/buildingCategory';
 import IPhaseResultSet from './IPhaseResultSet';
 
 // TODO limit buildings to those in BuildingCategory

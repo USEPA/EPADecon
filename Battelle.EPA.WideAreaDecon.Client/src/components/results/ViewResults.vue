@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="3">
+      <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.TotalCost)"
           icon="mdi-currency-usd"
@@ -9,7 +9,7 @@
           :value="`$${averageTotalCost}`"
         />
       </v-col>
-      <v-col cols="3">
+      <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.AreaContaminated)"
           icon="mdi-earth"
@@ -17,7 +17,7 @@
           :value="`${averageTotalAreaContaminated} m^2`"
         />
       </v-col>
-      <v-col cols="3">
+      <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.Workdays)"
           icon="mdi-calendar"
@@ -25,7 +25,7 @@
           :value="averageTotalWorkdays"
         />
       </v-col>
-      <v-col cols="3">
+      <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.DecontaminationRounds)"
           icon="mdi-hand-water"
@@ -36,33 +36,33 @@
     </v-row>
 
     <v-row>
-      <v-col cols="6">
+      <v-col cols="6" sm="12" lg="6">
         <dashboard-chart-card text="Cost Breakdown By Element" :data="getPhaseBreakdownChartData('phaseCost')" />
       </v-col>
-      <v-col cols="6">
+      <v-col cols="6" sm="12" lg="6">
         <dashboard-chart-card text="Workday Breakdown By Element" :data="getPhaseBreakdownChartData('workDays')" />
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col cols="3">
+      <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
           @showDetails="showResultDetails($event, PhaseResult.OnSiteDays)"
           icon="mdi-tent"
-          text="Average Number of Days Spent on Setup and Teardown"
+          text="Average Number of Onsite Days"
           :value="averageTotalOnSiteDays"
         />
       </v-col>
-      <v-col cols="3">
+      <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card icon="mdi-replay" text="Number of Realizations" :value="currentJob.numberRealizations" />
       </v-col>
-      <v-col cols="6">
-        <v-card>
+      <v-col cols="6" sm="12" lg="6">
+        <v-card style="height: 100%">
           <v-card-title class="headline pl-5" v-text="'Actions'"></v-card-title>
-          <v-card-text class="d-flex justify-space-between px-5">
-            <v-btn color="secondary" v-text="'Summary'" @click="navigate('jobSummary')"></v-btn>
+          <v-card-text class="d-flex justify-space-between flex-wrap px-5">
+            <v-btn color="secondary" class="mb-2" v-text="'Summary'" @click="navigate('jobSummary')"></v-btn>
             <v-btn color="secondary" v-text="'View Parameters'" @click="viewParameters"></v-btn>
-            <v-btn color="secondary" v-text="'Run Job Again'"></v-btn>
+            <v-btn color="secondary" v-text="'Run Job Again'" @click="runJobAgain"></v-btn>
             <v-btn color="secondary" v-text="'Export Results'" @click="exportResults"></v-btn>
           </v-card-text>
         </v-card>
@@ -74,7 +74,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import { Action, State } from 'vuex-class';
 import JobRequest from '@/implementations/jobs/JobRequest';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
@@ -104,6 +104,8 @@ export default class ViewResults extends Vue {
   @Action setScenarioDefinition!: (newDefinition: ParameterWrapperList) => void;
 
   @Action setScenarioParameters!: (newParameters: ParameterWrapperList) => void;
+
+  @Action setRepeatRun!: (newValue: boolean) => void;
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
@@ -158,6 +160,11 @@ export default class ViewResults extends Vue {
     this.resultProvider.exportJobResults(this.currentJob.results);
   }
 
+  runJobAgain(): void {
+    this.setRepeatRun(true);
+    this.$emit('showRunModal');
+  }
+
   showResultDetails($event: string, result: PhaseResult): void {
     const details = this.resultProvider.getResultDetails(this.currentJob.results, result);
     if (details) {
@@ -169,8 +176,8 @@ export default class ViewResults extends Vue {
 
   viewParameters(): void {
     const { modifyParameter, defineScenario } = this.currentJob;
-    this.setScenarioDefinition(defineScenario as ParameterWrapperList);
-    this.setScenarioParameters(modifyParameter as ParameterWrapperList);
+    this.setScenarioDefinition(defineScenario);
+    this.setScenarioParameters(modifyParameter);
     this.navigate('defineScenario');
   }
 
@@ -183,17 +190,19 @@ export default class ViewResults extends Vue {
     return this.resultProvider.formatNumber(avg);
   }
 
+  @Watch('currentJob')
   setValues(): void {
     this.averageTotalCost = this.getAverageFormatted(PhaseResult.TotalCost);
     this.averageTotalAreaContaminated = this.getAverageFormatted(PhaseResult.AreaContaminated);
     this.averageTotalWorkdays = this.getAverageFormatted(PhaseResult.Workdays);
     this.averageDeconRounds = this.getAverageFormatted(PhaseResult.DecontaminationRounds);
+    this.averageTotalOnSiteDays = this.getAverageFormatted(PhaseResult.OnSiteDays);
 
-    const avgOnSiteDays =
-      this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.OnSiteDays)?.mean ?? 0;
-    const avgWorkdays = this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.Workdays)?.mean ?? 0;
+    // const avgOnSiteDays =
+    //   this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.OnSiteDays)?.mean ?? 0;
+    // const avgWorkdays = this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.Workdays)?.mean ?? 0;
 
-    this.averageTotalOnSiteDays = this.resultProvider.formatNumber(avgOnSiteDays - avgWorkdays);
+    // this.averageTotalOnSiteDays = this.resultProvider.formatNumber(avgOnSiteDays - avgWorkdays);
   }
 
   created(): void {

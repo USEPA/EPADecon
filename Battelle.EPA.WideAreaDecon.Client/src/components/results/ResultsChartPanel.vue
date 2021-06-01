@@ -36,23 +36,13 @@
         :key="chartKey"
       />
 
-      <v-chip
-        v-if="chartLabels.x"
-        class="px-6"
-        id="xLabel"
-        close
-        v-text="chartLabels.x"
-        @click="onLabelClicked('x')"
-      ></v-chip>
+      <v-chip v-if="chartLabels.x" class="px-6" id="xLabel" close @click:close="onLabelClicked('x')">
+        {{ resultProvider.convertCamelToTitleCase(chartLabels.x) }}
+      </v-chip>
 
-      <v-chip
-        v-if="chartLabels.y"
-        class="px-6"
-        id="yLabel"
-        close
-        v-text="chartLabels.y"
-        @click="onLabelClicked('y')"
-      ></v-chip>
+      <v-chip v-if="chartLabels.y" class="px-6" id="yLabel" close @click:close="onLabelClicked('y')">
+        {{ resultProvider.convertCamelToTitleCase(chartLabels.y) }}
+      </v-chip>
     </div>
   </v-card>
 </template>
@@ -63,6 +53,9 @@ import ChartOptions from '@/components/modals/results/ChartOptions.vue';
 import { ChartData } from 'chart.js';
 import { ChartJsWrapper, DefaultChartOptions, ScatterPlotWrapper } from 'battelle-common-vue-charting/src';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
+import container from '@/dependencyInjection/config';
+import TYPES from '@/dependencyInjection/types';
+import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 
 @Component({ components: { ChartJsWrapper, ChartOptions, ScatterPlotWrapper } })
 export default class ResultsChartPanel extends Vue {
@@ -71,6 +64,8 @@ export default class ResultsChartPanel extends Vue {
   @Prop() chartType!: string;
 
   @Prop() chartLabels!: { x: PhaseResult | null; y: PhaseResult | null };
+
+  private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
   chartKey = 0;
 
@@ -108,12 +103,14 @@ export default class ResultsChartPanel extends Vue {
 #xLabel {
   position: absolute;
   left: 50%;
+  transform: translateX(-50%);
 }
 
 #yLabel {
   position: absolute;
   left: 0;
   top: 50%;
+  transform: translateY(-50%);
   transform: rotate(-90deg);
 }
 </style>

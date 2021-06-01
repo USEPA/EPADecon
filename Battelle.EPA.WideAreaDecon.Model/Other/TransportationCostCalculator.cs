@@ -36,7 +36,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Other
 
             var airfareCost = totalPersonnel * costPerRoundTripTicket;
 
-            return  rentalCarCost + airfareCost;
+            return rentalCarCost + airfareCost;
         }
     }
 }

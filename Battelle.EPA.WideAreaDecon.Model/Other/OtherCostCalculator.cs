@@ -9,16 +9,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Other
     {
         public TransportationCostCalculator Calculator { get; set; }
 
-        public Tuple<double, double> CalculateCost(Dictionary<PersonnelLevel, double> personnelAvailableByType, double personnelRoundTripDays,
+        public double CalculateCost(Dictionary<PersonnelLevel, double> personnelAvailableByType, double personnelRoundTripDays,
             double costPerRoundTripTicket, double totalOnSiteDays)
-        {
-            var otherCosts = new Tuple<double, double>
-            (
-                Calculator.CalculatePerDiem(personnelAvailableByType, totalOnSiteDays),
-                Calculator.CalculateTransportationCost(personnelAvailableByType, personnelRoundTripDays, costPerRoundTripTicket)
-            );
-            
-            return otherCosts;
+        {            
+            return Calculator.CalculatePerDiem(personnelAvailableByType, totalOnSiteDays) + Calculator.CalculateTransportationCost(personnelAvailableByType, personnelRoundTripDays, costPerRoundTripTicket);
         }
 
         public OtherCostCalculator GetCalculator()
