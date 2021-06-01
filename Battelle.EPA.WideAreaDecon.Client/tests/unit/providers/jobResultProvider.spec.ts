@@ -73,7 +73,7 @@ describe('JobResultProvider tests', () => {
     // Assert
     expect(result?.minimum).to.equal(4.0);
     expect(result?.maximum).to.equal(7.0);
-    expect(result?.mean).to.be.closeTo(4.450, 0.01);
+    expect(result?.mean).to.be.closeTo(4.45, 0.01);
     expect(result?.stdDev).to.be.closeTo(0.609, 0.01);
   });
 
