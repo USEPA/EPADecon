@@ -23,7 +23,6 @@ export default class TextValue implements IUnivariateParameter {
   @JsonProperty()
   public value: string;
 
-
   public get textValue(): string {
     return this.value;
   }
