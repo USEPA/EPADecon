@@ -1,5 +1,5 @@
 interface IChartJsWrapper extends Vue {
-    chart: Chart;
+  chart: Chart;
 }
 
 export default IChartJsWrapper;

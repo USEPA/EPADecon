@@ -30,11 +30,9 @@ export default class JobResultProvider implements IJobResultProvider {
       'Decontamination',
       '',
       '',
-      '',
       'Incident Command',
       '',
       'Other',
-      '',
       'General',
     ];
 

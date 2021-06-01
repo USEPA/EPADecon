@@ -5,7 +5,7 @@
     ></v-row>
     <v-row>
       <v-col>
-        <v-slider >
+        <v-slider>
           <template v-slot:prepend>
             <p class="grey--text"></p>
           </template>
@@ -18,8 +18,7 @@
     <v-row>
       <v-col cols="4" class="mr-auto">
         <v-card class="pa-2" outlined tile>
-          <v-text-field
-          >
+          <v-text-field>
             <template v-slot:append>
               <p class="grey--text"></p>
             </template>
@@ -32,10 +31,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop, Watch } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import TextValue from '@/implementations/parameter/distribution/TextValue';
-import { Key } from 'ts-keycode-enum';
 
 @Component
 export default class TextParameterDisplay extends Vue implements IParameterDisplay {
@@ -47,6 +45,7 @@ export default class TextParameterDisplay extends Vue implements IParameterDispl
     };
   }
 
+  // eslint-disable-next-line class-methods-use-this
   validationRules(value: string): boolean | string {
     const num = Number(value);
     if (!Number.isNaN(num)) {
@@ -54,7 +53,6 @@ export default class TextParameterDisplay extends Vue implements IParameterDispl
     }
     return true;
   }
-
 }
 </script>
 

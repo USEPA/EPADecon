@@ -19,10 +19,7 @@ export default interface IJobResultProvider {
    * @param {PhaseResult} result - The result to look for.
    * @returns An array holding all the found values.
    */
-  getResultValues(
-    realization: IJobResultRealization,
-    result: PhaseResult,
-  ): number[];
+  getResultValues(realization: IJobResultRealization, result: PhaseResult): number[];
 
   /** Rounds number to 2 decimal places and adds commas where necessary.
    * @param {number} number - The number to be converted.
