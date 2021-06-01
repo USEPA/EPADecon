@@ -17,7 +17,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
             return Calculator_workDays.CalculateWorkDays(_numberTeams, saToBeSourceReduced, area);
         }
 
-        public double CalculateCost(double workDays, double _numberTeams, double personnelRoundTripDays, double saToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
+        public double CalculateCost(double workDays, double _numberTeams, double saToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
         {
             var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams, saToBeSourceReduced, costPerTonRemoved, area);
             var entExCosts = Calculator_entEx.CalculateEntranceExitCost(workDays, _numberTeams, ppePerLevelPerTeam);

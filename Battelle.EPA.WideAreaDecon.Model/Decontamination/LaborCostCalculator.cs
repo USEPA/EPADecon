@@ -13,15 +13,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         public LaborCostCalculator(
             Dictionary<PersonnelLevel, double> personnelReqPerTeam,
             Dictionary<PersonnelLevel, double> personnelHourlyRate,
-            double personnelOverhead,
-            IWorkDaysCalculator workDaysCalculator)
+            double personnelOverhead)
         {
             _personnelReqPerTeam = personnelReqPerTeam;
             _personnelHourlyRate = personnelHourlyRate;
             _personnelOverhead = personnelOverhead;
         }
 
-        public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays)
+        public double CalculateLaborCost(double workDays, double _numberTeams)
         {
             var personnelHoursCost = _personnelReqPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 

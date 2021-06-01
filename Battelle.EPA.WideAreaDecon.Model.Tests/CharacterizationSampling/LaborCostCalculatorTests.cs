@@ -58,7 +58,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         public void CalculateCost()
         {
             var _numberTeams = 4;
-            var roundtripDays = 2.0;
             var fractionSampledWipe = 0.3;
             var fractionSampledHepa = 0.2;
             var workDays = 2.6909787627956;
@@ -70,7 +69,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(121767.74958828, Calculator.CalculateLaborCost(workDays, _numberTeams, roundtripDays, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-4,
+            Assert.AreEqual(121767.74958828, Calculator.CalculateLaborCost(workDays, _numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-4,
                 "Incorrect labor cost calculated");
             Assert.AreEqual(3.1909787627956, Calculator.CalculateLaborDays(workDays), 1e-4,
                 "Incorrect labor days calculated");

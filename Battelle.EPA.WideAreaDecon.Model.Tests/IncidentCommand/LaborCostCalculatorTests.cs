@@ -9,7 +9,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 {
     internal class MockCsLaborCostCalculator : Model.CharacterizationSampling.ILaborCostCalculator
     {
-        public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays,
+        public double CalculateLaborCost(double workDays, double _numberTeams,
             double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             return 121767.74958828;
@@ -52,7 +52,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
 
     internal class MockDLaborCostCalculator : Model.Decontamination.ILaborCostCalculator
     {
-        public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays)
+        public double CalculateLaborCost(double workDays, double _numberTeams)
         {
             return 361200;
         }

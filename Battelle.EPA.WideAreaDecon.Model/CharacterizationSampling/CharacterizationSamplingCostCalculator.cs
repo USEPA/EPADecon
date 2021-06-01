@@ -24,11 +24,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             return Calculator_phaseLag.CalculatePhaseLagTime(_numberLabs, _sampleTimeTransmitted, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
         }
 
-        public double CalculateCost(double workDays, double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated, double personnelRoundTripDays,
+        public double CalculateCost(double workDays, double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated,
              Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(_numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
-            var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams, personnelRoundTripDays, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
+            var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
             var entExCosts = Calculator_entEx.CalculateEntrancesExitsCost(workDays, _numberTeams, ppePerLevelPerTeam, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
             var analysisCosts = Calculator_analysis.CalculateAnalysisQuantityCost(_fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
             return (suppliesCosts + laborCosts + entExCosts + analysisCosts);

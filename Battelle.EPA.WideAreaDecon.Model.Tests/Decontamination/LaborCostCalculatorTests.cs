@@ -6,16 +6,6 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 {
-    internal class MockWorkDaysCalculator : IWorkDaysCalculator
-    {
-        public Tuple<double, int> CalculateWorkDays()
-        {
-            Tuple<double, int> deconLabor = new Tuple<double, int>(3.0, 2);
-
-            return deconLabor;
-        }
-    }
-
     public class LaborCostCalculatorTests
     {
         private LaborCostCalculator Calculator { get; set; }
@@ -43,8 +33,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             Calculator = new LaborCostCalculator(
                 personnelReqPerTeam,
                 personnelHourlyRate,
-                personnelOverhead,
-                new MockWorkDaysCalculator()
+                personnelOverhead
             );
         }
 
@@ -53,9 +42,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         {
             var workDays = 12.0;
             var numTeams = 2.0;
-            var roundtripDays = 2.0;
              
-            Assert.AreEqual(361200, Calculator.CalculateLaborCost(workDays, numTeams, roundtripDays), 1e-6, "Incorrect cost calculated");
+            Assert.AreEqual(361200, Calculator.CalculateLaborCost(workDays, numTeams), 1e-6, "Incorrect cost calculated");
 
         }
     }

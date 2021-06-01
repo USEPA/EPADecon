@@ -18,10 +18,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             return Calculator_workDays.CalculateWorkDays();
         }
 
-        public double CalculateCost(double workDays, double _numberTeams, double personnelRoundTripDays, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
+        public double CalculateCost(double workDays, double _numberTeams, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
         {
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(areaContaminated, treatmentMethods);
-            var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams, personnelRoundTripDays);
+            var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams);
             var entExCosts = Calculator_entEx.CalculateEntranceExitCost(workDays, _numberTeams, ppeEachLevelPerTeam);
             return (suppliesCosts + laborCosts + entExCosts);
         }

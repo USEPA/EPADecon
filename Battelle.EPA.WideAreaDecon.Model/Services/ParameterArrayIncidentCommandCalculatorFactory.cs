@@ -90,8 +90,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
             Calculator_laborDc = new Decontamination.LaborCostCalculator(
                 dcParameters.personnelReqPerTeam,
                 costParameters.hourlyRate,
-                dcParameters.personnelOverhead,
-                Calculator_workDaysDc
+                dcParameters.personnelOverhead
             );
 
             Calculator_labor = new LaborCostCalculator(

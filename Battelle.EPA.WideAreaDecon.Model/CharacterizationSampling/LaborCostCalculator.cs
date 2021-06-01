@@ -38,7 +38,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             _phaseLagCalculator = phaseLagCalculator;
         }
         
-        public double CalculateLaborCost(double workDays, double _numberTeams, double _personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
+        public double CalculateLaborCost(double workDays, double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
             var personnelHoursCost = _personnelRequiredPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 

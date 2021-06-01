@@ -41,8 +41,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
             Calculator_labor = new LaborCostCalculator(
                 dcParameters.personnelReqPerTeam,
                 costParameters.hourlyRate,
-                dcParameters.personnelOverhead,
-                Calculator_workDays
+                dcParameters.personnelOverhead
             );
 
             Calculator_entEx = new EntranceExitCostCalculator(

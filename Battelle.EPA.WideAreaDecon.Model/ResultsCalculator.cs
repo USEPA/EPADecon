@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
@@ -85,7 +85,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
                     parameters.characterizationSamplingParameters.fractionSampledWipe,
                     parameters.characterizationSamplingParameters.fractionSampledHepa,
                     areaContaminated,
-                    parameters.otherParameters.roundtripDays,
                     parameters.characterizationSamplingParameters.ppeRequired));
             }
 
@@ -109,7 +108,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 results.sourceReductionResults.phaseCost = Convert.ToInt64(_sourceReductionCostCalculator.CalculateCost(
                     results.sourceReductionResults.workDays,
                     parameters.sourceReductionParameters.numTeams,
-                    parameters.otherParameters.roundtripDays,
                     parameters.sourceReductionParameters.surfaceAreaToBeSourceReduced,
                     parameters.costParameters.costPerMassOfMaterialRemoved,
                     parameters.sourceReductionParameters.ppeRequired,
@@ -128,7 +126,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
             results.decontaminationResults.phaseCost = Convert.ToInt64(_decontaminationCostCalculator.CalculateCost(
                 results.decontaminationResults.workDays,
                 parameters.decontaminationParameters.numTeams,
-                parameters.otherParameters.roundtripDays,
                 parameters.decontaminationParameters.ppeRequired,
                 areaContaminated,
                 parameters.decontaminationParameters.applicationMethods));
@@ -171,7 +168,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
                         parameters.characterizationSamplingParameters.fractionSampledWipe,
                         parameters.characterizationSamplingParameters.fractionSampledHepa,
                         areaContaminated,
-                        parameters.otherParameters.roundtripDays,
                         parameters.characterizationSamplingParameters.ppeRequired));
                 }
             }
