@@ -3,56 +3,65 @@
     <v-row>
       <v-col><v-spacer /></v-col>
     </v-row>
-    <v-row>
-      <v-col cols="3">
-        <v-overflow-btn
-          @change="onDistributionTypeChange"
-          class="my-2"
-          v-model="currentDistType"
-          :items="distNames"
-          filled
-          dense
-        >
-          <template v-slot:prepend>
-            <p>Distribution:</p>
-          </template>
-        </v-overflow-btn>
-      </v-col>
-      <v-col offset="5" cols="3">
-        <v-overflow-btn
-          @change="onCategoryChanged"
-          class="my-2"
-          :items="categories"
-          :item-text="[0]"
-          :item-value="[1]"
-          v-model="selectedCategory"
-          filled
-          dense
-          ref="categorySelect"
-        >
-          <template v-slot:prepend>
-            <p>Category:</p>
-          </template>
-          <template v-slot:item="{ item, attrs, on }">
-            <v-list-item :class="getClass(item[0])" v-bind="attrs" v-on="on">
-              <v-list-item-content>
-                <v-list-item-title :id="attrs['aria-labelledby']" v-text="item[0]"></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </template>
-        </v-overflow-btn>
-      </v-col>
-    </v-row>
-    <component :key="getSelectedCategoryName()" :is="display.distComponent" :parameter-value="selectedCategory">
-    </component>
-    <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
-      <distribution-chart
-        :distribution-series="display.chartData"
-        :xAxisLabel="display.xAxisLabel"
-        :yAxisLabel="'Probability of Selection'"
-        :data-generator="display.dataGenerator"
-      ></distribution-chart>
-    </v-card>
+    <div v-if="!isTextDistribution">
+      <v-row>
+        <v-col cols="4" xl="3">
+          <v-overflow-btn
+            @change="onDistributionTypeChange"
+            class="my-2"
+            v-model="currentDistType"
+            :items="distNames"
+            filled
+            dense
+          >
+            <template v-slot:prepend>
+              <p>Distribution:</p>
+            </template>
+          </v-overflow-btn>
+        </v-col>
+        <v-col cols="4" xl="3" offset="3" offset-xl="5">
+          <v-overflow-btn
+            @change="onCategoryChanged"
+            class="my-2"
+            :items="categories"
+            :item-text="[0]"
+            :item-value="[1]"
+            v-model="selectedCategory"
+            filled
+            dense
+            ref="categorySelect"
+          >
+            <template v-slot:prepend>
+              <p>Category:</p>
+            </template>
+            <template v-slot:item="{ item, attrs, on }">
+              <v-list-item :class="getClass(item[0])" v-bind="attrs" v-on="on">
+                <v-list-item-content>
+                  <v-list-item-title :id="attrs['aria-labelledby']" v-text="item[0]"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+          </v-overflow-btn>
+        </v-col>
+      </v-row>
+      <component :key="getSelectedCategoryName()" :is="display.distComponent" :parameter-value="selectedCategory">
+      </component>
+      <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
+        <distribution-chart
+          :distribution-series="display.chartData"
+          :xAxisLabel="display.xAxisLabel"
+          :yAxisLabel="'Probability of Selection'"
+          :data-generator="display.dataGenerator"
+        ></distribution-chart>
+      </v-card>
+    </div>
+    <div v-else>
+      <text-value-display
+        :key="getSelectedCategoryName()"
+        :is="display.distComponent"
+        :parameter-value="parameterValue"
+      ></text-value-display>
+    </div>
   </v-container>
 </template>
 
@@ -75,6 +84,7 @@ import UniformDisplay from '@/components/parameters/distributionDisplay/UniformD
 import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
 import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
 import UniformXDependentDisplay from '@/components/parameters/distributionDisplay/UniformXDependentDisplay.vue';
+import TextValueDisplay from '@/components/parameters/distributionDisplay/TextValueDisplay.vue';
 import { DistributionChart } from 'battelle-common-vue-charting/src/index';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
@@ -98,6 +108,7 @@ import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDi
     BimodalTruncatedNormalDisplay,
     UniformXDependentDisplay,
     DistributionChart,
+    TextValueDisplay,
   },
 })
 export default class EnumeratedParameterDisplay extends Vue implements IParameterDisplay {
@@ -126,6 +137,10 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     return Object.entries(this.parameterValue.values);
   }
 
+  get isTextDistribution(): boolean {
+    return this.currentDistType === ParameterType.textValue;
+  }
+
   onCategoryChanged(): void {
     this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
 
@@ -142,7 +157,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   getSelectedCategoryName(): string {
     const values = this.categories;
-    const [[category]] = values.filter(([, value]) => value === this.selectedCategory);
+    const category = values.filter(([, value]) => value === this.selectedCategory)[0]?.[0] ?? '';
 
     return category;
   }
@@ -157,7 +172,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   @Watch('selectedCategory', { deep: true })
   checkErrorHighligtingOnSelect(): void {
-    if (this.selectedCategory.isSet === undefined) {
+    if (this.selectedCategory.isSet === undefined || this.isTextDistribution) {
       return;
     }
 
@@ -173,6 +188,9 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   @Watch('parameterValue')
   onParameterChanged(): void {
+    if (this.isTextDistribution) {
+      return;
+    }
     // update selected category, current dist type, and baseline values
     [[, this.selectedCategory]] = this.categories;
     this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;

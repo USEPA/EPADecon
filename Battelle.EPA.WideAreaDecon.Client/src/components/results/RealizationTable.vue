@@ -126,8 +126,8 @@
         <v-card-text v-else>Please select at least one realization to display a summary for</v-card-text>
 
         <!-- Table Scrollbar -->
-        <div class="scrollbarContainer" style="" ref="scroll">
-          <div class="scrollbar" :style="`width: ${tableWidth}px`"></div>
+        <div class="scrollbarContainer" ref="scroll">
+          <div class="scrollbar" :style="{ width: tableWidth + 'px' }"></div>
         </div>
       </v-container>
     </v-card>

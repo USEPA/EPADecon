@@ -11,7 +11,6 @@ const changeableDistributionTypes = new Array<ParameterType>(
   ParameterType.truncatedLogNormal,
   ParameterType.weibull,
   ParameterType.bimodalTruncatedNormal,
-  ParameterType.textValue,
 );
 
 // eslint-disable-next-line import/prefer-default-export

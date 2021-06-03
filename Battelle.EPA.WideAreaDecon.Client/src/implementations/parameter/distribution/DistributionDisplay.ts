@@ -37,6 +37,7 @@ export default class DistributionDisplay {
       case ParameterType.enumeratedFraction:
       case ParameterType.enumeratedParameter:
       case ParameterType.uniformXDependent:
+      case ParameterType.textValue:
       case ParameterType.null:
       default:
         return false;
@@ -87,6 +88,8 @@ export default class DistributionDisplay {
         return 'enumerated-fraction-display';
       case ParameterType.enumeratedParameter:
         return 'enumerated-parameter-display';
+      case ParameterType.textValue:
+        return 'text-value-display';
       default:
         return 'unknown-display';
     }
