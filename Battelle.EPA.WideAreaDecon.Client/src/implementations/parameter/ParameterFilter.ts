@@ -11,9 +11,7 @@ export default class ParameterFilter {
   name: string;
 
   @JsonProperty({
-    predicate: () => {
-      return ParameterFilter;
-    },
+    predicate: () => ParameterFilter,
   })
   public filters: Array<ParameterFilter>;
 
