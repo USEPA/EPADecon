@@ -12,18 +12,27 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         public LaborCostCalculator Calculator_labor { get; set; }
         public SuppliesCostCalculator Calculator_supplies { get; set; }
         public EntranceExitCostCalculator Calculator_entEx { get; set; }
+        public TravelCostCalculator Calculator_travel { get; set; }
 
+        //Phase time for scenario results
         public Tuple<double, int> CalculateTime()
         {
             return Calculator_workDays.CalculateWorkDays();
         }
 
-        public double CalculateCost(double workDays, double _numberTeams, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
+        //Phase costs for scenario results
+        public double CalculatePhaseCosts(double workDays, double _numberTeams, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
         {
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(areaContaminated, treatmentMethods);
             var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams);
             var entExCosts = Calculator_entEx.CalculateEntranceExitCost(workDays, _numberTeams, ppeEachLevelPerTeam);
             return (suppliesCosts + laborCosts + entExCosts);
+        }
+
+        //Travel costs for event results
+        public double CalculateTravelCost(double roundtripDays, double numTeams, Dictionary<PersonnelLevel, double> personnelRequired, double onsiteDays)
+        {
+            return Calculator_travel.CalculateTravelCost(roundtripDays, numTeams, personnelRequired, onsiteDays);
         }
 
         public DecontaminationCostCalculator GetCalculator()

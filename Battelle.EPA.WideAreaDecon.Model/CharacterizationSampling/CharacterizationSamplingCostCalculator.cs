@@ -13,18 +13,22 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         public EntrancesExitsCostCalculator Calculator_entEx { get; set; }
         public AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
         public PhaseLagCalculator Calculator_phaseLag { get; set; }
+        public TravelCostCalculator Calculator_travel { get; set; }
 
+        //Phase time for scenario results
         public double CalculateTime(double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
             return Calculator_supplies.CalculateWorkDays(_numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
         }
 
+        //Phase lag due to lab analysis duration for scenario results
         public double CalculatePhaseLag(int _numberLabs, double _sampleTimeTransmitted, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
             return Calculator_phaseLag.CalculatePhaseLagTime(_numberLabs, _sampleTimeTransmitted, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
         }
 
-        public double CalculateCost(double workDays, double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated,
+        //Phase costs for scenario results
+        public double CalculatePhaseCosts(double workDays, double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated,
              Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(_numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
@@ -32,6 +36,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             var entExCosts = Calculator_entEx.CalculateEntrancesExitsCost(workDays, _numberTeams, ppePerLevelPerTeam, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
             var analysisCosts = Calculator_analysis.CalculateAnalysisQuantityCost(_fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
             return (suppliesCosts + laborCosts + entExCosts + analysisCosts);
+        }
+
+        //Travel costs for event results
+        public double CalculateTravelCost(double roundtripDays, double numTeams, Dictionary<PersonnelLevel, double> personnelRequired, double onsiteDays)
+        {
+            return Calculator_travel.CalculateTravelCost(roundtripDays, numTeams, personnelRequired, onsiteDays);
         }
 
         public CharacterizationSamplingCostCalculator GetCalculator()
