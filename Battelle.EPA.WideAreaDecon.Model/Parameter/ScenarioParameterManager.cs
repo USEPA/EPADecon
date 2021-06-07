@@ -8,25 +8,23 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 
-namespace Battelle.EPA.WideAreaDecon.Model
+namespace Battelle.EPA.WideAreaDecon.Model.Parameter
 {
-    public class ParameterManager
+    public class ScenarioParameterManager
     {
         private readonly ParameterFilter[] _characterizationSamplingParameters;
         private readonly ParameterFilter[] _sourceReductionParameters;
         private readonly ParameterFilter[] _decontaminationParameters;
         private readonly IParameter[] _efficacyParameters;
-        private readonly ParameterFilter[] _otherParameters;
         private readonly ParameterFilter[] _incidentCommandParameters;
         private readonly ParameterFilter[] _costParameters;
         private readonly IParameter[] _treatmentMethodParameters;
 
-        public ParameterManager(
+        public ScenarioParameterManager(
             ParameterFilter[] csParameters,
             ParameterFilter[] srParameters,
             ParameterFilter[] dcParameters,
             IParameter[] effParameters,
-            ParameterFilter[] otParameters,
             ParameterFilter[] icParameters,
             ParameterFilter[] costParameters,
             IParameter[] treatmentParameters)
@@ -35,7 +33,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
             _sourceReductionParameters = srParameters;
             _decontaminationParameters = dcParameters;
             _efficacyParameters = effParameters;
-            _otherParameters = otParameters;
             _incidentCommandParameters = icParameters;
             _costParameters = costParameters;
             _treatmentMethodParameters = treatmentParameters;
@@ -44,25 +41,27 @@ namespace Battelle.EPA.WideAreaDecon.Model
         public CalculatorManager RedrawParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails,
             DecontaminationPhase phase)
         {
-            return new CalculatorManager(
-                SetCharacterizationSamplingParameters(),
-                SetSourceReductionParameters(),
-                SetDecontaminationParameters(scenarioDefinitionDetails, phase),
-                SetIncidentCommandParameters(),
-                SetOtherParameters(),
-                SetCostParameters());
+            return new CalculatorManager()
+            {
+                _characterizationSamplingParameters = SetCharacterizationSamplingParameters(),
+                _sourceReductionParameters = SetSourceReductionParameters(),
+                _decontaminationParameters = SetDecontaminationParameters(scenarioDefinitionDetails, phase),
+                _incidentCommandParameters = SetIncidentCommandParameters(),
+                _costParameters = SetCostParameters()
+            };
         }
 
         public ResultsCalculator SetDrawnParameters(CalculatorManager calculatorManager)
         {
             var calculatorCreator = calculatorManager.CreateCalculatorFactories();
 
-            return new ResultsCalculator(
-                calculatorCreator._characterizationSamplingFactory.GetCalculator(),
-                calculatorCreator._sourceReductionFactory.GetCalculator(),
-                calculatorCreator._decontaminationFactory.GetCalculator(),
-                calculatorCreator._incidentCommandFactory.GetCalculator(),
-                calculatorCreator._otherFactory.GetCalculator());
+            return new ResultsCalculator()
+            {
+                _characterizationSamplingCostCalculator = calculatorCreator._characterizationSamplingFactory.GetCalculator(),
+                _sourceReductionCostCalculator = calculatorCreator._sourceReductionFactory.GetCalculator(),
+                _decontaminationCostCalculator = calculatorCreator._decontaminationFactory.GetCalculator(),
+                _incidentCommandCostCalculator = calculatorCreator._incidentCommandFactory.GetCalculator()
+            };
         }
 
         private CharacterizationSamplingParameters SetCharacterizationSamplingParameters()
@@ -264,26 +263,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 personnelReqPerTeam,
                 personnelOverheadDays,
                 roundtripDays);
-        }
-
-        private OtherParameters SetOtherParameters()
-        {
-            var personnelPerRentalCar = _otherParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Personnel per Rental Car").CreateDistribution().Draw();
-            var roundtripDays = _otherParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
-
-            var totalAvailablePersonnel = new Dictionary<PersonnelLevel, double>()
-            {
-                [PersonnelLevel.OSC] = _otherParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Total Available Personnel (OSC)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL1] = _otherParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Total Available Personnel (PL-1)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL2] = _otherParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Total Available Personnel (PL-2)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL3] = _otherParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Total Available Personnel (PL-3)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL4] = _otherParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Total Available Personnel (PL-4)").CreateDistribution().Draw()
-            };
-
-            return new OtherParameters(
-                personnelPerRentalCar,
-                roundtripDays,
-                totalAvailablePersonnel);
         }
 
         private CostParameters SetCostParameters()

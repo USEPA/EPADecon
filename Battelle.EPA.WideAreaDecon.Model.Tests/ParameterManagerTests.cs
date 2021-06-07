@@ -6,13 +6,13 @@ using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
+using Battelle.EPA.WideAreaDecon.Model.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests
 {
     public class ParameterManagerTests
     {
-        private ParameterManager Manager { get; set; }
+        private ScenarioParameterManager Manager { get; set; }
 
         [SetUp]
         public void Setup()
@@ -34,12 +34,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             };
             var scenarioDetails = modifyParameters.GetParameterList();
 
-            Manager = new ParameterManager(
+            Manager = new ScenarioParameterManager(
                 scenarioDetails.Filters.First(f => f.Name == "Characterization Sampling").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Source Reduction").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Decontamination").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Efficacy").Parameters,
-                scenarioDetails.Filters.First(f => f.Name == "Other").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Incident Command").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Cost per Parameter").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);

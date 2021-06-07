@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Services
+namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
 {
     /// <summary>
     /// Takes parameter information and generates constructed calculator
@@ -25,12 +25,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
             CharacterizationSamplingParameters csParameters,
             SourceReductionParameters srParameters,
             DecontaminationParameters dcParameters,
-            OtherParameters otParameters,
             IncidentCommandParameters icParameters,
-            CostParameters costParameters,
-            ParameterArrayCharacterizationSamplingCalculatorFactory csParameterArray,
-            ParameterArraySourceReductionCalculatorFactory srParameterArray,
-            ParameterArrayDecontaminationCalculatorFactory dcParameterArray)
+            CostParameters costParameters)
         {
             Calculator_phaseLag = new CharacterizationSampling.PhaseLagCalculator(
                 csParameters.surfaceAreaPerWipe,

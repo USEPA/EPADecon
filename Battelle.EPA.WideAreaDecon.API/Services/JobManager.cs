@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
+using Battelle.EPA.WideAreaDecon.Model.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
 using Microsoft.AspNetCore.SignalR;
 
@@ -106,12 +107,11 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         scenarios.Add(scenarioCreator.CreateRealizationScenario());
                     }
 
-                    var parameterManager = new ParameterManager(
+                    var parameterManager = new ScenarioParameterManager(
                         Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
@@ -122,32 +122,37 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                     {
                         var realizationResults = new Dictionary<DecontaminationPhase, object>();
 
-                        //INDOOR SCENARIO
-                        var buildingResults = new Dictionary<BuildingCategory, Results>();
+                        //RUN INDOOR SCENARIO
+                        var buildingResults = new Dictionary<BuildingCategory, ScenarioResults>();
                         foreach (var building in scenarios[s].IndoorBuildingsContaminated)
                         {
                             if (building.Value.Count > 0)
                             {
-                                var indoorModelRunner = new ModelRunner(Running.ModifyParameter, DecontaminationPhase.Indoor, building.Value);
+                                var indoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Indoor, building.Value);
 
-                                buildingResults.Add(building.Key, indoorModelRunner.RunModel());
+                                buildingResults.Add(building.Key, indoorModelRunner.RunScenarioModel());
                             }
                         }
 
                         realizationResults.Add(DecontaminationPhase.Indoor, buildingResults);
 
-                        //OUTDOOR SCENARIO
-                        var outdoorModelRunner = new ModelRunner(Running.ModifyParameter, DecontaminationPhase.Outdoor, scenarios[s].OutdoorAreasContaminated);
+                        //RUN OUTDOOR SCENARIO
+                        var outdoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Outdoor, scenarios[s].OutdoorAreasContaminated);
+                        var outdoorResults = outdoorModelRunner.RunScenarioModel();
+                        realizationResults.Add(DecontaminationPhase.Outdoor, outdoorResults);
 
-                        realizationResults.Add(DecontaminationPhase.Outdoor, outdoorModelRunner.RunModel());
+                        //RUN UNDERGROUND SCENARIO
+                        var undergroundModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Underground, scenarios[s].UndergroundBuildingsContaminated);
+                        var undergroundResults = undergroundModelRunner.RunScenarioModel();
+                        realizationResults.Add(DecontaminationPhase.Underground, undergroundResults);
 
-                        //UNDERGROUND SCENARIO
-                        var undergroundModelRunner = new ModelRunner(Running.ModifyParameter, DecontaminationPhase.Underground, scenarios[s].UndergroundBuildingsContaminated);
-
-                        realizationResults.Add(DecontaminationPhase.Underground, undergroundModelRunner.RunModel());
+                        //RUN EVENT-SPECIFIC MODELS
+                        var eventModelRunner = new EventModelRunner(Running.ModifyParameter, buildingResults, outdoorResults, undergroundResults);
+                        var eventResults = eventModelRunner.RunEventModel();
 
                         //Store results for realization
                         scenarioResults.Add(realizationResults);
+                        scenarioResults.Add(eventResults);
                     }
 
                     //Store results of model in job

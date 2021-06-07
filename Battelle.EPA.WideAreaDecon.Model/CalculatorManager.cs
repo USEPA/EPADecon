@@ -8,64 +8,67 @@ namespace Battelle.EPA.WideAreaDecon.Model
 {
     public class CalculatorManager
     {
-        public CharacterizationSamplingParameters characterizationSamplingParameters;
-        public SourceReductionParameters sourceReductionParameters;
-        public DecontaminationParameters decontaminationParameters;
-        public IncidentCommandParameters incidentCommandParameters;
-        public OtherParameters otherParameters;
-        public CostParameters costParameters;
-
-        public CalculatorManager(
-            CharacterizationSamplingParameters _characterizationSamplingParameters,
-            SourceReductionParameters _sourceReductionParameters,
-            DecontaminationParameters _decontaminationParameters,
-            IncidentCommandParameters _incidentCommandParameters,
-            OtherParameters _otherParameters,
-            CostParameters _costParameters)
-        {
-            characterizationSamplingParameters = _characterizationSamplingParameters;
-            sourceReductionParameters = _sourceReductionParameters;
-            decontaminationParameters = _decontaminationParameters;
-            incidentCommandParameters = _incidentCommandParameters;
-            otherParameters = _otherParameters;
-            costParameters = _costParameters;
-        }
+        public CharacterizationSamplingParameters _characterizationSamplingParameters { get; set; }
+        public SourceReductionParameters _sourceReductionParameters { get; set; }
+        public DecontaminationParameters _decontaminationParameters { get; set; }
+        public IncidentCommandParameters _incidentCommandParameters { get; set; }
+        public OtherParameters _otherParameters { get; set; }
+        public CostParameters _costParameters { get; set; }
 
         public CalculatorCreator CreateCalculatorFactories()
         {
-            var csCalculatorFactory = new ParameterArrayCharacterizationSamplingCalculatorFactory(
-                characterizationSamplingParameters,
-                costParameters);
+            var csCalculatorFactory = new Services.Scenario.ParameterArrayCharacterizationSamplingCalculatorFactory(
+                _characterizationSamplingParameters,
+                _costParameters);
 
-            var srCalculatorFactory = new ParameterArraySourceReductionCalculatorFactory(
-                sourceReductionParameters,
-                costParameters);
+            var srCalculatorFactory = new Services.Scenario.ParameterArraySourceReductionCalculatorFactory(
+                _sourceReductionParameters,
+                _costParameters);
 
-            var dcCalculatorFactory = new ParameterArrayDecontaminationCalculatorFactory(
-                decontaminationParameters,
-                costParameters);
+            var dcCalculatorFactory = new Services.Scenario.ParameterArrayDecontaminationCalculatorFactory(
+                _decontaminationParameters,
+                _costParameters);
 
-            var otCalculatorFactory = new ParameterArrayOtherCalculatorFactory(
-                otherParameters,
-                costParameters);
+            var icCalculatorFactory = new Services.Scenario.ParameterArrayIncidentCommandCalculatorFactory(
+                _characterizationSamplingParameters,
+                _sourceReductionParameters,
+                _decontaminationParameters,
+                _incidentCommandParameters,
+                _costParameters);
 
-            var icCalculatorFactory = new ParameterArrayIncidentCommandCalculatorFactory(
-                characterizationSamplingParameters,
-                sourceReductionParameters,
-                decontaminationParameters,
-                otherParameters,
-                incidentCommandParameters,
-                costParameters,
-                csCalculatorFactory,
-                srCalculatorFactory,
-                dcCalculatorFactory);
+            return new CalculatorCreator() {
+                _characterizationSamplingFactory = csCalculatorFactory,
+                _sourceReductionFactory = srCalculatorFactory,
+                _decontaminationFactory = dcCalculatorFactory,
+                _incidentCommandFactory = icCalculatorFactory
+            };
+        }
 
-            return new CalculatorCreator(
-                csCalculatorFactory,
-                srCalculatorFactory,
-                dcCalculatorFactory,
-                otCalculatorFactory,
-                icCalculatorFactory);
+        public CalculatorCreator CreateEventCalculatorFactories()
+        {
+            var csCalculatorFactory = new Services.Event.ParameterArrayCharacterizationSamplingCalculatorFactory(
+                _otherParameters,
+                _costParameters);
+
+            var srCalculatorFactory = new Services.Event.ParameterArraySourceReductionCalculatorFactory(
+                _otherParameters,
+                _costParameters);
+
+            var dcCalculatorFactory = new Services.Event.ParameterArrayDecontaminationCalculatorFactory(
+                _otherParameters,
+                _costParameters);
+
+            var icCalculatorFactory = new Services.Event.ParameterArrayIncidentCommandCalculatorFactory(
+                _otherParameters,
+                _costParameters);
+
+            return new CalculatorCreator()
+            {
+                _characterizationSamplingFactory = csCalculatorFactory,
+                _sourceReductionFactory = srCalculatorFactory,
+                _decontaminationFactory = dcCalculatorFactory,
+                _incidentCommandFactory = icCalculatorFactory
+            };
         }
     }
 }

@@ -27,7 +27,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double hoursExiting;
         public double respiratorsPerPerson;
         public Dictionary<PpeLevel, double> ppeRequired;
+        public double onsiteDays;
 
+        //Scenario parameters constructor
         public CharacterizationSamplingParameters(
             double _fractionSampledWipe,
             double _fractionSampledHepa,
@@ -72,6 +74,19 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             hoursExiting = _hoursExiting;
             respiratorsPerPerson = _respiratorsPerPerson;
             ppeRequired = _ppeRequired;
+        }
+
+        //Event parameters constructor
+        public CharacterizationSamplingParameters(
+            double _numTeams,
+            Dictionary<PersonnelLevel, double> _personnelPerTeam,
+            double _roundtripDays,
+            double _onsiteDays)
+        {
+            numTeams = _numTeams;
+            personnelReqPerTeam = _personnelPerTeam;
+            roundtripDays = _roundtripDays;
+            onsiteDays = _onsiteDays;
         }
     }
 }

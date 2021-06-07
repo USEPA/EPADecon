@@ -2,7 +2,7 @@ using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using System;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Services
+namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
 {
     /// <summary>
     /// Takes parameter information and generates constructed calculator

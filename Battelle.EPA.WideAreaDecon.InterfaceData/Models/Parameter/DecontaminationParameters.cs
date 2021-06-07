@@ -25,7 +25,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public Dictionary<SurfaceType, ContaminationInformation> areaContaminated;
         public double fumigationAgentVolume;
         public Dictionary<SurfaceType, double> agentVolume;
+        public double onsiteDays;
 
+        //Scenario parameters constructor
         public DecontaminationParameters(
             IParameter[] _efficacyParameters,
             Dictionary<SurfaceType, ApplicationMethod> _applicationMethods,
@@ -62,6 +64,19 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             ppeRequired = _ppeRequired;
             areaContaminated = _areaContaminated;
             fumigationAgentVolume = _fumigationAgentVolume;
+        }
+
+        //Event parameters constructor
+        public DecontaminationParameters(
+            Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
+            double _roundtripDays,
+            double _numTeams,
+            double _onsiteDays)
+        {
+            personnelReqPerTeam = _personnelReqPerTeam;
+            roundtripDays = _roundtripDays;
+            numTeams = _numTeams;
+            onsiteDays = _onsiteDays;
         }
     }
 }
