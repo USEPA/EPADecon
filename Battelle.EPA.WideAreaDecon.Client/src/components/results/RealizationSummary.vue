@@ -129,7 +129,7 @@ export default class RealizationSummary extends Vue {
     const labels =
       phaseResults.length > 1
         ? phaseResults.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase))
-        : ['Total Cost'];
+        : [this.resultProvider.convertCamelToTitleCase(label?.toString() ?? '')];
 
     return {
       datasets: [
