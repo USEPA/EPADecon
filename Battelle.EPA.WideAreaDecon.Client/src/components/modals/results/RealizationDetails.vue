@@ -80,6 +80,7 @@ import TYPES from '@/dependencyInjection/types';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import store from '@/store';
+import IChartTooltipProvider from '@/interfaces/providers/IChartTooltipProvider';
 
 @Component({ components: { ChartJsWrapper } })
 export default class RealizationDetails extends Vue {
@@ -88,6 +89,8 @@ export default class RealizationDetails extends Vue {
   @VModel({ default: () => false }) isVisible!: boolean;
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
+
+  private tooltipProvider = container.get<IChartTooltipProvider>(TYPES.ChartTooltipProvider);
 
   chartKey = 0;
 
@@ -203,6 +206,8 @@ export default class RealizationDetails extends Vue {
     const options = new DefaultChartOptions();
     options.legend.display = false;
     options.tooltips.enabled = true;
+    options.tooltips.callbacks = this.tooltipProvider.pieCallback;
+
     options.legendCallback = (chart) => {
       const text = [];
       text.push('<ul>');

@@ -53,6 +53,7 @@ import container from '@/dependencyInjection/config';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import TYPES from '@/dependencyInjection/types';
 import { range } from 'lodash';
+import IChartTooltipProvider from '@/interfaces/providers/IChartTooltipProvider';
 
 @Component({ components: { ChartJsWrapper } })
 export default class ResultDetails extends Vue {
@@ -63,6 +64,8 @@ export default class ResultDetails extends Vue {
   @VModel({ default: () => false }) isVisible!: boolean;
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
+
+  private tooltipProvider = container.get<IChartTooltipProvider>(TYPES.ChartTooltipProvider);
 
   options = new DefaultChartOptions();
 
@@ -122,16 +125,8 @@ export default class ResultDetails extends Vue {
     this.options.legend.display = false;
 
     this.options.tooltips.enabled = true;
-    this.options.tooltips.callbacks = {
-      title: ([item]) => {
-        const index = item.index ?? 0;
-        // const upper = this.resultProvider.formatNumber(this.chartTicks[index + 1] ?? this.details.maximum);
-        // const lower = this.resultProvider.formatNumber(this.chartTicks[index]);
-        const upper = this.chartTicks[index + 1] ?? this.details.maximum;
-        const lower = this.chartTicks[index];
-        return `${lower} - ${upper}`;
-      },
-    };
+    this.tooltipProvider.details = this.details;
+    this.options.tooltips.callbacks = this.tooltipProvider.histogramCallback;
 
     this.options.scales = {
       xAxes: [

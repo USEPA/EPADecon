@@ -16,6 +16,7 @@
           :chartData="chartData"
           :chartType="chartType"
           :chartLabels="selectedResults"
+          :details="outputStatistics.x"
         ></results-chart-panel>
       </v-col>
     </v-row>

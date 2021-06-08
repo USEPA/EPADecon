@@ -96,7 +96,7 @@ export default class JobResultProvider implements IJobResultProvider {
   }
 
   formatNumber(number: number): string {
-    return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return number.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   convertCamelToTitleCase(name: string): string {
@@ -171,7 +171,10 @@ export default class JobResultProvider implements IJobResultProvider {
     // credit to Foxcode's answer: https://stackoverflow.com/a/53577159
     const { length } = sums;
     const mean = sums.reduce((acc, cur) => acc + cur, 0) / length ?? undefined;
-    const stdDev = Math.sqrt(sums.map((x) => (x - mean) ** 2).reduce((a, b) => a + b, 0) / (length - 1)) ?? undefined;
+    let stdDev = Math.sqrt(sums.map((x) => (x - mean) ** 2).reduce((a, b) => a + b, 0) / (length - 1)) ?? undefined;
+    if (Number.isNaN(stdDev)) {
+      stdDev = 0;
+    }
 
     return {
       values: sums,

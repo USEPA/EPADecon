@@ -56,6 +56,8 @@ import PhaseResult from '@/enums/jobs/results/phaseResult';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
+import IChartTooltipProvider from '@/interfaces/providers/IChartTooltipProvider';
+import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 
 @Component({ components: { ChartJsWrapper, ChartOptions, ScatterPlotWrapper } })
 export default class ResultsChartPanel extends Vue {
@@ -65,7 +67,11 @@ export default class ResultsChartPanel extends Vue {
 
   @Prop() chartLabels!: { x: PhaseResult | null; y: PhaseResult | null };
 
+  @Prop() details!: IResultDetails | null;
+
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
+
+  private tooltipProvider = container.get<IChartTooltipProvider>(TYPES.ChartTooltipProvider);
 
   chartKey = 0;
 
@@ -76,7 +82,26 @@ export default class ResultsChartPanel extends Vue {
     if (this.chartData?.datasets?.[0]) {
       this.chartData.datasets[0].showLine = newValue !== 'scatter';
     }
+
+    switch (newValue) {
+      case 'bar':
+        this.options.tooltips.callbacks = this.tooltipProvider.histogramCallback;
+        break;
+      case 'pie':
+        this.options.tooltips.callbacks = this.tooltipProvider.pieCallback;
+        break;
+      default:
+        this.options.tooltips.callbacks = this.tooltipProvider.scatterCallback;
+    }
+
     this.chartKey += 1;
+  }
+
+  @Watch('chartData')
+  onChartDataChanged(): void {
+    if (this.chartType === 'bar') {
+      this.tooltipProvider.details = this.details ?? undefined;
+    }
   }
 
   onLabelClicked(label: string): void {

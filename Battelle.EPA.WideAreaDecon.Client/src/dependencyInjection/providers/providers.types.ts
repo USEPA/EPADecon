@@ -9,6 +9,7 @@ const PROVIDER_TYPES = {
   ScenarioParameterProvider: Symbol('IScenarioParameterProvider'),
   BackendScenarioDefinitionProvider: Symbol('BackendScenarioDefinitionProvider'),
   BackendScenarioParameterProvider: Symbol('BackendScenarioParameterProvider'),
+  ChartTooltipProvider: Symbol('ChartTooltipProvider'),
   DistributionDisplayProvider: Symbol('DistributionDisplayProvider'),
   JobProvider: Symbol('IJobProvider'),
   JobResultProvider: Symbol('IJobResultProvider'),
