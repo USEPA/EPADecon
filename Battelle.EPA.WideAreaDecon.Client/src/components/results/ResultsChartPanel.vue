@@ -50,13 +50,13 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import ChartOptions from '@/components/modals/results/ChartOptions.vue';
-import { ChartData } from 'chart.js';
-import { ChartJsWrapper, DefaultChartOptions, ScatterPlotWrapper } from 'battelle-common-vue-charting/src';
+import { ChartData, ChartOptions as ChartJsOptions } from 'chart.js';
+import { ChartJsWrapper, ScatterPlotWrapper } from 'battelle-common-vue-charting/src';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
-import IChartTooltipProvider from '@/interfaces/providers/IChartTooltipProvider';
+import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 
 @Component({ components: { ChartJsWrapper, ChartOptions, ScatterPlotWrapper } })
@@ -71,11 +71,11 @@ export default class ResultsChartPanel extends Vue {
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
-  private tooltipProvider = container.get<IChartTooltipProvider>(TYPES.ChartTooltipProvider);
+  private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
 
   chartKey = 0;
 
-  options = new DefaultChartOptions();
+  options: ChartJsOptions = this.chartOptionsProvider.getDefaultOptions();
 
   @Watch('chartType')
   onChartTypeChanged(newValue: string): void {
@@ -85,13 +85,16 @@ export default class ResultsChartPanel extends Vue {
 
     switch (newValue) {
       case 'bar':
-        this.options.tooltips.callbacks = this.tooltipProvider.histogramCallback;
+        this.options = this.chartOptionsProvider.getHistogramOptions();
         break;
       case 'pie':
-        this.options.tooltips.callbacks = this.tooltipProvider.pieCallback;
+        this.options = this.chartOptionsProvider.getPieOptions();
+        break;
+      case 'scatter':
+        this.options = this.chartOptionsProvider.getScatterOptions();
         break;
       default:
-        this.options.tooltips.callbacks = this.tooltipProvider.scatterCallback;
+        this.options = this.chartOptionsProvider.getDefaultOptions();
     }
 
     this.chartKey += 1;
@@ -100,16 +103,12 @@ export default class ResultsChartPanel extends Vue {
   @Watch('chartData')
   onChartDataChanged(): void {
     if (this.chartType === 'bar') {
-      this.tooltipProvider.details = this.details ?? undefined;
+      this.chartOptionsProvider.details = this.details ?? undefined;
     }
   }
 
   onLabelClicked(label: string): void {
     this.$emit('removeLabel', label);
-  }
-
-  created(): void {
-    this.options.tooltips.enabled = true;
   }
 }
 </script>

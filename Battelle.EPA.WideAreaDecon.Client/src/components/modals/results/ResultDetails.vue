@@ -41,19 +41,14 @@
 
 <script lang="ts">
 import { Component, Prop, VModel, Vue, Watch } from 'vue-property-decorator';
-import {
-  ChartJsWrapper,
-  CycleColorProvider,
-  DefaultChartData,
-  DefaultChartOptions,
-} from 'battelle-common-vue-charting/src';
+import { ChartJsWrapper, CycleColorProvider, DefaultChartData } from 'battelle-common-vue-charting/src';
 import { ChartData } from 'chart.js';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import container from '@/dependencyInjection/config';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import TYPES from '@/dependencyInjection/types';
 import { range } from 'lodash';
-import IChartTooltipProvider from '@/interfaces/providers/IChartTooltipProvider';
+import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 
 @Component({ components: { ChartJsWrapper } })
 export default class ResultDetails extends Vue {
@@ -65,9 +60,9 @@ export default class ResultDetails extends Vue {
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
-  private tooltipProvider = container.get<IChartTooltipProvider>(TYPES.ChartTooltipProvider);
+  private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
 
-  options = new DefaultChartOptions();
+  options = this.chartOptionsProvider.getHistogramOptions();
 
   numberOfBins = 5;
 
@@ -122,35 +117,9 @@ export default class ResultDetails extends Vue {
   }
 
   initializeChart(): void {
-    this.options.legend.display = false;
-
-    this.options.tooltips.enabled = true;
-    this.tooltipProvider.details = this.details;
-    this.options.tooltips.callbacks = this.tooltipProvider.histogramCallback;
-
-    this.options.scales = {
-      xAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: this.title,
-          },
-          ticks: {
-            callback: (value: number) => this.resultProvider.formatNumber(value),
-          },
-        },
-      ],
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-          scaleLabel: {
-            display: true,
-            labelString: 'Number of Realizations',
-          },
-        },
-      ],
+    this.chartOptionsProvider.details = this.details;
+    this.options.legend = {
+      display: false,
     };
   }
 

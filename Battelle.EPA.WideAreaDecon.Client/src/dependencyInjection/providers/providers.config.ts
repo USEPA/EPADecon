@@ -23,8 +23,8 @@ import IJobProvider from '@/interfaces/providers/IJobProvider';
 import JobProvider from '@/implementations/providers/JobProvider';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import JobResultProvider from '@/implementations/providers/JobResultProvider';
-import IChartTooltipProvider from '@/interfaces/providers/IChartTooltipProvider';
-import ChartTooltipProvider from '@/implementations/providers/ChartTooltipProvider';
+import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
+import ChartOptionsProvider from '@/implementations/providers/ChartOptionsProvider';
 import PROVIDER_TYPES from './providers.types';
 
 const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => {
@@ -60,7 +60,7 @@ const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => 
     BackendScenarioParameterProvider,
   );
 
-  bind<IChartTooltipProvider>(PROVIDER_TYPES.ChartTooltipProvider).to(ChartTooltipProvider);
+  bind<IChartOptionsProvider>(PROVIDER_TYPES.ChartOptionsProvider).to(ChartOptionsProvider);
 
   bind<IDistributionDisplayProvider>(PROVIDER_TYPES.DistributionDisplayProvider).to(DistributionDisplayProvider);
 
