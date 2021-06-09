@@ -11,7 +11,14 @@
       </v-col>
     </v-row>
     <v-card v-if="displayChart" flat class="pa-5" tile width="100%" height="400">
-      <scatter-plot-wrapper :options="chartOptions" :data="chartData" :type="'scatter'" :width="400" :height="150" />
+      <scatter-plot-wrapper
+        :options="chartOptions"
+        :data="chartData"
+        :type="'scatter'"
+        :width="400"
+        :height="150"
+        ref="chart"
+      />
     </v-card>
     <v-row v-if="editPoint">
       <v-col>
@@ -73,14 +80,19 @@ import {
   ChartPoint2D,
   CycleColorProvider,
   ScatterChartDataset,
-  DefaultChartOptions,
   DefaultChartData,
 } from 'battelle-common-vue-charting/src';
-import Chart, { ChartLegendLabelItem } from 'chart.js';
+import { ChartLegendLabelItem } from 'chart.js';
+import container from '@/dependencyInjection/config';
+import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
+import TYPES from '@/dependencyInjection/types';
+import IChartJsWrapper from '@/interfaces/component/IChartJsWrapper';
 
 @Component({ components: { ScatterPlotWrapper } })
 export default class UniformXDependentDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: UniformXDependent;
+
+  private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
 
   key = this.$vnode.key;
 
@@ -90,7 +102,7 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
 
   selectedIndex = -1;
 
-  chartOptions: DefaultChartOptions = new DefaultChartOptions();
+  chartOptions = this.chartOptionsProvider.getDefaultOptions();
 
   xValues: number[] = [];
 
@@ -349,11 +361,10 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
 
   // adapted from mawir's answer on Stack Overflow: https://stackoverflow.com/a/59716739
   // eslint-disable-next-line class-methods-use-this
-  legendOnClick(event: MouseEvent, legendItem: ChartLegendLabelItem): void {
+  legendOnClick(_: Event, legendItem: ChartLegendLabelItem): void {
     const index = legendItem.datasetIndex;
     if (index !== undefined) {
-      // get last instance of chart
-      const chart = Object.values(Chart.instances)[Object.keys(Chart.instances).length - 1];
+      const { chart } = (this.$refs.chart as Vue).$children[0] as IChartJsWrapper;
       const maxMeta = chart.getDatasetMeta(index);
       const minMeta = chart.getDatasetMeta(index - 1);
 
@@ -381,13 +392,12 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     this.dependentVariables = this.parameterValue.dependentVariable ?? [];
 
     // update chart legend
-    if (this.chartOptions.legend.labels !== undefined) {
-      // hide min labels
-      this.chartOptions.legend.labels.filter = (item) => !item.text?.includes('Min');
-
-      // group baseline and current datasets onclick
-      this.chartOptions.legend.onClick = this.legendOnClick;
-    }
+    this.chartOptions.legend = {
+      labels: {
+        filter: (item) => !item.text?.includes('Min'),
+      },
+      onClick: this.legendOnClick,
+    };
 
     // set chart event callbacks
     this.chartOptions.onClick = this.onClick;
