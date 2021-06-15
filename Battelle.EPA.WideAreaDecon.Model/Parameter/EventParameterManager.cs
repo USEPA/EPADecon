@@ -49,7 +49,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
 
         public ResultsCalculator SetDrawnParameters(CalculatorManager calculatorManager)
         {
-            var calculatorCreator = calculatorManager.CreateCalculatorFactories();
+            var calculatorCreator = calculatorManager.CreateEventCalculatorFactories();
 
             return new ResultsCalculator()
             {
