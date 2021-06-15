@@ -116,7 +116,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
 
-                    var scenarioResults = new List<object>();
+                    var scenarioRealizationsResults = new List<object>();
+                    var eventRealizationsResults = new List<object>();
+                    var results = new Dictionary<ResultType, List<object>>();
 
                     for (int s = 0; s < scenarios.Count(); s++)
                     {
@@ -151,12 +153,15 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         var eventResults = eventModelRunner.RunEventModel();
 
                         //Store results for realization
-                        scenarioResults.Add(realizationResults);
-                        scenarioResults.Add(eventResults);
+                        scenarioRealizationsResults.Add(realizationResults);
+                        eventRealizationsResults.Add(eventResults);
                     }
 
+                    results.Add(ResultType.ScenarioResults, scenarioRealizationsResults);
+                    results.Add(ResultType.EventResults, eventRealizationsResults);
+
                     //Store results of model in job
-                    Running.Results = scenarioResults;
+                    Running.Results = results;
 
                     await _statusUpdater.UpdateJobStatus(Running, JobStatus.Completed);
                     
