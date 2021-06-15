@@ -4,6 +4,8 @@ using System.Linq;
 using NUnit.Framework;
 using Battelle.EPA.WideAreaDecon.Model.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
 
@@ -11,25 +13,43 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
 {
     public class ResultsCalculatorTest
     {
-        private ResultsCalculator Calculator { get; set; }
+        private ResultsCalculator IndoorCalculator { get; set; }
+        private ResultsCalculator OutdoorCalculator { get; set; }
+        private ResultsCalculator UndergroundCalculator { get; set; }
         private ScenarioParameterManager ManageParameters { get; set; }
-        private CalculatorManager ManageCalculators { get; set; }
-        private DecontaminationPhase Phase { get; set; } 
-        private Dictionary<SurfaceType, ContaminationInformation> ScenarioDefinitionDetails { get; set; }
+        private CalculatorManager ManageCalculatorsIndoor { get; set; }
+        private CalculatorManager ManageCalculatorsOutdoor { get; set; }
+        private CalculatorManager ManageCalculatorsUnderground { get; set; }
+        private Dictionary<SurfaceType, ContaminationInformation> IndoorScenarioDefinitionDetails { get; set; }
+        private Dictionary<SurfaceType, ContaminationInformation> OutdoorScenarioDefinitionDetails { get; set; }
+        private Dictionary<SurfaceType, ContaminationInformation> UndergroundScenarioDefinitionDetails { get; set; }
+        private ParameterList ScenarioParameters { get; set; }
 
         [SetUp]
         public void Setup()
         {
-            Phase = DecontaminationPhase.Indoor;
-
-            ScenarioDefinitionDetails = new Dictionary<SurfaceType, ContaminationInformation>();
+            IndoorScenarioDefinitionDetails = new Dictionary<SurfaceType, ContaminationInformation>();
+            OutdoorScenarioDefinitionDetails = new Dictionary<SurfaceType, ContaminationInformation>();
+            UndergroundScenarioDefinitionDetails = new Dictionary<SurfaceType, ContaminationInformation>();
             var contaminationInfo = new ContaminationInformation(500, 40);
 
-            var surfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(Phase).ToList();
+            var indoorSurfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(DecontaminationPhase.Indoor);
+            var outdoorSurfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(DecontaminationPhase.Outdoor);
+            var undergroundSurfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(DecontaminationPhase.Underground);
 
-            foreach (SurfaceType surface in surfaces)
+            foreach (SurfaceType surface in indoorSurfaces)
             {
-                ScenarioDefinitionDetails.Add(surface, contaminationInfo);
+                IndoorScenarioDefinitionDetails.Add(surface, contaminationInfo);
+            }
+
+            foreach (SurfaceType surface in outdoorSurfaces)
+            {
+                OutdoorScenarioDefinitionDetails.Add(surface, contaminationInfo);
+            }
+
+            foreach (SurfaceType surface in undergroundSurfaces)
+            {
+                UndergroundScenarioDefinitionDetails.Add(surface, contaminationInfo);
             }
 
             string TestFileName1 = @"InputFiles\ModifyParametersTest.xlsx";
@@ -46,55 +66,102 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                     "Cost per Parameter"
                 }
             };
-            var scenarioDetails = modifyParameters.GetParameterList();
+            ScenarioParameters = modifyParameters.GetParameterList();
 
             ManageParameters = new ScenarioParameterManager(
-                scenarioDetails.Filters.First(f => f.Name == "Characterization Sampling").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Source Reduction").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Decontamination").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Efficacy").Parameters,
-                scenarioDetails.Filters.First(f => f.Name == "Incident Command").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Cost per Parameter").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
+                ScenarioParameters.Filters.First(f => f.Name == "Characterization Sampling").Filters,
+                ScenarioParameters.Filters.First(f => f.Name == "Source Reduction").Filters,
+                ScenarioParameters.Filters.First(f => f.Name == "Decontamination").Filters,
+                ScenarioParameters.Filters.First(f => f.Name == "Efficacy").Parameters,
+                ScenarioParameters.Filters.First(f => f.Name == "Incident Command").Filters,
+                ScenarioParameters.Filters.First(f => f.Name == "Cost per Parameter").Filters,
+                ScenarioParameters.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
 
-            ManageCalculators = ManageParameters.RedrawParameters(ScenarioDefinitionDetails, Phase);
+            ManageCalculatorsIndoor = ManageParameters.RedrawParameters(IndoorScenarioDefinitionDetails, DecontaminationPhase.Indoor);
+            IndoorCalculator = ManageParameters.SetDrawnParameters(ManageCalculatorsIndoor);
 
-            Calculator = ManageParameters.SetDrawnParameters(ManageCalculators);
+            ManageCalculatorsOutdoor = ManageParameters.RedrawParameters(OutdoorScenarioDefinitionDetails, DecontaminationPhase.Outdoor);
+            OutdoorCalculator = ManageParameters.SetDrawnParameters(ManageCalculatorsOutdoor);
+
+            ManageCalculatorsUnderground = ManageParameters.RedrawParameters(UndergroundScenarioDefinitionDetails, DecontaminationPhase.Underground);
+            UndergroundCalculator = ManageParameters.SetDrawnParameters(ManageCalculatorsUnderground);
         }
 
         [Test]
-        public void CalculateCost()
+        public void CalculateScenarioResults()
         {
+            var indoorResults = IndoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsIndoor, IndoorScenarioDefinitionDetails, DecontaminationPhase.Indoor);
 
-            var results = Calculator.CalculateScenarioResults(ManageParameters, ManageCalculators, ScenarioDefinitionDetails, Phase);
+            Assert.AreEqual(1.68186172674725, indoorResults.preDeconCharacterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for pre-decon characterization sampling");
+            Assert.AreEqual(8.54526895658592, indoorResults.preDeconCharacterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for pre-decon characterization sampling");
+            Assert.AreEqual(328949, indoorResults.preDeconCharacterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for pre-decon characterization sampling");
 
-            Assert.AreEqual(1.68186172674725, results.preDeconCharacterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for pre-decon characterization sampling");
-            Assert.AreEqual(8.54526895658592, results.preDeconCharacterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for pre-decon characterization sampling");
-            Assert.AreEqual(328949, results.preDeconCharacterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for pre-decon characterization sampling");
+            Assert.AreEqual(6.727446906989, indoorResults.postDeconCharacterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for post-decon characterization sampling");
+            Assert.AreEqual(34.18107582634368, indoorResults.postDeconCharacterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for post-decon characterization sampling");
+            Assert.AreEqual(1315796, indoorResults.postDeconCharacterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for post-decon characterization sampling");
 
-            Assert.AreEqual(6.727446906989, results.postDeconCharacterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for post-decon characterization sampling");
-            Assert.AreEqual(34.18107582634368, results.postDeconCharacterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for post-decon characterization sampling");
-            Assert.AreEqual(1315796, results.postDeconCharacterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for post-decon characterization sampling");
+            Assert.AreEqual(8.40930863373625, indoorResults.totalCharacterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for total characterization sampling");
+            Assert.AreEqual(42.7263447829296, indoorResults.totalCharacterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for total characterization sampling");
+            Assert.AreEqual(1644745, indoorResults.totalCharacterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for total characterization sampling");
 
-            Assert.AreEqual(8.40930863373625, results.totalCharacterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for total characterization sampling");
-            Assert.AreEqual(42.7263447829296, results.totalCharacterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for total characterization sampling");
-            Assert.AreEqual(1644745, results.totalCharacterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for total characterization sampling");
+            Assert.AreEqual(1.019638794335, indoorResults.sourceReductionResults.workDays, 1e-6, "Incorrect work days calculated for source reduction");
+            Assert.AreEqual(1.019638794335, indoorResults.sourceReductionResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for source reduction");
+            Assert.AreEqual(46601, indoorResults.sourceReductionResults.phaseCost, 1e-6, "Incorrect phase cost calculated for source reduction");
 
-            Assert.AreEqual(1.019638794335, results.sourceReductionResults.workDays, 1e-6, "Incorrect work days calculated for source reduction");
-            Assert.AreEqual(1.019638794335, results.sourceReductionResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for source reduction");
-            Assert.AreEqual(46601, results.sourceReductionResults.phaseCost, 1e-6, "Incorrect phase cost calculated for source reduction");
+            Assert.AreEqual(12.0, indoorResults.decontaminationResults.workDays, 1e-6, "Incorrect work days calculated for decontamination");
+            Assert.AreEqual(14.0, indoorResults.decontaminationResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for decontamination");
+            Assert.AreEqual(407764, indoorResults.decontaminationResults.phaseCost, 1e-6, "Incorrect phase cost calculated for decontamination");
 
-            Assert.AreEqual(12.0, results.decontaminationResults.workDays, 1e-6, "Incorrect work days calculated for decontamination");
-            Assert.AreEqual(14.0, results.decontaminationResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for decontamination");
-            Assert.AreEqual(407764, results.decontaminationResults.phaseCost, 1e-6, "Incorrect phase cost calculated for decontamination");
+            Assert.AreEqual(65.7459835772646, indoorResults.incidentCommandResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for incident command");
+            Assert.AreEqual(1178333, indoorResults.incidentCommandResults.phaseCost, 1e-6, "Incorrect phase cost calculated for incident command");
 
-            Assert.AreEqual(65.7459835772646, results.incidentCommandResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for incident command");
-            Assert.AreEqual(1178333, results.incidentCommandResults.phaseCost, 1e-6, "Incorrect phase cost calculated for incident command");
+            Assert.AreEqual(3277443, indoorResults.generalResults.totalCost, 1e-6, "Incorrect total cost calculated");
+            Assert.AreEqual(4, indoorResults.generalResults.decontaminationRounds, 1e-6, "Incorrect number of decontamination rounds calculated");
+        }
 
-            //Assert.AreEqual(1168618, results.otherResults.otherCosts, 1e-6, "Incorrect cost calculated for other costs");
+        [Test]
+        public void CalculateEventResults()
+        {
+            var indoorResults = new Dictionary<BuildingCategory, ScenarioResults>();
+            
+            foreach (BuildingCategory building in Enum.GetValues(typeof(BuildingCategory)))
+            {
+                indoorResults.Add(building, IndoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsIndoor, IndoorScenarioDefinitionDetails, DecontaminationPhase.Indoor));
+            }
+         
+            var outdoorResults = OutdoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsOutdoor, OutdoorScenarioDefinitionDetails, DecontaminationPhase.Outdoor);
+            var undergroundResults = UndergroundCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsUnderground, UndergroundScenarioDefinitionDetails, DecontaminationPhase.Underground);
 
-            Assert.AreEqual(3277443, results.generalResults.totalCost, 1e-6, "Incorrect total cost calculated");
-            Assert.AreEqual(4, results.generalResults.decontaminationRounds, 1e-6, "Incorrect number of decontamination rounds calculated");
+            var phaseOnsiteDays = new Dictionary<PhaseCategory, double>
+            {
+                { PhaseCategory.CharacterizationSampling, outdoorResults.totalCharacterizationSamplingResults.onSiteDays + undergroundResults.totalCharacterizationSamplingResults.onSiteDays },
+                { PhaseCategory.SourceReduction, outdoorResults.sourceReductionResults.onSiteDays + undergroundResults.sourceReductionResults.onSiteDays },
+                { PhaseCategory.Decontamination, outdoorResults.decontaminationResults.onSiteDays + undergroundResults.decontaminationResults.onSiteDays },
+                { PhaseCategory.IncidentCommand, outdoorResults.incidentCommandResults.onSiteDays + undergroundResults.incidentCommandResults.onSiteDays }
+            };
+
+            foreach (var building in indoorResults.Keys.ToList())
+            {
+                phaseOnsiteDays[PhaseCategory.CharacterizationSampling] += indoorResults[building].totalCharacterizationSamplingResults.onSiteDays;
+                phaseOnsiteDays[PhaseCategory.SourceReduction] += indoorResults[building].sourceReductionResults.onSiteDays;
+                phaseOnsiteDays[PhaseCategory.Decontamination] += indoorResults[building].decontaminationResults.onSiteDays;
+                phaseOnsiteDays[PhaseCategory.IncidentCommand] += indoorResults[building].incidentCommandResults.onSiteDays;
+            }
+
+            var parameterManager = new EventParameterManager(
+                ScenarioParameters.Filters.First(f => f.Name == "Characterization Sampling").Filters,
+                ScenarioParameters.Filters.First(f => f.Name == "Source Reduction").Filters,
+                ScenarioParameters.Filters.First(f => f.Name == "Decontamination").Filters,
+                ScenarioParameters.Filters.First(f => f.Name == "Other").Filters,
+                ScenarioParameters.Filters.First(f => f.Name == "Incident Command").Filters,
+                ScenarioParameters.Filters.First(f => f.Name == "Cost per Parameter").Filters,
+                phaseOnsiteDays);
+
+            var calculatorManager = parameterManager.RedrawParameters();
+
+            var resultsCalculator = parameterManager.SetDrawnParameters(calculatorManager);
+
+            var eventResults = resultsCalculator.CalculateEventResults(calculatorManager, indoorResults, outdoorResults, undergroundResults);
         }
     }
 }
