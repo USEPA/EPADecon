@@ -6,15 +6,11 @@ import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
 export default class TextValue implements IUnivariateParameter {
-  private readonly numStdDevs = 5;
-
   @JsonProperty()
   readonly type: ParameterType = ParameterType.textValue;
 
   @JsonProperty()
   metaData: ParameterMetaData;
-
-  locked?: boolean;
 
   public get isSet(): boolean {
     return this.value !== 'null' || this.value !== undefined;

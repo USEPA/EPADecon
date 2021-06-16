@@ -68,7 +68,7 @@
                 <td class="pl-8">{{ resultProvider.convertCamelToTitleCase(result) }}</td>
 
                 <td v-for="runNumber in displayedRunNumbers" :key="runNumber">
-                  {{ getLocationResults(runNumber)[phaseName][result] }}
+                  {{ getCellValueSingleLocation(phaseName, result, runNumber) }}
                 </td>
               </tr>
             </tbody>
@@ -116,7 +116,7 @@
                 <td>{{ resultProvider.convertCamelToTitleCase(result) }}</td>
 
                 <td :class="getCellClass(i + 1)" v-for="(location, i) in tableLocations" :key="`${location} - ${i}`">
-                  {{ getLocationResults(calculateRunNumber(i), location)[phaseName][result] }}
+                  {{ getCellValueAllLocations(location, phaseName, result, i) }}
                 </td>
               </tr>
             </tbody>
@@ -126,8 +126,8 @@
         <v-card-text v-else>Please select at least one realization to display a summary for</v-card-text>
 
         <!-- Table Scrollbar -->
-        <div class="scrollbarContainer" style="" ref="scroll">
-          <div class="scrollbar" :style="`width: ${tableWidth}px`"></div>
+        <div class="scrollbarContainer" ref="scroll">
+          <div class="scrollbar" :style="{ width: tableWidth + 'px' }"></div>
         </div>
       </v-container>
     </v-card>
@@ -146,6 +146,7 @@ import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealizati
 import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
 import BuildingCategory from '@/enums/parameter/buildingCategory';
 import RealizationDetails from '@/components/modals/results/RealizationDetails.vue';
+import PhaseResult from '@/enums/jobs/results/phaseResult';
 
 @Component({ components: { RealizationDetails } })
 export default class RealizationTable extends Vue {
@@ -198,6 +199,16 @@ export default class RealizationTable extends Vue {
 
   getCellClass(cellNumber: number): string {
     return cellNumber && cellNumber % this.locations.length === 0 && cellNumber ? 'border-right' : '';
+  }
+
+  getCellValueAllLocations(location: string, phaseName: string, result: PhaseResult, index: number): string {
+    const value = this.getLocationResults(this.calculateRunNumber(index), location)[phaseName][result];
+    return this.resultProvider.formatNumber(value);
+  }
+
+  getCellValueSingleLocation(phaseName: string, result: PhaseResult, runNumber: number): string {
+    const value = this.getLocationResults(runNumber)[phaseName][result];
+    return this.resultProvider.formatNumber(value);
   }
 
   getLocationResults(runNumber: number, location?: string): IPhaseResultSet {

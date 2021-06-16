@@ -66,12 +66,7 @@
 
 <script lang="ts">
 import { Component, Prop, VModel, Vue, Watch } from 'vue-property-decorator';
-import {
-  ChartJsWrapper,
-  CycleColorProvider,
-  DefaultChartData,
-  DefaultChartOptions,
-} from 'battelle-common-vue-charting/src';
+import { ChartJsWrapper, CycleColorProvider, DefaultChartData } from 'battelle-common-vue-charting/src';
 import IChartJsWrapper from '@/interfaces/component/IChartJsWrapper';
 import Chart, { ChartColor, ChartData, ChartOptions } from 'chart.js';
 import container from '@/dependencyInjection/config';
@@ -80,6 +75,7 @@ import TYPES from '@/dependencyInjection/types';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import store from '@/store';
+import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 
 @Component({ components: { ChartJsWrapper } })
 export default class RealizationDetails extends Vue {
@@ -88,6 +84,8 @@ export default class RealizationDetails extends Vue {
   @VModel({ default: () => false }) isVisible!: boolean;
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
+
+  private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
 
   chartKey = 0;
 
@@ -198,11 +196,12 @@ export default class RealizationDetails extends Vue {
     return this.getResultChartData(PhaseResult.Workdays);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get chartOptions(): ChartOptions {
-    const options = new DefaultChartOptions();
-    options.legend.display = false;
-    options.tooltips.enabled = true;
+    const options = this.chartOptionsProvider.getPieOptions();
+    options.legend = {
+      display: false,
+    };
+
     options.legendCallback = (chart) => {
       const text = [];
       text.push('<ul>');

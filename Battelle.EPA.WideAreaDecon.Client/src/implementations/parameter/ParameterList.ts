@@ -8,9 +8,7 @@ export default class ParameterList {
   version: number;
 
   @JsonProperty({
-    predicate: () => {
-      return ParameterFilter;
-    },
+    predicate: () => ParameterFilter,
   })
   filters: Array<ParameterFilter>;
 

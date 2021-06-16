@@ -7,7 +7,7 @@
     </v-row>
     <v-row>
       <v-col cols="3">
-        <output-statistics-panel :details="outputStatistics" :results="selectedResults" />
+        <output-statistics-panel :details="outputStatistics" :results="selectedResults"></output-statistics-panel>
       </v-col>
       <v-col cols="9">
         <results-chart-panel
@@ -16,15 +16,16 @@
           :chartData="chartData"
           :chartType="chartType"
           :chartLabels="selectedResults"
-        />
+          :details="outputStatistics.x"
+        ></results-chart-panel>
       </v-col>
     </v-row>
 
     <v-row class="mb-8">
-      <realization-table />
+      <realization-table></realization-table>
     </v-row>
 
-    <chart-options @createChart="setChartData" v-model="showOptionsModal" :selected="selectedResults" />
+    <chart-options @createChart="setChartData" v-model="showOptionsModal" :selected="selectedResults"></chart-options>
   </v-container>
 </template>
 
@@ -129,7 +130,7 @@ export default class RealizationSummary extends Vue {
     const labels =
       phaseResults.length > 1
         ? phaseResults.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase))
-        : ['Total Cost'];
+        : [this.resultProvider.convertCamelToTitleCase(label?.toString() ?? '')];
 
     return {
       datasets: [

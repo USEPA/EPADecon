@@ -41,18 +41,14 @@
 
 <script lang="ts">
 import { Component, Prop, VModel, Vue, Watch } from 'vue-property-decorator';
-import {
-  ChartJsWrapper,
-  CycleColorProvider,
-  DefaultChartData,
-  DefaultChartOptions,
-} from 'battelle-common-vue-charting/src';
+import { ChartJsWrapper, CycleColorProvider, DefaultChartData } from 'battelle-common-vue-charting/src';
 import { ChartData } from 'chart.js';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import container from '@/dependencyInjection/config';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import TYPES from '@/dependencyInjection/types';
 import { range } from 'lodash';
+import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 
 @Component({ components: { ChartJsWrapper } })
 export default class ResultDetails extends Vue {
@@ -64,7 +60,9 @@ export default class ResultDetails extends Vue {
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
-  options = new DefaultChartOptions();
+  private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
+
+  options = this.chartOptionsProvider.getHistogramOptions();
 
   numberOfBins = 5;
 
@@ -119,43 +117,9 @@ export default class ResultDetails extends Vue {
   }
 
   initializeChart(): void {
-    this.options.legend.display = false;
-
-    this.options.tooltips.enabled = true;
-    this.options.tooltips.callbacks = {
-      title: ([item]) => {
-        const index = item.index ?? 0;
-        // const upper = this.resultProvider.formatNumber(this.chartTicks[index + 1] ?? this.details.maximum);
-        // const lower = this.resultProvider.formatNumber(this.chartTicks[index]);
-        const upper = this.chartTicks[index + 1] ?? this.details.maximum;
-        const lower = this.chartTicks[index];
-        return `${lower} - ${upper}`;
-      },
-    };
-
-    this.options.scales = {
-      xAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: this.title,
-          },
-          ticks: {
-            callback: (value: number) => this.resultProvider.formatNumber(value),
-          },
-        },
-      ],
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-          scaleLabel: {
-            display: true,
-            labelString: 'Number of Realizations',
-          },
-        },
-      ],
+    this.chartOptionsProvider.details = this.details;
+    this.options.legend = {
+      display: false,
     };
   }
 

@@ -18,6 +18,7 @@ import ParameterSelection from './parameterSelection/ParameterSelection';
 import CurrentJob from './jobs/CurrentJob';
 import currentJobMutations from './jobs/mutations';
 import jobRequestActions from './jobs/actions';
+import parameterSelectionGetters from './parameterSelection/getters';
 
 Vue.use(Vuex);
 
@@ -33,6 +34,7 @@ const store: StoreOptions<IRootState> = {
   modules: {},
   getters: {
     ...runSettingsGetters,
+    ...parameterSelectionGetters,
   },
   mutations: {
     ...appSettingsMutations,

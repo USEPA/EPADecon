@@ -15,7 +15,7 @@
             <tbody>
               <tr v-for="(value, detail) of detailsWithoutValues[index]" :key="detail">
                 <td>{{ resultProvider.convertCamelToTitleCase(detail) }}</td>
-                <td class="text-right">{{ value }}</td>
+                <td class="text-right">{{ resultProvider.formatNumber(value) }}</td>
               </tr>
             </tbody>
           </template>
