@@ -100,10 +100,15 @@ namespace Battelle.EPA.WideAreaDecon.Model
             }
 
             // Decontamination
-            Tuple<double, int> decontaminationLabor = _decontaminationCostCalculator.CalculateTime();
+            List<Dictionary<ApplicationMethod, double>> decontaminationWorkdays = _decontaminationCostCalculator.CalculateTime();
+            var workdays = new List<double>();
+            foreach (var item in decontaminationWorkdays)
+            {
+                workdays.Add(item.Sum(x => x.Value));
+            }
 
-            results.decontaminationResults.workDays = decontaminationLabor.Item1;
-            results.generalResults.decontaminationRounds = decontaminationLabor.Item2;
+            results.decontaminationResults.workDays = workdays.Sum();
+            results.generalResults.decontaminationRounds = decontaminationWorkdays.Count;
 
             results.decontaminationResults.onSiteDays = results.decontaminationResults.workDays +
                 parameters._decontaminationParameters.personnelOverhead;
@@ -113,7 +118,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 parameters._decontaminationParameters.numTeams,
                 parameters._decontaminationParameters.ppeRequired,
                 areaContaminated,
-                parameters._decontaminationParameters.applicationMethods));
+                parameters._decontaminationParameters.applicationMethods,
+                decontaminationWorkdays));
 
             // Post-Decon Characterization Sampling
             results.postDeconCharacterizationSamplingResults.workDays = 0.0;

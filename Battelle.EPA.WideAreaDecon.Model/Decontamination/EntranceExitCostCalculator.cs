@@ -27,11 +27,26 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _numberEntriesPerTeamPerDay = numberEntriesPerTeamPerDay;
         }
 
-        public double CalculateEntranceExitCost(double workDays, double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
+        public double CalculateEntranceExitCost(double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam, List<Dictionary<ApplicationMethod, double>> decontaminationWorkdays)
         {
+            //Calculating the non-fumigation workdays for decon to account for no site entries
+            //being made for fumigation
+            double workdays = 0.0;
+
+            foreach (var item in decontaminationWorkdays)
+            {
+                foreach (var method in item.Keys.ToList())
+                {
+                    if (method != ApplicationMethod.Fumigation)
+                    {
+                        workdays += item[method];
+                    }
+                }
+            }
+
             var totalPersonnel = _personnelReqPerTeam.Values.Sum() * _numberTeams;
             
-            var totalEntries = workDays * _numberEntriesPerTeamPerDay * _numberTeams;
+            var totalEntries = workdays * _numberEntriesPerTeamPerDay * _numberTeams;
 
             var totalPpePerLevel = ppePerLevelPerTeam.Values.Select(x => x * _personnelReqPerTeam.Values.Sum() * totalEntries);
 

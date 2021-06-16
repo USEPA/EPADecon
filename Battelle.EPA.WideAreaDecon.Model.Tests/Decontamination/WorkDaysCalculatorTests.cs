@@ -54,10 +54,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [Test]
         public void CalculateCost()
         {
-            Tuple<double, int> decontaminationLabor = Calculator.CalculateWorkDays();
+            List<Dictionary<ApplicationMethod, double>> decontaminationWorkdays = Calculator.CalculateWorkDays();
 
-            Assert.AreEqual(12.0, decontaminationLabor.Item1, 1e-6, "Incorrect workdays calculated");
-            Assert.AreEqual(4.0, decontaminationLabor.Item2, 1e-6, "Incorrect decontamination rounds calculated");
+            var workdays = new List<double>();
+            foreach (var item in decontaminationWorkdays)
+            {
+                workdays.Add(item.Sum(x => x.Value));
+            }
+
+            Assert.AreEqual(12.0, workdays.Sum(), 1e-6, "Incorrect workdays calculated");
+            Assert.AreEqual(4.0, decontaminationWorkdays.Count, 1e-6, "Incorrect decontamination rounds calculated");
 
         }
     }

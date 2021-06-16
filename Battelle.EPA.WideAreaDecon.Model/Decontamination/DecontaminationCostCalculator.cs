@@ -15,17 +15,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         public TravelCostCalculator Calculator_travel { get; set; }
 
         //Phase time for scenario results
-        public Tuple<double, int> CalculateTime()
+        public List<Dictionary<ApplicationMethod, double>> CalculateTime()
         {
             return Calculator_workDays.CalculateWorkDays();
         }
 
         //Phase costs for scenario results
-        public double CalculatePhaseCosts(double workDays, double _numberTeams, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<SurfaceType, ApplicationMethod> treatmentMethods)
+        public double CalculatePhaseCosts(double workDays, double _numberTeams, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<SurfaceType, ApplicationMethod> treatmentMethods, List<Dictionary<ApplicationMethod, double>> decontaminationWorkdays)
         {
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(areaContaminated, treatmentMethods);
             var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams);
-            var entExCosts = Calculator_entEx.CalculateEntranceExitCost(workDays, _numberTeams, ppeEachLevelPerTeam);
+            var entExCosts = Calculator_entEx.CalculateEntranceExitCost(_numberTeams, ppeEachLevelPerTeam, decontaminationWorkdays);
             return (suppliesCosts + laborCosts + entExCosts);
         }
 

@@ -30,25 +30,31 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             _surfaceSporeLoading = initialSporeLoading;
         }
 
-        public Tuple<double, int> CalculateWorkDays()
+        public List<Dictionary<ApplicationMethod, double>> CalculateWorkDays()
         {
-            double totalDays = 0.0;
-            int decontaminationRounds = 0;
+            var deconRounds = new List<Dictionary<ApplicationMethod, double>>();
 
             while (_surfaceSporeLoading.Values.Any(loading => loading > _desiredSporeThreshold)) {
-                var surfaces = _surfaceSporeLoading.Where(pair => pair.Value > _desiredSporeThreshold).Select(pair => pair.Key);
-                var methods = _appMethodBySurfaceType.Where(pair => surfaces.Contains(pair.Key)).Select(pair => pair.Value);
-                var days = _treatmentDaysPerAm.Where(pair => methods.Contains(pair.Key)).Select(pair => pair.Value);
+                var surfaces = _surfaceSporeLoading.Where(pair => pair.Value > _desiredSporeThreshold).Select(pair => pair.Key).ToList();
 
-                totalDays += days.Sum();
+                var workdays = new Dictionary<ApplicationMethod, double>();
+                
+                foreach (var surface in surfaces)
+                {
+                    var method = _appMethodBySurfaceType[surface];
+
+                    if (!workdays.ContainsKey(method))
+                    {
+                        workdays.Add(method, _treatmentDaysPerAm[method]);
+                    } 
+                }
+
+                deconRounds.Add(workdays);
 
                 _surfaceSporeLoading = _efficacyCalculator.CalculateEfficacy(_surfaceSporeLoading, _appMethodBySurfaceType);
-                decontaminationRounds++;
             }
 
-            Tuple<double, int> decontaminationLabor = new Tuple<double, int>(totalDays, decontaminationRounds);
-
-            return decontaminationLabor;
+            return deconRounds;
         }
     }
 }
