@@ -25,7 +25,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             _buildingDetails = buildingDetails;
         }
 
-        public ScenarioResults RunScenarioModel()
+        public ScenarioRealizationResults RunScenarioModel()
         {
             var parameterManager = new ScenarioParameterManager(
                 _scenarioParameters.Filters.First(f => f.Name == "Characterization Sampling").Filters,

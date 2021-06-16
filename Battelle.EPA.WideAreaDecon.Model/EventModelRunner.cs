@@ -11,15 +11,15 @@ namespace Battelle.EPA.WideAreaDecon.Model
     public class EventModelRunner
     {
         private readonly ParameterList _scenarioParameters;
-        private readonly Dictionary<BuildingCategory, ScenarioResults> _indoorResults;
-        private readonly ScenarioResults _outdoorResults;
-        private readonly ScenarioResults _undergroundResults;
+        private readonly Dictionary<BuildingCategory, ScenarioRealizationResults> _indoorResults;
+        private readonly ScenarioRealizationResults _outdoorResults;
+        private readonly ScenarioRealizationResults _undergroundResults;
 
         public EventModelRunner(
             ParameterList scenarioParmeters,
-            Dictionary<BuildingCategory, ScenarioResults> indoorResults,
-            ScenarioResults outdoorResults,
-            ScenarioResults undergroundResults)
+            Dictionary<BuildingCategory, ScenarioRealizationResults> indoorResults,
+            ScenarioRealizationResults outdoorResults,
+            ScenarioRealizationResults undergroundResults)
         {
             _scenarioParameters = scenarioParmeters;
             _indoorResults = indoorResults;

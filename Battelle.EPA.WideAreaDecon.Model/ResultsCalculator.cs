@@ -22,13 +22,13 @@ namespace Battelle.EPA.WideAreaDecon.Model
         public IncidentCommandCostCalculator _incidentCommandCostCalculator { get; set; }
         public OtherCostCalculator _otherCostCalculator { get; set; }
 
-        public ScenarioResults CalculateScenarioResults(
+        public ScenarioRealizationResults CalculateScenarioResults(
             ScenarioParameterManager parameterManager,
             CalculatorManager parameters,
             Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
             DecontaminationPhase phase)
         {
-            var results = new ScenarioResults
+            var results = new ScenarioRealizationResults
             {
                 preDeconCharacterizationSamplingResults = new GenericPhaseResults(),
                 postDeconCharacterizationSamplingResults = new GenericPhaseResults(),
@@ -186,9 +186,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
         }
 
         public EventResults CalculateEventResults(CalculatorManager parameters,
-            Dictionary<BuildingCategory, ScenarioResults> _indoorResults,
-            ScenarioResults _outdoorResults,
-            ScenarioResults _undergroundResults)
+            Dictionary<BuildingCategory, ScenarioRealizationResults> _indoorResults,
+            ScenarioRealizationResults _outdoorResults,
+            ScenarioRealizationResults _undergroundResults)
         {
             var results = new EventResults
             {

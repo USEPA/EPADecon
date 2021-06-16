@@ -122,7 +122,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
         [Test]
         public void CalculateEventResults()
         {
-            var indoorResults = new Dictionary<BuildingCategory, ScenarioResults>();
+            var indoorResults = new Dictionary<BuildingCategory, ScenarioRealizationResults>();
             
             foreach (BuildingCategory building in Enum.GetValues(typeof(BuildingCategory)))
             {

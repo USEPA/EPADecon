@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results
 {
-    public class ScenarioResults
+    public class ScenarioRealizationResults
     {
         public GenericPhaseResults preDeconCharacterizationSamplingResults { get; set; }
         public GenericPhaseResults postDeconCharacterizationSamplingResults { get; set; }
