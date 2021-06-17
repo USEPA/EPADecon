@@ -32,12 +32,12 @@ export default class JobResultProvider implements IJobResultProvider {
       '',
       'Incident Command',
       '',
-      'Other',
+      // 'Other',
       'General',
     ];
 
     // Get headers for each result
-    const resultHeaders = Object.values(results[0].Outdoor).flatMap((pr) =>
+    const resultHeaders = Object.values(results[0].scenarioResults.outdoorResults).flatMap((pr) =>
       Object.keys(pr).map((p) => this.convertCamelToTitleCase(p)),
     );
 
@@ -45,7 +45,7 @@ export default class JobResultProvider implements IJobResultProvider {
     const averageHeaders = resultHeaders.map((h) => `Average ${h}`);
 
     // Build arrays for each location
-    const buildings = Object.keys(results[0].Indoor);
+    const buildings = Object.keys(results[0].scenarioResults.indoorResults);
     const indoor = buildings.map((b) =>
       this.excelBuildLocationResults(results, b, phaseHeaders, resultHeaders, averageHeaders, true),
     );
@@ -111,7 +111,9 @@ export default class JobResultProvider implements IJobResultProvider {
 
   getResultPhaseBreakdown(realization: IJobResultRealization, result: PhaseResult): { phase: string; value: number }[] {
     // remove total cs results for now
-    const phaseNames = Object.keys(realization.Outdoor).filter((p) => !p.toLowerCase().includes('total'));
+    const phaseNames = Object.keys(realization.scenarioResults.outdoorResults).filter(
+      (p) => !p.toLowerCase().includes('total'),
+    );
     const breakdown: number[] = [];
 
     this.findResultValues(realization, result, (value: number | undefined, index: number) => {
@@ -150,7 +152,10 @@ export default class JobResultProvider implements IJobResultProvider {
       return undefined;
     }
 
-    const numLocations = Object.keys(allResults[0]).length - 1 + Object.keys(allResults[0].Indoor).length;
+    const numLocations =
+      Object.keys(allResults[0].scenarioResults).length -
+      1 +
+      Object.keys(allResults[0].scenarioResults.indoorResults).length;
     const numOccurencesPerLocation = instances.length / (allResults.length * numLocations);
     const sums: number[] = [];
 
@@ -213,9 +218,11 @@ export default class JobResultProvider implements IJobResultProvider {
     callback: (value: number | undefined, index: number) => void,
   ): void {
     // remove total characterization sampling results for now
-    const phaseNames = Object.keys(realization.Outdoor).filter((p) => !p.toLowerCase().includes('total'));
+    const phaseNames = Object.keys(realization.scenarioResults.outdoorResults).filter(
+      (p) => !p.toLowerCase().includes('total'),
+    );
 
-    Object.entries(realization).forEach(([location, resultSet]) => {
+    Object.entries(realization.scenarioResults).forEach(([location, resultSet]) => {
       const phaseResultSets: IPhaseResultSet[] = this.isIndoor(location) ? Object.values(resultSet) : [resultSet];
 
       phaseResultSets.forEach((rs) => {
@@ -227,7 +234,7 @@ export default class JobResultProvider implements IJobResultProvider {
   }
 
   private isIndoor(location: string): boolean {
-    return location === 'Indoor';
+    return location.toLowerCase().includes('indoor');
   }
 
   // credit to Lior Elrom's answer https://stackoverflow.com/a/52613528
@@ -252,7 +259,11 @@ export default class JobResultProvider implements IJobResultProvider {
   ): (number | undefined)[][] {
     return results.map((r, i) => [
       i + 1,
-      ...Object.values(isIndoor ? r.Indoor[location] : r[location]).flatMap((p: IPhaseResult) => Object.values(p)),
+      ...Object.values(
+        isIndoor
+          ? r.scenarioResults.indoorResults[location]
+          : r.scenarioResults[location[0].toLowerCase() + `${location}Results`.substring(1)],
+      ).flatMap((p: IPhaseResult) => Object.values(p)),
     ]);
   }
 
