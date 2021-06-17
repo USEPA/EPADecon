@@ -162,6 +162,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             var resultsCalculator = parameterManager.SetDrawnParameters(calculatorManager);
 
             var eventResults = resultsCalculator.CalculateEventResults(calculatorManager, indoorResults, outdoorResults, undergroundResults);
+
+            Assert.AreEqual(961688.434868011, eventResults.otherResults.characterizationSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for characterization sampling");
+            Assert.AreEqual(55917.2759925219, eventResults.otherResults.sourceReductionTravelCost, 1e-6, "Incorrect travel cost calculated for source reduction");
+            Assert.AreEqual(204400, eventResults.otherResults.decontaminationTravelCost, 1e-6, "Incorrect travel cost calculated for decontamination");
+            Assert.AreEqual(712411.643783968, eventResults.otherResults.incidentCommandTravelCost, 1e-6, "Incorrect travel cost calculated for incident command");
+
+            Assert.AreEqual(16379564.354644503, eventResults.totalEventCost, 1e-6, "Incorrect event cost calculated");
+
+            Assert.AreEqual(27000, eventResults.totalContaminationArea, 1e-6, "Incorrect total contamination area calculated");
         }
     }
 }
