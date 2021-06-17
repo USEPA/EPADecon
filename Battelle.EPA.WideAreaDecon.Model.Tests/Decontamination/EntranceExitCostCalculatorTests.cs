@@ -45,7 +45,19 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         [Test]
         public void CalculateCost()
         {
-            var workDays = 12.0;
+            var workdays = new Dictionary<ApplicationMethod, double>()
+            {
+                { ApplicationMethod.Fogging, 1.0 },
+                { ApplicationMethod.Fumigation, 2.0 }
+            };
+
+            var decontaminationWorkdays = new List<Dictionary<ApplicationMethod, double>>();
+            
+            for (int i = 0; i < 4; i++)
+            {
+                decontaminationWorkdays.Add(workdays);
+            }
+
             var ppePerLevelPerTeam = new Dictionary<PpeLevel, double>()
             {
                 { PpeLevel.A, 0.0 },
@@ -55,8 +67,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             };
             var numTeams = 2.0;
             
-            //Assert.AreEqual(40517.336, Calculator.CalculateEntranceExitCost(workDays, numTeams, ppePerLevelPerTeam), 
-              //  1e-6, "Incorrect cost calculated");
+            Assert.AreEqual(15822.312, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam, decontaminationWorkdays), 
+                1e-6, "Incorrect cost calculated");
         }
     }
 }
