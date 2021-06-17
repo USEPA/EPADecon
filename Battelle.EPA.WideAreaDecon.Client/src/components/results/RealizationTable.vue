@@ -56,7 +56,7 @@
               </tr>
             </thead>
 
-            <tbody v-for="(phaseResult, phaseName) in results[0].Outdoor" :key="phaseName">
+            <tbody v-for="(phaseResult, phaseName) in results[0].scenarioResults.outdoorResults" :key="phaseName">
               <tr>
                 <td class="text-subtitle-1 font-weight-medium">
                   {{ resultProvider.convertCamelToTitleCase(phaseName) }}
@@ -103,7 +103,7 @@
               </tr>
             </thead>
 
-            <tbody v-for="(phaseResult, phaseName) in results[0].Outdoor" :key="phaseName">
+            <tbody v-for="(phaseResult, phaseName) in results[0].scenarioResults.outdoorResults" :key="phaseName">
               <tr>
                 <td class="text-subtitle-1 font-weight-medium">
                   {{ resultProvider.convertCamelToTitleCase(phaseName) }}
@@ -167,8 +167,10 @@ export default class RealizationTable extends Vue {
   tableWidth = 0;
 
   get locations(): string[] {
-    const outUnd = Object.keys(this.results[0]).splice(1);
-    return [...Object.keys(this.results[0].Indoor).map((l) => `${l} Building`), ...outUnd];
+    const outUnd = Object.keys(this.results[0].scenarioResults)
+      .splice(1)
+      .map((l) => l[0].toUpperCase() + l.replace('Results', '').substring(1));
+    return [...Object.keys(this.results[0].scenarioResults.indoorResults).map((l) => `${l} Building`), ...outUnd];
   }
 
   get tableLocations(): string[] {
@@ -212,10 +214,16 @@ export default class RealizationTable extends Vue {
   }
 
   getLocationResults(runNumber: number, location?: string): IPhaseResultSet {
-    const run = this.resultProvider.getRealizationResults(this.results, runNumber);
-    const selectedLocation = (location !== undefined ? location : this.selectedLocation).replace(/ Building$/, '');
+    const run = this.resultProvider.getRealizationResults(this.results, runNumber).scenarioResults;
+
+    let selectedLocation = (location !== undefined ? location : this.selectedLocation).replace(/ Building$/, '');
+
     const isIndoor = Object.keys(BuildingCategory).includes(selectedLocation);
-    return isIndoor ? run.Indoor[selectedLocation] : (run[selectedLocation] as IPhaseResultSet);
+    if (!isIndoor) {
+      selectedLocation = selectedLocation[0].toLowerCase() + `${selectedLocation}Results`.substring(1);
+    }
+
+    return isIndoor ? run.indoorResults[selectedLocation] : (run[selectedLocation] as IPhaseResultSet);
   }
 
   removeRunFromTable(runNumber: number): void {

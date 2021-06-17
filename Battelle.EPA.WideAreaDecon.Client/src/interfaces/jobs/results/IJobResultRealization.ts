@@ -1,9 +1,7 @@
-import IIndoorResult from './IIndoorResult';
-import IPhaseResultSet from './IPhaseResultSet';
+import IEventResults from './IEventResults';
+import IScenarioResults from './IScenarioResults';
 
 export default interface IJobResultRealization {
-  Indoor: IIndoorResult;
-  Outdoor: IPhaseResultSet;
-  Underground: IPhaseResultSet;
-  [key: string]: IPhaseResultSet | IIndoorResult;
+  scenarioResults: IScenarioResults;
+  eventResults: IEventResults;
 }

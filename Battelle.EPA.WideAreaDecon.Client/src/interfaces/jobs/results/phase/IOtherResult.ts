@@ -1,5 +1,9 @@
 import IPhaseResult from './IPhaseResult';
 
 export default interface IOtherResult extends IPhaseResult {
-  otherCosts: number;
+  characterizationSamplingTravelCost: number;
+  sourceReductionTravelCost: number;
+  decontaminationTravelCost: number;
+  incidentCommandTravelCost: number;
+  totalTravelCost: number;
 }
