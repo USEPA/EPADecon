@@ -26,7 +26,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             Calculator_workDays = new WorkDaysCalculator(
                 dcParameters.applicationMethods,
                 dcParameters.initialSporeLoading,
-                dcParameters.desiredSporeThreshold,
                 dcParameters.treatmentDaysPerAm,
                 Calculator_efficacy
             );

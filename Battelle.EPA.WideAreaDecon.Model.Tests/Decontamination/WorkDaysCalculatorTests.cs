@@ -29,7 +29,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 
             var efficacyParameters = scenarioDetails.Filters.First(f => f.Name == "Efficacy").Parameters;
 
-            var desiredSporeThreshold = 0.0;
             var applicationMethods = new Dictionary<SurfaceType, ApplicationMethod>();
             var initialSporeLoading = new Dictionary<SurfaceType, double>();
             var treatmentDaysPerAm = new Dictionary<ApplicationMethod, double>();
@@ -45,7 +44,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             Calculator = new WorkDaysCalculator(
                 applicationMethods,
                 initialSporeLoading,
-                desiredSporeThreshold,
                 treatmentDaysPerAm,
                 new EfficacyCalculator(efficacyParameters)
             );

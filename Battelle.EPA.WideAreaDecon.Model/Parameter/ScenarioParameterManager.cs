@@ -193,7 +193,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 initialSporeLoading.Add(surface, scenarioDefinitionDetails[surface].Loading);
                 agentVolume.Add(surface, _decontaminationParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume of Agent Applied").CreateDistribution().Draw());
             }
-            var desiredSporeThreshold = _decontaminationParameters.First(p => p.Name == "Eff").Parameters.First(n => n.MetaData.Name == "Post-decon Spore Threshold").CreateDistribution().Draw();
             foreach (ApplicationMethod method in Enum.GetValues(typeof(ApplicationMethod)))
             {
                 treatmentDaysPerAm.Add(method, _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon + Drying Days").CreateDistribution().Draw());
@@ -230,7 +229,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 _efficacyParameters,
                 applicationMethods,
                 initialSporeLoading,
-                desiredSporeThreshold,
                 treatmentDaysPerAm,
                 personnelReqPerTeam,
                 personnelOverhead,

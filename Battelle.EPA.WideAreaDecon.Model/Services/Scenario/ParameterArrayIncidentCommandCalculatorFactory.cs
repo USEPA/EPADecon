@@ -78,7 +78,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             Calculator_workDaysDc = new Decontamination.WorkDaysCalculator(
                 dcParameters.applicationMethods,
                 dcParameters.initialSporeLoading,
-                dcParameters.desiredSporeThreshold,
                 dcParameters.treatmentDaysPerAm,
                 Calculator_efficacy
             );

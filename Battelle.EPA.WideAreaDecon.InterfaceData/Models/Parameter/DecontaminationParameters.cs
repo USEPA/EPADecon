@@ -11,7 +11,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public IParameter[] efficacyParameters;
         public Dictionary<SurfaceType, ApplicationMethod> applicationMethods;
         public Dictionary<SurfaceType, double> initialSporeLoading;
-        public double desiredSporeThreshold;
         public Dictionary<ApplicationMethod, double> treatmentDaysPerAm;
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
         public double personnelOverhead;
@@ -32,7 +31,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             IParameter[] _efficacyParameters,
             Dictionary<SurfaceType, ApplicationMethod> _applicationMethods,
             Dictionary<SurfaceType, double> _initialSporeLoading,
-            double _desiredSporeThreshold,
             Dictionary<ApplicationMethod, double> _treatmentDaysPerAm,
             Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
             double _personnelOverhead,
@@ -52,7 +50,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             initialSporeLoading = _initialSporeLoading;
             treatmentDaysPerAm = _treatmentDaysPerAm;
             agentVolume = _agentVolume;
-            desiredSporeThreshold = _desiredSporeThreshold;
             personnelReqPerTeam = _personnelReqPerTeam;
             personnelOverhead = _personnelOverhead;
             roundtripDays = _roundtripDays;
