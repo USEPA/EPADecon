@@ -72,6 +72,8 @@ export default class JobResultProvider implements IJobResultProvider {
       averageHeaders,
     );
 
+    const event = this.excelBuildEventResults(results);
+
     const runData = [
       ['Data exported on: ', new Date(Date.now()).toLocaleString()],
       ['Number of realizations: ', results.length],
@@ -83,6 +85,7 @@ export default class JobResultProvider implements IJobResultProvider {
     const indSumWS = XLSX.utils.aoa_to_sheet(indoorSum);
     const outWS = XLSX.utils.aoa_to_sheet(outdoor);
     const undWS = XLSX.utils.aoa_to_sheet(underground);
+    const eventWS = XLSX.utils.aoa_to_sheet(event);
 
     // Add worksheets to workbook
     XLSX.utils.book_append_sheet(wb, dataWS, 'Data');
@@ -90,6 +93,7 @@ export default class JobResultProvider implements IJobResultProvider {
     XLSX.utils.book_append_sheet(wb, indSumWS, 'Indoor');
     XLSX.utils.book_append_sheet(wb, outWS, 'Outdoor');
     XLSX.utils.book_append_sheet(wb, undWS, 'Underground');
+    XLSX.utils.book_append_sheet(wb, eventWS, 'Event');
 
     // Download workbook
     XLSX.writeFile(wb, 'Results.xlsx');
@@ -288,6 +292,46 @@ export default class JobResultProvider implements IJobResultProvider {
       ['', ...phaseHeaders],
       ['Realization', ...resultHeaders],
       ...this.excelParseLocationRealizationResults(results, location, isIndoor),
+    ];
+  }
+
+  private excelBuildEventResults(results: IJobResultRealization[]): (string | number | undefined)[][] {
+    const sectionHeaders = ['Travel Costs', '', '', '', '', 'Event Costs'];
+
+    const resultHeaders = Object.entries(results[0].eventResults).flatMap(([k, v]: [string, number | IPhaseResult]) => {
+      const header = typeof v === 'number' ? [k] : Object.keys(v);
+      return header.map((h) => this.convertCamelToTitleCase(h));
+    });
+
+    const averageHeaders = resultHeaders.map((h) => `Average ${h}`);
+
+    const realizationResults = results.map((r, i) => [
+      i + 1,
+      ...Object.values(r.eventResults).flatMap((p: IPhaseResult | number) =>
+        typeof p === 'number' ? p : Object.values(p),
+      ),
+    ]);
+
+    const { length } = results;
+    const averageResults = realizationResults
+      .reduce((acc, cur) => {
+        return cur.slice(1).map((x, i) => (acc[i] ?? 0) + (x ?? 0));
+      }, [])
+      .map((v) => (v ?? 0) / length);
+
+    return [
+      ['Event Results'],
+      [''], // empty row
+      ['', ...sectionHeaders],
+      ['', ...averageHeaders],
+      ['', ...averageResults],
+      [''],
+      [''],
+      ['Realization Results'],
+      [''],
+      ['', ...sectionHeaders],
+      ['Realization', ...resultHeaders],
+      ...realizationResults,
     ];
   }
 
