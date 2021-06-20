@@ -35,16 +35,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
-                areaContaminated.Add(surface, new ContaminationInformation(100, 20));
+                areaContaminated.Add(surface, new ContaminationInformation(500, 20));
                 treatmentMethods.Add(surface, ApplicationMethod.Fogging);
             }
 
-            Assert.AreEqual(0.0,
-                Calculator.NonFoggingSuppliesCostCalculator(areaContaminated, treatmentMethods), 1e-6,
-                "Incorrect cost calculated(non fog)");
-            Assert.AreEqual(3628.1877973273,
-                Calculator.FoggingSuppliesCostCalculator(areaContaminated, treatmentMethods), 1e-6,
-                "Incorrect cost calculated(fogging)");
+            Assert.AreEqual(18140.9389866365, Calculator.CalculateSuppliesCost(areaContaminated, treatmentMethods), 1e-6,
+                "Incorrect supplies cost calculated");
         }
     }
 }

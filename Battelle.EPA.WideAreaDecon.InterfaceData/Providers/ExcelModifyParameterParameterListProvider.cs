@@ -51,6 +51,23 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Providers
             using var stream = new FileStream(FileName, FileMode.Open, FileAccess.Read) {Position = 0};
             XSSFWorkbook xssWorkbook = new XSSFWorkbook(stream);
 
+            // Building Treatment Methods Enumerated Parameter
+            var treatmentMethods = new List<IParameter>();
+            var treatmentMethodSheet = xssWorkbook.GetSheet("Decon Methods by Surface");
+            var row = new Dictionary<IRow, ParameterMetaData>();
+
+            for (var i = 1; i <= treatmentMethodSheet.LastRowNum; i++)
+            {
+                row.Add(treatmentMethodSheet.GetRow(i), ParameterMetaData.FromExcel(treatmentMethodSheet.GetRow(i)));
+            }
+
+            treatmentMethods.Add(EnumeratedParameter<SurfaceType>.FromExcel(new ParameterMetaData()
+            {
+                Name = "Decontamination Method by Surface",
+                Description = "The decontamination methods to be applied to each surface",
+            }, row.Select(row => row.Key)));
+
+            // Building Efficacy Enumerated Parameters
             var efficacyParameters = new List<IParameter>();
             foreach (var method in Enum.GetValues(typeof(ApplicationMethod)).Cast<ApplicationMethod>())
             {
@@ -61,30 +78,30 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Providers
                     rows.Add(methodSheet.GetRow(i), ParameterMetaData.FromExcel(methodSheet.GetRow(i)));
                 }
 
-                var surfaceCat = rows.Where(row =>
+                var surfaceCategory = rows.Where(row =>
                     Enum.TryParse(typeof(SurfaceType), row.Value.Category, true, out var tmp)).ToArray();
-                if (surfaceCat.Any())
+                if (surfaceCategory.Any())
                 {
                     efficacyParameters.Add(EnumeratedParameter<SurfaceType>.FromExcel(new ParameterMetaData()
                     {
                         Name = $"{method.GetStringValue()} Efficacy by Surface",
                         Description = $"The Efficacy of {method.GetStringValue()} based on the surface it is applied to",
                         Units = "log reduction",
-                    }, surfaceCat.Select(row => row.Key)));
+                    }, surfaceCategory.Select(row => row.Key)));
                 }
 
-                var methodCat = rows.Where(row => Enum.TryParse(typeof(ApplicationMethod),
+                var methodCategory = rows.Where(row => Enum.TryParse(typeof(ApplicationMethod),
                     ParameterMetaData.FromExcel(row.Key).Category,
                     true,
                     out var tmp)).ToArray();
-                if (methodCat.Any())
+                if (methodCategory.Any())
                 {
                     efficacyParameters.Add(EnumeratedParameter<ApplicationMethod>.FromExcel(new ParameterMetaData()
                     {
                         Name = $"{method.GetStringValue()} Efficacy",
                         Description = $"The Efficacy of {method.GetStringValue()} independent of the surface it is applied to",
                         Units = "log reduction",
-                    }, methodCat.Select(row => row.Key)));
+                    }, methodCategory.Select(row => row.Key)));
                 }
             }
 
@@ -95,6 +112,12 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Providers
                 Name = "Efficacy",
                 Filters = new ParameterFilter[0],
                 Parameters = efficacyParameters.ToArray()
+            });
+            filters.Add(new ParameterFilter()
+            {
+                Name = "Decontamination Treatment Methods by Surface",
+                Filters = new ParameterFilter[0],
+                Parameters = treatmentMethods.ToArray()
             });
 
 

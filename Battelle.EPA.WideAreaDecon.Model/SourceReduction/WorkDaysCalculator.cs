@@ -13,9 +13,9 @@
             _massPerSa = massPerSa;
         }
 
-        public double CalculateWorkDays(double _numberTeams, double saToBeSourceReduced)
+        public double CalculateWorkDays(double _numberTeams, double saToBeSourceReduced, double area)
         {
-            return saToBeSourceReduced * _massPerSa / (GlobalConstants.HoursPerWorkDay * _massRemovedPerHrPerTeam * _numberTeams);
+            return (saToBeSourceReduced * area) * _massPerSa / (GlobalConstants.HoursPerWorkDay * _massRemovedPerHrPerTeam * _numberTeams);
         }
     }
 }

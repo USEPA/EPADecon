@@ -8,35 +8,44 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
     [JsonConverter(typeof(StringEnumConverter))]
     public enum SurfaceType
     {
-        [EnumMember(Value = "Indoor Interior")]
-        IndoorInterior,
-
-        [EnumMember(Value = "Indoor Exterior")]
-        IndoorExterior,
+        [EnumMember(Value = "Indoor Walls")]
+        IndoorWalls,
 
         [EnumMember(Value = "Indoor Ceilings")]
         IndoorCeilings,
-        [EnumMember(Value = "Indoor Carpet")] IndoorCarpet,
+
+        [EnumMember(Value = "Indoor Carpet")] 
+        IndoorCarpet,
 
         [EnumMember(Value = "Indoor Non-Carpet")]
         IndoorNonCarpet,
-        [EnumMember(Value = "HVAC")] Hvac,
+
+        [EnumMember(Value = "Indoor HVAC")] 
+        IndoorHvac,
 
         [EnumMember(Value = "Indoor Miscellaneous")]
         IndoorMisc,
 
         [EnumMember(Value = "Outdoor Exterior")]
         OutdoorExterior,
-        [EnumMember(Value = "Pavement")] Pavement,
-        [EnumMember(Value = "Roofing")] Roofing,
-        [EnumMember(Value = "Water")] Water,
-        [EnumMember(Value = "Soil")] Soil,
+
+        [EnumMember(Value = "Pavement")] 
+        Pavement,
+
+        [EnumMember(Value = "Roofing")] 
+        Roofing,
+
+        [EnumMember(Value = "Water")] 
+        Water,
+
+        [EnumMember(Value = "Soil")] 
+        Soil,
 
         [EnumMember(Value = "Outdoor Miscellaneous")]
         OutdoorMisc,
 
-        [EnumMember(Value = "Underground Interior")]
-        UndergroundInterior,
+        [EnumMember(Value = "Underground Walls")]
+        UndergroundWalls,
 
         [EnumMember(Value = "Underground Ceilings")]
         UndergroundCeilings,
@@ -47,18 +56,20 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
         [EnumMember(Value = "Underground Non-Carpet")]
         UndergroundNonCarpet,
 
+        [EnumMember(Value = "Underground HVAC")]
+        UndergroundHvac,
+
         [EnumMember(Value = "Underground Miscellaneous")]
         UndergroundMisc
     }
     public static class SurfaceTypeHelper
     {
         public static readonly SurfaceType[] IndoorSurfaceTypes = {
-            SurfaceType.IndoorInterior,
-            SurfaceType.IndoorExterior,
+            SurfaceType.IndoorWalls,
             SurfaceType.IndoorCeilings,
             SurfaceType.IndoorCarpet,
             SurfaceType.IndoorNonCarpet,
-            SurfaceType.Hvac,
+            SurfaceType.IndoorHvac,
             SurfaceType.IndoorMisc,
         };
 
@@ -74,12 +85,12 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
 
 
         public static readonly SurfaceType[] UndergroundSurfaceTypes = {
-            SurfaceType.UndergroundInterior,
+            SurfaceType.UndergroundWalls,
             SurfaceType.UndergroundCeilings,
             SurfaceType.UndergroundCarpet,
             SurfaceType.UndergroundNonCarpet,
             SurfaceType.UndergroundMisc,
-            SurfaceType.Hvac,
+            SurfaceType.UndergroundHvac,
         };
 
         public static SurfaceType[] GetSurfaceTypesForPhase(DecontaminationPhase phase)

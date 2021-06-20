@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Services
 {
-    interface ISourceReductionCalculatorFactory
+    public interface ISourceReductionCalculatorFactory
     {
         SourceReduction.SourceReductionCostCalculator GetCalculator();
     }

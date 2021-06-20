@@ -8,8 +8,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
     {
         public double CalculateLaborCost(double workDays, double _numberTeams, double personnelRoundTripDays, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated);
 
-        public double CalculateEntExitLaborCost(double workDays, double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated);
-
         public double CalculateLaborDays(double workDays);
     }
 }

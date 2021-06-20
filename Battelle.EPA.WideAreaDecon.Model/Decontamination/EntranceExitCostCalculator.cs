@@ -12,22 +12,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         private readonly double _respiratorsPerPerson;
         private readonly double _numberEntriesPerTeamPerDay;
 
-        private readonly IEntExitLaborCostCalculator _entExitLaborCostCalculator;
-
         public EntranceExitCostCalculator(
             Dictionary<PersonnelLevel, double> personnelReqPerTeam,
             double numberEntriesPerTeamPerDay,
             double respiratorsPerPerson,
             double costPerRespirator,
-            Dictionary<PpeLevel, double> costPerPpe,
-            IEntExitLaborCostCalculator entExitLaborCostCalculator
+            Dictionary<PpeLevel, double> costPerPpe
             )
         {
             _personnelReqPerTeam = personnelReqPerTeam;
             _respiratorsPerPerson = respiratorsPerPerson;
             _costPerRespirator = costPerRespirator;
             _costPerPpe = costPerPpe;
-            _entExitLaborCostCalculator = entExitLaborCostCalculator;
             _numberEntriesPerTeamPerDay = numberEntriesPerTeamPerDay;
         }
 
@@ -37,13 +33,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
             
             var totalEntries = workDays * _numberEntriesPerTeamPerDay * _numberTeams;
 
-            var totalPpePerLevel = ppePerLevelPerTeam.Values.Select(x => x * _numberTeams * totalEntries);
+            var totalPpePerLevel = ppePerLevelPerTeam.Values.Select(x => x * _personnelReqPerTeam.Values.Sum() * totalEntries);
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
-            var costLaborEntEx = _entExitLaborCostCalculator.CalculateEntExitLaborCost(_numberTeams, workDays);
-
-            return costLaborEntEx + (totalPersonnel * _respiratorsPerPerson * _costPerRespirator) + totalCostPpe;
+            return (totalPersonnel * _respiratorsPerPerson * _costPerRespirator) + totalCostPpe;
         }
     }
 }

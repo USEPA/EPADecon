@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\InputFiles\ModifyParameters.xlsx" Link="InputFiles\ModifyParameters.xlsx">
+    <None Include="..\Battelle.EPA.WideAreaDecon.Model.Tests\InputFiles\ModifyParametersTest.xlsx" Link="InputFiles\ModifyParametersTest.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -18,7 +18,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
         public void Setup()
         {
             // Setting parameters
-            string TestFileName1 = @"InputFiles\ModifyParameters.xlsx";
+            string TestFileName1 = @"InputFiles\ModifyParametersTest.xlsx";
             var modifyParameters = new ExcelModifyParameterParameterListProvider
             {
                 FileName = TestFileName1,
@@ -41,7 +41,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                 scenarioDetails.Filters.First(f => f.Name == "Efficacy").Parameters,
                 scenarioDetails.Filters.First(f => f.Name == "Other").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Incident Command").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Cost per Parameter").Filters);
+                scenarioDetails.Filters.First(f => f.Name == "Cost per Parameter").Filters,
+                scenarioDetails.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
         }
 
         [Test]
@@ -55,8 +56,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                 scenarioDefinitionDetails.Add(surface, info);
             }
 
-            //var csResults = Manager.SetCharacterizationSamplingParameters();
-            //var deconResults = Manager.SetDecontaminationParameters(scenarioDefinitionDetails, DecontaminationPhase.Indoor);
+            var indoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationPhase.Indoor);
+            var outdoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationPhase.Outdoor);
+            var undergroundParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationPhase.Underground);
+
+            Assert.Pass();
         }
     }
 }

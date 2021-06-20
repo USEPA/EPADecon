@@ -21,6 +21,8 @@ import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDi
 import DistributionDisplayProvider from '@/implementations/providers/DistributionDisplayProvider';
 import IJobProvider from '@/interfaces/providers/IJobProvider';
 import JobProvider from '@/implementations/providers/JobProvider';
+import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
+import JobResultProvider from '@/implementations/providers/JobResultProvider';
 import PROVIDER_TYPES from './providers.types';
 
 const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => {
@@ -59,6 +61,8 @@ const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => 
   bind<IDistributionDisplayProvider>(PROVIDER_TYPES.DistributionDisplayProvider).to(DistributionDisplayProvider);
 
   bind<IJobProvider>(PROVIDER_TYPES.JobProvider).to(JobProvider);
+
+  bind<IJobResultProvider>(PROVIDER_TYPES.JobResultProvider).to(JobResultProvider);
 });
 
 export default providersContainerModule;

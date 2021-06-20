@@ -6,13 +6,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
     public interface ISuppliesCostCalculator
     {
-        public double NonFoggingSuppliesCostCalculator(
-            Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
+        public double CalculateSuppliesCost(Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
             Dictionary<SurfaceType, ApplicationMethod> treatmentMethods);
-
-        public double FoggingSuppliesCostCalculator(
-            Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
-            Dictionary<SurfaceType, ApplicationMethod> treatmentMethods);
-        
     }
 }

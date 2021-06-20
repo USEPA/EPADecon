@@ -7,5 +7,6 @@ export default interface IUnivariateParameter extends IParameter {
   mean?: number;
   mode?: number;
   stdDev?: number;
+  text?: string;
   distribution?: Distribution;
 }

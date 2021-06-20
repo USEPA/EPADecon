@@ -20,20 +20,13 @@
     <v-toolbar-title class="title" v-text="applicationTitle"></v-toolbar-title>
     <v-spacer></v-spacer>
 
-    <!-- Run / Export results buttons -->
-    <v-tooltip bottom :color="canRun ? 'info' : 'error'">
+    <!-- Run button -->
+    <v-tooltip v-if="!onResultsPage" bottom :color="canRun ? 'info' : 'error'">
       <template v-slot:activator="{ on }">
         <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'" :color="canRun ? 'secondary' : ''">
-          <v-btn
-            v-if="!showExportButton()"
-            v-on="on"
-            @click="displayModal"
-            :disabled="!canRun"
-            :color="canRun ? 'secondary' : ''"
-          >
+          <v-btn v-on="on" @click="displayRunModal" :disabled="!canRun" :color="canRun ? 'secondary' : ''">
             Run Scenario
           </v-btn>
-          <v-btn v-else v-on="on" @click="exportResults" color="secondary"> Export Results </v-btn>
         </div>
       </template>
       <span v-if="canRun">Runs the model and generates results</span>
@@ -116,8 +109,6 @@ import INavigationItem from '@/interfaces/configuration/INavigationItem';
 import container from '@/dependencyInjection/config';
 import IImageProvider from '@/interfaces/providers/IImageProvider';
 import TYPES from '@/dependencyInjection/types';
-import IJobProvider from '@/interfaces/providers/IJobProvider';
-import JobRequest from '@/implementations/jobs/JobRequest';
 
 @Component
 export default class NavigationBar extends Vue {
@@ -135,11 +126,7 @@ export default class NavigationBar extends Vue {
 
   @State enableNavigationTabs!: boolean;
 
-  @State currentJob!: JobRequest;
-
   imageProvider = container.get<IImageProvider>(TYPES.ImageProvider);
-
-  jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
 
   selectedNavigationRoute: string | null = null;
 
@@ -152,16 +139,13 @@ export default class NavigationBar extends Vue {
     store.commit('setNavigationItems', items);
   }
 
-  displayModal(): void {
-    this.$emit('visible');
+  get onResultsPage(): boolean {
+    const resultPageNames = ['viewResults', 'jobSummary'];
+    return resultPageNames.includes(this.$route.name ?? '');
   }
 
-  exportResults(): void {
-    this.jobProvider.exportJobResults(this.currentJob);
-  }
-
-  showExportButton(): boolean {
-    return this.hasResults && this.selectedNavigationRoute === '/ViewResults';
+  displayRunModal(): void {
+    this.$emit('showRunModal');
   }
 
   getClassName(name: string): string {

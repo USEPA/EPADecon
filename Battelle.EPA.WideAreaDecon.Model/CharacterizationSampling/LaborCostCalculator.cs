@@ -44,17 +44,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
             return (workDays + _personnelOverhead) * GlobalConstants.HoursPerWorkDay * _numberTeams * personnelHoursCost;
         }
-        
-        //return double if Elabor cost is not longer readonly
-        public double CalculateEntExitLaborCost(double workDays, double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
-        {
-            var personnelHoursCost = _personnelRequiredPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
-
-            var totalEntries = workDays * _numberEntriesPerTeamPerDay * _numberTeams;
-
-            return ((totalEntries * _hoursPerEntryPerTeam) +
-                (totalEntries * _hoursPerExitPerTeam)) * personnelHoursCost;
-        }
 
         public double CalculateLaborDays(double workDays)
         {

@@ -31,9 +31,16 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static ConstantDistribution FromExcel(ParameterMetaData metaData, IRow row)
         {
+            var value = typeof(ConstantDistribution).GetCellValue(nameof(Value), row)?.ConvertToOptionalDouble();
+
+            if (value < metaData.LowerLimit || value > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Value for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
             return new ConstantDistribution()
             {
-                Value = typeof(ConstantDistribution).GetCellValue(nameof(Value), row)?.ConvertToOptionalDouble(),
+                Value = value,
                 MetaData = metaData
             };
         }
@@ -45,6 +52,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
                 return new Stats.ConstantDistribution(Value.Value);
             }
             throw new ArgumentNullException();
+        }
+
+        public string GetTextValue()
+        {
+            throw new NotImplementedException();
         }
     }
 }

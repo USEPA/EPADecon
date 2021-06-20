@@ -9,9 +9,11 @@ import appSettingsMutations from './appSettings/mutations';
 import clientConfigurationMutations from './clientConfiguration/mutations';
 import runSettingsMutations from './runSettings/mutations';
 import runSettingsGetters from './runSettings/getters';
+import runSettingsActions from './runSettings/actions';
 import NavigationSettings from './navigationSettings/NavigationSettings';
 import navigationSettingsMutations from './navigationSettings/mutations';
 import parameterSelectionMutations from './parameterSelection/mutations';
+import parameterSelectionActions from './parameterSelection/actions';
 import ParameterSelection from './parameterSelection/ParameterSelection';
 import CurrentJob from './jobs/CurrentJob';
 import currentJobMutations from './jobs/mutations';
@@ -41,6 +43,8 @@ const store: StoreOptions<IRootState> = {
     ...currentJobMutations,
   },
   actions: {
+    ...parameterSelectionActions,
+    ...runSettingsActions,
     ...jobRequestActions,
   },
 };

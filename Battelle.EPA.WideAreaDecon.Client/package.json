@@ -41,7 +41,8 @@
     "vuetify": "^2.3.19",
     "vuetify-loader": "^1.6.0",
     "vuex": "^3.6.0",
-    "vuex-class": "^0.3.2"
+    "vuex-class": "^0.3.2",
+    "xlsx": "^0.16.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.8",

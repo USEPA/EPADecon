@@ -8,5 +8,6 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results
     {
         public double totalCost { get; set; }
         public double areaContaminated { get; set; }
+        public int decontaminationRounds { get; set; }
     }
 }

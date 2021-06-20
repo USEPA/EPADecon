@@ -52,21 +52,46 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static BimodalTruncatedNormalDistribution FromExcel(ParameterMetaData metaData, IRow information)
         {
+            var minimum = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Min), information)
+                    ?.ConvertToOptionalDouble();
+            var maximum = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Max), information)
+                    ?.ConvertToOptionalDouble();
+            var mean1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean1), information)
+                    ?.ConvertToOptionalDouble();
+            var mean2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean2), information)
+                    ?.ConvertToOptionalDouble();
+
+            if (minimum < metaData.LowerLimit || minimum > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Minimum for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
+            if (maximum < metaData.LowerLimit || maximum > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Maximum for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
+            if (mean1 < metaData.LowerLimit || mean1 > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Mean 1 for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
+            if (mean2 < metaData.LowerLimit || mean2 > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Mean 2 for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
             return new BimodalTruncatedNormalDistribution()
             {
                 MetaData = metaData,
-                Mean1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean1), information)
-                    ?.ConvertToOptionalDouble(),
+                Mean1 = mean1,
                 StdDev1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(StdDev1), information)
                     ?.ConvertToOptionalDouble(),
-                Mean2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean2), information)
-                    ?.ConvertToOptionalDouble(),
+                Mean2 = mean2,
                 StdDev2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(StdDev2), information)
                     ?.ConvertToOptionalDouble(),
-                Min = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Min), information)
-                    ?.ConvertToOptionalDouble(),
-                Max = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Max), information)
-                    ?.ConvertToOptionalDouble(),
+                Min = minimum,
+                Max = maximum,
             };
         }
 
@@ -80,6 +105,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
                 return new Stats.BimodalTruncatedNormalDistribution(child1, child2);
             }
             throw new ArgumentNullException();
+        }
+
+        public string GetTextValue()
+        {
+            throw new NotImplementedException();
         }
     }
 }
