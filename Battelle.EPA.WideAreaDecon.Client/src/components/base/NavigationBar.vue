@@ -126,11 +126,7 @@ export default class NavigationBar extends Vue {
 
   @State enableNavigationTabs!: boolean;
 
-  @State currentJob!: JobRequest;
-
   imageProvider = container.get<IImageProvider>(TYPES.ImageProvider);
-
-  jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
 
   selectedNavigationRoute: string | null = null;
 
