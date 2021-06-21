@@ -1,11 +1,12 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import Distribution, { PertDistribution } from 'battelle-common-typescript-statistics';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
-import IUnivariateParameter from './IUnivariateParameter';
 
 @Serializable()
-export default class BetaPERT implements IParameter, IUnivariateParameter {
+export default class BetaPERT implements IUnivariateParameter {
   @JsonProperty()
   readonly type: ParameterType = ParameterType.pert;
 
@@ -44,6 +45,13 @@ export default class BetaPERT implements IParameter, IUnivariateParameter {
     this.max = max;
     this.mode = mode;
     this.metaData = metaData;
+  }
+
+  get distribution(): Distribution | undefined {
+    if (this.min === undefined || this.max === undefined || this.mode === undefined) {
+      return undefined;
+    }
+    return new PertDistribution(this.mode, this.min, this.max);
   }
 
   isEquivalent(other: IParameter): boolean {

@@ -1,12 +1,23 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import Router, { NavigationGuardNext, Route } from 'vue-router';
 import DefineScenario from '@/components/adjustmentPages/DefineScenario.vue';
 import ModifyParameters from '@/components/adjustmentPages/ModifyParameters.vue';
 import LoadPreDefinedScenario from '@/components/modals/load/LoadPreDefinedScenario.vue';
 import LoadPreviousScenario from '@/components/modals/load/LoadPreviousScenario.vue';
 import Home from '@/components/base/Home.vue';
+import ViewResults from '@/components/results/ViewResults.vue';
+import RealizationSummary from '@/components/results/RealizationSummary.vue';
+import store from '@/store';
 
 Vue.use(Router);
+
+const pageRequiresResults = (to: Route, from: Route, next: NavigationGuardNext) => {
+  if (!store.getters.hasResults) {
+    next({ name: 'defineScenario' });
+  } else {
+    next();
+  }
+};
 
 export default new Router({
   mode: 'history',
@@ -36,6 +47,18 @@ export default new Router({
       path: '/LoadPreviousScenario',
       name: 'loadPreviousScenario',
       component: LoadPreviousScenario,
+    },
+    {
+      path: '/ViewResults',
+      name: 'viewResults',
+      component: ViewResults,
+      beforeEnter: pageRequiresResults,
+    },
+    {
+      path: '/JobSummary',
+      name: 'jobSummary',
+      component: RealizationSummary,
+      beforeEnter: pageRequiresResults,
     },
   ],
 });

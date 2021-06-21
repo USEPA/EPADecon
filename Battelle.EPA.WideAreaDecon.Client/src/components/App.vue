@@ -1,11 +1,12 @@
 <template>
   <v-app>
     <div>Hello world!</div>
-    <nav-bar />
+    <nav-bar @showRunModal="showRunModal = true" />
 
     <!-- Content Router -->
     <v-main>
-      <router-view />
+      <run-scenario v-model="showRunModal" />
+      <router-view @showRunModal="showRunModal = true" />
     </v-main>
 
     <footer-bar />
@@ -15,22 +16,21 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import NavBar from '@/components/base/NavigationBar.vue';
+import RunScenario from '@/components/modals/RunScenario.vue';
 import FooterBar from '@/components/base/FooterBar.vue';
 
 @Component({
   components: {
     NavBar,
     FooterBar,
+    RunScenario,
   },
 })
 export default class App extends Vue {
-  // eslint-disable-next-line class-methods-use-this
-  mounted(): void {
-    // eslint-disable-next-line no-console
-    console.log('APP MOUNTED');
-  }
+  showRunModal = false;
 }
 </script>
+
 <style scoped lang="scss">
 .disabled-tool-tip {
   cursor: no-drop;
