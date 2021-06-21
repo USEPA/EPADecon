@@ -13,87 +13,79 @@ export default class JobResultProvider implements IJobResultProvider {
   exportJobResults(results: IJobResultRealization[]): void {
     const wb = XLSX.utils.book_new();
 
-    // Headers for each phase
-    const phaseHeaders = [
-      'Pre Decon Characterization Sampling',
-      '',
-      '',
-      'Post Decon Characterization Sampling',
-      '',
-      '',
-      'Total Characterization Sampling',
-      '',
-      '',
-      'Source Reduction',
-      '',
-      '',
-      'Decontamination',
-      '',
-      '',
-      'Incident Command',
-      '',
-      // 'Other',
-      'General',
+    const runData = [
+      ['Data exported on: ', new Date(Date.now()).toLocaleString()],
+      ['Number of realizations: ', results.length],
     ];
+    this.excelAddToWorkbook(runData, wb, 'Data');
+
+    const { scenarioResults } = results[0];
+    const existingLocation =
+      scenarioResults.outdoorResults ??
+      scenarioResults.undergroundResults ??
+      Object.values(scenarioResults.indoorResults)[0];
+
+    // Get headers for each phase
+    const phaseHeaders: string[] = Object.entries(existingLocation).flatMap(([p, rs]) => {
+      const phase = [this.convertCamelToTitleCase(p.replace(/Results$/, ''))];
+      [...Array(Object.keys(rs).length - 1)].forEach(() => phase.push(''));
+      return phase;
+    });
 
     // Get headers for each result
-    const resultHeaders = Object.values(results[0].scenarioResults.outdoorResults).flatMap((pr) =>
+    const resultHeaders = Object.values(existingLocation).flatMap((pr) =>
       Object.keys(pr).map((p) => this.convertCamelToTitleCase(p)),
     );
 
     // Headers for average results
     const averageHeaders = resultHeaders.map((h) => `Average ${h}`);
 
-    // Build arrays for each location
-    const buildings = Object.keys(results[0].scenarioResults.indoorResults);
-    const indoor = buildings.map((b) =>
-      this.excelBuildLocationResults(results, b, phaseHeaders, resultHeaders, averageHeaders, true),
-    );
+    // INDOOR
+    if (results[0].scenarioResults.indoorResults) {
+      // Build arrays for each location
+      const buildings = Object.keys(results[0].scenarioResults.indoorResults);
+      const indoor = buildings.map((b) =>
+        this.excelBuildLocationResults(results, b, phaseHeaders, resultHeaders, averageHeaders, true),
+      );
 
-    // Get sum of all buildings (this is likely only temporary)
-    const indoorSum = this.excelBuildLocationResults(results, 'Outdoor', phaseHeaders, resultHeaders, averageHeaders);
-    indoorSum.splice(0, 1, ['Sum of Indoor Results']);
-    const avgSum = [
-      '',
-      ...buildings
-        .map((b) => this.excelCalculateAverages(results, b, true))
-        .reduce((acc, cur) => {
-          return cur.map((v, i) => acc[i] + v);
-        }),
-    ];
-    indoorSum.splice(4, indoorSum.length - 1, avgSum);
+      // Get sum of all buildings (this is likely only temporary)
+      const indoorSum = this.excelBuildLocationResults(results, 'Outdoor', phaseHeaders, resultHeaders, averageHeaders);
+      indoorSum.splice(0, 1, ['Sum of Indoor Results']);
+      const avgSum = [
+        '',
+        ...buildings
+          .map((b) => this.excelCalculateAverages(results, b, true))
+          .reduce((acc, cur) => {
+            return cur.map((v, i) => acc[i] + v);
+          }),
+      ];
+      indoorSum.splice(4, indoorSum.length - 1, avgSum);
 
-    const outdoor = this.excelBuildLocationResults(results, 'Outdoor', phaseHeaders, resultHeaders, averageHeaders);
-    const underground = this.excelBuildLocationResults(
-      results,
-      'Underground',
-      phaseHeaders,
-      resultHeaders,
-      averageHeaders,
-    );
+      // Add sheets to workbook
+      indoor.forEach((ws, i) => this.excelAddToWorkbook(ws, wb, `${buildings[i]} Building`));
+      this.excelAddToWorkbook(indoorSum, wb, 'Indoor');
+    }
+
+    // OUTDOOR
+    if (results[0].scenarioResults.outdoorResults) {
+      const outdoor = this.excelBuildLocationResults(results, 'Outdoor', phaseHeaders, resultHeaders, averageHeaders);
+      this.excelAddToWorkbook(outdoor, wb, 'Outdoor');
+    }
+
+    // UNDERGROUND
+    if (results[0].scenarioResults.undergroundResults) {
+      const underground = this.excelBuildLocationResults(
+        results,
+        'Underground',
+        phaseHeaders,
+        resultHeaders,
+        averageHeaders,
+      );
+      this.excelAddToWorkbook(underground, wb, 'Underground');
+    }
 
     const event = this.excelBuildEventResults(results);
-
-    const runData = [
-      ['Data exported on: ', new Date(Date.now()).toLocaleString()],
-      ['Number of realizations: ', results.length],
-    ];
-
-    // Create worksheets from arrays
-    const dataWS = XLSX.utils.aoa_to_sheet(runData);
-    const indWS = indoor.map((aoa) => XLSX.utils.aoa_to_sheet(aoa));
-    const indSumWS = XLSX.utils.aoa_to_sheet(indoorSum);
-    const outWS = XLSX.utils.aoa_to_sheet(outdoor);
-    const undWS = XLSX.utils.aoa_to_sheet(underground);
-    const eventWS = XLSX.utils.aoa_to_sheet(event);
-
-    // Add worksheets to workbook
-    XLSX.utils.book_append_sheet(wb, dataWS, 'Data');
-    indWS.forEach((WS, i) => XLSX.utils.book_append_sheet(wb, WS, `${buildings[i]} Building`));
-    XLSX.utils.book_append_sheet(wb, indSumWS, 'Indoor');
-    XLSX.utils.book_append_sheet(wb, outWS, 'Outdoor');
-    XLSX.utils.book_append_sheet(wb, undWS, 'Underground');
-    XLSX.utils.book_append_sheet(wb, eventWS, 'Event');
+    this.excelAddToWorkbook(event, wb, 'Event');
 
     // Download workbook
     XLSX.writeFile(wb, 'Results.xlsx');
@@ -115,9 +107,7 @@ export default class JobResultProvider implements IJobResultProvider {
 
   getResultPhaseBreakdown(realization: IJobResultRealization, result: PhaseResult): { phase: string; value: number }[] {
     // remove total cs results for now
-    const phaseNames = Object.keys(realization.scenarioResults.outdoorResults).filter(
-      (p) => !p.toLowerCase().includes('total'),
-    );
+    const phaseNames = this.getPhaseNames(realization).filter((p) => !p.toLowerCase().includes('total'));
     const breakdown: number[] = [];
 
     this.findResultValues(realization, result, (value: number | undefined, index: number) => {
@@ -222,9 +212,7 @@ export default class JobResultProvider implements IJobResultProvider {
     callback: (value: number | undefined, index: number) => void,
   ): void {
     // remove total characterization sampling results for now
-    const phaseNames = Object.keys(realization.scenarioResults.outdoorResults).filter(
-      (p) => !p.toLowerCase().includes('total'),
-    );
+    const phaseNames = this.getPhaseNames(realization).filter((p) => !p.toLowerCase().includes('total'));
 
     Object.entries(realization.scenarioResults).forEach(([location, resultSet]) => {
       const phaseResultSets: IPhaseResultSet[] = this.isIndoor(location) ? Object.values(resultSet) : [resultSet];
@@ -344,5 +332,21 @@ export default class JobResultProvider implements IJobResultProvider {
         return cur.map((x, i) => (acc[i] ?? 0) + (x ?? 0));
       }, [])
       .map((v) => (v ?? 0) / length);
+  }
+
+  /** Create a worksheet from array and add it to the workbook with the given name */
+  private excelAddToWorkbook(aoa: (number | string | undefined)[][], wb: XLSX.WorkBook, name: string): void {
+    const ws = XLSX.utils.aoa_to_sheet(aoa);
+    XLSX.utils.book_append_sheet(wb, ws, name);
+  }
+
+  private getPhaseNames(realization: IJobResultRealization): string[] {
+    const { scenarioResults } = realization;
+    const existingLocation =
+      scenarioResults.outdoorResults ??
+      scenarioResults.undergroundResults ??
+      Object.values(scenarioResults.indoorResults)[0];
+
+    return Object.keys(existingLocation);
   }
 }
