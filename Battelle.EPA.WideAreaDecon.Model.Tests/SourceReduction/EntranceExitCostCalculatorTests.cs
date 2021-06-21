@@ -37,9 +37,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
                 numberEntriesPerTeamPerDay,
                 respiratorsPerPerson,
                 costPerRespirator,
-                costPerPpe,
-                new MockEntExitLaborCostCalculator(),
-                new MockWorkDaysCalculator()
+                costPerPpe
             );
         }
 
@@ -49,24 +47,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
             var ppeEachLevelPerTeam = new Dictionary<PpeLevel, double>()
             {
                 { PpeLevel.A, 0.0 },
-                { PpeLevel.B, 3.0 },
-                { PpeLevel.C, 3.0 },
+                { PpeLevel.B, 0.5 },
+                { PpeLevel.C, 0.5 },
                 { PpeLevel.D, 0.0 }
             };
             var _numberTeams = 4.0;
-            var saToBeSourceReduced = 8000.0;
-            var workDays = 4.07855517733999;
-            Assert.AreEqual(261523.892349847,
-                Calculator.CalculateEntranceExitCost(workDays, _numberTeams,  saToBeSourceReduced,  ppeEachLevelPerTeam), 1e-6,
+            var workDays = 1.019638794335;
+            Assert.AreEqual(11234.2033887326,
+                Calculator.CalculateEntranceExitCost(workDays, _numberTeams, ppeEachLevelPerTeam), 1e-6,
                 "Incorrect cost calculated");
-        }
-
-        private class MockEntExitLaborCostCalculator : IEntExitLaborCostCalculator
-        {
-            public double CalculateEntExitLaborCost(double workDays, double _numberTeams, double saToBeSourceReduced)
-            {
-                return 132585.671704968;
-            }
         }
     }
 }

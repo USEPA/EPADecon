@@ -4,7 +4,7 @@
       <v-col><v-spacer /></v-col>
     </v-row>
     <v-row>
-      <v-col align-self="center" cols="3">
+      <v-col cols="3">
         <v-overflow-btn
           @change="onDistributionTypeChange"
           class="my-2"
@@ -28,9 +28,17 @@
           v-model="selectedCategory"
           filled
           dense
+          ref="categorySelect"
         >
           <template v-slot:prepend>
             <p>Category:</p>
+          </template>
+          <template v-slot:item="{ item, attrs, on }">
+            <v-list-item :class="getClass(item[0])" v-bind="attrs" v-on="on">
+              <v-list-item-content>
+                <v-list-item-title :id="attrs['aria-labelledby']" v-text="item[0]"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
           </template>
         </v-overflow-btn>
       </v-col>
@@ -139,6 +147,30 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     return category;
   }
 
+  getClass(cateogry: string): string {
+    const param = this.parameterValue.values[cateogry];
+    if (param.isSet === undefined) {
+      return '';
+    }
+    return param.isSet ? '' : `error lighten-2`;
+  }
+
+  @Watch('selectedCategory', { deep: true })
+  checkErrorHighligtingOnSelect(): void {
+    if (this.selectedCategory.isSet === undefined) {
+      return;
+    }
+
+    const el = (this.$refs.categorySelect as Vue).$el.children[1].children[0];
+    const errorClasses = ['error', 'lighten-2'];
+
+    if (this.selectedCategory.isSet) {
+      el.classList.remove(...errorClasses);
+    } else {
+      el.classList.add(...errorClasses);
+    }
+  }
+
   @Watch('parameterValue')
   onParameterChanged(): void {
     // update selected category, current dist type, and baseline values
@@ -152,33 +184,15 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   created(): void {
     this.currentDistType = this.selectedCategory.type;
   }
+
+  mounted(): void {
+    this.checkErrorHighligtingOnSelect();
+  }
 }
 </script>
 
-<style lang="scss">
-.v-slider__track-container {
-  height: 8px !important;
-}
-.v-slider__track-fill {
-  border-radius: 5px !important;
-}
-.v-slider__track-background {
-  border-radius: 5px !important;
-}
-.v-slider__thumb {
-  width: 24px !important;
-  height: 24px !important;
-  left: -12px !important;
-}
-.v-slider__thumb:before {
-  left: -6px !important;
-  top: -6px !important;
-}
-.theme--light.v-card.v-card--outlined {
-  border: 2px solid !important;
-  border-color: var(--primary-color) !important;
-  border-radius: 5px !important;
+<style scoped lang="scss">
+.v-list-item--active.error {
+  color: var(--v-primary-base) !important;
 }
 </style>
-
-<style scoped lang="scss4"></style>

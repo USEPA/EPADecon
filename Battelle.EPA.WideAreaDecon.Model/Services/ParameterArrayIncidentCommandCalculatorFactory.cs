@@ -37,11 +37,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 csParameters.surfaceAreaPerHepa,
                 csParameters.labUptimesHours,
                 csParameters.samplePackageTime,
-                csParameters.wipeAnalysisTime,
-                csParameters.hepaAnalysisTime,
-                csParameters.fractionOfWipeToEachLab,
-                csParameters.fractionOfHepaToEachLab,
-                csParameters.labDistanceFromSite
+                csParameters.labDistanceFromSite,
+                csParameters.labThroughput
             );
 
             Calculator_suppliesCs = new CharacterizationSampling.SuppliesCostCalculator(
@@ -79,7 +76,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
             );
 
             Calculator_efficacy = new Decontamination.EfficacyCalculator(
-                dcParameters.efficacyValues
+                dcParameters.efficacyParameters
             );
 
             Calculator_workDaysDc = new Decontamination.WorkDaysCalculator(

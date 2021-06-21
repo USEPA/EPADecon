@@ -6,9 +6,13 @@ import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealizati
 
 @Serializable()
 export default class JobRequest implements IJobRequest {
-  // @JsonProperty()
+  @JsonProperty({
+    // don't include in serialization
+    onSerialize: () => undefined,
+  })
   id: string;
 
+  @JsonProperty()
   status: JobStatus;
 
   progress: number;
@@ -28,7 +32,8 @@ export default class JobRequest implements IJobRequest {
   @JsonProperty()
   seed2: number;
 
-  results?: IJobResultRealization[];
+  @JsonProperty()
+  results: IJobResultRealization[];
 
   constructor(
     status: JobStatus = JobStatus.new,
@@ -46,5 +51,6 @@ export default class JobRequest implements IJobRequest {
     this.numberRealizations = numberRealizations;
     this.seed1 = seed1;
     this.seed2 = seed2;
+    this.results = [];
   }
 }

@@ -5,7 +5,7 @@ enum SurfaceType {
   IndoorCeilings = 'Indoor Ceilings',
   IndoorCarpet = 'Indoor Carpet',
   IndoorNonCarpet = 'Indoor Non-Carpet',
-  HVAC = 'HVAC',
+  IndoorHvac = 'Indoor HVAC',
   IndoorMisc = 'Indoor Miscellaneous',
   OutdoorExterior = 'Outdoor Exterior',
   Pavement = 'Pavement',
@@ -17,6 +17,7 @@ enum SurfaceType {
   UndergroundCeilings = 'Underground Ceilings',
   UndergroundCarpet = 'Underground Carpet',
   UndergroundNonCarpet = 'Underground Non-Carpet',
+  UndergroundHvac = 'Underground HVAC',
   UndergroundMisc = 'Underground Miscellaneous',
 }
 

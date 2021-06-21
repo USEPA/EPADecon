@@ -44,12 +44,31 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static TruncatedNormalDistribution FromExcel(ParameterMetaData metaData, IRow row)
         {
+            var minimum = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Min), row)?.ConvertToOptionalDouble();
+            var maximum = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Max), row)?.ConvertToOptionalDouble();
+            var mean = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Mean), row)?.ConvertToOptionalDouble();
+
+            if (minimum < metaData.LowerLimit || minimum > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Minimum for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
+            if (maximum < metaData.LowerLimit || maximum > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Maximum for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
+            if (mean < metaData.LowerLimit || mean > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Mean for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
             return new TruncatedNormalDistribution()
             {
                 MetaData = metaData,
-                Min = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Min), row)?.ConvertToOptionalDouble(),
-                Max = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Max), row)?.ConvertToOptionalDouble(),
-                Mean = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Mean), row)?.ConvertToOptionalDouble(),
+                Min = minimum,
+                Max = maximum,
+                Mean = mean,
                 StdDev = typeof(TruncatedNormalDistribution).GetCellValue(nameof(StdDev), row)
                     ?.ConvertToOptionalDouble()
             };
@@ -62,6 +81,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
                 return new Stats.TruncatedNormalDistribution(Mean.Value, StdDev.Value, Min.Value, Max.Value);
             }
             throw new ArgumentNullException();
+        }
+
+        public string GetTextValue()
+        {
+            throw new NotImplementedException();
         }
     }
 }

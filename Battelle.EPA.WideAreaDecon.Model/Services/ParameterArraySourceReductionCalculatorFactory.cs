@@ -45,9 +45,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services
                 srParameters.numEntriesPerDay,
                 srParameters.respiratorsPerPerson,
                 costParameters.respiratorCost,
-                costParameters.ppeCost,
-                Calculator_entExLabor,
-                Calculator_workDays
+                costParameters.ppeCost
             );
         }
         public SourceReductionCostCalculator GetCalculator()

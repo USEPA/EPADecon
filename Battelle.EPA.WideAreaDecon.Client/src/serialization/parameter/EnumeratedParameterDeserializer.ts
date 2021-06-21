@@ -9,6 +9,7 @@ import TruncatedNormal from '@/implementations/parameter/distribution/TruncatedN
 import Uniform from '@/implementations/parameter/distribution/Uniform';
 import UniformXDependent from '@/implementations/parameter/distribution/UniformXDependent';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
+import TextValue from '@/implementations/parameter/distribution/TextValue';
 import EnumeratedFraction from '@/implementations/parameter/list/enumeratedFraction';
 import IParameter from '@/interfaces/parameter/IParameter';
 
@@ -39,6 +40,8 @@ export default {
         return LogNormal;
       case ParameterType.weibull:
         return Weibull;
+      case ParameterType.textValue:
+        return TextValue;
       case ParameterType.enumeratedFraction:
         return EnumeratedFraction;
       case ParameterType.enumeratedParameter:

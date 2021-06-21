@@ -4,7 +4,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Other
 {
-    public class TransportationCostCalculator
+    public class TransportationCostCalculator : ITransportationCostCalculator
     {
         private readonly double _perDiemCostPerDay;
         private readonly double _personnelPerRentalCar;
@@ -20,13 +20,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.Other
             _perDiemCostPerDay = perDiemCostPerDay;
         }
 
-        public double CalculateTransportationCost(Dictionary<PersonnelLevel,double> personnelAvailableByType, double personnelRoundTripDays,
-            double costPerRoundTripTicket, double totalOnSiteDays)
+        public double CalculatePerDiem(Dictionary<PersonnelLevel, double> personnelAvailableByType, double totalOnSiteDays)
         {
             var totalPersonnel = personnelAvailableByType.Values.Sum();
 
-            return totalPersonnel / _personnelPerRentalCar * _rentalCarCostPerDay * personnelRoundTripDays +
-                totalPersonnel * costPerRoundTripTicket + totalOnSiteDays * _perDiemCostPerDay;
+            return totalPersonnel * _perDiemCostPerDay * totalOnSiteDays;
+        }
+
+        public double CalculateTransportationCost(Dictionary<PersonnelLevel,double> personnelAvailableByType, double personnelRoundTripDays,
+            double costPerRoundTripTicket)
+        {
+            var totalPersonnel = personnelAvailableByType.Values.Sum();
+
+            var rentalCarCost = (totalPersonnel / _personnelPerRentalCar) * _rentalCarCostPerDay * personnelRoundTripDays;
+
+            var airfareCost = totalPersonnel * costPerRoundTripTicket;
+
+            return rentalCarCost + airfareCost;
         }
     }
 }

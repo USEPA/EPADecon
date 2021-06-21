@@ -17,8 +17,8 @@
     "@mdi/font": "^5.8.55",
     "@types/chart.js": "^2.9.28",
     "axios": "^0.21.1",
-    "battelle-common-typescript-statistics": "../BuildPackages/battelle-common-typescript-statistics-0.0.15.tgz",
-    "battelle-common-vue-charting": "../BuildPackages/battelle-common-vue-charting-0.0.9.tgz",
+    "battelle-common-typescript-statistics": "//milky-way/projects/NSD/Mothman/AutomatedBuilds/npm/Statistics/battelle-common-typescript-statistics-0.0.15.tgz",
+    "battelle-common-vue-charting": "//milky-way/projects/NSD/Mothman/AutomatedBuilds/npm/Vue.Charting/battelle-common-vue-charting-0.0.9.tgz",
     "chart.js": "^2.9.4",
     "clone": "^2.1.2",
     "comment-json": "^4.1.0",
@@ -41,7 +41,8 @@
     "vuetify": "^2.3.19",
     "vuetify-loader": "^1.6.0",
     "vuex": "^3.6.0",
-    "vuex-class": "^0.3.2"
+    "vuex-class": "^0.3.2",
+    "xlsx": "^0.16.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.8",

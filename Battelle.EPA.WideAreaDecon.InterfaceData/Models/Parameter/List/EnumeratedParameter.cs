@@ -4,6 +4,7 @@ using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
 using NPOI.SS.UserModel;
 using Newtonsoft.Json;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json;
@@ -51,6 +52,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List
         }
 
         public IDistribution CreateDistribution()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetTextValue()
         {
             throw new NotImplementedException();
         }

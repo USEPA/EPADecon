@@ -35,11 +35,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Other
             };
             var roundtripDays = 2.0;
             var costPerRoundTripTicket = 350.0;
-            var totalOnSiteDays = 5.41948604071361;
+            var totalOnSiteDays = 65.7459835772646;
 
-            Assert.AreEqual(35854.8715101784,
-                Calculator.CalculateTransportationCost(personnelAvailableByType, roundtripDays, costPerRoundTripTicket,
-                    totalOnSiteDays), 1e-6, "Incorrect cost calculated");
+            Assert.AreEqual(34500.00,
+                Calculator.CalculateTransportationCost(personnelAvailableByType, roundtripDays, costPerRoundTripTicket), 1e-6, "Incorrect transportation cost calculated");
+
+            Assert.AreEqual(1134118.21670781,
+                Calculator.CalculatePerDiem(personnelAvailableByType, totalOnSiteDays), 1e-6, "Incorrect per diem cost calculated");
         }
     }
 }

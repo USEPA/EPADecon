@@ -12,15 +12,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         public EntranceExitCostCalculator Calculator_entEx { get; set; }
         public EntExitLaborCostCalculator Calculator_entExLabor { get; set; }
 
-        public double CalculateTime(double _numberTeams, double saToBeSourceReduced)
+        public double CalculateTime(double _numberTeams, double saToBeSourceReduced, double area)
         {
-            return Calculator_workDays.CalculateWorkDays(_numberTeams, saToBeSourceReduced);
+            return Calculator_workDays.CalculateWorkDays(_numberTeams, saToBeSourceReduced, area);
         }
 
-        public double CalculateCost(double workDays, double _numberTeams, double personnelRoundTripDays, double saToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
+        public double CalculateCost(double workDays, double _numberTeams, double personnelRoundTripDays, double saToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
         {
-            var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams, personnelRoundTripDays, saToBeSourceReduced, costPerTonRemoved);
-            var entExCosts = Calculator_entEx.CalculateEntranceExitCost(workDays, _numberTeams, saToBeSourceReduced, ppePerLevelPerTeam);
+            var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams, saToBeSourceReduced, costPerTonRemoved, area);
+            var entExCosts = Calculator_entEx.CalculateEntranceExitCost(workDays, _numberTeams, ppePerLevelPerTeam);
             return (laborCosts + entExCosts);
         }
 

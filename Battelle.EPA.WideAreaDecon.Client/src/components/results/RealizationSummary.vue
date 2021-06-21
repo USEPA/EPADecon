@@ -1,113 +1,199 @@
 <template>
   <v-container>
-    <v-card elevation="0">
-      <v-row dense>
-        <v-col cols="auto" class="mr-auto">
-          <v-card-title v-text="`Realization Summary - ${location}`" />
-        </v-col>
-        <v-col style="margin-top: 7px" cols="2" class="d-inline-flex">
-          <v-text-field
-            label="Run Number"
-            v-model.number="runNumber"
-            type="number"
-            :rules="[validationRulesRunNumber]"
-            hide-details="auto"
-          ></v-text-field>
-          <v-btn
-            height="45"
-            color="secondary"
-            @click="addRunToTable"
-            :disabled="validationRulesRunNumber(runNumber) !== true"
-          >
-            View
-          </v-btn>
-        </v-col>
-      </v-row>
-      <v-divider color="grey"></v-divider>
-      <v-simple-table v-if="displayedRunIndexes.length">
-        <template v-slot:default>
-          <thead>
-            <tr>
-              <th></th>
-              <th class="text-left text-body-1" v-for="runIndex in displayedRunIndexes" :key="runIndex">
-                Run {{ runIndex + 1 }}
-                <v-icon class="ml-1" small @click="removeRunFromTable(runIndex)">mdi-close-circle</v-icon>
-              </th>
-            </tr>
-          </thead>
-          <tbody v-for="(phaseResults, phaseName, index) in results[0]" :key="phaseName">
-            <tr>
-              <td :colspan="displayedRunIndexes.length + 1" class="text-subtitle-1 font-weight-medium">
-                {{ phaseName | startCase | addSpaces }}
-              </td>
-            </tr>
-            <tr v-for="(_, item) in phaseResults" :key="item">
-              <td class="pl-8">{{ item | startCase | addSpaces }}</td>
-              <td v-for="(cost, i) in displayRows[index]" :key="cost + i">
-                {{ cost[item] }}
-              </td>
-            </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
-      <v-card-text v-else>Please select at least one realization to display run summary</v-card-text>
-    </v-card>
+    <v-row>
+      <v-col class="ml-auto mt-3" cols="auto">
+        <v-btn color="secondary" @click="$router.push({ name: 'viewResults' })" v-text="'Return to dashboard'"></v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="3">
+        <output-statistics-panel :details="outputStatistics" :results="selectedResults" />
+      </v-col>
+      <v-col cols="9">
+        <results-chart-panel
+          @showModal="showOptionsModal = true"
+          @removeLabel="removeSelectedResult"
+          :chartData="chartData"
+          :chartType="chartType"
+          :chartLabels="selectedResults"
+        />
+      </v-col>
+    </v-row>
+
+    <v-row class="mb-8">
+      <realization-table />
+    </v-row>
+
+    <chart-options @createChart="setChartData" v-model="showOptionsModal" :selected="selectedResults" />
   </v-container>
 </template>
 
 <script lang="ts">
-import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
-import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { State } from 'vuex-class';
+import { Component, Vue } from 'vue-property-decorator';
+import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
+import container from '@/dependencyInjection/config';
+import TYPES from '@/dependencyInjection/types';
+import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
+import { ChartData } from 'chart.js';
+import {
+  ChartPoint2D,
+  CycleColorProvider,
+  DefaultChartData,
+  ScatterChartDataset,
+} from 'battelle-common-vue-charting/src';
+import PhaseResult from '@/enums/jobs/results/phaseResult';
+import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
+import ChartOptions from '@/components/modals/results/ChartOptions.vue';
+import { range } from 'lodash';
+import OutputStatisticsPanel from './OutputStatisticsPanel.vue';
+import ResultsChartPanel from './ResultsChartPanel.vue';
+import RealizationTable from './RealizationTable.vue';
 
-@Component({
-  filters: {
-    addSpaces: (name: string) => name.split(/(?=[A-Z])/).join(' '),
-    startCase: (name: string) => `${name.substring(0, 1).toUpperCase()}${name.substring(1, name.length)}`,
-  },
-})
+@Component({ components: { ChartOptions, OutputStatisticsPanel, RealizationTable, ResultsChartPanel } })
 export default class RealizationSummary extends Vue {
-  @Prop({ required: true }) results!: IPhaseResultSet[];
+  @State((state) => state.currentJob.results) results!: IJobResultRealization[];
 
-  @Prop({ required: true }) location!: boolean;
+  private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
-  runNumber = 1;
+  chartData: ChartData | ScatterChartDataset | null = null;
 
-  displayedRunIndexes: number[] = [];
+  chartType = '';
 
-  get displayRows(): unknown[] {
-    if (!this.displayedRunIndexes.length) {
-      return [];
-    }
-    return Object.entries(this.results[0]).map(([prop]) => {
-      return this.displayedRunIndexes.map((i) => this.results[i][prop]);
-    });
-  }
+  outputStatistics: { x: IResultDetails | null; y: IResultDetails | null } = { x: null, y: null };
 
-  addRunToTable(): void {
-    const run = this.results[this.runNumber - 1];
-    if (run !== undefined && !this.displayedRunIndexes.includes(this.runNumber - 1)) {
-      this.displayedRunIndexes.push(this.runNumber - 1);
-    }
-  }
+  showOptionsModal = false;
 
-  removeRunFromTable(runIndex: number): void {
-    const index = this.displayedRunIndexes.indexOf(runIndex);
-    this.displayedRunIndexes.splice(index, 1);
-  }
+  selectedResults: { x: PhaseResult | null; y: PhaseResult | null } = { x: null, y: null };
 
   // eslint-disable-next-line class-methods-use-this
-  validationRulesRunNumber(runNumber: number): boolean | string {
-    if (`${runNumber}`.length === 0) {
-      return 'Value is required';
+  createHistogram({ values, minimum, maximum }: IResultDetails): ChartData {
+    const color = new CycleColorProvider().getNextColor();
+
+    const numberOfBins = 10;
+
+    // create bins
+    const step = (maximum - minimum) / numberOfBins;
+    const bins = step ? range(minimum, maximum, step) : [minimum];
+
+    // put values into bins
+    const binVals: number[] = [];
+    values.forEach((v) => {
+      let index = bins.findIndex((b, i) => v >= b && v < bins[i + 1]);
+      if (index === -1) {
+        // value falls into last bin
+        index = bins.length - 1;
+      }
+
+      if (binVals[index] !== undefined) {
+        binVals[index] += 1;
+      } else {
+        binVals[index] = 1;
+      }
+    });
+
+    return {
+      labels: bins,
+      datasets: [
+        {
+          label: 'Number of Realizations',
+          data: binVals,
+          backgroundColor: color,
+          barPercentage: 1,
+          categoryPercentage: 1,
+          borderWidth: 1,
+        },
+      ],
+    };
+  }
+
+  createPieChart(values: number[], label: PhaseResult | null): ChartData {
+    const phaseResults: { phase: string; value: number }[] = [];
+
+    if (label) {
+      this.results.forEach((r) => {
+        const res = this.resultProvider.getResultPhaseBreakdown(r, label);
+        res.forEach((p, i) => {
+          if (phaseResults[i] === undefined) {
+            phaseResults.push(p);
+          } else {
+            phaseResults[i].value += p.value ?? 0;
+          }
+        });
+      });
     }
-    if (runNumber <= 0) {
-      return 'Value must be greater than 0';
+
+    const colorProvider = new CycleColorProvider();
+    const colors = phaseResults.map(() => colorProvider.getNextColor());
+    const numberRealizations = values.length;
+    const labels =
+      phaseResults.length > 1
+        ? phaseResults.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase))
+        : ['Total Cost'];
+
+    return {
+      datasets: [
+        {
+          data: phaseResults.map((p) => p.value / numberRealizations),
+          backgroundColor: colors,
+        },
+      ],
+      labels,
+    };
+  }
+
+  createScatterPlot(xVals: number[], yVals: number[], labels: (PhaseResult | null)[]): ChartData {
+    const dataPoints = xVals.map((x, i) => new ChartPoint2D(x, yVals[i]));
+    const colorProvider = new CycleColorProvider();
+    let [xLabel, yLabel] = labels as string[];
+    xLabel = this.resultProvider.convertCamelToTitleCase(xLabel);
+    yLabel = this.resultProvider.convertCamelToTitleCase(yLabel);
+
+    const scatterDataSet = new ScatterChartDataset(dataPoints, `${yLabel} vs. ${xLabel}`, colorProvider);
+    return new DefaultChartData([scatterDataSet]);
+  }
+
+  setChartData({ x, y }: { x: PhaseResult | null; y: PhaseResult | null }): void {
+    const xDetails = x ? this.resultProvider.getResultDetails(this.results, x) : null;
+    const yDetails = y ? this.resultProvider.getResultDetails(this.results, y) : null;
+
+    if (xDetails && !yDetails) {
+      // histogram
+      this.chartType = 'bar';
+      this.chartData = this.createHistogram(xDetails);
+    } else if (!xDetails && yDetails) {
+      // pie chart
+      this.chartType = 'pie';
+      this.chartData = this.createPieChart(yDetails.values, y);
+    } else if (xDetails && yDetails) {
+      // scatter plot
+      this.chartType = 'scatter';
+      this.chartData = this.createScatterPlot(xDetails.values, yDetails.values, [x, y]);
+    } else {
+      this.chartData = null;
     }
-    if (runNumber % 1 !== 0) {
-      return 'Value must be a whole number';
+
+    this.getOutputStatistics(x, y);
+  }
+
+  getOutputStatistics(xLabel: PhaseResult | null, yLabel: PhaseResult | null): void {
+    const stats: { x: IResultDetails | null; y: IResultDetails | null } = { x: null, y: null };
+
+    if (xLabel) {
+      stats.x = this.resultProvider.getResultDetails(this.results, xLabel) ?? null;
+      this.$set(this.selectedResults, 'x', xLabel);
     }
-    return true;
+    if (yLabel) {
+      stats.y = this.resultProvider.getResultDetails(this.results, yLabel) ?? null;
+      this.$set(this.selectedResults, 'y', yLabel);
+    }
+
+    this.$set(this, 'outputStatistics', stats);
+  }
+
+  removeSelectedResult(axis: string): void {
+    this.$set(this.selectedResults, axis, null);
+    this.setChartData(this.selectedResults);
   }
 }
 </script>

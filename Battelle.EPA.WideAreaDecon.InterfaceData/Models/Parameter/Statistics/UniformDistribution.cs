@@ -37,11 +37,24 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static UniformDistribution FromExcel(ParameterMetaData metaData, IRow information)
         {
+            var minimum = typeof(UniformDistribution).GetCellValue(nameof(Min), information)?.ConvertToOptionalDouble();
+            var maximum = typeof(UniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToOptionalDouble();
+
+            if (minimum < metaData.LowerLimit || minimum > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Minimum for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
+            if (maximum < metaData.LowerLimit || maximum > metaData.UpperLimit)
+            {
+                throw new ApplicationException($"Maximum for {metaData.Name} is out of range specified by the lower and upper limit");
+            }
+
             return new UniformDistribution()
             {
                 MetaData = metaData,
-                Min = typeof(UniformDistribution).GetCellValue(nameof(Min), information)?.ConvertToOptionalDouble(),
-                Max = typeof(UniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToOptionalDouble()
+                Min = minimum,
+                Max = maximum
             };
         }
 
@@ -52,6 +65,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
                 return new Stats.UniformDistribution(Min.Value, Max.Value);
             }
             throw new ArgumentNullException();
+        }
+
+        public string GetTextValue()
+        {
+            throw new NotImplementedException();
         }
     }
 }

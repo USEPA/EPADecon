@@ -18,6 +18,7 @@ import LogNormal from '../distribution/LogNormal';
 import NullParameter from '../NullParameter';
 import UniformXDependent from '../distribution/UniformXDependent';
 import Weibull from '../distribution/Weibull';
+import TextValue from '../distribution/TextValue';
 import ParameterMetaData from '../ParameterMetaData';
 import EnumeratedFraction from '../list/enumeratedFraction';
 import EnumeratedParameter from '../list/enumeratedParameter';
@@ -61,6 +62,8 @@ export default class ParameterConverter implements IParameterConverter {
         return new Uniform(old.metaData, old.min, old.max);
       case ParameterType.uniformXDependent:
         return new UniformXDependent(old.metaData);
+      case ParameterType.textValue:
+        return new TextValue(old.metaData, old.text || 'null');
       case ParameterType.weibull: {
         if (old.mean === undefined || old.stdDev === undefined) {
           return new Weibull(old.metaData);
@@ -113,6 +116,8 @@ export default class ParameterConverter implements IParameterConverter {
         return new UniformXDependent(old.metaData);
       case ParameterType.weibull:
         return new Weibull(old.metaData);
+      case ParameterType.textValue:
+        return new TextValue(old.metaData);
       case ParameterType.enumeratedFraction:
         return new EnumeratedFraction(old.metaData);
       case ParameterType.enumeratedParameter:

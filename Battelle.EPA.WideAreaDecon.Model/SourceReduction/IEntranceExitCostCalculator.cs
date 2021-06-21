@@ -5,6 +5,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
     public interface IEntranceExitCostCalculator
     {
-        public double CalculateEntranceExitCost(double workDays, double _numberTeams, double saToBeSourceReduced, Dictionary<PpeLevel, double> ppeEachLevelPerTeam);
+        public double CalculateEntranceExitCost(double workDays, double _numberTeams, Dictionary<PpeLevel, double> ppeEachLevelPerTeam);
     }
 }
