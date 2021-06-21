@@ -373,7 +373,7 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
   setValues(): void {
     if (this.key) {
       // get baseline
-      this.baseline = this.$store.state.currentSelectedParameter.baseline.values[this.key];
+      this.baseline = this.$store.state.currentSelectedParameter.baseline.values[this.key as string];
     }
     this.xValues = this.parameterValue.xValues ?? [];
     this.yMinValues = this.parameterValue.yMinimumValues ?? [];
