@@ -47,7 +47,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario
                         Category = SheetName,
                         Name = LoadingRowName,
                         Description = "The loading of contaminate for each phase"
-                    }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == LoadingRowName))
+                    }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == LoadingRowName)),
+                    MetaData = new ParameterMetaData()
+                    {
+                        Description = "Contaminated area details"
+                    }
                 },
                 IndoorBuildingBreakout = EnumeratedFraction<BuildingCategory>.FromExcel(new ParameterMetaData()
                 {
