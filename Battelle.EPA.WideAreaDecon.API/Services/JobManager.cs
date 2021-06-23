@@ -143,12 +143,18 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         }
 
                         //RUN OUTDOOR SCENARIO
-                        var outdoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Outdoor, scenarios[s].OutdoorAreasContaminated);
-                        realizationResults.scenarioResults.outdoorResults = outdoorModelRunner.RunScenarioModel();
+                        if (scenarios[s].OutdoorAreasContaminated.Sum(x => x.Value.AreaContaminated) > 0)
+                        {
+                            var outdoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Outdoor, scenarios[s].OutdoorAreasContaminated);
+                            realizationResults.scenarioResults.outdoorResults = outdoorModelRunner.RunScenarioModel();
+                        }
 
                         //RUN UNDERGROUND SCENARIO
-                        var undergroundModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Underground, scenarios[s].UndergroundBuildingsContaminated);
-                        realizationResults.scenarioResults.undergroundResults = undergroundModelRunner.RunScenarioModel();
+                        if (scenarios[s].UndergroundBuildingsContaminated.Sum(x => x.Value.AreaContaminated) > 0)
+                        {
+                            var undergroundModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Underground, scenarios[s].UndergroundBuildingsContaminated);
+                            realizationResults.scenarioResults.undergroundResults = undergroundModelRunner.RunScenarioModel();
+                        }
 
                         //RUN EVENT-SPECIFIC MODELS
                         var eventModelRunner = new EventModelRunner(Running.ModifyParameter, realizationResults.scenarioResults.indoorResults, realizationResults.scenarioResults.outdoorResults, realizationResults.scenarioResults.undergroundResults);
