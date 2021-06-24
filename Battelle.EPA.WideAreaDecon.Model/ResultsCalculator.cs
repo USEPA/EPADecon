@@ -191,10 +191,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             return results;
         }
 
-        public EventResults CalculateEventResults(CalculatorManager parameters,
-            Dictionary<BuildingCategory, ScenarioRealizationResults> _indoorResults,
-            ScenarioRealizationResults _outdoorResults,
-            ScenarioRealizationResults _undergroundResults)
+        public EventResults CalculateEventResults(CalculatorManager parameters, ScenarioRealizationResults scenarioResults)
         {
             var results = new EventResults
             {
@@ -235,20 +232,10 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 results.otherResults.incidentCommandTravelCost;
 
             //Total event cost including travel and per diem costs
-            results.totalEventCost = _outdoorResults.generalResults.totalCost + _undergroundResults.generalResults.totalCost + results.otherResults.totalTravelCost;
-
-            foreach (var building in _indoorResults.Keys.ToList())
-            {
-                results.totalEventCost += _indoorResults[building].generalResults.totalCost;
-            }
+            results.totalEventCost = scenarioResults.generalResults.totalCost + results.otherResults.totalTravelCost;
 
             //Total event contamination area
-            results.totalContaminationArea = _outdoorResults.generalResults.areaContaminated + _undergroundResults.generalResults.areaContaminated;
-
-            foreach (var building in _indoorResults.Keys.ToList())
-            {
-                results.totalContaminationArea += _indoorResults[building].generalResults.areaContaminated;
-            }
+            results.totalContaminationArea = scenarioResults.generalResults.areaContaminated;
 
             return results;
         }
