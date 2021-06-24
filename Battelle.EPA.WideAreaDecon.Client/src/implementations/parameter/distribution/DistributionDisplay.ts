@@ -87,6 +87,8 @@ export default class DistributionDisplay {
         return 'enumerated-fraction-display';
       case ParameterType.enumeratedParameter:
         return 'enumerated-parameter-display';
+      case ParameterType.contaminationDefinition:
+        return 'contamination-definition-display';
       default:
         return 'unknown-display';
     }

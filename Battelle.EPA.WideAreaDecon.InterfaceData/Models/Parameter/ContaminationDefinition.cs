@@ -10,7 +10,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
     {
         public EnumeratedParameter<DecontaminationPhase> AreaContaminated { get; set; }
         public EnumeratedParameter<DecontaminationPhase> Loading { get; set; }
-        public ParameterType Type { get; }
+        public ParameterType Type { get; } = ParameterType.ContaminationDefinition;
         public ParameterMetaData MetaData { get; set; }
         public IDistribution CreateDistribution()
         {

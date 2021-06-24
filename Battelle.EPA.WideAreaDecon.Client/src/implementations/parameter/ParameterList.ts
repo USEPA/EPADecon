@@ -22,7 +22,9 @@ export default class ParameterList {
   public toWrapperList(): ParameterWrapperList {
     return new ParameterWrapperList(
       this.version,
-      this.filters.map((f) => f.toParameterWrapperFilter(null)),
+      this.filters.map((f) => {
+        return f.toParameterWrapperFilter(null);
+      }),
     );
   }
 

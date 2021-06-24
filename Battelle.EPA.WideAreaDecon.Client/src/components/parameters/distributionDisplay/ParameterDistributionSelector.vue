@@ -68,6 +68,7 @@ import TYPES from '@/dependencyInjection/types';
 import { DistributionChart } from 'battelle-common-vue-charting/src/index';
 import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
+import ContaminationDefinitionDisplay from '@/components/parameters/ContaminationDefinitionDisplay.vue';
 
 @Component({
   components: {
@@ -85,6 +86,7 @@ import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDi
     BimodalTruncatedNormalDisplay,
     EnumeratedFractionDisplay,
     EnumeratedParameterDisplay,
+    ContaminationDefinitionDisplay,
     DistributionChart,
   },
 })

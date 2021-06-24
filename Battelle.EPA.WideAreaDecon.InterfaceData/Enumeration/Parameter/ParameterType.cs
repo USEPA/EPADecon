@@ -49,6 +49,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
         [EnumMember(Value = "Enumerated Parameter")] 
         EnumeratedParameter,
 
+        [EnumMember(Value = "Contamination Definition")]
+        ContaminationDefinition,
+
         [EnumMember(Value = "Null")] Null
     }
 }
