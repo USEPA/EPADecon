@@ -96,12 +96,12 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 }
             }
 
-            if (_outdoorResults.generalResults.areaContaminated > 0)
+            if (_outdoorResults != null)
             {
                 realizationResults = AddResults(realizationResults, _outdoorResults);
             }
 
-            if (_undergroundResults.generalResults.areaContaminated > 0)
+            if (_undergroundResults != null)
             {
                 realizationResults = AddResults(realizationResults, _undergroundResults);
             }
