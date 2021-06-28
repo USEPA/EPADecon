@@ -88,22 +88,44 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 generalResults = general
             };
 
+            var scenarioRunFlag = new Dictionary<DecontaminationPhase, bool>
+            {
+                { DecontaminationPhase.Indoor, true },
+                { DecontaminationPhase.Outdoor, true },
+                { DecontaminationPhase.Underground, true }
+            };
+
             if (_indoorResults.Count > 0)
             {
                 foreach (var building in _indoorResults.Values.ToList())
                 {
                     realizationResults = AddResults(realizationResults, building);
                 }
+
+            } else
+            {
+                scenarioRunFlag[DecontaminationPhase.Indoor] = false;
             }
 
-            if (_outdoorResults != null)
+            try
             {
                 realizationResults = AddResults(realizationResults, _outdoorResults);
+            } catch (System.NullReferenceException) 
+            {
+                scenarioRunFlag[DecontaminationPhase.Outdoor] = false;
             }
 
-            if (_undergroundResults != null)
+            try
             {
                 realizationResults = AddResults(realizationResults, _undergroundResults);
+            } catch (System.NullReferenceException) 
+            {
+                scenarioRunFlag[DecontaminationPhase.Underground] = false;
+            }
+
+            if (scenarioRunFlag.All(x => x.Value == false))
+            {
+                throw new ApplicationException("An indoor, outdoor, or underground scenario must be run");
             }
 
             return realizationResults;

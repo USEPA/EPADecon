@@ -122,46 +122,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
         [Test]
         public void CalculateEventResults()
         {
+            var outdoorResults = OutdoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsOutdoor, OutdoorScenarioDefinitionDetails, DecontaminationPhase.Outdoor);
+            var undergroundResults = UndergroundCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsUnderground, UndergroundScenarioDefinitionDetails, DecontaminationPhase.Underground);
             var indoorResults = new Dictionary<BuildingCategory, ScenarioRealizationResults>();
             
             foreach (BuildingCategory building in Enum.GetValues(typeof(BuildingCategory)))
             {
                 indoorResults.Add(building, IndoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsIndoor, IndoorScenarioDefinitionDetails, DecontaminationPhase.Indoor));
             }
-         
-            var outdoorResults = OutdoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsOutdoor, OutdoorScenarioDefinitionDetails, DecontaminationPhase.Outdoor);
-            var undergroundResults = UndergroundCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsUnderground, UndergroundScenarioDefinitionDetails, DecontaminationPhase.Underground);
 
-            var phaseOnsiteDays = new Dictionary<PhaseCategory, double>
-            {
-                { PhaseCategory.CharacterizationSampling, outdoorResults.totalCharacterizationSamplingResults.onSiteDays + undergroundResults.totalCharacterizationSamplingResults.onSiteDays },
-                { PhaseCategory.SourceReduction, outdoorResults.sourceReductionResults.onSiteDays + undergroundResults.sourceReductionResults.onSiteDays },
-                { PhaseCategory.Decontamination, outdoorResults.decontaminationResults.onSiteDays + undergroundResults.decontaminationResults.onSiteDays },
-                { PhaseCategory.IncidentCommand, outdoorResults.incidentCommandResults.onSiteDays + undergroundResults.incidentCommandResults.onSiteDays }
-            };
+            var eventModelRunner = new EventModelRunner(ScenarioParameters, indoorResults, outdoorResults, undergroundResults);
 
-            foreach (var building in indoorResults.Keys.ToList())
-            {
-                phaseOnsiteDays[PhaseCategory.CharacterizationSampling] += indoorResults[building].totalCharacterizationSamplingResults.onSiteDays;
-                phaseOnsiteDays[PhaseCategory.SourceReduction] += indoorResults[building].sourceReductionResults.onSiteDays;
-                phaseOnsiteDays[PhaseCategory.Decontamination] += indoorResults[building].decontaminationResults.onSiteDays;
-                phaseOnsiteDays[PhaseCategory.IncidentCommand] += indoorResults[building].incidentCommandResults.onSiteDays;
-            }
-
-            var parameterManager = new EventParameterManager(
-                ScenarioParameters.Filters.First(f => f.Name == "Characterization Sampling").Filters,
-                ScenarioParameters.Filters.First(f => f.Name == "Source Reduction").Filters,
-                ScenarioParameters.Filters.First(f => f.Name == "Decontamination").Filters,
-                ScenarioParameters.Filters.First(f => f.Name == "Other").Filters,
-                ScenarioParameters.Filters.First(f => f.Name == "Incident Command").Filters,
-                ScenarioParameters.Filters.First(f => f.Name == "Cost per Parameter").Filters,
-                phaseOnsiteDays);
-
-            var calculatorManager = parameterManager.RedrawParameters();
-
-            var resultsCalculator = parameterManager.SetDrawnParameters(calculatorManager);
-
-            var eventResults = resultsCalculator.CalculateEventResults(calculatorManager, indoorResults, outdoorResults, undergroundResults);
+            var eventResults = eventModelRunner.RunEventModel();
 
             Assert.AreEqual(961688.434868011, eventResults.otherResults.characterizationSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for characterization sampling");
             Assert.AreEqual(55917.2759925219, eventResults.otherResults.sourceReductionTravelCost, 1e-6, "Incorrect travel cost calculated for source reduction");
