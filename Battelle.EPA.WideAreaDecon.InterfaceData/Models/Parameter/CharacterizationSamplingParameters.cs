@@ -23,6 +23,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double personnelOverheadDays;
         public double roundtripDays;
         public double entriesPerTeam;
+        public double entryPrepTime;
+        public double deconLineTime;
         public double hoursEntering;
         public double hoursExiting;
         public double respiratorsPerPerson;
@@ -48,6 +50,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _personnelOverheadDays,
             double _roundtripDays,
             double _entriesPerTeam,
+            double _entryPrepTime,
+            double _deconLineTime,
             double _hoursEntering,
             double _hoursExiting,
             double _respiratorsPerPerson,
@@ -70,6 +74,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             personnelOverheadDays = _personnelOverheadDays;
             roundtripDays = _roundtripDays;
             entriesPerTeam = _entriesPerTeam;
+            entryPrepTime = _entryPrepTime;
+            deconLineTime = _deconLineTime;
             hoursEntering = _hoursEntering;
             hoursExiting = _hoursExiting;
             respiratorsPerPerson = _respiratorsPerPerson;

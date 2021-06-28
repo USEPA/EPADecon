@@ -99,6 +99,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             var personnelOverheadDays = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Personnel Overhead Days").CreateDistribution().Draw();
             var roundtripDays = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
             var entriesPerTeam = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Entries per Team per Day").CreateDistribution().Draw();
+            var entryPrepTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Prep Time per Team per Entry").CreateDistribution().Draw();
+            var deconLineTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon Line Time per Team per Exit").CreateDistribution().Draw();
             var hoursEntering = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
             var hoursExiting = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
             var respiratorsPerPerson = _characterizationSamplingParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Number of Respirators per Person").CreateDistribution().Draw();
@@ -129,6 +131,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 personnelOverheadDays,
                 roundtripDays,
                 entriesPerTeam,
+                entryPrepTime,
+                deconLineTime,
                 hoursEntering,
                 hoursExiting,
                 respiratorsPerPerson,
@@ -142,6 +146,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             var massRemovedPerHourPerTeam = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Mass of Waste Removed per Hour per Team").CreateDistribution().Draw();
             var numEntriesPerDay = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Entries per Team per Day").CreateDistribution().Draw();
             var respiratorsPerPerson = _sourceReductionParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Number of Respirators per Person").CreateDistribution().Draw();
+
+            var entryPrepTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Prep Time per Team per Entry").CreateDistribution().Draw();
+            var deconLineTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon Line Time per Team per Exit").CreateDistribution().Draw();
             var hoursEntering = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
             var hoursExiting = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
             var numTeams = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
@@ -170,6 +177,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 massPerSurfaceArea,
                 massRemovedPerHourPerTeam,
                 numEntriesPerDay,
+                entryPrepTime,
+                deconLineTime,
                 respiratorsPerPerson,
                 hoursEntering,
                 hoursExiting,
@@ -297,6 +306,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             var rentalCarCostPerDay = _costParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Rental Car Cost per Day").CreateDistribution().Draw();
             var roundtripTicketCostPerPerson = _costParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Ticket Cost per Person").CreateDistribution().Draw();
             var perDiem = _costParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Per Diem").CreateDistribution().Draw();
+            var entryPrepCost = _costParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Cost for Prep per Entry").CreateDistribution().Draw();
+            var deconLineCost = _costParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Cost for Decon Line per Exit").CreateDistribution().Draw();
 
             return new CostParameters(
                 hourlyRate,
@@ -314,7 +325,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 deconMaterialsCost,
                 rentalCarCostPerDay,
                 roundtripTicketCostPerPerson,
-                perDiem);
+                perDiem,
+                entryPrepCost,
+                deconLineCost);
         }
 
         //private Dictionary<SurfaceType, ApplicationMethod> SetTreatmentMethods(SurfaceType[] surfaces)

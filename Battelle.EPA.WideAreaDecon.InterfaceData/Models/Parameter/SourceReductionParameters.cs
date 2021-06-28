@@ -11,6 +11,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double massPerSurfaceArea;
         public double massRemovedPerHourPerTeam;
         public double numEntriesPerDay;
+        public double entryPrepTime;
+        public double deconLineTime;
         public double respiratorsPerPerson;
         public double hoursEntering;
         public double hoursExiting;
@@ -27,6 +29,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _massPerSurfaceArea,
             double _massRemovedPerHourPerTeam,
             double _numEntriesPerDay,
+            double _entryPrepTime,
+            double _deconLineTime,
             double _respiratorsPerPerson,
             double _hoursEntering,
             double _hoursExiting,
@@ -40,6 +44,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             massPerSurfaceArea = _massPerSurfaceArea;
             massRemovedPerHourPerTeam = _massRemovedPerHourPerTeam;
             numEntriesPerDay = _numEntriesPerDay;
+            entryPrepTime = _entryPrepTime;
+            deconLineTime = _deconLineTime;
             respiratorsPerPerson = _respiratorsPerPerson;
             hoursEntering = _hoursEntering;
             hoursExiting = _hoursExiting;

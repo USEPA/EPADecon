@@ -22,6 +22,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double rentalCarCostPerDay;
         public double roundtripTicketCostPerPerson;
         public double perDiem;
+        public double entryPrepCost;
+        public double deconLineCost;
 
         //Scenario parameters constructor
         public CostParameters(
@@ -40,7 +42,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _deconMaterialsCost,
             double _rentalCarCostPerDay,
             double _roundtripTicketCostPerPerson,
-            double _perDiem)
+            double _perDiem,
+            double _entryPrepCost,
+            double _deconLineCost)
         {
             hourlyRate = _hourlyRate;
             icRentalCostPerDay = _icRentalCostPerDay;
@@ -58,6 +62,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             rentalCarCostPerDay = _rentalCarCostPerDay;
             roundtripTicketCostPerPerson = _roundtripTicketCostPerPerson;
             perDiem = _perDiem;
+            entryPrepCost = _entryPrepCost;
+            deconLineCost = _deconLineCost;
         }
 
         //Event parameters constructor
