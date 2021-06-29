@@ -72,9 +72,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 csParameters.entriesPerTeam,
                 csParameters.respiratorsPerPerson,
                 costParameters.respiratorCost,
-                costParameters.ppeCost,
-                Calculator_labor,
-                Calculator_supplies
+                costParameters.ppeCost
             );
         }
 

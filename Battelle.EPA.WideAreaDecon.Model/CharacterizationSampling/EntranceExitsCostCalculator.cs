@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
@@ -9,13 +9,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
     {
         private readonly Dictionary<PpeLevel, double> _costPerPpe;
         private readonly double _costPerRespirator;
-
-        private readonly ILaborCostCalculator _laborCostCalculator;
         private readonly Dictionary<PersonnelLevel, double> _personnelRequiredPerTeam;
         private readonly double _respiratorsPerPerson;
         private readonly double _numberEntriesPerTeamPerDay;
-
-        private readonly ISuppliesCostCalculator _suppliesCostCalculator;
+        private readonly double _prepTimeCost;
+        private readonly double _deconLineCost;
 
         public EntrancesExitsCostCalculator(
             Dictionary<PersonnelLevel, double> personnelRequiredPerTeam,
@@ -23,16 +21,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             double respiratorsPerPerson,
             double costPerRespirator,
             Dictionary<PpeLevel, double> costPerPpe,
-            ILaborCostCalculator laborCostCalculator,
-            ISuppliesCostCalculator suppliesCostCalculator)
+            double prepTimeCost,
+            double deconLineCost)
         {
             _personnelRequiredPerTeam = personnelRequiredPerTeam;
             _numberEntriesPerTeamPerDay = numberEntriesPerTeamPerDay;
             _respiratorsPerPerson = respiratorsPerPerson;
             _costPerRespirator = costPerRespirator;
             _costPerPpe = costPerPpe;
-            _laborCostCalculator = laborCostCalculator;
-            _suppliesCostCalculator = suppliesCostCalculator;
+            _prepTimeCost = prepTimeCost;
+            _deconLineCost = deconLineCost;
         }
 
         public double CalculateEntrancesExitsCost(double workDays, double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
