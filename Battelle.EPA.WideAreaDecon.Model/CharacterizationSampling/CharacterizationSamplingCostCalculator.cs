@@ -10,6 +10,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
     {
         public LaborCostCalculator Calculator_labor { get; set; }
         public SuppliesCostCalculator Calculator_supplies { get; set; }
+        public WorkDaysCalculator Calculator_workdays { get; set; }
         public EntrancesExitsCostCalculator Calculator_entEx { get; set; }
         public AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
         public PhaseLagCalculator Calculator_phaseLag { get; set; }
@@ -18,7 +19,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         //Phase time for scenario results
         public double CalculateTime(double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
         {
-            return Calculator_supplies.CalculateWorkDays(_numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
+            return Calculator_workdays.CalculateWorkDays(_numberTeams, _fractionSampledWipe, _fractionSampledHepa, _areaContaminated);
         }
 
         //Phase lag due to lab analysis duration for scenario results

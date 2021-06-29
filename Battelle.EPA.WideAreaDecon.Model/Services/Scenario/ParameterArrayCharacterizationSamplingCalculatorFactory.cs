@@ -11,6 +11,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
     {
         public LaborCostCalculator Calculator_labor { get; set; }
         public SuppliesCostCalculator Calculator_supplies { get; set; }
+        public WorkDaysCalculator Calculator_workdays { get; set; }
         public EntrancesExitsCostCalculator Calculator_entEx { get; set; }
         public AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
         public PhaseLagCalculator Calculator_phaseLag { get; set; }
@@ -28,6 +29,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 costParameters.hepaCost,
                 costParameters.vacuumRentalCostPerDay
             );
+
+            Calculator_workdays = new WorkDaysCalculator(
+                csParameters.surfaceAreaPerWipe,
+                csParameters.surfaceAreaPerHepa,
+                csParameters.wipesPerHrPerTeam,
+                csParameters.hepaSocksPerHrPerTeam,
+                csParameters.entriesPerTeam,
+                csParameters.entryPrepTime,
+                csParameters.deconLineTime
+                );
 
             Calculator_phaseLag = new PhaseLagCalculator(
                 csParameters.surfaceAreaPerWipe,
@@ -73,6 +84,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             {
                 Calculator_labor = Calculator_labor,
                 Calculator_supplies = Calculator_supplies,
+                Calculator_workdays = Calculator_workdays,
                 Calculator_entEx = Calculator_entEx,
                 Calculator_analysis = Calculator_analysis,
                 Calculator_phaseLag = Calculator_phaseLag

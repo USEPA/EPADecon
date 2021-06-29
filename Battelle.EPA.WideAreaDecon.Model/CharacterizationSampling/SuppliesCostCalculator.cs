@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
@@ -47,21 +47,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
             return surfaceAreaToBeWiped / _surfaceAreaPerWipe * _costPerWipe +
                 surfaceAreaToBeHepa / _surfaceAreaPerHepaSock * _costPerVacuum + surfaceAreaToBeHepa /
                 _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams * GlobalConstants.HoursPerWorkDay) * _hepaRentalCostPerDay;
-        }
-
-        public double CalculateWorkDays(double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
-        {
-            var contaminationArea = new Dictionary<SurfaceType, double>();
-            foreach (SurfaceType surface in _areaContaminated.Keys.ToList())
-            {
-                contaminationArea.Add(surface, _areaContaminated[surface].AreaContaminated);
-            }
-            var surfaceAreaToBeWiped = _fractionSampledWipe * contaminationArea.Values.Sum();
-            var surfaceAreaToBeHepa = _fractionSampledHepa * contaminationArea.Values.Sum();
-
-            return Math.Abs(surfaceAreaToBeWiped / _surfaceAreaPerWipe / (_wipesPerHourPerTeam * _numberTeams) / GlobalConstants.HoursPerWorkDay) +
-                Math.Abs(surfaceAreaToBeHepa / _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * _numberTeams) /
-                    GlobalConstants.HoursPerWorkDay);
         }
     }
 }
