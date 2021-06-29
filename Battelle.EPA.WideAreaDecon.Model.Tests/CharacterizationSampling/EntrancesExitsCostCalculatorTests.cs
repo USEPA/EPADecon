@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -32,14 +32,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var numberEntriesPerPerson = 4.0;
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
+            var prepTimeCost = 252.0;
+            var deconLineCost = 697.0;
+
             Calculator = new EntrancesExitsCostCalculator(
                 personnelReqPerTeam,
                 numberEntriesPerPerson,
                 respiratorsPerPerson,
                 costPerRespirator,
                 costPerPpe,
-                new MockLaborCostCalculator(),
-                new MockSuppliesCostCalculator()
+                prepTimeCost,
+                deconLineCost
             );
         }
 

@@ -33,12 +33,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
             var numberEntriesPerTeamPerDay = 2.0;
+            var prepTimeCost = 252.0;
+            var deconLineCost = 697.0;
+
             Calculator = new EntranceExitCostCalculator(
                 personnelReqPerTeam,
                 numberEntriesPerTeamPerDay,
                 respiratorsPerPerson,
                 costPerRespirator,
-                costPerPpe
+                costPerPpe,
+                prepTimeCost,
+                deconLineCost
             );
         }
 

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -32,12 +31,17 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
             var numberEntriesPerTeamPerDay = 3.0;
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
+            var prepTimeCost = 252.0;
+            var deconLineCost = 697.0;
+
             Calculator = new EntranceExitCostCalculator(
                 personnelReqPerTeam,
                 numberEntriesPerTeamPerDay,
                 respiratorsPerPerson,
                 costPerRespirator,
-                costPerPpe
+                costPerPpe,
+                prepTimeCost,
+                deconLineCost
             );
         }
 
@@ -52,7 +56,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
                 { PpeLevel.D, 0.0 }
             };
             var _numberTeams = 4.0;
-            var workDays = 1.019638794335;
+            var workDays = 2.45732949434734;
+
             Assert.AreEqual(11234.2033887326,
                 Calculator.CalculateEntranceExitCost(workDays, _numberTeams, ppeEachLevelPerTeam), 1e-6,
                 "Incorrect cost calculated");

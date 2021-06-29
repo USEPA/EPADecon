@@ -12,9 +12,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         {
             var massRemovedPerHrPerTeam = 453.592;
             var massPerSa = 7.4;
+            var numberEntriesPerTeamPerDay = 2.0;
+            var prepTimePerTeamPerEntry = 0.6;
+            var deconLineTimePerTeamPerExit = 0.81;
+
             Calculator = new WorkDaysCalculator(
                 massRemovedPerHrPerTeam,
-                massPerSa
+                massPerSa,
+                numberEntriesPerTeamPerDay,
+                prepTimePerTeamPerEntry,
+                deconLineTimePerTeamPerExit
             );
         }
 
