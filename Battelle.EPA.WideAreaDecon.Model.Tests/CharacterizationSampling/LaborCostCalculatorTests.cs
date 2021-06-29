@@ -7,6 +7,14 @@ using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
+    internal class MockSuppliesCostCalculator : ISuppliesCostCalculator
+    {
+        public double CalculateSuppliesCost(double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
+        {
+            return 39.967011947266;
+        }
+    }
+
     internal class MockPhaseLagCalculator : IPhaseLagCalculator
     {
         public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
