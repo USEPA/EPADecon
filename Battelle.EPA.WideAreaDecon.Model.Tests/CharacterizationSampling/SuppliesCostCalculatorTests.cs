@@ -1,4 +1,4 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
+using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -21,6 +21,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var costPerWipe = 19.0;
             var costPerVacuum = 29.0;
             var hepaRentalCostPerDay = 15.0;
+
             Calculator = new SuppliesCostCalculator(
                 surfaceAreaPerWipe,
                 surfaceAreaPerHepaSock,
