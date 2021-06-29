@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -7,32 +7,6 @@ using Battelle.EPA.WideAreaDecon.InterfaceData;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 {
-    internal class MockLaborCostCalculator : ILaborCostCalculator
-    {
-        public double CalculateLaborCost(double workDays, double _numberTeams, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
-        {
-            return 83259.8434926752;
-        }
-
-        public double CalculateLaborDays(double workDays)
-        {
-            return 2.18186172674725;
-        }
-    }
-
-    internal class MockSuppliesCostCalculator : ISuppliesCostCalculator
-    {
-        public double CalculateSuppliesCost(double _numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
-        {
-            return 10826.1439350721;
-        }
-
-        public double CalculateWorkDays(double _numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
-        {
-            return 1.68186172674725;
-        }
-    }
-
     public class EntrancesExitsCostCalculatorTests
     {
         private EntrancesExitsCostCalculator Calculator { get; set; }
