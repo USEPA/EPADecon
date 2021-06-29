@@ -1,4 +1,4 @@
-using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
+﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -49,8 +49,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
 
             Assert.AreEqual(16672.6316695909, Calculator.CalculateSuppliesCost(_numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6,
                 "Incorrect supplies cost calculated");
-            Assert.AreEqual(2.6909787627956, Calculator.CalculateWorkDays(_numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6, "Incorrect work days cost calculated");
-        
         }
     }
 }
