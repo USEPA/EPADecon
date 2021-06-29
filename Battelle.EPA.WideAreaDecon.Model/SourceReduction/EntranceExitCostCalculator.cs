@@ -11,19 +11,25 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         private readonly double _numberEntriesPerTeamPerDay;
         private readonly Dictionary<PersonnelLevel, double> _personnelRequiredPerTeam;
         private readonly double _respiratorsPerPerson;
+        private readonly double _prepTimeCost;
+        private readonly double _deconLineCost;
 
         public EntranceExitCostCalculator(
             Dictionary<PersonnelLevel, double> personnelRequiredPerTeam,
             double numberEntriesPerTeamPerDay,
             double respiratorsPerPerson,
             double costPerRespirator,
-            Dictionary<PpeLevel, double> costPerPpe)
+            Dictionary<PpeLevel, double> costPerPpe,
+            double prepTimeCost,
+            double deconLineCost)
         {
             _personnelRequiredPerTeam = personnelRequiredPerTeam;
             _numberEntriesPerTeamPerDay = numberEntriesPerTeamPerDay;
             _respiratorsPerPerson = respiratorsPerPerson;
             _costPerRespirator = costPerRespirator;
             _costPerPpe = costPerPpe;
+            _prepTimeCost = prepTimeCost;
+            _deconLineCost = deconLineCost;
         }
 
         public double CalculateEntranceExitCost(double workDays, double _numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
@@ -36,7 +42,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
-            return (totalPersonnel * _respiratorsPerPerson * _costPerRespirator) + totalCostPpe;
+            var totalEntryPrepCost = totalEntries * _prepTimeCost;
+            var totalDeconLineCost = totalEntries * _deconLineCost;
+
+            return (totalPersonnel * _respiratorsPerPerson * _costPerRespirator) + totalCostPpe + totalEntryPrepCost + totalDeconLineCost;
         }
     }
 }

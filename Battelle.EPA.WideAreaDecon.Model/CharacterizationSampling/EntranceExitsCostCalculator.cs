@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
@@ -43,7 +43,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
 
             var totalCostPpe = totalPpePerLevel.Zip(_costPerPpe.Values, (ppe, cost) => ppe * cost).Sum();
 
-            return (totalPersonnel * _respiratorsPerPerson * _costPerRespirator) + totalCostPpe;
+            var totalEntryPrepCost = totalEntries * _prepTimeCost;
+            var totalDeconLineCost = totalEntries * _deconLineCost;
+
+            return (totalPersonnel * _respiratorsPerPerson * _costPerRespirator) + totalCostPpe + totalEntryPrepCost + totalDeconLineCost;
         }
     }
 }
