@@ -60,7 +60,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             
             Calculator_workDaysSr = new SourceReduction.WorkDaysCalculator(
                 srParameters.massRemovedPerHourPerTeam,
-                srParameters.massPerSurfaceArea
+                srParameters.massPerSurfaceArea,
+                srParameters.numEntriesPerDay,
+                srParameters.entryPrepTime,
+                srParameters.deconLineTime
             );
 
             Calculator_laborSr = new SourceReduction.LaborCostCalculator(

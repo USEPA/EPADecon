@@ -20,7 +20,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
         {
             Calculator_workDays = new WorkDaysCalculator(
                 srParameters.massRemovedPerHourPerTeam,
-                srParameters.massPerSurfaceArea
+                srParameters.massPerSurfaceArea,
+                srParameters.numEntriesPerDay,
+                srParameters.entryPrepTime,
+                srParameters.deconLineTime
             );
 
             Calculator_labor = new LaborCostCalculator(
@@ -45,7 +48,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 srParameters.numEntriesPerDay,
                 srParameters.respiratorsPerPerson,
                 costParameters.respiratorCost,
-                costParameters.ppeCost
+                costParameters.ppeCost,
+                costParameters.entryPrepCost,
+                costParameters.deconLineCost
             );
         }
         public SourceReductionCostCalculator GetCalculator()

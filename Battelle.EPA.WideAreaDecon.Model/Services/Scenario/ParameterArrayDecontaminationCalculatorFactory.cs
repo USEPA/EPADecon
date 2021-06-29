@@ -48,7 +48,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 dcParameters.numEntriesPerTeamPerDay,
                 dcParameters.respiratorsPerPerson,
                 costParameters.respiratorCost,
-                costParameters.ppeCost
+                costParameters.ppeCost,
+                costParameters.entryPrepCost,
+                costParameters.deconLineCost
             );
         }
         public DecontaminationCostCalculator GetCalculator()
