@@ -1,5 +1,6 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.Model.SourceReduction.Cost;
+using Battelle.EPA.WideAreaDecon.Model.SourceReduction.Time;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.Model.Services;
 
@@ -7,30 +8,41 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
     public class SourceReductionCostCalculator : ISourceReductionCalculatorFactory
     {
+        public LaborDaysCalculator Calculator_laborDays { get; set; }
         public WorkDaysCalculator Calculator_workDays { get; set; }
+        public OnsiteDaysCalculator Calculator_onsiteDays { get; set; }
         public LaborCostCalculator Calculator_labor { get; set; }
         public EntranceExitCostCalculator Calculator_entEx { get; set; }
-        public EntExitLaborCostCalculator Calculator_entExLabor { get; set; }
         public TravelCostCalculator Calculator_travel { get; set; }
 
         //Phase time for scenario results
-        public double CalculateTime(double _numberTeams, double saToBeSourceReduced, double area)
+        public Dictionary<PhaseDays, double> CalculateTime(double numberTeams, double saToBeSourceReduced, double area)
         {
-            return Calculator_workDays.CalculateWorkDays(_numberTeams, saToBeSourceReduced, area);
+            var laborDays = Calculator_laborDays.CalculateLaborDays(numberTeams, saToBeSourceReduced, area);
+            var workDays = Calculator_workDays.CalculateWorkDays(laborDays, numberTeams);
+            var onsiteDays = Calculator_onsiteDays.CalculateOnsiteDays(workDays);
+
+            return new Dictionary<PhaseDays, double>
+            {
+                { PhaseDays.LaborDays, laborDays },
+                { PhaseDays.WorkDays, workDays },
+                { PhaseDays.OnsiteDays, onsiteDays }
+            };
         }
 
         //Phase costs for scenario results
-        public double CalculatePhaseCosts(double workDays, double _numberTeams, double saToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
+        public double CalculatePhaseCosts(Dictionary<PhaseDays, double> phaseDays, double numberTeams, double saToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
         {
-            var laborCosts = Calculator_labor.CalculateLaborCost(workDays, _numberTeams, saToBeSourceReduced, costPerTonRemoved, area);
-            var entExCosts = Calculator_entEx.CalculateEntranceExitCost(workDays, _numberTeams, ppePerLevelPerTeam);
+            var laborCosts = Calculator_labor.CalculateLaborCost(phaseDays[PhaseDays.OnsiteDays], numberTeams, saToBeSourceReduced, costPerTonRemoved, area);
+            var entExCosts = Calculator_entEx.CalculateEntranceExitCost(phaseDays[PhaseDays.LaborDays], numberTeams, ppePerLevelPerTeam);
+            
             return (laborCosts + entExCosts);
         }
 
         //Travel costs for event results
-        public double CalculateTravelCost(double roundtripDays, double numTeams, Dictionary<PersonnelLevel, double> personnelRequired, double onsiteDays)
+        public double CalculateTravelCost(double roundtripDays, double numberTeams, Dictionary<PersonnelLevel, double> personnelRequired, Dictionary<PhaseDays, double> phaseDays)
         {
-            return Calculator_travel.CalculateTravelCost(roundtripDays, numTeams, personnelRequired, onsiteDays);
+            return Calculator_travel.CalculateTravelCost(roundtripDays, numberTeams, personnelRequired, phaseDays[PhaseDays.OnsiteDays]);
         }
 
         public SourceReductionCostCalculator GetCalculator()
