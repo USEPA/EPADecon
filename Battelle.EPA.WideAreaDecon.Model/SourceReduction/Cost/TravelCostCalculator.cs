@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
-namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
+namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction.Cost
 {
-    public class TravelCostCalculator
+    public class TravelCostCalculator : ITravelCostCalculator
     {
         private readonly double costPerRentalCar;
         private readonly double costPerRoundtripTicket;
@@ -23,9 +23,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
             personnelPerRentalCar = _personnelPerRentalCar;
         }
 
-        public double CalculateTravelCost(double roundtripDays, Dictionary<PersonnelLevel, double> personnelPerTeam, double onsiteDays)
+        public double CalculateTravelCost(double roundtripDays, double numberTeams, Dictionary<PersonnelLevel, double> personnelPerTeam, double onsiteDays)
         {
-            var totalPersonnel = personnelPerTeam.Sum(x => x.Value);
+            var totalPersonnel = personnelPerTeam.Sum(x => x.Value) * numberTeams;
 
             var totalPerDiem = totalPersonnel * onsiteDays * perDiemCost;
 
