@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System;
-using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
+using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Cost;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using NUnit.Framework;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
+namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Cost
 {
     public class AnalysisQuantCostCalculatorTests
     {

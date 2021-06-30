@@ -1,11 +1,10 @@
 ﻿using System;
-using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
+using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Cost;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
+namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Cost
 {
     public class EntrancesExitsCostCalculatorTests
     {
@@ -56,19 +55,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 { PpeLevel.C, 0.5 },
                 { PpeLevel.D, 0.0 }
             };
-            var _numberTeams = 4.0;
-            var fractionSampledWipe = 0.5;
-            var fractionSampledHepa = 0.5;
-            var workDays = 1.68186172674725;
-            var info = new ContaminationInformation(500.0, 20.0);
-            Dictionary<SurfaceType, ContaminationInformation> areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
+            var numberTeams = 4.0;
+            var laborDays = 1.68186172674725;
 
-            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
-            {
-                areaContaminated.Add(surface, info);
-            }
-
-            Assert.AreEqual(20122.8714551737, Calculator.CalculateEntrancesExitsCost(workDays, _numberTeams, ppePerLevelPerTeam, fractionSampledWipe, fractionSampledHepa, areaContaminated),
+            Assert.AreEqual(20122.8714551737, Calculator.CalculateEntrancesExitsCost(laborDays, numberTeams, ppePerLevelPerTeam),
                 1e-6, "Incorrect labor cost calculated");
         }
     }

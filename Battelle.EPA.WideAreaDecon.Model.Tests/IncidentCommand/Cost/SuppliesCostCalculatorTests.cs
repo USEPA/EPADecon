@@ -1,25 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
-using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
-using Battelle.EPA.WideAreaDecon.InterfaceData;
+using Battelle.EPA.WideAreaDecon.Model.IncidentCommand.Cost;
 using NUnit.Framework;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
+namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand.Cost
 {
-    internal class MockLaborCostCalculator : ILaborCostCalculator
-    {
-        public double CalculateOnSiteDays(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC)
-        {
-            return 71.6424319256773;
-        }
-
-        public double CalculateLaborCost(double onSiteDays)
-        {
-            return 796663.843013532;
-        }
-    }
-
     public class SuppliesCostCalculatorTests
     {
         private SuppliesCostCalculator Calculator { get; set; }
@@ -29,6 +13,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand
         {
             var equipmentRentalCostPerDay = 235.42;
             var suppliesCostPerDay = 1007.082;
+
             Calculator = new SuppliesCostCalculator(
                 equipmentRentalCostPerDay,
                 suppliesCostPerDay

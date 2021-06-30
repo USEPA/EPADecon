@@ -1,4 +1,4 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.Decontamination;
+﻿using Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
+namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
 {
     public class SuppliesCostCalculatorTests
     {
@@ -19,6 +19,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
             var deconAgentCostPerVolume = 0.52306056;
             var deconMaterialsCost = 1.53612754751869;
             var deconAgentVolume = 0.3342015463;
+
             Calculator = new SuppliesCostCalculator(
                 deconAgentCostPerVolume,
                 deconMaterialsCost,

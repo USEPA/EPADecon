@@ -1,11 +1,11 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
+﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Time;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
+namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Time
 {
     public class PhaseLagCalculatorTests
     {
@@ -20,6 +20,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             var labThroughput = new List<double> { 50, 60, 40 };
             var labUptimesHours = new List<double> { 8.0, 9.0, 10.0 };
             var labDistanceFromSite = new List<double> { 48.0, 20.0, 90.0 };
+
             Calculator = new PhaseLagCalculator(
                 surfaceAreaPerWipe, 
                 surfaceAreaPerHepa, 
@@ -30,7 +31,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             );
         }
 
-            [Test]
+        [Test]
         public void CalculateCSPhaseLagTime()
         {
             var numberLabs = 3;

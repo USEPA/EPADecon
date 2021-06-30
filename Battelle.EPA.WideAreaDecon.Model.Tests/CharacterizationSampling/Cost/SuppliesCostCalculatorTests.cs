@@ -1,11 +1,11 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
+﻿using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Cost;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
+namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Cost
 {
     public class SuppliesCostCalculatorTests
     {
@@ -16,7 +16,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         {
             var surfaceAreaPerWipe = 4.64515;
             var surfaceAreaPerHepaSock = 9.2903;
-            var wipesPerHrPerTeam = 6.0;
             var hepaSocksPerHrPerTeam = 6.0;
             var costPerWipe = 19.0;
             var costPerVacuum = 29.0;
@@ -25,7 +24,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
             Calculator = new SuppliesCostCalculator(
                 surfaceAreaPerWipe,
                 surfaceAreaPerHepaSock,
-                wipesPerHrPerTeam,
                 hepaSocksPerHrPerTeam,
                 costPerWipe,
                 costPerVacuum,
@@ -36,7 +34,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
         [Test]
         public void CalculateCost()
         {
-            var _numberTeams = 4.0;
+            var numberTeams = 4.0;
             var fractionSampledWipe = 0.3;
             var fractionSampledHepa = 0.2;
             var info = new ContaminationInformation(500.0, 20.0);
@@ -47,7 +45,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(16672.6316695909, Calculator.CalculateSuppliesCost(_numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6,
+            Assert.AreEqual(16672.6316695909, Calculator.CalculateSuppliesCost(numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6,
                 "Incorrect supplies cost calculated");
         }
     }

@@ -1,10 +1,10 @@
 ﻿using System;
-using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
+using Battelle.EPA.WideAreaDecon.Model.SourceReduction.Cost;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
+namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Cost
 {
     public class EntranceExitCostCalculatorTests
     {
@@ -55,11 +55,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
                 { PpeLevel.C, 0.5 },
                 { PpeLevel.D, 0.0 }
             };
-            var _numberTeams = 4.0;
+            var numberTeams = 4.0;
             var workDays = 2.45732949434734;
 
             Assert.AreEqual(11234.2033887326,
-                Calculator.CalculateEntranceExitCost(workDays, _numberTeams, ppeEachLevelPerTeam), 1e-6,
+                Calculator.CalculateEntranceExitCost(workDays, numberTeams, ppeEachLevelPerTeam), 1e-6,
                 "Incorrect cost calculated");
         }
     }

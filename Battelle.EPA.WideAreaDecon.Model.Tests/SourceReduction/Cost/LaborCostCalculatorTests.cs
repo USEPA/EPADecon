@@ -1,13 +1,13 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
+﻿using Battelle.EPA.WideAreaDecon.Model.SourceReduction.Cost;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
+namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Cost
 {
-    public class EntExitLaborCostCalculatorTests
+    public class LaborCostCalculatorTests
     {
-        private EntExitLaborCostCalculator Calculator { get; set; }
+        private LaborCostCalculator Calculator { get; set; }
 
         [SetUp]
         public void Setup()
@@ -28,27 +28,26 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
                 { PersonnelLevel.PL3, 130.0 },
                 { PersonnelLevel.PL4, 190.0 }
             };
-            var numEntriesPerTeamPerDay = 3.0;
-            var hoursPerEntryPerTeam = 2.0;
-            var hoursPerExitPerTeam = 2.0;
-            Calculator = new EntExitLaborCostCalculator(
+            var massPerSa = 7.4;
+
+            Calculator = new LaborCostCalculator(
                 personnelPerTeam,
                 personnelHourlyRate,
-                numEntriesPerTeamPerDay,
-                hoursPerEntryPerTeam,
-                hoursPerExitPerTeam,
-                new MockWorkDaysCalculator()
+                massPerSa
             );
         }
 
         [Test]
         public void CalculateCost()
         {
-            var workDays = 4.12953711705674;
             var numberTeams = 4.0;
-            
-            Assert.AreEqual(134242.99260128, Calculator.CalculateEntExitLaborCost(workDays, numberTeams), 1e-3,
-                "Incorrect cost calculated");
+            var saToBeSourceReduced = 0.9;
+            var area = 9000.0;
+            var costPerTonRemoved = 0.1;
+            var workDays = 2.75302474470449;
+
+            Assert.AreEqual(95489.3284008536, Calculator.CalculateLaborCost(workDays, numberTeams, saToBeSourceReduced,
+             costPerTonRemoved, area), 1e-6, "Incorrect labor cost calculated");
         }
     }
 }

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.Model.Decontamination;
+using Battelle.EPA.WideAreaDecon.Model.Decontamination.Time;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
+namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Time
 {
-    public class WorkDaysCalculatorTests
+    public class LaborDaysCalculatorTests
     {
-        private WorkDaysCalculator Calculator { get; set; }
+        private LaborDaysCalculator Calculator { get; set; }
 
         [SetUp]
         public void Setup()
@@ -41,7 +41,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
 
             treatmentDaysPerAm.Add(ApplicationMethod.Fogging, 3.0);
 
-            Calculator = new WorkDaysCalculator(
+            Calculator = new LaborDaysCalculator(
                 applicationMethods,
                 initialSporeLoading,
                 treatmentDaysPerAm,
@@ -50,19 +50,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
         }
 
         [Test]
-        public void CalculateCost()
+        public void CalculateLaborDays()
         {
-            List<Dictionary<ApplicationMethod, double>> decontaminationWorkdays = Calculator.CalculateWorkDays();
+            var decontaminationWorkdays = Calculator.CalculateLaborDays();
 
-            var workdays = new List<double>();
+            var workdays = 0.0;
             foreach (var item in decontaminationWorkdays)
             {
-                workdays.Add(item.Sum(x => x.Value));
+                workdays += item.Sum(x => x.Value);
             }
 
-            Assert.AreEqual(12.0, workdays.Sum(), 1e-6, "Incorrect workdays calculated");
+            Assert.AreEqual(12.0, workdays, 1e-6, "Incorrect workdays calculated");
             Assert.AreEqual(4.0, decontaminationWorkdays.Count, 1e-6, "Incorrect decontamination rounds calculated");
-
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System;
-using Battelle.EPA.WideAreaDecon.Model.Decontamination;
+using Battelle.EPA.WideAreaDecon.Model.Decontamination.Time;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
+namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Time
 {
     public class EfficacyCalculatorTests
     {

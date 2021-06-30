@@ -1,7 +1,7 @@
-﻿using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
+﻿using Battelle.EPA.WideAreaDecon.Model.SourceReduction.Time;
 using NUnit.Framework;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
+namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Time
 {
     public class WorkDaysCalculatorTests
     {
@@ -10,15 +10,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         [SetUp]
         public void Setup()
         {
-            var massRemovedPerHrPerTeam = 453.592;
-            var massPerSa = 7.4;
             var numberEntriesPerTeamPerDay = 2.0;
             var prepTimePerTeamPerEntry = 0.6;
             var deconLineTimePerTeamPerExit = 0.81;
 
             Calculator = new WorkDaysCalculator(
-                massRemovedPerHrPerTeam,
-                massPerSa,
                 numberEntriesPerTeamPerDay,
                 prepTimePerTeamPerEntry,
                 deconLineTimePerTeamPerExit
@@ -28,12 +24,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction
         [Test]
         public void CalculateCost()
         {
-            var _numberTeams = 4.0;
-            var saToBeSourceReduced = 0.9;
-            var area = 9000.0;
+            var numberTeams = 4.0;
+            var laborDays = 3.0;
 
-            Assert.AreEqual(2.75302474470449, Calculator.CalculateWorkDays(_numberTeams, saToBeSourceReduced, area), 1e-6,
-                "Incorrect labor cost calculated");
+            Assert.AreEqual(2.75302474470449, Calculator.CalculateWorkDays(laborDays, numberTeams), 1e-6,
+                "Incorrect workdays calculated");
         }
     }
 }

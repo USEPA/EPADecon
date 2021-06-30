@@ -1,10 +1,10 @@
 ﻿using System;
-using Battelle.EPA.WideAreaDecon.Model.Decontamination;
+using Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost;
 using NUnit.Framework;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
-namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
+namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
 {
     public class LaborCostCalculatorTests
     {
@@ -29,11 +29,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination
                 { PersonnelLevel.PL3, 130.0 },
                 { PersonnelLevel.PL4, 190.0 }
             };
-            var personnelOverhead = 2.0;
+
             Calculator = new LaborCostCalculator(
                 personnelReqPerTeam,
-                personnelHourlyRate,
-                personnelOverhead
+                personnelHourlyRate
             );
         }
 
