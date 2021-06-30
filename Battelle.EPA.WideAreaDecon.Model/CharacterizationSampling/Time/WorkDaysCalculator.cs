@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData;
 
-namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
+namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Time
 {
     public class WorkDaysCalculator : IWorkDaysCalculator
     {
