@@ -45,9 +45,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         }
 
         //Travel costs for event results
-        public double CalculateTravelCost(double roundtripDays, double numberTeams, Dictionary<PersonnelLevel, double> personnelRequired, Dictionary<PhaseDays, double> phaseDays)
+        public double CalculateTravelCost(double roundtripDays, double numberTeams, Dictionary<PersonnelLevel, double> personnelRequired, double onsiteDays)
         {
-            return Calculator_travel.CalculateTravelCost(roundtripDays, numberTeams, personnelRequired, phaseDays[PhaseDays.OnsiteDays]);
+            return Calculator_travel.CalculateTravelCost(roundtripDays, numberTeams, personnelRequired, onsiteDays);
         }
 
         public DecontaminationCostCalculator GetCalculator()
