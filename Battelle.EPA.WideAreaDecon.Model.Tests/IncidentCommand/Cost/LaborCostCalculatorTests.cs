@@ -39,9 +39,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand.Cost
         [Test]
         public void CalculateCost()
         {
-            var onsiteDays = 34.0;
+            var onsiteDays = 80.9931745087011;
 
-            Assert.AreEqual(1537827.89140996, Calculator.CalculateLaborCost(onsiteDays), 1e-6, "Incorrect Labor cost calculated");
+            Assert.AreEqual(1350966.15080513, Calculator.CalculateLaborCost(onsiteDays), 1e-6, "Incorrect Labor cost calculated");
         }
     }
 }

@@ -35,8 +35,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Cost
         public void CalculateCost()
         {
             var numberTeams = 4.0;
-            var fractionSampledWipe = 0.3;
-            var fractionSampledHepa = 0.2;
+            var fractionSampledWipe = 1.0 / 6.0;
+            var fractionSampledHepa = 1.0 / 6.0;
             var info = new ContaminationInformation(500.0, 20.0);
             var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
 
@@ -45,7 +45,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Cost
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(16672.6316695909, Calculator.CalculateSuppliesCost(numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6,
+            Assert.AreEqual(10826.1439350721, Calculator.CalculateSuppliesCost(numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6,
                 "Incorrect supplies cost calculated");
         }
     }

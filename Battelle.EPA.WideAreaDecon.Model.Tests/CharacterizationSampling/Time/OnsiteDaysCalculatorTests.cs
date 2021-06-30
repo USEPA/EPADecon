@@ -11,7 +11,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Time
         [SetUp]
         public void Setup()
         {
-            var overheadDays = 2.0;
+            var overheadDays = 0.5;
 
             Calculator = new OnsiteDaysCalculator(
                 overheadDays    
@@ -21,9 +21,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Time
         [Test]
         public void CalculateOnsiteDays()
         {
-            var workDays = 2.0;
+            var workDays = 4.84376177303209;
 
-            Assert.AreEqual(4.0, Calculator.CalculateOnsiteDays(workDays), 1e-6, "Incorrect workdays calculated");
+            Assert.AreEqual(5.34376177303, Calculator.CalculateOnsiteDays(workDays), 1e-6, "Incorrect workdays calculated");
         }
     }
 }

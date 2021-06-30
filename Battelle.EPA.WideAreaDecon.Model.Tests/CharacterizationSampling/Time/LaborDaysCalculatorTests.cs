@@ -14,10 +14,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Time
         [SetUp]
         public void Setup()
         {
-            var surfaceAreaPerWipe = 0.1;
-            var surfaceAreaPerHepaSock = 0.1;
-            var wipesPerHourPerTeam = 0.1;
-            var hepaSocksPerHourPerTeam = 0.1;
+            var surfaceAreaPerWipe = 4.64515;
+            var surfaceAreaPerHepaSock = 9.2903;
+            var wipesPerHourPerTeam = 6.0;
+            var hepaSocksPerHourPerTeam = 6.0;
 
             Calculator = new LaborDaysCalculator(
                 surfaceAreaPerWipe,
@@ -31,8 +31,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Time
         public void CalculateLaborDays()
         {
             var numberTeams = 4.0;
-            var fractionSampledWipe = 0.3;
-            var fractionSampledHepa = 0.2;
+            var fractionSampledWipe = 1.0 / 6.0;
+            var fractionSampledHepa = 1.0 / 6.0;
             var info = new ContaminationInformation(500.0, 20.0);
 
             var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
@@ -42,7 +42,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Time
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(10.0, Calculator.CalculateLaborDays(numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6, "Incorrect labor days calculated");
+            Assert.AreEqual(1.68186172674725, Calculator.CalculateLaborDays(numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6, "Incorrect labor days calculated");
         }
     }
 }

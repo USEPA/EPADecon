@@ -23,17 +23,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Time
             {
                 new Dictionary<ApplicationMethod, double>
                 {
-                    { ApplicationMethod.Fogging, 2.0 },
                     { ApplicationMethod.Aerosol, 3.0 }
                 },
                 new Dictionary<ApplicationMethod, double>
                 {
-                    { ApplicationMethod.Fogging, 2.0 },
-                    { ApplicationMethod.Fumigation, 1.0 }
+                    { ApplicationMethod.Aerosol, 3.0 }
+                },
+                new Dictionary<ApplicationMethod, double>
+                {
+                    { ApplicationMethod.Aerosol, 3.0 }
+                },
+                new Dictionary<ApplicationMethod, double>
+                {
+                    { ApplicationMethod.Aerosol, 3.0 }
                 }
             };
 
-            Assert.AreEqual(8.0, Calculator.CalculateWorkDays(decontaminationWorkdays), 1e-6, "Incorrect workdays calculated");
+            Assert.AreEqual(12.0, Calculator.CalculateWorkDays(decontaminationWorkdays), 1e-6, "Incorrect workdays calculated");
         }
     }
 }

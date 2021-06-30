@@ -21,9 +21,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Time
         [Test]
         public void CalculateOnsiteDays()
         {
-            var workDays = 1.0;
+            var workDays = 2.45732949434734;
 
-            Assert.AreEqual(3.0, Calculator.CalculateOnsiteDays(workDays), 1e-6, "Incorrect onsite days calculated");
+            Assert.AreEqual(4.45732949434734, Calculator.CalculateOnsiteDays(workDays), 1e-6, "Incorrect onsite days calculated");
         }
     }
 }

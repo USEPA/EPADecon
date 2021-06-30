@@ -39,10 +39,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
         [Test]
         public void CalculateCost()
         {
-            var workDays = 12.0;
+            var onsiteDays = 14.0;
             var numTeams = 2.0;
              
-            Assert.AreEqual(361200, Calculator.CalculateLaborCost(workDays, numTeams), 1e-6, "Incorrect cost calculated");
+            Assert.AreEqual(361200, Calculator.CalculateLaborCost(onsiteDays, numTeams), 1e-6, "Incorrect cost calculated");
 
         }
     }

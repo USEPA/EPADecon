@@ -41,12 +41,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Cost
         public void CalculateCost()
         {
             var numberTeams = 4.0;
-            var saToBeSourceReduced = 0.9;
-            var area = 9000.0;
+            var saToBeSourceReduced = 1.0;
+            var area = 3000.0;
             var costPerTonRemoved = 0.1;
-            var workDays = 2.75302474470449;
+            var onsiteDays = 2.45732949434734;
 
-            Assert.AreEqual(95489.3284008536, Calculator.CalculateLaborCost(workDays, numberTeams, saToBeSourceReduced,
+            Assert.AreEqual(82102.8672022434, Calculator.CalculateLaborCost(onsiteDays, numberTeams, saToBeSourceReduced,
              costPerTonRemoved, area), 1e-6, "Incorrect labor cost calculated");
         }
     }

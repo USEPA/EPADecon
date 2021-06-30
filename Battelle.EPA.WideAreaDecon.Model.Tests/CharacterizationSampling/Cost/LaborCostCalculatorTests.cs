@@ -39,10 +39,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Cost
         [Test]
         public void CalculateCost()
         {
-            var numberTeams = 4;
-            var onsiteDays = 2.6909787627956;
+            var numberTeams = 4.0;
+            var onsiteDays = 5.34376177303209;
 
-            Assert.AreEqual(121767.74958828, Calculator.CalculateLaborCost(onsiteDays, numberTeams), 1e-4,
+            Assert.AreEqual(203917.949258904, Calculator.CalculateLaborCost(onsiteDays, numberTeams), 1e-4,
                 "Incorrect labor cost calculated");
         }
     }

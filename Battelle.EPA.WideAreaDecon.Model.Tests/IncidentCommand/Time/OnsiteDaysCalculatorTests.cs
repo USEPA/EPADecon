@@ -21,11 +21,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand.Time
         [Test]
         public void CalculateOnsiteDays()
         {
-            var onsiteDaysCS = 2.0;
-            var onsiteDaysSR = 3.0;
-            var onsiteDaysDC = 6.0;
+            var onsiteDaysCS = 58.5358450143538;
+            var onsiteDaysSR = 2.45732949434734;
+            var onsiteDaysDC = 12.0;
 
-            Assert.AreEqual(10.0, Calculator.CalculateOnSiteDays(onsiteDaysCS, onsiteDaysSR, onsiteDaysDC), 1e-6, "Incorrect onsite days calculated");
+            Assert.AreEqual(80.9931745087011, Calculator.CalculateOnSiteDays(onsiteDaysCS, onsiteDaysSR, onsiteDaysDC), 1e-6, "Incorrect onsite days calculated");
         }
     }
 }

@@ -15,7 +15,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
         [SetUp]
         public void Setup()
         {
-            
             var deconAgentCostPerVolume = 0.52306056;
             var deconMaterialsCost = 1.53612754751869;
             var deconAgentVolume = 0.3342015463;

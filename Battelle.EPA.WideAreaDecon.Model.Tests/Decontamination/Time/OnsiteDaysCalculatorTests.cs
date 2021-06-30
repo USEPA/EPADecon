@@ -21,9 +21,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Time
         [Test]
         public void CalculateOnsiteDays()
         {
-            var workDays = 4.0;
+            var workDays = 12.0;
 
-            Assert.AreEqual(6.0, Calculator.CalculateOnsiteDays(workDays), 1e-6, "Incorrect onsite days calculated");
+            Assert.AreEqual(14.0, Calculator.CalculateOnsiteDays(workDays), 1e-6, "Incorrect onsite days calculated");
         }
     }
 }

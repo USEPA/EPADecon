@@ -10,7 +10,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Time
         [SetUp]
         public void Setup()
         {
-            var numberEntriesPerTeamPerDay = 2.0;
+            var numberEntriesPerTeamPerDay = 3.0;
             var prepTimePerTeamPerEntry = 0.6;
             var deconLineTimePerTeamPerExit = 0.81;
 
@@ -25,9 +25,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Time
         public void CalculateCost()
         {
             var numberTeams = 4.0;
-            var laborDays = 3.0;
+            var laborDays = 1.019638794335;
 
-            Assert.AreEqual(2.75302474470449, Calculator.CalculateWorkDays(laborDays, numberTeams), 1e-6,
+            Assert.AreEqual(2.45732949434734, Calculator.CalculateWorkDays(laborDays, numberTeams), 1e-6,
                 "Incorrect workdays calculated");
         }
     }

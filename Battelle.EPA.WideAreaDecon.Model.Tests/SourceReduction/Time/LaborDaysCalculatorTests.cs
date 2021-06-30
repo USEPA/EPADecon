@@ -24,10 +24,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Time
         public void CalculateLaborDays()
         {
             var numberTeams = 4.0;
-            var saToBeSourceReduced = 0.9;
-            var area = 9000.0;
+            var saToBeSourceReduced = 1.0;
+            var area = 3000.0;
 
-            Assert.AreEqual(10.0, Calculator.CalculateLaborDays(numberTeams, saToBeSourceReduced, area), 1e-6, "Incorrect labor days calculated");
+            Assert.AreEqual(1.019638794335, Calculator.CalculateLaborDays(numberTeams, saToBeSourceReduced, area), 1e-6, "Incorrect labor days calculated");
         }
     }
 }
