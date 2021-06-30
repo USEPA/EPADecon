@@ -1,6 +1,5 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.IncidentCommand;
-using System;
-using System.Collections.Generic;
+using Battelle.EPA.WideAreaDecon.Model.IncidentCommand.Cost;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Services.Event

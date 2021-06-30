@@ -1,5 +1,5 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
-using System;
+using Battelle.EPA.WideAreaDecon.Model.SourceReduction.Cost;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Services.Event
