@@ -1,5 +1,6 @@
 ﻿using Battelle.EPA.WideAreaDecon.Model.SourceReduction;
-using System;
+using Battelle.EPA.WideAreaDecon.Model.SourceReduction.Cost;
+using Battelle.EPA.WideAreaDecon.Model.SourceReduction.Time;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
@@ -10,37 +11,34 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
     public class ParameterArraySourceReductionCalculatorFactory : ISourceReductionCalculatorFactory
     {
         public LaborCostCalculator Calculator_labor { get; set; }
+        public LaborDaysCalculator Calculator_laborDays { get; set; }
         public WorkDaysCalculator Calculator_workDays { get; set; }
+        public OnsiteDaysCalculator Calculator_onsiteDays { get; set; }
         public EntranceExitCostCalculator Calculator_entEx { get; set; }
-        public EntExitLaborCostCalculator Calculator_entExLabor { get; set; }
 
         public ParameterArraySourceReductionCalculatorFactory(
             SourceReductionParameters srParameters,
             CostParameters costParameters)
         {
-            Calculator_workDays = new WorkDaysCalculator(
+            Calculator_laborDays = new LaborDaysCalculator(
                 srParameters.massRemovedPerHourPerTeam,
-                srParameters.massPerSurfaceArea,
+                srParameters.massPerSurfaceArea
+            );
+
+            Calculator_workDays = new WorkDaysCalculator(
                 srParameters.numEntriesPerDay,
                 srParameters.entryPrepTime,
                 srParameters.deconLineTime
             );
 
-            Calculator_labor = new LaborCostCalculator(
-                srParameters.personnelOverheadDays,
-                srParameters.personnelReqPerTeam,
-                costParameters.hourlyRate,
-                srParameters.massPerSurfaceArea,
-                Calculator_workDays
+            Calculator_onsiteDays = new OnsiteDaysCalculator(
+                srParameters.personnelOverheadDays
             );
 
-            Calculator_entExLabor = new EntExitLaborCostCalculator(
+            Calculator_labor = new LaborCostCalculator(
                 srParameters.personnelReqPerTeam,
                 costParameters.hourlyRate,
-                srParameters.numEntriesPerDay,
-                srParameters.hoursEntering,
-                srParameters.hoursExiting,
-                Calculator_workDays
+                srParameters.massPerSurfaceArea
             );
 
             Calculator_entEx = new EntranceExitCostCalculator(
@@ -57,10 +55,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
         {
             return new SourceReductionCostCalculator
             {
+                Calculator_laborDays = Calculator_laborDays,
                 Calculator_workDays = Calculator_workDays,
+                Calculator_onsiteDays = Calculator_onsiteDays,
                 Calculator_labor = Calculator_labor,
-                Calculator_entEx = Calculator_entEx,
-                Calculator_entExLabor = Calculator_entExLabor
+                Calculator_entEx = Calculator_entEx
             };
         }
     }
