@@ -30,9 +30,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 _costParameters);
 
             var icCalculatorFactory = new Services.Scenario.ParameterArrayIncidentCommandCalculatorFactory(
-                _characterizationSamplingParameters,
-                _sourceReductionParameters,
-                _decontaminationParameters,
                 _incidentCommandParameters,
                 _costParameters);
 
