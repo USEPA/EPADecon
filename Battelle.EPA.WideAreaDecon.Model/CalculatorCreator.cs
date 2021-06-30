@@ -10,7 +10,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
         public Services.ISourceReductionCalculatorFactory _sourceReductionFactory { get; set; }
         public Services.IDecontaminationCalculatorFactory _decontaminationFactory { get; set; }
         public Services.IIncidentCommandCalculatorFactory _incidentCommandFactory { get; set; }
-        public Services.IOtherCalculatorFactory _otherFactory { get; set; }
 
         public ResultsCalculator GetCalculators()
         {
