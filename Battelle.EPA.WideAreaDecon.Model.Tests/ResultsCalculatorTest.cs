@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -142,9 +142,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             Assert.AreEqual(58400, eventResults.otherResults.decontaminationTravelCost, 1e-6, "Incorrect travel cost calculated for decontamination");
             Assert.AreEqual(191234.642644578, eventResults.otherResults.incidentCommandTravelCost, 1e-6, "Incorrect travel cost calculated for incident command");
 
-            Assert.AreEqual(5014205, eventResults.totalEventCost, 1e-6, "Incorrect event cost calculated");
+            Assert.AreEqual(5014204.64068087, eventResults.totalEventCost, 1e-6, "Incorrect event cost calculated");
 
-            Assert.AreEqual(27000, eventResults.totalContaminationArea, 1e-6, "Incorrect total contamination area calculated");
+            Assert.AreEqual(3000, eventResults.totalContaminationArea, 1e-6, "Incorrect total contamination area calculated");
         }
     }
 }

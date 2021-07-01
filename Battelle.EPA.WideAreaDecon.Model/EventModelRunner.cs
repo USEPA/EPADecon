@@ -57,35 +57,15 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
         public ScenarioRealizationResults SumScenarioResults()
         {
-            var generic = new GenericPhaseResults()
-            {
-                phaseCost = 0.0,
-                workDays = 0.0,
-                onSiteDays = 0.0
-            };
-
-            var icResults = new IncidentCommandResults()
-            {
-                phaseCost = 0.0,
-                onSiteDays = 0.0
-            };
-
-            var general = new GeneralResults()
-            {
-                areaContaminated = 0.0,
-                decontaminationRounds = 0,
-                totalCost = 0.0
-            };
-
             var realizationResults = new ScenarioRealizationResults()
             {
-                preDeconCharacterizationSamplingResults = generic,
-                postDeconCharacterizationSamplingResults = generic,
-                totalCharacterizationSamplingResults = generic,
-                sourceReductionResults = generic,
-                decontaminationResults = generic,
-                incidentCommandResults = icResults,
-                generalResults = general
+                preDeconCharacterizationSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                postDeconCharacterizationSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                totalCharacterizationSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                sourceReductionResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                decontaminationResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                incidentCommandResults = new IncidentCommandResults() { phaseCost = 0.0, onSiteDays = 0.0 },
+                generalResults = new GeneralResults() { areaContaminated = 0.0, decontaminationRounds = 0, totalCost = 0.0 }
             };
 
             var scenarioRunFlag = new Dictionary<DecontaminationPhase, bool>
@@ -99,7 +79,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             {
                 foreach (var building in _indoorResults.Values.ToList())
                 {
-                    realizationResults = AddResults(realizationResults, building);
+                    AddResults(realizationResults, building);
                 }
 
             } else
@@ -109,7 +89,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             try
             {
-                realizationResults = AddResults(realizationResults, _outdoorResults);
+                AddResults(realizationResults, _outdoorResults);
             } catch (System.NullReferenceException) 
             {
                 scenarioRunFlag[DecontaminationPhase.Outdoor] = false;
@@ -117,7 +97,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             try
             {
-                realizationResults = AddResults(realizationResults, _undergroundResults);
+                AddResults(realizationResults, _undergroundResults);
             } catch (System.NullReferenceException) 
             {
                 scenarioRunFlag[DecontaminationPhase.Underground] = false;
@@ -131,7 +111,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             return realizationResults;
         }
 
-        private ScenarioRealizationResults AddResults(ScenarioRealizationResults summedResults, ScenarioRealizationResults originalResults)
+        private void AddResults(ScenarioRealizationResults summedResults, ScenarioRealizationResults originalResults)
         {
             summedResults.preDeconCharacterizationSamplingResults.workDays += originalResults.preDeconCharacterizationSamplingResults.workDays;
             summedResults.preDeconCharacterizationSamplingResults.onSiteDays += originalResults.preDeconCharacterizationSamplingResults.onSiteDays;
@@ -159,8 +139,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
             summedResults.generalResults.totalCost += originalResults.generalResults.totalCost;
             summedResults.generalResults.areaContaminated += originalResults.generalResults.areaContaminated;
             summedResults.generalResults.decontaminationRounds += originalResults.generalResults.decontaminationRounds;
-
-            return summedResults;
         }
     }
 }
