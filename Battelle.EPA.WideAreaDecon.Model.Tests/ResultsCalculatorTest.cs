@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -100,47 +100,49 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             Assert.AreEqual(46.828676011483, indoorResults.postDeconCharacterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for post-decon characterization sampling");
             Assert.AreEqual(1900576, indoorResults.postDeconCharacterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for post-decon characterization sampling");
 
-            Assert.AreEqual(8.40930863373625, indoorResults.totalCharacterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for total characterization sampling");
-            Assert.AreEqual(42.7263447829296, indoorResults.totalCharacterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for total characterization sampling");
-            Assert.AreEqual(1644745, indoorResults.totalCharacterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for total characterization sampling");
+            Assert.AreEqual(24.21880887, indoorResults.totalCharacterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for total characterization sampling");
+            Assert.AreEqual(58.5358450143538, indoorResults.totalCharacterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for total characterization sampling");
+            Assert.AreEqual(2375720, indoorResults.totalCharacterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for total characterization sampling");
 
-            Assert.AreEqual(1.019638794335, indoorResults.sourceReductionResults.workDays, 1e-6, "Incorrect work days calculated for source reduction");
-            Assert.AreEqual(1.019638794335, indoorResults.sourceReductionResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for source reduction");
-            Assert.AreEqual(46601, indoorResults.sourceReductionResults.phaseCost, 1e-6, "Incorrect phase cost calculated for source reduction");
+            Assert.AreEqual(2.45732949434734, indoorResults.sourceReductionResults.workDays, 1e-6, "Incorrect work days calculated for source reduction");
+            Assert.AreEqual(2.45732949434734, indoorResults.sourceReductionResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for source reduction");
+            Assert.AreEqual(104949, indoorResults.sourceReductionResults.phaseCost, 1e-6, "Incorrect phase cost calculated for source reduction");
 
             Assert.AreEqual(12.0, indoorResults.decontaminationResults.workDays, 1e-6, "Incorrect work days calculated for decontamination");
             Assert.AreEqual(14.0, indoorResults.decontaminationResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for decontamination");
-            Assert.AreEqual(370722.0, indoorResults.decontaminationResults.phaseCost, 1e-6, "Incorrect phase cost calculated for decontamination");
+            Assert.AreEqual(453316, indoorResults.decontaminationResults.phaseCost, 1e-6, "Incorrect phase cost calculated for decontamination");
 
-            Assert.AreEqual(65.7459835772646, indoorResults.incidentCommandResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for incident command");
-            Assert.AreEqual(1178333, indoorResults.incidentCommandResults.phaseCost, 1e-6, "Incorrect phase cost calculated for incident command");
+            Assert.AreEqual(82.9931745087011, indoorResults.incidentCommandResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for incident command");
+            Assert.AreEqual(1487445, indoorResults.incidentCommandResults.phaseCost, 1e-6, "Incorrect phase cost calculated for incident command");
 
-            Assert.AreEqual(3240401.0, indoorResults.generalResults.totalCost, 1e-6, "Incorrect total cost calculated");
+            Assert.AreEqual(4421430, indoorResults.generalResults.totalCost, 1e-6, "Incorrect total cost calculated");
             Assert.AreEqual(4, indoorResults.generalResults.decontaminationRounds, 1e-6, "Incorrect number of decontamination rounds calculated");
         }
 
         [Test]
         public void CalculateEventResults()
         {
-            var outdoorResults = OutdoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsOutdoor, OutdoorScenarioDefinitionDetails, DecontaminationPhase.Outdoor);
-            var undergroundResults = UndergroundCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsUnderground, UndergroundScenarioDefinitionDetails, DecontaminationPhase.Underground);
-            var indoorResults = new Dictionary<BuildingCategory, ScenarioRealizationResults>();
+            //var outdoorResults = OutdoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsOutdoor, OutdoorScenarioDefinitionDetails, DecontaminationPhase.Outdoor);
+            //var undergroundResults = UndergroundCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsUnderground, UndergroundScenarioDefinitionDetails, DecontaminationPhase.Underground);
+
+            var outdoorResults = new ScenarioRealizationResults();
+            var undergroundResults = new ScenarioRealizationResults();
             
-            foreach (BuildingCategory building in Enum.GetValues(typeof(BuildingCategory)))
+            var indoorResults = new Dictionary<BuildingCategory, ScenarioRealizationResults> 
             {
-                indoorResults.Add(building, IndoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsIndoor, IndoorScenarioDefinitionDetails, DecontaminationPhase.Indoor));
-            }
+                { BuildingCategory.Agricultural, IndoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsIndoor, IndoorScenarioDefinitionDetails, DecontaminationPhase.Indoor) }
+            };
 
             var eventModelRunner = new EventModelRunner(ScenarioParameters, indoorResults, outdoorResults, undergroundResults);
 
             var eventResults = eventModelRunner.RunEventModel();
 
-            Assert.AreEqual(961688.434868011, eventResults.otherResults.characterizationSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for characterization sampling");
-            Assert.AreEqual(55917.2759925219, eventResults.otherResults.sourceReductionTravelCost, 1e-6, "Incorrect travel cost calculated for source reduction");
-            Assert.AreEqual(204400, eventResults.otherResults.decontaminationTravelCost, 1e-6, "Incorrect travel cost calculated for decontamination");
-            Assert.AreEqual(712411.643783968, eventResults.otherResults.incidentCommandTravelCost, 1e-6, "Incorrect travel cost calculated for incident command");
+            Assert.AreEqual(320839.978576075, eventResults.otherResults.characterizationSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for characterization sampling");
+            Assert.AreEqual(22300.0194602198, eventResults.otherResults.sourceReductionTravelCost, 1e-6, "Incorrect travel cost calculated for source reduction");
+            Assert.AreEqual(58400, eventResults.otherResults.decontaminationTravelCost, 1e-6, "Incorrect travel cost calculated for decontamination");
+            Assert.AreEqual(191234.642644578, eventResults.otherResults.incidentCommandTravelCost, 1e-6, "Incorrect travel cost calculated for incident command");
 
-            Assert.AreEqual(16379564.354644503, eventResults.totalEventCost, 1e-6, "Incorrect event cost calculated");
+            Assert.AreEqual(5014205, eventResults.totalEventCost, 1e-6, "Incorrect event cost calculated");
 
             Assert.AreEqual(27000, eventResults.totalContaminationArea, 1e-6, "Incorrect total contamination area calculated");
         }
