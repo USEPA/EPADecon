@@ -56,7 +56,7 @@
               </tr>
             </thead>
 
-            <tbody v-for="(phaseResult, phaseName) in results[0].scenarioResults.outdoorResults" :key="phaseName">
+            <tbody v-for="(phaseResult, phaseName) in exisitingLocation" :key="phaseName">
               <tr>
                 <td class="text-subtitle-1 font-weight-medium">
                   {{ resultProvider.convertCamelToTitleCase(phaseName) }}
@@ -103,7 +103,7 @@
               </tr>
             </thead>
 
-            <tbody v-for="(phaseResult, phaseName) in results[0].scenarioResults.outdoorResults" :key="phaseName">
+            <tbody v-for="(phaseResult, phaseName) in exisitingLocation" :key="phaseName">
               <tr>
                 <td class="text-subtitle-1 font-weight-medium">
                   {{ resultProvider.convertCamelToTitleCase(phaseName) }}
@@ -167,15 +167,41 @@ export default class RealizationTable extends Vue {
   tableWidth = 0;
 
   get locations(): string[] {
-    const outUnd = Object.keys(this.results[0].scenarioResults)
-      .splice(1)
-      .map((l) => l[0].toUpperCase() + l.replace('Results', '').substring(1));
-    return [...Object.keys(this.results[0].scenarioResults.indoorResults).map((l) => `${l} Building`), ...outUnd];
+    const existingLocations = Object.entries(this.results[0].scenarioResults).filter(
+      ([, resultSet]) => resultSet !== null,
+    );
+
+    return existingLocations.flatMap(([location, resultSet]) => {
+      const isIndoor = location.toLowerCase().includes('indoor');
+      return isIndoor
+        ? Object.keys(resultSet).map((l) => `${l} Building`)
+        : this.resultProvider.convertCamelToTitleCase(location.replace('Results', ''));
+    });
   }
 
   get tableLocations(): string[] {
     const { length } = this.displayedRunNumbers;
     return [...Array(length)].flatMap(() => this.locations);
+  }
+
+  get exisitingLocation(): IPhaseResultSet | null {
+    const { scenarioResults } = this.results[0];
+    if (scenarioResults.indoorResults) {
+      // indoor exists
+      return Object.values(scenarioResults.indoorResults)[0];
+    }
+
+    if (scenarioResults.outdoorResults) {
+      // outdoor exists
+      return scenarioResults.outdoorResults;
+    }
+
+    if (scenarioResults.undergroundResults) {
+      // underground exists
+      return scenarioResults.undergroundResults;
+    }
+
+    return null;
   }
 
   @Watch('displayedRunNumbers.length')
