@@ -49,7 +49,14 @@ export default class JobResultProvider implements IJobResultProvider {
       );
 
       // Get sum of all buildings (this is likely only temporary)
-      const indoorSum = this.excelBuildLocationResults(results, 'Outdoor', phaseHeaders, resultHeaders, averageHeaders);
+      const indoorSum = this.excelBuildLocationResults(
+        results,
+        buildings[0],
+        phaseHeaders,
+        resultHeaders,
+        averageHeaders,
+        true,
+      );
       indoorSum.splice(0, 1, ['Sum of Indoor Results']);
       const avgSum = [
         '',
@@ -146,10 +153,8 @@ export default class JobResultProvider implements IJobResultProvider {
       return undefined;
     }
 
-    const numLocations =
-      Object.keys(allResults[0].scenarioResults).length -
-      1 +
-      Object.keys(allResults[0].scenarioResults.indoorResults).length;
+    const existingLocations = Object.values(allResults[0].scenarioResults).filter((resultSet) => resultSet !== null);
+    const numLocations = existingLocations.length;
     const numOccurencesPerLocation = instances.length / (allResults.length * numLocations);
     const sums: number[] = [];
 
@@ -215,6 +220,10 @@ export default class JobResultProvider implements IJobResultProvider {
     const phaseNames = this.getPhaseNames(realization).filter((p) => !p.toLowerCase().includes('total'));
 
     Object.entries(realization.scenarioResults).forEach(([location, resultSet]) => {
+      if (!resultSet) {
+        return;
+      }
+
       const phaseResultSets: IPhaseResultSet[] = this.isIndoor(location) ? Object.values(resultSet) : [resultSet];
 
       phaseResultSets.forEach((rs) => {
