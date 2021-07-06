@@ -137,9 +137,13 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                             if (building.Value.Count > 0)
                             {
                                 var indoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Indoor, building.Value);
-
                                 realizationResults.scenarioResults.indoorResults.Add(building.Key, indoorModelRunner.RunScenarioModel());
                             }
+                        }
+
+                        if (realizationResults.scenarioResults.indoorResults.Count == 0)
+                        {
+                            realizationResults.scenarioResults.indoorResults = null;
                         }
 
                         //RUN OUTDOOR SCENARIO
@@ -147,6 +151,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         {
                             var outdoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Outdoor, scenarios[s].OutdoorAreasContaminated);
                             realizationResults.scenarioResults.outdoorResults = outdoorModelRunner.RunScenarioModel();
+                        } else
+                        {
+                            realizationResults.scenarioResults.outdoorResults = null;
                         }
 
                         //RUN UNDERGROUND SCENARIO
@@ -154,6 +161,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         {
                             var undergroundModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Underground, scenarios[s].UndergroundBuildingsContaminated);
                             realizationResults.scenarioResults.undergroundResults = undergroundModelRunner.RunScenarioModel();
+                        } else
+                        {
+                            realizationResults.scenarioResults.undergroundResults = null;
                         }
 
                         //RUN EVENT-SPECIFIC MODELS

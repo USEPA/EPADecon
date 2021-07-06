@@ -75,7 +75,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 { DecontaminationPhase.Underground, true }
             };
 
-            if (_indoorResults.Count > 0)
+            if (_indoorResults != null)
             {
                 foreach (var building in _indoorResults.Values.ToList())
                 {
