@@ -1,12 +1,8 @@
 <template>
   <div>
-    <v-container fill-height fluid>
-      <parameter-selection-drawer v-if="selection && !geoSpatial" :parameters="scenarioDefinition" />
-      <parameter-distribution-selector v-if="selection && !geoSpatial" />
-    </v-container>
     <v-container v-if="!selection">
       <v-row align="center">
-        <v-col align="center">
+        <v-col align="right">
           <v-card width="260">
             <v-toolbar width="300" color="primary">
               <v-toolbar-title class="subtitle-1"> Geospatial Selection </v-toolbar-title>
@@ -26,11 +22,11 @@
               </v-dialog>
             </v-toolbar>
             <v-btn height="250" outlined @click="makeSelection(true)">
-              <v-img src="@/assets/OpenLayers.png" />
+              <v-img src="@/assets/MapPlume.png" width="225" height="225" />
             </v-btn>
           </v-card>
         </v-col>
-        <v-col align="center">
+        <v-col align="left">
           <v-card width="260">
             <v-toolbar width="300" color="primary">
               <v-toolbar-title class="subtitle-1"> Manual Selection </v-toolbar-title>
@@ -50,13 +46,17 @@
               </v-dialog>
             </v-toolbar>
             <v-btn height="250" outlined @click="makeSelection(false)">
-              <v-img src="@/assets/LoadPresetScenario.png" max-width="225" max-height="225" />
+              <v-img src="@/assets/CreateScenario.png" max-width="225" max-height="225" />
             </v-btn>
           </v-card>
         </v-col>
       </v-row>
     </v-container>
     <v-btn v-if="selection" @click="selection = false"> Selection Method </v-btn>
+    <v-container fill-height fluid>
+      <parameter-selection-drawer v-if="selection" :parameters="scenarioDefinition" />
+      <parameter-distribution-selector v-if="selection" />
+    </v-container>
   </div>
 </template>
 
