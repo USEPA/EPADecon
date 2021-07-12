@@ -11,9 +11,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand.Time
             _overheadDays = overheadDays;
         }
 
-        public double CalculateOnSiteDays(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC)
+        public double CalculateOnSiteDays(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC, double onsiteDaysWS)
         {
-            return onsiteDaysCS + onsiteDaysSR + onsiteDaysDC + _overheadDays;
+            return onsiteDaysCS + onsiteDaysSR + onsiteDaysDC + onsiteDaysWS + _overheadDays;
         }
     }
 }

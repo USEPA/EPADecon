@@ -43,6 +43,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 _scenarioParameters.Filters.First(f => f.Name == "Characterization Sampling").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Source Reduction").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Decontamination").Filters,
+                _scenarioParameters.Filters.First(f => f.Name == "Waste Sampling").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Other").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Incident Command").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Cost per Parameter").Filters,
