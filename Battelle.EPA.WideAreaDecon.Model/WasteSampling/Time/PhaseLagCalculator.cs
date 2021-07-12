@@ -31,15 +31,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
             _labThroughput = labThroughput;
         }
 
-        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> _areaContaminated)
+        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            var contaminationArea = new Dictionary<SurfaceType, double>();
-            foreach (SurfaceType surface in _areaContaminated.Keys.ToList())
-            {
-                contaminationArea.Add(surface, _areaContaminated[surface].AreaContaminated);
-            }
-            var surfaceAreaToBeWiped = _fractionSampledWipe * contaminationArea.Values.Sum();
-            var surfaceAreaToBeHepa = _fractionSampledHepa * contaminationArea.Values.Sum();
+            var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
+
+            var surfaceAreaToBeWiped = _fractionSampledWipe * totalArea;
+            var surfaceAreaToBeHepa = _fractionSampledHepa * totalArea;
 
             double totalWipes = (surfaceAreaToBeWiped / _surfaceAreaPerWipe);
             double totalHepa = (surfaceAreaToBeHepa / _surfaceAreaPerHepa);

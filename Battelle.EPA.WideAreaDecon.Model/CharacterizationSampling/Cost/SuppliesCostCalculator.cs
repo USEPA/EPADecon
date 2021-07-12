@@ -33,13 +33,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Cost
 
         public double CalculateSuppliesCost(double numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            var contaminationArea = new Dictionary<SurfaceType, double>();
-            foreach (SurfaceType surface in areaContaminated.Keys.ToList())
-            {
-                contaminationArea.Add(surface, areaContaminated[surface].AreaContaminated);
-            }
-            var surfaceAreaToBeWiped = fractionSampledWipe * contaminationArea.Values.Sum();
-            var surfaceAreaToBeHepa = fractionSampledHepa * contaminationArea.Values.Sum();
+            var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
+
+            var surfaceAreaToBeWiped = fractionSampledWipe * totalArea;
+            var surfaceAreaToBeHepa = fractionSampledHepa * totalArea;
 
             var wipesUsed = surfaceAreaToBeWiped / _surfaceAreaPerWipe;
             var hepaSocksUsed = surfaceAreaToBeHepa / _surfaceAreaPerHepaSock;
