@@ -66,6 +66,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 totalCharacterizationSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 sourceReductionResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 decontaminationResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                wasteSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 incidentCommandResults = new IncidentCommandResults() { phaseCost = 0.0, onSiteDays = 0.0 },
                 generalResults = new GeneralResults() { areaContaminated = 0.0, decontaminationRounds = 0, totalCost = 0.0 }
             };
@@ -134,6 +135,10 @@ namespace Battelle.EPA.WideAreaDecon.Model
             summedResults.decontaminationResults.workDays += originalResults.decontaminationResults.workDays;
             summedResults.decontaminationResults.onSiteDays += originalResults.decontaminationResults.onSiteDays;
             summedResults.decontaminationResults.phaseCost += originalResults.decontaminationResults.phaseCost;
+
+            summedResults.wasteSamplingResults.workDays += originalResults.wasteSamplingResults.workDays;
+            summedResults.wasteSamplingResults.onSiteDays += originalResults.wasteSamplingResults.onSiteDays;
+            summedResults.wasteSamplingResults.phaseCost += originalResults.wasteSamplingResults.phaseCost;
 
             summedResults.incidentCommandResults.onSiteDays += originalResults.incidentCommandResults.onSiteDays;
             summedResults.incidentCommandResults.phaseCost += originalResults.incidentCommandResults.phaseCost;
