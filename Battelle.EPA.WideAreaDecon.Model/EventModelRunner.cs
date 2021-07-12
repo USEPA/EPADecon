@@ -87,18 +87,18 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 scenarioRunFlag[DecontaminationPhase.Indoor] = false;
             }
 
-            try
+            if (_outdoorResults != null)
             {
                 AddResults(realizationResults, _outdoorResults);
-            } catch (System.NullReferenceException) 
+            } else
             {
                 scenarioRunFlag[DecontaminationPhase.Outdoor] = false;
             }
 
-            try
+            if (_undergroundResults != null)
             {
                 AddResults(realizationResults, _undergroundResults);
-            } catch (System.NullReferenceException) 
+            } else
             {
                 scenarioRunFlag[DecontaminationPhase.Underground] = false;
             }
