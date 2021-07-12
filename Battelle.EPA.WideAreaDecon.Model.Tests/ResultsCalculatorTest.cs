@@ -114,6 +114,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             Assert.AreEqual(14.0, indoorResults.decontaminationResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for decontamination");
             Assert.AreEqual(453316, indoorResults.decontaminationResults.phaseCost, 1e-6, "Incorrect phase cost calculated for decontamination");
 
+            Assert.AreEqual(12.0, indoorResults.wasteSamplingResults.workDays, 1e-6, "Incorrect work days calculated for waste sampling");
+            Assert.AreEqual(14.0, indoorResults.wasteSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for waste sampling");
+            Assert.AreEqual(453316, indoorResults.wasteSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for waste sampling");
+
             Assert.AreEqual(82.9931745087011, indoorResults.incidentCommandResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for incident command");
             Assert.AreEqual(1487445, indoorResults.incidentCommandResults.phaseCost, 1e-6, "Incorrect phase cost calculated for incident command");
 
@@ -142,6 +146,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             Assert.AreEqual(320839.978576075, eventResults.otherResults.characterizationSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for characterization sampling");
             Assert.AreEqual(22300.0194602198, eventResults.otherResults.sourceReductionTravelCost, 1e-6, "Incorrect travel cost calculated for source reduction");
             Assert.AreEqual(58400, eventResults.otherResults.decontaminationTravelCost, 1e-6, "Incorrect travel cost calculated for decontamination");
+            Assert.AreEqual(58400, eventResults.otherResults.wasteSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for waste sampling");
             Assert.AreEqual(191234.642644578, eventResults.otherResults.incidentCommandTravelCost, 1e-6, "Incorrect travel cost calculated for incident command");
 
             Assert.AreEqual(5014204.64068087, eventResults.totalEventCost, 1e-6, "Incorrect event cost calculated");

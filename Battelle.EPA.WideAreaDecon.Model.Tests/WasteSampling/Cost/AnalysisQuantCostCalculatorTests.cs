@@ -15,10 +15,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Cost
         public void Setup()
         {
             var surfaceAreaPerWasteSample = 4.64515;
-            var volumePerWasteSample = 9.2903;
+            var volumePerWasteSample = 10.0;
             var costPerWasteSampleAnalysis = 520.0;
-            var solidWastePerSurfaceArea = 290.0;
-            var liquidWastePerSurfaceArea = 290.0;
+            var solidWastePerSurfaceArea = 2.0;
+            var liquidWastePerSurfaceArea = 5.0;
 
             Calculator = new AnalysisQuantityCostCalculator(
                 surfaceAreaPerWasteSample,
@@ -32,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Cost
         [Test]
         public void CalculateCost()
         {
-            var fractionSampled = 1.0 / 6.0;
+            var fractionSampled = 0.3;
             var info = new ContaminationInformation(500.0, 20.0);
             var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
 
@@ -41,7 +41,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Cost
                 areaContaminated.Add(surface, info);
             }
             
-            Assert.AreEqual(214740.105271089, Calculator.CalculateAnalysisQuantityCost(fractionSampled, areaContaminated), 1e-2, "Incorrect cost calculated");
+            Assert.AreEqual(502125.367318601, Calculator.CalculateAnalysisQuantityCost(fractionSampled, areaContaminated), 1e-2, "Incorrect cost calculated");
         }
     }
 }

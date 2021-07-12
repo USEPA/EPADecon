@@ -32,13 +32,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
         {
             var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
 
-            var solidWasteToBeSampled = fractionSampled * totalArea * _solidWastePerSurfaceArea;
-            var liquidWasteToBeSampled = fractionSampled * totalArea * _liquidWastePerSurfaceArea;
+            var solidWasteToBeSampled = fractionSampled * totalArea * _solidWastePerSurfaceArea * 0.5;
+            var liquidWasteToBeSampled = fractionSampled * totalArea * _liquidWastePerSurfaceArea * 0.5;
 
             var solidWasteSamples = (solidWasteToBeSampled / _solidWastePerSurfaceArea) / _surfaceAreaPerWasteSample;
             var liquidWasteSamples = liquidWasteToBeSampled / _volumePerWasteSample;
 
-            var hoursSpentSampling = (solidWasteSamples + liquidWasteSamples) / numberTeams * _wasteSamplesPerHourPerTeam;
+            var hoursSpentSampling = (solidWasteSamples + liquidWasteSamples) / (numberTeams * _wasteSamplesPerHourPerTeam);
 
             return hoursSpentSampling / GlobalConstants.HoursPerWorkDay;
         }

@@ -26,7 +26,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.IncidentCommand.Time
             var onsiteDaysDC = 12.0;
             var onsiteDaysWS = 4.0;
 
-            Assert.AreEqual(80.9931745087011, Calculator.CalculateOnSiteDays(onsiteDaysCS, onsiteDaysSR, onsiteDaysDC, onsiteDaysWS), 1e-6, "Incorrect onsite days calculated");
+            Assert.AreEqual(84.9931745087011, Calculator.CalculateOnSiteDays(onsiteDaysCS, onsiteDaysSR, onsiteDaysDC, onsiteDaysWS), 1e-6, "Incorrect onsite days calculated");
         }
     }
 }
