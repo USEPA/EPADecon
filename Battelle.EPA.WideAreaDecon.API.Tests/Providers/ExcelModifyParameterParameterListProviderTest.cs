@@ -25,6 +25,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Providers
                     "Characterization Sampling",
                     "Source Reduction",
                     "Decontamination",
+                    "Waste Sampling",
                     "Other",
                     "Cost per Parameter"
                 }
