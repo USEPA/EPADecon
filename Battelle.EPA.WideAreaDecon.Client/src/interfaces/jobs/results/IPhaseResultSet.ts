@@ -9,6 +9,7 @@ export default interface IPhaseResultSet {
   totalCharacterizationSamplingResults: IGenericPhaseResult;
   sourceReductionResults: IGenericPhaseResult;
   decontaminationResults: IGenericPhaseResult;
+  wasteSamplingResults: IGenericPhaseResult;
   incidentCommandResults: IIncidentCommandResult;
   generalResults: IGeneralResult;
   [key: string]: IPhaseResult;
