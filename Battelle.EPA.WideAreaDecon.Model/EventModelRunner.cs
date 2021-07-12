@@ -36,6 +36,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 { PhaseCategory.CharacterizationSampling, scenarioResults.totalCharacterizationSamplingResults.onSiteDays },
                 { PhaseCategory.SourceReduction, scenarioResults.sourceReductionResults.onSiteDays },
                 { PhaseCategory.Decontamination, scenarioResults.decontaminationResults.onSiteDays },
+                { PhaseCategory.WasteSampling, scenarioResults.wasteSamplingResults.onSiteDays },
                 { PhaseCategory.IncidentCommand, scenarioResults.incidentCommandResults.onSiteDays }
             };
 
