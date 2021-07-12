@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System;
 using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
@@ -8,35 +7,37 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Cost
 {
     public class AnalysisQuantityCostCalculator : IAnalysisQuantityCostCalculator
     {
-        private readonly double _costPerHepaAnalysis;
-        private readonly double _costPerWipeAnalysis;
-        private readonly double _surfaceAreaPerHepaSock;
-        private readonly double _surfaceAreaPerWipe;
+        private readonly double _costPerWasteSampleAnalysis;
+        private readonly double _surfaceAreaPerWasteSample;
+        private readonly double _volumePerWasteSample;
+        private readonly double _solidWastePerSurfaceArea;
+        private readonly double _liquidWastePerSurfaceArea;
 
         public AnalysisQuantityCostCalculator(
-            double surfaceAreaPerWipe, 
-            double surfaceAreaPerHepaSock, 
-            double costPerWipeAnalysis,
-            double costPerHepaAnalysis)
+            double surfaceAreaPerWasteSample, 
+            double volumePerWasteSample, 
+            double costPerWasteSampleAnalysis,
+            double solidWastePerSurfaceArea,
+            double liquidWastePerSurfaceArea)
         {
-            _surfaceAreaPerWipe = surfaceAreaPerWipe;
-            _surfaceAreaPerHepaSock = surfaceAreaPerHepaSock;
-            _costPerWipeAnalysis = costPerWipeAnalysis;
-            _costPerHepaAnalysis = costPerHepaAnalysis;
+            _surfaceAreaPerWasteSample = surfaceAreaPerWasteSample;
+            _volumePerWasteSample = volumePerWasteSample;
+            _costPerWasteSampleAnalysis = costPerWasteSampleAnalysis;
+            _solidWastePerSurfaceArea = solidWastePerSurfaceArea;
+            _liquidWastePerSurfaceArea = liquidWastePerSurfaceArea;
         }
 
-        public double CalculateAnalysisQuantityCost(double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double CalculateAnalysisQuantityCost(double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            var contaminationArea = new Dictionary<SurfaceType, double>();
-            foreach (SurfaceType surface in areaContaminated.Keys.ToList())
-            {
-                contaminationArea.Add(surface, areaContaminated[surface].AreaContaminated);
-            }
-            var surfaceAreaToBeWiped = fractionSampledWipe * contaminationArea.Values.Sum();
-            var surfaceAreaToBeHepa = fractionSampledHepa * contaminationArea.Values.Sum();
+            var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
 
-            return surfaceAreaToBeWiped / _surfaceAreaPerWipe * _costPerWipeAnalysis +
-                surfaceAreaToBeHepa / _surfaceAreaPerHepaSock * _costPerHepaAnalysis;
+            var solidWasteToBeSampled = fractionSampled * totalArea * _solidWastePerSurfaceArea;
+            var liquidWasteToBeSampled = fractionSampled * totalArea * _liquidWastePerSurfaceArea;
+
+            var solidWasteSamples = (solidWasteToBeSampled / _solidWastePerSurfaceArea) / _surfaceAreaPerWasteSample;
+            var liquidWasteSamples = liquidWasteToBeSampled / _volumePerWasteSample;
+
+            return (solidWasteSamples + liquidWasteSamples) * _costPerWasteSampleAnalysis;
         }
     }
 }

@@ -7,6 +7,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 {
     public interface IPhaseLagCalculator
     {
-        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated);
+        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated);
     }
 }

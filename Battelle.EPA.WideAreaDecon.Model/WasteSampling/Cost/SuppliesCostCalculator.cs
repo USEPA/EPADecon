@@ -8,50 +8,39 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Cost
 {
     public class SuppliesCostCalculator : ISuppliesCostCalculator
     {
-        private readonly double _costPerVacuum;
-        private readonly double _costPerWipe;
-        private readonly double _hepaRentalCostPerDay;
-        private readonly double _hepaSocksPerHourPerTeam;
-        private readonly double _surfaceAreaPerHepaSock;
-        private readonly double _surfaceAreaPerWipe;
+        private readonly double _costPerWasteSample;
+        private readonly double _surfaceAreaPerWasteSample;
+        private readonly double _volumePerWasteSample;
+        private readonly double _solidWastePerSurfaceArea;
+        private readonly double _liquidWastePerSurfaceArea;
 
         public SuppliesCostCalculator(
-            double surfaceAreaPerWipe,
-            double surfaceAreaPerHepaSock,
-            double hepaSocksPerHourPerTeam,
-            double costPerWipe,
-            double costPerVacuum,
-            double hepaRentalCostPerDay)
+            double surfaceAreaPerWasteSample,
+            double volumePerWasteSample,
+            double solidWastePerSurfaceArea,
+            double liquidWastePerSurfaceArea,
+            double costPerWasteSample)
         {
-            _surfaceAreaPerWipe = surfaceAreaPerWipe;
-            _surfaceAreaPerHepaSock = surfaceAreaPerHepaSock;
-            _hepaSocksPerHourPerTeam = hepaSocksPerHourPerTeam;
-            _costPerWipe = costPerWipe;
-            _costPerVacuum = costPerVacuum;
-            _hepaRentalCostPerDay = hepaRentalCostPerDay;
+            _surfaceAreaPerWasteSample = surfaceAreaPerWasteSample;
+            _volumePerWasteSample = volumePerWasteSample;
+            _solidWastePerSurfaceArea = solidWastePerSurfaceArea;
+            _liquidWastePerSurfaceArea = liquidWastePerSurfaceArea;
+            _costPerWasteSample = costPerWasteSample;
         }
 
-        public double CalculateSuppliesCost(double numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double CalculateSuppliesCost(double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            var contaminationArea = new Dictionary<SurfaceType, double>();
-            foreach (SurfaceType surface in areaContaminated.Keys.ToList())
-            {
-                contaminationArea.Add(surface, areaContaminated[surface].AreaContaminated);
-            }
-            var surfaceAreaToBeWiped = fractionSampledWipe * contaminationArea.Values.Sum();
-            var surfaceAreaToBeHepa = fractionSampledHepa * contaminationArea.Values.Sum();
+            var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
 
-            var wipesUsed = surfaceAreaToBeWiped / _surfaceAreaPerWipe;
-            var hepaSocksUsed = surfaceAreaToBeHepa / _surfaceAreaPerHepaSock;
+            var solidWasteToBeSampled = fractionSampled * totalArea * _solidWastePerSurfaceArea;
+            var liquidWasteToBeSampled = fractionSampled * totalArea * _liquidWastePerSurfaceArea;
 
-            var totalWipeCost = wipesUsed * _costPerWipe;
-            var totalHepaCost = hepaSocksUsed * _costPerVacuum;
+            var solidWasteSamples = (solidWasteToBeSampled / _solidWastePerSurfaceArea) / _surfaceAreaPerWasteSample;
+            var liquidWasteSamples = liquidWasteToBeSampled / _volumePerWasteSample;
 
-            var hepaRentalDays = hepaSocksUsed / (_hepaSocksPerHourPerTeam * numberTeams * GlobalConstants.HoursPerWorkDay);
+            var wasteSamples = solidWasteSamples + liquidWasteSamples;
 
-            var hepaRentalCost = hepaRentalDays * _hepaRentalCostPerDay;
-
-            return totalWipeCost + totalHepaCost + hepaRentalCost;
+            return _costPerWasteSample * wasteSamples;
         }
     }
 }

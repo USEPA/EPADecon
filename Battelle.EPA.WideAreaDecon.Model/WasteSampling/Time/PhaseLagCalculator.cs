@@ -8,41 +8,48 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 {
     public class PhaseLagCalculator : IPhaseLagCalculator
     {
-        private readonly double _surfaceAreaPerWipe;
-        private readonly double _surfaceAreaPerHepa;
+        private readonly double _solidWastePerSurfaceArea;
+        private readonly double _liquidWastePerSurfaceArea;
+        private readonly double _surfaceAreaPerWasteSample;
+        private readonly double _volumePerWasteSample;
         private readonly double _samplePackageTime;
         private readonly List<double> _labUptimesHours;
         private readonly List<double> _labDistanceFromSite;
         private readonly List<double> _labThroughput;
 
         public PhaseLagCalculator(
-            double surfaceAreaPerWipe,  
-            double surfaceAreaPerHepa, 
+            double solidWastePerSurfaceArea,  
+            double liquidWastePerSurfaceArea, 
+            double surfaceAreaPerWasteSample,
+            double volumePerWasteSample,
             List<double> labUptimesHours, 
             double samplePackageTime,
             List<double> labDistanceFromSite,
             List<double> labThroughput)
         {
-            _surfaceAreaPerWipe = surfaceAreaPerWipe;
-            _surfaceAreaPerHepa = surfaceAreaPerHepa;
+            _solidWastePerSurfaceArea = solidWastePerSurfaceArea;
+            _liquidWastePerSurfaceArea = liquidWastePerSurfaceArea;
+            _surfaceAreaPerWasteSample = surfaceAreaPerWasteSample;
+            _volumePerWasteSample = volumePerWasteSample;
             _labUptimesHours = labUptimesHours;
             _samplePackageTime = samplePackageTime;
             _labDistanceFromSite = labDistanceFromSite;
             _labThroughput = labThroughput;
         }
 
-        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
 
-            var surfaceAreaToBeWiped = _fractionSampledWipe * totalArea;
-            var surfaceAreaToBeHepa = _fractionSampledHepa * totalArea;
+            var solidWasteToBeSampled = fractionSampled * totalArea * _solidWastePerSurfaceArea;
+            var liquidWasteToBeSampled = fractionSampled * totalArea * _liquidWastePerSurfaceArea;
 
-            double totalWipes = (surfaceAreaToBeWiped / _surfaceAreaPerWipe);
-            double totalHepa = (surfaceAreaToBeHepa / _surfaceAreaPerHepa);
+            var solidWasteSamples = (solidWasteToBeSampled / _solidWastePerSurfaceArea) / _surfaceAreaPerWasteSample;
+            var liquidWasteSamples = liquidWasteToBeSampled / _volumePerWasteSample;
 
-            double wipesPerLab = totalWipes / numberLabs;
-            double hepaPerLab = totalHepa / numberLabs;
+            var wasteSamples = solidWasteSamples + liquidWasteSamples;
+
+            double samplesPerLab = wasteSamples / numberLabs;
 
             double maxLabTime = 0;
 
@@ -52,7 +59,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
             {
                 shippingTimePerLab[i] = _labDistanceFromSite[i] / (GlobalConstants.HoursPerWorkDay * GlobalConstants.AssumedDriverSpeed);
 
-                analysisTimePerLab[i] = (wipesPerLab + hepaPerLab) / _labThroughput[i];
+                analysisTimePerLab[i] = samplesPerLab / _labThroughput[i];
 
                 if ((analysisTimePerLab[i] + shippingTimePerLab[i]) > maxLabTime)
                 {
@@ -60,7 +67,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
                 }
             }
 
-            double totalPackagingTime = (_samplePackageTime * (totalHepa + totalWipes)) / (GlobalConstants.MinutesToHours * GlobalConstants.HoursPerWorkDay);
+            double totalPackagingTime = (_samplePackageTime * wasteSamples) / (GlobalConstants.MinutesToHours * GlobalConstants.HoursPerWorkDay);
 
             return totalPackagingTime + maxLabTime + (sampleTimeTransmitted / GlobalConstants.HoursPerWorkDay);
         }

@@ -8,33 +8,39 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 {
     public class LaborDaysCalculator : ILaborDaysCalculator
     {
-        private readonly double _surfaceAreaPerWipe;
-        private readonly double _surfaceAreaPerHepaSock;
-        private readonly double _wipesPerHourPerTeam;
-        private readonly double _hepaSocksPerHourPerTeam;
+        private readonly double _solidWastePerSurfaceArea;
+        private readonly double _liquidWastePerSurfaceArea;
+        private readonly double _surfaceAreaPerWasteSample;
+        private readonly double _volumePerWasteSample;
+        private readonly double _wasteSamplesPerHourPerTeam;
 
         public LaborDaysCalculator(
-            double surfaceAreaPerWipe,
-            double surfaceAreaPerHepaSock,
-            double wipesPerHourPerTeam,
-            double hepaSocksPerHourPerTeam)
+            double solidWastePerSurfaceArea,
+            double liquidWastePerSurfaceArea,
+            double surfaceAreaPerWasteSample,
+            double volumePerWasteSample,
+            double wasteSamplesPerHourPerTeam)
         {
-            _surfaceAreaPerWipe = surfaceAreaPerWipe;
-            _surfaceAreaPerHepaSock = surfaceAreaPerHepaSock;
-            _wipesPerHourPerTeam = wipesPerHourPerTeam;
-            _hepaSocksPerHourPerTeam = hepaSocksPerHourPerTeam;
+            _solidWastePerSurfaceArea = solidWastePerSurfaceArea;
+            _liquidWastePerSurfaceArea = liquidWastePerSurfaceArea;
+            _surfaceAreaPerWasteSample = surfaceAreaPerWasteSample;
+            _volumePerWasteSample = volumePerWasteSample;
+            _wasteSamplesPerHourPerTeam = wasteSamplesPerHourPerTeam;
         }
 
-        public double CalculateLaborDays(double numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double CalculateLaborDays(double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
 
-            var surfaceAreaToBeWiped = fractionSampledWipe * totalArea;
-            var surfaceAreaToBeHepa = fractionSampledHepa * totalArea;
+            var solidWasteToBeSampled = fractionSampled * totalArea * _solidWastePerSurfaceArea;
+            var liquidWasteToBeSampled = fractionSampled * totalArea * _liquidWastePerSurfaceArea;
 
-            return Math.Abs(surfaceAreaToBeWiped / _surfaceAreaPerWipe / (_wipesPerHourPerTeam * numberTeams) / GlobalConstants.HoursPerWorkDay) +
-                Math.Abs(surfaceAreaToBeHepa / _surfaceAreaPerHepaSock / (_hepaSocksPerHourPerTeam * numberTeams) /
-                    GlobalConstants.HoursPerWorkDay);
+            var solidWasteSamples = (solidWasteToBeSampled / _solidWastePerSurfaceArea) / _surfaceAreaPerWasteSample;
+            var liquidWasteSamples = liquidWasteToBeSampled / _volumePerWasteSample;
+
+            var hoursSpentSampling = (solidWasteSamples + liquidWasteSamples) / numberTeams * _wasteSamplesPerHourPerTeam;
+
+            return hoursSpentSampling / GlobalConstants.HoursPerWorkDay;
         }
     }
 }
