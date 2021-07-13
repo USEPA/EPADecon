@@ -265,7 +265,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             var labThroughput = new List<double>();
 
             double fractionSampled = _wasteSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Waste Sampled").CreateDistribution().Draw();
-            double surfaceAreaPerWasteSample = _wasteSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per Waste Sample").CreateDistribution().Draw();
+            double massPerWasteSample = _wasteSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Mass per Waste Sample").CreateDistribution().Draw();
             double volumePerWasteSample = _wasteSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume per Waste Sample").CreateDistribution().Draw();
             double wasteSamplesPerHrPerTeam = _wasteSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Waste Samples per Hour per Team").CreateDistribution().Draw();
             double solidWastePerSurfaceArea = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Solid Waste Produced per Surface Area").CreateDistribution().Draw();
@@ -308,7 +308,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
 
             return new WasteSamplingParameters(
                 fractionSampled,
-                surfaceAreaPerWasteSample,
+                massPerWasteSample,
                 volumePerWasteSample,
                 wasteSamplesPerHrPerTeam,
                 solidWastePerSurfaceArea,

@@ -9,19 +9,19 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Cost
     public class SuppliesCostCalculator : ISuppliesCostCalculator
     {
         private readonly double _costPerWasteSample;
-        private readonly double _surfaceAreaPerWasteSample;
+        private readonly double _massPerWasteSample;
         private readonly double _volumePerWasteSample;
         private readonly double _solidWastePerSurfaceArea;
         private readonly double _liquidWastePerSurfaceArea;
 
         public SuppliesCostCalculator(
-            double surfaceAreaPerWasteSample,
+            double massPerWasteSample,
             double volumePerWasteSample,
             double solidWastePerSurfaceArea,
             double liquidWastePerSurfaceArea,
             double costPerWasteSample)
         {
-            _surfaceAreaPerWasteSample = surfaceAreaPerWasteSample;
+            _massPerWasteSample = massPerWasteSample;
             _volumePerWasteSample = volumePerWasteSample;
             _solidWastePerSurfaceArea = solidWastePerSurfaceArea;
             _liquidWastePerSurfaceArea = liquidWastePerSurfaceArea;
@@ -35,7 +35,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Cost
             var solidWasteToBeSampled = fractionSampled * totalArea * _solidWastePerSurfaceArea * 0.5;
             var liquidWasteToBeSampled = fractionSampled * totalArea * _liquidWastePerSurfaceArea * 0.5;
 
-            var solidWasteSamples = (solidWasteToBeSampled / _solidWastePerSurfaceArea) / _surfaceAreaPerWasteSample;
+            var solidWasteSamples = solidWasteToBeSampled / _massPerWasteSample;
             var liquidWasteSamples = liquidWasteToBeSampled / _volumePerWasteSample;
 
             var wasteSamples = solidWasteSamples + liquidWasteSamples;

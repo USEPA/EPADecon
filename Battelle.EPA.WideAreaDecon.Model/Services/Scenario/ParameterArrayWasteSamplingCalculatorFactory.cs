@@ -24,7 +24,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             CostParameters costParameters)
         {
             Calculator_supplies = new SuppliesCostCalculator(
-                wsParameters.surfaceAreaPerWasteSample,
+                wsParameters.massPerWasteSample,
                 wsParameters.volumePerWasteSample,
                 wsParameters.solidWastePerSurfaceArea,
                 wsParameters.liquidWastePerSurfaceArea,
@@ -34,7 +34,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             Calculator_laborDays = new LaborDaysCalculator(
                 wsParameters.solidWastePerSurfaceArea,
                 wsParameters.liquidWastePerSurfaceArea,
-                wsParameters.surfaceAreaPerWasteSample,
+                wsParameters.massPerWasteSample,
                 wsParameters.volumePerWasteSample,
                 wsParameters.wasteSamplesPerHrPerTeam
             );
@@ -52,7 +52,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             Calculator_phaseLag = new PhaseLagCalculator(
                 wsParameters.solidWastePerSurfaceArea,
                 wsParameters.liquidWastePerSurfaceArea,
-                wsParameters.surfaceAreaPerWasteSample,
+                wsParameters.massPerWasteSample,
                 wsParameters.volumePerWasteSample,
                 wsParameters.labUptimesHours,
                 wsParameters.samplePackageTime,
@@ -66,7 +66,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             );
 
             Calculator_analysis = new AnalysisQuantityCostCalculator(
-                wsParameters.surfaceAreaPerWasteSample,
+                wsParameters.massPerWasteSample,
                 wsParameters.volumePerWasteSample,
                 costParameters.wasteSampleAnalysisCost,
                 wsParameters.solidWastePerSurfaceArea,

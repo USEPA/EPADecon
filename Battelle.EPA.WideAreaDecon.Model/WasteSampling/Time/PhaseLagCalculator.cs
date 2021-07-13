@@ -10,7 +10,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
     {
         private readonly double _solidWastePerSurfaceArea;
         private readonly double _liquidWastePerSurfaceArea;
-        private readonly double _surfaceAreaPerWasteSample;
+        private readonly double _massPerWasteSample;
         private readonly double _volumePerWasteSample;
         private readonly double _samplePackageTime;
         private readonly List<double> _labUptimesHours;
@@ -20,7 +20,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
         public PhaseLagCalculator(
             double solidWastePerSurfaceArea,  
             double liquidWastePerSurfaceArea, 
-            double surfaceAreaPerWasteSample,
+            double massPerWasteSample,
             double volumePerWasteSample,
             List<double> labUptimesHours, 
             double samplePackageTime,
@@ -29,7 +29,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
         {
             _solidWastePerSurfaceArea = solidWastePerSurfaceArea;
             _liquidWastePerSurfaceArea = liquidWastePerSurfaceArea;
-            _surfaceAreaPerWasteSample = surfaceAreaPerWasteSample;
+            _massPerWasteSample = massPerWasteSample;
             _volumePerWasteSample = volumePerWasteSample;
             _labUptimesHours = labUptimesHours;
             _samplePackageTime = samplePackageTime;
@@ -44,7 +44,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
             var solidWasteToBeSampled = fractionSampled * totalArea * _solidWastePerSurfaceArea * 0.5;
             var liquidWasteToBeSampled = fractionSampled * totalArea * _liquidWastePerSurfaceArea * 0.5;
 
-            var solidWasteSamples = (solidWasteToBeSampled / _solidWastePerSurfaceArea) / _surfaceAreaPerWasteSample;
+            var solidWasteSamples = solidWasteToBeSampled / _massPerWasteSample;
             var liquidWasteSamples = liquidWasteToBeSampled / _volumePerWasteSample;
 
             var wasteSamples = solidWasteSamples + liquidWasteSamples;

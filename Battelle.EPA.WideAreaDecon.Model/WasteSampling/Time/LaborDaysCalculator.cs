@@ -10,20 +10,20 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
     {
         private readonly double _solidWastePerSurfaceArea;
         private readonly double _liquidWastePerSurfaceArea;
-        private readonly double _surfaceAreaPerWasteSample;
+        private readonly double _massPerWasteSample;
         private readonly double _volumePerWasteSample;
         private readonly double _wasteSamplesPerHourPerTeam;
 
         public LaborDaysCalculator(
             double solidWastePerSurfaceArea,
             double liquidWastePerSurfaceArea,
-            double surfaceAreaPerWasteSample,
+            double massPerWasteSample,
             double volumePerWasteSample,
             double wasteSamplesPerHourPerTeam)
         {
             _solidWastePerSurfaceArea = solidWastePerSurfaceArea;
             _liquidWastePerSurfaceArea = liquidWastePerSurfaceArea;
-            _surfaceAreaPerWasteSample = surfaceAreaPerWasteSample;
+            _massPerWasteSample = massPerWasteSample;
             _volumePerWasteSample = volumePerWasteSample;
             _wasteSamplesPerHourPerTeam = wasteSamplesPerHourPerTeam;
         }
@@ -35,7 +35,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
             var solidWasteToBeSampled = fractionSampled * totalArea * _solidWastePerSurfaceArea * 0.5;
             var liquidWasteToBeSampled = fractionSampled * totalArea * _liquidWastePerSurfaceArea * 0.5;
 
-            var solidWasteSamples = (solidWasteToBeSampled / _solidWastePerSurfaceArea) / _surfaceAreaPerWasteSample;
+            var solidWasteSamples = solidWasteToBeSampled / _massPerWasteSample;
             var liquidWasteSamples = liquidWasteToBeSampled / _volumePerWasteSample;
 
             var hoursSpentSampling = (solidWasteSamples + liquidWasteSamples) / (numberTeams * _wasteSamplesPerHourPerTeam);

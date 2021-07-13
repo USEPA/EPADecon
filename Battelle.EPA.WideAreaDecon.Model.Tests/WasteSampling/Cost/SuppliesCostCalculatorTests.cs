@@ -14,14 +14,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Cost
         [SetUp]
         public void Setup()
         {
-            var surfaceAreaPerWasteSample = 4.64515;
+            var massPerWasteSample = 4.64515;
             var volumePerWasteSample = 10.0;
             var solidWastePerSurfaceArea = 2.0;
             var liquidWastePerSurfaceArea = 5.0;
             var costPerWasteSample = 19.0;
 
             Calculator = new SuppliesCostCalculator(
-                surfaceAreaPerWasteSample,
+                massPerWasteSample,
                 volumePerWasteSample,
                 solidWastePerSurfaceArea,
                 liquidWastePerSurfaceArea,

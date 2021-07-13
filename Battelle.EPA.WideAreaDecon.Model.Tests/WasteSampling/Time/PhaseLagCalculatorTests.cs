@@ -16,7 +16,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
         {
             var solidWastePerSurfaceArea = 2.0;
             var liquidWastePerSurfaceArea = 5.0;
-            var surfaceAreaPerWasteSample = 4.64515;
+            var massPerWasteSample = 4.64515;
             var volumePerWasteSample = 10.0;
             var samplePackageTime = 1.63;
             var labThroughput = new List<double> { 50, 50, 50 };
@@ -26,7 +26,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
             Calculator = new PhaseLagCalculator(
                 solidWastePerSurfaceArea,
                 liquidWastePerSurfaceArea,
-                surfaceAreaPerWasteSample,
+                massPerWasteSample,
                 volumePerWasteSample,
                 labUptimesHours, 
                 samplePackageTime,

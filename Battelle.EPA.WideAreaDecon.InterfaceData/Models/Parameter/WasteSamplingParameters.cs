@@ -7,7 +7,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
     public class WasteSamplingParameters
     {
         public double fractionSampled;
-        public double surfaceAreaPerWasteSample;
+        public double massPerWasteSample;
         public double volumePerWasteSample;
         public double wasteSamplesPerHrPerTeam;
         public double solidWastePerSurfaceArea;
@@ -34,7 +34,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         //Scenario parameters constructor
         public WasteSamplingParameters(
             double _fractionSampled,
-            double _surfaceAreaPerWasteSample,
+            double _massPerWasteSample,
             double _volumePerWasteSample,
             double _wasteSamplesPerHrPerTeam,
             double _solidWastePerSurfaceArea,
@@ -58,7 +58,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             Dictionary<PpeLevel, double> _ppeRequired)
         {
             fractionSampled = _fractionSampled;
-            surfaceAreaPerWasteSample = _surfaceAreaPerWasteSample;
+            massPerWasteSample = _massPerWasteSample;
             volumePerWasteSample = _volumePerWasteSample;
             wasteSamplesPerHrPerTeam = _wasteSamplesPerHrPerTeam;
             solidWastePerSurfaceArea = _solidWastePerSurfaceArea;

@@ -16,14 +16,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
         {
             var solidWastePerSurfaceArea = 2.0;
             var liquidWastePerSurfaceArea = 5.0;
-            var surfaceAreaPerWasteSample = 4.64515;
+            var massPerWasteSample = 4.64515;
             var volumePerWasteSample = 10.0;
             var wasteSamplesPerHourPerTeam = 6.0;
 
             Calculator = new LaborDaysCalculator(
                 solidWastePerSurfaceArea,
                 liquidWastePerSurfaceArea,
-                surfaceAreaPerWasteSample,
+                massPerWasteSample,
                 volumePerWasteSample,
                 wasteSamplesPerHourPerTeam
             );
