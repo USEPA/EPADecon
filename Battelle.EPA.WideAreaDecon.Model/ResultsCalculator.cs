@@ -200,8 +200,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                         phaseDaysWS,
                         parameters._wasteSamplingParameters.numTeams,
                         parameters._wasteSamplingParameters.fractionSampled,
-                        areaContaminated,
-                        parameters._wasteSamplingParameters.ppeRequired));
+                        areaContaminated));
                 }
             }
             

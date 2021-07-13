@@ -40,8 +40,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling
         }
 
         //Phase costs for scenario results
-        public double CalculatePhaseCosts(Dictionary<PhaseDays, double> phaseDays, double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
-             Dictionary<PpeLevel, double> ppePerLevelPerTeam)
+        public double CalculatePhaseCosts(Dictionary<PhaseDays, double> phaseDays, double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(fractionSampled, areaContaminated);
             var laborCosts = Calculator_labor.CalculateLaborCost(phaseDays[PhaseDays.OnsiteDays], numberTeams);
