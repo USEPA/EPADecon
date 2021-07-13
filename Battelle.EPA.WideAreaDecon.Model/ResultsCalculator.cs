@@ -271,6 +271,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             results.otherResults.totalTravelCost = results.otherResults.characterizationSamplingTravelCost +
                 results.otherResults.sourceReductionTravelCost +
                 results.otherResults.decontaminationTravelCost +
+                results.otherResults.wasteSamplingTravelCost +
                 results.otherResults.incidentCommandTravelCost;
 
             //Total event cost including travel and per diem costs
