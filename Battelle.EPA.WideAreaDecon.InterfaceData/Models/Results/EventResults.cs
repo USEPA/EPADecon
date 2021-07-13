@@ -8,6 +8,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results
     {
         public OtherResults otherResults { get; set; }
         public double totalEventCost { get; set; }
+        public double totalEventDuration { get; set; }
         public double totalContaminationArea { get; set; }
     }
 }

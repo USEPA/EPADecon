@@ -276,6 +276,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
             //Total event cost including travel and per diem costs
             results.totalEventCost = scenarioResults.generalResults.totalCost + results.otherResults.totalTravelCost;
 
+            //Total event duration (sum of all onsite days)
+            results.totalEventDuration = scenarioResults.incidentCommandResults.onSiteDays;
+
             //Total event contamination area
             results.totalContaminationArea = scenarioResults.generalResults.areaContaminated;
 
