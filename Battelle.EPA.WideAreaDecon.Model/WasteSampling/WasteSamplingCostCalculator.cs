@@ -14,7 +14,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling
         public LaborDaysCalculator Calculator_laborDays { get; set; }
         public WorkDaysCalculator Calculator_workdays { get; set; }
         public OnsiteDaysCalculator Calculator_onsiteDays { get; set; }
-        public EntrancesExitsCostCalculator Calculator_entEx { get; set; }
         public AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
         public PhaseLagCalculator Calculator_phaseLag { get; set; }
         public TravelCostCalculator Calculator_travel { get; set; }
@@ -23,7 +22,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling
         public Dictionary<PhaseDays, double> CalculateTime(double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             var laborDays = Calculator_laborDays.CalculateLaborDays(numberTeams, fractionSampled, areaContaminated);
-            var workDays = Calculator_workdays.CalculateWorkDays(laborDays, numberTeams);
+            var workDays = Calculator_workdays.CalculateWorkDays(laborDays);
             var onsiteDays = Calculator_onsiteDays.CalculateOnsiteDays(workDays);
 
             return new Dictionary<PhaseDays, double>()
@@ -46,10 +45,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling
         {
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(fractionSampled, areaContaminated);
             var laborCosts = Calculator_labor.CalculateLaborCost(phaseDays[PhaseDays.OnsiteDays], numberTeams);
-            var entExCosts = Calculator_entEx.CalculateEntrancesExitsCost(phaseDays[PhaseDays.LaborDays], numberTeams, ppePerLevelPerTeam);
             var analysisCosts = Calculator_analysis.CalculateAnalysisQuantityCost(fractionSampled, areaContaminated);
 
-            return (suppliesCosts + laborCosts + entExCosts + analysisCosts);
+            return (suppliesCosts + laborCosts + analysisCosts);
         }
 
         //Travel costs for event results

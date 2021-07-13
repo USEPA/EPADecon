@@ -15,7 +15,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
         public LaborDaysCalculator Calculator_laborDays { get; set; }
         public WorkDaysCalculator Calculator_workdays { get; set; }
         public OnsiteDaysCalculator Calculator_onsiteDays { get; set; }
-        public EntrancesExitsCostCalculator Calculator_entEx { get; set; }
         public AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
         public PhaseLagCalculator Calculator_phaseLag { get; set; }
 
@@ -39,11 +38,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 wsParameters.wasteSamplesPerHrPerTeam
             );
 
-            Calculator_workdays = new WorkDaysCalculator(
-                wsParameters.entriesPerTeam,
-                wsParameters.entryPrepTime,
-                wsParameters.deconLineTime
-            );
+            Calculator_workdays = new WorkDaysCalculator();
 
             Calculator_onsiteDays = new OnsiteDaysCalculator(
                 wsParameters.personnelOverheadDays
@@ -72,16 +67,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 wsParameters.solidWastePerSurfaceArea,
                 wsParameters.liquidWastePerSurfaceArea
             );
-
-            Calculator_entEx = new EntrancesExitsCostCalculator(
-                wsParameters.personnelReqPerTeam,
-                wsParameters.entriesPerTeam,
-                wsParameters.respiratorsPerPerson,
-                costParameters.respiratorCost,
-                costParameters.ppeCost,
-                costParameters.entryPrepCost,
-                costParameters.deconLineCost
-            );
         }
 
         public WasteSamplingCostCalculator GetCalculator()
@@ -93,7 +78,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 Calculator_laborDays = Calculator_laborDays,
                 Calculator_workdays = Calculator_workdays,
                 Calculator_onsiteDays = Calculator_onsiteDays,
-                Calculator_entEx = Calculator_entEx,
                 Calculator_analysis = Calculator_analysis,
                 Calculator_phaseLag = Calculator_phaseLag
             };
