@@ -94,17 +94,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
         {
             var indoorResults = IndoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsIndoor, IndoorScenarioDefinitionDetails, DecontaminationPhase.Indoor);
 
-            Assert.AreEqual(4.84376177303209, indoorResults.preDeconCharacterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for pre-decon characterization sampling");
-            Assert.AreEqual(11.7071690028708, indoorResults.preDeconCharacterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for pre-decon characterization sampling");
-            Assert.AreEqual(475144, indoorResults.preDeconCharacterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for pre-decon characterization sampling");
-
-            Assert.AreEqual(19.3750470921284, indoorResults.postDeconCharacterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for post-decon characterization sampling");
-            Assert.AreEqual(46.828676011483, indoorResults.postDeconCharacterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for post-decon characterization sampling");
-            Assert.AreEqual(1900576, indoorResults.postDeconCharacterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for post-decon characterization sampling");
-
-            Assert.AreEqual(24.21880887, indoorResults.totalCharacterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for total characterization sampling");
-            Assert.AreEqual(58.5358450143538, indoorResults.totalCharacterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for total characterization sampling");
-            Assert.AreEqual(2375720, indoorResults.totalCharacterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for total characterization sampling");
+            Assert.AreEqual(24.21880887, indoorResults.characterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for total characterization sampling");
+            Assert.AreEqual(58.5358450143538, indoorResults.characterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for total characterization sampling");
+            Assert.AreEqual(2375720, indoorResults.characterizationSamplingResults.phaseCost, 1e-6, "Incorrect phase cost calculated for total characterization sampling");
 
             Assert.AreEqual(2.45732949434734, indoorResults.sourceReductionResults.workDays, 1e-6, "Incorrect work days calculated for source reduction");
             Assert.AreEqual(2.45732949434734, indoorResults.sourceReductionResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for source reduction");

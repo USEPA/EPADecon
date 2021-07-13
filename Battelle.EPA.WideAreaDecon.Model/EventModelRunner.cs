@@ -33,7 +33,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             var phaseOnsiteDays = new Dictionary<PhaseCategory, double>
             {
-                { PhaseCategory.CharacterizationSampling, scenarioResults.totalCharacterizationSamplingResults.onSiteDays },
+                { PhaseCategory.CharacterizationSampling, scenarioResults.characterizationSamplingResults.onSiteDays },
                 { PhaseCategory.SourceReduction, scenarioResults.sourceReductionResults.onSiteDays },
                 { PhaseCategory.Decontamination, scenarioResults.decontaminationResults.onSiteDays },
                 { PhaseCategory.WasteSampling, scenarioResults.wasteSamplingResults.onSiteDays },
@@ -61,9 +61,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
         {
             var realizationResults = new ScenarioRealizationResults()
             {
-                preDeconCharacterizationSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
-                postDeconCharacterizationSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
-                totalCharacterizationSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                characterizationSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 sourceReductionResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 decontaminationResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 wasteSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
@@ -116,17 +114,9 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
         private void AddResults(ScenarioRealizationResults summedResults, ScenarioRealizationResults originalResults)
         {
-            summedResults.preDeconCharacterizationSamplingResults.workDays += originalResults.preDeconCharacterizationSamplingResults.workDays;
-            summedResults.preDeconCharacterizationSamplingResults.onSiteDays += originalResults.preDeconCharacterizationSamplingResults.onSiteDays;
-            summedResults.preDeconCharacterizationSamplingResults.phaseCost += originalResults.preDeconCharacterizationSamplingResults.phaseCost;
-
-            summedResults.postDeconCharacterizationSamplingResults.workDays += originalResults.postDeconCharacterizationSamplingResults.workDays;
-            summedResults.postDeconCharacterizationSamplingResults.onSiteDays += originalResults.postDeconCharacterizationSamplingResults.onSiteDays;
-            summedResults.postDeconCharacterizationSamplingResults.phaseCost += originalResults.postDeconCharacterizationSamplingResults.phaseCost;
-
-            summedResults.totalCharacterizationSamplingResults.workDays += originalResults.totalCharacterizationSamplingResults.workDays;
-            summedResults.totalCharacterizationSamplingResults.onSiteDays += originalResults.totalCharacterizationSamplingResults.onSiteDays;
-            summedResults.totalCharacterizationSamplingResults.phaseCost += originalResults.totalCharacterizationSamplingResults.phaseCost;
+            summedResults.characterizationSamplingResults.workDays += originalResults.characterizationSamplingResults.workDays;
+            summedResults.characterizationSamplingResults.onSiteDays += originalResults.characterizationSamplingResults.onSiteDays;
+            summedResults.characterizationSamplingResults.phaseCost += originalResults.characterizationSamplingResults.phaseCost;
 
             summedResults.sourceReductionResults.workDays += originalResults.sourceReductionResults.workDays;
             summedResults.sourceReductionResults.onSiteDays += originalResults.sourceReductionResults.onSiteDays;
