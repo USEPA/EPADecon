@@ -280,6 +280,10 @@ namespace Battelle.EPA.WideAreaDecon.Model
             //Total event contamination area
             results.totalContaminationArea = scenarioResults.generalResults.areaContaminated;
 
+            //Total waste quantities for the event
+            results.totalSolidWasteProduced = scenarioResults.generalResults.solidWasteProduced;
+            results.totalAqueousWasteProduced = scenarioResults.generalResults.aqueousWasteProduced;
+
             return results;
         }
     }
