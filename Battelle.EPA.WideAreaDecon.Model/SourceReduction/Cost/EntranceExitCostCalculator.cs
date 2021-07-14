@@ -7,8 +7,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction.Cost
     public class EntranceExitCostCalculator : IEntranceExitCostCalculator
     {
         private readonly Dictionary<PpeLevel, double> _costPerPpe;
+        private readonly Dictionary<PpeLevel, double> _entryDurationByPPE;
         private readonly double _costPerRespirator;
-        private readonly double _numberEntriesPerTeamPerDay;
         private readonly Dictionary<PersonnelLevel, double> _personnelRequiredPerTeam;
         private readonly double _respiratorsPerPerson;
         private readonly double _prepTimeCost;
@@ -16,15 +16,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction.Cost
 
         public EntranceExitCostCalculator(
             Dictionary<PersonnelLevel, double> personnelRequiredPerTeam,
-            double numberEntriesPerTeamPerDay,
             double respiratorsPerPerson,
             double costPerRespirator,
             Dictionary<PpeLevel, double> costPerPpe,
+            Dictionary<PpeLevel, double> entryDurationByPPE,
             double prepTimeCost,
             double deconLineCost)
         {
             _personnelRequiredPerTeam = personnelRequiredPerTeam;
-            _numberEntriesPerTeamPerDay = numberEntriesPerTeamPerDay;
+            _entryDurationByPPE = entryDurationByPPE;
             _respiratorsPerPerson = respiratorsPerPerson;
             _costPerRespirator = costPerRespirator;
             _costPerPpe = costPerPpe;
@@ -35,8 +35,28 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction.Cost
         public double CalculateEntranceExitCost(double laborDays, double numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
             var totalPersonnel = _personnelRequiredPerTeam.Values.Sum() * numberTeams;
-            
-            var totalEntries = laborDays * _numberEntriesPerTeamPerDay * numberTeams;
+
+            var numTeamsByPPE = 0;
+
+            foreach (var ppeFraction in ppePerLevelPerTeam)
+            {
+                if (ppeFraction.Value > 0)
+                {
+                    numTeamsByPPE++;
+                }
+            }
+
+            var laborHoursPerPPELevel = (laborDays * GlobalConstants.HoursPerWorkDay) / numTeamsByPPE;
+
+            var entriesPerPPELevel = new Dictionary<PpeLevel, double>
+            {
+                { PpeLevel.A, ppePerLevelPerTeam[PpeLevel.A] == 0 ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.A] },
+                { PpeLevel.B, ppePerLevelPerTeam[PpeLevel.B] == 0 ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.B] },
+                { PpeLevel.C, ppePerLevelPerTeam[PpeLevel.C] == 0 ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.C] },
+                { PpeLevel.D, ppePerLevelPerTeam[PpeLevel.D] == 0 ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.D] }
+            };
+
+            var totalEntries = entriesPerPPELevel.Sum(x => x.Value);
 
             var totalPpePerLevel = ppePerLevelPerTeam.Values.Select(x => x * _personnelRequiredPerTeam.Values.Sum() * totalEntries);
 

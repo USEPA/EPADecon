@@ -28,7 +28,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Cost
                 { PpeLevel.C, 66.60 },
                 { PpeLevel.D, 64.32 }
             };
-            var numberEntriesPerTeamPerDay = 3.0;
+            var entryDuration = new Dictionary<PpeLevel, double>
+            {
+                [PpeLevel.A] = 1.0,
+                [PpeLevel.B] = 1.5,
+                [PpeLevel.C] = 2.0,
+                [PpeLevel.D] = 2.5
+            };
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
             var prepTimeCost = 262.33;
@@ -36,10 +42,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Cost
 
             Calculator = new EntranceExitCostCalculator(
                 personnelReqPerTeam,
-                numberEntriesPerTeamPerDay,
                 respiratorsPerPerson,
                 costPerRespirator,
                 costPerPpe,
+                entryDuration,
                 prepTimeCost,
                 deconLineCost
             );

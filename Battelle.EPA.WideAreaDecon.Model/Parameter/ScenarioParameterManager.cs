@@ -118,6 +118,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 [PpeLevel.D] = _characterizationSamplingParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Fraction PPE Required (D)").CreateDistribution().Draw()
             };
 
+            var entryDuration = new Dictionary<PpeLevel, double>
+            {
+                [PpeLevel.A] = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (A)").CreateDistribution().Draw(),
+                [PpeLevel.B] = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (B)").CreateDistribution().Draw(),
+                [PpeLevel.C] = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (C)").CreateDistribution().Draw(),
+                [PpeLevel.D] = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (D)").CreateDistribution().Draw()
+            };
+
             return new CharacterizationSamplingParameters(
                 fractionSampledWipe,
                 fractionSampledHepa,
@@ -136,6 +144,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 personnelOverheadDays,
                 roundtripDays,
                 entriesPerTeam,
+                entryDuration,
                 entryPrepTime,
                 deconLineTime,
                 hoursEntering,
@@ -177,11 +186,20 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 [PpeLevel.D] = _sourceReductionParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Fraction PPE Required (D)").CreateDistribution().Draw()
             };
 
+            var entryDuration = new Dictionary<PpeLevel, double>
+            {
+                [PpeLevel.A] = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (A)").CreateDistribution().Draw(),
+                [PpeLevel.B] = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (B)").CreateDistribution().Draw(),
+                [PpeLevel.C] = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (C)").CreateDistribution().Draw(),
+                [PpeLevel.D] = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (D)").CreateDistribution().Draw()
+            };
+
             return new SourceReductionParameters(
                 surfaceAreaToBeSourceReduced,
                 massPerSurfaceArea,
                 massRemovedPerHourPerTeam,
                 numEntriesPerDay,
+                entryDuration,
                 entryPrepTime,
                 deconLineTime,
                 respiratorsPerPerson,
@@ -237,6 +255,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 [PpeLevel.D] = _decontaminationParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Fraction PPE Required (D)").CreateDistribution().Draw()
             };
 
+            var entryDuration = new Dictionary<PpeLevel, double>
+            {
+                [PpeLevel.A] = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (A)").CreateDistribution().Draw(),
+                [PpeLevel.B] = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (B)").CreateDistribution().Draw(),
+                [PpeLevel.C] = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (C)").CreateDistribution().Draw(),
+                [PpeLevel.D] = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (D)").CreateDistribution().Draw()
+            };
+
             var fumigationAgentVolume = _decontaminationParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume of Agent Applied for Fogging/Fumigation").CreateDistribution().Draw();
 
             return new DecontaminationParameters(
@@ -248,6 +274,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 personnelOverhead,
                 roundtripDays,
                 numEntriesPerTeamPerDay,
+                entryDuration,
                 hoursPerEntryPerTeam,
                 hoursPerExitPerTeam,
                 respiratorsPerPerson,

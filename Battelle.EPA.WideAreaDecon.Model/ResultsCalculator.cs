@@ -49,7 +49,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                     parameters._characterizationSamplingParameters.numTeams,
                     parameters._characterizationSamplingParameters.fractionSampledWipe,
                     parameters._characterizationSamplingParameters.fractionSampledHepa,
-                    areaContaminated);
+                    areaContaminated,
+                    parameters._characterizationSamplingParameters.ppeRequired);
 
                 preDeconCSWorkdays = phaseDaysCS[PhaseDays.WorkDays];
 
@@ -82,7 +83,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 var phaseDaysSR = _sourceReductionCostCalculator.CalculateTime(
                     parameters._sourceReductionParameters.numTeams,
                     parameters._sourceReductionParameters.surfaceAreaToBeSourceReduced,
-                    areaContaminated.Values.Sum(v => v.AreaContaminated));
+                    areaContaminated.Values.Sum(v => v.AreaContaminated),
+                    parameters._sourceReductionParameters.ppeRequired);
 
                 results.sourceReductionResults.workDays = phaseDaysSR[PhaseDays.WorkDays];
 
@@ -132,7 +134,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                     parameters._characterizationSamplingParameters.numTeams,
                     parameters._characterizationSamplingParameters.fractionSampledWipe,
                     parameters._characterizationSamplingParameters.fractionSampledHepa,
-                    areaContaminated);
+                    areaContaminated,
+                    parameters._characterizationSamplingParameters.ppeRequired);
 
                     postDeconCSWorkdays += phaseDaysCS[PhaseDays.WorkDays];
 

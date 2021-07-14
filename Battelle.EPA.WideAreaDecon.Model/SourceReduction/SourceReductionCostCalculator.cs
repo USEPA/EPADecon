@@ -16,10 +16,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         public TravelCostCalculator Calculator_travel { get; set; }
 
         //Phase time for scenario results
-        public Dictionary<PhaseDays, double> CalculateTime(double numberTeams, double saToBeSourceReduced, double area)
+        public Dictionary<PhaseDays, double> CalculateTime(double numberTeams, double saToBeSourceReduced, double area, Dictionary<PpeLevel, double> ppeLevelPerTeam)
         {
             var laborDays = Calculator_laborDays.CalculateLaborDays(numberTeams, saToBeSourceReduced, area);
-            var workDays = Calculator_workDays.CalculateWorkDays(laborDays, numberTeams);
+            var workDays = Calculator_workDays.CalculateWorkDays(laborDays, numberTeams, ppeLevelPerTeam);
             var onsiteDays = Calculator_onsiteDays.CalculateOnsiteDays(workDays);
 
             return new Dictionary<PhaseDays, double>
