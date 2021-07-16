@@ -103,11 +103,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             };
             var personnelOverheadDays = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Personnel Overhead Days").CreateDistribution().Draw();
             var roundtripDays = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
-            var entriesPerTeam = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Entries per Team per Day").CreateDistribution().Draw();
             var entryPrepTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Prep Time per Team per Entry").CreateDistribution().Draw();
             var deconLineTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon Line Time per Team per Exit").CreateDistribution().Draw();
-            var hoursEntering = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
-            var hoursExiting = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
             var respiratorsPerPerson = _characterizationSamplingParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Number of Respirators per Person").CreateDistribution().Draw();
 
             var ppeRequired = new Dictionary<PpeLevel, double>
@@ -143,12 +140,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 personnelReqPerTeam,
                 personnelOverheadDays,
                 roundtripDays,
-                entriesPerTeam,
                 entryDuration,
                 entryPrepTime,
                 deconLineTime,
-                hoursEntering,
-                hoursExiting,
                 respiratorsPerPerson,
                 ppeRequired);
         }
@@ -158,13 +152,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             var surfaceAreaToBeSourceReduced = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction Surface Area to be Source Reduced").CreateDistribution().Draw();
             var massPerSurfaceArea = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Mass of Waste per Surface Area").CreateDistribution().Draw();
             var massRemovedPerHourPerTeam = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Mass of Waste Removed per Hour per Team").CreateDistribution().Draw();
-            var numEntriesPerDay = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Entries per Team per Day").CreateDistribution().Draw();
             var respiratorsPerPerson = _sourceReductionParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Number of Respirators per Person").CreateDistribution().Draw();
 
             var entryPrepTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Prep Time per Team per Entry").CreateDistribution().Draw();
             var deconLineTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon Line Time per Team per Exit").CreateDistribution().Draw();
-            var hoursEntering = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
-            var hoursExiting = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
             var numTeams = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
 
             var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
@@ -198,13 +189,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 surfaceAreaToBeSourceReduced,
                 massPerSurfaceArea,
                 massRemovedPerHourPerTeam,
-                numEntriesPerDay,
                 entryDuration,
                 entryPrepTime,
                 deconLineTime,
                 respiratorsPerPerson,
-                hoursEntering,
-                hoursExiting,
                 numTeams,
                 personnelReqPerTeam,
                 personnelOverheadDays,
@@ -241,9 +229,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
 
             var personnelOverhead = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Personnel Overhead Days").CreateDistribution().Draw();
             var roundtripDays = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
-            var numEntriesPerTeamPerDay = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Entries per Team per Day").CreateDistribution().Draw();
-            var hoursPerEntryPerTeam = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
-            var hoursPerExitPerTeam = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Hours per Entry per Team").CreateDistribution().Draw();
             var respiratorsPerPerson = _decontaminationParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Number of Respirators per Person").CreateDistribution().Draw();
             var numTeams = _decontaminationParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
 
@@ -273,10 +258,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 personnelReqPerTeam,
                 personnelOverhead,
                 roundtripDays,
-                numEntriesPerTeamPerDay,
                 entryDuration,
-                hoursPerEntryPerTeam,
-                hoursPerExitPerTeam,
                 respiratorsPerPerson,
                 numTeams,
                 ppeRequired,

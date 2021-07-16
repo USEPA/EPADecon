@@ -15,10 +15,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
         public double personnelOverhead;
         public double roundtripDays;
-        public double numEntriesPerTeamPerDay;
         public Dictionary<PpeLevel, double> entryDuration;
-        public double hoursPerEntryPerTeam;
-        public double hoursPerExitPerTeam;
         public double respiratorsPerPerson;
         public double numTeams;
         public Dictionary<PpeLevel, double> ppeRequired;
@@ -36,10 +33,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
             double _personnelOverhead,
             double _roundtripDays,
-            double _numEntriesPerTeamPerDay,
             Dictionary<PpeLevel, double> _entryDuration,
-            double _hoursPerEntryPerTeam,
-            double _hoursPerExitPerTeam,
             double _respiratorsPerPerson,
             double _numTeams,
             Dictionary<PpeLevel, double> _ppeRequired,
@@ -55,10 +49,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             personnelReqPerTeam = _personnelReqPerTeam;
             personnelOverhead = _personnelOverhead;
             roundtripDays = _roundtripDays;
-            numEntriesPerTeamPerDay = _numEntriesPerTeamPerDay;
             entryDuration = _entryDuration;
-            hoursPerEntryPerTeam = _hoursPerEntryPerTeam;
-            hoursPerExitPerTeam = _hoursPerExitPerTeam;
             respiratorsPerPerson = _respiratorsPerPerson;
             numTeams = _numTeams;
             ppeRequired = _ppeRequired;
