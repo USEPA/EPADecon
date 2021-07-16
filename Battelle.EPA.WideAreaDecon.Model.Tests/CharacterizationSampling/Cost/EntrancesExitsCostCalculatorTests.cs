@@ -64,8 +64,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Cost
             var numberTeams = 4.0;
             var laborDays = 1.68186172674725;
 
-            Assert.AreEqual(45660.259914104, Calculator.CalculateEntrancesExitsCost(laborDays, numberTeams, ppePerLevelPerTeam),
-                1e-6, "Incorrect labor cost calculated");
+            Assert.AreEqual(22814.5137124205, Calculator.CalculateEntrancesExitsCost(laborDays, numberTeams, ppePerLevelPerTeam),
+                1e-6, "Incorrect entrance/exit cost calculated");
         }
     }
 }

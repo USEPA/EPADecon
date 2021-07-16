@@ -42,7 +42,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Time
                 [PpeLevel.D] = 0.0
             };
 
-            Assert.AreEqual(4.84376177303, Calculator.CalculateWorkDays(laborDays, numTeams, ppeRequired), 1e-6, "Incorrect workdays calculated");
+            Assert.AreEqual(3.06519299699687, Calculator.CalculateWorkDays(laborDays, numTeams, ppeRequired), 1e-6, "Incorrect workdays calculated");
         }
     }
 }

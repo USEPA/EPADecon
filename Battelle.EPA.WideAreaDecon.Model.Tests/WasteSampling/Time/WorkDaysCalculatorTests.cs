@@ -17,9 +17,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
         [Test]
         public void CalculateWorkDays()
         {
-            var laborDays = 1.68186172675;
+            var laborDays = 4.3619840720967;
 
-            Assert.AreEqual(4.84376177303, Calculator.CalculateWorkDays(laborDays), 1e-6, "Incorrect workdays calculated");
+            Assert.AreEqual(4.3619840720967, Calculator.CalculateWorkDays(laborDays), 1e-6, "Incorrect workdays calculated");
         }
     }
 }

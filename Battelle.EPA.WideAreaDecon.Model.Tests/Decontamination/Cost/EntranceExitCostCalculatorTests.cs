@@ -39,8 +39,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
                 [PpeLevel.C] = 2.0,
                 [PpeLevel.D] = 2.5
             };
-            var prepTimeCost = 262.33;
-            var deconLineCost = 755.33;
+            var prepTimeCost = 252.0;
+            var deconLineCost = 697.0;
 
             Calculator = new EntranceExitCostCalculator(
                 personnelReqPerTeam,
@@ -58,8 +58,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
         {
             var workdays = new Dictionary<ApplicationMethod, double>()
             {
-                { ApplicationMethod.Fogging, 1.0 },
-                { ApplicationMethod.Aerosol, 2.0 }
+                { ApplicationMethod.Fogging, 3.0 }
             };
 
             var decontaminationWorkdays = new List<Dictionary<ApplicationMethod, double>>();
@@ -78,7 +77,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
             };
             var numTeams = 2.0;
             
-            Assert.AreEqual(89365.016, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam, decontaminationWorkdays), 
+            Assert.AreEqual(148015.238, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam, decontaminationWorkdays), 
                 1e-6, "Incorrect cost calculated");
         }
     }

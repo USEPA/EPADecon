@@ -41,7 +41,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Cost
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(18346.8884212566, Calculator.CalculateSuppliesCost(fractionSampled, areaContaminated), 1e-6,
+            Assert.AreEqual(23868.7768425132, Calculator.CalculateSuppliesCost(fractionSampled, areaContaminated), 1e-6,
                 "Incorrect supplies cost calculated");
         }
     }

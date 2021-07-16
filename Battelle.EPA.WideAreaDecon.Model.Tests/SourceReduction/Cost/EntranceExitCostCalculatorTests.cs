@@ -37,8 +37,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Cost
             };
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            var prepTimeCost = 262.33;
-            var deconLineCost = 755.33;
+            var prepTimeCost = 252.0;
+            var deconLineCost = 697.0;
 
             Calculator = new EntranceExitCostCalculator(
                 personnelReqPerTeam,
@@ -64,7 +64,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Cost
             var numberTeams = 4.0;
             var laborDays = 1.019638794335;
 
-            Assert.AreEqual(23685.950774048,
+            Assert.AreEqual(15311.2691541947,
                 Calculator.CalculateEntranceExitCost(laborDays, numberTeams, ppeEachLevelPerTeam), 1e-6,
                 "Incorrect cost calculated");
         }

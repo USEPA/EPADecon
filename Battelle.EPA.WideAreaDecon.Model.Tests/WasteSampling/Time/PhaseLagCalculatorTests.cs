@@ -49,7 +49,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(10.6612328853611, Calculator.CalculatePhaseLagTime(numberLabs, sampleTimeTransmitted, fractionSampled, areaContaminated), 
+            Assert.AreEqual(13.2566819020775, Calculator.CalculatePhaseLagTime(numberLabs, sampleTimeTransmitted, fractionSampled, areaContaminated), 
                 1e-6, "Incorrect phase lag cost calculated");
         }
     }

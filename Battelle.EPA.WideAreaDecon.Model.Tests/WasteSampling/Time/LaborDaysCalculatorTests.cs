@@ -43,7 +43,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(3.35286703604835, Calculator.CalculateLaborDays(numberTeams, fractionSampled, areaContaminated), 1e-6, "Incorrect labor days calculated");
+            Assert.AreEqual(4.3619840720967, Calculator.CalculateLaborDays(numberTeams, fractionSampled, areaContaminated), 1e-6, "Incorrect labor days calculated");
         }
     }
 }
