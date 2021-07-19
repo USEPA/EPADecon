@@ -136,6 +136,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
             summedResults.generalResults.totalCost += originalResults.generalResults.totalCost;
             summedResults.generalResults.areaContaminated += originalResults.generalResults.areaContaminated;
             summedResults.generalResults.decontaminationRounds += originalResults.generalResults.decontaminationRounds;
+            summedResults.generalResults.solidWasteProduced += originalResults.generalResults.solidWasteProduced;
+            summedResults.generalResults.aqueousWasteProduced += originalResults.generalResults.aqueousWasteProduced;
         }
     }
 }
