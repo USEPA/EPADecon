@@ -1,44 +1,54 @@
 <template>
-  <v-card height="100%" width="100%">
-    <v-row dense>
-      <v-col cols="auto" class="mr-auto">
-        <v-card-title v-if="shouldIncludeTitle" v-text="currentSelectedParameter.path" />
-      </v-col>
-      <v-col align-self="center" cols="3">
-        <v-overflow-btn
-          v-if="isChangeableDist"
-          @change="onDistributionTypeChange"
-          class="my-2"
-          v-model="currentDistType"
-          :items="distNames"
-          filled
-          dense
-        />
-      </v-col>
-      <v-col style="margin-top: 7px" cols="2">
-        <v-btn height="45" v-if="shouldIncludeTitle && parameterHasChanged" color="secondary" @click="resetParameter">
-          Reset Parameter
-        </v-btn>
-      </v-col>
-    </v-row>
-    <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
-    <component
-      :key="currentSelectedParameter.path"
-      :is="display.distComponent"
-      :parameter-value="currentSelectedParameter.current"
-    >
-    </component>
-    <v-container>
-      <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
-        <distribution-chart
-          :distribution-series="display.chartData"
-          :xAxisLabel="display.xAxisLabel"
-          :yAxisLabel="'Probability of Selection'"
-          :data-generator="display.dataGenerator"
-        ></distribution-chart>
+  <v-container>
+    <v-container v-if="currentSelectedParameter.path != temp">
+      <v-card height="100%" width="100%">
+        <v-row dense>
+          <v-col cols="auto" class="mr-auto">
+            <v-card-title v-if="shouldIncludeTitle" v-text="currentSelectedParameter.path" />
+          </v-col>
+          <v-col align-self="center" cols="3">
+            <v-overflow-btn
+              v-if="isChangeableDist"
+              @change="onDistributionTypeChange"
+              class="my-2"
+              v-model="currentDistType"
+              :items="distNames"
+              filled
+              dense
+            />
+          </v-col>
+          <v-col style="margin-top: 7px" cols="2">
+            <v-btn
+              height="45"
+              v-if="shouldIncludeTitle && parameterHasChanged"
+              color="secondary"
+              @click="resetParameter"
+            >
+              Reset Parameter
+            </v-btn>
+          </v-col>
+        </v-row>
+        <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
+        <component
+          :key="currentSelectedParameter.path"
+          :is="display.distComponent"
+          :parameter-value="currentSelectedParameter.current"
+        >
+        </component>
+        <v-container>
+          <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
+            <distribution-chart
+              :distribution-series="display.chartData"
+              :xAxisLabel="display.xAxisLabel"
+              :yAxisLabel="'Probability of Selection'"
+              :data-generator="display.dataGenerator"
+            ></distribution-chart>
+          </v-card>
+        </v-container>
       </v-card>
     </v-container>
-  </v-card>
+    <geospatial-display v-if="currentSelectedParameter.path == temp" />
+  </v-container>
 </template>
 
 <script lang="ts">
