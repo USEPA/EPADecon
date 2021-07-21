@@ -69,7 +69,6 @@ import { DistributionChart } from 'battelle-common-vue-charting/src/index';
 import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
 import ContaminationDefinitionDisplay from '@/components/parameters/ContaminationDefinitionDisplay.vue';
-import GeospatialDisplay from './GeospatialDisplay.vue';
 
 @Component({
   components: {
@@ -89,7 +88,6 @@ import GeospatialDisplay from './GeospatialDisplay.vue';
     EnumeratedParameterDisplay,
     ContaminationDefinitionDisplay,
     DistributionChart,
-    GeospatialDisplay,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
@@ -116,8 +114,6 @@ export default class ParameterDistributionSelector extends Vue {
   currentDistType = ParameterType.constant;
 
   distNames = changeableDistributionTypes;
-
-  temp = 'Extent of Contamination - Area Contaminated';
 
   get display(): DistributionDisplay {
     return container
