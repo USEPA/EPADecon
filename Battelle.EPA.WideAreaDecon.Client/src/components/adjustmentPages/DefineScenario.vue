@@ -53,9 +53,10 @@
       </v-row>
     </v-container>
     <v-btn v-if="selection" @click="selection = false"> Selection Method </v-btn>
-    <v-container fill-height fluid>
-      <parameter-selection-drawer v-if="selection" :parameters="scenarioDefinition" />
-      <parameter-distribution-selector v-if="selection" />
+    <v-container v-if="selection" fill-height fluid>
+      <parameter-selection-drawer :parameters="scenarioDefinition" />
+      <parameter-distribution-selector v-if="!geoSpatial" />
+      <geospatial-parameter-distribution-selector v-if="geoSpatial" />
     </v-container>
   </div>
 </template>
@@ -67,10 +68,11 @@ import { State } from 'vuex-class';
 import ParameterSelectionDrawer from '@/components/parameters/ParameterSelectionDrawer.vue';
 import ParameterList from '@/implementations/parameter/ParameterList';
 import ParameterDistributionSelector from '@/components/parameters/distributionDisplay/ParameterDistributionSelector.vue';
+import GeospatialParameterDistributionSelector from '@/components/parameters/distributionDisplay/GeospatialParameterDistributionSelector.vue';
 import ParameterWrapper from '../../implementations/parameter/ParameterWrapper';
 
 @Component({
-  components: { ParameterSelectionDrawer, ParameterDistributionSelector },
+  components: { ParameterSelectionDrawer, ParameterDistributionSelector, GeospatialParameterDistributionSelector },
 })
 export default class DefineScenario extends Vue {
   @State scenarioDefinition!: ParameterList;
