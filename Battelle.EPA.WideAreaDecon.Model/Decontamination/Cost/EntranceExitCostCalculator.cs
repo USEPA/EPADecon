@@ -34,15 +34,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost
 
         public double CalculateEntranceExitCost(double numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam, List<Dictionary<ApplicationMethod, double>> decontaminationLaborDays)
         {
-            //Calculating the non-fumigation workdays for decon to account for no site entries
-            //being made for fumigation
+            //Calculating the non-fumigation and non-fogging workdays for decon to account for no site entries
+            //being made for fumigation/fogging
             double laborDays = 0.0;
 
             foreach (var item in decontaminationLaborDays)
             {
                 foreach (var method in item.Keys.ToList())
                 {
-                    if (method != ApplicationMethod.Fumigation)
+                    if (method != ApplicationMethod.Fumigation && method != ApplicationMethod.Fogging)
                     {
                         laborDays += item[method];
                     }
