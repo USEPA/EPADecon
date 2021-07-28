@@ -26,7 +26,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             );
 
             Calculator_workDays = new WorkDaysCalculator(
-                srParameters.numEntriesPerDay,
+                srParameters.entryDuration,
                 srParameters.entryPrepTime,
                 srParameters.deconLineTime
             );
@@ -43,10 +43,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
 
             Calculator_entEx = new EntranceExitCostCalculator(
                 srParameters.personnelReqPerTeam,
-                srParameters.numEntriesPerDay,
                 srParameters.respiratorsPerPerson,
                 costParameters.respiratorCost,
                 costParameters.ppeCost,
+                srParameters.entryDuration,
                 costParameters.entryPrepCost,
                 costParameters.deconLineCost
             );

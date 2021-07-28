@@ -28,7 +28,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Cost
                 { PpeLevel.C, 66.60 },
                 { PpeLevel.D, 64.32 }
             };
-            var numberEntriesPerPerson = 4.0;
+            var entryDuration = new Dictionary<PpeLevel, double>
+            {
+                [PpeLevel.A] = 1.0,
+                [PpeLevel.B] = 1.5,
+                [PpeLevel.C] = 2.0,
+                [PpeLevel.D] = 2.5
+            };
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
             var prepTimeCost = 252.0;
@@ -36,10 +42,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Cost
 
             Calculator = new EntrancesExitsCostCalculator(
                 personnelReqPerTeam,
-                numberEntriesPerPerson,
                 respiratorsPerPerson,
                 costPerRespirator,
                 costPerPpe,
+                entryDuration,
                 prepTimeCost,
                 deconLineCost
             );
@@ -58,8 +64,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Cost
             var numberTeams = 4.0;
             var laborDays = 1.68186172674725;
 
-            Assert.AreEqual(45660.259914104, Calculator.CalculateEntrancesExitsCost(laborDays, numberTeams, ppePerLevelPerTeam),
-                1e-6, "Incorrect labor cost calculated");
+            Assert.AreEqual(22814.5137124205, Calculator.CalculateEntrancesExitsCost(laborDays, numberTeams, ppePerLevelPerTeam),
+                1e-6, "Incorrect entrance/exit cost calculated");
         }
     }
 }

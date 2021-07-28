@@ -32,16 +32,22 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
 
             var respiratorsPerPerson = 1.0;
             var costPerRespirator = 238.0;
-            var numberEntriesPerTeamPerDay = 2.0;
-            var prepTimeCost = 262.33;
-            var deconLineCost = 755.33;
+            var entryDuration = new Dictionary<PpeLevel, double>
+            {
+                [PpeLevel.A] = 1.0,
+                [PpeLevel.B] = 1.5,
+                [PpeLevel.C] = 2.0,
+                [PpeLevel.D] = 2.5
+            };
+            var prepTimeCost = 252.0;
+            var deconLineCost = 697.0;
 
             Calculator = new EntranceExitCostCalculator(
                 personnelReqPerTeam,
-                numberEntriesPerTeamPerDay,
                 respiratorsPerPerson,
                 costPerRespirator,
                 costPerPpe,
+                entryDuration,
                 prepTimeCost,
                 deconLineCost
             );
@@ -52,8 +58,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
         {
             var workdays = new Dictionary<ApplicationMethod, double>()
             {
-                { ApplicationMethod.Fogging, 1.0 },
-                { ApplicationMethod.Aerosol, 2.0 }
+                { ApplicationMethod.Fogging, 3.0 }
             };
 
             var decontaminationWorkdays = new List<Dictionary<ApplicationMethod, double>>();
@@ -72,7 +77,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
             };
             var numTeams = 2.0;
             
-            Assert.AreEqual(89365.016, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam, decontaminationWorkdays), 
+            Assert.AreEqual(148015.238, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam, decontaminationWorkdays), 
                 1e-6, "Incorrect cost calculated");
         }
     }

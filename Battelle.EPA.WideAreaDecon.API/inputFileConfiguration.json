@@ -10,6 +10,7 @@
         "Characterization Sampling",
         "Source Reduction",
         "Decontamination",
+        "Waste Sampling",
         "Cost per Parameter"
       ]
     }
@@ -24,6 +25,7 @@
         "Characterization Sampling",
         "Source Reduction",
         "Decontamination",
+        "Waste Sampling",
         "Other",
         "Cost per Parameter"
       ]

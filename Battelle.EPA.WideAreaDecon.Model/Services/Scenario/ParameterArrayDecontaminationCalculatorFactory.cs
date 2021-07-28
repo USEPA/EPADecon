@@ -53,10 +53,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
 
             Calculator_entEx = new EntranceExitCostCalculator(
                 dcParameters.personnelReqPerTeam,
-                dcParameters.numEntriesPerTeamPerDay,
                 dcParameters.respiratorsPerPerson,
                 costParameters.respiratorCost,
                 costParameters.ppeCost,
+                dcParameters.entryDuration,
                 costParameters.entryPrepCost,
                 costParameters.deconLineCost
             );

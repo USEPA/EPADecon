@@ -18,6 +18,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Cost
             var surfaceAreaPerHepa = 9.2903;
             var costPerWipeAnalysis = 520.0;
             var costPerHepaAnalysis = 290.0;
+
             Calculator = new AnalysisQuantityCostCalculator(
                 surfaceAreaPerWipe,
                 surfaceAreaPerHepa,
