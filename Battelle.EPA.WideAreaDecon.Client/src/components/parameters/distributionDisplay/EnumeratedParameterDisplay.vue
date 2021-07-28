@@ -48,10 +48,10 @@
       </component>
       <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
         <distribution-chart
+          :data-generator="display.dataGenerator"
           :distribution-series="display.chartData"
           :xAxisLabel="display.xAxisLabel"
           :yAxisLabel="'Probability of Selection'"
-          :data-generator="display.dataGenerator"
         ></distribution-chart>
       </v-card>
     </div>
@@ -85,7 +85,7 @@ import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullD
 import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
 import UniformXDependentDisplay from '@/components/parameters/distributionDisplay/UniformXDependentDisplay.vue';
 import TextValueDisplay from '@/components/parameters/distributionDisplay/TextValueDisplay.vue';
-import { DistributionChart } from 'battelle-common-vue-charting/src/index';
+import { DistributionChart } from 'battelle-common-vue-charting';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';

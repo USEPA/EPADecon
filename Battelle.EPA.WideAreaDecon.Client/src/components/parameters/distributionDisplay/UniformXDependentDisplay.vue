@@ -77,12 +77,11 @@ import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import UniformXDependent from '@/implementations/parameter/distribution/UniformXDependent';
 import {
   ScatterPlotWrapper,
-  ChartPoint2D,
   CycleColorProvider,
-  ScatterChartDataset,
+  CreateScatterChartDataset,
   DefaultChartData,
-} from 'battelle-common-vue-charting/src';
-import { ChartLegendLabelItem } from 'chart.js';
+} from 'battelle-common-vue-charting';
+import { ActiveElement, ChartDataset, ChartEvent, LegendElement, LegendItem, Point } from 'chart.js';
 import container from '@/dependencyInjection/config';
 import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 import TYPES from '@/dependencyInjection/types';
@@ -219,48 +218,80 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
   }
 
   get chartData(): DefaultChartData {
-    const dataSets: ScatterChartDataset[] = [];
+    const dataSets: ChartDataset[] = [];
     const colorProvider = new CycleColorProvider();
     const baselineColor = colorProvider.getNextColor();
     const currentColor = colorProvider.getNextColor();
 
     const baselineSet = this.baselineSets.filter((set) => set.name === this.selectedSetName)[0];
 
-    const baselineMins: ChartPoint2D[] = baselineSet.points.map((x, i) => new ChartPoint2D(x, baselineSet.mins[i]));
-    const baselineMaxs: ChartPoint2D[] = baselineSet.points.map((x, i) => new ChartPoint2D(x, baselineSet.maxs[i]));
+    const baselineMins: Point[] = baselineSet.points.map((x, i) => {
+      return { x, y: baselineSet.mins[i] };
+    });
+    const baselineMaxs: Point[] = baselineSet.points.map((x, i) => {
+      return { x, y: baselineSet.maxs[i] };
+    });
 
     if (baselineMins.length) {
       // dataset label will be hidden in chart legend
-      const baselineMinScatter = new ScatterChartDataset(baselineMins, 'Min', colorProvider, undefined, baselineColor);
+      const baselineMinScatter = CreateScatterChartDataset(
+        baselineMins,
+        'Min',
+        colorProvider,
+        undefined,
+        baselineColor,
+        baselineColor,
+      );
       dataSets.push(baselineMinScatter);
     }
 
     if (baselineMaxs.length) {
-      const baselineMaxScatter = new ScatterChartDataset(
+      const baselineMaxScatter = CreateScatterChartDataset(
         baselineMaxs,
         'Baseline',
         colorProvider,
         undefined,
         baselineColor,
+        baselineColor,
       );
-      baselineMaxScatter.fill = '-1';
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (baselineMaxScatter as any).fill = '-1';
       dataSets.push(baselineMaxScatter);
     }
 
     const selectedXValues = this.selectedSet.points.sort((a, b) => a - b);
 
-    const currentMins: ChartPoint2D[] = selectedXValues.map((x, i) => new ChartPoint2D(x, this.selectedSet.mins[i]));
-    const currentMaxs: ChartPoint2D[] = selectedXValues.map((x, i) => new ChartPoint2D(x, this.selectedSet.maxs[i]));
+    const currentMins: Point[] = selectedXValues.map((x, i) => {
+      return { x, y: this.selectedSet.mins[i] };
+    });
+    const currentMaxs: Point[] = selectedXValues.map((x, i) => {
+      return { x, y: this.selectedSet.maxs[i] };
+    });
 
     if (currentMins.length) {
       // dataset label will be hidden in chart legend
-      const minScatter = new ScatterChartDataset(currentMins, 'Min', colorProvider, undefined, currentColor);
+      const minScatter = CreateScatterChartDataset(
+        currentMins,
+        'Min',
+        colorProvider,
+        undefined,
+        currentColor,
+        currentColor,
+      );
       dataSets.push(minScatter);
     }
 
     if (currentMaxs.length) {
-      const maxScatter = new ScatterChartDataset(currentMaxs, 'Current', colorProvider, undefined, currentColor);
-      maxScatter.fill = '-1';
+      const maxScatter = CreateScatterChartDataset(
+        currentMaxs,
+        'Current',
+        colorProvider,
+        undefined,
+        currentColor,
+        currentColor,
+      );
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (maxScatter as any).fill = '-1';
       dataSets.push(maxScatter);
     }
 
@@ -343,16 +374,13 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     return true;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onHover(event: MouseEvent, elements: any[]): void {
+  onHover(event: ChartEvent, elements: ActiveElement[]): void {
     if (elements.length !== 0) {
-      // eslint-disable-next-line no-underscore-dangle
-      this.selectedIndex = elements[0]._index;
+      this.selectedIndex = elements[0].index;
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onClick(event: MouseEvent, elements: any[]): void {
+  onClick(event: ChartEvent, elements: ActiveElement[]): void {
     if (elements.length === 0) {
       this.selectedIndex = -1;
     }
@@ -360,8 +388,8 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
   }
 
   // adapted from mawir's answer on Stack Overflow: https://stackoverflow.com/a/59716739
-  // eslint-disable-next-line class-methods-use-this
-  legendOnClick(_: Event, legendItem: ChartLegendLabelItem): void {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  legendOnClick(event: ChartEvent, legendItem: LegendItem, legend: LegendElement): void {
     const index = legendItem.datasetIndex;
     if (index !== undefined) {
       const { chart } = (this.$refs.chart as Vue).$children[0] as IChartJsWrapper;
@@ -392,11 +420,13 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     this.dependentVariables = this.parameterValue.dependentVariable ?? [];
 
     // update chart legend
-    this.chartOptions.legend = {
-      labels: {
-        filter: (item) => !item.text?.includes('Min'),
+    this.chartOptions.plugins = {
+      legend: {
+        labels: {
+          filter: (item) => !item.text?.includes('Min'),
+        },
+        onClick: this.legendOnClick,
       },
-      onClick: this.legendOnClick,
     };
 
     // set chart event callbacks

@@ -36,13 +36,8 @@ import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealizati
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
-import { ChartData } from 'chart.js';
-import {
-  ChartPoint2D,
-  CycleColorProvider,
-  DefaultChartData,
-  ScatterChartDataset,
-} from 'battelle-common-vue-charting/src';
+import { ChartData, Point } from 'chart.js';
+import { CycleColorProvider, DefaultChartData, CreateScatterChartDataset } from 'battelle-common-vue-charting';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import ChartOptions from '@/components/modals/results/ChartOptions.vue';
@@ -57,7 +52,7 @@ export default class RealizationSummary extends Vue {
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
-  chartData: ChartData | ScatterChartDataset | null = null;
+  chartData: ChartData | null = null;
 
   chartType = '';
 
@@ -94,15 +89,14 @@ export default class RealizationSummary extends Vue {
     });
 
     return {
-      labels: bins,
+      labels: bins.map((b) => this.resultProvider.formatNumber(b)),
       datasets: [
         {
           label: 'Number of Realizations',
           data: binVals,
           backgroundColor: color,
           barPercentage: 1,
-          categoryPercentage: 1,
-          borderWidth: 1,
+          categoryPercentage: 0.5,
         },
       ],
     };
@@ -144,13 +138,15 @@ export default class RealizationSummary extends Vue {
   }
 
   createScatterPlot(xVals: number[], yVals: number[], labels: (PhaseResult | null)[]): ChartData {
-    const dataPoints = xVals.map((x, i) => new ChartPoint2D(x, yVals[i]));
+    const dataPoints: Point[] = xVals.map((x, i) => {
+      return { x, y: yVals[i] };
+    });
     const colorProvider = new CycleColorProvider();
     let [xLabel, yLabel] = labels as string[];
     xLabel = this.resultProvider.convertCamelToTitleCase(xLabel);
     yLabel = this.resultProvider.convertCamelToTitleCase(yLabel);
 
-    const scatterDataSet = new ScatterChartDataset(dataPoints, `${yLabel} vs. ${xLabel}`, colorProvider);
+    const scatterDataSet = CreateScatterChartDataset(dataPoints, `${yLabel} vs. ${xLabel}`, colorProvider);
     return new DefaultChartData([scatterDataSet]);
   }
 

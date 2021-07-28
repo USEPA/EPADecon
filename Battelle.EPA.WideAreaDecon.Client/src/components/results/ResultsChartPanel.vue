@@ -50,8 +50,8 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import ChartOptions from '@/components/modals/results/ChartOptions.vue';
-import { ChartData, ChartOptions as ChartJsOptions } from 'chart.js';
-import { ChartJsWrapper, ScatterPlotWrapper } from 'battelle-common-vue-charting/src';
+import { ChartData, ChartDataset, ChartOptions as ChartJsOptions } from 'chart.js';
+import { ChartJsWrapper, ScatterPlotWrapper } from 'battelle-common-vue-charting';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
@@ -80,7 +80,7 @@ export default class ResultsChartPanel extends Vue {
   @Watch('chartType')
   onChartTypeChanged(newValue: string): void {
     if (this.chartData?.datasets?.[0]) {
-      this.chartData.datasets[0].showLine = newValue !== 'scatter';
+      (this.chartData.datasets[0] as ChartDataset<'scatter'>).showLine = newValue !== 'scatter';
     }
 
     switch (newValue) {

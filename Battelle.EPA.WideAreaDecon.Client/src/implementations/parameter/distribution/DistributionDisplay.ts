@@ -22,6 +22,22 @@ export default class DistributionDisplay {
     return distributions;
   }
 
+  get dataGenerator(): DistributionDataGenerator {
+    let min = this.baseline.metaData.lowerLimit;
+    let max = this.baseline.metaData.upperLimit;
+
+    if (this.current.min !== undefined && this.baseline.min !== undefined) {
+      min = this.current.min < this.baseline.min ? this.current.min : this.baseline.min;
+    }
+
+    if (this.current.max !== undefined && this.baseline.max !== undefined) {
+      max = this.current.max > this.baseline.max ? this.current.max : this.baseline.max;
+    }
+
+    const gen = new DistributionDataGenerator(1000, min, max);
+    return gen;
+  }
+
   get displayChart(): boolean {
     switch (this.current.type) {
       case ParameterType.uniform:
@@ -42,22 +58,6 @@ export default class DistributionDisplay {
       default:
         return false;
     }
-  }
-
-  get dataGenerator(): DistributionDataGenerator {
-    let min = this.baseline.metaData.lowerLimit;
-    let max = this.baseline.metaData.upperLimit;
-
-    if (this.current.min !== undefined && this.baseline.min !== undefined) {
-      min = this.current.min < this.baseline.min ? this.current.min : this.baseline.min;
-    }
-
-    if (this.current.max !== undefined && this.baseline.max !== undefined) {
-      max = this.current.max > this.baseline.max ? this.current.max : this.baseline.max;
-    }
-
-    const gen = new DistributionDataGenerator(1000, min, max);
-    return gen;
   }
 
   get distComponent(): string {

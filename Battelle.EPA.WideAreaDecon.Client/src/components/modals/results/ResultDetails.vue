@@ -41,8 +41,8 @@
 
 <script lang="ts">
 import { Component, Prop, VModel, Vue, Watch } from 'vue-property-decorator';
-import { ChartJsWrapper, CycleColorProvider, DefaultChartData } from 'battelle-common-vue-charting/src';
-import { ChartData } from 'chart.js';
+import { ChartJsWrapper, CycleColorProvider, DefaultChartData } from 'battelle-common-vue-charting';
+import { ChartData, ChartOptions } from 'chart.js';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import container from '@/dependencyInjection/config';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
@@ -62,7 +62,7 @@ export default class ResultDetails extends Vue {
 
   private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
 
-  options = this.chartOptionsProvider.getHistogramOptions();
+  options: ChartOptions | null = null;
 
   numberOfBins = 5;
 
@@ -94,21 +94,18 @@ export default class ResultDetails extends Vue {
     });
 
     return {
-      labels: bins,
+      labels: bins.map((b) => this.resultProvider.formatNumber(b)),
       datasets: [
         {
+          label: 'Number of Realizations',
           data: binVals,
           backgroundColor: color,
           barPercentage: 1,
           categoryPercentage: 1,
-          borderWidth: 1,
+          borderWidth: 0.5,
         },
       ],
     };
-  }
-
-  get chartTicks(): number[] {
-    return this.chartData.labels as number[];
   }
 
   @Watch('details')
@@ -118,9 +115,7 @@ export default class ResultDetails extends Vue {
 
   initializeChart(): void {
     this.chartOptionsProvider.details = this.details;
-    this.options.legend = {
-      display: false,
-    };
+    this.options = this.chartOptionsProvider.getHistogramOptions();
   }
 
   created(): void {
