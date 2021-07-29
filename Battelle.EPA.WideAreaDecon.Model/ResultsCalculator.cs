@@ -198,7 +198,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                         phaseDaysWS,
                         parameters._wasteSamplingParameters.numTeams,
                         parameters._wasteSamplingParameters.fractionSampled,
-                        areaContaminated));
+                        areaContaminated,
+                        parameters._wasteSamplingParameters.ppeRequired));
 
                     results.generalResults.solidWasteProduced += areaContaminated.Values.Sum(v => v.AreaContaminated) * parameters._wasteSamplingParameters.solidWastePerSurfaceArea;
                     results.generalResults.aqueousWasteProduced += areaContaminated.Values.Sum(v => v.AreaContaminated) * parameters._wasteSamplingParameters.liquidWastePerSurfaceArea;

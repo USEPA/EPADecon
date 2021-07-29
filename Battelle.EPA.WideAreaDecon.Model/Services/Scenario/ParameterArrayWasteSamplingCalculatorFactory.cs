@@ -11,6 +11,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
     public class ParameterArrayWasteSamplingCalculatorFactory : IWasteSamplingCalculatorFactory
     {
         public LaborCostCalculator Calculator_labor { get; set; }
+        public EntrancesExitsCostCalculator Calculator_entEx { get; set; }
         public SuppliesCostCalculator Calculator_supplies { get; set; }
         public LaborDaysCalculator Calculator_laborDays { get; set; }
         public WorkDaysCalculator Calculator_workdays { get; set; }
@@ -22,6 +23,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             WasteSamplingParameters wsParameters,
             CostParameters costParameters)
         {
+            Calculator_entEx = new EntrancesExitsCostCalculator(
+                wsParameters.personnelReqPerTeam,
+                wsParameters.respiratorsPerPerson,
+                costParameters.respiratorCost,
+                costParameters.ppeCost,
+                wsParameters.entryDuration,
+                costParameters.entryPrepCost,
+                costParameters.deconLineCost);
+
             Calculator_supplies = new SuppliesCostCalculator(
                 wsParameters.massPerWasteSample,
                 wsParameters.volumePerWasteSample,
@@ -73,6 +83,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
         {
             return new WasteSamplingCostCalculator
             {
+                Calculator_entEx = Calculator_entEx,
                 Calculator_labor = Calculator_labor,
                 Calculator_supplies = Calculator_supplies,
                 Calculator_laborDays = Calculator_laborDays,

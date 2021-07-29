@@ -13,6 +13,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double solidWastePerSurfaceArea;
         public double liquidWastePerSurfaceArea;
         public double numTeams;
+        public double respiratorsPerPerson;
+        public Dictionary<PpeLevel, double> entryDuration;
+        public Dictionary<PpeLevel, double> ppeRequired;
         public double samplePackageTime;
         public int numLabs;
         public List<double> labUptimesHours;
@@ -33,6 +36,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _solidWastePerSurfaceArea,
             double _liquidWastePerSurfaceArea,
             double _numTeams,
+            double _respiratorsPerPerson,
+            Dictionary<PpeLevel, double> _entryDuration,
+            Dictionary<PpeLevel, double> _ppeRequired,
             double _samplePackageTime,
             int _numLabs,
             List<double> _labUptimeHours,
@@ -50,6 +56,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             solidWastePerSurfaceArea = _solidWastePerSurfaceArea;
             liquidWastePerSurfaceArea = _liquidWastePerSurfaceArea;
             numTeams = _numTeams;
+            respiratorsPerPerson = _respiratorsPerPerson;
+            entryDuration = _entryDuration;
+            ppeRequired = _ppeRequired;
             samplePackageTime = _samplePackageTime;
             numLabs = _numLabs;
             labUptimesHours = _labUptimeHours;

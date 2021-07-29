@@ -10,6 +10,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling
     public class WasteSamplingCostCalculator : IWasteSamplingCalculatorFactory
     {
         public LaborCostCalculator Calculator_labor { get; set; }
+        public EntrancesExitsCostCalculator Calculator_entEx { get; set; }
         public SuppliesCostCalculator Calculator_supplies { get; set; }
         public LaborDaysCalculator Calculator_laborDays { get; set; }
         public WorkDaysCalculator Calculator_workdays { get; set; }
@@ -40,13 +41,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling
         }
 
         //Phase costs for scenario results
-        public double CalculatePhaseCosts(Dictionary<PhaseDays, double> phaseDays, double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double CalculatePhaseCosts(Dictionary<PhaseDays, double> phaseDays, double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
+            var entExCosts = Calculator_entEx.CalculateEntrancesExitsCost(phaseDays[PhaseDays.LaborDays], numberTeams, ppePerLevelPerTeam);
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(fractionSampled, areaContaminated);
             var laborCosts = Calculator_labor.CalculateLaborCost(phaseDays[PhaseDays.OnsiteDays], numberTeams);
             var analysisCosts = Calculator_analysis.CalculateAnalysisQuantityCost(fractionSampled, areaContaminated);
 
-            return (suppliesCosts + laborCosts + analysisCosts);
+            return (entExCosts + suppliesCosts + laborCosts + analysisCosts);
         }
 
         //Travel costs for event results
