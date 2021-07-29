@@ -48,7 +48,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 wsParameters.wasteSamplesPerHrPerTeam
             );
 
-            Calculator_workdays = new WorkDaysCalculator();
+            Calculator_workdays = new WorkDaysCalculator(
+                wsParameters.entryDuration,
+                wsParameters.entryPrepTime,
+                wsParameters.deconLineTime);
 
             Calculator_onsiteDays = new OnsiteDaysCalculator(
                 wsParameters.personnelOverheadDays

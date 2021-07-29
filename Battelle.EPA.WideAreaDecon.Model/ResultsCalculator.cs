@@ -183,7 +183,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                     var phaseDaysWS = _wasteSamplingCostCalculator.CalculateTime(
                         parameters._wasteSamplingParameters.numTeams,
                         parameters._wasteSamplingParameters.fractionSampled,
-                        areaContaminated);
+                        areaContaminated,
+                        parameters._wasteSamplingParameters.ppeRequired);
 
                     results.wasteSamplingResults.workDays += phaseDaysWS[PhaseDays.WorkDays];
 

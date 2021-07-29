@@ -251,7 +251,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             var deconLineTime = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon Line Time per Team per Exit").CreateDistribution().Draw();
             var postEntryRest = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Post-Entry Rest Period").CreateDistribution().Draw();
 
-
             var fumigationAgentVolume = _decontaminationParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume of Agent Applied for Fogging/Fumigation").CreateDistribution().Draw();
 
             return new DecontaminationParameters(
@@ -295,6 +294,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 [PpeLevel.C] = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (C)").CreateDistribution().Draw(),
                 [PpeLevel.D] = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (D)").CreateDistribution().Draw()
             };
+            var entryPrepTime = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Prep Time per Team per Entry").CreateDistribution().Draw();
+            var deconLineTime = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon Line Time per Team per Exit").CreateDistribution().Draw();
+            var postEntryRest = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Post-Entry Rest Period").CreateDistribution().Draw();
+
             var ppeRequired = new Dictionary<PpeLevel, double>
             {
                 [PpeLevel.A] = _wasteSamplingParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Fraction PPE Required (A)").CreateDistribution().Draw(),
@@ -333,6 +336,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 numTeams,
                 respiratorsPerPerson,
                 entryDuration,
+                entryPrepTime,
+                deconLineTime,
+                postEntryRest,
                 ppeRequired,
                 samplePackageTime,
                 numLabs,

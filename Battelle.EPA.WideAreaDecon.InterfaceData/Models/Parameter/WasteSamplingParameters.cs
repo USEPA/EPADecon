@@ -15,6 +15,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double numTeams;
         public double respiratorsPerPerson;
         public Dictionary<PpeLevel, double> entryDuration;
+        public double entryPrepTime;
+        public double deconLineTime;
+        public double postEntryRest;
         public Dictionary<PpeLevel, double> ppeRequired;
         public double samplePackageTime;
         public int numLabs;
@@ -38,6 +41,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _numTeams,
             double _respiratorsPerPerson,
             Dictionary<PpeLevel, double> _entryDuration,
+            double _entryPrepTime,
+            double _deconLineTime,
+            double _postEntryRest,
             Dictionary<PpeLevel, double> _ppeRequired,
             double _samplePackageTime,
             int _numLabs,
@@ -58,6 +64,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             numTeams = _numTeams;
             respiratorsPerPerson = _respiratorsPerPerson;
             entryDuration = _entryDuration;
+            entryPrepTime = _entryPrepTime;
+            deconLineTime = _deconLineTime;
+            postEntryRest = _postEntryRest;
             ppeRequired = _ppeRequired;
             samplePackageTime = _samplePackageTime;
             numLabs = _numLabs;

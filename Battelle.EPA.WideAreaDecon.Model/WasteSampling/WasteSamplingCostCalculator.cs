@@ -20,10 +20,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling
         public TravelCostCalculator Calculator_travel { get; set; }
 
         //Phase time for scenario results
-        public Dictionary<PhaseDays, double> CalculateTime(double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public Dictionary<PhaseDays, double> CalculateTime(double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
             var laborDays = Calculator_laborDays.CalculateLaborDays(numberTeams, fractionSampled, areaContaminated);
-            var workDays = Calculator_workdays.CalculateWorkDays(laborDays);
+            var workDays = Calculator_workdays.CalculateWorkDays(laborDays, numberTeams, ppePerLevelPerTeam);
             var onsiteDays = Calculator_onsiteDays.CalculateOnsiteDays(workDays);
 
             return new Dictionary<PhaseDays, double>()
