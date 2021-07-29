@@ -42,7 +42,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             Calculator_workdays = new WorkDaysCalculator(
                 csParameters.entryDuration,
                 csParameters.entryPrepTime,
-                csParameters.deconLineTime
+                csParameters.deconLineTime,
+                csParameters.postEntryRest
             );
 
             Calculator_onsiteDays = new OnsiteDaysCalculator(

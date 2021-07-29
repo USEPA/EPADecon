@@ -24,7 +24,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
             var deconLineTime = 0.81;
             var postEntryRest = 0.5;
 
-            Calculator = new WorkDaysCalculator(entryDuration, entryPrepTime, deconLineTime);
+            Calculator = new WorkDaysCalculator(entryDuration, entryPrepTime, deconLineTime, postEntryRest);
         }
 
         [Test]

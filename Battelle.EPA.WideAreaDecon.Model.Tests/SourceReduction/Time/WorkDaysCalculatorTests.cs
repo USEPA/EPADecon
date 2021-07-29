@@ -19,13 +19,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Time
                 [PpeLevel.C] = 2.0,
                 [PpeLevel.D] = 2.5
             };
-            var prepTimePerTeamPerEntry = 0.6;
-            var deconLineTimePerTeamPerExit = 0.81;
+            var entryPrepTime = 0.6;
+            var deconLineTime = 0.81;
+            var postEntryRest = 0.5;
 
             Calculator = new WorkDaysCalculator(
                 entryDuration,
-                prepTimePerTeamPerEntry,
-                deconLineTimePerTeamPerExit
+                entryPrepTime,
+                deconLineTime,
+                postEntryRest
             );
         }
 
