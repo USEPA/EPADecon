@@ -247,6 +247,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 [PpeLevel.C] = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (C)").CreateDistribution().Draw(),
                 [PpeLevel.D] = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (D)").CreateDistribution().Draw()
             };
+            var entryPrepTime = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Prep Time per Team per Entry").CreateDistribution().Draw();
+            var deconLineTime = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon Line Time per Team per Exit").CreateDistribution().Draw();
+            var postEntryRest = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Post-Entry Rest Period").CreateDistribution().Draw();
+
 
             var fumigationAgentVolume = _decontaminationParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume of Agent Applied for Fogging/Fumigation").CreateDistribution().Draw();
 
@@ -259,6 +263,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 personnelOverhead,
                 roundtripDays,
                 entryDuration,
+                entryPrepTime,
+                deconLineTime,
+                postEntryRest,
                 respiratorsPerPerson,
                 numTeams,
                 ppeRequired,

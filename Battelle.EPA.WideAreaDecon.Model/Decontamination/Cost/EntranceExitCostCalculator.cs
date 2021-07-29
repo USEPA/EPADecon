@@ -8,6 +8,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost
     {
         private readonly Dictionary<PpeLevel, double> _costPerPpe;
         private readonly Dictionary<PpeLevel, double> _entryDurationByPPE;
+        private readonly double _entryPrepTime;
+        private readonly double _deconLineTime;
+        private readonly double _postEntryRest;
         private readonly double _costPerRespirator;
         private readonly Dictionary<PersonnelLevel, double> _personnelReqPerTeam;
         private readonly double _respiratorsPerPerson;
@@ -20,6 +23,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost
             double costPerRespirator,
             Dictionary<PpeLevel, double> costPerPpe,
             Dictionary<PpeLevel, double> entryDurationByPPE,
+            double entryPrepTime,
+            double deconLineTime,
+            double postEntryRest,
             double prepTimeCost,
             double deconLineCost)
         {
@@ -28,6 +34,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost
             _costPerRespirator = costPerRespirator;
             _costPerPpe = costPerPpe;
             _entryDurationByPPE = entryDurationByPPE;
+            _entryPrepTime = entryPrepTime;
+            _deconLineTime = deconLineTime;
+            _postEntryRest = postEntryRest;
             _prepTimeCost = prepTimeCost;
             _deconLineCost = deconLineCost;
         }
@@ -63,12 +72,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost
 
             var laborHoursPerPPELevel = (laborDays * GlobalConstants.HoursPerWorkDay) / numTeamsByPPE;
 
+            var entranceTimeAdjustment = _entryPrepTime + _deconLineTime + _postEntryRest;
+
             var entriesPerPPELevel = new Dictionary<PpeLevel, double>
             {
-                { PpeLevel.A, ppePerLevelPerTeam[PpeLevel.A] == 0 ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.A] },
-                { PpeLevel.B, ppePerLevelPerTeam[PpeLevel.B] == 0 ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.B] },
-                { PpeLevel.C, ppePerLevelPerTeam[PpeLevel.C] == 0 ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.C] },
-                { PpeLevel.D, ppePerLevelPerTeam[PpeLevel.D] == 0 ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.D] }
+                { PpeLevel.A, ppePerLevelPerTeam[PpeLevel.A] == 0 ? 0 : laborHoursPerPPELevel / (_entryDurationByPPE[PpeLevel.A] + entranceTimeAdjustment) },
+                { PpeLevel.B, ppePerLevelPerTeam[PpeLevel.B] == 0 ? 0 : laborHoursPerPPELevel / (_entryDurationByPPE[PpeLevel.B] + entranceTimeAdjustment) },
+                { PpeLevel.C, ppePerLevelPerTeam[PpeLevel.C] == 0 ? 0 : laborHoursPerPPELevel / (_entryDurationByPPE[PpeLevel.C] + entranceTimeAdjustment) },
+                { PpeLevel.D, ppePerLevelPerTeam[PpeLevel.D] == 0 ? 0 : laborHoursPerPPELevel / (_entryDurationByPPE[PpeLevel.D] + entranceTimeAdjustment) }
             };
 
             var totalEntries = entriesPerPPELevel.Sum(x => x.Value);
