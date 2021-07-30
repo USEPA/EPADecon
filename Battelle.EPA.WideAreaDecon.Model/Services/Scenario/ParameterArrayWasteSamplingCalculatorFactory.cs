@@ -77,7 +77,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             Calculator_analysis = new AnalysisQuantityCostCalculator(
                 wsParameters.massPerWasteSample,
                 wsParameters.volumePerWasteSample,
-                costParameters.wasteSampleAnalysisCost,
+                costParameters.solidWasteSampleAnalysisCost,
+                costParameters.liquidWasteSampleAnalysisCost,
                 wsParameters.solidWastePerSurfaceArea,
                 wsParameters.liquidWastePerSurfaceArea
             );

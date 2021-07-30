@@ -402,7 +402,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
 
             var wipeAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per Wipe Sample Analyzed").CreateDistribution().Draw();
             var hepaAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per HEPA Sample Analyzed").CreateDistribution().Draw();
-            var wasteSampleAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per Waste Sample Analyzed").CreateDistribution().Draw();
+            var solidWasteSampleAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per Solid Waste Sample Analyzed").CreateDistribution().Draw();
+            var liquidWasteSampleAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per Liquid Waste Sample Analyzed").CreateDistribution().Draw();
             var vacuumRentalCostPerDay = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "HEPA Vacuum Rental per Day").CreateDistribution().Draw();
             var costPerMassOfMaterialRemoved = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Material Removal per Mass").CreateDistribution().Draw();
             var deconAgentCostPerVolume = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost of Decon Agent").CreateDistribution().Draw();
@@ -424,7 +425,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 ppeCost,
                 wipeAnalysisCost,
                 hepaAnalysisCost,
-                wasteSampleAnalysisCost,
+                solidWasteSampleAnalysisCost,
+                liquidWasteSampleAnalysisCost,
                 vacuumRentalCostPerDay,
                 costPerMassOfMaterialRemoved,
                 deconAgentCostPerVolume,

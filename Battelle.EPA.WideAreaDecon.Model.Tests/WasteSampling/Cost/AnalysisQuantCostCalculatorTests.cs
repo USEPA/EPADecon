@@ -16,14 +16,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Cost
         {
             var massPerWasteSample = 4.64515;
             var volumePerWasteSample = 10.0;
-            var costPerWasteSampleAnalysis = 520.0;
+            var costPerSolidWasteSampleAnalysis = 520.0;
+            var costPerLiquidWasteSampleAnalysis = 520.0;
             var solidWastePerSurfaceArea = 2.0;
             var liquidWastePerSurfaceArea = 5.0;
 
             Calculator = new AnalysisQuantityCostCalculator(
                 massPerWasteSample,
                 volumePerWasteSample,
-                costPerWasteSampleAnalysis,
+                costPerSolidWasteSampleAnalysis,
+                costPerLiquidWasteSampleAnalysis,
                 solidWastePerSurfaceArea,
                 liquidWastePerSurfaceArea
             );
