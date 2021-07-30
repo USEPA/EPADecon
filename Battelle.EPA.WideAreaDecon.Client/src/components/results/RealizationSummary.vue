@@ -11,6 +11,7 @@
       </v-col>
       <v-col cols="9">
         <results-chart-panel
+          @addRun="addRunToTable"
           @showModal="showOptionsModal = true"
           @removeLabel="removeSelectedResult"
           :chartData="chartData"
@@ -22,7 +23,7 @@
     </v-row>
 
     <v-row class="mb-8">
-      <realization-table></realization-table>
+      <realization-table ref="realizationTable"></realization-table>
     </v-row>
 
     <chart-options @createChart="setChartData" v-model="showOptionsModal" :selected="selectedResults"></chart-options>
@@ -61,6 +62,12 @@ export default class RealizationSummary extends Vue {
   showOptionsModal = false;
 
   selectedResults: { x: PhaseResult | null; y: PhaseResult | null } = { x: null, y: null };
+
+  addRunToTable(runNumber: number): void {
+    const table = this.$refs.realizationTable as RealizationTable;
+    table.runNumber = runNumber;
+    table.addRunToTable();
+  }
 
   // eslint-disable-next-line class-methods-use-this
   createHistogram({ values, minimum, maximum }: IResultDetails): ChartData {

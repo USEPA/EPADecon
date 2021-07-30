@@ -50,7 +50,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import ChartOptions from '@/components/modals/results/ChartOptions.vue';
-import { ChartData, ChartDataset, ChartOptions as ChartJsOptions } from 'chart.js';
+import { ActiveElement, ChartData, ChartDataset, ChartEvent, ChartOptions as ChartJsOptions } from 'chart.js';
 import { ChartJsWrapper, ScatterPlotWrapper } from 'battelle-common-vue-charting';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import container from '@/dependencyInjection/config';
@@ -92,6 +92,7 @@ export default class ResultsChartPanel extends Vue {
         break;
       case 'scatter':
         this.options = this.chartOptionsProvider.getScatterOptions();
+        this.options.onClick = this.onScatterDataPointClicked;
         break;
       default:
         this.options = this.chartOptionsProvider.getDefaultOptions();
@@ -105,6 +106,11 @@ export default class ResultsChartPanel extends Vue {
     if (this.chartType === 'bar') {
       this.chartOptionsProvider.details = this.details ?? undefined;
     }
+  }
+
+  onScatterDataPointClicked(_: ChartEvent, elements: ActiveElement[]): void {
+    const { index } = elements[0];
+    this.$emit('addRun', index + 1);
   }
 
   onLabelClicked(label: string): void {
