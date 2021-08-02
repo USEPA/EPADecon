@@ -123,14 +123,18 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   currentDistType: ParameterType = ParameterType.constant;
 
-  distNames: ParameterType[] = changeableDistributionTypes;
-
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
   get display(): DistributionDisplay {
     return container
       .get<IDistributionDisplayProvider>(TYPES.DistributionDisplayProvider)
       .getDistributionDisplay(this.baselineCategory, this.selectedCategory);
+  }
+
+  get distNames(): ParameterType[] {
+    return this.baselineCategory.type === ParameterType.uniformXDependent
+      ? [...changeableDistributionTypes, ParameterType.uniformXDependent]
+      : changeableDistributionTypes;
   }
 
   get categories(): [string, IParameter][] {
@@ -150,7 +154,11 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   onDistributionTypeChange(): void {
     const category = this.getSelectedCategoryName();
-    this.selectedCategory = this.parameterConverter.convertToNewType(this.selectedCategory, this.currentDistType);
+
+    this.selectedCategory =
+      this.currentDistType === ParameterType.uniformXDependent
+        ? this.baselineCategory
+        : this.parameterConverter.convertToNewType(this.selectedCategory, this.currentDistType);
 
     this.parameterValue.values[category] = this.selectedCategory;
   }
