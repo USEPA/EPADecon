@@ -1,13 +1,7 @@
 <template>
-  <v-card class="d-flex justify-center" id="chartPanel" height="100%">
+  <v-card class="d-flex justify-center" height="100%">
     <div v-if="!chartData" class="d-flex justify-center align-center flex-column">
-      <v-btn
-        width="150"
-        v-text="'Create Chart'"
-        color="secondary"
-        class="mx-auto mb-6"
-        @click="$emit('showModal')"
-      ></v-btn>
+      <v-btn width="150" v-text="'Create Chart'" color="secondary" class="mx-auto mb-6" @click="showOptions"></v-btn>
       <v-card-text class="text-center">
         <p class="text-subtitle-1">View data by using at least one of the following methods:</p>
         <ul class="text-subtitle-2" id="methodList">
@@ -16,11 +10,14 @@
         </ul>
       </v-card-text>
     </div>
-    <div v-else class="pa-16" style="width: 100%">
+    <div v-else class="pt-8 pb-16 px-16" style="width: 100%">
+      <v-btn v-text="'Edit Chart'" @click="showOptions"></v-btn>
+
       <scatter-plot-wrapper
         v-if="chartType === 'scatter'"
         type="scatter"
         class="pl-10"
+        id="chartWrapper"
         :data="chartData"
         :options="options"
         :width="100"
@@ -30,6 +27,7 @@
         v-else
         :type="chartType"
         class="pl-10"
+        id="chartWrapper"
         :data="chartData"
         :options="options"
         :plugins="[]"
@@ -116,6 +114,10 @@ export default class ResultsChartPanel extends Vue {
   onLabelClicked(label: string): void {
     this.$emit('removeLabel', label);
   }
+
+  showOptions(): void {
+    this.$emit('showOptions');
+  }
 }
 </script>
 
@@ -126,8 +128,8 @@ export default class ResultsChartPanel extends Vue {
   padding-left: 0;
 }
 
-#chartPanel {
-  max-height: 600px;
+#chartWrapper {
+  max-height: 475px;
 }
 
 #xLabel {

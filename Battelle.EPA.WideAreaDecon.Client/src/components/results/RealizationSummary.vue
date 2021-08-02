@@ -12,7 +12,7 @@
       <v-col cols="9">
         <results-chart-panel
           @addRun="addRunToTable"
-          @showModal="showOptionsModal = true"
+          @showOptions="showOptionsModal = true"
           @removeLabel="removeSelectedResult"
           :chartData="chartData"
           :chartType="chartType"
