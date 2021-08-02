@@ -180,7 +180,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   @Watch('selectedCategory', { deep: true })
   checkErrorHighligtingOnSelect(): void {
-    if (this.parameterValue.isSet === undefined || this.isTextDistribution) {
+    if (this.isTextDistribution) {
       return;
     }
 
