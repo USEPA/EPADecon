@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="isVisible" persistent max-width="800">
+    <v-dialog v-model="isVisible" persistent max-width="425">
       <v-card>
         <v-card-title class="headline" v-text="'Chart Options'"></v-card-title>
         <v-card-text>
@@ -17,9 +17,13 @@
                 <tr v-for="(result, i) in phaseResultNames" :key="result">
                   <td class="text-left">{{ result }}</td>
                   <td class="text-center">
-                    <v-radio-group v-model="selected.x">
-                      <v-radio :ripple="false" :value="phaseResultValues[i]"></v-radio>
-                    </v-radio-group>
+                    <v-checkbox
+                      off-icon="mdi-checkbox-blank-circle-outline"
+                      on-icon="mdi-checkbox-marked-circle"
+                      :ripple="false"
+                      v-model="selected.x"
+                      :value="phaseResultValues[i]"
+                    />
                   </td>
                   <td class="text-center">
                     <v-checkbox :ripple="false" v-model="selected.y" :value="phaseResultValues[i]" />
@@ -98,13 +102,11 @@ export default class ChartOptions extends Vue {
 </script>
 
 <style lang="scss" scoped>
-::v-deep td.text-center > .v-input--checkbox > div > div,
-::v-deep .v-radio {
+::v-deep td.text-center > .v-input--checkbox > div > div {
   justify-content: center;
 }
 
-::v-deep td.text-center > .v-input--checkbox > div > div > div,
-::v-deep .v-input--selection-controls__input {
+::v-deep td.text-center > .v-input--checkbox > div > div > div {
   margin-right: 0px;
 }
 </style>
