@@ -17,7 +17,9 @@
                 <tr v-for="(result, i) in phaseResultNames" :key="result">
                   <td class="text-left">{{ result }}</td>
                   <td class="text-center">
-                    <v-checkbox :ripple="false" v-model="selected.x" :value="phaseResultValues[i]" />
+                    <v-radio-group v-model="selected.x">
+                      <v-radio :ripple="false" :value="phaseResultValues[i]"></v-radio>
+                    </v-radio-group>
                   </td>
                   <td class="text-center">
                     <v-checkbox :ripple="false" v-model="selected.y" :value="phaseResultValues[i]" />
@@ -96,11 +98,13 @@ export default class ChartOptions extends Vue {
 </script>
 
 <style lang="scss" scoped>
-::v-deep td.text-center > .v-input--checkbox > div > div {
+::v-deep td.text-center > .v-input--checkbox > div > div,
+::v-deep .v-radio {
   justify-content: center;
 }
 
-::v-deep td.text-center > .v-input--checkbox > div > div > div {
+::v-deep td.text-center > .v-input--checkbox > div > div > div,
+::v-deep .v-input--selection-controls__input {
   margin-right: 0px;
 }
 </style>
