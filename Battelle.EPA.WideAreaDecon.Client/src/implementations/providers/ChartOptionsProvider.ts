@@ -115,7 +115,14 @@ export default class ChartOptionsProvider implements IChartOptionsProvider {
 
   getHistogramOptions(): ChartOptions {
     // @ts-expect-error (types for chart.js wants ALL properties defined on scales)
-    return this.getChartOptions(this.histogramCallback, this.histogramScales);
+    const opts = this.getChartOptions(this.histogramCallback, this.histogramScales);
+    if (opts.plugins) {
+      // hide legend on histograms
+      opts.plugins.legend = {
+        display: false,
+      };
+    }
+    return opts;
   }
 
   getPieOptions(): ChartOptions {
