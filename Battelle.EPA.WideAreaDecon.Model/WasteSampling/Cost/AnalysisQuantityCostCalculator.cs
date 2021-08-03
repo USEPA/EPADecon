@@ -7,7 +7,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Cost
 {
     public class AnalysisQuantityCostCalculator : IAnalysisQuantityCostCalculator
     {
-        private readonly double _costPerWasteSampleAnalysis;
+        private readonly double _costPerSolidWasteSampleAnalysis;
+        private readonly double _costPerLiquidWasteSampleAnalysis;
         private readonly double _massPerWasteSample;
         private readonly double _volumePerWasteSample;
         private readonly double _solidWastePerSurfaceArea;
@@ -16,13 +17,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Cost
         public AnalysisQuantityCostCalculator(
             double massPerWasteSample, 
             double volumePerWasteSample, 
-            double costPerWasteSampleAnalysis,
+            double costPerSolidWasteSampleAnalysis,
+            double costPerliquidWasteSampleAnalysis,
             double solidWastePerSurfaceArea,
             double liquidWastePerSurfaceArea)
         {
             _massPerWasteSample = massPerWasteSample;
             _volumePerWasteSample = volumePerWasteSample;
-            _costPerWasteSampleAnalysis = costPerWasteSampleAnalysis;
+            _costPerSolidWasteSampleAnalysis = costPerSolidWasteSampleAnalysis;
+            _costPerLiquidWasteSampleAnalysis = costPerliquidWasteSampleAnalysis;
             _solidWastePerSurfaceArea = solidWastePerSurfaceArea;
             _liquidWastePerSurfaceArea = liquidWastePerSurfaceArea;
         }
@@ -37,7 +40,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Cost
             var solidWasteSamples = solidWasteToBeSampled / _massPerWasteSample;
             var liquidWasteSamples = liquidWasteToBeSampled / _volumePerWasteSample;
 
-            return (solidWasteSamples + liquidWasteSamples) * _costPerWasteSampleAnalysis;
+            return (solidWasteSamples * _costPerSolidWasteSampleAnalysis) + (_costPerLiquidWasteSampleAnalysis * liquidWasteSamples);
         }
     }
 }

@@ -16,7 +16,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public Dictionary<PpeLevel, double> ppeCost;
         public double wipeAnalysisCost;
         public double hepaAnalysisCost;
-        public double wasteSampleAnalysisCost;
+        public double solidWasteSampleAnalysisCost;
+        public double liquidWasteSampleAnalysisCost;
         public double vacuumRentalCostPerDay;
         public double costPerMassOfMaterialRemoved;
         public double deconAgentCostPerVolume;
@@ -39,7 +40,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             Dictionary<PpeLevel, double> _ppeCost,
             double _wipeAnalysisCost,
             double _hepaAnalysisCost,
-            double _wasteSampleAnalysisCost,
+            double _solidWasteSampleAnalysisCost,
+            double _liquidWasteSampleAnalysisCost,
             double _vacuumRentalCostPerDay,
             double _costPerMassOfMaterialRemoved,
             double _deconAgentCostPerVolume,
@@ -60,7 +62,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             ppeCost = _ppeCost;
             wipeAnalysisCost = _wipeAnalysisCost;
             hepaAnalysisCost = _hepaAnalysisCost;
-            wasteSampleAnalysisCost = _wasteSampleAnalysisCost;
+            solidWasteSampleAnalysisCost = _solidWasteSampleAnalysisCost;
+            liquidWasteSampleAnalysisCost = _liquidWasteSampleAnalysisCost;
             vacuumRentalCostPerDay = _vacuumRentalCostPerDay;
             costPerMassOfMaterialRemoved = _costPerMassOfMaterialRemoved;
             deconAgentCostPerVolume = _deconAgentCostPerVolume;

@@ -57,6 +57,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 costParameters.respiratorCost,
                 costParameters.ppeCost,
                 dcParameters.entryDuration,
+                dcParameters.entryPrepTime,
+                dcParameters.deconLineTime,
+                dcParameters.postEntryRest,
                 costParameters.entryPrepCost,
                 costParameters.deconLineCost
             );

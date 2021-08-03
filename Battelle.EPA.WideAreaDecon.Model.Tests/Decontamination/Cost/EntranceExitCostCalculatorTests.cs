@@ -39,6 +39,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
                 [PpeLevel.C] = 2.0,
                 [PpeLevel.D] = 2.5
             };
+            var entryPrepTime = 0.6;
+            var deconLineTime = 0.81;
+            var postEntryRest = 0.5;
             var prepTimeCost = 252.0;
             var deconLineCost = 697.0;
 
@@ -48,6 +51,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
                 costPerRespirator,
                 costPerPpe,
                 entryDuration,
+                entryPrepTime,
+                deconLineTime,
+                postEntryRest,
                 prepTimeCost,
                 deconLineCost
             );

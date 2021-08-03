@@ -8,17 +8,20 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction.Time
     public class WorkDaysCalculator : IWorkDaysCalculator
     {
         private readonly Dictionary<PpeLevel, double> _entryDurationByPPE;
-        private readonly double _prepTimePerTeamPerEntry;
-        private readonly double _deconLineTimePerTeamPerExit;
+        private readonly double _entryPrepTime;
+        private readonly double _deconLineTime;
+        private readonly double _postEntryRest;
 
         public WorkDaysCalculator(
             Dictionary<PpeLevel, double> entryDurationByPPE,
-            double prepTimePerTeamPerEntry,
-            double deconLineTimePerTeamPerExit)
+            double entryPrepTime,
+            double deconLineTime,
+            double postEntryRest)
         {
             _entryDurationByPPE = entryDurationByPPE;
-            _prepTimePerTeamPerEntry = prepTimePerTeamPerEntry;
-            _deconLineTimePerTeamPerExit = deconLineTimePerTeamPerExit;
+            _entryPrepTime = entryPrepTime;
+            _deconLineTime = deconLineTime;
+            _postEntryRest = postEntryRest;
         }
 
         public double CalculateWorkDays(double laborDays, double numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
@@ -45,10 +48,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction.Time
 
             var totalEntries = entriesPerPPELevel.Sum(x => x.Value);
 
-            var totalPrepTime = totalEntries * _prepTimePerTeamPerEntry;
-            var totalDeconLineTime = totalEntries * _deconLineTimePerTeamPerExit;
+            var totalPrepTime = totalEntries * _entryPrepTime;
+            var totalDeconLineTime = totalEntries * _deconLineTime;
+            var totalRestPeriod = totalEntries * _postEntryRest;
 
-            return laborDays + ((totalPrepTime + totalDeconLineTime) / GlobalConstants.HoursPerWorkDay);
+            return laborDays + ((totalPrepTime + totalDeconLineTime + totalRestPeriod) / GlobalConstants.HoursPerWorkDay);
         }
     }
 }
