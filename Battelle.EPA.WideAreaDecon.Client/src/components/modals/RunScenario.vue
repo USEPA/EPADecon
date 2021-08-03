@@ -56,14 +56,14 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            v-if="!hasResults || repeatRun"
+            v-if="showRunButton"
             outlined
             color="primary darken-1"
             text
             @click="runClick"
             :disabled="!canRun || isRunning"
           >
-            Run
+            {{ runButtonText }}
           </v-btn>
           <v-btn v-else outlined color="primary darken-1" text @click="viewResults"> View Results </v-btn>
           <v-btn outlined color="primary darken-1" text @click="isVisible = false"> Cancel </v-btn>
@@ -99,21 +99,17 @@ export default class RunScenario extends Vue {
 
   @Action UpdateJobProgress!: (progress: number) => void;
 
-  @Action setRepeatRun!: (newValue: boolean) => void;
-
   @Getter canRun!: boolean;
 
   @Getter hasResults!: boolean;
 
   @State currentJob!: JobRequest;
 
-  @State((s) => s.runSettings.repeatRun) repeatRun!: boolean;
-
   jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
 
   jobManager?: JobManager;
 
-  numberRealizations = 1;
+  numberRealizations = 10;
 
   seed1 = 12345;
 
@@ -151,10 +147,11 @@ export default class RunScenario extends Vue {
       await this.postCurrentJobRequest(this.jobProvider);
       this.jobManager = new JobManager(this.currentJob.id, this.UpdateJobStatus, this.UpdateJobProgress);
       await this.jobManager.StartWatchJobProgress();
-      if (this.repeatRun) {
-        this.setRepeatRun(false);
-      }
     }
+  }
+
+  get canRepeatRun(): boolean {
+    return this.$route.name === 'viewResults' && this.canRun;
   }
 
   get currentJobStatus(): string {
@@ -162,7 +159,16 @@ export default class RunScenario extends Vue {
   }
 
   get disableInputs(): boolean {
-    return (this.isRunning || this.hasResults) && !this.repeatRun;
+    return (this.isRunning || this.hasResults) && !this.canRepeatRun;
+  }
+
+  get runButtonText(): string {
+    const run = 'Run';
+    return this.canRepeatRun ? `${run} Job Again` : run;
+  }
+
+  get showRunButton(): boolean {
+    return !this.hasResults || this.canRepeatRun;
   }
 
   // eslint-disable-next-line class-methods-use-this

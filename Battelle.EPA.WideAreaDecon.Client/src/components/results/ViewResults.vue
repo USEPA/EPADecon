@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container v-if="currentJob.results.length">
     <v-row>
       <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
@@ -62,13 +62,13 @@
           <v-card-text class="d-flex justify-space-between flex-wrap px-5">
             <v-btn color="secondary" class="mb-2" v-text="'Summary'" @click="navigate('jobSummary')"></v-btn>
             <v-btn color="secondary" v-text="'View Parameters'" @click="viewParameters"></v-btn>
-            <v-btn color="secondary" v-text="'Run Job Again'" @click="runJobAgain"></v-btn>
+            <v-btn color="secondary" v-text="'Run Job Again'" @click="$emit('showRunModal')"></v-btn>
             <v-btn color="secondary" v-text="'Export Results'" @click="exportResults"></v-btn>
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
-    <result-details :title="modalTitle" :details="details" v-model="showModal" />
+    <result-details :title="modalTitle" :details="details" v-model="showModal"></result-details>
   </v-container>
 </template>
 
@@ -104,8 +104,6 @@ export default class ViewResults extends Vue {
   @Action setScenarioDefinition!: (newDefinition: ParameterWrapperList) => void;
 
   @Action setScenarioParameters!: (newParameters: ParameterWrapperList) => void;
-
-  @Action setRepeatRun!: (newValue: boolean) => void;
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
@@ -158,11 +156,6 @@ export default class ViewResults extends Vue {
 
   exportResults(): void {
     this.resultProvider.exportJobResults(this.currentJob.results);
-  }
-
-  runJobAgain(): void {
-    this.setRepeatRun(true);
-    this.$emit('showRunModal');
   }
 
   showResultDetails($event: string, result: PhaseResult): void {
