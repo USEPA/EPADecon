@@ -15,10 +15,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
         {
             var entryDuration = new Dictionary<PpeLevel, double>()
             {
-                { PpeLevel.A, 1.6 },
-                { PpeLevel.B, 1.8 },
-                { PpeLevel.C, 1.9 },
-                { PpeLevel.D, 2.0 }
+                { PpeLevel.A, 0.75 },
+                { PpeLevel.B, 1.5 },
+                { PpeLevel.C, 2.25 },
+                { PpeLevel.D, 3.0 }
             };
             var entryPrepTime = 0.6;
             var deconLineTime = 0.81;
@@ -40,7 +40,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
                 { PpeLevel.D, 0.0 }
             };
 
-            Assert.AreEqual(4.3619840720967, Calculator.CalculateWorkDays(laborDays, numberTeams, ppePerLevelPerTeam), 1e-6, "Incorrect workdays calculated");
+            Assert.AreEqual(8.99053383748821, Calculator.CalculateWorkDays(laborDays, numberTeams, ppePerLevelPerTeam), 1e-6, "Incorrect workdays calculated");
         }
     }
 }
