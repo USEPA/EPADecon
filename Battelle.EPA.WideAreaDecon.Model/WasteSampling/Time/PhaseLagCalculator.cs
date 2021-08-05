@@ -39,6 +39,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 
         public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
+            numberLabs = _labDistanceFromSite.Count;
+
             var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
 
             var solidWasteToBeSampled = fractionSampled * totalArea * _solidWastePerSurfaceArea * 0.5;
