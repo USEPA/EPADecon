@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="isVisible" persistent max-width="800">
+    <v-dialog v-model="isVisible" persistent max-width="425">
       <v-card>
         <v-card-title class="headline" v-text="'Chart Options'"></v-card-title>
         <v-card-text>
@@ -17,7 +17,13 @@
                 <tr v-for="(result, i) in phaseResultNames" :key="result">
                   <td class="text-left">{{ result }}</td>
                   <td class="text-center">
-                    <v-checkbox :ripple="false" v-model="selected.x" :value="phaseResultValues[i]" />
+                    <v-checkbox
+                      off-icon="mdi-checkbox-blank-circle-outline"
+                      on-icon="mdi-checkbox-marked-circle"
+                      :ripple="false"
+                      v-model="selected.x"
+                      :value="phaseResultValues[i]"
+                    />
                   </td>
                   <td class="text-center">
                     <v-checkbox :ripple="false" v-model="selected.y" :value="phaseResultValues[i]" />

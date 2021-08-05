@@ -81,7 +81,7 @@ import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import TYPES from '@/dependencyInjection/types';
 import container from '@/dependencyInjection/config';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
-import { CycleColorProvider } from 'battelle-common-vue-charting/src';
+import { CycleColorProvider } from 'battelle-common-vue-charting';
 import { ChartData } from 'chart.js';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import ResultDetails from '@/components/modals/results/ResultDetails.vue';

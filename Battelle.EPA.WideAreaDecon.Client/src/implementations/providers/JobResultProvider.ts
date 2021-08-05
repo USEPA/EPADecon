@@ -113,28 +113,23 @@ export default class JobResultProvider implements IJobResultProvider {
   }
 
   getResultPhaseBreakdown(realization: IJobResultRealization, result: PhaseResult): { phase: string; value: number }[] {
-    // remove total cs results for now
-    const phaseNames = this.getPhaseNames(realization).filter((p) => !p.toLowerCase().includes('total'));
-    const breakdown: number[] = [];
+    const phaseNames = this.getPhaseNames(realization);
+    const breakdown: { phase: string; value: number }[] = [];
 
     this.findResultValues(realization, result, (value: number | undefined, index: number) => {
       const res = value ?? 0;
 
       if (breakdown[index] !== undefined) {
-        breakdown[index] += res;
+        breakdown[index].value += res;
       } else {
-        breakdown.push(res);
+        breakdown.push({
+          phase: phaseNames[index].replace(/Results$/, ''),
+          value: res,
+        });
       }
     });
 
-    return breakdown
-      .filter((v) => v > 0)
-      .map((v, i) => {
-        return {
-          phase: phaseNames[i].replace(/Results$/, ''),
-          value: v,
-        };
-      });
+    return breakdown.filter((v) => v.value > 0);
   }
 
   getResultDetails(allResults: IJobResultRealization[], result: PhaseResult): IResultDetails | undefined {
@@ -216,8 +211,7 @@ export default class JobResultProvider implements IJobResultProvider {
     result: PhaseResult,
     callback: (value: number | undefined, index: number) => void,
   ): void {
-    // remove total characterization sampling results for now
-    const phaseNames = this.getPhaseNames(realization).filter((p) => !p.toLowerCase().includes('total'));
+    const phaseNames = this.getPhaseNames(realization);
 
     Object.entries(realization.scenarioResults).forEach(([location, resultSet]) => {
       if (!resultSet) {
