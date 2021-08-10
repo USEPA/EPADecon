@@ -12,9 +12,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24566 },
           decontaminationResults: { workDays: 4.528214748373305, onSiteDays: 4.528214748373305, phaseCost: 188091 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.037639040156435, phaseCost: 60243 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 418806, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 418806,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -24,9 +30,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39714 },
           decontaminationResults: { workDays: 4.252391408954838, onSiteDays: 4.252391408954838, phaseCost: 156828 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 21.24580184961181, phaseCost: 63876 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 491570, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 491570,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -36,9 +48,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11840 },
           decontaminationResults: { workDays: 3.2706750310656325, onSiteDays: 3.2706750310656325, phaseCost: 134121 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.9723839069582, phaseCost: 39001 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 240832, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 240832,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -47,7 +65,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5498 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9300255232139305, phaseCost: 11816 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27228, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27228,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.913346583921852, phaseCost: 4760 },
@@ -55,7 +79,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5559 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.913346583921852, phaseCost: 11765 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27651, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27651,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -85,9 +115,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23065 },
           decontaminationResults: { workDays: 3.3475333639298412, onSiteDays: 3.3475333639298412, phaseCost: 128947 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.387993349474222, phaseCost: 49271 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 333173, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 333173,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -97,9 +133,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 36698 },
           decontaminationResults: { workDays: 3.6143326947033247, onSiteDays: 3.6143326947033247, phaseCost: 144227 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 27.139428220387927, phaseCost: 81595 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 473344, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 473344,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -109,9 +151,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11015 },
           decontaminationResults: { workDays: 3.030731025624725, onSiteDays: 3.030731025624725, phaseCost: 119803 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 11.948819308709616, phaseCost: 35924 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 217536, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 217536,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -120,7 +168,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5796 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.084272108119613, phaseCost: 12279 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27606, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27606,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.6036683793286803, phaseCost: 4760 },
@@ -128,7 +182,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5365 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.6036683793286803, phaseCost: 10834 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26481, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26481,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -158,9 +218,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22723 },
           decontaminationResults: { workDays: 3.516781944436203, onSiteDays: 3.516781944436203, phaseCost: 143487 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.961685940148698, phaseCost: 47989 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 357107, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 357107,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -170,9 +236,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 34903 },
           decontaminationResults: { workDays: 3.166692246721753, onSiteDays: 3.166692246721753, phaseCost: 139077 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.814188527407875, phaseCost: 53558 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 450608, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 450608,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -182,9 +254,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11978 },
           decontaminationResults: { workDays: 4.683305832949305, onSiteDays: 4.683305832949305, phaseCost: 168083 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.87256414327791, phaseCost: 41708 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 275677, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 275677,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -193,7 +271,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5537 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.107005342201539, phaseCost: 12348 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27923, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27923,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.118593316820656, phaseCost: 4760 },
@@ -201,7 +285,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5317 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.118593316820656, phaseCost: 12383 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28326, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28326,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -231,9 +321,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25235 },
           decontaminationResults: { workDays: 4.540319742062204, onSiteDays: 4.540319742062204, phaseCost: 166020 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.624013440433536, phaseCost: 62006 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 387193, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 387193,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -243,9 +339,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40497 },
           decontaminationResults: { workDays: 3.2677318943356473, onSiteDays: 3.2677318943356473, phaseCost: 151573 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 21.222094910370732, phaseCost: 63804 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 469146, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 469146,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -255,9 +357,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12959 },
           decontaminationResults: { workDays: 3.038027027165058, onSiteDays: 3.038027027165058, phaseCost: 121679 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 11.990841444751194, phaseCost: 36050 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 222702, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 222702,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -266,7 +374,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5509 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.12356485786724, phaseCost: 12398 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27938, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27938,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.059642948475286, phaseCost: 4760 },
@@ -274,7 +388,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5541 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.059642948475286, phaseCost: 12205 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28389, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28389,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -304,9 +424,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26177 },
           decontaminationResults: { workDays: 4.8522528181439855, onSiteDays: 4.8522528181439855, phaseCost: 191967 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.277263527743887, phaseCost: 48938 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 419602, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 419602,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -316,9 +442,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 34200 },
           decontaminationResults: { workDays: 4.955518720661178, onSiteDays: 4.955518720661178, phaseCost: 194712 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.856469926135873, phaseCost: 59699 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 555531, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 555531,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -328,9 +460,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12801 },
           decontaminationResults: { workDays: 4.640187419401525, onSiteDays: 4.640187419401525, phaseCost: 194878 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.937042115184287, phaseCost: 41902 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 301787, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 301787,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -339,7 +477,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5672 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.042248728261363, phaseCost: 12153 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27435, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27435,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.817568604943877, phaseCost: 4760 },
@@ -347,7 +491,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5478 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.817568604943877, phaseCost: 11478 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27348, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27348,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -377,9 +527,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23926 },
           decontaminationResults: { workDays: 4.960440227286993, onSiteDays: 4.960440227286993, phaseCost: 215684 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.064484486574983, phaseCost: 54311 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 428275, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 428275,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -389,9 +545,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 38637 },
           decontaminationResults: { workDays: 3.871065969781733, onSiteDays: 3.871065969781733, phaseCost: 145830 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 23.47997737025679, phaseCost: 70593 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 524814, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 524814,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -401,9 +563,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11521 },
           decontaminationResults: { workDays: 4.63969367594451, onSiteDays: 4.63969367594451, phaseCost: 175103 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.97387193726566, phaseCost: 39006 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 276840, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 276840,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -412,7 +580,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5759 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.098873632756353, phaseCost: 12323 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27889, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27889,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.973937042198677, phaseCost: 4760 },
@@ -420,7 +594,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5503 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.973937042198677, phaseCost: 11948 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27245, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27245,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -450,9 +630,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24500 },
           decontaminationResults: { workDays: 4.30570526824, onSiteDays: 4.30570526824, phaseCost: 166277 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.103856558191822, phaseCost: 54429 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 388188, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 388188,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -462,9 +648,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 34472 },
           decontaminationResults: { workDays: 3.4693437811148686, onSiteDays: 3.4693437811148686, phaseCost: 146495 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.964552730564595, phaseCost: 54010 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 468505, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 468505,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -474,9 +666,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11391 },
           decontaminationResults: { workDays: 3.499789920751888, onSiteDays: 3.499789920751888, phaseCost: 151319 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.657465242320175, phaseCost: 41061 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 255643, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 255643,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -485,7 +683,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5511 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.077197756161764, phaseCost: 12258 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27654, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27654,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9925631621939215, phaseCost: 4760 },
@@ -493,7 +697,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5128 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9925631621939215, phaseCost: 12004 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26787, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26787,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -523,9 +733,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24189 },
           decontaminationResults: { workDays: 4.97510609775202, onSiteDays: 4.97510609775202, phaseCost: 234435 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.98019035028969, phaseCost: 51051 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 441965, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 441965,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -535,9 +751,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40937 },
           decontaminationResults: { workDays: 3.8094179762549274, onSiteDays: 3.8094179762549274, phaseCost: 183103 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 22.426864156376787, phaseCost: 67426 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 529756, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 529756,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -547,9 +769,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10566 },
           decontaminationResults: { workDays: 4.317272290894127, onSiteDays: 4.317272290894127, phaseCost: 163528 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.474173751679462, phaseCost: 40510 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 266072, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 266072,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -558,7 +786,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5105 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.902836370796667, phaseCost: 11734 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27017, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27017,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.107354364645326, phaseCost: 4760 },
@@ -566,7 +800,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5009 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.107354364645326, phaseCost: 12349 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28301, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28301,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -596,9 +836,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27287 },
           decontaminationResults: { workDays: 3.061752079069091, onSiteDays: 3.061752079069091, phaseCost: 142008 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.069664921708288, phaseCost: 42300 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 345559, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 345559,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -608,9 +854,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41137 },
           decontaminationResults: { workDays: 4.913269364720506, onSiteDays: 4.913269364720506, phaseCost: 200032 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.705075978215294, phaseCost: 59243 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 526068, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 526068,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -620,9 +872,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12300 },
           decontaminationResults: { workDays: 3.710844813080236, onSiteDays: 3.710844813080236, phaseCost: 143559 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.384096324194639, phaseCost: 40239 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 250436, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 250436,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -631,7 +889,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5081 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.165294958153101, phaseCost: 12523 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27963, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27963,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.039385987904582, phaseCost: 4760 },
@@ -639,7 +903,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4831 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.039385987904582, phaseCost: 12144 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27328, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27328,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -669,9 +939,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27210 },
           decontaminationResults: { workDays: 4.0203373136511855, onSiteDays: 4.0203373136511855, phaseCost: 163657 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.18296529326288, phaseCost: 48654 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 376349, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 376349,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -681,9 +957,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 38808 },
           decontaminationResults: { workDays: 3.7596419967617005, onSiteDays: 3.7596419967617005, phaseCost: 178313 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.588307857057607, phaseCost: 58892 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 538907, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 538907,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -693,9 +975,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10893 },
           decontaminationResults: { workDays: 3.667420271939463, onSiteDays: 3.667420271939463, phaseCost: 135873 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.649252890937104, phaseCost: 38030 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 237318, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 237318,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -704,7 +992,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5011 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.0808776800899125, phaseCost: 12269 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27188, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27188,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.078410088811481, phaseCost: 4760 },
@@ -712,7 +1006,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4962 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.078410088811481, phaseCost: 12262 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27412, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27412,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -742,9 +1042,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23492 },
           decontaminationResults: { workDays: 3.1201846716274004, onSiteDays: 3.1201846716274004, phaseCost: 140936 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.781236850696542, phaseCost: 47446 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 342976, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 342976,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -754,9 +1060,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 38063 },
           decontaminationResults: { workDays: 3.2752246908553, onSiteDays: 3.2752246908553, phaseCost: 138871 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 31.714864970281475, phaseCost: 95351 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 494763, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 494763,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -766,9 +1078,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12622 },
           decontaminationResults: { workDays: 3.3628433468665095, onSiteDays: 3.3628433468665095, phaseCost: 143568 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.869201144638485, phaseCost: 38691 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 245899, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 245899,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -777,7 +1095,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6017 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.1728380838760057, phaseCost: 9539 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 25113, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 25113,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.153277709013539, phaseCost: 4760 },
@@ -785,7 +1109,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5157 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.153277709013539, phaseCost: 12487 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27383, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27383,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -815,9 +1145,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27093 },
           decontaminationResults: { workDays: 4.844073880427534, onSiteDays: 4.844073880427534, phaseCost: 195084 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 23.197182962034397, phaseCost: 69742 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 423341, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 423341,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -827,9 +1163,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 35185 },
           decontaminationResults: { workDays: 3.824220535071618, onSiteDays: 3.824220535071618, phaseCost: 165620 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 22.42217297753161, phaseCost: 67412 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 483347, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 483347,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -839,9 +1181,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12679 },
           decontaminationResults: { workDays: 3.207186559263427, onSiteDays: 3.207186559263427, phaseCost: 126078 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.446084337093358, phaseCost: 37419 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 232212, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 232212,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -850,7 +1198,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5411 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.8210973237900507, phaseCost: 11488 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26626, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26626,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.82897048673695, phaseCost: 4760 },
@@ -858,7 +1212,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5169 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.82897048673695, phaseCost: 11512 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26931, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26931,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -888,9 +1248,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23881 },
           decontaminationResults: { workDays: 3.191069252833507, onSiteDays: 3.191069252833507, phaseCost: 147320 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 21.283280808392682, phaseCost: 63988 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 370633, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 370633,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -900,9 +1266,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40561 },
           decontaminationResults: { workDays: 4.029146353488123, onSiteDays: 4.029146353488123, phaseCost: 157632 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.84608130728938, phaseCost: 50648 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 468987, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 468987,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -912,9 +1284,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12648 },
           decontaminationResults: { workDays: 3.2881514742710047, onSiteDays: 3.2881514742710047, phaseCost: 129425 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.075774598258889, phaseCost: 36306 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 229193, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 229193,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -923,7 +1301,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6159 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.158333077959076, phaseCost: 12502 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 29287, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 29287,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.6389133645252483, phaseCost: 4760 },
@@ -931,7 +1315,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5591 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.6389133645252483, phaseCost: 10940 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27105, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27105,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -961,9 +1351,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27628 },
           decontaminationResults: { workDays: 3.2892515245567195, onSiteDays: 3.2892515245567195, phaseCost: 139483 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.37513983485013, phaseCost: 52238 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 354617, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 354617,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -973,9 +1369,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39260 },
           decontaminationResults: { workDays: 3.927823814779479, onSiteDays: 3.927823814779479, phaseCost: 165253 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.384341415658355, phaseCost: 49260 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 466939, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 466939,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -985,9 +1387,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11095 },
           decontaminationResults: { workDays: 4.8505563288579125, onSiteDays: 4.8505563288579125, phaseCost: 177312 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.842066630234171, phaseCost: 38610 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 283183, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 283183,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -996,7 +1404,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5579 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.6046626282478442, phaseCost: 10837 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26186, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26186,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9859715665003277, phaseCost: 4760 },
@@ -1004,7 +1418,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5213 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9859715665003277, phaseCost: 11984 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27967, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27967,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1034,9 +1454,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24189 },
           decontaminationResults: { workDays: 3.7857486039366917, onSiteDays: 3.7857486039366917, phaseCost: 158060 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.812022478262264, phaseCost: 47539 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 368282, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 368282,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1046,9 +1472,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 33263 },
           decontaminationResults: { workDays: 4.500242560054232, onSiteDays: 4.500242560054232, phaseCost: 191399 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.847857882115377, phaseCost: 53660 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 504648, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 504648,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1058,9 +1490,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13008 },
           decontaminationResults: { workDays: 3.669079735099589, onSiteDays: 3.669079735099589, phaseCost: 140866 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.25071953247377, phaseCost: 36832 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 242350, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 242350,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1069,7 +1507,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4913 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.103709803058672, phaseCost: 12338 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27604, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27604,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.7202374941588903, phaseCost: 4760 },
@@ -1077,7 +1521,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4758 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.7202374941588903, phaseCost: 11185 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26844, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26844,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1107,9 +1557,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24783 },
           decontaminationResults: { workDays: 4.440542794168122, onSiteDays: 4.440542794168122, phaseCost: 166481 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.84178058640984, phaseCost: 62661 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 391715, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 391715,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1119,9 +1575,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 34051 },
           decontaminationResults: { workDays: 4.608775354830729, onSiteDays: 4.608775354830729, phaseCost: 219176 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.734863148189383, phaseCost: 62339 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 538336, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 538336,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1131,9 +1593,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10891 },
           decontaminationResults: { workDays: 4.93209892928882, onSiteDays: 4.93209892928882, phaseCost: 204588 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.487434577934742, phaseCost: 43557 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 310164, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 310164,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1142,7 +1610,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5813 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.044796500265724, phaseCost: 12161 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28760, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28760,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.1409923385683065, phaseCost: 4760 },
@@ -1150,7 +1624,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5087 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.1409923385683065, phaseCost: 12450 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28051, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28051,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1180,9 +1660,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25422 },
           decontaminationResults: { workDays: 4.507114040084908, onSiteDays: 4.507114040084908, phaseCost: 187911 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.077903204878364, phaseCost: 51345 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 398200, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 398200,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1192,9 +1678,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 33532 },
           decontaminationResults: { workDays: 3.6075477266236087, onSiteDays: 3.6075477266236087, phaseCost: 168698 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.634176679219348, phaseCost: 56024 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 473226, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 473226,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1204,9 +1696,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10810 },
           decontaminationResults: { workDays: 4.687336389368245, onSiteDays: 4.687336389368245, phaseCost: 170712 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.445071127908754, phaseCost: 43429 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 276723, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 276723,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1215,7 +1713,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5151 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.144684933004781, phaseCost: 12461 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28230, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28230,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.958442998209239, phaseCost: 4760 },
@@ -1223,7 +1727,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5336 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.958442998209239, phaseCost: 11901 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28170, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28170,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1253,9 +1763,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24158 },
           decontaminationResults: { workDays: 3.562666855417813, onSiteDays: 3.562666855417813, phaseCost: 131109 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.578324587179653, phaseCost: 46836 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 339699, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 339699,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1265,9 +1781,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40222 },
           decontaminationResults: { workDays: 3.0460530305388507, onSiteDays: 3.0460530305388507, phaseCost: 130992 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 26.613311418916457, phaseCost: 80013 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 476785, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 476785,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1277,9 +1799,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10504 },
           decontaminationResults: { workDays: 4.24456264340425, onSiteDays: 4.24456264340425, phaseCost: 186153 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.905528033713189, phaseCost: 38800 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 290719, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 290719,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1288,7 +1816,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5413 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.307976634921107, phaseCost: 9945 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26210, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26210,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.741435511450808, phaseCost: 4760 },
@@ -1296,7 +1830,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6090 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.741435511450808, phaseCost: 11249 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27032, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27032,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1326,9 +1866,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25185 },
           decontaminationResults: { workDays: 3.6757764203184697, onSiteDays: 3.6757764203184697, phaseCost: 161225 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.67812446377064, phaseCost: 47136 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 371058, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 371058,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1338,9 +1884,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41641 },
           decontaminationResults: { workDays: 3.2476747781614947, onSiteDays: 3.2476747781614947, phaseCost: 139047 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 23.484761802934095, phaseCost: 70607 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 497701, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 497701,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1350,9 +1902,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11256 },
           decontaminationResults: { workDays: 4.467009963343621, onSiteDays: 4.467009963343621, phaseCost: 204173 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.873150221958324, phaseCost: 47723 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 346462, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 346462,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1361,7 +1919,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4878 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.053535224418941, phaseCost: 12187 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27620, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27620,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.135851479482014, phaseCost: 4760 },
@@ -1369,7 +1933,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6042 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.135851479482014, phaseCost: 12434 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28770, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28770,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1399,9 +1969,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22644 },
           decontaminationResults: { workDays: 4.936414165407515, onSiteDays: 4.936414165407515, phaseCost: 176033 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.986886976671826, phaseCost: 60091 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 401308, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 401308,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1411,9 +1987,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 33590 },
           decontaminationResults: { workDays: 4.1984195060093, onSiteDays: 4.1984195060093, phaseCost: 147723 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 22.575592365079494, phaseCost: 67874 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 586661, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 586661,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1423,9 +2005,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13029 },
           decontaminationResults: { workDays: 3.29351262289414, onSiteDays: 3.29351262289414, phaseCost: 128165 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.749357402426357, phaseCost: 38331 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 230641, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 230641,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1434,7 +2022,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6137 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.014049876500177, phaseCost: 12068 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28797, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28797,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.1021722335359465, phaseCost: 4760 },
@@ -1442,7 +2036,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5498 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.1021722335359465, phaseCost: 12333 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28539, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28539,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1472,9 +2072,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25229 },
           decontaminationResults: { workDays: 4.761756332535706, onSiteDays: 4.761756332535706, phaseCost: 196002 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.11058777483179, phaseCost: 48437 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 403872, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 403872,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1484,9 +2090,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 37401 },
           decontaminationResults: { workDays: 3.550518588291136, onSiteDays: 3.550518588291136, phaseCost: 158679 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 22.088379762454313, phaseCost: 66409 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 483533, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 483533,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1496,9 +2108,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11454 },
           decontaminationResults: { workDays: 4.359035276192947, onSiteDays: 4.359035276192947, phaseCost: 185108 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.379638714139013, phaseCost: 40226 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 288398, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 288398,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1507,7 +2125,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4967 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.8145343715010007, phaseCost: 11468 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27382, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27382,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.077675488414107, phaseCost: 4760 },
@@ -1515,7 +2139,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5171 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.077675488414107, phaseCost: 12260 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27425, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27425,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1545,9 +2175,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23920 },
           decontaminationResults: { workDays: 3.6620462589576017, onSiteDays: 3.6620462589576017, phaseCost: 155268 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.333083488782226, phaseCost: 46099 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 378901, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 378901,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1557,9 +2193,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40266 },
           decontaminationResults: { workDays: 4.612497917286237, onSiteDays: 4.612497917286237, phaseCost: 201034 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 25.600977996454702, phaseCost: 76969 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 551027, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 551027,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1569,9 +2211,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12989 },
           decontaminationResults: { workDays: 3.118815162246771, onSiteDays: 3.118815162246771, phaseCost: 136224 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.183636917242916, phaseCost: 39637 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 240178, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 240178,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1580,7 +2228,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5973 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.124926506415784, phaseCost: 12402 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27904, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27904,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9763436576052147, phaseCost: 4760 },
@@ -1588,7 +2242,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5636 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9763436576052147, phaseCost: 11955 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28531, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28531,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1618,9 +2278,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25447 },
           decontaminationResults: { workDays: 4.288657601757128, onSiteDays: 4.288657601757128, phaseCost: 173003 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.165334475302437, phaseCost: 48601 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 423803, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 423803,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1630,9 +2296,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 38831 },
           decontaminationResults: { workDays: 4.665559062190717, onSiteDays: 4.665559062190717, phaseCost: 165539 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.60969732860515, phaseCost: 52944 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 485240, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 485240,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1642,9 +2314,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10809 },
           decontaminationResults: { workDays: 3.498154597938562, onSiteDays: 3.498154597938562, phaseCost: 146236 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.28311457835087, phaseCost: 39936 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 248529, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 248529,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1653,7 +2331,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5516 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.105859300822794, phaseCost: 12344 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28083, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28083,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.10783455918828, phaseCost: 4760 },
@@ -1661,7 +2345,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5415 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.10783455918828, phaseCost: 12350 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28385, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28385,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1691,9 +2381,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26233 },
           decontaminationResults: { workDays: 4.842779662423483, onSiteDays: 4.842779662423483, phaseCost: 176347 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.77557938812395, phaseCost: 53442 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 395494, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 395494,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1703,9 +2399,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 35063 },
           decontaminationResults: { workDays: 4.561554331696023, onSiteDays: 4.561554331696023, phaseCost: 203412 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 32.44033001638084, phaseCost: 97532 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 627053, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 627053,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1715,9 +2417,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11654 },
           decontaminationResults: { workDays: 3.4263358941363022, onSiteDays: 3.4263358941363022, phaseCost: 134891 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.9090026386343, phaseCost: 38811 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 235026, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 235026,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1726,7 +2434,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5700 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.137321872984739, phaseCost: 12439 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28966, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28966,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.766815587332549, phaseCost: 4760 },
@@ -1734,7 +2448,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4786 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.766815587332549, phaseCost: 11325 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26367, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26367,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1764,9 +2484,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22264 },
           decontaminationResults: { workDays: 4.917033661603237, onSiteDays: 4.917033661603237, phaseCost: 189306 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.0599685533606, phaseCost: 48284 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 414966, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 414966,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1776,9 +2502,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 34488 },
           decontaminationResults: { workDays: 4.967466806985314, onSiteDays: 4.967466806985314, phaseCost: 197843 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 22.813920677545987, phaseCost: 68590 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 512493, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 512493,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1788,9 +2520,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13184 },
           decontaminationResults: { workDays: 4.410365665194198, onSiteDays: 4.410365665194198, phaseCost: 185300 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.45254624754352, phaseCost: 43452 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 303004, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 303004,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1799,7 +2537,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4870 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.801667758691049, phaseCost: 11430 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26848, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26848,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.1578404490556915, phaseCost: 4760 },
@@ -1807,7 +2551,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6069 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.1578404490556915, phaseCost: 12501 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28537, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28537,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1837,9 +2587,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25244 },
           decontaminationResults: { workDays: 3.6713559228627375, onSiteDays: 3.6713559228627375, phaseCost: 157037 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.166495220349567, phaseCost: 54618 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 376309, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 376309,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1849,9 +2605,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41671 },
           decontaminationResults: { workDays: 4.5950958988617865, onSiteDays: 4.5950958988617865, phaseCost: 192653 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.12795337815991, phaseCost: 57508 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 527620, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 527620,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1861,9 +2623,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11671 },
           decontaminationResults: { workDays: 4.863867365723445, onSiteDays: 4.863867365723445, phaseCost: 188648 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.273805107500566, phaseCost: 45921 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 303928, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 303928,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1872,7 +2640,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6110 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.60468322835386, phaseCost: 10837 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27387, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27387,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.133270547802184, phaseCost: 4760 },
@@ -1880,7 +2654,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5778 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.133270547802184, phaseCost: 12427 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28515, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28515,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1910,9 +2690,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25763 },
           decontaminationResults: { workDays: 3.4353115210391842, onSiteDays: 3.4353115210391842, phaseCost: 149896 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.838013628781027, phaseCost: 44611 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 357114, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 357114,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1922,9 +2708,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39104 },
           decontaminationResults: { workDays: 3.07440301172305, onSiteDays: 3.07440301172305, phaseCost: 125303 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 23.26503057101416, phaseCost: 69946 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 453823, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 453823,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -1934,9 +2726,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12390 },
           decontaminationResults: { workDays: 4.340138924620147, onSiteDays: 4.340138924620147, phaseCost: 169746 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.212224655290065, phaseCost: 39723 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 277175, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 277175,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -1945,7 +2743,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5683 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.1197378276112016, phaseCost: 12386 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28587, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28587,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.09263613921806, phaseCost: 4760 },
@@ -1953,7 +2757,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5669 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.09263613921806, phaseCost: 12305 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28894, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28894,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -1983,9 +2793,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25666 },
           decontaminationResults: { workDays: 4.027746936079987, onSiteDays: 4.027746936079987, phaseCost: 151821 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.437063535942993, phaseCost: 46412 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 355047, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 355047,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -1995,9 +2811,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 35062 },
           decontaminationResults: { workDays: 3.1811276814390737, onSiteDays: 3.1811276814390737, phaseCost: 139225 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.379177652987178, phaseCost: 52251 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 459878, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 459878,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2007,9 +2829,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10632 },
           decontaminationResults: { workDays: 4.822354941121851, onSiteDays: 4.822354941121851, phaseCost: 211739 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.768959177775256, phaseCost: 44403 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 323772, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 323772,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2018,7 +2846,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4948 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.153884268918219, phaseCost: 12489 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27888, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27888,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.902903486513794, phaseCost: 4760 },
@@ -2026,7 +2860,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5503 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.902903486513794, phaseCost: 11734 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28037, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28037,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2056,9 +2896,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27003 },
           decontaminationResults: { workDays: 3.891631207636472, onSiteDays: 3.891631207636472, phaseCost: 177654 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.980760925340523, phaseCost: 60072 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 400545, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 400545,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2068,9 +2914,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41284 },
           decontaminationResults: { workDays: 4.601830869354734, onSiteDays: 4.601830869354734, phaseCost: 193152 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 31.26219792305092, phaseCost: 93990 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 560780, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 560780,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2080,9 +2932,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13143 },
           decontaminationResults: { workDays: 3.049309101898528, onSiteDays: 3.049309101898528, phaseCost: 137741 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.689341664157483, phaseCost: 38151 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 240807, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 240807,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2091,7 +2949,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5865 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.672287631220829, phaseCost: 11041 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26932, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26932,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.143063599108267, phaseCost: 4760 },
@@ -2099,7 +2963,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5986 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.143063599108267, phaseCost: 12456 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 29068, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 29068,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2129,9 +2999,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24976 },
           decontaminationResults: { workDays: 3.2964241812695807, onSiteDays: 3.2964241812695807, phaseCost: 144337 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 21.60379290355182, phaseCost: 64952 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 373655, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 373655,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2141,9 +3017,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 35069 },
           decontaminationResults: { workDays: 3.949311996565506, onSiteDays: 3.949311996565506, phaseCost: 172229 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.11271659597183, phaseCost: 57462 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 485466, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 485466,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2153,9 +3035,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12330 },
           decontaminationResults: { workDays: 3.0682948692860768, onSiteDays: 3.0682948692860768, phaseCost: 122625 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.484015091280668, phaseCost: 40540 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 227811, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 227811,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2164,7 +3052,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4954 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.2783901491365386, phaseCost: 9856 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 24798, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 24798,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.130644599797188, phaseCost: 4760 },
@@ -2172,7 +3066,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5340 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.130644599797188, phaseCost: 12419 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27939, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27939,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2202,9 +3102,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22558 },
           decontaminationResults: { workDays: 3.1550717875722496, onSiteDays: 3.1550717875722496, phaseCost: 146002 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.870377486753476, phaseCost: 41701 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 352407, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 352407,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2214,9 +3120,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41532 },
           decontaminationResults: { workDays: 3.6525079744524573, onSiteDays: 3.6525079744524573, phaseCost: 171064 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.194238645087477, phaseCost: 51695 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 480761, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 480761,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2226,9 +3138,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13431 },
           decontaminationResults: { workDays: 4.350480933988113, onSiteDays: 4.350480933988113, phaseCost: 185578 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.379701928387941, phaseCost: 43233 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 292726, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 292726,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2237,7 +3155,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5133 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.096115093002867, phaseCost: 12315 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27636, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27636,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9578444019664665, phaseCost: 4760 },
@@ -2245,7 +3169,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5310 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9578444019664665, phaseCost: 11899 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27997, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27997,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2275,9 +3205,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22882 },
           decontaminationResults: { workDays: 3.1664132131651073, onSiteDays: 3.1664132131651073, phaseCost: 125556 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.138574459828977, phaseCost: 42508 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 336442, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 336442,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2287,9 +3223,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 38758 },
           decontaminationResults: { workDays: 4.8178058117203895, onSiteDays: 4.8178058117203895, phaseCost: 211809 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 25.14949038488823, phaseCost: 75612 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 553833, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 553833,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2299,9 +3241,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11873 },
           decontaminationResults: { workDays: 4.153577885393421, onSiteDays: 4.153577885393421, phaseCost: 184172 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.044043132058519, phaseCost: 39217 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 287712, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 287712,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2310,7 +3258,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5868 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.13430225953621, phaseCost: 12430 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 29230, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 29230,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.933227718112027, phaseCost: 4760 },
@@ -2318,7 +3272,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5099 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.933227718112027, phaseCost: 11825 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27066, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27066,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2348,9 +3308,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24152 },
           decontaminationResults: { workDays: 4.671905800158136, onSiteDays: 4.671905800158136, phaseCost: 179609 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 22.03341823282535, phaseCost: 66244 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 403151, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 403151,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2360,9 +3326,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 38735 },
           decontaminationResults: { workDays: 4.545585438968983, onSiteDays: 4.545585438968983, phaseCost: 209379 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 26.823227151441756, phaseCost: 80644 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 549262, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 549262,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2372,9 +3344,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10773 },
           decontaminationResults: { workDays: 3.213250446182967, onSiteDays: 3.213250446182967, phaseCost: 130302 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.87013648412871, phaseCost: 38694 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 229805, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 229805,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2383,7 +3361,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5307 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.7468541182068056, phaseCost: 11265 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26664, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26664,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.033694575092209, phaseCost: 4760 },
@@ -2391,7 +3375,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4844 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.033694575092209, phaseCost: 12127 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26528, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26528,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2421,9 +3411,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26177 },
           decontaminationResults: { workDays: 3.0327105103136764, onSiteDays: 3.0327105103136764, phaseCost: 134164 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.66246983061577, phaseCost: 50096 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 352303, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 352303,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2433,9 +3429,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 33597 },
           decontaminationResults: { workDays: 3.6741412004162886, onSiteDays: 3.6741412004162886, phaseCost: 147488 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.976159862369613, phaseCost: 57052 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 452865, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 452865,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2445,9 +3447,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11061 },
           decontaminationResults: { workDays: 3.789943456368042, onSiteDays: 3.789943456368042, phaseCost: 173626 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.440837441871977, phaseCost: 40410 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 280115, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 280115,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2456,7 +3464,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5145 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.144137965228196, phaseCost: 12459 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27564, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27564,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9235373846950767, phaseCost: 4760 },
@@ -2464,7 +3478,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5376 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9235373846950767, phaseCost: 11796 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27368, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27368,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2494,9 +3514,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26359 },
           decontaminationResults: { workDays: 4.85881563179633, onSiteDays: 4.85881563179633, phaseCost: 222462 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 21.033249162501644, phaseCost: 63237 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 445624, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 445624,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2506,9 +3532,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 34340 },
           decontaminationResults: { workDays: 3.0901628546626685, onSiteDays: 3.0901628546626685, phaseCost: 130173 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 21.92414151817397, phaseCost: 65915 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 443494, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 443494,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2518,9 +3550,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11613 },
           decontaminationResults: { workDays: 3.8144403358023706, onSiteDays: 3.8144403358023706, phaseCost: 166929 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.421079553625713, phaseCost: 43357 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 276003, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 276003,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2529,7 +3567,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5220 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.7400038876320876, phaseCost: 11244 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27383, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27383,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9948385962947492, phaseCost: 4760 },
@@ -2537,7 +3581,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5389 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9948385962947492, phaseCost: 12010 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27374, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27374,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2567,9 +3617,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26521 },
           decontaminationResults: { workDays: 3.1298589906957606, onSiteDays: 3.1298589906957606, phaseCost: 135276 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.551689443950059, phaseCost: 46756 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 350889, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 350889,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2579,9 +3635,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41105 },
           decontaminationResults: { workDays: 3.781391873671997, onSiteDays: 3.781391873671997, phaseCost: 150620 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.52489328084371, phaseCost: 52689 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 461336, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 461336,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2591,9 +3653,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10715 },
           decontaminationResults: { workDays: 3.518114441195064, onSiteDays: 3.518114441195064, phaseCost: 139877 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.586174340079607, phaseCost: 37840 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 239488, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 239488,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2602,7 +3670,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5343 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.038132838955782, phaseCost: 12141 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28006, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28006,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.135685814139257, phaseCost: 4760 },
@@ -2610,7 +3684,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6029 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.135685814139257, phaseCost: 12434 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 29150, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 29150,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2640,9 +3720,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24273 },
           decontaminationResults: { workDays: 4.631461569953585, onSiteDays: 4.631461569953585, phaseCost: 204861 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.130418665051419, phaseCost: 45490 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 408716, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 408716,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2652,9 +3738,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 34174 },
           decontaminationResults: { workDays: 4.077782116615628, onSiteDays: 4.077782116615628, phaseCost: 187275 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 22.218303908150396, phaseCost: 66799 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 499382, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 499382,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2664,9 +3756,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12535 },
           decontaminationResults: { workDays: 4.762171138488261, onSiteDays: 4.762171138488261, phaseCost: 172935 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.429218037916156, phaseCost: 40375 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 278343, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 278343,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2675,7 +3773,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5000 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.14727878653163, phaseCost: 12469 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27180, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27180,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.099764047953064, phaseCost: 4760 },
@@ -2683,7 +3787,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5776 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.099764047953064, phaseCost: 12326 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28753, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28753,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2713,9 +3823,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27821 },
           decontaminationResults: { workDays: 4.716700006676069, onSiteDays: 4.716700006676069, phaseCost: 196525 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.0624886438989, phaseCost: 51298 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 417284, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 417284,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2725,9 +3841,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 38756 },
           decontaminationResults: { workDays: 4.601485406887132, onSiteDays: 4.601485406887132, phaseCost: 205425 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 26.74571315289701, phaseCost: 80411 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 558870, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 558870,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2737,9 +3859,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11401 },
           decontaminationResults: { workDays: 4.949826904560865, onSiteDays: 4.949826904560865, phaseCost: 196509 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.371694793344169, phaseCost: 43209 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 302451, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 302451,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2748,7 +3876,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5696 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.014445142501655, phaseCost: 12069 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27898, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27898,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.5103259178657176, phaseCost: 4760 },
@@ -2756,7 +3890,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5679 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.5103259178657176, phaseCost: 10554 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27039, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27039,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2786,9 +3926,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23780 },
           decontaminationResults: { workDays: 4.573311487579092, onSiteDays: 4.573311487579092, phaseCost: 182894 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.100816415874618, phaseCost: 45401 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 388547, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 388547,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2798,9 +3944,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 37863 },
           decontaminationResults: { workDays: 3.563909737058894, onSiteDays: 3.563909737058894, phaseCost: 140094 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 25.9421365987512, phaseCost: 77995 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 508030, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 508030,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2810,9 +3962,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11758 },
           decontaminationResults: { workDays: 4.481123661501595, onSiteDays: 4.481123661501595, phaseCost: 161914 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.69832665105315, phaseCost: 41184 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 270898, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 270898,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2821,7 +3979,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5939 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.970631994535556, phaseCost: 11938 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27791, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27791,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.7112569784996503, phaseCost: 4760 },
@@ -2829,7 +3993,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5674 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.7112569784996503, phaseCost: 11158 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27681, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27681,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2859,9 +4029,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24626 },
           decontaminationResults: { workDays: 3.1892972458594704, onSiteDays: 3.1892972458594704, phaseCost: 149218 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.502333175247504, phaseCost: 61640 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 374474, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 374474,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2871,9 +4047,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40992 },
           decontaminationResults: { workDays: 4.334370872782164, onSiteDays: 4.334370872782164, phaseCost: 167495 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.735125421581834, phaseCost: 62340 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 538847, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 538847,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2883,9 +4065,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11768 },
           decontaminationResults: { workDays: 3.115737473153448, onSiteDays: 3.115737473153448, phaseCost: 132012 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.121384406213796, phaseCost: 36443 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 233213, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 233213,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2894,7 +4082,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6119 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.079842093781188, phaseCost: 12266 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28546, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28546,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.618437964851332, phaseCost: 4760 },
@@ -2902,7 +4096,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4980 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.618437964851332, phaseCost: 10879 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 25434, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 25434,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -2932,9 +4132,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 21944 },
           decontaminationResults: { workDays: 3.2321941247750527, onSiteDays: 3.2321941247750527, phaseCost: 121096 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.318437958951892, phaseCost: 43048 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 320992, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 320992,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -2944,9 +4150,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 35438 },
           decontaminationResults: { workDays: 3.296140377944368, onSiteDays: 3.296140377944368, phaseCost: 145959 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.30937500525965, phaseCost: 52041 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 459454, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 459454,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -2956,9 +4168,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11484 },
           decontaminationResults: { workDays: 4.204482318182588, onSiteDays: 4.204482318182588, phaseCost: 172139 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.262796973713785, phaseCost: 39875 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 273978, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 273978,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -2967,7 +4185,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5122 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.028836002962908, phaseCost: 12113 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27212, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27212,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.148725408733721, phaseCost: 4760 },
@@ -2975,7 +4199,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5668 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.148725408733721, phaseCost: 12473 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28815, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28815,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3005,9 +4235,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22165 },
           decontaminationResults: { workDays: 3.512619008895154, onSiteDays: 3.512619008895154, phaseCost: 150726 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.243869814660933, phaseCost: 51844 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 384981, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 384981,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3017,9 +4253,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 42377 },
           decontaminationResults: { workDays: 4.9176546619082, onSiteDays: 4.9176546619082, phaseCost: 198957 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.76359666322653, phaseCost: 59419 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 524221, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 524221,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3029,9 +4271,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12079 },
           decontaminationResults: { workDays: 3.9071627699088216, onSiteDays: 3.9071627699088216, phaseCost: 158071 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.078056119177244, phaseCost: 42326 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 262852, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 262852,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3040,7 +4288,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5189 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.160942540723594, phaseCost: 12510 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27513, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27513,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.4747765656539418, phaseCost: 4760 },
@@ -3048,7 +4302,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5715 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.4747765656539418, phaseCost: 10447 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26691, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26691,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3078,9 +4338,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25286 },
           decontaminationResults: { workDays: 3.2911071112125896, onSiteDays: 3.2911071112125896, phaseCost: 142773 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.04517667992001, phaseCost: 51246 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 353807, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 353807,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3090,9 +4356,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41828 },
           decontaminationResults: { workDays: 3.5647480493795007, onSiteDays: 3.5647480493795007, phaseCost: 144944 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.813887208070312, phaseCost: 59570 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 482968, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 482968,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3102,9 +4374,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11546 },
           decontaminationResults: { workDays: 3.772000400529243, onSiteDays: 3.772000400529243, phaseCost: 132594 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.85991133744087, phaseCost: 38663 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 233447, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 233447,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3113,7 +4391,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5174 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.154169775404194, phaseCost: 12490 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28190, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28190,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.104980302202905, phaseCost: 4760 },
@@ -3121,7 +4405,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6130 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.104980302202905, phaseCost: 12342 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28503, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28503,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3151,9 +4441,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25955 },
           decontaminationResults: { workDays: 3.049153997108609, onSiteDays: 3.049153997108609, phaseCost: 144582 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.995656801583554, phaseCost: 48091 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 356126, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 356126,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3163,9 +4459,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 33863 },
           decontaminationResults: { workDays: 4.629674255296046, onSiteDays: 4.629674255296046, phaseCost: 171393 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.504492643338526, phaseCost: 55634 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 482818, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 482818,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3175,9 +4477,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13171 },
           decontaminationResults: { workDays: 3.7775812667742326, onSiteDays: 3.7775812667742326, phaseCost: 169353 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.587744174708432, phaseCost: 43858 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 278088, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 278088,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3186,7 +4494,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5072 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.032371743181053, phaseCost: 12123 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26738, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26738,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9844062525922315, phaseCost: 4760 },
@@ -3194,7 +4508,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6085 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9844062525922315, phaseCost: 11979 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28940, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28940,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3224,9 +4544,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 21896 },
           decontaminationResults: { workDays: 3.1474204836756505, onSiteDays: 3.1474204836756505, phaseCost: 143051 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.434342666913746, phaseCost: 55423 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 351382, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 351382,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3236,9 +4562,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40091 },
           decontaminationResults: { workDays: 3.718669283371109, onSiteDays: 3.718669283371109, phaseCost: 159879 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.960738764624566, phaseCost: 57005 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 487441, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 487441,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3248,9 +4580,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11812 },
           decontaminationResults: { workDays: 3.173846678383147, onSiteDays: 3.173846678383147, phaseCost: 116169 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 11.946525273369353, phaseCost: 35917 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 214154, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 214154,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3259,7 +4597,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5145 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.068503802979275, phaseCost: 12232 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28108, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28108,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.5620500630776917, phaseCost: 4760 },
@@ -3267,7 +4611,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6014 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.5620500630776917, phaseCost: 10709 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26924, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26924,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3297,9 +4647,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23576 },
           decontaminationResults: { workDays: 3.9772104762907166, onSiteDays: 3.9772104762907166, phaseCost: 159513 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.365326678199597, phaseCost: 43189 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 368674, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 368674,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3309,9 +4665,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 42508 },
           decontaminationResults: { workDays: 3.1957715941117546, onSiteDays: 3.1957715941117546, phaseCost: 151072 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.163387109344594, phaseCost: 57615 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 467659, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 467659,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3321,9 +4683,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10906 },
           decontaminationResults: { workDays: 3.269874045688164, onSiteDays: 3.269874045688164, phaseCost: 122264 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 11.580660094269861, phaseCost: 34817 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 220045, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 220045,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3332,7 +4700,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5998 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.14249965262036, phaseCost: 12454 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28852, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28852,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.536318570129662, phaseCost: 4760 },
@@ -3340,7 +4714,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5313 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.536318570129662, phaseCost: 10632 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26769, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26769,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3370,9 +4750,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24960 },
           decontaminationResults: { workDays: 4.152556985885035, onSiteDays: 4.152556985885035, phaseCost: 175700 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.222089992838, phaseCost: 54785 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 389207, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 389207,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3382,9 +4768,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 35477 },
           decontaminationResults: { workDays: 3.1337390062710595, onSiteDays: 3.1337390062710595, phaseCost: 143546 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.842107152487298, phaseCost: 56649 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 463648, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 463648,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3394,9 +4786,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12753 },
           decontaminationResults: { workDays: 4.325961151934686, onSiteDays: 4.325961151934686, phaseCost: 176862 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.602784383848146, phaseCost: 40897 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 280872, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 280872,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3405,7 +4803,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5101 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.060435655064303, phaseCost: 12208 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26829, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26829,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.50015115443453, phaseCost: 4760 },
@@ -3413,7 +4817,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5906 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.50015115443453, phaseCost: 10523 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27097, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27097,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3443,9 +4853,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26761 },
           decontaminationResults: { workDays: 4.721586101623622, onSiteDays: 4.721586101623622, phaseCost: 184873 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 23.11355410160148, phaseCost: 69491 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 412803, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 412803,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3455,9 +4871,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 34605 },
           decontaminationResults: { workDays: 4.885679644505885, onSiteDays: 4.885679644505885, phaseCost: 210101 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 32.21062778714151, phaseCost: 96841 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 568861, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 568861,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3467,9 +4889,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13153 },
           decontaminationResults: { workDays: 3.1935437843654175, onSiteDays: 3.1935437843654175, phaseCost: 130965 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.331123244930975, phaseCost: 37074 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 236962, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 236962,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3478,7 +4906,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4807 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.153963584228867, phaseCost: 12489 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28139, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28139,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.969351304666043, phaseCost: 4760 },
@@ -3486,7 +4920,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5587 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.969351304666043, phaseCost: 11934 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27349, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27349,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3516,9 +4956,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23333 },
           decontaminationResults: { workDays: 3.2646180019398727, onSiteDays: 3.2646180019398727, phaseCost: 133615 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.996092692881623, phaseCost: 45086 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 346900, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 346900,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3528,9 +4974,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41798 },
           decontaminationResults: { workDays: 3.6514176532280205, onSiteDays: 3.6514176532280205, phaseCost: 143097 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 30.687200824692656, phaseCost: 92261 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 511126, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 511126,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3540,9 +4992,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13013 },
           decontaminationResults: { workDays: 4.502630409203151, onSiteDays: 4.502630409203151, phaseCost: 189545 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.52230496777115, phaseCost: 49674 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 303038, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 303038,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3551,7 +5009,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5949 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.4974152135281003, phaseCost: 10515 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27057, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27057,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.144283430949669, phaseCost: 4760 },
@@ -3559,7 +5023,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5407 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.144283430949669, phaseCost: 12460 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27890, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27890,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3589,9 +5059,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26828 },
           decontaminationResults: { workDays: 4.873850074567331, onSiteDays: 4.873850074567331, phaseCost: 210440 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.536840999433238, phaseCost: 49718 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 425186, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 425186,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3601,9 +5077,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 36385 },
           decontaminationResults: { workDays: 4.338778130090511, onSiteDays: 4.338778130090511, phaseCost: 158970 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.712397001991175, phaseCost: 59265 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 475648, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 475648,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3613,9 +5095,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10464 },
           decontaminationResults: { workDays: 4.982242620545962, onSiteDays: 4.982242620545962, phaseCost: 194331 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.26990069200048, phaseCost: 45909 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 303414, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 303414,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3624,7 +5112,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5413 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.098564896314624, phaseCost: 12322 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28507, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28507,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.8434335555160057, phaseCost: 4760 },
@@ -3632,7 +5126,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4800 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.8434335555160057, phaseCost: 11555 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26422, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26422,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3662,9 +5162,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26796 },
           decontaminationResults: { workDays: 4.210617803784697, onSiteDays: 4.210617803784697, phaseCost: 157102 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.121665294741636, phaseCost: 48470 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 376990, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 376990,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3674,9 +5180,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 34675 },
           decontaminationResults: { workDays: 3.4579901621812, onSiteDays: 3.4579901621812, phaseCost: 169415 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.674960121402304, phaseCost: 53140 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 484776, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 484776,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3686,9 +5198,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10975 },
           decontaminationResults: { workDays: 3.924952917947656, onSiteDays: 3.924952917947656, phaseCost: 152749 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.951661836438547, phaseCost: 38939 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 253461, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 253461,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3697,7 +5215,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5341 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.078506482724469, phaseCost: 12262 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27532, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27532,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9734828787029652, phaseCost: 4760 },
@@ -3705,7 +5229,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5171 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9734828787029652, phaseCost: 11946 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27599, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27599,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3735,9 +5265,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26882 },
           decontaminationResults: { workDays: 3.337722130664094, onSiteDays: 3.337722130664094, phaseCost: 130974 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.990608362129862, phaseCost: 48076 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 340064, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 340064,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3747,9 +5283,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40670 },
           decontaminationResults: { workDays: 3.4081916982327103, onSiteDays: 3.4081916982327103, phaseCost: 141079 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.101989949242608, phaseCost: 57430 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 456045, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 456045,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3759,9 +5301,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10790 },
           decontaminationResults: { workDays: 4.737409183228717, onSiteDays: 4.737409183228717, phaseCost: 190703 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.555099556116266, phaseCost: 40753 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 293888, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 293888,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3770,7 +5318,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4825 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.932753753178127, phaseCost: 11824 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27060, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27060,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.034901010489168, phaseCost: 4760 },
@@ -3778,7 +5332,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4882 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.034901010489168, phaseCost: 12131 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26649, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26649,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3808,9 +5368,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27792 },
           decontaminationResults: { workDays: 4.105614638679105, onSiteDays: 4.105614638679105, phaseCost: 165488 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.18270535463352, phaseCost: 48653 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 383363, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 383363,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3820,9 +5386,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 35134 },
           decontaminationResults: { workDays: 3.0016876780431923, onSiteDays: 3.0016876780431923, phaseCost: 117084 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.013725314975222, phaseCost: 57165 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 424025, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 424025,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3832,9 +5404,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12978 },
           decontaminationResults: { workDays: 3.3248157567169554, onSiteDays: 3.3248157567169554, phaseCost: 128347 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.309373139876866, phaseCost: 37008 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 228849, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 228849,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3843,7 +5421,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5021 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9646320657782184, phaseCost: 11920 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27630, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27630,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9903711513643705, phaseCost: 4760 },
@@ -3851,7 +5435,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5010 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9903711513643705, phaseCost: 11997 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26975, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26975,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3881,9 +5471,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27558 },
           decontaminationResults: { workDays: 4.094952550505975, onSiteDays: 4.094952550505975, phaseCost: 175461 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.38262605828492, phaseCost: 58274 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 393743, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 393743,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3893,9 +5489,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41702 },
           decontaminationResults: { workDays: 3.7609499177804566, onSiteDays: 3.7609499177804566, phaseCost: 168874 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.93056737232567, phaseCost: 53908 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 499608, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 499608,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3905,9 +5507,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12549 },
           decontaminationResults: { workDays: 3.468041030333387, onSiteDays: 3.468041030333387, phaseCost: 147405 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.57402742233972, phaseCost: 37804 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 247878, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 247878,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3916,7 +5524,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5751 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.151284647950904, phaseCost: 12481 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28032, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28032,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.7076306688895664, phaseCost: 4760 },
@@ -3924,7 +5538,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5393 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.7076306688895664, phaseCost: 11147 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26186, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26186,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -3954,9 +5574,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27995 },
           decontaminationResults: { workDays: 4.0279381943466, onSiteDays: 4.0279381943466, phaseCost: 148687 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.077443549071084, phaseCost: 48337 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 363763, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 363763,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -3966,9 +5592,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40427 },
           decontaminationResults: { workDays: 3.1566542433939535, onSiteDays: 3.1566542433939535, phaseCost: 121440 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 28.199428191174313, phaseCost: 84782 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 470611, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 470611,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -3978,9 +5610,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13394 },
           decontaminationResults: { workDays: 3.204197646166244, onSiteDays: 3.204197646166244, phaseCost: 131511 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.719163915345238, phaseCost: 38240 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 239627, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 239627,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -3989,7 +5627,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5448 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.6584289173787923, phaseCost: 10999 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26393, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26393,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9492046044469205, phaseCost: 4760 },
@@ -3997,7 +5641,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5954 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9492046044469205, phaseCost: 11873 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28623, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28623,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4027,9 +5677,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27551 },
           decontaminationResults: { workDays: 4.658532285983332, onSiteDays: 4.658532285983332, phaseCost: 204371 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.787418373003383, phaseCost: 53478 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 425906, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 425906,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4039,9 +5695,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 33959 },
           decontaminationResults: { workDays: 4.5737971280640455, onSiteDays: 4.5737971280640455, phaseCost: 195543 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 22.596106037241093, phaseCost: 67935 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 538397, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 538397,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4051,9 +5713,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10750 },
           decontaminationResults: { workDays: 3.9551776896592177, onSiteDays: 3.9551776896592177, phaseCost: 171235 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.822884302823605, phaseCost: 41559 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 275930, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 275930,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4062,7 +5730,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5019 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.048788849698408, phaseCost: 12173 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27997, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27997,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9517448942917057, phaseCost: 4760 },
@@ -4070,7 +5744,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6059 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9517448942917057, phaseCost: 11881 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28501, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28501,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4100,9 +5780,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26473 },
           decontaminationResults: { workDays: 4.569757123377583, onSiteDays: 4.569757123377583, phaseCost: 204383 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.434642460227883, phaseCost: 46404 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 412896, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 412896,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4112,9 +5798,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 38050 },
           decontaminationResults: { workDays: 3.9636070483745094, onSiteDays: 3.9636070483745094, phaseCost: 171065 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.86459158647294, phaseCost: 59723 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 543836, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 543836,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4124,9 +5816,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12225 },
           decontaminationResults: { workDays: 4.923009832837389, onSiteDays: 4.923009832837389, phaseCost: 205662 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.924856536381647, phaseCost: 44872 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 314045, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 314045,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4135,7 +5833,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6021 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.163858245416323, phaseCost: 12519 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 29306, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 29306,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.030733651069984, phaseCost: 4760 },
@@ -4143,7 +5847,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5231 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.030733651069984, phaseCost: 12118 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27866, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27866,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4173,9 +5883,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22819 },
           decontaminationResults: { workDays: 4.42511021099638, onSiteDays: 4.42511021099638, phaseCost: 189733 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.909483925804153, phaseCost: 53845 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 400145, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 400145,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4185,9 +5901,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 37205 },
           decontaminationResults: { workDays: 4.006080228138268, onSiteDays: 4.006080228138268, phaseCost: 172213 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.776477769564032, phaseCost: 59458 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 490778, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 490778,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4197,9 +5919,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11855 },
           decontaminationResults: { workDays: 4.6232064360806735, onSiteDays: 4.6232064360806735, phaseCost: 202717 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.28052445964798, phaseCost: 48947 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 315125, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 315125,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4208,7 +5936,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5402 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.121613264006461, phaseCost: 12392 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27428, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27428,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.970354939658405, phaseCost: 4760 },
@@ -4216,7 +5950,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5445 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.970354939658405, phaseCost: 11937 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27847, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27847,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4246,9 +5986,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26997 },
           decontaminationResults: { workDays: 4.307582430380299, onSiteDays: 4.307582430380299, phaseCost: 158496 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 21.023554375052335, phaseCost: 63207 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 379160, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 379160,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4258,9 +6004,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39876 },
           decontaminationResults: { workDays: 3.7788040164808754, onSiteDays: 3.7788040164808754, phaseCost: 136117 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 31.907719540591614, phaseCost: 95931 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 502632, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 502632,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4270,9 +6022,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13317 },
           decontaminationResults: { workDays: 4.323273153818043, onSiteDays: 4.323273153818043, phaseCost: 172714 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.419654911776597, phaseCost: 40346 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 280115, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 280115,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4281,7 +6039,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5080 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.998979208397447, phaseCost: 12023 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27170, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27170,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.045976154281979, phaseCost: 4760 },
@@ -4289,7 +6053,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6101 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.045976154281979, phaseCost: 12164 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28059, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28059,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4319,9 +6089,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22669 },
           decontaminationResults: { workDays: 3.479634998012249, onSiteDays: 3.479634998012249, phaseCost: 145275 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.24390472542029, phaseCost: 48837 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 348665, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 348665,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4331,9 +6107,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40123 },
           decontaminationResults: { workDays: 4.440516987219573, onSiteDays: 4.440516987219573, phaseCost: 200730 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.3372799581407, phaseCost: 49118 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 509587, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 509587,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4343,9 +6125,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11520 },
           decontaminationResults: { workDays: 3.8315888919941123, onSiteDays: 3.8315888919941123, phaseCost: 151284 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.635835310254894, phaseCost: 37990 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 252266, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 252266,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4354,7 +6142,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6079 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.4387299913932017, phaseCost: 10339 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26943, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26943,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.1376680556695495, phaseCost: 4760 },
@@ -4362,7 +6156,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5610 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.1376680556695495, phaseCost: 12440 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27734, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27734,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4392,9 +6192,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23150 },
           decontaminationResults: { workDays: 3.5136547341276088, onSiteDays: 3.5136547341276088, phaseCost: 155709 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.884931741632087, phaseCost: 59784 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 374969, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 374969,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4404,9 +6210,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 34990 },
           decontaminationResults: { workDays: 3.363036768595464, onSiteDays: 3.363036768595464, phaseCost: 128027 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 24.67864333008295, phaseCost: 74196 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 450263, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 450263,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4416,9 +6228,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10755 },
           decontaminationResults: { workDays: 4.733622208641289, onSiteDays: 4.733622208641289, phaseCost: 197128 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.054173194930083, phaseCost: 42254 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 301315, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 301315,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4427,7 +6245,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5286 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.154137987504015, phaseCost: 12489 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27438, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27438,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.067114138452268, phaseCost: 4760 },
@@ -4435,7 +6259,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6029 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.067114138452268, phaseCost: 12228 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27931, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27931,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4465,9 +6295,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23573 },
           decontaminationResults: { workDays: 4.048605484666444, onSiteDays: 4.048605484666444, phaseCost: 163627 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.984844251471166, phaseCost: 48058 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 384996, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 384996,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4477,9 +6313,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41392 },
           decontaminationResults: { workDays: 4.648826562252088, onSiteDays: 4.648826562252088, phaseCost: 186196 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 22.169248676083726, phaseCost: 66652 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 509484, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 509484,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4489,9 +6331,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13440 },
           decontaminationResults: { workDays: 4.442090729587267, onSiteDays: 4.442090729587267, phaseCost: 162275 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.296802273582909, phaseCost: 42983 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 274402, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 274402,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4500,7 +6348,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5307 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9807679809175025, phaseCost: 11968 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27116, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27116,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.067867156083706, phaseCost: 4760 },
@@ -4508,7 +6362,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5711 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.067867156083706, phaseCost: 12230 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27649, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27649,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4538,9 +6398,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23241 },
           decontaminationResults: { workDays: 4.207543767338512, onSiteDays: 4.207543767338512, phaseCost: 162203 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.960112630627172, phaseCost: 63017 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 393619, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 393619,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4550,9 +6416,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39614 },
           decontaminationResults: { workDays: 4.297502581332228, onSiteDays: 4.297502581332228, phaseCost: 177318 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.497516755677047, phaseCost: 52606 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 492002, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 492002,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4562,9 +6434,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11501 },
           decontaminationResults: { workDays: 4.510695651059667, onSiteDays: 4.510695651059667, phaseCost: 187671 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.703189899885666, phaseCost: 41199 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 291379, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 291379,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4573,7 +6451,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6035 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.0969892793613925, phaseCost: 12318 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28001, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28001,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.732201009755624, phaseCost: 4760 },
@@ -4581,7 +6465,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4987 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.732201009755624, phaseCost: 11221 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26795, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26795,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4611,9 +6501,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22806 },
           decontaminationResults: { workDays: 4.4405979959854385, onSiteDays: 4.4405979959854385, phaseCost: 171698 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 21.99591671702127, phaseCost: 66131 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 408227, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 408227,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4623,9 +6519,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41827 },
           decontaminationResults: { workDays: 4.371907240564913, onSiteDays: 4.371907240564913, phaseCost: 186496 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.797614649103178, phaseCost: 59522 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 504669, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 504669,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4635,9 +6537,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11336 },
           decontaminationResults: { workDays: 4.435347046571632, onSiteDays: 4.435347046571632, phaseCost: 173016 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.10773121824442, phaseCost: 39408 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 275364, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 275364,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4646,7 +6554,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5224 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.068943731314242, phaseCost: 12233 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27646, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27646,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.02379615671351, phaseCost: 4760 },
@@ -4654,7 +6568,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5467 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.02379615671351, phaseCost: 12098 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27458, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27458,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4684,9 +6604,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27167 },
           decontaminationResults: { workDays: 4.940917468616021, onSiteDays: 4.940917468616021, phaseCost: 211567 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 23.879859391435144, phaseCost: 71795 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 456751, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 456751,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4696,9 +6622,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40846 },
           decontaminationResults: { workDays: 4.4794057694914295, onSiteDays: 4.4794057694914295, phaseCost: 200126 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.99547378820466, phaseCost: 60116 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 535918, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 535918,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4708,9 +6640,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10729 },
           decontaminationResults: { workDays: 3.3412408298675995, onSiteDays: 3.3412408298675995, phaseCost: 142643 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.248643255385371, phaseCost: 36826 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 242824, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 242824,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4719,7 +6657,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5927 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.006533172123915, phaseCost: 12046 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27958, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27958,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.054095093788146, phaseCost: 4760 },
@@ -4727,7 +6671,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5792 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.054095093788146, phaseCost: 12189 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28813, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28813,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4757,9 +6707,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23813 },
           decontaminationResults: { workDays: 4.59048126721533, onSiteDays: 4.59048126721533, phaseCost: 171588 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.371380891039088, phaseCost: 43208 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 374593, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 374593,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4769,9 +6725,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 37334 },
           decontaminationResults: { workDays: 4.865617376255248, onSiteDays: 4.865617376255248, phaseCost: 218173 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 30.184958271854164, phaseCost: 90751 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 573080, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 573080,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4781,9 +6743,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11377 },
           decontaminationResults: { workDays: 3.240811614841412, onSiteDays: 3.240811614841412, phaseCost: 125403 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.435483728519312, phaseCost: 37387 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 227127, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 227127,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4792,7 +6760,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5466 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.031710606874297, phaseCost: 12121 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27691, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27691,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.8709102440022134, phaseCost: 4760 },
@@ -4800,7 +6774,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6095 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.8709102440022134, phaseCost: 11638 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27962, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27962,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4830,9 +6810,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22570 },
           decontaminationResults: { workDays: 4.892112192207042, onSiteDays: 4.892112192207042, phaseCost: 185855 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.11789458107151, phaseCost: 48458 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 391783, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 391783,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4842,9 +6828,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 36875 },
           decontaminationResults: { workDays: 3.675094946444755, onSiteDays: 3.675094946444755, phaseCost: 176517 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 22.88264852076709, phaseCost: 68797 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 500673, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 500673,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4854,9 +6846,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10528 },
           decontaminationResults: { workDays: 3.5781366509800163, onSiteDays: 3.5781366509800163, phaseCost: 150653 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.616351925843542, phaseCost: 37931 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 251124, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 251124,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4865,7 +6863,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5463 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.027488354808198, phaseCost: 12109 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27594, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27594,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.026157509519788, phaseCost: 4760 },
@@ -4873,7 +6877,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5149 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.026157509519788, phaseCost: 12105 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27427, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27427,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4903,9 +6913,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25832 },
           decontaminationResults: { workDays: 3.5095311166973624, onSiteDays: 3.5095311166973624, phaseCost: 158160 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.164677945496575, phaseCost: 45593 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 380509, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 380509,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4915,9 +6931,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39103 },
           decontaminationResults: { workDays: 4.871749384764524, onSiteDays: 4.871749384764524, phaseCost: 194898 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.605316976678168, phaseCost: 52930 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 503585, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 503585,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -4927,9 +6949,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11607 },
           decontaminationResults: { workDays: 4.13857570317075, onSiteDays: 4.13857570317075, phaseCost: 172993 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.974833507474695, phaseCost: 42015 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 307115, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 307115,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -4938,7 +6966,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5848 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.098571483597971, phaseCost: 12322 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28622, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28622,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.006418687809232, phaseCost: 4760 },
@@ -4946,7 +6980,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5541 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.006418687809232, phaseCost: 12045 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27664, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27664,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -4976,9 +7016,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23015 },
           decontaminationResults: { workDays: 3.1107845730406196, onSiteDays: 3.1107845730406196, phaseCost: 140026 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.711400130674274, phaseCost: 47236 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 344965, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 344965,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -4988,9 +7034,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41913 },
           decontaminationResults: { workDays: 3.1571237212412813, onSiteDays: 3.1571237212412813, phaseCost: 157096 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 27.28937837554827, phaseCost: 82046 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 506187, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 506187,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5000,9 +7052,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11847 },
           decontaminationResults: { workDays: 4.6609552143283555, onSiteDays: 4.6609552143283555, phaseCost: 185791 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.473056732422085, phaseCost: 40507 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 290269, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 290269,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5011,7 +7069,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6092 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.10261029892642, phaseCost: 12335 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28586, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28586,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.010602010918086, phaseCost: 4760 },
@@ -5019,7 +7083,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4930 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.010602010918086, phaseCost: 12058 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26918, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26918,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5049,9 +7119,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22101 },
           decontaminationResults: { workDays: 4.879956716177975, onSiteDays: 4.879956716177975, phaseCost: 207283 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.90698650500705, phaseCost: 53837 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 415335, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 415335,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5061,9 +7137,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 37869 },
           decontaminationResults: { workDays: 4.993909295646918, onSiteDays: 4.993909295646918, phaseCost: 207199 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 24.39663129111451, phaseCost: 73349 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 537877, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 537877,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5073,9 +7155,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10834 },
           decontaminationResults: { workDays: 4.241048283698281, onSiteDays: 4.241048283698281, phaseCost: 152149 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.952967035275659, phaseCost: 38943 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 255876, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 255876,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5084,7 +7172,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5594 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.126864743420267, phaseCost: 12407 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27937, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27937,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.5879056998480054, phaseCost: 4760 },
@@ -5092,7 +7186,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6049 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.5879056998480054, phaseCost: 10787 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27505, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27505,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5122,9 +7222,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24155 },
           decontaminationResults: { workDays: 4.489486959178347, onSiteDays: 4.489486959178347, phaseCost: 166657 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.19789823454193, phaseCost: 51706 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 390302, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 390302,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5134,9 +7240,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 37037 },
           decontaminationResults: { workDays: 3.578000567522366, onSiteDays: 3.578000567522366, phaseCost: 142905 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 25.492033443331948, phaseCost: 76642 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 497888, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 497888,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5146,9 +7258,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13126 },
           decontaminationResults: { workDays: 4.39727595527593, onSiteDays: 4.39727595527593, phaseCost: 197150 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.51418915880994, phaseCost: 40630 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 303682, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 303682,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5157,7 +7275,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5155 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.087829680279571, phaseCost: 12290 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27659, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27659,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.119438427066996, phaseCost: 4760 },
@@ -5165,7 +7289,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5107 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.119438427066996, phaseCost: 12385 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27506, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27506,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5195,9 +7325,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22569 },
           decontaminationResults: { workDays: 4.4272263989381555, onSiteDays: 4.4272263989381555, phaseCost: 172799 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.209075942879561, phaseCost: 42720 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 369464, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 369464,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5207,9 +7343,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 42229 },
           decontaminationResults: { workDays: 3.6029444361578076, onSiteDays: 3.6029444361578076, phaseCost: 159431 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.64229248422508, phaseCost: 59055 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 478465, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 478465,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5219,9 +7361,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12459 },
           decontaminationResults: { workDays: 3.9086268616161837, onSiteDays: 3.9086268616161837, phaseCost: 145246 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.163318582451158, phaseCost: 39576 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 250439, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 250439,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5230,7 +7378,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5969 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.7895659994475057, phaseCost: 11393 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27137, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27137,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.98673221865967, phaseCost: 4760 },
@@ -5238,7 +7392,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4891 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.98673221865967, phaseCost: 11986 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27769, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27769,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5268,9 +7428,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24762 },
           decontaminationResults: { workDays: 3.2910905499689025, onSiteDays: 3.2910905499689025, phaseCost: 153875 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.894162528738917, phaseCost: 47786 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 370223, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 370223,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5280,9 +7446,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39483 },
           decontaminationResults: { workDays: 4.4770552840728906, onSiteDays: 4.4770552840728906, phaseCost: 200834 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.931693824753815, phaseCost: 53912 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 522823, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 522823,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5292,9 +7464,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11004 },
           decontaminationResults: { workDays: 4.646936818409463, onSiteDays: 4.646936818409463, phaseCost: 187406 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.728513986633843, phaseCost: 41275 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 292755, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 292755,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5303,7 +7481,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5805 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.5564994146643008, phaseCost: 10693 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27113, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27113,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9780409008508464, phaseCost: 4760 },
@@ -5311,7 +7495,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5065 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9780409008508464, phaseCost: 11960 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27865, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27865,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5341,9 +7531,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27393 },
           decontaminationResults: { workDays: 3.8052260309469945, onSiteDays: 3.8052260309469945, phaseCost: 162177 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.765542635321271, phaseCost: 47399 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 373453, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 373453,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5353,9 +7549,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 33861 },
           decontaminationResults: { workDays: 3.45373089063301, onSiteDays: 3.45373089063301, phaseCost: 153369 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.308243730410997, phaseCost: 61057 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 511463, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 511463,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5365,9 +7567,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13466 },
           decontaminationResults: { workDays: 4.73296908329543, onSiteDays: 4.73296908329543, phaseCost: 203709 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.279289676156, phaseCost: 39924 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 312905, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 312905,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5376,7 +7584,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5120 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.146645723744248, phaseCost: 12467 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27129, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27129,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9230110377392355, phaseCost: 4760 },
@@ -5384,7 +7598,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5597 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9230110377392355, phaseCost: 11795 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27725, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27725,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5414,9 +7634,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22210 },
           decontaminationResults: { workDays: 3.8435738051411636, onSiteDays: 3.8435738051411636, phaseCost: 172063 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.954715454586378, phaseCost: 50974 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 388555, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 388555,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5426,9 +7652,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 36916 },
           decontaminationResults: { workDays: 3.3186294358034223, onSiteDays: 3.3186294358034223, phaseCost: 141944 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 21.678489890778728, phaseCost: 65176 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 477728, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 477728,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5438,9 +7670,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12545 },
           decontaminationResults: { workDays: 3.9716208300021525, onSiteDays: 3.9716208300021525, phaseCost: 172788 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.846460265168233, phaseCost: 41629 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 293106, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 293106,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5449,7 +7687,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5581 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9153254056807967, phaseCost: 11771 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27488, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27488,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.078566064725365, phaseCost: 4760 },
@@ -5457,7 +7701,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4914 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.078566064725365, phaseCost: 12262 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27097, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27097,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5487,9 +7737,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23877 },
           decontaminationResults: { workDays: 3.58307922272549, onSiteDays: 3.58307922272549, phaseCost: 135995 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.979209161682505, phaseCost: 54055 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 347263, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 347263,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5499,9 +7755,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 37791 },
           decontaminationResults: { workDays: 3.7234212040722885, onSiteDays: 3.7234212040722885, phaseCost: 154970 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.725279400875223, phaseCost: 56298 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 475829, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 475829,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5511,9 +7773,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13191 },
           decontaminationResults: { workDays: 3.7899754417105522, onSiteDays: 3.7899754417105522, phaseCost: 158717 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.818919440152357, phaseCost: 38540 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 261130, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 261130,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5522,7 +7790,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5021 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.1191555909395605, phaseCost: 12384 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28261, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28261,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.852374567269233, phaseCost: 4760 },
@@ -5530,7 +7804,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5312 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.852374567269233, phaseCost: 11582 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27513, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27513,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5560,9 +7840,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23562 },
           decontaminationResults: { workDays: 4.093870525037374, onSiteDays: 4.093870525037374, phaseCost: 158064 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.638199354479703, phaseCost: 59042 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 381694, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 381694,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5572,9 +7858,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41876 },
           decontaminationResults: { workDays: 4.865028980156646, onSiteDays: 4.865028980156646, phaseCost: 212781 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 26.950841582646937, phaseCost: 81028 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 556819, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 556819,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5584,9 +7876,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12603 },
           decontaminationResults: { workDays: 3.4927185383841204, onSiteDays: 3.4927185383841204, phaseCost: 128787 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.81839892626402, phaseCost: 38539 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 231481, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 231481,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5595,7 +7893,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6030 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.157698340501057, phaseCost: 12500 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28790, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28790,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.7862228380667515, phaseCost: 4760 },
@@ -5603,7 +7907,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6165 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.7862228380667515, phaseCost: 11383 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27359, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27359,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5633,9 +7943,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24829 },
           decontaminationResults: { workDays: 4.942098966320534, onSiteDays: 4.942098966320534, phaseCost: 210706 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.265173503622343, phaseCost: 48901 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 421308, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 421308,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5645,9 +7961,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39186 },
           decontaminationResults: { workDays: 4.429241202173112, onSiteDays: 4.429241202173112, phaseCost: 167005 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.547534409768698, phaseCost: 58770 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 486649, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 486649,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5657,9 +7979,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11099 },
           decontaminationResults: { workDays: 4.61379261724972, onSiteDays: 4.61379261724972, phaseCost: 172073 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.663132595671051, phaseCost: 41078 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 274084, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 274084,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5668,7 +7996,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5162 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.911556961737751, phaseCost: 11760 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27810, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27810,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.004655554237685, phaseCost: 4760 },
@@ -5676,7 +8010,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5846 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.004655554237685, phaseCost: 12040 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28387, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28387,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5706,9 +8046,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26365 },
           decontaminationResults: { workDays: 4.026010062784424, onSiteDays: 4.026010062784424, phaseCost: 162474 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.3334287165615, phaseCost: 52113 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 373872, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 373872,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5718,9 +8064,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40253 },
           decontaminationResults: { workDays: 3.18619399615242, onSiteDays: 3.18619399615242, phaseCost: 138549 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 22.501940092454397, phaseCost: 67652 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 460568, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 460568,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5730,9 +8082,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12451 },
           decontaminationResults: { workDays: 3.1641643955754497, onSiteDays: 3.1641643955754497, phaseCost: 138525 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.582846132617288, phaseCost: 40837 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 244551, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 244551,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5741,7 +8099,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5870 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.078208586529808, phaseCost: 12261 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28585, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28585,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.092492627585882, phaseCost: 4760 },
@@ -5749,7 +8113,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5355 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.092492627585882, phaseCost: 12304 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27211, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27211,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5779,9 +8149,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25014 },
           decontaminationResults: { workDays: 3.140446033827133, onSiteDays: 3.140446033827133, phaseCost: 139292 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 22.09661919090651, phaseCost: 66434 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 370530, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 370530,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5791,9 +8167,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41615 },
           decontaminationResults: { workDays: 3.274162225954738, onSiteDays: 3.274162225954738, phaseCost: 146826 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.808256418277928, phaseCost: 56547 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 455068, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 455068,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5803,9 +8185,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13432 },
           decontaminationResults: { workDays: 3.638158230259586, onSiteDays: 3.638158230259586, phaseCost: 134385 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.345160142806353, phaseCost: 43129 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 241384, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 241384,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5814,7 +8202,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6012 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.023414277029275, phaseCost: 12096 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28699, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28699,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.13781803536031, phaseCost: 4760 },
@@ -5822,7 +8216,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5421 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.13781803536031, phaseCost: 12440 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28587, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28587,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5852,9 +8252,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23869 },
           decontaminationResults: { workDays: 3.9116502820774097, onSiteDays: 3.9116502820774097, phaseCost: 184199 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.89854150812405, phaseCost: 47799 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 391133, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 391133,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5864,9 +8270,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 37493 },
           decontaminationResults: { workDays: 4.146525618421502, onSiteDays: 4.146525618421502, phaseCost: 150994 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 24.98447192587367, phaseCost: 75116 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 475357, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 475357,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5876,9 +8288,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10999 },
           decontaminationResults: { workDays: 4.707813993959644, onSiteDays: 4.707813993959644, phaseCost: 169505 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.433073017590903, phaseCost: 43393 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 278825, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 278825,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5887,7 +8305,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5517 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.099044368604077, phaseCost: 12324 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27980, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27980,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.8353300084333593, phaseCost: 4760 },
@@ -5895,7 +8319,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6053 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.8353300084333593, phaseCost: 11531 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28313, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28313,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5925,9 +8355,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25534 },
           decontaminationResults: { workDays: 3.4728430785408344, onSiteDays: 3.4728430785408344, phaseCost: 150662 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.790691782492736, phaseCost: 50481 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 370149, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 370149,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -5937,9 +8373,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 35494 },
           decontaminationResults: { workDays: 3.991075815863692, onSiteDays: 3.991075815863692, phaseCost: 170464 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.94852755574348, phaseCost: 62982 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 513114, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 513114,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -5949,9 +8391,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11650 },
           decontaminationResults: { workDays: 4.13016346775232, onSiteDays: 4.13016346775232, phaseCost: 169094 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.622456327191792, phaseCost: 37949 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 269087, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 269087,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -5960,7 +8408,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5599 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9790121771372045, phaseCost: 11963 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27176, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27176,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9476800299632515, phaseCost: 4760 },
@@ -5968,7 +8422,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5818 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9476800299632515, phaseCost: 11869 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27755, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27755,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -5998,9 +8458,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25698 },
           decontaminationResults: { workDays: 4.7519003068450605, onSiteDays: 4.7519003068450605, phaseCost: 201861 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.625055953473549, phaseCost: 46977 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 405732, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 405732,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6010,9 +8476,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39555 },
           decontaminationResults: { workDays: 4.434210933147513, onSiteDays: 4.434210933147513, phaseCost: 170534 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.128513051479867, phaseCost: 60516 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 483829, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 483829,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6022,9 +8494,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12738 },
           decontaminationResults: { workDays: 4.674936582258654, onSiteDays: 4.674936582258654, phaseCost: 196916 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.914744202748357, phaseCost: 44841 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 312487, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 312487,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6033,7 +8511,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5639 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.069522916476357, phaseCost: 12235 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28517, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28517,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.858753241802697, phaseCost: 4760 },
@@ -6041,7 +8525,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5846 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.858753241802697, phaseCost: 11601 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27267, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27267,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6071,9 +8561,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 25083 },
           decontaminationResults: { workDays: 4.82941002953551, onSiteDays: 4.82941002953551, phaseCost: 212889 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.568856347047706, phaseCost: 52821 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 429329, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 429329,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6083,9 +8579,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 37937 },
           decontaminationResults: { workDays: 3.3747012597449824, onSiteDays: 3.3747012597449824, phaseCost: 139564 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.476488403546302, phaseCost: 55550 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 457417, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 457417,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6095,9 +8597,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10824 },
           decontaminationResults: { workDays: 4.6933909439699235, onSiteDays: 4.6933909439699235, phaseCost: 183353 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.106641812268604, phaseCost: 39405 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 284082, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 284082,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6106,7 +8614,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6117 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.7826903090916986, phaseCost: 11373 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27331, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27331,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.120909518886201, phaseCost: 4760 },
@@ -6114,7 +8628,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5899 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.120909518886201, phaseCost: 12390 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28895, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28895,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6144,9 +8664,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 22853 },
           decontaminationResults: { workDays: 3.8941505981828435, onSiteDays: 3.8941505981828435, phaseCost: 155035 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.516467503678893, phaseCost: 61683 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 376345, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 376345,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6156,9 +8682,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 37323 },
           decontaminationResults: { workDays: 4.257771646896789, onSiteDays: 4.257771646896789, phaseCost: 189228 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.220603605222546, phaseCost: 48767 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 486914, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 486914,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6168,9 +8700,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12180 },
           decontaminationResults: { workDays: 4.696677138026962, onSiteDays: 4.696677138026962, phaseCost: 167209 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.137777828359383, phaseCost: 39499 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 270572, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 270572,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6179,7 +8717,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5237 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9005482629652226, phaseCost: 11727 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27859, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27859,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9216862273414392, phaseCost: 4760 },
@@ -6187,7 +8731,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5746 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9216862273414392, phaseCost: 11791 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28092, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28092,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6217,9 +8767,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24866 },
           decontaminationResults: { workDays: 3.2771966835197985, onSiteDays: 3.2771966835197985, phaseCost: 141067 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.725981171217462, phaseCost: 47280 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 347371, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 347371,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6229,9 +8785,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 33405 },
           decontaminationResults: { workDays: 3.629975976569107, onSiteDays: 3.629975976569107, phaseCost: 168928 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.26223520587285, phaseCost: 54905 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 477616, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 477616,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6241,9 +8803,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10986 },
           decontaminationResults: { workDays: 3.087342650184255, onSiteDays: 3.087342650184255, phaseCost: 112933 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.28985315763561, phaseCost: 36949 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 211374, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 211374,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6252,7 +8820,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5461 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.814690230031428, phaseCost: 11469 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27364, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27364,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.156671365995049, phaseCost: 4760 },
@@ -6260,7 +8834,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5310 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.156671365995049, phaseCost: 12497 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27421, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27421,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6290,9 +8870,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26134 },
           decontaminationResults: { workDays: 4.4361140172547, onSiteDays: 4.4361140172547, phaseCost: 170974 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.861076035218826, phaseCost: 59712 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 455162, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 455162,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6302,9 +8888,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39421 },
           decontaminationResults: { workDays: 4.292543595026373, onSiteDays: 4.292543595026373, phaseCost: 165161 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 26.135764661007144, phaseCost: 78577 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 497753, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 497753,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6314,9 +8906,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11882 },
           decontaminationResults: { workDays: 4.75304918497639, onSiteDays: 4.75304918497639, phaseCost: 188205 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.653813802975105, phaseCost: 41050 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 294431, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 294431,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6325,7 +8923,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5359 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.1215363313498035, phaseCost: 12391 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28137, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28137,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.000569766193138, phaseCost: 4760 },
@@ -6333,7 +8937,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5615 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.000569766193138, phaseCost: 12028 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27535, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27535,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6363,9 +8973,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23781 },
           decontaminationResults: { workDays: 4.940098332692892, onSiteDays: 4.940098332692892, phaseCost: 200295 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 21.212013214779642, phaseCost: 63774 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 459538, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 459538,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6375,9 +8991,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39481 },
           decontaminationResults: { workDays: 4.389437815497964, onSiteDays: 4.389437815497964, phaseCost: 199025 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 33.176616098252936, phaseCost: 99746 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 560300, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 560300,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6387,9 +9009,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10615 },
           decontaminationResults: { workDays: 4.119241869803341, onSiteDays: 4.119241869803341, phaseCost: 152209 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.042015086061765, phaseCost: 42217 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 254931, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 254931,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6398,7 +9026,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5183 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.819736657579919, phaseCost: 11484 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26341, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26341,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.030778385674857, phaseCost: 4760 },
@@ -6406,7 +9040,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4952 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.030778385674857, phaseCost: 12119 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26686, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26686,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6436,9 +9076,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 26387 },
           decontaminationResults: { workDays: 4.603802856896958, onSiteDays: 4.603802856896958, phaseCost: 179192 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.44353339837693, phaseCost: 58457 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 399636, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 399636,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6448,9 +9094,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39796 },
           decontaminationResults: { workDays: 3.971092856715222, onSiteDays: 3.971092856715222, phaseCost: 151108 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 24.649165778364548, phaseCost: 74108 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 481468, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 481468,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6460,9 +9112,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10974 },
           decontaminationResults: { workDays: 3.174831830471482, onSiteDays: 3.174831830471482, phaseCost: 142458 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.178187106331091, phaseCost: 42627 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 282031, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 282031,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6471,7 +9129,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4844 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.0668997668008835, phaseCost: 12227 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27931, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27931,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9979840613797633, phaseCost: 4760 },
@@ -6479,7 +9143,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5321 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9979840613797633, phaseCost: 12020 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27065, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27065,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6509,9 +9179,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23029 },
           decontaminationResults: { workDays: 4.939683606834077, onSiteDays: 4.939683606834077, phaseCost: 189979 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 16.337774689048445, phaseCost: 49120 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 411722, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 411722,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6521,9 +9197,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 35511 },
           decontaminationResults: { workDays: 4.637369097591696, onSiteDays: 4.637369097591696, phaseCost: 191059 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 31.372584843389518, phaseCost: 94322 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 603698, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 603698,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6533,9 +9215,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10586 },
           decontaminationResults: { workDays: 4.851902852731734, onSiteDays: 4.851902852731734, phaseCost: 211208 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.537139337460797, phaseCost: 40699 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 315335, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 315335,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6544,7 +9232,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5107 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.09205973995663, phaseCost: 12303 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27359, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27359,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.7666492047998927, phaseCost: 4760 },
@@ -6552,7 +9246,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5094 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.7666492047998927, phaseCost: 11324 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26504, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26504,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6582,9 +9282,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23104 },
           decontaminationResults: { workDays: 3.7308177758778487, onSiteDays: 3.7308177758778487, phaseCost: 153643 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.65875997809365, phaseCost: 44072 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 351665, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 351665,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6594,9 +9300,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 38678 },
           decontaminationResults: { workDays: 3.7194923923163423, onSiteDays: 3.7194923923163423, phaseCost: 155124 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.255663317918575, phaseCost: 54886 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 483624, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 483624,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6606,9 +9318,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12306 },
           decontaminationResults: { workDays: 3.5821805527857924, onSiteDays: 3.5821805527857924, phaseCost: 147063 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.73327174198101, phaseCost: 38283 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 249612, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 249612,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6617,7 +9335,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5641 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.8991471445748855, phaseCost: 11723 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27734, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27734,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9982108462165256, phaseCost: 4760 },
@@ -6625,7 +9349,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5057 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9982108462165256, phaseCost: 12021 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26874, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26874,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6655,9 +9385,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23964 },
           decontaminationResults: { workDays: 3.3498143088887016, onSiteDays: 3.3498143088887016, phaseCost: 134863 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.719690405096042, phaseCost: 47261 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 337562, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 337562,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6667,9 +9403,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 33485 },
           decontaminationResults: { workDays: 3.993302782763099, onSiteDays: 3.993302782763099, phaseCost: 147301 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 24.811621596935016, phaseCost: 74596 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 480822, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 480822,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6679,9 +9421,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13247 },
           decontaminationResults: { workDays: 3.4985642033858606, onSiteDays: 3.4985642033858606, phaseCost: 136491 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.740302621659467, phaseCost: 41310 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 241416, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 241416,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6690,7 +9438,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5011 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.059309039036361, phaseCost: 12204 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27872, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27872,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.032496160898068, phaseCost: 4760 },
@@ -6698,7 +9452,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5841 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.032496160898068, phaseCost: 12124 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28783, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28783,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6728,9 +9488,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23570 },
           decontaminationResults: { workDays: 4.42426081128052, onSiteDays: 4.42426081128052, phaseCost: 203697 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.48861135800728, phaseCost: 52580 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 451563, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 451563,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6740,9 +9506,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 37906 },
           decontaminationResults: { workDays: 4.386240492431969, onSiteDays: 4.386240492431969, phaseCost: 188076 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.865369122263868, phaseCost: 59725 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 501135, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 501135,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6752,9 +9524,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10530 },
           decontaminationResults: { workDays: 3.1539396425136226, onSiteDays: 3.1539396425136226, phaseCost: 115779 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 11.898486017937573, phaseCost: 35773 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 212630, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 212630,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6763,7 +9541,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5236 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.0108597223826905, phaseCost: 12059 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27849, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27849,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.681121786742695, phaseCost: 4760 },
@@ -6771,7 +9555,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5243 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.681121786742695, phaseCost: 11067 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26362, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26362,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6801,9 +9591,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23854 },
           decontaminationResults: { workDays: 3.226040965930103, onSiteDays: 3.226040965930103, phaseCost: 122045 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.704941969101876, phaseCost: 47217 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 331858, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 331858,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6813,9 +9609,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 37222 },
           decontaminationResults: { workDays: 4.92018753241752, onSiteDays: 4.92018753241752, phaseCost: 190312 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.92389254995276, phaseCost: 62908 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 520608, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 520608,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6825,9 +9627,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13435 },
           decontaminationResults: { workDays: 4.544562192062047, onSiteDays: 4.544562192062047, phaseCost: 181853 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 15.121750398163988, phaseCost: 45464 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 292324, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 292324,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6836,7 +9644,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4897 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.03575470445826, phaseCost: 12134 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27478, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27478,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.8396424211207743, phaseCost: 4760 },
@@ -6844,7 +9658,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6048 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.8396424211207743, phaseCost: 11544 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28221, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28221,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6874,9 +9694,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27227 },
           decontaminationResults: { workDays: 4.8073676465562, onSiteDays: 4.8073676465562, phaseCost: 211592 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.94299386023249, phaseCost: 62965 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 435146, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 435146,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6886,9 +9712,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 40171 },
           decontaminationResults: { workDays: 3.5786957262499945, onSiteDays: 3.5786957262499945, phaseCost: 152715 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 20.236397175056627, phaseCost: 60841 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 476021, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 476021,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6898,9 +9730,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13110 },
           decontaminationResults: { workDays: 4.882043551626159, onSiteDays: 4.882043551626159, phaseCost: 179604 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.999729474700418, phaseCost: 45097 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 290151, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 290151,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6909,7 +9747,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5622 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.8412912149204015, phaseCost: 11549 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27705, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27705,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.14604830041538, phaseCost: 4760 },
@@ -6917,7 +9761,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5554 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.14604830041538, phaseCost: 12465 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27546, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27546,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -6947,9 +9797,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 27844 },
           decontaminationResults: { workDays: 4.982783785551503, onSiteDays: 4.982783785551503, phaseCost: 206417 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 25.895022300001024, phaseCost: 77853 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 560470, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 560470,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -6959,9 +9815,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41705 },
           decontaminationResults: { workDays: 4.344167939700226, onSiteDays: 4.344167939700226, phaseCost: 175667 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.05147464461168, phaseCost: 57278 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 486398, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 486398,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -6971,9 +9833,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 11194 },
           decontaminationResults: { workDays: 3.5883017369984422, onSiteDays: 3.5883017369984422, phaseCost: 143672 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 13.021915428083332, phaseCost: 39150 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 250476, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 250476,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -6982,7 +9850,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5369 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.050982850062455, phaseCost: 12179 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27973, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27973,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.6253833390901504, phaseCost: 4760 },
@@ -6990,7 +9864,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5446 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.6253833390901504, phaseCost: 10900 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26519, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26519,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -7020,9 +9900,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 23121 },
           decontaminationResults: { workDays: 3.992776561293932, onSiteDays: 3.992776561293932, phaseCost: 159490 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.51734347005135, phaseCost: 43646 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 368329, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 368329,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -7032,9 +9918,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 41789 },
           decontaminationResults: { workDays: 4.816318997604847, onSiteDays: 4.816318997604847, phaseCost: 184615 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 18.319919861504243, phaseCost: 55079 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 500463, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 500463,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -7044,9 +9936,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 12123 },
           decontaminationResults: { workDays: 4.185379440240883, onSiteDays: 4.185379440240883, phaseCost: 164478 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.820167215024345, phaseCost: 38544 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 265365, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 265365,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -7055,7 +9953,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5160 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.567168472923293, phaseCost: 10725 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 25416, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 25416,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 4.163995904447489, phaseCost: 4760 },
@@ -7063,7 +9967,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5678 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 4.163995904447489, phaseCost: 12519 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28257, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28257,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -7093,9 +10003,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24404 },
           decontaminationResults: { workDays: 4.097684746398052, onSiteDays: 4.097684746398052, phaseCost: 165082 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.86922320457319, phaseCost: 53724 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 375000, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 375000,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -7105,9 +10021,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 39177 },
           decontaminationResults: { workDays: 4.560632442487551, onSiteDays: 4.560632442487551, phaseCost: 205544 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.956687351449787, phaseCost: 53987 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 539080, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 539080,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -7117,9 +10039,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 13155 },
           decontaminationResults: { workDays: 3.539837343278303, onSiteDays: 3.539837343278303, phaseCost: 139192 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.992219650348815, phaseCost: 39061 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 241884, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 241884,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -7128,7 +10056,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 4844 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9104584804527103, phaseCost: 11757 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 26490, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 26490,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.8504504139778195, phaseCost: 4760 },
@@ -7136,7 +10070,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5882 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.8504504139778195, phaseCost: 11576 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28326, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28326,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -7166,9 +10106,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24644 },
           decontaminationResults: { workDays: 3.8199349573859793, onSiteDays: 3.8199349573859793, phaseCost: 157499 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.47319168974986, phaseCost: 43514 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 357113, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 357113,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -7178,9 +10124,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 36988 },
           decontaminationResults: { workDays: 4.937915912814884, onSiteDays: 4.937915912814884, phaseCost: 219990 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 17.612851172584424, phaseCost: 52953 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 523243, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 523243,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -7190,9 +10142,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10854 },
           decontaminationResults: { workDays: 4.020841652299474, onSiteDays: 4.020841652299474, phaseCost: 147280 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 12.717051306323015, phaseCost: 38234 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 249616, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 249616,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -7201,7 +10159,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5668 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9985970520565184, phaseCost: 12022 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27951, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27951,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.9168760890070167, phaseCost: 4760 },
@@ -7209,7 +10173,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 6159 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.9168760890070167, phaseCost: 11776 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28290, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28290,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
@@ -7239,9 +10209,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4769448339280918, onSiteDays: 0.4769448339280918, phaseCost: 24203 },
           decontaminationResults: { workDays: 4.0439673110479415, onSiteDays: 4.0439673110479415, phaseCost: 161786 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 19.47046458646924, phaseCost: 58538 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 391649, areaContaminated: 249.2898333333333, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 391649,
+            areaContaminated: 249.2898333333333,
+            decontaminationRounds: 1,
+          },
         },
         Commercial: {
           characterizationSamplingResults: {
@@ -7251,9 +10227,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7949080565468197, onSiteDays: 0.7949080565468197, phaseCost: 42191 },
           decontaminationResults: { workDays: 4.89889514630169, onSiteDays: 4.89889514630169, phaseCost: 181530 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 23.886908491071523, phaseCost: 71816 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 522363, areaContaminated: 415.48305555555555, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 522363,
+            areaContaminated: 415.48305555555555,
+            decontaminationRounds: 1,
+          },
         },
         Industrial: {
           characterizationSamplingResults: {
@@ -7263,9 +10245,15 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.15898161130936397, onSiteDays: 0.15898161130936397, phaseCost: 10480 },
           decontaminationResults: { workDays: 3.8574172916955822, onSiteDays: 3.8574172916955822, phaseCost: 162993 },
-        wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
+          wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
           incidentCommandResults: { onSiteDays: 14.023197004212076, phaseCost: 42161 },
-          generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 266412, areaContaminated: 83.0966111111111, decontaminationRounds: 1 },
+          generalResults: {
+            solidWasteProduced: 200.0,
+            aqueousWasteProduced: 150.0,
+            totalCost: 266412,
+            areaContaminated: 83.0966111111111,
+            decontaminationRounds: 1,
+          },
         },
       },
       outdoorResults: {
@@ -7274,7 +10262,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5561 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.980494029566859, phaseCost: 11967 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 28182, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 28182,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
       undergroundResults: {
         characterizationSamplingResults: { workDays: 0, onSiteDays: 3.873104745202338, phaseCost: 4760 },
@@ -7282,7 +10276,13 @@ const mockResults: IJobResultRealization[] = [
         decontaminationResults: { workDays: 0, onSiteDays: 0, phaseCost: 5724 },
         wasteSamplingResults: { workDays: 9.0, onSiteDays: 20.037639040156435, phaseCost: 60243 },
         incidentCommandResults: { onSiteDays: 3.873104745202338, phaseCost: 11644 },
-        generalResults: { solidWasteProduced: 200.0, aqueousWasteProduced: 150.0, totalCost: 27081, areaContaminated: 0, decontaminationRounds: 0 },
+        generalResults: {
+          solidWasteProduced: 200.0,
+          aqueousWasteProduced: 150.0,
+          totalCost: 27081,
+          areaContaminated: 0,
+          decontaminationRounds: 0,
+        },
       },
     },
     eventResults: {
