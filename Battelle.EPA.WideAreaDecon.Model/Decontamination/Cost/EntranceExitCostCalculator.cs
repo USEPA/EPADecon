@@ -58,6 +58,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost
                 }
             }
 
+            if (laborDays == 0.0)
+            {
+                return 0.0;
+            }
+
             var totalPersonnel = _personnelReqPerTeam.Values.Sum() * numberTeams;
 
             var numTeamsByPPE = 0;

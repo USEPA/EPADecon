@@ -33,6 +33,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Time
 
         public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
+            numberLabs = _labDistanceFromSite.Count;
+
             var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
 
             var surfaceAreaToBeWiped = _fractionSampledWipe * totalArea;
