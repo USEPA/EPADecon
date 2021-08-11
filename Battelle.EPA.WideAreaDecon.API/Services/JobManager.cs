@@ -173,6 +173,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                         //Store results for realization
                         results.Add(realizationResults);
+
+                        cancelCancellationTokenSource.Token.ThrowIfCancellationRequested();
                     }
 
                     //Store results of model in job
@@ -180,11 +182,22 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                     await _statusUpdater.UpdateJobStatus(Running, JobStatus.Completed);
                     
-                } catch (Exception e)
+                } 
+                catch (OperationCanceledException e)
+                {
+                    // Job was cancelled
+                    Console.WriteLine(e);
+                    await _statusUpdater.UpdateJobStatus(Running, JobStatus.Cancelled);
+                }
+                catch (Exception e)
                 {
                     Console.Error.WriteLine(e);
                     // TODO display error on front end?
                     await _statusUpdater.UpdateJobStatus(Running, JobStatus.Error);
+                }
+                finally
+                {
+                    cancelCancellationTokenSource.Dispose();
                 }
 
                 Finished.Add(Running);
@@ -194,6 +207,14 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         public JobStatus GetStatus(Guid id) => GetJob(id)?.Status ?? JobStatus.Unknown;
 
         public JobRequest GetJob(Guid id) => AllJobs.FirstOrDefault(request => request.Id == id);
+
+        public void CancelJob()
+        {
+            if (Running != null && !cancelCancellationTokenSource.IsCancellationRequested)
+            {
+                cancelCancellationTokenSource.Cancel();
+            }
+        }
 
         //public bool UpdateJob(JobRequest newJob)
         //{

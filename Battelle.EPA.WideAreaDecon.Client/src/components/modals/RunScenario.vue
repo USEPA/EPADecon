@@ -66,7 +66,7 @@
             {{ runButtonText }}
           </v-btn>
           <v-btn v-else outlined color="primary darken-1" text @click="viewResults"> View Results </v-btn>
-          <v-btn outlined color="primary darken-1" text @click="isVisible = false"> Cancel </v-btn>
+          <v-btn outlined color="primary darken-1" text @click="closeOrCancel"> {{ secondaryButtonText }} </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -95,6 +95,8 @@ export default class RunScenario extends Vue {
 
   @Action getCurrentJobResults!: (jobProvider: IJobProvider) => Promise<void>;
 
+  @Action cancelCurrentJobRequest!: (jobProvider: IJobProvider) => Promise<JobRequest>;
+
   @Action UpdateJobStatus!: (status: JobStatus) => void;
 
   @Action UpdateJobProgress!: (progress: number) => void;
@@ -120,6 +122,15 @@ export default class RunScenario extends Vue {
   isRunning = false;
 
   completedJobStatuses: JobStatus[] = [JobStatus.completed, JobStatus.cancelled, JobStatus.error];
+
+  closeOrCancel(): void {
+    if (this.isRunning) {
+      this.cancelClick();
+      return;
+    }
+
+    this.isVisible = false;
+  }
 
   @Watch('currentJob.status')
   async onJobStatusChagned(newStatus: JobStatus): Promise<void> {
@@ -150,6 +161,11 @@ export default class RunScenario extends Vue {
     }
   }
 
+  async cancelClick(): Promise<void> {
+    await this.cancelCurrentJobRequest(this.jobProvider);
+    this.isRunning = false;
+  }
+
   get canRepeatRun(): boolean {
     return this.$route.name === 'viewResults' && this.canRun;
   }
@@ -165,6 +181,10 @@ export default class RunScenario extends Vue {
   get runButtonText(): string {
     const run = 'Run';
     return this.canRepeatRun ? `${run} Job Again` : run;
+  }
+
+  get secondaryButtonText(): string {
+    return this.isRunning ? 'Cancel' : 'Close';
   }
 
   get showRunButton(): boolean {

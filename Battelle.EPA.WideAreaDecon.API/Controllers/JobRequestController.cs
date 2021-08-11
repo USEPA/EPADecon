@@ -43,6 +43,17 @@ namespace Battelle.EPA.WideAreaDecon.API.Controllers
             return job.Id;
         }
 
+        /// <summary>
+        /// Cancels the currently running job
+        /// </summary>
+        [HttpDelete]
+        [ProducesResponseType(204)]
+        public ActionResult CancelJob()
+        {
+            _jobManager.CancelJob();
+            return NoContent();
+        }
+
         [HttpGet("status")]
         [ProducesResponseType(typeof(JobStatus), 200)]
         public JobStatus GetJobStatus(Guid id)
