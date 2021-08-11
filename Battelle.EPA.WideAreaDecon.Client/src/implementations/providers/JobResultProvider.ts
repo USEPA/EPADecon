@@ -148,8 +148,10 @@ export default class JobResultProvider implements IJobResultProvider {
       return undefined;
     }
 
-    const existingLocations = Object.values(allResults[0].scenarioResults).filter((resultSet) => resultSet !== null);
-    const numLocations = existingLocations.length;
+    const indoorLocations = Object.values(allResults[0].scenarioResults.indoorResults).filter((resultSet) => resultSet)
+      .length;
+    const otherLocations = Object.values(allResults[0].scenarioResults).filter((resultSet) => resultSet).length - 1;
+    const numLocations = indoorLocations + otherLocations;
     const numOccurencesPerLocation = instances.length / (allResults.length * numLocations);
     const sums: number[] = [];
 
