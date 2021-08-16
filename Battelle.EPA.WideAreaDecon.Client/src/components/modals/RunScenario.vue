@@ -49,12 +49,12 @@
             </v-container>
           </v-form>
           <v-container>
-            <!-- <v-progress-linear :value="currentJob.progress" class="mb-1"></v-progress-linear> -->
-            <span>Job Status: {{ currentJobStatus }}</span>
+            <v-progress-linear :value="currentJob.progress" class="mb-3" />
+            Job Status: {{ currentJobStatus }}
           </v-container>
         </v-card-text>
         <v-card-actions>
-          <v-spacer></v-spacer>
+          <v-spacer />
           <v-btn
             v-if="showRunButton"
             outlined

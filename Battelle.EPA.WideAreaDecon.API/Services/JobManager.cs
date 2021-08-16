@@ -49,7 +49,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
             await Task.Delay(1000);
 
             await _statusUpdater.UpdateJobStatus(job, JobStatus.Queued);
-            //_progressUpdater.UpdateJobProgress(job, 0.0);
 
             Queued.Enqueue(job);
         }
@@ -86,6 +85,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         private Task ConvertAndExecuteJob() => Task.Run(async () =>
             {
                 await _statusUpdater.UpdateJobStatus(Running, JobStatus.Running);
+                _progressUpdater.UpdateJobProgress(Running, 0.0);
+                var progressIncrement = (1.0 / Running.NumberRealizations) * 100;
 
                 try
                 {
@@ -174,6 +175,10 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         //Store results for realization
                         results.Add(realizationResults);
 
+                        //Update job progress
+                        _progressUpdater.UpdateJobProgress(Running, Running.Progress + progressIncrement);
+
+                        //Cancel job if requested
                         cancelCancellationTokenSource.Token.ThrowIfCancellationRequested();
                     }
 
@@ -181,8 +186,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                     Running.Results = results;
 
                     await _statusUpdater.UpdateJobStatus(Running, JobStatus.Completed);
-                    
-                } 
+                    _progressUpdater.UpdateJobProgress(Running, 100.0);
+                }
                 catch (OperationCanceledException e)
                 {
                     // Job was cancelled
