@@ -42,8 +42,7 @@
                     type="number"
                     hide-details="auto"
                     :disabled="disableInputs"
-                  >
-                  </v-text-field>
+                  />
                 </v-col>
               </v-row>
             </v-container>
