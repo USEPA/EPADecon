@@ -103,7 +103,8 @@ export default class RealizationSummary extends Vue {
           data: binVals,
           backgroundColor: color,
           barPercentage: 1,
-          categoryPercentage: 0.5,
+          categoryPercentage: 1,
+          borderWidth: 0.5,
         },
       ],
     };
