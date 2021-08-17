@@ -37,22 +37,21 @@
             <template v-slot:item="{ item, attrs, on }">
               <v-list-item :class="getClass(item[0])" v-bind="attrs" v-on="on">
                 <v-list-item-content>
-                  <v-list-item-title :id="attrs['aria-labelledby']" v-text="item[0]"></v-list-item-title>
+                  <v-list-item-title :id="attrs['aria-labelledby']" v-text="item[0]" />
                 </v-list-item-content>
               </v-list-item>
             </template>
           </v-overflow-btn>
         </v-col>
       </v-row>
-      <component :key="getSelectedCategoryName()" :is="display.distComponent" :parameter-value="selectedCategory">
-      </component>
+      <component :key="getSelectedCategoryName()" :is="display.distComponent" :parameter-value="selectedCategory" />
       <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
         <distribution-chart
           :data-generator="display.dataGenerator"
           :distribution-series="display.chartData"
           :xAxisLabel="display.xAxisLabel"
           :yAxisLabel="'Probability of Selection'"
-        ></distribution-chart>
+        />
       </v-card>
     </div>
     <div v-else>
@@ -60,7 +59,7 @@
         :key="getSelectedCategoryName()"
         :is="display.distComponent"
         :parameter-value="parameterValue"
-      ></text-value-display>
+      />
     </div>
   </v-container>
 </template>
