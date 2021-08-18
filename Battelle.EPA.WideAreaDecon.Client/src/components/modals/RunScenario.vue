@@ -12,7 +12,7 @@
                     label="Number of Runs"
                     v-model.number="numberRealizations"
                     type="number"
-                    :rules="[validationRulesRealizations]"
+                    :rules="[validationRulesShared, validationRulesRealizations]"
                     hide-details="auto"
                     :disabled="disableInputs"
                   >
@@ -32,6 +32,7 @@
                     type="number"
                     hide-details="auto"
                     :disabled="disableInputs"
+                    :rules="[validationRulesShared]"
                   >
                   </v-text-field>
                 </v-col>
@@ -42,6 +43,7 @@
                     type="number"
                     hide-details="auto"
                     :disabled="disableInputs"
+                    :rules="[validationRulesShared]"
                   />
                 </v-col>
               </v-row>
@@ -110,11 +112,11 @@ export default class RunScenario extends Vue {
 
   jobManager?: JobManager;
 
-  numberRealizations = 10;
+  numberRealizations = 100;
 
   seed1 = 12345;
 
-  seed2 = 678910;
+  seed2 = 67890;
 
   presetRunCounts = [1, 10, 100, 1000, 10000];
 
@@ -143,10 +145,10 @@ export default class RunScenario extends Vue {
   }
 
   async runClick(): Promise<void> {
-    this.isRunning = true;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const form = this.$refs.form as any;
     if (this.canRun && form.validate()) {
+      this.isRunning = true;
       const payload: ICreateJobRequestPayload = {
         jobProvider: this.jobProvider,
         numberRealizations: this.numberRealizations,
@@ -190,19 +192,24 @@ export default class RunScenario extends Vue {
     return !this.hasResults || this.canRepeatRun;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   validationRulesRealizations(value: number): boolean | string {
-    if (!value) {
+    const max = this.presetRunCounts[this.presetRunCounts.length - 1];
+    if (value > max) {
+      return `Value must be no more than ${max}`;
+    }
+    return true;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  validationRulesShared(value: number): boolean | string {
+    if (value === undefined || !value.toString()) {
       return 'Value is required';
-    }
-    if (value < 1) {
-      return 'Value must be at least 1';
-    }
-    if (value > 10000) {
-      return 'Value must be less than 10000';
     }
     if (value % 1 !== 0) {
       return 'Value must be a whole number';
+    }
+    if (value < 1) {
+      return 'Value must be greater than zero';
     }
     return true;
   }

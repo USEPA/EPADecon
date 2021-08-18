@@ -14,6 +14,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
 using Battelle.EPA.WideAreaDecon.Model.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
+using Battelle.RiskAssessment.Common.Statistics;
 using Microsoft.AspNetCore.SignalR;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
@@ -86,10 +87,13 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
             {
                 await _statusUpdater.UpdateJobStatus(Running, JobStatus.Running);
                 _progressUpdater.UpdateJobProgress(Running, 0.0);
-                var progressIncrement = (1.0 / Running.NumberRealizations) * 100;
+                var progressIncrement = 1.0 / Running.NumberRealizations * 100;
 
                 try
                 {
+                    // Set seeds using values from job
+                    LibraryInfo.SetSeed(Running.Seed1, Running.Seed2);
+
                     var extentOfContaminationParameters = Running.DefineScenario.Filters
                         .First(f => f.Name == "Extent of Contamination").Parameters;
 
