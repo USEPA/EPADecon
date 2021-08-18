@@ -15,8 +15,7 @@
                     :rules="[validationRulesShared, validationRulesRealizations]"
                     hide-details="auto"
                     :disabled="disableInputs"
-                  >
-                  </v-text-field>
+                  />
                   <v-btn-toggle>
                     <v-btn-toggle v-model="numberRealizations" dense background-color="primary">
                       <v-btn small tile v-for="runCount in presetRunCounts" :key="runCount" :value="runCount">
@@ -33,8 +32,7 @@
                     hide-details="auto"
                     :disabled="disableInputs"
                     :rules="[validationRulesShared]"
-                  >
-                  </v-text-field>
+                  />
                 </v-col>
                 <v-col>
                   <v-text-field

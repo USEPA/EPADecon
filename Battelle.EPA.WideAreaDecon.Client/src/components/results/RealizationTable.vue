@@ -14,7 +14,7 @@
               v-model="selectedLocation"
               outlined
               hide-details="auto"
-            ></v-select>
+            />
           </v-col>
 
           <v-col cols="2" style="margin-top: 7px">
@@ -25,7 +25,7 @@
               :rules="[validationRulesRunNumber]"
               hide-details="auto"
               outlined
-            ></v-text-field>
+            />
           </v-col>
 
           <v-col cols="1" class="align-self-center">
@@ -40,14 +40,14 @@
           </v-col>
         </v-row>
 
-        <v-divider color="grey"></v-divider>
+        <v-divider color="grey" />
 
         <v-simple-table v-if="displayedRunNumbers.length" dense class="overflow-x-hidden" ref="table">
           <template v-if="selectedLocation !== 'All'" v-slot:default>
             <thead>
               <tr>
                 <th></th>
-                <th class="text-body-1 py-3" v-for="runNumber in displayedRunNumbers" :key="runNumber">
+                <th class="text-body-1 py-3" v-for="runNumber of displayedRunNumbers" :key="runNumber">
                   Run {{ runNumber }}
                   <v-icon class="ml-1" small @click="removeRunFromTable(runNumber)">mdi-close-circle</v-icon>
 
@@ -61,7 +61,7 @@
                 <td class="text-subtitle-1 font-weight-medium">
                   {{ resultProvider.convertCamelToTitleCase(phaseName) }}
                 </td>
-                <td :colspan="displayedRunNumbers.length"></td>
+                <td :colspan="displayedRunNumbers.length" />
               </tr>
 
               <tr v-for="(_, result) in phaseResult" :key="result">
@@ -77,11 +77,11 @@
           <template v-else v-slot:default>
             <thead>
               <tr>
-                <th></th>
+                <th />
                 <th
                   class="text-body-1 py-3 border-right"
                   :colspan="locations.length"
-                  v-for="runNumber in displayedRunNumbers"
+                  v-for="runNumber of displayedRunNumbers"
                   :key="runNumber"
                 >
                   Run {{ runNumber }}
@@ -92,7 +92,7 @@
               </tr>
 
               <tr>
-                <th></th>
+                <th />
                 <th
                   :class="`text-body-1 ${getCellClass(i + 1)}`"
                   v-for="(location, i) in tableLocations"
@@ -109,7 +109,7 @@
                   {{ resultProvider.convertCamelToTitleCase(phaseName) }}
                 </td>
 
-                <td :class="getCellClass(i)" v-for="i in locations.length * displayedRunNumbers.length" :key="i"></td>
+                <td :class="getCellClass(i)" v-for="i in locations.length * displayedRunNumbers.length" :key="i" />
               </tr>
 
               <tr v-for="(_, result) in phaseResult" :key="result">
@@ -127,7 +127,7 @@
 
         <!-- Table Scrollbar -->
         <div class="scrollbarContainer" ref="scroll">
-          <div class="scrollbar" :style="{ width: tableWidth + 'px' }"></div>
+          <div class="scrollbar" :style="{ width: tableWidth + 'px' }" />
         </div>
       </v-container>
     </v-card>
@@ -147,6 +147,7 @@ import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
 import BuildingCategory from '@/enums/parameter/buildingCategory';
 import RealizationDetails from '@/components/modals/results/RealizationDetails.vue';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
+import { chunk } from 'lodash';
 
 @Component({ components: { RealizationDetails } })
 export default class RealizationTable extends Vue {
@@ -221,8 +222,9 @@ export default class RealizationTable extends Vue {
   }
 
   calculateRunNumber(index: number): number {
-    const { length } = this.locations;
-    return Math.floor((index + length) / length);
+    const locationsPerRun = this.locations.length;
+    const runIndex = Math.floor((index + locationsPerRun) / locationsPerRun) - 1;
+    return this.displayedRunNumbers[runIndex];
   }
 
   getCellClass(cellNumber: number): string {
