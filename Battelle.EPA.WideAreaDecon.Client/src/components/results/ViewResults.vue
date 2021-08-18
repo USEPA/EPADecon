@@ -60,15 +60,15 @@
         <v-card style="height: 100%">
           <v-card-title class="headline pl-5" v-text="'Actions'"></v-card-title>
           <v-card-text class="d-flex justify-space-between flex-wrap px-5">
-            <v-btn color="secondary" class="mb-2" v-text="'Summary'" @click="navigate('jobSummary')"></v-btn>
-            <v-btn color="secondary" v-text="'View Parameters'" @click="viewParameters"></v-btn>
-            <v-btn color="secondary" v-text="'Run Job Again'" @click="$emit('showRunModal')"></v-btn>
-            <v-btn color="secondary" v-text="'Export Results'" @click="exportResults"></v-btn>
+            <v-btn color="secondary" class="mb-2" v-text="'Summary'" @click="navigate('jobSummary')" />
+            <v-btn color="secondary" v-text="'View Parameters'" @click="viewParameters" />
+            <v-btn color="secondary" v-text="'Run Job Again'" @click="$emit('showRunModal')" />
+            <v-btn color="secondary" v-text="'Export Results'" @click="exportResults" />
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
-    <result-details :title="modalTitle" :details="details" v-model="showModal"></result-details>
+    <result-details :title="modalTitle" :details="details" v-model="showModal" />
   </v-container>
 </template>
 
@@ -155,7 +155,7 @@ export default class ViewResults extends Vue {
   }
 
   exportResults(): void {
-    this.resultProvider.exportJobResults(this.currentJob.results);
+    this.resultProvider.exportJobResults(this.currentJob);
   }
 
   showResultDetails($event: string, result: PhaseResult): void {
@@ -190,12 +190,6 @@ export default class ViewResults extends Vue {
     this.averageTotalWorkdays = this.getAverageFormatted(PhaseResult.Workdays);
     this.averageDeconRounds = this.getAverageFormatted(PhaseResult.DecontaminationRounds);
     this.averageTotalOnSiteDays = this.getAverageFormatted(PhaseResult.OnSiteDays);
-
-    // const avgOnSiteDays =
-    //   this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.OnSiteDays)?.mean ?? 0;
-    // const avgWorkdays = this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.Workdays)?.mean ?? 0;
-
-    // this.averageTotalOnSiteDays = this.resultProvider.formatNumber(avgOnSiteDays - avgWorkdays);
   }
 
   created(): void {

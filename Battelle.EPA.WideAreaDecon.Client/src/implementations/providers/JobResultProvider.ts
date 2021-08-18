@@ -6,16 +6,24 @@ import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import IPhaseResult from '@/interfaces/jobs/results/phase/IPhaseResult';
+import JobRequest from '../jobs/JobRequest';
 
 @injectable()
 export default class JobResultProvider implements IJobResultProvider {
   /* eslint-disable class-methods-use-this */
-  exportJobResults(results: IJobResultRealization[]): void {
+  exportJobResults(job: JobRequest): void {
+    const { results } = job;
+    if (!results || !results.length) {
+      return;
+    }
+
     const wb = XLSX.utils.book_new();
 
     const runData = [
       ['Data exported on: ', new Date(Date.now()).toLocaleString()],
       ['Number of realizations: ', results.length],
+      ['Seed 1:', job.seed1.toString()],
+      ['Seed 2:', job.seed2.toString()],
     ];
     this.excelAddToWorkbook(runData, wb, 'Data');
 
