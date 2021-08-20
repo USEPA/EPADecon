@@ -9,7 +9,7 @@
 
           <v-col class="ml-auto" cols="3" style="margin-top: 7px">
             <v-select
-              label="Building"
+              label="Location"
               :items="['All', ...locations]"
               v-model="selectedLocation"
               outlined
