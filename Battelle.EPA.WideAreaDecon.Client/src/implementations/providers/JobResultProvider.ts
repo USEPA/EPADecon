@@ -107,7 +107,9 @@ export default class JobResultProvider implements IJobResultProvider {
   }
 
   formatNumber(number: number): string {
-    return number.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const numSigFigs = 3;
+    const rounded = number.toPrecision(numSigFigs);
+    return (rounded.includes('e') ? parseFloat(rounded).toString() : rounded).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   convertCamelToTitleCase(name: string): string {

@@ -22,7 +22,7 @@ export default interface IJobResultProvider {
    */
   getResultValues(realization: IJobResultRealization, result: PhaseResult): number[];
 
-  /** Rounds number to 3 decimal places and adds commas where necessary.
+  /** Rounds number to 3 sig figs and adds commas where necessary.
    * @param {number} number - The number to be converted.
    * @returns A number in a more readable format.
    */
