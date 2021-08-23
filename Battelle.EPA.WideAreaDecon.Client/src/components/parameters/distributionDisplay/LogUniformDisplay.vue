@@ -104,8 +104,8 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
     }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
-    Vue.set(this.parameterValue, 'logMin', Math.log10(newValue[0]));
-    Vue.set(this.parameterValue, 'logMax', Math.log10(newValue[1]));
+    Vue.set(this.parameterValue, 'min', newValue[0]);
+    Vue.set(this.parameterValue, 'max', newValue[1]);
   }
 
   @Watch('parameterValue')
@@ -140,19 +140,19 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.minValue as any;
     if (this.textMin === '') {
-      this.parameterValue.logMin = undefined;
+      this.parameterValue.min = undefined;
     } else if (value === this.sliderValue[0]) {
-      this.parameterValue.logMin = Math.log10(value);
+      this.parameterValue.min = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMin = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (this.sliderValue[1] <= value) {
         this.sliderValue = [value, value];
-        this.parameterValue.logMin = Math.log10(value);
-        this.parameterValue.logMin = Math.log10(value);
+        this.parameterValue.min = value;
+        this.parameterValue.max = value;
       } else {
         this.sliderValue = [value, this.sliderValue[1]];
-        this.parameterValue.logMin = Math.log10(value);
+        this.parameterValue.min = value;
       }
     } else {
       this.textMin = this.sliderValue[0].toString();
@@ -165,19 +165,19 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.maxValue as any;
     if (this.textMax === '') {
-      this.parameterValue.logMax = undefined;
+      this.parameterValue.max = undefined;
     } else if (value === this.sliderValue[1]) {
-      this.parameterValue.logMax = Math.log10(value);
+      this.parameterValue.max = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMax = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (this.sliderValue[0] >= value) {
         this.sliderValue = [value, value];
-        this.parameterValue.logMin = Math.log10(value);
-        this.parameterValue.logMax = Math.log10(value);
+        this.parameterValue.min = value;
+        this.parameterValue.max = value;
       } else {
         this.sliderValue = [this.sliderValue[0], value];
-        this.parameterValue.logMax = Math.log10(value);
+        this.parameterValue.max = value;
       }
     } else {
       this.textMax = this.sliderValue[1].toString();
@@ -185,8 +185,8 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
   }
 
   onSliderStopped(value: number[]): void {
-    Vue.set(this.parameterValue, 'logMin', Math.log10(value[0]));
-    Vue.set(this.parameterValue, 'logMax', Math.log10(value[1]));
+    Vue.set(this.parameterValue, 'min', value[0]);
+    Vue.set(this.parameterValue, 'max', value[1]);
   }
 
   setValues(): void {

@@ -56,7 +56,7 @@
               </tr>
             </thead>
 
-            <tbody v-for="(phaseResult, phaseName) in results[0].Outdoor" :key="phaseName">
+            <tbody v-for="(phaseResult, phaseName) in exisitingLocation" :key="phaseName">
               <tr>
                 <td class="text-subtitle-1 font-weight-medium">
                   {{ resultProvider.convertCamelToTitleCase(phaseName) }}
@@ -68,7 +68,7 @@
                 <td class="pl-8">{{ resultProvider.convertCamelToTitleCase(result) }}</td>
 
                 <td v-for="runNumber in displayedRunNumbers" :key="runNumber">
-                  {{ getLocationResults(runNumber)[phaseName][result] }}
+                  {{ getCellValueSingleLocation(phaseName, result, runNumber) }}
                 </td>
               </tr>
             </tbody>
@@ -103,7 +103,7 @@
               </tr>
             </thead>
 
-            <tbody v-for="(phaseResult, phaseName) in results[0].Outdoor" :key="phaseName">
+            <tbody v-for="(phaseResult, phaseName) in exisitingLocation" :key="phaseName">
               <tr>
                 <td class="text-subtitle-1 font-weight-medium">
                   {{ resultProvider.convertCamelToTitleCase(phaseName) }}
@@ -116,7 +116,7 @@
                 <td>{{ resultProvider.convertCamelToTitleCase(result) }}</td>
 
                 <td :class="getCellClass(i + 1)" v-for="(location, i) in tableLocations" :key="`${location} - ${i}`">
-                  {{ getLocationResults(calculateRunNumber(i), location)[phaseName][result] }}
+                  {{ getCellValueAllLocations(location, phaseName, result, i) }}
                 </td>
               </tr>
             </tbody>
@@ -126,8 +126,8 @@
         <v-card-text v-else>Please select at least one realization to display a summary for</v-card-text>
 
         <!-- Table Scrollbar -->
-        <div class="scrollbarContainer" style="" ref="scroll">
-          <div class="scrollbar" :style="`width: ${tableWidth}px`"></div>
+        <div class="scrollbarContainer" ref="scroll">
+          <div class="scrollbar" :style="{ width: tableWidth + 'px' }"></div>
         </div>
       </v-container>
     </v-card>
@@ -146,6 +146,7 @@ import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealizati
 import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
 import BuildingCategory from '@/enums/parameter/buildingCategory';
 import RealizationDetails from '@/components/modals/results/RealizationDetails.vue';
+import PhaseResult from '@/enums/jobs/results/phaseResult';
 
 @Component({ components: { RealizationDetails } })
 export default class RealizationTable extends Vue {
@@ -166,13 +167,41 @@ export default class RealizationTable extends Vue {
   tableWidth = 0;
 
   get locations(): string[] {
-    const outUnd = Object.keys(this.results[0]).splice(1);
-    return [...Object.keys(this.results[0].Indoor).map((l) => `${l} Building`), ...outUnd];
+    const existingLocations = Object.entries(this.results[0].scenarioResults).filter(
+      ([, resultSet]) => resultSet !== null,
+    );
+
+    return existingLocations.flatMap(([location, resultSet]) => {
+      const isIndoor = location.toLowerCase().includes('indoor');
+      return isIndoor
+        ? Object.keys(resultSet).map((l) => `${l} Building`)
+        : this.resultProvider.convertCamelToTitleCase(location.replace('Results', ''));
+    });
   }
 
   get tableLocations(): string[] {
     const { length } = this.displayedRunNumbers;
     return [...Array(length)].flatMap(() => this.locations);
+  }
+
+  get exisitingLocation(): IPhaseResultSet | null {
+    const { scenarioResults } = this.results[0];
+    if (scenarioResults.indoorResults) {
+      // indoor exists
+      return Object.values(scenarioResults.indoorResults)[0];
+    }
+
+    if (scenarioResults.outdoorResults) {
+      // outdoor exists
+      return scenarioResults.outdoorResults;
+    }
+
+    if (scenarioResults.undergroundResults) {
+      // underground exists
+      return scenarioResults.undergroundResults;
+    }
+
+    return null;
   }
 
   @Watch('displayedRunNumbers.length')
@@ -200,11 +229,27 @@ export default class RealizationTable extends Vue {
     return cellNumber && cellNumber % this.locations.length === 0 && cellNumber ? 'border-right' : '';
   }
 
+  getCellValueAllLocations(location: string, phaseName: string, result: PhaseResult, index: number): string {
+    const value = this.getLocationResults(this.calculateRunNumber(index), location)[phaseName][result];
+    return this.resultProvider.formatNumber(value);
+  }
+
+  getCellValueSingleLocation(phaseName: string, result: PhaseResult, runNumber: number): string {
+    const value = this.getLocationResults(runNumber)[phaseName][result];
+    return this.resultProvider.formatNumber(value);
+  }
+
   getLocationResults(runNumber: number, location?: string): IPhaseResultSet {
-    const run = this.resultProvider.getRealizationResults(this.results, runNumber);
-    const selectedLocation = (location !== undefined ? location : this.selectedLocation).replace(/ Building$/, '');
+    const run = this.resultProvider.getRealizationResults(this.results, runNumber).scenarioResults;
+
+    let selectedLocation = (location !== undefined ? location : this.selectedLocation).replace(/ Building$/, '');
+
     const isIndoor = Object.keys(BuildingCategory).includes(selectedLocation);
-    return isIndoor ? run.Indoor[selectedLocation] : (run[selectedLocation] as IPhaseResultSet);
+    if (!isIndoor) {
+      selectedLocation = selectedLocation[0].toLowerCase() + `${selectedLocation}Results`.substring(1);
+    }
+
+    return isIndoor ? run.indoorResults[selectedLocation] : (run[selectedLocation] as IPhaseResultSet);
   }
 
   removeRunFromTable(runNumber: number): void {

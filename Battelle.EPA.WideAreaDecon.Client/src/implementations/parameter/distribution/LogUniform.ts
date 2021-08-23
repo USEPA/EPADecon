@@ -11,21 +11,13 @@ export default class LogUniform implements IUnivariateParameter {
   readonly type: ParameterType = ParameterType.logUniform;
 
   @JsonProperty()
-  logMin?: number;
+  min?: number;
 
   @JsonProperty()
-  logMax?: number;
-
-  get min(): number | undefined {
-    return this.logMin !== undefined ? 10 ** this.logMin : undefined;
-  }
-
-  get max(): number | undefined {
-    return this.logMax !== undefined ? 10 ** this.logMax : undefined;
-  }
+  max?: number;
 
   get mean(): number | undefined {
-    return !!this.min && !!this.max ? (this.max + this.min) / 2.0 : undefined;
+    return !!this.min && !!this.max ? (10 ** this.max + 10 ** this.min) / 2.0 : undefined;
   }
 
   get mode(): number | undefined {
@@ -33,7 +25,7 @@ export default class LogUniform implements IUnivariateParameter {
   }
 
   get stdDev(): number | undefined {
-    return !!this.min && !!this.max ? (this.max - this.min) / 6.0 : undefined;
+    return !!this.min && !!this.max ? (10 ** this.max - 10 ** this.min) / 6.0 : undefined;
   }
 
   @JsonProperty()
@@ -44,8 +36,8 @@ export default class LogUniform implements IUnivariateParameter {
   }
 
   constructor(metaData = new ParameterMetaData(), logMin?: number, logMax?: number) {
-    this.logMin = logMin;
-    this.logMax = logMax;
+    this.min = logMin;
+    this.max = logMax;
     this.metaData = metaData;
   }
 
@@ -61,6 +53,6 @@ export default class LogUniform implements IUnivariateParameter {
   }
 
   compareValues(other?: LogUniform): boolean {
-    return other ? this.type === other.type && this.logMin === other.logMin && this.logMax === other.logMax : false;
+    return other ? this.type === other.type && this.min === other.min && this.max === other.max : false;
   }
 }

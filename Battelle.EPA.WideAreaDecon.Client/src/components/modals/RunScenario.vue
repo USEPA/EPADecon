@@ -50,7 +50,7 @@
           </v-form>
           <v-container>
             <!-- <v-progress-linear :value="currentJob.progress" class="mb-1"></v-progress-linear> -->
-            <span>Job Status: {{ currentJob.status }}</span>
+            <span>Job Status: {{ currentJobStatus }}</span>
           </v-container>
         </v-card-text>
         <v-card-actions>
@@ -155,6 +155,10 @@ export default class RunScenario extends Vue {
         this.setRepeatRun(false);
       }
     }
+  }
+
+  get currentJobStatus(): string {
+    return this.currentJob.status === JobStatus.unknown ? 'Not Running' : this.currentJob.status;
   }
 
   get disableInputs(): boolean {

@@ -6,6 +6,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results
 {
     public class OtherResults
     {
-        public double otherCosts { get; set; }
+        public double characterizationSamplingTravelCost { get; set; }
+        public double sourceReductionTravelCost { get; set; }
+        public double decontaminationTravelCost { get; set; }
+        public double wasteSamplingTravelCost { get; set; }
+        public double incidentCommandTravelCost { get; set; }
+        public double totalTravelCost { get; set; }
     }
 }

@@ -1,10 +1,10 @@
 <template>
   <v-card height="100%" width="100%">
     <v-row dense>
-      <v-col cols="auto" class="mr-auto">
-        <v-card-title v-if="shouldIncludeTitle" v-text="currentSelectedParameter.path" />
+      <v-col cols="5" xl="6">
+        <v-card-title v-if="shouldIncludeTitle">{{ currentSelectedParameter.path }}</v-card-title>
       </v-col>
-      <v-col align-self="center" cols="3">
+      <v-col cols="3" xl="2" offset="1">
         <v-overflow-btn
           v-if="isChangeableDist"
           @change="onDistributionTypeChange"
@@ -13,10 +13,16 @@
           :items="distNames"
           filled
           dense
-        />
+        ></v-overflow-btn>
       </v-col>
-      <v-col style="margin-top: 7px" cols="2">
-        <v-btn height="45" v-if="shouldIncludeTitle && parameterHasChanged" color="secondary" @click="resetParameter">
+      <v-col cols="3" xl="2" style="margin-top: 7px">
+        <v-btn
+          height="45"
+          v-if="shouldIncludeTitle"
+          :disabled="!parameterHasChanged"
+          color="secondary"
+          @click="resetParameter"
+        >
           Reset Parameter
         </v-btn>
       </v-col>
@@ -35,6 +41,7 @@
           :xAxisLabel="display.xAxisLabel"
           :yAxisLabel="'Probability of Selection'"
           :data-generator="display.dataGenerator"
+          ref="dist"
         ></distribution-chart>
       </v-card>
     </v-container>
@@ -60,12 +67,13 @@ import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullD
 import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
 import EnumeratedFractionDisplay from '@/components/parameters/distributionDisplay/EnumeratedFractionDisplay.vue';
 import EnumeratedParameterDisplay from '@/components/parameters/distributionDisplay/EnumeratedParameterDisplay.vue';
+import TextValueDisplay from '@/components/parameters/distributionDisplay/TextValueDisplay.vue';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
-import { DistributionChart } from 'battelle-common-vue-charting/src/index';
+import { DistributionChart } from 'battelle-common-vue-charting';
 import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
 
@@ -86,6 +94,7 @@ import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDi
     EnumeratedFractionDisplay,
     EnumeratedParameterDisplay,
     DistributionChart,
+    TextValueDisplay,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
@@ -149,4 +158,8 @@ export default class ParameterDistributionSelector extends Vue {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.v-card__title {
+  word-break: normal;
+}
+</style>

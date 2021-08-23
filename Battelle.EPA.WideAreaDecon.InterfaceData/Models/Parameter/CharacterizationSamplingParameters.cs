@@ -21,12 +21,16 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double resultTransmissionToIC;
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
         public double personnelOverheadDays;
-        public double entriesPerTeam;
-        public double hoursEntering;
-        public double hoursExiting;
+        public double roundtripDays;
+        public Dictionary<PpeLevel, double> entryDuration;
+        public double entryPrepTime;
+        public double deconLineTime;
+        public double postEntryRest;
         public double respiratorsPerPerson;
         public Dictionary<PpeLevel, double> ppeRequired;
+        public double onsiteDays;
 
+        //Scenario parameters constructor
         public CharacterizationSamplingParameters(
             double _fractionSampledWipe,
             double _fractionSampledHepa,
@@ -43,9 +47,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _resultTransmissionToIC,
             Dictionary<PersonnelLevel, double> _personnelPerTeam,
             double _personnelOverheadDays,
-            double _entriesPerTeam,
-            double _hoursEntering,
-            double _hoursExiting,
+            double _roundtripDays,
+            Dictionary<PpeLevel, double> _entryDuration,
+            double _entryPrepTime,
+            double _deconLineTime,
+            double _postEntryRest,
             double _respiratorsPerPerson,
             Dictionary<PpeLevel, double> _ppeRequired)
         {
@@ -64,11 +70,26 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             resultTransmissionToIC = _resultTransmissionToIC;
             personnelReqPerTeam = _personnelPerTeam;
             personnelOverheadDays = _personnelOverheadDays;
-            entriesPerTeam = _entriesPerTeam;
-            hoursEntering = _hoursEntering;
-            hoursExiting = _hoursExiting;
+            roundtripDays = _roundtripDays;
+            entryDuration = _entryDuration;
+            entryPrepTime = _entryPrepTime;
+            deconLineTime = _deconLineTime;
+            postEntryRest = _postEntryRest;
             respiratorsPerPerson = _respiratorsPerPerson;
             ppeRequired = _ppeRequired;
+        }
+
+        //Event parameters constructor
+        public CharacterizationSamplingParameters(
+            double _numTeams,
+            Dictionary<PersonnelLevel, double> _personnelPerTeam,
+            double _roundtripDays,
+            double _onsiteDays)
+        {
+            numTeams = _numTeams;
+            personnelReqPerTeam = _personnelPerTeam;
+            roundtripDays = _roundtripDays;
+            onsiteDays = _onsiteDays;
         }
     }
 }

@@ -41,18 +41,14 @@
 
 <script lang="ts">
 import { Component, Prop, VModel, Vue, Watch } from 'vue-property-decorator';
-import {
-  ChartJsWrapper,
-  CycleColorProvider,
-  DefaultChartData,
-  DefaultChartOptions,
-} from 'battelle-common-vue-charting/src';
-import { ChartData } from 'chart.js';
+import { ChartJsWrapper, CycleColorProvider, DefaultChartData } from 'battelle-common-vue-charting';
+import { ChartData, ChartOptions } from 'chart.js';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import container from '@/dependencyInjection/config';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import TYPES from '@/dependencyInjection/types';
 import { range } from 'lodash';
+import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 
 @Component({ components: { ChartJsWrapper } })
 export default class ResultDetails extends Vue {
@@ -64,7 +60,9 @@ export default class ResultDetails extends Vue {
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
-  options = new DefaultChartOptions();
+  private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
+
+  options: ChartOptions | null = null;
 
   numberOfBins = 5;
 
@@ -96,21 +94,18 @@ export default class ResultDetails extends Vue {
     });
 
     return {
-      labels: bins,
+      labels: bins.map((b) => this.resultProvider.formatNumber(b)),
       datasets: [
         {
+          label: 'Number of Realizations',
           data: binVals,
           backgroundColor: color,
           barPercentage: 1,
           categoryPercentage: 1,
-          borderWidth: 1,
+          borderWidth: 0.5,
         },
       ],
     };
-  }
-
-  get chartTicks(): number[] {
-    return this.chartData.labels as number[];
   }
 
   @Watch('details')
@@ -119,44 +114,8 @@ export default class ResultDetails extends Vue {
   }
 
   initializeChart(): void {
-    this.options.legend.display = false;
-
-    this.options.tooltips.enabled = true;
-    this.options.tooltips.callbacks = {
-      title: ([item]) => {
-        const index = item.index ?? 0;
-        // const upper = this.resultProvider.formatNumber(this.chartTicks[index + 1] ?? this.details.maximum);
-        // const lower = this.resultProvider.formatNumber(this.chartTicks[index]);
-        const upper = this.chartTicks[index + 1] ?? this.details.maximum;
-        const lower = this.chartTicks[index];
-        return `${lower} - ${upper}`;
-      },
-    };
-
-    this.options.scales = {
-      xAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: this.title,
-          },
-          ticks: {
-            callback: (value: number) => this.resultProvider.formatNumber(value),
-          },
-        },
-      ],
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-          scaleLabel: {
-            display: true,
-            labelString: 'Number of Realizations',
-          },
-        },
-      ],
-    };
+    this.chartOptionsProvider.details = this.details;
+    this.options = this.chartOptionsProvider.getHistogramOptions();
   }
 
   created(): void {

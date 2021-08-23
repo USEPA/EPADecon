@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
+using Battelle.EPA.WideAreaDecon.Model.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
 using Microsoft.AspNetCore.SignalR;
 
@@ -106,52 +107,76 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         scenarios.Add(scenarioCreator.CreateRealizationScenario());
                     }
 
-                    var parameterManager = new ParameterManager(
+                    var parameterManager = new ScenarioParameterManager(
                         Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
+                        Running.ModifyParameter.Filters.First(f => f.Name == "Waste Sampling").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
 
-                    var scenarioResults = new List<object>();
+                    var results = new List<JobResults>();
 
                     for (int s = 0; s < scenarios.Count(); s++)
                     {
-                        var realizationResults = new Dictionary<DecontaminationPhase, object>();
+                        var realizationResults = new JobResults()
+                        {
+                            scenarioResults = new ScenarioTypeResults()
+                            {
+                                indoorResults = new Dictionary<BuildingCategory, ScenarioRealizationResults>(),
+                                outdoorResults = new ScenarioRealizationResults(),
+                                undergroundResults = new ScenarioRealizationResults()
+                            },
+                            eventResults = new EventResults()
+                        };
 
-                        //INDOOR SCENARIO
-                        var buildingResults = new Dictionary<BuildingCategory, Results>();
+                        //RUN INDOOR SCENARIO
                         foreach (var building in scenarios[s].IndoorBuildingsContaminated)
                         {
                             if (building.Value.Count > 0)
                             {
-                                var indoorModelRunner = new ModelRunner(Running.ModifyParameter, DecontaminationPhase.Indoor, building.Value);
-
-                                buildingResults.Add(building.Key, indoorModelRunner.RunModel());
+                                var indoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Indoor, building.Value);
+                                realizationResults.scenarioResults.indoorResults.Add(building.Key, indoorModelRunner.RunScenarioModel());
                             }
                         }
 
-                        realizationResults.Add(DecontaminationPhase.Indoor, buildingResults);
+                        if (realizationResults.scenarioResults.indoorResults.Count == 0)
+                        {
+                            realizationResults.scenarioResults.indoorResults = null;
+                        }
 
-                        //OUTDOOR SCENARIO
-                        var outdoorModelRunner = new ModelRunner(Running.ModifyParameter, DecontaminationPhase.Outdoor, scenarios[s].OutdoorAreasContaminated);
+                        //RUN OUTDOOR SCENARIO
+                        if (scenarios[s].OutdoorAreasContaminated.Sum(x => x.Value.AreaContaminated) > 0)
+                        {
+                            var outdoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Outdoor, scenarios[s].OutdoorAreasContaminated);
+                            realizationResults.scenarioResults.outdoorResults = outdoorModelRunner.RunScenarioModel();
+                        } else
+                        {
+                            realizationResults.scenarioResults.outdoorResults = null;
+                        }
 
-                        realizationResults.Add(DecontaminationPhase.Outdoor, outdoorModelRunner.RunModel());
+                        //RUN UNDERGROUND SCENARIO
+                        if (scenarios[s].UndergroundBuildingsContaminated.Sum(x => x.Value.AreaContaminated) > 0)
+                        {
+                            var undergroundModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Underground, scenarios[s].UndergroundBuildingsContaminated);
+                            realizationResults.scenarioResults.undergroundResults = undergroundModelRunner.RunScenarioModel();
+                        } else
+                        {
+                            realizationResults.scenarioResults.undergroundResults = null;
+                        }
 
-                        //UNDERGROUND SCENARIO
-                        var undergroundModelRunner = new ModelRunner(Running.ModifyParameter, DecontaminationPhase.Underground, scenarios[s].UndergroundBuildingsContaminated);
-
-                        realizationResults.Add(DecontaminationPhase.Underground, undergroundModelRunner.RunModel());
+                        //RUN EVENT-SPECIFIC MODELS
+                        var eventModelRunner = new EventModelRunner(Running.ModifyParameter, realizationResults.scenarioResults.indoorResults, realizationResults.scenarioResults.outdoorResults, realizationResults.scenarioResults.undergroundResults);
+                        realizationResults.eventResults = eventModelRunner.RunEventModel();
 
                         //Store results for realization
-                        scenarioResults.Add(realizationResults);
+                        results.Add(realizationResults);
                     }
 
                     //Store results of model in job
-                    Running.Results = scenarioResults;
+                    Running.Results = results;
 
                     await _statusUpdater.UpdateJobStatus(Running, JobStatus.Completed);
                     

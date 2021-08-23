@@ -21,16 +21,22 @@
     <v-spacer></v-spacer>
 
     <!-- Run button -->
-    <v-tooltip v-if="!onResultsPage" bottom :color="canRun ? 'info' : 'error'">
+    <v-tooltip bottom :color="canRun ? 'info' : 'error'" :disabled="onResultsPage">
       <template v-slot:activator="{ on }">
-        <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'" :color="canRun ? 'secondary' : ''">
-          <v-btn v-on="on" @click="displayRunModal" :disabled="!canRun" :color="canRun ? 'secondary' : ''">
+        <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'">
+          <v-btn
+            v-on="on"
+            @click="displayRunModal"
+            :disabled="!canRun"
+            :color="canRun ? 'secondary' : ''"
+            :style="{ visibility: onResultsPage ? 'hidden' : 'visible' }"
+          >
             Run Scenario
           </v-btn>
         </div>
       </template>
       <span v-if="canRun">Runs the model and generates results</span>
-      <span v-if="!canRun">Please define scenario to run model...</span>
+      <span v-else>Please define scenario to run model...</span>
     </v-tooltip>
 
     <!-- Dropdown menu -->

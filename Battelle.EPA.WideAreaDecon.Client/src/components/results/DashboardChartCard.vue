@@ -9,8 +9,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { ChartJsWrapper, DefaultChartOptions, PositionType } from 'battelle-common-vue-charting/src';
+import { ChartJsWrapper } from 'battelle-common-vue-charting';
 import { ChartData } from 'chart.js';
+import container from '@/dependencyInjection/config';
+import TYPES from '@/dependencyInjection/types';
+import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 
 @Component({ components: { ChartJsWrapper } })
 export default class DashboardChartCard extends Vue {
@@ -18,12 +21,16 @@ export default class DashboardChartCard extends Vue {
 
   @Prop() data!: ChartData;
 
-  options = new DefaultChartOptions();
+  private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
+
+  options = this.chartOptionsProvider.getPieOptions();
 
   initializeChart(): void {
-    this.options.maintainAspectRatio = true;
-    this.options.legend.position = PositionType.Right;
-    this.options.tooltips.enabled = true;
+    if (this.options.plugins) {
+      this.options.plugins.legend = {
+        position: 'right',
+      };
+    }
   }
 
   created(): void {

@@ -15,6 +15,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
 
         [EnumMember(Value = "Decontamination")] Decontamination,
 
+        [EnumMember(Value = "Waste Sampling")] WasteSampling,
+
         [EnumMember(Value = "Other")] Other
     }
 }
