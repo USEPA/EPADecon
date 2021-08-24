@@ -11,6 +11,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
 
         [EnumMember(Value = "Characterization Sampling")] CharacterizationSampling,
 
+        [EnumMember(Value = "Clearance Sampling")] ClearanceSampling,
+
         [EnumMember(Value = "Source Reduction")] SourceReduction,
 
         [EnumMember(Value = "Decontamination")] Decontamination,
