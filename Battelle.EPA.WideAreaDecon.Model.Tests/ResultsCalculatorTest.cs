@@ -148,7 +148,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
             Assert.AreEqual(492840.973678792, eventResults.otherResults.wasteSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for waste sampling");
             Assert.AreEqual(380790.597288682, eventResults.otherResults.incidentCommandTravelCost, 1e-6, "Incorrect travel cost calculated for incident command");
 
-            Assert.AreEqual(9724648.7653891, eventResults.totalEventCost, 1e-6, "Incorrect event cost calculated");
+            Assert.AreEqual(9735248.7653891, eventResults.totalEventCost, 1e-6, "Incorrect event cost calculated");
 
             Assert.AreEqual(3000, eventResults.totalContaminationArea, 1e-6, "Incorrect total contamination area calculated");
         }
