@@ -111,6 +111,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
+                        Running.ModifyParameter.Filters.First(f => f.Name == "Clearance Sampling").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Waste Sampling").Filters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
                         Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters,
