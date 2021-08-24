@@ -201,6 +201,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 results.characterizationSamplingResults.onSiteDays,
                 results.sourceReductionResults.onSiteDays,
                 results.decontaminationResults.onSiteDays,
+                results.clearanceSamplingResults.onSiteDays,
                 results.wasteSamplingResults.onSiteDays);
 
             results.incidentCommandResults.phaseCost = Convert.ToInt64(_incidentCommandCostCalculator.CalculatePhaseCosts(
@@ -210,6 +211,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             results.generalResults.totalCost = results.characterizationSamplingResults.phaseCost +
                 results.sourceReductionResults.phaseCost +
                 results.decontaminationResults.phaseCost +
+                results.clearanceSamplingResults.phaseCost +
                 results.wasteSamplingResults.phaseCost +
                 results.incidentCommandResults.phaseCost;
 
