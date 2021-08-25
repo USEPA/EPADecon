@@ -11,7 +11,7 @@
               </v-col>
             </v-row>
 
-            <v-row>
+            <v-row justify="center">
               <v-col>
                 <p class="text-body-2 mb-0">{{ resultProvider.formatNumber(details.mean) }}</p>
                 <p class="text-subtitle-1">Mean</p>

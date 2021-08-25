@@ -33,7 +33,7 @@
                 </div>
               </v-col>
             </v-row>
-            <v-row class="mt-15">
+            <v-row justify="center" class="mt-6">
               <v-col>
                 <p class="text-body-2 mb-0">${{ resultProvider.formatNumber(totalCost) }}</p>
                 <p class="text-subtitle-1">Total Cost</p>
