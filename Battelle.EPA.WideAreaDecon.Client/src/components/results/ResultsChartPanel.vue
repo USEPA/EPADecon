@@ -11,7 +11,7 @@
       </v-card-text>
     </div>
     <div v-else class="pt-8 pb-16 px-16" style="width: 100%">
-      <v-btn v-text="'Edit Chart'" @click="showOptions"></v-btn>
+      <v-btn @click="showOptions" class="mb-3" v-text="'edit chart'" />
 
       <scatter-plot-wrapper
         v-if="chartType === 'scatter'"
