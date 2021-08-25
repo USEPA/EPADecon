@@ -163,6 +163,11 @@ export default class RunScenario extends Vue {
   async cancelClick(): Promise<void> {
     await this.cancelCurrentJobRequest(this.jobProvider);
     this.isRunning = false;
+
+    if (this.canRepeatRun) {
+      // user canceled repeated run
+      this.$router.push({ name: 'defineScenario' });
+    }
   }
 
   get canRepeatRun(): boolean {
