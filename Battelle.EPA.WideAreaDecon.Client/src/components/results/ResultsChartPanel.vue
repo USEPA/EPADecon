@@ -77,10 +77,6 @@ export default class ResultsChartPanel extends Vue {
 
   @Watch('chartType')
   onChartTypeChanged(newValue: string): void {
-    if (this.chartData?.datasets?.[0]) {
-      (this.chartData.datasets[0] as ChartDataset<'scatter'>).showLine = newValue !== 'scatter';
-    }
-
     switch (newValue) {
       case 'bar':
         this.options = this.chartOptionsProvider.getHistogramOptions();
@@ -103,6 +99,12 @@ export default class ResultsChartPanel extends Vue {
   onChartDataChanged(): void {
     if (this.chartType === 'bar') {
       this.chartOptionsProvider.details = this.details ?? undefined;
+      return;
+    }
+
+    const dataset = this.chartData?.datasets?.[0];
+    if (dataset && Object.getOwnPropertyNames(dataset).includes('showLine')) {
+      (dataset as ChartDataset<'scatter'>).showLine = false;
     }
   }
 
