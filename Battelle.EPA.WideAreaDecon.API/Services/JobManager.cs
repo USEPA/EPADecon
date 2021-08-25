@@ -12,7 +12,6 @@ using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
-using Battelle.EPA.WideAreaDecon.Model.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
 using Battelle.RiskAssessment.Common.Statistics;
 using Microsoft.AspNetCore.SignalR;
@@ -111,16 +110,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                     {
                         scenarios.Add(scenarioCreator.CreateRealizationScenario());
                     }
-
-                    var parameterManager = new ScenarioParameterManager(
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Waste Sampling").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
 
                     var results = new List<JobResults>();
 
