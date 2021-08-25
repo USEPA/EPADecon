@@ -13,8 +13,8 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
-using Battelle.RiskAssessment.Common.Statistics;
 using Microsoft.AspNetCore.SignalR;
+using Battelle.RiskAssessment.Common.Statistics;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
@@ -93,6 +93,15 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                     // Set seeds using values from job
                     LibraryInfo.SetSeed(Running.Seed1, Running.Seed2);
 
+                    UniformDistribution dist = new UniformDistribution(1, long.MaxValue);
+
+                    var seeds = new Tuple<ulong, ulong>[Running.NumberRealizations];
+
+                    for (int i = 0; i < Running.NumberRealizations; i++)
+                    {
+                        seeds[i] = new Tuple<ulong, ulong>(Convert.ToUInt64(dist.Draw()), Convert.ToUInt64(dist.Draw()));
+                    }
+
                     var extentOfContaminationParameters = Running.DefineScenario.Filters
                         .First(f => f.Name == "Extent of Contamination").Parameters;
 
@@ -115,6 +124,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                     for (int s = 0; s < scenarios.Count(); s++)
                     {
+                        LibraryInfo.SetSeed(seeds[s].Item1, seeds[s].Item2);
+
                         var realizationResults = new JobResults()
                         {
                             scenarioResults = new ScenarioTypeResults()
