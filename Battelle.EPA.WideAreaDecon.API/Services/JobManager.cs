@@ -107,17 +107,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         scenarios.Add(scenarioCreator.CreateRealizationScenario());
                     }
 
-                    var parameterManager = new ScenarioParameterManager(
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Clearance Sampling").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Waste Sampling").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
-
                     var results = new List<JobResults>();
 
                     for (int s = 0; s < scenarios.Count(); s++)
