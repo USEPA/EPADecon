@@ -16,7 +16,7 @@
       <scatter-plot-wrapper
         v-if="chartType === 'scatter'"
         type="scatter"
-        class="pl-10"
+        class="pl-13 mb-2"
         id="chartWrapper"
         :data="chartData"
         :options="options"
@@ -26,7 +26,7 @@
       <chart-js-wrapper
         v-else
         :type="chartType"
-        class="pl-10"
+        class="pl-13 mb-2"
         id="chartWrapper"
         :data="chartData"
         :options="options"
