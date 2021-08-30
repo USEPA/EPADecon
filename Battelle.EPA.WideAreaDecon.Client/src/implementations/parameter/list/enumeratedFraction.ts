@@ -15,7 +15,7 @@ export default class EnumeratedFraction implements IParameter {
     const sum = Object.values(this.values)
       .map((c) => c.value ?? 0)
       .reduce((acc, cur) => acc + cur, 0);
-    const tolerance = 0.02;
+    const tolerance = 0.025;
 
     return Math.abs(1.0 - sum) <= tolerance;
   }
