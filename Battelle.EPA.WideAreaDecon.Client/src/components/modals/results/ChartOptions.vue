@@ -8,7 +8,7 @@
             <template v-slot:default>
               <thead>
                 <tr>
-                  <th class="text-body-1 text-left">Option</th>
+                  <th class="text-body-1 text-left">Result Type</th>
                   <th class="text-body-1 text-center">X-Axis</th>
                   <th class="text-body-1 text-center">Y-Axis</th>
                 </tr>
@@ -56,12 +56,7 @@ import TYPES from '@/dependencyInjection/types';
 export default class ChartOptions extends Vue {
   @VModel({ default: () => false }) isVisible!: boolean;
 
-  @Prop({
-    default: () => {
-      return { x: null, y: null };
-    },
-  })
-  selected!: { x: PhaseResult | null; y: PhaseResult | null };
+  selected: { x: PhaseResult | null; y: PhaseResult | null } = { x: null, y: null };
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
