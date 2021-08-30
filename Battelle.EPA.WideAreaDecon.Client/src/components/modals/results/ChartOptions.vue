@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, VModel, Vue } from 'vue-property-decorator';
+import { Component, VModel, Vue } from 'vue-property-decorator';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import container from '@/dependencyInjection/config';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
