@@ -10,7 +10,15 @@ export default class EnumeratedFraction implements IParameter {
   @JsonProperty()
   readonly type = ParameterType.enumeratedFraction;
 
-  isSet = true;
+  /** Returns true when the sum of all values is 1 */
+  get isSet(): boolean {
+    const sum = Object.values(this.values)
+      .map((c) => c.value ?? 0)
+      .reduce((acc, cur) => acc + cur, 0);
+    const tolerance = 0.02;
+
+    return Math.abs(1.0 - sum) <= tolerance;
+  }
 
   isEquivalent(other: IParameter): boolean {
     return isEqual(this, other);
