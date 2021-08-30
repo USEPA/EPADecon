@@ -34,8 +34,7 @@ export default class DistributionDisplay {
       max = this.current.max > this.baseline.max ? this.current.max : this.baseline.max;
     }
 
-    const gen = new DistributionDataGenerator(1000, min, max);
-    return gen;
+    return new DistributionDataGenerator(1000, min, max);
   }
 
   get displayChart(): boolean {

@@ -11,12 +11,12 @@
       </v-card-text>
     </div>
     <div v-else class="pt-8 pb-16 px-16" style="width: 100%">
-      <v-btn v-text="'Edit Chart'" @click="showOptions"></v-btn>
+      <v-btn @click="showOptions" class="mb-3" v-text="'edit chart'" />
 
       <scatter-plot-wrapper
         v-if="chartType === 'scatter'"
         type="scatter"
-        class="pl-10"
+        class="pl-13 mb-2"
         id="chartWrapper"
         :data="chartData"
         :options="options"
@@ -26,7 +26,7 @@
       <chart-js-wrapper
         v-else
         :type="chartType"
-        class="pl-10"
+        class="pl-13 mb-2"
         id="chartWrapper"
         :data="chartData"
         :options="options"
@@ -77,10 +77,6 @@ export default class ResultsChartPanel extends Vue {
 
   @Watch('chartType')
   onChartTypeChanged(newValue: string): void {
-    if (this.chartData?.datasets?.[0]) {
-      (this.chartData.datasets[0] as ChartDataset<'scatter'>).showLine = newValue !== 'scatter';
-    }
-
     switch (newValue) {
       case 'bar':
         this.options = this.chartOptionsProvider.getHistogramOptions();
@@ -103,6 +99,12 @@ export default class ResultsChartPanel extends Vue {
   onChartDataChanged(): void {
     if (this.chartType === 'bar') {
       this.chartOptionsProvider.details = this.details ?? undefined;
+      return;
+    }
+
+    const dataset = this.chartData?.datasets?.[0];
+    if (dataset && Object.getOwnPropertyNames(dataset).includes('showLine')) {
+      (dataset as ChartDataset<'scatter'>).showLine = false;
     }
   }
 

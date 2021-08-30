@@ -12,9 +12,9 @@ using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
-using Battelle.EPA.WideAreaDecon.Model.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
 using Microsoft.AspNetCore.SignalR;
+using Battelle.RiskAssessment.Common.Statistics;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
@@ -49,7 +49,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
             await Task.Delay(1000);
 
             await _statusUpdater.UpdateJobStatus(job, JobStatus.Queued);
-            //_progressUpdater.UpdateJobProgress(job, 0.0);
 
             Queued.Enqueue(job);
         }
@@ -86,9 +85,23 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         private Task ConvertAndExecuteJob() => Task.Run(async () =>
             {
                 await _statusUpdater.UpdateJobStatus(Running, JobStatus.Running);
+                _progressUpdater.UpdateJobProgress(Running, 0.0);
+                var progressIncrement = 1.0 / Running.NumberRealizations * 100;
 
                 try
                 {
+                    // Set seeds using values from job
+                    LibraryInfo.SetSeed(Running.Seed1, Running.Seed2);
+
+                    UniformDistribution dist = new UniformDistribution(1, long.MaxValue);
+
+                    var seeds = new Tuple<ulong, ulong>[Running.NumberRealizations];
+
+                    for (int i = 0; i < Running.NumberRealizations; i++)
+                    {
+                        seeds[i] = new Tuple<ulong, ulong>(Convert.ToUInt64(dist.Draw()), Convert.ToUInt64(dist.Draw()));
+                    }
+
                     var extentOfContaminationParameters = Running.DefineScenario.Filters
                         .First(f => f.Name == "Extent of Contamination").Parameters;
 
@@ -111,6 +124,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                     for (int s = 0; s < scenarios.Count(); s++)
                     {
+                        LibraryInfo.SetSeed(seeds[s].Item1, seeds[s].Item2);
+
                         var realizationResults = new JobResults()
                         {
                             scenarioResults = new ScenarioTypeResults()
@@ -163,18 +178,35 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                         //Store results for realization
                         results.Add(realizationResults);
+
+                        //Update job progress
+                        _progressUpdater.UpdateJobProgress(Running, Running.Progress + progressIncrement);
+
+                        //Cancel job if requested
+                        cancelCancellationTokenSource.Token.ThrowIfCancellationRequested();
                     }
 
                     //Store results of model in job
                     Running.Results = results;
 
                     await _statusUpdater.UpdateJobStatus(Running, JobStatus.Completed);
-                    
-                } catch (Exception e)
+                    _progressUpdater.UpdateJobProgress(Running, 100.0);
+                }
+                catch (OperationCanceledException e)
+                {
+                    // Job was cancelled
+                    Console.WriteLine(e);
+                    await _statusUpdater.UpdateJobStatus(Running, JobStatus.Cancelled);
+                }
+                catch (Exception e)
                 {
                     Console.Error.WriteLine(e);
                     // TODO display error on front end?
                     await _statusUpdater.UpdateJobStatus(Running, JobStatus.Error);
+                }
+                finally
+                {
+                    cancelCancellationTokenSource.Dispose();
                 }
 
                 Finished.Add(Running);
@@ -184,6 +216,14 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         public JobStatus GetStatus(Guid id) => GetJob(id)?.Status ?? JobStatus.Unknown;
 
         public JobRequest GetJob(Guid id) => AllJobs.FirstOrDefault(request => request.Id == id);
+
+        public void CancelJob()
+        {
+            if (Running != null && !cancelCancellationTokenSource.IsCancellationRequested)
+            {
+                cancelCancellationTokenSource.Cancel();
+            }
+        }
 
         //public bool UpdateJob(JobRequest newJob)
         //{
