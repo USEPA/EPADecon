@@ -110,6 +110,12 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     if (Number.isNaN(num)) {
       return 'Value must be number!';
     }
+    if (num > this.max) {
+      return `Value must be less than or equal to ${this.max}`;
+    }
+    if (num < this.min) {
+      return `Value must be greater than or equal to ${this.min}`;
+    }
     return true;
   }
 
