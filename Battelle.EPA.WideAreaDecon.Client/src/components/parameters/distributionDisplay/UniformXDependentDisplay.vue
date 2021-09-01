@@ -1,8 +1,8 @@
 <template>
-  <v-container :style="vuetifyColorProps()">
+  <v-container>
     <v-row>
       <v-col align="center">
-        <v-btn v-if="selectedSet.points.length < 6" @click="addPoint">Add Point</v-btn>
+        <v-btn v-show="selectedSet.points.length < 6" @click="addPoint">Add Point</v-btn>
       </v-col>
       <v-col align="center">
         <v-btn-toggle v-model="selectedSetName" dense mandatory background-color="primary">
@@ -20,7 +20,7 @@
         ref="chart"
       />
     </v-card>
-    <v-row v-if="editPoint">
+    <v-row v-show="editPoint">
       <v-col>
         <v-card class="pa-2" outlined tile>
           <v-text-field
@@ -298,11 +298,6 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     return new DefaultChartData(dataSets);
   }
 
-  @Watch('parameterValue')
-  onParameterChanged(): void {
-    this.setValues();
-  }
-
   @Watch('selectedSetName')
   onSelectedSetChanged(): void {
     this.editPoint = false;
@@ -403,12 +398,7 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     }
   }
 
-  vuetifyColorProps(): unknown {
-    return {
-      '--primary-color': this.$vuetify.theme.currentTheme.primary,
-    };
-  }
-
+  @Watch('parameterValue')
   setValues(): void {
     if (this.key) {
       // get baseline

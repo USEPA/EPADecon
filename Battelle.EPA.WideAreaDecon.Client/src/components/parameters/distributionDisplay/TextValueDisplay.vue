@@ -125,12 +125,6 @@ export default class TextParameterDisplay extends Vue implements IParameterDispl
     this.setSelectedMethods();
   }
 
-  vuetifyColorProps(): unknown {
-    return {
-      '--primary-color': this.$vuetify.theme.currentTheme.primary,
-    };
-  }
-
   created(): void {
     this.getSurfacesForCategory();
   }

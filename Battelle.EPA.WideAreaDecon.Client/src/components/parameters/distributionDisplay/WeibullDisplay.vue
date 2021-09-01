@@ -1,5 +1,5 @@
 <template>
-  <v-container :style="vuetifyColorProps()">
+  <v-container>
     <v-row>
       <v-col>
         <v-slider v-model="sliderLambda" :max="max" :min="min" :step="step" thumb-label @change="onSliderLambdaStopped">
@@ -27,7 +27,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="LambdaValue"
-            @keydown="onTextLambdaEnterPressed"
+            @keyup.enter="updateOnTextLambdaChange"
             @blur="updateOnTextLambdaChange"
             v-model="textLambda"
             label="Lambda"
@@ -44,7 +44,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="KValue"
-            @keydown="onTextKEnterPressed"
+            @keyup.enter="updateOnTextKChange"
             @blur="updateOnTextKChange"
             v-model="textK"
             label="k"
@@ -65,7 +65,6 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import { Key } from 'ts-keycode-enum';
 import { max } from 'lodash';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
 
@@ -97,20 +96,12 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
 
   // eslint-disable-next-line class-methods-use-this
   get min(): number {
-    // return 0.0;
     return this.parameterValue.metaData.lowerLimit;
   }
 
   // eslint-disable-next-line class-methods-use-this
   get max(): number {
-    // return 1000.0;
     return this.parameterValue.metaData.upperLimit;
-  }
-
-  vuetifyColorProps(): unknown {
-    return {
-      '--primary-color': this.$vuetify.theme.currentTheme.primary,
-    };
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -144,7 +135,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textLambda = newValue.toString();
-    Vue.set(this.parameterValue, 'lambda', Math.log10(newValue));
+    this.$set(this.parameterValue, 'lambda', Math.log10(newValue));
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -161,37 +152,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textK = newValue.toString();
-    Vue.set(this.parameterValue, 'k', Math.log10(newValue));
-  }
-
-  @Watch('parameterValue')
-  onParameterChanged(newValue: Weibull): void {
-    this.step = this.parameterValue.metaData.step;
-
-    this.ignoreNextValueSliderChange = true;
-
-    this.ignoreNextLambdaSliderChange = true;
-    this.sliderLambda = 0;
-    this.sliderLambda = newValue.lambda ?? 1;
-
-    this.ignoreNextKSliderChange = true;
-    this.sliderK = 1;
-    this.sliderK = newValue.k ?? 2;
-
-    this.textLambda = newValue.lambda?.toString() ?? '';
-    this.textK = newValue.k?.toString() ?? '';
-  }
-
-  onTextLambdaEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextLambdaChange();
-    }
-  }
-
-  onTextKEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextKChange();
-    }
+    this.$set(this.parameterValue, 'k', Math.log10(newValue));
   }
 
   updateOnTextLambdaChange(): void {
@@ -234,13 +195,14 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
   }
 
   onSliderLambdaStopped(value: number): void {
-    Vue.set(this.parameterValue, 'lambda', Math.log10(value));
+    this.$set(this.parameterValue, 'lambda', Math.log10(value));
   }
 
   onSliderKStopped(value: number): void {
-    Vue.set(this.parameterValue, 'k', Math.log10(value));
+    this.$set(this.parameterValue, 'k', Math.log10(value));
   }
 
+  @Watch('parameterValue')
   setValues(): void {
     this.ignoreNextLambdaSliderChange = true;
     this.sliderLambda = 0;

@@ -1,5 +1,5 @@
 <template>
-  <v-container :style="vuetifyColorProps()">
+  <v-container>
     <v-row>
       <v-col>
         <v-range-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">
@@ -17,7 +17,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="minValue"
-            @keydown="onTextMinEnterPressed"
+            @keyup.enter="updateOnTextMinChange"
             @blur="updateOnTextMinChange"
             v-model="textMin"
             label="Min"
@@ -34,7 +34,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="maxValue"
-            @keydown="onTextMaxEnterPressed"
+            @keyup.enter="updateOnTextMaxChange"
             @blur="updateOnTextMaxChange"
             v-model="textMax"
             label="Max"
@@ -56,7 +56,6 @@ import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import Uniform from '@/implementations/parameter/distribution/Uniform';
-import { Key } from 'ts-keycode-enum';
 
 @Component
 export default class UniformDisplay extends Vue implements IParameterDisplay {
@@ -75,12 +74,6 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
   step = 0.1;
 
   ignoreNextValueSliderChange = false;
-
-  vuetifyColorProps(): unknown {
-    return {
-      '--primary-color': this.$vuetify.theme.currentTheme.primary,
-    };
-  }
 
   validationRules(value: string): boolean | string {
     const num = Number(value);
@@ -104,34 +97,8 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
     }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
-    Vue.set(this.parameterValue, 'min', newValue[0]);
-    Vue.set(this.parameterValue, 'max', newValue[1]);
-  }
-
-  @Watch('parameterValue')
-  onParameterChanged(newValue: Uniform): void {
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-
-    this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.min];
-    this.sliderValue = [newValue.min ?? this.min, newValue.max ?? this.max];
-
-    this.textMin = newValue.min?.toString() ?? '';
-    this.textMax = newValue.max?.toString() ?? '';
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
-  }
-
-  onTextMinEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMinChange();
-    }
-  }
-
-  onTextMaxEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMaxChange();
-    }
+    this.$set(this.parameterValue, 'min', newValue[0]);
+    this.$set(this.parameterValue, 'max', newValue[1]);
   }
 
   updateOnTextMinChange(): void {
@@ -185,10 +152,11 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
   }
 
   onSliderStopped(value: number[]): void {
-    Vue.set(this.parameterValue, 'min', value[0]);
-    Vue.set(this.parameterValue, 'max', value[1]);
+    this.$set(this.parameterValue, 'min', value[0]);
+    this.$set(this.parameterValue, 'max', value[1]);
   }
 
+  @Watch('parameterValue')
   setValues(): void {
     this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);

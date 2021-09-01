@@ -1,5 +1,5 @@
 <template>
-  <v-container :style="vuetifyColorProps()">
+  <v-container>
     <v-row>
       <v-col>
         <v-range-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">
@@ -29,7 +29,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="minValue"
-            @keydown="onTextMinEnterPressed"
+            @keyup.enter="updateOnTextMinChange"
             @blur="updateOnTextMinChange"
             v-model="textMin"
             label="Min"
@@ -46,7 +46,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="modeValue"
-            @keydown="onTextModeEnterPressed"
+            @keyup.enter="updateOnTextModeChange"
             @blur="updateOnTextModeChange"
             v-model="textMode"
             label="Mode"
@@ -63,7 +63,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="maxValue"
-            @keydown="onTextMaxEnterPressed"
+            @keyup.enter="updateOnTextMaxChange"
             @blur="updateOnTextMaxChange"
             v-model="textMax"
             label="Max"
@@ -85,7 +85,6 @@ import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import BetaPERT from '@/implementations/parameter/distribution/BetaPERT';
-import { Key } from 'ts-keycode-enum';
 
 @Component
 export default class BetaPertDisplay extends Vue implements IParameterDisplay {
@@ -111,12 +110,6 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
 
   ignoreNextModeSliderChange = false;
 
-  vuetifyColorProps(): unknown {
-    return {
-      '--primary-color': this.$vuetify.theme.currentTheme.primary,
-    };
-  }
-
   validationRules(value: string): boolean | string {
     const num = Number(value);
     if (Number.isNaN(num)) {
@@ -139,8 +132,8 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
     }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
-    Vue.set(this.parameterValue, 'min', newValue[0]);
-    Vue.set(this.parameterValue, 'max', newValue[1]);
+    this.$set(this.parameterValue, 'min', newValue[0]);
+    this.$set(this.parameterValue, 'max', newValue[1]);
     if (newValue[0] > this.sliderMode) {
       [this.sliderMode] = newValue;
     }
@@ -157,49 +150,12 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textMode = newValue.toString();
-    Vue.set(this.parameterValue, 'mode', newValue);
+    this.$set(this.parameterValue, 'mode', newValue);
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
     if (newValue > this.sliderValue[1]) {
       this.sliderValue = [this.sliderValue[0], newValue];
-    }
-  }
-
-  @Watch('parameterValue')
-  onParameterChanged(newValue: BetaPERT): void {
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
-
-    this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.min];
-    this.sliderValue = [newValue.min ?? this.min, newValue.max ?? this.max];
-
-    this.ignoreNextModeSliderChange = true;
-    this.sliderMode = this.min;
-    this.sliderMode = newValue.mode ?? (this.min + this.max) / 2.0;
-
-    this.textMin = newValue.min?.toString() ?? '';
-    this.textMax = newValue.max?.toString() ?? '';
-    this.textMode = newValue.mode?.toString() ?? '';
-  }
-
-  onTextMinEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMinChange();
-    }
-  }
-
-  onTextMaxEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMaxChange();
-    }
-  }
-
-  onTextModeEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextModeChange();
     }
   }
 
@@ -285,24 +241,23 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
   }
 
   onSliderStopped(value: number[]): void {
-    Vue.set(this.parameterValue, 'min', value[0]);
-    Vue.set(this.parameterValue, 'max', value[1]);
+    this.$set(this.parameterValue, 'min', value[0]);
+    this.$set(this.parameterValue, 'max', value[1]);
   }
 
   onSliderModeStopped(value: number): void {
-    Vue.set(this.parameterValue, 'mode', value);
+    this.$set(this.parameterValue, 'mode', value);
   }
 
+  @Watch('parameterValue')
   setValues(): void {
     this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
     this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
 
     this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.min];
     this.sliderValue = [this.parameterValue.min ?? this.min, this.parameterValue.max ?? this.max];
 
     this.ignoreNextModeSliderChange = true;
-    this.sliderMode = this.min;
     this.sliderMode = this.parameterValue.mode ?? (this.min + this.max) / 2.0;
 
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);

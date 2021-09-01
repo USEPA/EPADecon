@@ -1,5 +1,5 @@
 <template>
-  <v-container :style="vuetifyColorProps()">
+  <v-container>
     <v-row>
       <v-col>
         <v-range-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">
@@ -26,17 +26,17 @@
       <v-col>
         <v-slider
           v-model="sliderStd"
-          :max="max - min"
-          :min="(max - min) / 1000"
+          :max="stdDevMax"
+          :min="stdDevMin"
           :step="stdDevStep"
           thumb-label
           @change="onSliderStdStopped"
         >
           <template v-slot:prepend>
-            <p class="grey--text">{{ (max - min) / 1000 }}</p>
+            <p class="grey--text">{{ stdDevMin }}</p>
           </template>
           <template v-slot:append>
-            <p class="grey--text">{{ max - min }}</p>
+            <p class="grey--text">{{ stdDevMax }}</p>
           </template>
         </v-slider>
       </v-col>
@@ -46,7 +46,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="minValue"
-            @keydown="onTextMinEnterPressed"
+            @keyup.enter="updateOnTextMinChange"
             @blur="updateOnTextMinChange"
             v-model="textMin"
             label="Min"
@@ -63,7 +63,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="maxValue"
-            @keydown="onTextMaxEnterPressed"
+            @keyup.enter="updateOnTextMaxChange"
             @blur="updateOnTextMaxChange"
             v-model="textMax"
             label="Max"
@@ -82,7 +82,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="meanValue"
-            @keydown="onTextMeanEnterPressed"
+            @keyup.enter="updateOnTextMeanChange"
             @blur="updateOnTextMeanChange"
             v-model="textMean"
             label="Mean"
@@ -99,11 +99,11 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="stdValue"
-            @keydown="onTextStdEnterPressed"
+            @keyup.enter="updateOnTextStdChange"
             @blur="updateOnTextStdChange"
             v-model="textStd"
             label="Standard Deviation"
-            :rules="[validationRules]"
+            :rules="[validationRulesStdDev]"
             hide-details="auto"
           >
             <template v-slot:append>
@@ -120,7 +120,6 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import { Key } from 'ts-keycode-enum';
 import { max } from 'lodash';
 import TruncatedLogNormal from '@/implementations/parameter/distribution/TruncatedLogNormal';
 
@@ -142,10 +141,6 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
 
   textStd = '';
 
-  min = -100;
-
-  max = 10000;
-
   step = 0.1;
 
   ignoreNextValueSliderChange = false;
@@ -158,10 +153,21 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
   }
 
-  vuetifyColorProps(): unknown {
-    return {
-      '--primary-color': this.$vuetify.theme.currentTheme.primary,
-    };
+  get min(): number {
+    const { lowerLimit } = this.parameterValue.metaData;
+    return lowerLimit <= 0 ? this.step : lowerLimit;
+  }
+
+  get max(): number {
+    return this.parameterValue.metaData.upperLimit;
+  }
+
+  get stdDevMax(): number {
+    return this.max - this.min;
+  }
+
+  get stdDevMin(): number {
+    return this.stdDevMax / 1000;
   }
 
   validationRules(value: string): boolean | string {
@@ -178,6 +184,20 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     return true;
   }
 
+  validationRulesStdDev(value: string): boolean | string {
+    const num = Number(value);
+    if (Number.isNaN(num)) {
+      return 'Value must be number!';
+    }
+    if (num > this.stdDevMax) {
+      return `Value must be less than or equal to ${this.stdDevMax}`;
+    }
+    if (num < this.stdDevMin) {
+      return `Value must be greater than or equal to ${this.stdDevMin}`;
+    }
+    return true;
+  }
+
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number[]): void {
     if (this.ignoreNextValueSliderChange) {
@@ -186,8 +206,8 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
-    Vue.set(this.parameterValue, 'min', newValue[0]);
-    Vue.set(this.parameterValue, 'max', newValue[1]);
+    this.$set(this.parameterValue, 'min', newValue[0]);
+    this.$set(this.parameterValue, 'max', newValue[1]);
     if (newValue[0] > this.sliderMean) {
       [this.sliderMean] = newValue;
     }
@@ -204,7 +224,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
 
     this.textMean = newValue.toString();
-    Vue.set(this.parameterValue, 'mean', Math.log10(newValue));
+    this.$set(this.parameterValue, 'mean', Math.log10(newValue));
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -221,55 +241,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
 
     this.textStd = newValue.toString();
-    Vue.set(this.parameterValue, 'stdDev', Math.log10(newValue));
-  }
-
-  @Watch('parameterValue')
-  onParameterChanged(newValue: TruncatedLogNormal): void {
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
-
-    this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.min];
-    this.sliderValue = [newValue.min ?? this.min, newValue.max ?? this.max];
-
-    this.ignoreNextMeanSliderChange = true;
-    this.sliderMean = this.min;
-    this.sliderMean = newValue.mean ?? (this.min + this.max) / 2.0;
-
-    this.ignoreNextStdSliderChange = true;
-    this.sliderStd = this.min;
-    this.sliderStd = newValue.stdDev ?? (this.min + this.max) / 2.0;
-
-    this.textMin = newValue.min?.toString() ?? '';
-    this.textMax = newValue.max?.toString() ?? '';
-    this.textMean = newValue.mean?.toString() ?? '';
-    this.textStd = newValue.stdDev?.toString() ?? '';
-  }
-
-  onTextMinEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMinChange();
-    }
-  }
-
-  onTextMaxEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMaxChange();
-    }
-  }
-
-  onTextMeanEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMeanChange();
-    }
-  }
-
-  onTextStdEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextStdChange();
-    }
+    this.$set(this.parameterValue, 'stdDev', Math.log10(newValue));
   }
 
   updateOnTextMinChange(): void {
@@ -370,22 +342,20 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
   }
 
   onSliderStopped(value: number[]): void {
-    Vue.set(this.parameterValue, 'min', value[0]);
-    Vue.set(this.parameterValue, 'max', value[1]);
+    this.$set(this.parameterValue, 'min', value[0]);
+    this.$set(this.parameterValue, 'max', value[1]);
   }
 
   onSliderMeanStopped(value: number): void {
-    Vue.set(this.parameterValue, 'mean', Math.log10(value));
+    this.$set(this.parameterValue, 'mean', Math.log10(value));
   }
 
   onSliderStdStopped(value: number): void {
-    Vue.set(this.parameterValue, 'stdDev', Math.log10(value));
+    this.$set(this.parameterValue, 'stdDev', Math.log10(value));
   }
 
+  @Watch('parameterValue')
   setValues(): void {
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-
     this.ignoreNextValueSliderChange = true;
     this.sliderValue = [this.min, this.min];
     this.sliderValue = [this.parameterValue.min ?? this.min, this.parameterValue.max ?? this.max];

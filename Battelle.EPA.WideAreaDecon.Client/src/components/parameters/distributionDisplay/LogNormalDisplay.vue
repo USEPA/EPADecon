@@ -1,5 +1,5 @@
 <template>
-  <v-container :style="vuetifyColorProps()">
+  <v-container>
     <v-row>
       <v-col>
         <v-slider v-model="sliderMean" :max="max" :min="min" :step="step" thumb-label @change="onSliderMeanStopped">
@@ -14,17 +14,17 @@
       <v-col>
         <v-slider
           v-model="sliderStd"
-          :max="max - min"
-          :min="(max - min) / 1000"
+          :max="stdDevMax"
+          :min="stdDevMin"
           :step="stdDevStep"
           thumb-label
           @change="onSliderStdStopped"
         >
           <template v-slot:prepend>
-            <p class="grey--text">{{ (max - min) / 1000 }}</p>
+            <p class="grey--text">{{ stdDevMin }}</p>
           </template>
           <template v-slot:append>
-            <p class="grey--text">{{ max - min }}</p>
+            <p class="grey--text">{{ stdDevMax }}</p>
           </template>
         </v-slider>
       </v-col>
@@ -34,7 +34,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="meanValue"
-            @keydown="onTextMeanEnterPressed"
+            @keyup.enter="updateOnTextMeanChange"
             @blur="updateOnTextMeanChange"
             v-model="textMean"
             label="Mean"
@@ -51,7 +51,7 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="stdValue"
-            @keydown="onTextStdEnterPressed"
+            @keyup.enter="updateOnTextStdChange"
             @blur="updateOnTextStdChange"
             v-model="textStd"
             label="Standard Deviation"
@@ -72,7 +72,6 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import { Key } from 'ts-keycode-enum';
 import { max } from 'lodash';
 import LogNormal from '@/implementations/parameter/distribution/LogNormal';
 
@@ -102,18 +101,21 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
   }
 
+  get stdDevMax(): number {
+    return this.max - this.min;
+  }
+
+  get stdDevMin(): number {
+    return this.stdDevMax / 1000;
+  }
+
   get min(): number {
-    return this.parameterValue.metaData.lowerLimit;
+    const { lowerLimit } = this.parameterValue.metaData;
+    return lowerLimit <= 0 ? this.step : lowerLimit;
   }
 
   get max(): number {
     return this.parameterValue.metaData.upperLimit;
-  }
-
-  vuetifyColorProps(): unknown {
-    return {
-      '--primary-color': this.$vuetify.theme.currentTheme.primary,
-    };
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -147,7 +149,7 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textMean = newValue.toString();
-    Vue.set(this.parameterValue, 'mean', Math.log10(newValue));
+    this.$set(this.parameterValue, 'mean', Math.log10(newValue));
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -164,37 +166,7 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textStd = newValue.toString();
-    Vue.set(this.parameterValue, 'stdDev', Math.log10(newValue));
-  }
-
-  @Watch('parameterValue')
-  onParameterChanged(newValue: LogNormal): void {
-    this.step = this.parameterValue.metaData.step;
-
-    this.ignoreNextValueSliderChange = true;
-
-    this.ignoreNextMeanSliderChange = true;
-    this.sliderMean = 0;
-    this.sliderMean = newValue.mean ?? 1;
-
-    this.ignoreNextStdSliderChange = true;
-    this.sliderStd = 1;
-    this.sliderStd = newValue.stdDev ?? 2;
-
-    this.textMean = newValue.mean?.toString() ?? '';
-    this.textStd = newValue.stdDev?.toString() ?? '';
-  }
-
-  onTextMeanEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMeanChange();
-    }
-  }
-
-  onTextStdEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextStdChange();
-    }
+    this.$set(this.parameterValue, 'stdDev', Math.log10(newValue));
   }
 
   updateOnTextMeanChange(): void {
@@ -237,20 +209,19 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
   }
 
   onSliderMeanStopped(value: number): void {
-    Vue.set(this.parameterValue, 'mean', Math.log10(value));
+    this.$set(this.parameterValue, 'mean', Math.log10(value));
   }
 
   onSliderStdStopped(value: number): void {
-    Vue.set(this.parameterValue, 'stdDev', Math.log10(value));
+    this.$set(this.parameterValue, 'stdDev', Math.log10(value));
   }
 
+  @Watch('parameterValue')
   setValues(): void {
     this.ignoreNextMeanSliderChange = true;
-    this.sliderMean = 0;
     this.sliderMean = this.parameterValue.mean ?? 1;
 
     this.ignoreNextStdSliderChange = true;
-    this.sliderStd = 2;
     this.sliderStd = this.parameterValue.stdDev ?? 1;
 
     this.step = this.parameterValue.metaData.step;
