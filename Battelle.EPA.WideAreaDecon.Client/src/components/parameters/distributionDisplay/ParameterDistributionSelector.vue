@@ -27,23 +27,23 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
+    <v-divider color="grey" v-if="shouldIncludeTitle" />
     <component
       :key="currentSelectedParameter.path"
       :is="display.distComponent"
       :parameter-value="currentSelectedParameter.current"
-    >
-    </component>
-    <v-container>
-      <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
+    />
+    <v-container v-if="display.displayChart">
+      <div class="py-5" style="width: 100%; height: 400px">
         <distribution-chart
           :distribution-series="display.chartData"
-          :xAxisLabel="display.xAxisLabel"
-          :yAxisLabel="'Probability of Selection'"
+          :x-axis-label="display.xAxisLabel"
+          :y-axis-label="'Probability of Selection'"
           :data-generator="display.dataGenerator"
+          :force-x-axis-min-zero="false"
           ref="dist"
-        ></distribution-chart>
-      </v-card>
+        />
+      </div>
     </v-container>
   </v-card>
 </template>

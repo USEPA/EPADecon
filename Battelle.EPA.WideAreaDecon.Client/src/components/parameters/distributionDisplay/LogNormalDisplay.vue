@@ -106,7 +106,8 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
   }
 
   get stdDevMin(): number {
-    return this.stdDevMax / 1000;
+    const val = this.stdDevMax / 1000;
+    return val <= 1 ? 1 + this.stdDevStep : val;
   }
 
   get min(): number {
