@@ -94,17 +94,15 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get min(): number {
-    return this.parameterValue.metaData.lowerLimit;
+    const { lowerLimit } = this.parameterValue.metaData;
+    return lowerLimit <= 1 ? 1 + this.step : lowerLimit;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get max(): number {
     return this.parameterValue.metaData.upperLimit;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   validationRules(value: string): boolean | string {
     const num = Number(value);
     if (Number.isNaN(num)) {
