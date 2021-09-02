@@ -21,11 +21,7 @@
         </v-list-group>
       </template>
 
-      <parameter-filter-expansion-panel
-        v-else
-        :filter="filters[0]"
-        id="singleFilter"
-      ></parameter-filter-expansion-panel>
+      <parameter-filter-expansion-panel v-else :filter="filters[0]" id="singleFilter" />
     </v-list-item-group>
   </v-list>
 </template>
