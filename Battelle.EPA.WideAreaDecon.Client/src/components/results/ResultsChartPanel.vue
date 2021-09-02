@@ -1,5 +1,5 @@
 <template>
-  <v-card class="d-flex justify-center" height="100%">
+  <v-card class="d-flex justify-center" height="630">
     <div v-if="!chartData" class="d-flex justify-center align-center flex-column">
       <v-btn width="150" v-text="'Create Chart'" color="secondary" class="mx-auto mb-6" @click="showOptions"></v-btn>
       <v-card-text class="text-center">
@@ -10,23 +10,22 @@
         </ul>
       </v-card-text>
     </div>
-    <div v-else class="pt-8 pb-16 px-16" style="width: 100%">
+    <div v-else class="pt-8 pb-16 px-8" style="width: 100%">
       <v-btn @click="showOptions" class="mb-3" v-text="'edit chart'" />
 
       <scatter-plot-wrapper
         v-if="chartType === 'scatter'"
         type="scatter"
-        class="pl-13 mb-2"
+        class="pl-10 pr-2 mb-2"
         id="chartWrapper"
         :data="chartData"
         :options="options"
-        :width="100"
-        :height="100"
+        :key="chartKey"
       />
       <chart-js-wrapper
         v-else
         :type="chartType"
-        class="pl-13 mb-2"
+        class="pl-10 pr-2 mb-2"
         id="chartWrapper"
         :data="chartData"
         :options="options"
@@ -34,11 +33,19 @@
         :key="chartKey"
       />
 
-      <v-chip v-if="chartLabels.x" class="px-6" id="xLabel" close @click:close="onLabelClicked('x')">
+      <v-chip v-if="chartLabels.x" class="px-6" id="xLabel" close @click:close="onLabelClicked('x')" key="x">
         {{ resultProvider.convertCamelToTitleCase(chartLabels.x) }}
       </v-chip>
 
-      <v-chip v-if="chartLabels.y" class="px-6" id="yLabel" close @click:close="onLabelClicked('y')">
+      <v-chip
+        v-if="chartLabels.y"
+        class="px-6"
+        id="yLabel"
+        close
+        @click:close="onLabelClicked('y')"
+        key="y"
+        ref="yLabel"
+      >
         {{ resultProvider.convertCamelToTitleCase(chartLabels.y) }}
       </v-chip>
     </div>
@@ -108,6 +115,21 @@ export default class ResultsChartPanel extends Vue {
     }
   }
 
+  /** Calculates and sets the value of the Y axis label's 'top' CSS property
+   *  This vertically centers the label next to the chart
+   */
+  @Watch('chartLabels.y')
+  setYLabelTop(newY: number | null): void {
+    if (newY) {
+      this.$nextTick(() => {
+        const yLabel = (this.$refs.yLabel as Vue).$el;
+        const yLabelTop = yLabel.clientWidth / 2;
+
+        yLabel.setAttribute('style', `top: calc(50% + ${yLabelTop}px`);
+      });
+    }
+  }
+
   onScatterDataPointClicked(_: ChartEvent, elements: ActiveElement[]): void {
     const { index } = elements[0];
     this.$emit('addRun', index + 1);
@@ -142,9 +164,7 @@ export default class ResultsChartPanel extends Vue {
 
 #yLabel {
   position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  transform: rotate(-90deg);
+  transform-origin: 0 0;
+  transform: translateY(-50%) rotate(-90deg);
 }
 </style>
