@@ -106,14 +106,12 @@ export default class ParameterDistributionSelector extends Vue {
 
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
-  @Watch('currentSelectedParameter')
-  onCurrentSelectedParameterChange(): void {
-    this.currentDistType = this.currentSelectedParameter.type;
-  }
+  @Watch('currentSelectedParameter', { deep: true })
+  onCurrentSelectedParameterChange(newValue: ParameterWrapper, oldValue: ParameterWrapper): void {
+    this.currentDistType = newValue.type;
 
-  @Watch('parameterHasChanged')
-  onParameterChanged(newValue: boolean): void {
-    if (newValue && this.hasResults) {
+    const isDifferentParameter = oldValue.path !== newValue.path;
+    if (this.hasResults && !isDifferentParameter) {
       this.resetCurrentJobRequest();
     }
   }
