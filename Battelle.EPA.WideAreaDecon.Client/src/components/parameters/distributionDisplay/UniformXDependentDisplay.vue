@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mb-5">
     <v-row>
       <v-col align="center">
         <v-btn v-show="selectedSet.points.length < 6" @click="addPoint">Add Point</v-btn>
@@ -10,16 +10,18 @@
         </v-btn-toggle>
       </v-col>
     </v-row>
-    <v-card v-if="displayChart" flat class="pa-5" tile width="100%" height="400">
+
+    <v-row v-if="displayChart" style="width: 100%; height: 400px">
       <scatter-plot-wrapper
         :options="chartOptions"
         :data="chartData"
-        :type="'scatter'"
+        type="scatter"
         :width="400"
         :height="150"
         ref="chart"
       />
-    </v-card>
+    </v-row>
+
     <v-row v-show="editPoint">
       <v-col>
         <v-card class="pa-2" outlined tile>
@@ -29,7 +31,7 @@
             v-model.number="selectedSet.points[selectedIndex]"
             :label="selectedSetName"
             hide-details="auto"
-          ></v-text-field>
+          />
         </v-card>
       </v-col>
       <v-col>
@@ -41,7 +43,7 @@
             :value="selectedSet.mins[selectedIndex]"
             :label="`Min ${parameterValue.metaData.name}`"
             hide-details="auto"
-          ></v-text-field>
+          />
         </v-card>
       </v-col>
       <v-col>
@@ -53,7 +55,7 @@
             :value="selectedSet.maxs[selectedIndex]"
             :label="`Max ${parameterValue.metaData.name}`"
             hide-details="auto"
-          ></v-text-field>
+          />
         </v-card>
       </v-col>
       <v-col>
