@@ -69,7 +69,7 @@ import EnumeratedFractionDisplay from '@/components/parameters/distributionDispl
 import EnumeratedParameterDisplay from '@/components/parameters/distributionDisplay/EnumeratedParameterDisplay.vue';
 import TextValueDisplay from '@/components/parameters/distributionDisplay/TextValueDisplay.vue';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
-import { changeableDistributionTypes } from '@/mixin/parameterMixin';
+import { changeableDistributionTypes, nonLogDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
@@ -118,12 +118,15 @@ export default class ParameterDistributionSelector extends Vue {
 
   currentDistType = ParameterType.constant;
 
-  distNames = changeableDistributionTypes;
-
   get display(): DistributionDisplay {
     return container
       .get<IDistributionDisplayProvider>(TYPES.DistributionDisplayProvider)
       .getDistributionDisplay(this.currentSelectedParameter.baseline, this.currentSelectedParameter.current);
+  }
+
+  get distNames(): ParameterType[] {
+    const { upperLimit, step } = this.currentSelectedParameter.baseline.metaData;
+    return upperLimit > 1 + step ? changeableDistributionTypes : nonLogDistributionTypes;
   }
 
   get isChangeableDist(): boolean {
