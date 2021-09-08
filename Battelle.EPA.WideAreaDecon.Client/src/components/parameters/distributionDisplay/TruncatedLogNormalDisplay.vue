@@ -163,11 +163,13 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
   }
 
   get stdDevMax(): number {
-    return this.max - this.min;
+    const val = this.max - this.min;
+    return val <= 1 ? this.max : val;
   }
 
   get stdDevMin(): number {
-    return this.stdDevMax / 1000;
+    const val = this.stdDevMax / 1000;
+    return val <= 1 ? 1 + this.step : val;
   }
 
   validationRules(value: string): boolean | string {

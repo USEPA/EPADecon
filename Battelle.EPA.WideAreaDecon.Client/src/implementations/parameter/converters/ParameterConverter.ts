@@ -4,6 +4,7 @@ import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterType from '@/enums/parameter/parameterType';
 import * as Utility from '@/mixin/mathUtilityMixin';
 import { nelderMead } from '@/mixin/solverMixin';
+import { logDistributionTypes } from '@/mixin/parameterMixin';
 import { injectable } from 'inversify';
 import Uniform from '../distribution/Uniform';
 import TruncatedNormal from '../distribution/TruncatedNormal';
@@ -40,22 +41,20 @@ export default class ParameterConverter implements IParameterConverter {
         return new BimodalTruncatedNormal(old.metaData, old.mean, old.stdDev, old.mean, old.stdDev, old.min, old.max);
       case ParameterType.constant:
         return new Constant(old.metaData, old.mean);
-      case ParameterType.logNormal:
-        return new LogNormal(old.metaData, old.mean, old.stdDev);
+      case ParameterType.logNormal: {
+        const { mean, stdDev } = this.getMeanAndStdDevForLogDist(old);
+        return new LogNormal(old.metaData, mean, stdDev);
+      }
       case ParameterType.logUniform:
-        return new LogUniform(old.metaData, Utility.convertToLog10(old.min), Utility.convertToLog10(old.max));
+        return new LogUniform(old.metaData, old.min, old.max);
       case ParameterType.null:
         return new NullParameter();
       case ParameterType.pert:
         return new BetaPERT(old.metaData, old.min, old.max, old.mode);
-      case ParameterType.truncatedLogNormal:
-        return new TruncatedLogNormal(
-          old.metaData,
-          Utility.convertToLog10(old.min),
-          Utility.convertToLog10(old.max),
-          Utility.convertToLog10(old.mean),
-          Utility.convertToLog10(old.stdDev),
-        );
+      case ParameterType.truncatedLogNormal: {
+        const { mean, stdDev } = this.getMeanAndStdDevForLogDist(old);
+        return new TruncatedLogNormal(old.metaData, old.min, old.max, mean, stdDev);
+      }
       case ParameterType.truncatedNormal:
         return new TruncatedNormal(old.metaData, old.min, old.max, old.mean, old.stdDev);
       case ParameterType.uniform:
@@ -69,8 +68,9 @@ export default class ParameterConverter implements IParameterConverter {
           return new Weibull(old.metaData);
         }
 
-        const actMean = old.mean;
-        const actVar = old.stdDev ** 2;
+        const { mean, stdDev } = this.getMeanAndStdDevForLogDist(old);
+        const actMean = mean ?? 0;
+        const actVar = (stdDev ?? 0) ** 2;
         const minimize = (values: number[]): number => {
           const actual = new Weibull(new ParameterMetaData(), values[0], values[1]);
 
@@ -125,5 +125,17 @@ export default class ParameterConverter implements IParameterConverter {
       default:
         throw new Error('New Type not recognized');
     }
+  }
+
+  private getMeanAndStdDevForLogDist(oldDist: IUnivariateParameter): { mean?: number; stdDev?: number } {
+    let { mean, stdDev } = oldDist;
+    const { type } = oldDist;
+
+    if (logDistributionTypes.includes(type)) {
+      mean = Utility.convertFromLog10(mean);
+      stdDev = Utility.convertFromLog10(stdDev);
+    }
+
+    return { mean, stdDev };
   }
 }
