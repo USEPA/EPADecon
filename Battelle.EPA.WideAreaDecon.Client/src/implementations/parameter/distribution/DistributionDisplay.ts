@@ -43,10 +43,6 @@ export default class DistributionDisplay {
           : this.current.max;
     }
 
-    console.log(min);
-    console.log(max);
-    console.log();
-
     return new DistributionDataGenerator(1000, min, max);
   }
 
