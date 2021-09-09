@@ -162,11 +162,16 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
   }
 
   get stdDevMax(): number {
-    return this.max - this.min;
+    const val = this.max - this.min;
+    if (val <= 0) {
+      return this.step;
+    }
+    return val >= this.max ? this.max : val;
   }
 
   get stdDevMin(): number {
-    return this.stdDevMax / 1000;
+    const val = this.stdDevMax / 1000;
+    return val <= 0 ? this.step : val;
   }
 
   validationRules(value: string): boolean | string {

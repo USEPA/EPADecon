@@ -55,7 +55,7 @@
             @blur="updateOnTextStdChange"
             v-model="textStd"
             label="Standard Deviation"
-            :rules="[validationRules]"
+            :rules="[validationRulesStdDev]"
             hide-details="auto"
           >
             <template v-slot:append>
@@ -120,11 +120,30 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
     return this.parameterValue.metaData.upperLimit;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   validationRules(value: string): boolean | string {
     const num = Number(value);
     if (Number.isNaN(num)) {
       return 'Value must be number!';
+    }
+    if (num > this.max) {
+      return `Value must be less than or equal to ${this.max}`;
+    }
+    if (num < this.min) {
+      return `Value must be greater than or equal to ${this.min}`;
+    }
+    return true;
+  }
+
+  validationRulesStdDev(value: string): boolean | string {
+    const num = Number(value);
+    if (Number.isNaN(num)) {
+      return 'Value must be number!';
+    }
+    if (num > this.stdDevMax) {
+      return `Value must be less than or equal to ${this.stdDevMax}`;
+    }
+    if (num < this.stdDevMin) {
+      return `Value must be greater than or equal to ${this.stdDevMin}`;
     }
     return true;
   }

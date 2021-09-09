@@ -27,17 +27,17 @@
       <v-col>
         <v-slider
           v-model="sliderStd1"
-          :max="max - min"
-          :min="(max - min) / 1000"
+          :max="stdDevMax"
+          :min="stdDevMin"
           :step="stdDevStep"
           thumb-label
           @change="onSliderStd1Stopped"
         >
           <template v-slot:prepend>
-            <p class="grey--text">{{ (max - min) / 1000 }}</p>
+            <p class="grey--text">{{ stdDevMin }}</p>
           </template>
           <template v-slot:append>
-            <p class="grey--text">{{ max - min }}</p>
+            <p class="grey--text">{{ stdDevMax }}</p>
           </template>
         </v-slider>
       </v-col>
@@ -57,17 +57,17 @@
       <v-col>
         <v-slider
           v-model="sliderStd2"
-          :max="max - min"
-          :min="(max - min) / 1000"
+          :max="stdDevMax"
+          :min="stdDevMin"
           :step="stdDevStep"
           thumb-label
           @change="onSliderStd2Stopped"
         >
           <template v-slot:prepend>
-            <p class="grey--text">{{ (max - min) / 1000 }}</p>
+            <p class="grey--text">{{ stdDevMin }}</p>
           </template>
           <template v-slot:append>
-            <p class="grey--text">{{ max - min }}</p>
+            <p class="grey--text">{{ stdDevMax }}</p>
           </template>
         </v-slider>
       </v-col>
@@ -135,7 +135,7 @@
             @blur="updateOnTextStdChange"
             v-model="textStd1"
             label="Standard Deviation 1"
-            :rules="[validationRules]"
+            :rules="[validationRulesStdDev]"
             hide-details="auto"
           >
             <template v-slot:append>
@@ -172,7 +172,7 @@
             @blur="updateOnTextStdChange"
             v-model="textStd2"
             label="Standard Deviation 2"
-            :rules="[validationRules]"
+            :rules="[validationRulesStdDev]"
             hide-details="auto"
           >
             <template v-slot:append>
@@ -234,6 +234,19 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
   }
 
+  get stdDevMin(): number {
+    const val = this.stdDevMax / 1000;
+    return val <= 0 ? this.step : val;
+  }
+
+  get stdDevMax(): number {
+    const val = this.max - this.min;
+    if (val <= 0) {
+      return this.step;
+    }
+    return val >= this.max ? this.max : val;
+  }
+
   validationRules(value: string): boolean | string {
     const num = Number(value);
     if (Number.isNaN(num)) {
@@ -244,6 +257,20 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
     if (num < this.min) {
       return `Value must be greater than or equal to ${this.min}`;
+    }
+    return true;
+  }
+
+  validationRulesStdDev(value: string): boolean | string {
+    const num = Number(value);
+    if (Number.isNaN(num)) {
+      return 'Value must be number!';
+    }
+    if (num > this.stdDevMax) {
+      return `Value must be less than or equal to ${this.stdDevMax}`;
+    }
+    if (num < this.stdDevMin) {
+      return `Value must be greater than or equal to ${this.stdDevMin}`;
     }
     return true;
   }
