@@ -44,16 +44,16 @@ export default class ParameterConverter implements IParameterConverter {
         return new LogNormal(old.metaData, mean, stdDev);
       }
       case ParameterType.logUniform: {
-        const { min } = this.getValuesForLogDistribution(old);
-        return new LogUniform(old.metaData, min, old.max);
+        const { min, max } = this.getValuesForLogDistribution(old);
+        return new LogUniform(old.metaData, min, max);
       }
       case ParameterType.null:
         return new NullParameter();
       case ParameterType.pert:
         return new BetaPERT(old.metaData, old.min, old.max, old.mode);
       case ParameterType.truncatedLogNormal: {
-        const { min, mean, stdDev } = this.getValuesForLogDistribution(old);
-        return new TruncatedLogNormal(old.metaData, min, old.max, mean, stdDev);
+        const { min, max, mean, stdDev } = this.getValuesForLogDistribution(old);
+        return new TruncatedLogNormal(old.metaData, min, max, mean, stdDev);
       }
       case ParameterType.truncatedNormal:
         return new TruncatedNormal(old.metaData, old.min, old.max, old.mean, old.stdDev);
@@ -127,16 +127,23 @@ export default class ParameterConverter implements IParameterConverter {
   }
 
   /** Prevent invalid values from being used on log distributions */
-  private getValuesForLogDistribution(old: IUnivariateParameter): { mean?: number; stdDev?: number; min?: number } {
+  private getValuesForLogDistribution(
+    old: IUnivariateParameter,
+  ): { mean?: number; stdDev?: number; min?: number; max?: number } {
     const { step, lowerLimit, upperLimit } = old.metaData;
-    let { mean, stdDev, min } = old;
+    let { mean, stdDev, min, max } = old;
 
     const minLowerLimit = lowerLimit <= 0 ? step : lowerLimit;
     min = this.determineValueWithBoundaries(minLowerLimit, upperLimit, min);
-    mean = this.determineValueWithBoundaries(lowerLimit, upperLimit, mean);
-    stdDev = this.determineValueWithBoundaries(lowerLimit, upperLimit, stdDev);
 
-    return { min, stdDev, mean };
+    const maxLowerLimit = (min ?? step) + step;
+    max = this.determineValueWithBoundaries(maxLowerLimit, upperLimit, max);
+
+    const stdDevLowerLimit = lowerLimit <= 1 ? 1 + step : lowerLimit;
+    stdDev = this.determineValueWithBoundaries(stdDevLowerLimit, upperLimit, stdDev);
+    mean = this.determineValueWithBoundaries(lowerLimit, upperLimit, mean);
+
+    return { min, max, stdDev, mean };
   }
 
   private determineValueWithBoundaries(lower: number, upper: number, value?: number): number | undefined {

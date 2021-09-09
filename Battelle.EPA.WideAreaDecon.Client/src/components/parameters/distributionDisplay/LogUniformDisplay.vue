@@ -166,7 +166,7 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
 
     this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.min];
+    this.sliderValue = [this.min, this.max];
     this.sliderValue = [this.parameterValue.min ?? 0, this.parameterValue.max ?? 1];
 
     this.textMin = this.parameterValue.min?.toString() ?? '';
