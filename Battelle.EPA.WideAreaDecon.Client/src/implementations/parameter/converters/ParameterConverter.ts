@@ -4,6 +4,7 @@ import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterType from '@/enums/parameter/parameterType';
 import { nelderMead } from '@/mixin/solverMixin';
 import { injectable } from 'inversify';
+import { logDistributionTypes } from '@/mixin/parameterMixin';
 import Uniform from '../distribution/Uniform';
 import TruncatedNormal from '../distribution/TruncatedNormal';
 import TruncatedLogNormal from '../distribution/TruncatedLogNormal';
@@ -34,31 +35,26 @@ export default class ParameterConverter implements IParameterConverter {
   }
 
   convertFromUnivariate(old: IUnivariateParameter, newType: ParameterType): IParameter {
+    const { min, max, mean, stdDev, mode } = this.getValuesForDistribution(old, newType);
     switch (newType) {
       case ParameterType.bimodalTruncatedNormal:
-        return new BimodalTruncatedNormal(old.metaData, old.mean, old.stdDev, old.mean, old.stdDev, old.min, old.max);
+        return new BimodalTruncatedNormal(old.metaData, mean, stdDev, mean, stdDev, min, max);
       case ParameterType.constant:
-        return new Constant(old.metaData, old.mean);
-      case ParameterType.logNormal: {
-        const { mean, stdDev } = this.getValuesForLogDistribution(old);
+        return new Constant(old.metaData, mean);
+      case ParameterType.logNormal:
         return new LogNormal(old.metaData, mean, stdDev);
-      }
-      case ParameterType.logUniform: {
-        const { min, max } = this.getValuesForLogDistribution(old);
+      case ParameterType.logUniform:
         return new LogUniform(old.metaData, min, max);
-      }
       case ParameterType.null:
         return new NullParameter();
       case ParameterType.pert:
-        return new BetaPERT(old.metaData, old.min, old.max, old.mode);
-      case ParameterType.truncatedLogNormal: {
-        const { min, max, mean, stdDev } = this.getValuesForLogDistribution(old);
+        return new BetaPERT(old.metaData, min, max, mode);
+      case ParameterType.truncatedLogNormal:
         return new TruncatedLogNormal(old.metaData, min, max, mean, stdDev);
-      }
       case ParameterType.truncatedNormal:
-        return new TruncatedNormal(old.metaData, old.min, old.max, old.mean, old.stdDev);
+        return new TruncatedNormal(old.metaData, min, max, mean, stdDev);
       case ParameterType.uniform:
-        return new Uniform(old.metaData, old.min, old.max);
+        return new Uniform(old.metaData, min, max);
       case ParameterType.uniformXDependent:
         return new UniformXDependent(old.metaData);
       case ParameterType.textValue:
@@ -126,24 +122,36 @@ export default class ParameterConverter implements IParameterConverter {
     }
   }
 
-  /** Prevent invalid values from being used on log distributions */
-  private getValuesForLogDistribution(
+  /** Prevent invalid values from being used when switching distributions */
+  private getValuesForDistribution(
     old: IUnivariateParameter,
-  ): { mean?: number; stdDev?: number; min?: number; max?: number } {
+    newType: ParameterType,
+  ): { mean?: number; stdDev?: number; min?: number; max?: number; mode?: number } {
+    const isLogDist = logDistributionTypes.includes(newType);
     const { step, lowerLimit, upperLimit } = old.metaData;
-    let { mean, stdDev, min, max } = old;
+    let { mean, stdDev, min, max, mode } = old;
 
-    const minLowerLimit = lowerLimit <= 0 ? step : lowerLimit;
-    min = this.determineValueWithBoundaries(minLowerLimit, upperLimit, min);
+    // Valid min and std dev differ b/n log distributions and other distributions
+    if (isLogDist) {
+      const minLowerLimit = lowerLimit <= 0 ? step : lowerLimit;
+      min = this.determineValueWithBoundaries(minLowerLimit, upperLimit, min);
+
+      const stdDevLowerLimit = lowerLimit <= 1 ? 1 + step : lowerLimit;
+      stdDev = this.determineValueWithBoundaries(stdDevLowerLimit, upperLimit, stdDev);
+    } else {
+      min = this.determineValueWithBoundaries(lowerLimit, upperLimit, min);
+
+      const stdDevLowerLimit = lowerLimit <= 0 ? step : lowerLimit;
+      stdDev = this.determineValueWithBoundaries(stdDevLowerLimit, upperLimit, stdDev);
+    }
 
     const maxLowerLimit = (min ?? step) + step;
     max = this.determineValueWithBoundaries(maxLowerLimit, upperLimit, max);
 
-    const stdDevLowerLimit = lowerLimit <= 1 ? 1 + step : lowerLimit;
-    stdDev = this.determineValueWithBoundaries(stdDevLowerLimit, upperLimit, stdDev);
     mean = this.determineValueWithBoundaries(lowerLimit, upperLimit, mean);
+    mode = this.determineValueWithBoundaries(min ?? lowerLimit, max ?? upperLimit, mode);
 
-    return { min, max, stdDev, mean };
+    return { min, max, stdDev, mean, mode };
   }
 
   private determineValueWithBoundaries(lower: number, upper: number, value?: number): number | undefined {

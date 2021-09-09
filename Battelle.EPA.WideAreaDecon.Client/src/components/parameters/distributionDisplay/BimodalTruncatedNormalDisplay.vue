@@ -283,7 +283,8 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
-    [this.parameterValue.min, this.parameterValue.max] = newValue;
+    this.$set(this.parameterValue, 'min', newValue[0]);
+    this.$set(this.parameterValue, 'max', newValue[1]);
     if (newValue[0] > this.sliderMean1) {
       [this.sliderMean1] = newValue;
     }
@@ -307,7 +308,7 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
 
     this.textMean1 = newValue.toString();
-    this.parameterValue.mean1 = newValue;
+    this.$set(this.parameterValue, 'mean1', newValue);
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -324,7 +325,7 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
 
     this.textMean2 = newValue.toString();
-    this.parameterValue.mean2 = newValue;
+    this.$set(this.parameterValue, 'mean2', newValue);
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -341,7 +342,7 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
 
     this.textStd1 = newValue.toString();
-    this.parameterValue.stdDev1 = newValue;
+    this.$set(this.parameterValue, 'stdDev1', newValue);
   }
 
   @Watch('sliderStd2')
@@ -352,7 +353,7 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
 
     this.textStd2 = newValue.toString();
-    this.parameterValue.stdDev2 = newValue;
+    this.$set(this.parameterValue, 'stdDev2', newValue);
   }
 
   updateOnTextMinChange(): void {
@@ -493,24 +494,25 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
   }
 
-  onSliderStopped(value: number[]): void {
-    [this.parameterValue.min, this.parameterValue.max] = value;
+  onSliderStopped(values: number[]): void {
+    this.$set(this.parameterValue, 'min', values[0]);
+    this.$set(this.parameterValue, 'max', values[1]);
   }
 
   onSliderMean1Stopped(value: number): void {
-    this.parameterValue.mean1 = value;
+    this.$set(this.parameterValue, 'mean1', value);
   }
 
   onSliderStd1Stopped(value: number): void {
-    this.parameterValue.stdDev1 = value;
+    this.$set(this.parameterValue, 'stdDev1', value);
   }
 
   onSliderMean2Stopped(value: number): void {
-    this.parameterValue.mean2 = value;
+    this.$set(this.parameterValue, 'mean2', value);
   }
 
   onSliderStd2Stopped(value: number): void {
-    this.parameterValue.stdDev2 = value;
+    this.$set(this.parameterValue, 'stdDev2', value);
   }
 
   @Watch('parameterValue')
@@ -523,12 +525,12 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
 
     this.ignoreNextMeanSliderChange = true;
     this.sliderMean1 = this.parameterValue.mean1 ?? (this.min + this.max) / 4.0;
-
-    this.sliderMean2 = this.parameterValue.mean2 ?? (this.min + this.max) / (4.0 / 3.0);
+    this.ignoreNextMeanSliderChange = true;
+    this.sliderMean2 = this.parameterValue.mean2 ?? (this.min + this.max) / 4.0;
 
     this.ignoreNextStdSliderChange = true;
     this.sliderStd1 = this.parameterValue.stdDev ?? (this.max - this.min) / 5.0;
-
+    this.ignoreNextStdSliderChange = true;
     this.sliderStd2 = this.parameterValue.stdDev2 ?? (this.max - this.min) / 5.0;
 
     this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
