@@ -32,9 +32,5 @@ function convertToLog(value?: number): number | undefined {
   return value && value > 0 ? Math.log(value) : undefined;
 }
 
-function convertFromLog10(value?: number): number | undefined {
-  return value && value > 0 ? 10 ** value : undefined;
-}
-
 // eslint-disable-next-line import/prefer-default-export
-export { gamma, convertToLog10, convertToLog, convertFromLog10 };
+export { gamma, convertToLog10, convertToLog };

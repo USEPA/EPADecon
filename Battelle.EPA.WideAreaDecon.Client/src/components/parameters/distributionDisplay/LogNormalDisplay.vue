@@ -151,7 +151,7 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textMean = newValue.toString();
-    this.$set(this.parameterValue, 'mean', Math.log10(newValue));
+    this.$set(this.parameterValue, 'mean', newValue);
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -168,7 +168,7 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textStd = newValue.toString();
-    this.$set(this.parameterValue, 'stdDev', Math.log10(newValue));
+    this.$set(this.parameterValue, 'mean', newValue);
   }
 
   updateOnTextMeanChange(): void {
@@ -211,11 +211,11 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
   }
 
   onSliderMeanStopped(value: number): void {
-    this.$set(this.parameterValue, 'mean', Math.log10(value));
+    this.$set(this.parameterValue, 'mean', value);
   }
 
   onSliderStdStopped(value: number): void {
-    this.$set(this.parameterValue, 'stdDev', Math.log10(value));
+    this.$set(this.parameterValue, 'stdDev', value);
   }
 
   @Watch('parameterValue')

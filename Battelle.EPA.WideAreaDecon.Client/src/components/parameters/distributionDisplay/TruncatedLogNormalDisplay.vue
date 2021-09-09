@@ -226,7 +226,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
 
     this.textMean = newValue.toString();
-    this.$set(this.parameterValue, 'mean', Math.log10(newValue));
+    this.$set(this.parameterValue, 'mean', newValue);
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -243,7 +243,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     }
 
     this.textStd = newValue.toString();
-    this.$set(this.parameterValue, 'stdDev', Math.log10(newValue));
+    this.$set(this.parameterValue, 'stdDev', newValue);
   }
 
   updateOnTextMinChange(): void {
@@ -312,7 +312,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     if (this.textMean === '') {
       this.parameterValue.mean = undefined;
     } else if (value === this.sliderMean) {
-      this.parameterValue.mean = Math.log10(value);
+      this.parameterValue.mean = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMean = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
@@ -335,7 +335,7 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
     if (this.textStd === '') {
       this.parameterValue.stdDev = undefined;
     } else if (value === this.sliderStd) {
-      this.parameterValue.stdDev = Math.log10(value);
+      this.parameterValue.stdDev = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textStd = '';
     } else {
@@ -349,11 +349,11 @@ export default class TruncatedLogNormalDisplay extends Vue implements IParameter
   }
 
   onSliderMeanStopped(value: number): void {
-    this.$set(this.parameterValue, 'mean', Math.log10(value));
+    this.$set(this.parameterValue, 'mean', value);
   }
 
   onSliderStdStopped(value: number): void {
-    this.$set(this.parameterValue, 'stdDev', Math.log10(value));
+    this.$set(this.parameterValue, 'stdDev', value);
   }
 
   @Watch('parameterValue')
