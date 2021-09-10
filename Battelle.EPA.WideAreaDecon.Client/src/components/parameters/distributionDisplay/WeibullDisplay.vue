@@ -139,7 +139,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textLambda = newValue.toString();
-    this.$set(this.parameterValue, 'lambda', Math.log10(newValue));
+    this.$set(this.parameterValue, 'lambda', newValue);
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -156,7 +156,7 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     }
 
     this.textK = newValue.toString();
-    this.$set(this.parameterValue, 'k', Math.log10(newValue));
+    this.$set(this.parameterValue, 'k', newValue);
   }
 
   updateOnTextLambdaChange(): void {
@@ -199,11 +199,11 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
   }
 
   onSliderLambdaStopped(value: number): void {
-    this.$set(this.parameterValue, 'lambda', Math.log10(value));
+    this.$set(this.parameterValue, 'lambda', value);
   }
 
   onSliderKStopped(value: number): void {
-    this.$set(this.parameterValue, 'k', Math.log10(value));
+    this.$set(this.parameterValue, 'k', value);
   }
 
   @Watch('parameterValue')

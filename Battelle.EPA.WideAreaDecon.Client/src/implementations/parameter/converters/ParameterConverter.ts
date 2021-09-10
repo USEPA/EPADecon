@@ -78,7 +78,15 @@ export default class ParameterConverter implements IParameterConverter {
 
         // SUT
         const sln = nelderMead(minimize, guess);
-        return new Weibull(old.metaData, sln.Input[0], sln.Input[1]);
+
+        const { upperLimit, step } = old.metaData;
+        let { lowerLimit } = old.metaData;
+        lowerLimit = lowerLimit <= 1 ? 1 + step : lowerLimit;
+
+        const k = this.determineValueWithBoundaries(lowerLimit, upperLimit, sln.Input[0]);
+        const lambda = this.determineValueWithBoundaries(lowerLimit, upperLimit, sln.Input[1]);
+
+        return new Weibull(old.metaData, k, lambda);
       }
       case ParameterType.enumeratedFraction:
       case ParameterType.enumeratedParameter:
