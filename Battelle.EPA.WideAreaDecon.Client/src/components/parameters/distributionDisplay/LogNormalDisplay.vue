@@ -38,8 +38,9 @@
             @blur="updateOnTextMeanChange"
             v-model="textMean"
             label="Mean"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -55,8 +56,9 @@
             @blur="updateOnTextStdChange"
             v-model="textStd"
             label="Standard Deviation"
-            :rules="[validationRulesStdDev]"
+            :rules="[inputValidationRules.stdDev]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -69,14 +71,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
-import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import { max } from 'lodash';
 import LogNormal from '@/implementations/parameter/distribution/LogNormal';
+import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
-export default class LogNormalDisplay extends Vue implements IParameterDisplay {
+export default class LogNormalDisplay extends BaseDistributionDisplay {
   @Prop({ required: true }) parameterValue!: LogNormal;
 
   sliderValue = [0, 0];
@@ -89,8 +90,6 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
 
   textStd = '';
 
-  step = 0.1;
-
   ignoreNextValueSliderChange = false;
 
   ignoreNextMeanSliderChange = false;
@@ -99,53 +98,6 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
 
   get stdDevStep(): number {
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
-  }
-
-  get stdDevMax(): number {
-    const val = this.max - this.min;
-    return val <= 1 ? this.max : val;
-  }
-
-  get stdDevMin(): number {
-    const val = this.stdDevMax / 1000;
-    return val <= 1 ? 1 + this.step : val;
-  }
-
-  get min(): number {
-    const { lowerLimit } = this.parameterValue.metaData;
-    return lowerLimit <= 0 ? this.step : lowerLimit;
-  }
-
-  get max(): number {
-    return this.parameterValue.metaData.upperLimit;
-  }
-
-  validationRules(value: string): boolean | string {
-    const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
-    if (num > this.max) {
-      return `Value must be less than or equal to ${this.max}`;
-    }
-    if (num < this.min) {
-      return `Value must be greater than or equal to ${this.min}`;
-    }
-    return true;
-  }
-
-  validationRulesStdDev(value: string): boolean | string {
-    const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
-    if (num > this.stdDevMax) {
-      return `Value must be less than or equal to ${this.stdDevMax}`;
-    }
-    if (num < this.stdDevMin) {
-      return `Value must be greater than or equal to ${this.stdDevMin}`;
-    }
-    return true;
   }
 
   @Watch('sliderValue')
@@ -245,7 +197,6 @@ export default class LogNormalDisplay extends Vue implements IParameterDisplay {
     this.ignoreNextStdSliderChange = true;
     this.sliderStd = this.parameterValue.stdDev ?? 1;
 
-    this.step = this.parameterValue.metaData.step;
     this.textMean = this.parameterValue.mean?.toString() ?? '';
     this.textStd = this.parameterValue.stdDev?.toString() ?? '';
   }

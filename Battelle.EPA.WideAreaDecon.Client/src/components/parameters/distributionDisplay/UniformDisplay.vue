@@ -21,8 +21,9 @@
             @blur="updateOnTextMinChange"
             v-model="textMin"
             label="Min"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general, inputValidationRules.minMax(textMin, textMax)]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -38,8 +39,9 @@
             @blur="updateOnTextMaxChange"
             v-model="textMax"
             label="Max"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general, inputValidationRules.minMax(textMin, textMax)]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -52,13 +54,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
-import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import Uniform from '@/implementations/parameter/distribution/Uniform';
+import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
-export default class UniformDisplay extends Vue implements IParameterDisplay {
+export default class UniformDisplay extends BaseDistributionDisplay {
   @Prop({ required: true }) parameterValue!: Uniform;
 
   sliderValue = [0, 0];
@@ -67,27 +68,7 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
 
   textMax = '';
 
-  min = -100;
-
-  max = 10000;
-
-  step = 0.1;
-
   ignoreNextValueSliderChange = false;
-
-  validationRules(value: string): boolean | string {
-    const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
-    if (num > this.max) {
-      return `Value must be less than or equal to ${this.max}`;
-    }
-    if (num < this.min) {
-      return `Value must be greater than or equal to ${this.min}`;
-    }
-    return true;
-  }
 
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number[]): void {
@@ -158,10 +139,6 @@ export default class UniformDisplay extends Vue implements IParameterDisplay {
 
   @Watch('parameterValue')
   setValues(): void {
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
-
     this.ignoreNextValueSliderChange = true;
     this.sliderValue = [this.min, this.min];
     this.sliderValue = [this.parameterValue.min ?? 0, this.parameterValue.max ?? 1];

@@ -31,6 +31,7 @@
                     label="Value"
                     :rules="[validationRules]"
                     hide-details="auto"
+                    type="number"
                   >
                     <template v-slot:append>
                       <p class="grey--text">{{ value.metaData.units }}</p>
@@ -84,9 +85,6 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 
   validationRules(value: string): boolean | string {
     const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
     if (num > this.max) {
       return `Value must be less than or equal to ${this.max}`;
     }

@@ -81,8 +81,9 @@
             @blur="updateOnTextMinChange"
             v-model="textMin"
             label="Min"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general, inputValidationRules.minMax(textMin, textMax)]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -98,8 +99,9 @@
             @blur="updateOnTextMaxChange"
             v-model="textMax"
             label="Max"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general, inputValidationRules.minMax(textMin, textMax)]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -118,8 +120,9 @@
             @blur="updateOnTextMeanChange"
             v-model="textMean1"
             label="Mean 1"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -135,8 +138,9 @@
             @blur="updateOnTextStdChange"
             v-model="textStd1"
             label="Standard Deviation 1"
-            :rules="[validationRulesStdDev]"
+            :rules="[inputValidationRules.stdDev]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -155,8 +159,9 @@
             @blur="updateOnTextMeanChange"
             v-model="textMean2"
             label="Mean 2"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -172,8 +177,9 @@
             @blur="updateOnTextStdChange"
             v-model="textStd2"
             label="Standard Deviation 2"
-            :rules="[validationRulesStdDev]"
+            :rules="[inputValidationRules.stdDev]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -186,14 +192,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
-import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import BimodalTruncatedNormal from '@/implementations/parameter/distribution/BimodalTruncatedNormal';
 import { max } from 'lodash';
+import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
-export default class BimodalTruncatedNormalDisplay extends Vue implements IParameterDisplay {
+export default class BimodalTruncatedNormalDisplay extends BaseDistributionDisplay {
   @Prop({ required: true }) parameterValue!: BimodalTruncatedNormal;
 
   sliderValue = [0, 0];
@@ -218,12 +223,6 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
 
   textStd2 = '';
 
-  min = -100;
-
-  max = 10000;
-
-  step = 0.1;
-
   ignoreNextValueSliderChange = false;
 
   ignoreNextMeanSliderChange = false;
@@ -232,47 +231,6 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
 
   get stdDevStep(): number {
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
-  }
-
-  get stdDevMin(): number {
-    const val = this.stdDevMax / 1000;
-    return val <= 0 ? this.step : val;
-  }
-
-  get stdDevMax(): number {
-    const val = this.max - this.min;
-    if (val <= 0) {
-      return this.step;
-    }
-    return val >= this.max ? this.max : val;
-  }
-
-  validationRules(value: string): boolean | string {
-    const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
-    if (num > this.max) {
-      return `Value must be less than or equal to ${this.max}`;
-    }
-    if (num < this.min) {
-      return `Value must be greater than or equal to ${this.min}`;
-    }
-    return true;
-  }
-
-  validationRulesStdDev(value: string): boolean | string {
-    const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
-    if (num > this.stdDevMax) {
-      return `Value must be less than or equal to ${this.stdDevMax}`;
-    }
-    if (num < this.stdDevMin) {
-      return `Value must be greater than or equal to ${this.stdDevMin}`;
-    }
-    return true;
   }
 
   @Watch('sliderValue')
@@ -517,9 +475,6 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
 
   @Watch('parameterValue')
   setValues(): void {
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-
     this.ignoreNextValueSliderChange = true;
     this.sliderValue = [this.parameterValue.min ?? this.min, this.parameterValue.max ?? this.max];
 
@@ -533,7 +488,6 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     this.ignoreNextStdSliderChange = true;
     this.sliderStd2 = this.parameterValue.stdDev2 ?? (this.max - this.min) / 5.0;
 
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
     this.textMin = this.parameterValue.min?.toString() ?? '';
     this.textMax = this.parameterValue.max?.toString() ?? '';
     this.textMean1 = this.parameterValue.mean1?.toString() ?? '';

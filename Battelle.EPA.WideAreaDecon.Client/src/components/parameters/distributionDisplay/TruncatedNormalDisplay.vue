@@ -50,8 +50,9 @@
             @blur="updateOnTextMinChange"
             v-model="textMin"
             label="Min"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general, inputValidationRules.minMax(textMin, textMax)]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -67,8 +68,9 @@
             @blur="updateOnTextMaxChange"
             v-model="textMax"
             label="Max"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general, inputValidationRules.minMax(textMin, textMax)]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -86,8 +88,9 @@
             @blur="updateOnTextMeanChange"
             v-model="textMean"
             label="Mean"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -103,8 +106,9 @@
             @blur="updateOnTextStdChange"
             v-model="textStd"
             label="Standard Deviation"
-            :rules="[validationRulesStdDev]"
+            :rules="[inputValidationRules.stdDev]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -117,14 +121,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
-import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import TruncatedNormal from '@/implementations/parameter/distribution/TruncatedNormal';
 import { max } from 'lodash';
+import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
-export default class TruncatedNormalDisplay extends Vue implements IParameterDisplay {
+export default class TruncatedNormalDisplay extends BaseDistributionDisplay {
   @Prop({ required: true }) parameterValue!: TruncatedNormal;
 
   sliderValue = [0, 0];
@@ -141,8 +144,6 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
 
   textStd = '';
 
-  step = 0.1;
-
   ignoreNextValueSliderChange = false;
 
   ignoreNextMeanSliderChange = false;
@@ -151,55 +152,6 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
 
   get stdDevStep(): number {
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
-  }
-
-  get min(): number {
-    return this.parameterValue.metaData.lowerLimit;
-  }
-
-  get max(): number {
-    return this.parameterValue.metaData.upperLimit;
-  }
-
-  get stdDevMax(): number {
-    const val = this.max - this.min;
-    if (val <= 0) {
-      return this.step;
-    }
-    return val >= this.max ? this.max : val;
-  }
-
-  get stdDevMin(): number {
-    const val = this.stdDevMax / 1000;
-    return val <= 0 ? this.step : val;
-  }
-
-  validationRules(value: string): boolean | string {
-    const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
-    if (num > this.max) {
-      return `Value must be less than or equal to ${this.max}`;
-    }
-    if (num < this.min) {
-      return `Value must be greater than or equal to ${this.min}`;
-    }
-    return true;
-  }
-
-  validationRulesStdDev(value: string): boolean | string {
-    const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
-    if (num > this.stdDevMax) {
-      return `Value must be less than or equal to ${this.stdDevMax}`;
-    }
-    if (num < this.stdDevMin) {
-      return `Value must be greater than or equal to ${this.stdDevMin}`;
-    }
-    return true;
   }
 
   @Watch('sliderValue')
@@ -372,7 +324,6 @@ export default class TruncatedNormalDisplay extends Vue implements IParameterDis
     this.sliderStd = this.min;
     this.sliderStd = this.parameterValue.stdDev ?? (this.max - this.min) / 5.0;
 
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
     this.textMin = this.parameterValue.min?.toString() ?? '';
     this.textMax = this.parameterValue.max?.toString() ?? '';
     this.textMean = this.parameterValue.mean?.toString() ?? '';

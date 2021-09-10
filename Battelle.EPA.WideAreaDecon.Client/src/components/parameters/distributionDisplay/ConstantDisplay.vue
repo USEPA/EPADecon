@@ -24,8 +24,9 @@
             @blur="updateOnTextChange"
             v-model="textValue"
             label="Value"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -38,38 +39,17 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
-import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import Constant from '@/implementations/parameter/distribution/Constant';
+import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
-export default class ConstantParameterDisplay extends Vue implements IParameterDisplay {
+export default class ConstantParameterDisplay extends BaseDistributionDisplay {
   @Prop({ required: true }) parameterValue!: Constant;
-
-  validationRules(value: string): boolean | string {
-    const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be a number!';
-    }
-    if (num > this.max) {
-      return `Value must be less than or equal to ${this.max}`;
-    }
-    if (num < this.min) {
-      return `Value must be greater than or equal to ${this.min}`;
-    }
-    return true;
-  }
 
   sliderValue = 0;
 
   textValue = '';
-
-  min = -100;
-
-  max = 10000;
-
-  step = 0.1;
 
   ignoreNextSliderChange = false;
 
@@ -107,11 +87,6 @@ export default class ConstantParameterDisplay extends Vue implements IParameterD
 
   @Watch('parameterValue')
   setValues(): void {
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
-
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.sliderValue ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.sliderValue ?? 0);
-
     this.textValue = this.parameterValue.value?.toString() ?? '';
 
     this.ignoreNextSliderChange = true;

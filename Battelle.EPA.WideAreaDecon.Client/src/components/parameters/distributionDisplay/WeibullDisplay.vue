@@ -31,8 +31,9 @@
             @blur="updateOnTextLambdaChange"
             v-model="textLambda"
             label="Lambda"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -48,8 +49,9 @@
             @blur="updateOnTextKChange"
             v-model="textK"
             label="k"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -62,14 +64,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
-import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import { max } from 'lodash';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
+import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
-export default class WeibullDisplay extends Vue implements IParameterDisplay {
+export default class WeibullDisplay extends BaseDistributionDisplay {
   @Prop({ required: true }) parameterValue!: Weibull;
 
   sliderValue = [0, 0];
@@ -82,8 +83,6 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
 
   textK = '';
 
-  step = 0.1;
-
   ignoreNextValueSliderChange = false;
 
   ignoreNextLambdaSliderChange = false;
@@ -92,29 +91,6 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
 
   get KStep(): number {
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
-  }
-
-  get min(): number {
-    const { lowerLimit } = this.parameterValue.metaData;
-    return lowerLimit <= 1 ? 1 + this.step : lowerLimit;
-  }
-
-  get max(): number {
-    return this.parameterValue.metaData.upperLimit;
-  }
-
-  validationRules(value: string): boolean | string {
-    const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
-    if (num > this.max) {
-      return `Value must be less than or equal to ${this.max}`;
-    }
-    if (num < this.min) {
-      return `Value must be greater than or equal to ${this.min}`;
-    }
-    return true;
   }
 
   @Watch('sliderValue')
@@ -216,7 +192,6 @@ export default class WeibullDisplay extends Vue implements IParameterDisplay {
     this.sliderK = 2;
     this.sliderK = this.parameterValue.k ?? 1;
 
-    this.step = this.parameterValue.metaData.step;
     this.textLambda = this.parameterValue.lambda?.toString() ?? '';
     this.textK = this.parameterValue.k?.toString() ?? '';
   }

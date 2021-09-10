@@ -33,8 +33,9 @@
             @blur="updateOnTextMinChange"
             v-model="textMin"
             label="Min"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general, inputValidationRules.minMax(textMin, textMax)]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -50,8 +51,9 @@
             @blur="updateOnTextModeChange"
             v-model="textMode"
             label="Mode"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -67,8 +69,9 @@
             @blur="updateOnTextMaxChange"
             v-model="textMax"
             label="Max"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general, inputValidationRules.minMax(textMin, textMax)]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -81,13 +84,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
-import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import BetaPERT from '@/implementations/parameter/distribution/BetaPERT';
+import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
-export default class BetaPertDisplay extends Vue implements IParameterDisplay {
+export default class BetaPertDisplay extends BaseDistributionDisplay {
   @Prop({ required: true }) parameterValue!: BetaPERT;
 
   sliderValue = [0, 0];
@@ -100,29 +102,9 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
 
   textMode = '';
 
-  min = -100;
-
-  max = 10000;
-
-  step = 0.1;
-
   ignoreNextValueSliderChange = false;
 
   ignoreNextModeSliderChange = false;
-
-  validationRules(value: string): boolean | string {
-    const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
-    if (num > this.max) {
-      return `Value must be less than or equal to ${this.max}`;
-    }
-    if (num < this.min) {
-      return `Value must be greater than or equal to ${this.min}`;
-    }
-    return true;
-  }
 
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number[]): void {
@@ -251,16 +233,12 @@ export default class BetaPertDisplay extends Vue implements IParameterDisplay {
 
   @Watch('parameterValue')
   setValues(): void {
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-
     this.ignoreNextValueSliderChange = true;
     this.sliderValue = [this.parameterValue.min ?? this.min, this.parameterValue.max ?? this.max];
 
     this.ignoreNextModeSliderChange = true;
     this.sliderMode = this.parameterValue.mode ?? (this.min + this.max) / 2.0;
 
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
     this.textMin = this.parameterValue.min?.toString() ?? '';
     this.textMax = this.parameterValue.max?.toString() ?? '';
     this.textMode = this.parameterValue.mode?.toString() ?? '';
