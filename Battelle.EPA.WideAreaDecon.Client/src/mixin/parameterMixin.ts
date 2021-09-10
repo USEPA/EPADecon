@@ -16,6 +16,7 @@ const changeableDistributionTypes: ParameterType[] = [
 const logDistributionTypes: ParameterType[] = [
   ParameterType.logNormal,
   ParameterType.truncatedLogNormal,
+  ParameterType.logUniform,
   ParameterType.weibull,
 ];
 
