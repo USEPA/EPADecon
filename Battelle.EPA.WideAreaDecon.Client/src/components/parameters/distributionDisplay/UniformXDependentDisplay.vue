@@ -5,7 +5,13 @@
         <v-btn v-show="selectedSet.points.length < 6" @click="addPoint">Add Point</v-btn>
       </v-col>
       <v-col align="center">
-        <v-btn-toggle v-model="selectedSetName" dense mandatory background-color="primary">
+        <v-btn-toggle
+          @change="updateSelectedVariable"
+          v-model="selectedSetName"
+          dense
+          mandatory
+          background-color="primary"
+        >
           <v-btn v-for="set in variableSets" :key="set.name" :value="set.name">{{ set.name }}</v-btn>
         </v-btn-toggle>
       </v-col>
@@ -351,6 +357,10 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     } else if (maxOrMin === 'min') {
       this.yMinValues.splice(index, 1, newValue);
     }
+  }
+
+  updateSelectedVariable(setName: string): void {
+    this.$set(this.parameterValue, 'selectedVariable', setName);
   }
 
   validationRulesMin(value: number): boolean | string {
