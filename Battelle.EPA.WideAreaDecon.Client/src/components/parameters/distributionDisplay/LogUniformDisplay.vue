@@ -1,5 +1,5 @@
 <template>
-  <v-container :style="vuetifyColorProps()">
+  <v-container>
     <v-row>
       <v-col>
         <v-range-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">
@@ -17,12 +17,13 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="minValue"
-            @keydown="onTextMinEnterPressed"
+            @keyup.enter="updateOnTextMinChange"
             @blur="updateOnTextMinChange"
             v-model="textMin"
             label="Min"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general, inputValidationRules.minMax(textMin, textMax)]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -34,12 +35,13 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="maxValue"
-            @keydown="onTextMaxEnterPressed"
+            @keyup.enter="updateOnTextMaxChange"
             @blur="updateOnTextMaxChange"
             v-model="textMax"
             label="Max"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general, inputValidationRules.minMax(textMin, textMax)]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -52,14 +54,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
-import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import { Key } from 'ts-keycode-enum';
 import LogUniform from '@/implementations/parameter/distribution/LogUniform';
+import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
-export default class LogUniformDisplay extends Vue implements IParameterDisplay {
+export default class LogUniformDisplay extends BaseDistributionDisplay {
   @Prop({ required: true }) parameterValue!: LogUniform;
 
   sliderValue = [0, 0];
@@ -68,33 +68,7 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
 
   textMax = '';
 
-  min = -100;
-
-  max = 10000;
-
-  step = 0.1;
-
   ignoreNextValueSliderChange = false;
-
-  vuetifyColorProps(): unknown {
-    return {
-      '--primary-color': this.$vuetify.theme.currentTheme.primary,
-    };
-  }
-
-  validationRules(value: string): boolean | string {
-    const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
-    if (num > this.max) {
-      return `Value must be less than or equal to ${this.max}`;
-    }
-    if (num < this.min) {
-      return `Value must be greater than or equal to ${this.min}`;
-    }
-    return true;
-  }
 
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number[]): void {
@@ -104,34 +78,8 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
     }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
-    Vue.set(this.parameterValue, 'min', newValue[0]);
-    Vue.set(this.parameterValue, 'max', newValue[1]);
-  }
-
-  @Watch('parameterValue')
-  onParameterChanged(newValue: LogUniform): void {
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-
-    this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.min];
-    this.sliderValue = [newValue.min ?? this.min, newValue.max ?? this.max];
-
-    this.textMin = newValue.min?.toString() ?? '';
-    this.textMax = newValue.max?.toString() ?? '';
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
-  }
-
-  onTextMinEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMinChange();
-    }
-  }
-
-  onTextMaxEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMaxChange();
-    }
+    this.$set(this.parameterValue, 'min', newValue[0]);
+    this.$set(this.parameterValue, 'max', newValue[1]);
   }
 
   updateOnTextMinChange(): void {
@@ -185,17 +133,14 @@ export default class LogUniformDisplay extends Vue implements IParameterDisplay 
   }
 
   onSliderStopped(value: number[]): void {
-    Vue.set(this.parameterValue, 'min', value[0]);
-    Vue.set(this.parameterValue, 'max', value[1]);
+    this.$set(this.parameterValue, 'min', value[0]);
+    this.$set(this.parameterValue, 'max', value[1]);
   }
 
+  @Watch('parameterValue')
   setValues(): void {
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
-
     this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.min];
+    this.sliderValue = [this.min, this.max];
     this.sliderValue = [this.parameterValue.min ?? 0, this.parameterValue.max ?? 1];
 
     this.textMin = this.parameterValue.min?.toString() ?? '';

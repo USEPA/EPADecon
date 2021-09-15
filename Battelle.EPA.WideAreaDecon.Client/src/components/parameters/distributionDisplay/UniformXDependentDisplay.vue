@@ -1,26 +1,34 @@
 <template>
-  <v-container :style="vuetifyColorProps()">
+  <v-container class="mb-5">
     <v-row>
       <v-col align="center">
-        <v-btn v-if="selectedSet.points.length < 6" @click="addPoint">Add Point</v-btn>
+        <v-btn v-show="selectedSet.points.length < 6" @click="addPoint">Add Point</v-btn>
       </v-col>
       <v-col align="center">
-        <v-btn-toggle v-model="selectedSetName" dense mandatory background-color="primary">
+        <v-btn-toggle
+          @change="updateSelectedVariable"
+          v-model="selectedSetName"
+          dense
+          mandatory
+          background-color="primary"
+        >
           <v-btn v-for="set in variableSets" :key="set.name" :value="set.name">{{ set.name }}</v-btn>
         </v-btn-toggle>
       </v-col>
     </v-row>
-    <v-card v-if="displayChart" flat class="pa-5" tile width="100%" height="400">
+
+    <v-row v-if="displayChart" style="width: 100%; height: 400px">
       <scatter-plot-wrapper
         :options="chartOptions"
         :data="chartData"
-        :type="'scatter'"
+        type="scatter"
         :width="400"
         :height="150"
         ref="chart"
       />
-    </v-card>
-    <v-row v-if="editPoint">
+    </v-row>
+
+    <v-row v-show="editPoint">
       <v-col>
         <v-card class="pa-2" outlined tile>
           <v-text-field
@@ -29,7 +37,7 @@
             v-model.number="selectedSet.points[selectedIndex]"
             :label="selectedSetName"
             hide-details="auto"
-          ></v-text-field>
+          />
         </v-card>
       </v-col>
       <v-col>
@@ -41,7 +49,7 @@
             :value="selectedSet.mins[selectedIndex]"
             :label="`Min ${parameterValue.metaData.name}`"
             hide-details="auto"
-          ></v-text-field>
+          />
         </v-card>
       </v-col>
       <v-col>
@@ -53,7 +61,7 @@
             :value="selectedSet.maxs[selectedIndex]"
             :label="`Max ${parameterValue.metaData.name}`"
             hide-details="auto"
-          ></v-text-field>
+          />
         </v-card>
       </v-col>
       <v-col>
@@ -298,11 +306,6 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     return new DefaultChartData(dataSets);
   }
 
-  @Watch('parameterValue')
-  onParameterChanged(): void {
-    this.setValues();
-  }
-
   @Watch('selectedSetName')
   onSelectedSetChanged(): void {
     this.editPoint = false;
@@ -356,6 +359,10 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     }
   }
 
+  updateSelectedVariable(setName: string): void {
+    this.$set(this.parameterValue, 'selectedVariable', setName);
+  }
+
   validationRulesMin(value: number): boolean | string {
     if (value > this.yMaxValues[this.selectedSet.indices[this.selectedIndex]]) {
       return `Value must be less than or equal to max: ${
@@ -403,12 +410,7 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     }
   }
 
-  vuetifyColorProps(): unknown {
-    return {
-      '--primary-color': this.$vuetify.theme.currentTheme.primary,
-    };
-  }
-
+  @Watch('parameterValue')
   setValues(): void {
     if (this.key) {
       // get baseline

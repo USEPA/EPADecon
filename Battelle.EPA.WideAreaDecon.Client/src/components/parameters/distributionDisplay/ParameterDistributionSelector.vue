@@ -27,23 +27,23 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
+    <v-divider color="grey" v-if="shouldIncludeTitle" />
     <component
       :key="currentSelectedParameter.path"
       :is="display.distComponent"
       :parameter-value="currentSelectedParameter.current"
-    >
-    </component>
-    <v-container>
-      <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
+    />
+    <v-container v-if="display.displayChart">
+      <div class="py-5" style="width: 100%; height: 400px">
         <distribution-chart
           :distribution-series="display.chartData"
-          :xAxisLabel="display.xAxisLabel"
-          :yAxisLabel="'Probability of Selection'"
+          :x-axis-label="display.xAxisLabel"
+          :y-axis-label="'Probability of Selection'"
           :data-generator="display.dataGenerator"
+          :force-x-axis-min-zero="false"
           ref="dist"
-        ></distribution-chart>
-      </v-card>
+        />
+      </div>
     </v-container>
   </v-card>
 </template>
@@ -69,7 +69,7 @@ import EnumeratedFractionDisplay from '@/components/parameters/distributionDispl
 import EnumeratedParameterDisplay from '@/components/parameters/distributionDisplay/EnumeratedParameterDisplay.vue';
 import TextValueDisplay from '@/components/parameters/distributionDisplay/TextValueDisplay.vue';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
-import { changeableDistributionTypes } from '@/mixin/parameterMixin';
+import { changeableDistributionTypes, nonLogDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
@@ -106,26 +106,27 @@ export default class ParameterDistributionSelector extends Vue {
 
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
-  @Watch('currentSelectedParameter')
-  onCurrentSelectedParameterChange(): void {
-    this.currentDistType = this.currentSelectedParameter.type;
-  }
+  @Watch('currentSelectedParameter', { deep: true })
+  onCurrentSelectedParameterChange(newValue: ParameterWrapper, oldValue: ParameterWrapper): void {
+    this.currentDistType = newValue.type;
 
-  @Watch('parameterHasChanged')
-  onParameterChanged(newValue: boolean): void {
-    if (newValue && this.hasResults) {
+    const isDifferentParameter = oldValue.path !== newValue.path;
+    if (this.hasResults && !isDifferentParameter) {
       this.resetCurrentJobRequest();
     }
   }
 
   currentDistType = ParameterType.constant;
 
-  distNames = changeableDistributionTypes;
-
   get display(): DistributionDisplay {
     return container
       .get<IDistributionDisplayProvider>(TYPES.DistributionDisplayProvider)
       .getDistributionDisplay(this.currentSelectedParameter.baseline, this.currentSelectedParameter.current);
+  }
+
+  get distNames(): ParameterType[] {
+    const { upperLimit, step } = this.currentSelectedParameter.baseline.metaData;
+    return upperLimit > 1 + step ? changeableDistributionTypes : nonLogDistributionTypes;
   }
 
   get isChangeableDist(): boolean {

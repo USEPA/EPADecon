@@ -37,7 +37,7 @@ export default class BetaPERT implements IUnivariateParameter {
   metaData: ParameterMetaData;
 
   public get isSet(): boolean {
-    return this.min !== undefined && this.max !== undefined && this.mode !== undefined;
+    return this.min !== undefined && this.max !== undefined && this.mode !== undefined && this.min < this.max;
   }
 
   constructor(metaData = new ParameterMetaData(), min?: number, max?: number, mode?: number) {

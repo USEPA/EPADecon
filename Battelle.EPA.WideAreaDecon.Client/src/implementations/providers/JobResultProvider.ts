@@ -109,7 +109,7 @@ export default class JobResultProvider implements IJobResultProvider {
   formatNumber(number: number): string {
     const numSigFigs = 3;
     const rounded = number.toPrecision(numSigFigs);
-    return (rounded.includes('e') ? parseFloat(rounded).toString() : rounded).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parseFloat(rounded).toLocaleString('en-US');
   }
 
   convertCamelToTitleCase(name: string): string {

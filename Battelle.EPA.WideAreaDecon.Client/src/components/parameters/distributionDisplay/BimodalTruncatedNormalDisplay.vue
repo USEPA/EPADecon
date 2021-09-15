@@ -1,5 +1,5 @@
 <template>
-  <v-container :style="vuetifyColorProps()">
+  <v-container>
     <v-row>
       <v-col>
         <v-range-slider v-model="sliderValue" :max="max" :min="min" :step="step" thumb-label @change="onSliderStopped">
@@ -27,17 +27,17 @@
       <v-col>
         <v-slider
           v-model="sliderStd1"
-          :max="max - min"
-          :min="(max - min) / 1000"
+          :max="stdDevMax"
+          :min="stdDevMin"
           :step="stdDevStep"
           thumb-label
           @change="onSliderStd1Stopped"
         >
           <template v-slot:prepend>
-            <p class="grey--text">{{ (max - min) / 1000 }}</p>
+            <p class="grey--text">{{ stdDevMin }}</p>
           </template>
           <template v-slot:append>
-            <p class="grey--text">{{ max - min }}</p>
+            <p class="grey--text">{{ stdDevMax }}</p>
           </template>
         </v-slider>
       </v-col>
@@ -57,17 +57,17 @@
       <v-col>
         <v-slider
           v-model="sliderStd2"
-          :max="max - min"
-          :min="(max - min) / 1000"
+          :max="stdDevMax"
+          :min="stdDevMin"
           :step="stdDevStep"
           thumb-label
           @change="onSliderStd2Stopped"
         >
           <template v-slot:prepend>
-            <p class="grey--text">{{ (max - min) / 1000 }}</p>
+            <p class="grey--text">{{ stdDevMin }}</p>
           </template>
           <template v-slot:append>
-            <p class="grey--text">{{ max - min }}</p>
+            <p class="grey--text">{{ stdDevMax }}</p>
           </template>
         </v-slider>
       </v-col>
@@ -77,12 +77,13 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="minValue"
-            @keydown="onTextMinEnterPressed"
+            @keyup.enter="updateOnTextMinChange"
             @blur="updateOnTextMinChange"
             v-model="textMin"
             label="Min"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general, inputValidationRules.minMax(textMin, textMax)]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -94,12 +95,13 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="maxValue"
-            @keydown="onTextMaxEnterPressed"
+            @keyup.enter="updateOnTextMaxChange"
             @blur="updateOnTextMaxChange"
             v-model="textMax"
             label="Max"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general, inputValidationRules.minMax(textMin, textMax)]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -114,12 +116,13 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="meanValue1"
-            @keydown="onTextMeanEnterPressed"
+            @keyup.enter="updateOnTextMeanChange"
             @blur="updateOnTextMeanChange"
             v-model="textMean1"
             label="Mean 1"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -131,12 +134,13 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="stdValue1"
-            @keydown="onTextStdEnterPressed"
+            @keyup.enter="updateOnTextStdChange"
             @blur="updateOnTextStdChange"
             v-model="textStd1"
             label="Standard Deviation 1"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.stdDev]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -151,12 +155,13 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="meanValue2"
-            @keydown="onTextMeanEnterPressed"
+            @keyup.enter="updateOnTextMeanChange"
             @blur="updateOnTextMeanChange"
             v-model="textMean2"
             label="Mean 2"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.general]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -168,12 +173,13 @@
         <v-card class="pa-2" outlined tile>
           <v-text-field
             ref="stdValue2"
-            @keydown="onTextStdEnterPressed"
+            @keyup.enter="updateOnTextStdChange"
             @blur="updateOnTextStdChange"
             v-model="textStd2"
             label="Standard Deviation 2"
-            :rules="[validationRules]"
+            :rules="[inputValidationRules.stdDev]"
             hide-details="auto"
+            type="number"
           >
             <template v-slot:append>
               <p class="grey--text">{{ parameterValue.metaData.units }}</p>
@@ -186,15 +192,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
-import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import { Key } from 'ts-keycode-enum';
 import BimodalTruncatedNormal from '@/implementations/parameter/distribution/BimodalTruncatedNormal';
 import { max } from 'lodash';
+import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
-export default class BimodalTruncatedNormalDisplay extends Vue implements IParameterDisplay {
+export default class BimodalTruncatedNormalDisplay extends BaseDistributionDisplay {
   @Prop({ required: true }) parameterValue!: BimodalTruncatedNormal;
 
   sliderValue = [0, 0];
@@ -219,12 +223,6 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
 
   textStd2 = '';
 
-  min = -100;
-
-  max = 10000;
-
-  step = 0.1;
-
   ignoreNextValueSliderChange = false;
 
   ignoreNextMeanSliderChange = false;
@@ -235,26 +233,6 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
   }
 
-  vuetifyColorProps(): unknown {
-    return {
-      '--primary-color': this.$vuetify.theme.currentTheme.primary,
-    };
-  }
-
-  validationRules(value: string): boolean | string {
-    const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
-    if (num > this.max) {
-      return `Value must be less than or equal to ${this.max}`;
-    }
-    if (num < this.min) {
-      return `Value must be greater than or equal to ${this.min}`;
-    }
-    return true;
-  }
-
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number[]): void {
     if (this.ignoreNextValueSliderChange) {
@@ -263,7 +241,8 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
     this.textMin = newValue[0].toString();
     this.textMax = newValue[1].toString();
-    [this.parameterValue.min, this.parameterValue.max] = newValue;
+    this.$set(this.parameterValue, 'min', newValue[0]);
+    this.$set(this.parameterValue, 'max', newValue[1]);
     if (newValue[0] > this.sliderMean1) {
       [this.sliderMean1] = newValue;
     }
@@ -287,7 +266,7 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
 
     this.textMean1 = newValue.toString();
-    this.parameterValue.mean1 = newValue;
+    this.$set(this.parameterValue, 'mean1', newValue);
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -304,7 +283,7 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
 
     this.textMean2 = newValue.toString();
-    this.parameterValue.mean2 = newValue;
+    this.$set(this.parameterValue, 'mean2', newValue);
     if (newValue < this.sliderValue[0]) {
       this.sliderValue = [newValue, this.sliderValue[1]];
     }
@@ -321,7 +300,7 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
 
     this.textStd1 = newValue.toString();
-    this.parameterValue.stdDev1 = newValue;
+    this.$set(this.parameterValue, 'stdDev1', newValue);
   }
 
   @Watch('sliderStd2')
@@ -332,63 +311,7 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
 
     this.textStd2 = newValue.toString();
-    this.parameterValue.stdDev2 = newValue;
-  }
-
-  @Watch('parameterValue')
-  onParameterChanged(newValue: BimodalTruncatedNormal): void {
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
-
-    this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.min];
-    this.sliderValue = [newValue.min ?? this.min, newValue.max ?? this.max];
-
-    this.ignoreNextMeanSliderChange = true;
-    this.sliderMean1 = this.min;
-    this.sliderMean1 = newValue.mean1 ?? (this.min + this.max) / 4.0;
-
-    this.sliderMean2 = this.min;
-    this.sliderMean2 = newValue.mean2 ?? (this.min + this.max) / (4.0 / 3.0);
-
-    this.ignoreNextStdSliderChange = true;
-    this.sliderStd1 = this.min;
-    this.sliderStd1 = newValue.stdDev1 ?? (this.min + this.max) / 2.0;
-
-    this.sliderStd2 = this.min;
-    this.sliderStd2 = newValue.stdDev2 ?? (this.min + this.max) / 2.0;
-
-    this.textMin = newValue.min?.toString() ?? '';
-    this.textMax = newValue.max?.toString() ?? '';
-    this.textMean1 = newValue.mean1?.toString() ?? '';
-    this.textStd1 = newValue.stdDev1?.toString() ?? '';
-    this.textMean2 = newValue.mean2?.toString() ?? '';
-    this.textStd2 = newValue.stdDev2?.toString() ?? '';
-  }
-
-  onTextMinEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMinChange();
-    }
-  }
-
-  onTextMaxEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMaxChange();
-    }
-  }
-
-  onTextMeanEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextMeanChange();
-    }
-  }
-
-  onTextStdEnterPressed(event: KeyboardEvent): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextStdChange();
-    }
+    this.$set(this.parameterValue, 'stdDev2', newValue);
   }
 
   updateOnTextMinChange(): void {
@@ -529,49 +452,42 @@ export default class BimodalTruncatedNormalDisplay extends Vue implements IParam
     }
   }
 
-  onSliderStopped(value: number[]): void {
-    [this.parameterValue.min, this.parameterValue.max] = value;
+  onSliderStopped(values: number[]): void {
+    this.$set(this.parameterValue, 'min', values[0]);
+    this.$set(this.parameterValue, 'max', values[1]);
   }
 
   onSliderMean1Stopped(value: number): void {
-    this.parameterValue.mean1 = value;
+    this.$set(this.parameterValue, 'mean1', value);
   }
 
   onSliderStd1Stopped(value: number): void {
-    this.parameterValue.stdDev1 = value;
+    this.$set(this.parameterValue, 'stdDev1', value);
   }
 
   onSliderMean2Stopped(value: number): void {
-    this.parameterValue.mean2 = value;
+    this.$set(this.parameterValue, 'mean2', value);
   }
 
   onSliderStd2Stopped(value: number): void {
-    this.parameterValue.stdDev2 = value;
+    this.$set(this.parameterValue, 'stdDev2', value);
   }
 
+  @Watch('parameterValue')
   setValues(): void {
-    this.min = this.parameterValue.metaData.lowerLimit ?? -100 + (this.parameterValue.min ?? 0);
-    this.max = this.parameterValue.metaData.upperLimit ?? 100 + (this.parameterValue.max ?? 0);
-
     this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.min];
     this.sliderValue = [this.parameterValue.min ?? this.min, this.parameterValue.max ?? this.max];
 
     this.ignoreNextMeanSliderChange = true;
-    this.sliderMean1 = this.min;
     this.sliderMean1 = this.parameterValue.mean1 ?? (this.min + this.max) / 4.0;
-
-    this.sliderMean2 = this.min;
-    this.sliderMean2 = this.parameterValue.mean2 ?? (this.min + this.max) / (4.0 / 3.0);
+    this.ignoreNextMeanSliderChange = true;
+    this.sliderMean2 = this.parameterValue.mean2 ?? (this.min + this.max) / 4.0;
 
     this.ignoreNextStdSliderChange = true;
-    this.sliderStd1 = this.min;
     this.sliderStd1 = this.parameterValue.stdDev ?? (this.max - this.min) / 5.0;
-
-    this.sliderStd2 = this.min;
+    this.ignoreNextStdSliderChange = true;
     this.sliderStd2 = this.parameterValue.stdDev2 ?? (this.max - this.min) / 5.0;
 
-    this.step = this.parameterValue.metaData.step ?? Math.max((this.max - this.min) / 1000, 0.1);
     this.textMin = this.parameterValue.min?.toString() ?? '';
     this.textMax = this.parameterValue.max?.toString() ?? '';
     this.textMean1 = this.parameterValue.mean1?.toString() ?? '';

@@ -25,12 +25,13 @@
                   <v-text-field
                     :ref="`value-${index}`"
                     :disabled="values[index].locked"
-                    @keydown="onTextEnterPressed($event, index)"
+                    @keyup.enter="updateOnTextChange(index)"
                     @blur="updateOnTextChange(index)"
                     v-model="values[index].text"
                     label="Value"
                     :rules="[validationRules]"
                     hide-details="auto"
+                    type="number"
                   >
                     <template v-slot:append>
                       <p class="grey--text">{{ value.metaData.units }}</p>
@@ -64,7 +65,6 @@ import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import EnumeratedFraction from '@/implementations/parameter/list/enumeratedFraction';
 import Constant from '@/implementations/parameter/distribution/Constant';
-import { Key } from 'ts-keycode-enum';
 import { clamp, sumBy } from 'lodash';
 
 @Component
@@ -85,9 +85,6 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 
   validationRules(value: string): boolean | string {
     const num = Number(value);
-    if (Number.isNaN(num)) {
-      return 'Value must be number!';
-    }
     if (num > this.max) {
       return `Value must be less than or equal to ${this.max}`;
     }
@@ -107,12 +104,6 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
       this.values[i].text = normalizedFractions[i].toFixed(2);
       this.parameterValue.values[category].value = normalizedFractions[i];
     });
-  }
-
-  onTextEnterPressed(event: KeyboardEvent, index: number): void {
-    if (event.keyCode === Key.Enter) {
-      this.updateOnTextChange(index);
-    }
   }
 
   updateOnTextChange(index: number): void {
@@ -191,33 +182,17 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
 }
 </script>
 
-<style lang="scss">
-.large-slider .v-slider__track-container {
+<style scoped lang="scss">
+.large-slider ::v-deep .v-slider__track-container {
   height: 20px !important;
 }
-.large-slider .v-slider__track-fill {
+.large-slider ::v-deep .v-slider__track-fill {
   border-radius: 15px !important;
 }
-.large-slider .v-slider__track-background {
+.large-slider ::v-deep .v-slider__track-background {
   border-radius: 15px !important;
 }
-.v-data-table__wrapper {
+::v-deep .v-data-table__wrapper {
   overflow: visible !important;
 }
-.v-slider__thumb {
-  width: 24px !important;
-  height: 24px !important;
-  left: -12px !important;
-}
-.v-slider__thumb:before {
-  left: -6px !important;
-  top: -6px !important;
-}
-.theme--light.v-card.v-card--outlined {
-  border: 2px solid !important;
-  border-color: var(--primary-color) !important;
-  border-radius: 5px !important;
-}
 </style>
-
-<style scoped lang="scss4"></style>

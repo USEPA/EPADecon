@@ -124,11 +124,6 @@
         </v-simple-table>
 
         <v-card-text v-else>Please select at least one realization to display a summary for</v-card-text>
-
-        <!-- Table Scrollbar -->
-        <div class="scrollbarContainer" ref="scroll">
-          <div class="scrollbar" :style="{ width: tableWidth + 'px' }" />
-        </div>
       </v-container>
     </v-card>
 
@@ -147,7 +142,6 @@ import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
 import BuildingCategory from '@/enums/parameter/buildingCategory';
 import RealizationDetails from '@/components/modals/results/RealizationDetails.vue';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
-import { chunk } from 'lodash';
 
 @Component({ components: { RealizationDetails } })
 export default class RealizationTable extends Vue {
@@ -203,15 +197,6 @@ export default class RealizationTable extends Vue {
     }
 
     return null;
-  }
-
-  @Watch('displayedRunNumbers.length')
-  @Watch('selectedLocation')
-  onTableLegnthChanged(): void {
-    this.$nextTick(() => {
-      // get width of table
-      this.tableWidth = (this.$refs.table as Vue)?.$el.firstElementChild?.firstElementChild?.clientWidth ?? 0;
-    });
   }
 
   addRunToTable(): void {
@@ -277,13 +262,6 @@ export default class RealizationTable extends Vue {
     }
     return true;
   }
-
-  mounted(): void {
-    (this.$refs.scroll as Element).addEventListener('scroll', () => {
-      const { scrollLeft } = this.$refs.scroll as Element;
-      (this.$refs.table as Vue).$el.scroll({ left: scrollLeft });
-    });
-  }
 }
 </script>
 
@@ -317,17 +295,5 @@ export default class RealizationTable extends Vue {
 
 .border-right:not(:last-child) {
   border-right: 2px solid rgba(0, 0, 0, 0.12);
-}
-
-.scrollbarContainer {
-  width: 100%;
-  overflow-x: auto;
-  position: sticky;
-  bottom: 36px; // anything under 36px is the footer
-  z-index: 2;
-
-  & > .scrollbar {
-    height: 5px;
-  }
 }
 </style>
