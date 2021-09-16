@@ -114,23 +114,24 @@ export default class RealizationSummary extends Vue {
 
   createPieChart(values: number[], label: PhaseResult | null): ChartData {
     const phaseResults: { phase: string; value: number }[] = [];
+    const numberRealizations = values.length;
+    const colorProvider = new CycleColorProvider();
+    const colors: string[] = [];
 
     if (label) {
-      this.results.forEach((r) => {
-        const res = this.resultProvider.getResultPhaseBreakdown(r, label);
-        res.forEach((p, i) => {
-          if (phaseResults[i] === undefined) {
-            phaseResults.push(p);
+      for (let i = 0, l1 = this.results.length; i < l1; i += 1) {
+        const res = this.resultProvider.getResultPhaseBreakdown(this.results[i], label);
+        for (let j = 0, l2 = res.length; j < l2; j += 1) {
+          if (phaseResults[j] === undefined) {
+            phaseResults.push(res[j]);
+            colors.push(colorProvider.getNextColor());
           } else {
-            phaseResults[i].value += p.value ?? 0;
+            phaseResults[j].value += res[j].value ?? 0;
           }
-        });
-      });
+        }
+      }
     }
 
-    const colorProvider = new CycleColorProvider();
-    const colors = phaseResults.map(() => colorProvider.getNextColor());
-    const numberRealizations = values.length;
     const labels =
       phaseResults.length > 1
         ? phaseResults.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase))

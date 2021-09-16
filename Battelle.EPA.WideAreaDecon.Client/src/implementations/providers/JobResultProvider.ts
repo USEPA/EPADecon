@@ -134,7 +134,7 @@ export default class JobResultProvider implements IJobResultProvider {
 
       if (breakdown[index] !== undefined) {
         breakdown[index].value += res;
-      } else if (res) {
+      } else {
         breakdown.push({
           phase: phaseNames[index].replace(/Results$/, ''),
           value: res,
@@ -142,7 +142,7 @@ export default class JobResultProvider implements IJobResultProvider {
       }
     });
 
-    return breakdown;
+    return breakdown.filter((v) => v.value > 0);
   }
 
   getResultDetails(allResults: IJobResultRealization[], result: PhaseResult): IResultDetails | undefined {
