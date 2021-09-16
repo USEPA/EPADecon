@@ -66,7 +66,7 @@ const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => 
 
   bind<IJobProvider>(PROVIDER_TYPES.JobProvider).to(JobProvider);
 
-  bind<IJobResultProvider>(PROVIDER_TYPES.JobResultProvider).to(JobResultProvider);
+  bind<IJobResultProvider>(PROVIDER_TYPES.JobResultProvider).to(JobResultProvider).inSingletonScope();
 });
 
 export default providersContainerModule;

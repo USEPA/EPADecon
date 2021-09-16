@@ -3,13 +3,16 @@ import XLSX from 'xlsx';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
-import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import IPhaseResult from '@/interfaces/jobs/results/phase/IPhaseResult';
 import JobRequest from '../jobs/JobRequest';
 
 @injectable()
 export default class JobResultProvider implements IJobResultProvider {
+  private savedResults: { [key: string]: number[] } = {};
+
+  private savedDetails: { [key: string]: IResultDetails } = {};
+
   /* eslint-disable class-methods-use-this */
   exportJobResults(job: JobRequest): void {
     const { results } = job;
@@ -131,7 +134,7 @@ export default class JobResultProvider implements IJobResultProvider {
 
       if (breakdown[index] !== undefined) {
         breakdown[index].value += res;
-      } else {
+      } else if (res) {
         breakdown.push({
           phase: phaseNames[index].replace(/Results$/, ''),
           value: res,
@@ -139,45 +142,60 @@ export default class JobResultProvider implements IJobResultProvider {
       }
     });
 
-    return breakdown.filter((v) => v.value > 0);
+    return breakdown;
   }
 
   getResultDetails(allResults: IJobResultRealization[], result: PhaseResult): IResultDetails | undefined {
-    const instances: number[] = [];
-
-    // get all instances of the result
-    allResults.forEach((r) => {
-      this.findResultValues(r, result, (value: number | undefined) => {
-        if (value !== undefined) {
-          instances.push(value);
-        }
-      });
-    });
-
-    if (!instances.length) {
-      return undefined;
+    if (this.savedDetails[result]) {
+      return this.savedDetails[result];
     }
 
+    const instances: number[] = JSON.parse(JSON.stringify(this.savedResults[result] ?? []));
+
+    if (!instances.length) {
+      // get all instances of the result
+      for (let i = 0, l = allResults.length; i < l; i += 1) {
+        instances.push(...this.getResultValues(allResults[i], result));
+      }
+
+      if (!instances.length) {
+        return undefined;
+      }
+
+      this.savedResults[result] = { ...instances };
+    }
     const indoorLocations = Object.values(allResults[0].scenarioResults.indoorResults).filter((resultSet) => resultSet)
       .length;
     const otherLocations = Object.values(allResults[0].scenarioResults).filter((resultSet) => resultSet).length - 1;
     const numLocations = indoorLocations + otherLocations;
-    const numOccurencesPerLocation = instances.length / (allResults.length * numLocations);
+    const numOccurrencesPerLocation = instances.length / (allResults.length * numLocations);
+    const oneOccurrenceAtLocation = numOccurrencesPerLocation === 1;
+    const step = numLocations * numOccurrencesPerLocation;
     const sums: number[] = [];
 
-    while (instances.length > 0) {
-      const next: number[] =
-        numOccurencesPerLocation === 1
-          ? instances.splice(0, numLocations)
-          : [...Array(numLocations)].map(() => {
-              return instances.splice(0, numOccurencesPerLocation).reduce((acc, cur) => acc + cur, 0);
-            });
+    for (let i = 0, l1 = instances.length; i < l1; i += step) {
+      const next: number[] = [];
+      if (oneOccurrenceAtLocation) {
+        next.push(...instances.splice(0, numLocations));
+      } else {
+        // get sum of instances for each location
+        for (let j = 0; j < numLocations; j += 1) {
+          const locationVals = instances.splice(0, numOccurrencesPerLocation);
+          let sum = 0;
+          for (let k = 0; k < numOccurrencesPerLocation; k += 1) {
+            sum += locationVals[k];
+          }
+          next.push(sum);
+        }
+      }
 
-      const sum = next.reduce((acc, cur) => acc + cur, 0);
+      // sum the locations
+      let sum = 0;
+      for (let j = 0, l2 = next.length; j < l2; j += 1) {
+        sum += next[j];
+      }
       sums.push(sum);
     }
-
-    const { minimum, maximum } = this.getMinandMax(sums);
 
     // credit to Foxcode's answer: https://stackoverflow.com/a/53577159
     const { length } = sums;
@@ -186,20 +204,24 @@ export default class JobResultProvider implements IJobResultProvider {
     if (Number.isNaN(stdDev)) {
       stdDev = 0;
     }
+    const { minimum, maximum } = this.getMinandMax(sums);
 
-    return {
+    const details: IResultDetails = {
       values: sums,
       mean,
       maximum,
       minimum,
       stdDev,
     };
+    this.savedDetails[result] = { ...details };
+
+    return details;
   }
 
   getResultValues(realization: IJobResultRealization, result: PhaseResult): number[] {
     const values: number[] = [];
     this.findResultValues(realization, result, (value) => {
-      if (value) {
+      if (value !== undefined) {
         values.push(value);
       }
     });
@@ -218,26 +240,37 @@ export default class JobResultProvider implements IJobResultProvider {
     }
   }
 
+  reset(): void {
+    this.savedDetails = {};
+    this.savedResults = {};
+  }
+
   private findResultValues(
     realization: IJobResultRealization,
     result: PhaseResult,
     callback: (value: number | undefined, index: number) => void,
   ): void {
     const phaseNames = this.getPhaseNames(realization);
+    const entries = Object.entries(realization.scenarioResults);
+    const l1 = phaseNames.length;
 
-    Object.entries(realization.scenarioResults).forEach(([location, resultSet]) => {
+    // loop through locations
+    for (let i = 0, l3 = entries.length; i < l3; i += 1) {
+      const [location, resultSet] = entries[i];
       if (!resultSet) {
         return;
       }
 
-      const phaseResultSets: IPhaseResultSet[] = this.isIndoor(location) ? Object.values(resultSet) : [resultSet];
+      const phaseResultSets = this.isIndoor(location) ? Object.values(resultSet) : [resultSet];
 
-      phaseResultSets.forEach((rs) => {
-        phaseNames.forEach((p, i) => {
-          callback(rs[p][result], i);
-        });
-      });
-    });
+      // loop through result set
+      for (let j = 0, l2 = phaseResultSets.length; j < l2; j += 1) {
+        // loop through each phase and look for result
+        for (let k = 0; k < l1; k += 1) {
+          callback(phaseResultSets[j][phaseNames[k]][result], k);
+        }
+      }
+    }
   }
 
   private isIndoor(location: string): boolean {

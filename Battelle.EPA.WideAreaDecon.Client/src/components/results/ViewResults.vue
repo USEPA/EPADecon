@@ -37,10 +37,10 @@
 
     <v-row>
       <v-col cols="6" sm="12" lg="6">
-        <dashboard-chart-card text="Cost Breakdown By Element" :data="getPhaseBreakdownChartData('phaseCost')" />
+        <dashboard-chart-card text="Cost Breakdown By Element" :data="costBreakdown" />
       </v-col>
       <v-col cols="6" sm="12" lg="6">
-        <dashboard-chart-card text="Workday Breakdown By Element" :data="getPhaseBreakdownChartData('workDays')" />
+        <dashboard-chart-card text="Workday Breakdown By Element" :data="workdayBreakdown" />
       </v-col>
     </v-row>
 
@@ -121,27 +121,31 @@ export default class ViewResults extends Vue {
 
   averageDeconRounds = '';
 
+  costBreakdown: unknown;
+
+  workdayBreakdown: unknown;
+
   PhaseResult = PhaseResult; // needed to use enum in template
 
   details: IResultDetails = { values: [], mean: 0, minimum: 0, maximum: 0, stdDev: 0 };
 
   getPhaseBreakdownChartData(result: PhaseResult): ChartData {
     const phaseResults: { phase: string; value: number }[] = [];
-
-    this.currentJob.results.forEach((r) => {
-      const res = this.resultProvider.getResultPhaseBreakdown(r, result);
-      res.forEach((p, i) => {
-        if (phaseResults[i] === undefined) {
-          phaseResults.push(p);
-        } else {
-          phaseResults[i].value += p.value ?? 0;
-        }
-      });
-    });
-
-    const colorProvider = new CycleColorProvider();
-    const colors = phaseResults.map(() => colorProvider.getNextColor());
     const numberRealizations = this.currentJob.results.length;
+    const colorProvider = new CycleColorProvider();
+    const colors: string[] = [];
+
+    for (let i = 0, l1 = this.currentJob.results.length; i < l1; i += 1) {
+      const res = this.resultProvider.getResultPhaseBreakdown(this.currentJob.results[i], result);
+      for (let j = 0, l2 = res.length; j < l2; j += 1) {
+        if (phaseResults[j] === undefined) {
+          phaseResults.push(res[j]);
+          colors.push(colorProvider.getNextColor());
+        } else {
+          phaseResults[j].value += res[j].value ?? 0;
+        }
+      }
+    }
 
     return {
       datasets: [
@@ -190,6 +194,9 @@ export default class ViewResults extends Vue {
     this.averageTotalWorkdays = this.getAverageFormatted(PhaseResult.Workdays);
     this.averageDeconRounds = this.getAverageFormatted(PhaseResult.DecontaminationRounds);
     this.averageTotalOnSiteDays = this.getAverageFormatted(PhaseResult.OnSiteDays);
+
+    this.costBreakdown = this.getPhaseBreakdownChartData(PhaseResult.PhaseCost);
+    this.workdayBreakdown = this.getPhaseBreakdownChartData(PhaseResult.Workdays);
   }
 
   created(): void {

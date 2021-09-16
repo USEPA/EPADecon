@@ -57,4 +57,7 @@ export default interface IJobResultProvider {
    * @returns The units for the given result (or undefined if they don't exist).
    */
   getUnits(result: PhaseResult): string | undefined;
+
+  /** Resets stored results and details */
+  reset(): void;
 }

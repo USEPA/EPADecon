@@ -83,6 +83,8 @@ import ICreateJobRequestPayload from '@/interfaces/store/jobs/ICreateJobRequestP
 import JobRequest from '@/implementations/jobs/JobRequest';
 import JobManager from '@/implementations/providers/JobManager';
 import JobStatus from '@/enums/jobs/jobStatus';
+import IGetJobResultsPayload from '@/interfaces/store/jobs/IGetJobResultsPayload';
+import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 
 @Component
 export default class RunScenario extends Vue {
@@ -92,7 +94,7 @@ export default class RunScenario extends Vue {
 
   @Action postCurrentJobRequest!: (jobProvider: IJobProvider) => Promise<void>;
 
-  @Action getCurrentJobResults!: (jobProvider: IJobProvider) => Promise<void>;
+  @Action getCurrentJobResults!: (payload: IGetJobResultsPayload) => Promise<void>;
 
   @Action cancelCurrentJobRequest!: (jobProvider: IJobProvider) => Promise<JobRequest>;
 
@@ -107,6 +109,8 @@ export default class RunScenario extends Vue {
   @State currentJob!: JobRequest;
 
   jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
+
+  jobResultsProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
   jobManager?: JobManager;
 
@@ -135,7 +139,7 @@ export default class RunScenario extends Vue {
   async onJobStatusChagned(newStatus: JobStatus): Promise<void> {
     if (this.completedJobStatuses.includes(newStatus)) {
       if (newStatus === JobStatus.completed) {
-        await this.getCurrentJobResults(this.jobProvider);
+        await this.getCurrentJobResults({ jobProvider: this.jobProvider, resultProvider: this.jobResultsProvider });
       }
       await this.jobManager?.StopWatchJobProgress();
       this.isRunning = false;
