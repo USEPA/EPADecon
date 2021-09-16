@@ -57,6 +57,8 @@ export default class RealizationSummary extends Vue {
 
   chartType = '';
 
+  maxScatterPoints = 5;
+
   outputStatistics: { x: IResultDetails | null; y: IResultDetails | null } = { x: null, y: null };
 
   showOptionsModal = false;
@@ -146,8 +148,24 @@ export default class RealizationSummary extends Vue {
   }
 
   createScatterPlot(xVals: number[], yVals: number[], labels: (PhaseResult | null)[]): ChartData {
-    const dataPoints: Point[] = xVals.map((x, i) => {
-      return { x, y: yVals[i] };
+    let xData: number[] = [];
+    let yData: number[] = [];
+    const { length } = xVals;
+
+    if (length > this.maxScatterPoints) {
+      // take subset from random points
+      const indices = this.getRandomIndices(xVals);
+      xData = new Array(length).fill(undefined);
+      yData = xData;
+
+      indices.forEach((i) => {
+        xData[i] = xVals[i];
+        yData[i] = yVals[i];
+      });
+    }
+
+    const dataPoints: Point[] = xData.map((x, i) => {
+      return { x, y: yData[i] };
     });
     const colorProvider = new CycleColorProvider();
     let [xLabel, yLabel] = labels as string[];
@@ -194,6 +212,17 @@ export default class RealizationSummary extends Vue {
     this.$set(this.selectedResults, 'x', xLabel ?? null);
     this.$set(this.selectedResults, 'y', yLabel ?? null);
     this.$set(this, 'outputStatistics', stats);
+  }
+
+  getRandomIndices(array: number[]): number[] {
+    const indices: number[] = [];
+    const { length } = array;
+
+    for (let i = 0; i < this.maxScatterPoints; i += 1) {
+      indices.push(Math.floor(Math.random() * length));
+    }
+
+    return indices;
   }
 
   removeSelectedResult(axis: 'x' | 'y'): void {

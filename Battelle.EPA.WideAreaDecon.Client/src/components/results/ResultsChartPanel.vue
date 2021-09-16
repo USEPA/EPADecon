@@ -131,7 +131,11 @@ export default class ResultsChartPanel extends Vue {
   }
 
   onScatterDataPointClicked(_: ChartEvent, elements: ActiveElement[]): void {
-    const { index } = elements[0];
+    const [el] = elements;
+    if (!el) {
+      return;
+    }
+    const { index } = el;
     this.$emit('addRun', index + 1);
   }
 
