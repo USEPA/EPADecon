@@ -156,7 +156,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
 
         private SourceReductionParameters SetSourceReductionParameters()
         {
-            var surfaceAreaToBeSourceReduced = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction Surface Area to be Source Reduced").CreateDistribution().Draw();
+            var massToBeSourceReduced = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction of Total Waste Mass to be Source Reduced").CreateDistribution().Draw();
             var massPerSurfaceArea = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Mass of Waste per Surface Area").CreateDistribution().Draw();
             var massRemovedPerHourPerTeam = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Mass of Waste Removed per Hour per Team").CreateDistribution().Draw();
             var respiratorsPerPerson = _sourceReductionParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Number of Respirators per Person").CreateDistribution().Draw();
@@ -194,7 +194,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             };
 
             return new SourceReductionParameters(
-                surfaceAreaToBeSourceReduced,
+                massToBeSourceReduced,
                 massPerSurfaceArea,
                 massRemovedPerHourPerTeam,
                 entryDuration,

@@ -20,13 +20,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction.Cost
             _massPerSa = massPerSa;
         }
         
-        public double CalculateLaborCost(double onsiteDays, double numberTeams, double saToBeSourceReduced,
+        public double CalculateLaborCost(double onsiteDays, double numberTeams, double massToBeSourceReduced,
             double costPerTonRemoved, double area)
         {
             var personnelHoursCost = _personnelPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
-            return onsiteDays * GlobalConstants.HoursPerWorkDay * numberTeams * personnelHoursCost +
-                (saToBeSourceReduced * area) * _massPerSa * costPerTonRemoved;
+            return (onsiteDays * GlobalConstants.HoursPerWorkDay * numberTeams * personnelHoursCost) +
+                (massToBeSourceReduced * area * _massPerSa) * costPerTonRemoved;
         }
     }
 }

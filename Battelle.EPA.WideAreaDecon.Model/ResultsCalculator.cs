@@ -71,7 +71,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             }
 
             // Source Reduction
-            if (parameters._sourceReductionParameters.surfaceAreaToBeSourceReduced == 0)
+            if (parameters._sourceReductionParameters.massToBeSourceReduced == 0)
             {
                 results.sourceReductionResults.workDays = 0.0;
                 results.sourceReductionResults.onSiteDays = 0.0;
@@ -81,7 +81,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
             {
                 var phaseDaysSR = _sourceReductionCostCalculator.CalculateTime(
                     parameters._sourceReductionParameters.numTeams,
-                    parameters._sourceReductionParameters.surfaceAreaToBeSourceReduced,
+                    parameters._sourceReductionParameters.massToBeSourceReduced,
                     areaContaminated.Values.Sum(v => v.AreaContaminated),
                     parameters._sourceReductionParameters.ppeRequired);
 
@@ -92,7 +92,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 results.sourceReductionResults.phaseCost = Convert.ToInt64(_sourceReductionCostCalculator.CalculatePhaseCosts(
                     phaseDaysSR,
                     parameters._sourceReductionParameters.numTeams,
-                    parameters._sourceReductionParameters.surfaceAreaToBeSourceReduced,
+                    parameters._sourceReductionParameters.massToBeSourceReduced,
                     parameters._costParameters.costPerMassOfMaterialRemoved,
                     parameters._sourceReductionParameters.ppeRequired,
                     areaContaminated.Values.Sum(v => v.AreaContaminated)));

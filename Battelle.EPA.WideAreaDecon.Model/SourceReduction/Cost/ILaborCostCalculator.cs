@@ -2,6 +2,6 @@
 {
     public interface ILaborCostCalculator
     {
-        public double CalculateLaborCost(double onsiteDays, double numberTeams, double saToBeSourceReduced, double costPerTonRemoved, double area);
+        public double CalculateLaborCost(double onsiteDays, double numberTeams, double massToBeSourceReduced, double costPerTonRemoved, double area);
     }
 }
