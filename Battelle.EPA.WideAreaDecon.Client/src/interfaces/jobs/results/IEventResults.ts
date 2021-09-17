@@ -1,4 +1,4 @@
-import IOtherResult from './phase/IOtherResult';
+import IOtherResult from './element/IOtherResult';
 
 export default interface IEventResults {
   totalEventCost: number;

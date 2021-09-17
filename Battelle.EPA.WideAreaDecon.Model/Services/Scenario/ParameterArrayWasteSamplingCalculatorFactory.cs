@@ -17,7 +17,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
         public WorkDaysCalculator Calculator_workdays { get; set; }
         public OnsiteDaysCalculator Calculator_onsiteDays { get; set; }
         public AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
-        public PhaseLagCalculator Calculator_phaseLag { get; set; }
+        public ElementLagCalculator Calculator_elementLag { get; set; }
 
         public ParameterArrayWasteSamplingCalculatorFactory(
             WasteSamplingParameters wsParameters,
@@ -58,7 +58,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 wsParameters.personnelOverheadDays
             );
 
-            Calculator_phaseLag = new PhaseLagCalculator(
+            Calculator_elementLag = new ElementLagCalculator(
                 wsParameters.solidWastePerSurfaceArea,
                 wsParameters.liquidWastePerSurfaceArea,
                 wsParameters.massPerWasteSample,
@@ -95,7 +95,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 Calculator_workdays = Calculator_workdays,
                 Calculator_onsiteDays = Calculator_onsiteDays,
                 Calculator_analysis = Calculator_analysis,
-                Calculator_phaseLag = Calculator_phaseLag
+                Calculator_elementLag= Calculator_elementLag
             };
         }
     }

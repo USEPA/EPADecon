@@ -3,8 +3,9 @@ import XLSX from 'xlsx';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
-import PhaseResult from '@/enums/jobs/results/phaseResult';
-import IPhaseResult from '@/interfaces/jobs/results/phase/IPhaseResult';
+import Result from '@/enums/jobs/results/result';
+import IElementResult from '@/interfaces/jobs/results/element/IElementResult';
+import IElementBreakdown from '@/interfaces/jobs/results/IElementBreakdown';
 import JobRequest from '../jobs/JobRequest';
 
 @injectable()
@@ -36,11 +37,11 @@ export default class JobResultProvider implements IJobResultProvider {
       scenarioResults.undergroundResults ??
       Object.values(scenarioResults.indoorResults)[0];
 
-    // Get headers for each phase
-    const phaseHeaders: string[] = Object.entries(existingLocation).flatMap(([p, rs]) => {
-      const phase = [this.convertCamelToTitleCase(p.replace(/Results$/, ''))];
-      [...Array(Object.keys(rs).length - 1)].forEach(() => phase.push(''));
-      return phase;
+    // Get headers for each element
+    const elementHeaders: string[] = Object.entries(existingLocation).flatMap(([p, rs]) => {
+      const element = [this.convertCamelToTitleCase(p.replace(/Results$/, ''))];
+      [...Array(Object.keys(rs).length - 1)].forEach(() => element.push(''));
+      return element;
     });
 
     // Get headers for each result
@@ -56,14 +57,14 @@ export default class JobResultProvider implements IJobResultProvider {
       // Build arrays for each location
       const buildings = Object.keys(results[0].scenarioResults.indoorResults);
       const indoor = buildings.map((b) =>
-        this.excelBuildLocationResults(results, b, phaseHeaders, resultHeaders, averageHeaders, true),
+        this.excelBuildLocationResults(results, b, elementHeaders, resultHeaders, averageHeaders, true),
       );
 
       // Get sum of all buildings (this is likely only temporary)
       const indoorSum = this.excelBuildLocationResults(
         results,
         buildings[0],
-        phaseHeaders,
+        elementHeaders,
         resultHeaders,
         averageHeaders,
         true,
@@ -86,7 +87,7 @@ export default class JobResultProvider implements IJobResultProvider {
 
     // OUTDOOR
     if (results[0].scenarioResults.outdoorResults) {
-      const outdoor = this.excelBuildLocationResults(results, 'Outdoor', phaseHeaders, resultHeaders, averageHeaders);
+      const outdoor = this.excelBuildLocationResults(results, 'Outdoor', elementHeaders, resultHeaders, averageHeaders);
       this.excelAddToWorkbook(outdoor, wb, 'Outdoor');
     }
 
@@ -95,7 +96,7 @@ export default class JobResultProvider implements IJobResultProvider {
       const underground = this.excelBuildLocationResults(
         results,
         'Underground',
-        phaseHeaders,
+        elementHeaders,
         resultHeaders,
         averageHeaders,
       );
@@ -125,9 +126,9 @@ export default class JobResultProvider implements IJobResultProvider {
     return allResults[realizationIndex];
   }
 
-  getResultPhaseBreakdown(realization: IJobResultRealization, result: PhaseResult): { phase: string; value: number }[] {
-    const phaseNames = this.getPhaseNames(realization);
-    const breakdown: { phase: string; value: number }[] = [];
+  getResultElementBreakdown(realization: IJobResultRealization, result: Result): IElementBreakdown[] {
+    const elementNames = this.getElementNames(realization);
+    const breakdown: { element: string; value: number }[] = [];
 
     this.findResultValues(realization, result, (value: number | undefined, index: number) => {
       const res = value ?? 0;
@@ -136,7 +137,7 @@ export default class JobResultProvider implements IJobResultProvider {
         breakdown[index].value += res;
       } else {
         breakdown.push({
-          phase: phaseNames[index].replace(/Results$/, ''),
+          element: elementNames[index].replace(/Results$/, ''),
           value: res,
         });
       }
@@ -145,7 +146,7 @@ export default class JobResultProvider implements IJobResultProvider {
     return breakdown.filter((v) => v.value > 0);
   }
 
-  getResultDetails(allResults: IJobResultRealization[], result: PhaseResult): IResultDetails | undefined {
+  getResultDetails(allResults: IJobResultRealization[], result: Result): IResultDetails | undefined {
     if (this.savedDetails[result]) {
       return this.savedDetails[result];
     }
@@ -218,7 +219,7 @@ export default class JobResultProvider implements IJobResultProvider {
     return details;
   }
 
-  getResultValues(realization: IJobResultRealization, result: PhaseResult): number[] {
+  getResultValues(realization: IJobResultRealization, result: Result): number[] {
     const values: number[] = [];
     this.findResultValues(realization, result, (value) => {
       if (value !== undefined) {
@@ -228,12 +229,12 @@ export default class JobResultProvider implements IJobResultProvider {
     return values;
   }
 
-  getUnits(result: PhaseResult): string | undefined {
+  getUnits(result: Result): string | undefined {
     switch (result) {
-      case PhaseResult.AreaContaminated:
+      case Result.AreaContaminated:
         return 'm^2';
-      case PhaseResult.TotalCost:
-      case PhaseResult.PhaseCost:
+      case Result.TotalCost:
+      case Result.ElementCost:
         return '$';
       default:
         return undefined;
@@ -247,12 +248,12 @@ export default class JobResultProvider implements IJobResultProvider {
 
   private findResultValues(
     realization: IJobResultRealization,
-    result: PhaseResult,
+    result: Result,
     callback: (value: number | undefined, index: number) => void,
   ): void {
-    const phaseNames = this.getPhaseNames(realization);
+    const elementNames = this.getElementNames(realization);
     const entries = Object.entries(realization.scenarioResults);
-    const l1 = phaseNames.length;
+    const l1 = elementNames.length;
 
     // loop through locations
     for (let i = 0, l3 = entries.length; i < l3; i += 1) {
@@ -261,13 +262,13 @@ export default class JobResultProvider implements IJobResultProvider {
         return;
       }
 
-      const phaseResultSets = this.isIndoor(location) ? Object.values(resultSet) : [resultSet];
+      const resultSets = this.isIndoor(location) ? Object.values(resultSet) : [resultSet];
 
       // loop through result set
-      for (let j = 0, l2 = phaseResultSets.length; j < l2; j += 1) {
-        // loop through each phase and look for result
+      for (let j = 0, l2 = resultSets.length; j < l2; j += 1) {
+        // loop through each element and look for result
         for (let k = 0; k < l1; k += 1) {
-          callback(phaseResultSets[j][phaseNames[k]][result], k);
+          callback(resultSets[j][elementNames[k]][result], k);
         }
       }
     }
@@ -303,14 +304,14 @@ export default class JobResultProvider implements IJobResultProvider {
         isIndoor
           ? r.scenarioResults.indoorResults[location]
           : r.scenarioResults[location[0].toLowerCase() + `${location}Results`.substring(1)],
-      ).flatMap((p: IPhaseResult) => Object.values(p)),
+      ).flatMap((p: IElementResult) => Object.values(p)),
     ]);
   }
 
   private excelBuildLocationResults(
     results: IJobResultRealization[],
     location: string,
-    phaseHeaders: string[],
+    elementHeaders: string[],
     resultHeaders: string[],
     averageHeaders: string[],
     isIndoor = false,
@@ -318,14 +319,14 @@ export default class JobResultProvider implements IJobResultProvider {
     return [
       [`${isIndoor ? `${location} Building` : location} Results`],
       [''], // empty row
-      ['', ...phaseHeaders],
+      ['', ...elementHeaders],
       ['', ...averageHeaders],
       ['', ...this.excelCalculateAverages(results, location, isIndoor)],
       [''],
       [''],
       ['Realization Results'],
       [''],
-      ['', ...phaseHeaders],
+      ['', ...elementHeaders],
       ['Realization', ...resultHeaders],
       ...this.excelParseLocationRealizationResults(results, location, isIndoor),
     ];
@@ -334,16 +335,18 @@ export default class JobResultProvider implements IJobResultProvider {
   private excelBuildEventResults(results: IJobResultRealization[]): (string | number | undefined)[][] {
     const sectionHeaders = ['Travel Costs', '', '', '', '', 'Event Costs'];
 
-    const resultHeaders = Object.entries(results[0].eventResults).flatMap(([k, v]: [string, number | IPhaseResult]) => {
-      const header = typeof v === 'number' ? [k] : Object.keys(v);
-      return header.map((h) => this.convertCamelToTitleCase(h));
-    });
+    const resultHeaders = Object.entries(results[0].eventResults).flatMap(
+      ([k, v]: [string, number | IElementResult]) => {
+        const header = typeof v === 'number' ? [k] : Object.keys(v);
+        return header.map((h) => this.convertCamelToTitleCase(h));
+      },
+    );
 
     const averageHeaders = resultHeaders.map((h) => `Average ${h}`);
 
     const realizationResults = results.map((r, i) => [
       i + 1,
-      ...Object.values(r.eventResults).flatMap((p: IPhaseResult | number) =>
+      ...Object.values(r.eventResults).flatMap((p: IElementResult | number) =>
         typeof p === 'number' ? p : Object.values(p),
       ),
     ]);
@@ -388,7 +391,7 @@ export default class JobResultProvider implements IJobResultProvider {
     XLSX.utils.book_append_sheet(wb, ws, name);
   }
 
-  private getPhaseNames(realization: IJobResultRealization): string[] {
+  private getElementNames(realization: IJobResultRealization): string[] {
     const { scenarioResults } = realization;
     const existingLocation =
       scenarioResults.outdoorResults ??

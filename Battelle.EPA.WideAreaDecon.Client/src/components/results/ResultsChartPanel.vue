@@ -57,7 +57,7 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import ChartOptions from '@/components/modals/results/ChartOptions.vue';
 import { ActiveElement, ChartData, ChartDataset, ChartEvent, ChartOptions as ChartJsOptions } from 'chart.js';
 import { ChartJsWrapper, ScatterPlotWrapper } from 'battelle-common-vue-charting';
-import PhaseResult from '@/enums/jobs/results/phaseResult';
+import Result from '@/enums/jobs/results/result';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
@@ -70,7 +70,7 @@ export default class ResultsChartPanel extends Vue {
 
   @Prop() chartType!: string;
 
-  @Prop() chartLabels!: { x: PhaseResult | null; y: PhaseResult | null };
+  @Prop() chartLabels!: { x: Result | null; y: Result | null };
 
   @Prop() details!: IResultDetails | null;
 

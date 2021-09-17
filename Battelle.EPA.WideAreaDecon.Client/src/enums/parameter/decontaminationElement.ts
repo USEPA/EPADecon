@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-shadow
-enum DecontaminationPhase {
+enum DecontaminationElement {
   indoor = 'Indoor',
   outdoor = 'Outdoor',
   underground = 'Underground',
 }
 
-export default DecontaminationPhase;
+export default DecontaminationElement;

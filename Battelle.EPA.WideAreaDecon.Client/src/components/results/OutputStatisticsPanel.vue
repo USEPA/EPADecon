@@ -32,13 +32,13 @@ import { omit } from 'lodash';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
-import PhaseResult from '@/enums/jobs/results/phaseResult';
+import Result from '@/enums/jobs/results/result';
 
 @Component
 export default class OutputStatisticsPanel extends Vue {
   @Prop() details!: { x: IResultDetails | null; y: IResultDetails | null };
 
-  @Prop() results!: { x: PhaseResult | null; y: PhaseResult | null };
+  @Prop() results!: { x: Result | null; y: Result | null };
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 

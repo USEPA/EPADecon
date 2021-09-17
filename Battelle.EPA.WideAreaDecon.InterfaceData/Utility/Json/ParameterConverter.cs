@@ -95,7 +95,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json
 
             return typeName switch
             {
-                "DecontaminationPhase" => JsonObject.ToObject<EnumeratedParameter<DecontaminationPhase>>(serializer),
+                "DecontaminationElement" => JsonObject.ToObject<EnumeratedParameter<DecontaminationElement>>(serializer),
                 "ApplicationMethod" => JsonObject.ToObject<EnumeratedParameter<ApplicationMethod>>(serializer),
                 "SurfaceType" => JsonObject.ToObject<EnumeratedParameter<SurfaceType>>(serializer),
                 _ => throw new SerializationException($"Uknown enumerated parameter type name {typeName} found")

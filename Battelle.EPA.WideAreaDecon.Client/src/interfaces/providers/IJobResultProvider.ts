@@ -1,5 +1,6 @@
-import PhaseResult from '@/enums/jobs/results/phaseResult';
+import Result from '@/enums/jobs/results/result';
 import JobRequest from '@/implementations/jobs/JobRequest';
+import IElementBreakdown from '../jobs/results/IElementBreakdown';
 import IJobResultRealization from '../jobs/results/IJobResultRealization';
 import IResultDetails from '../jobs/results/IResultDetails';
 
@@ -17,10 +18,10 @@ export default interface IJobResultProvider {
 
   /** Finds all values of a given result.
    * @param {IJobResultRealization} realization - The job result realization to parse.
-   * @param {PhaseResult} result - The result to look for.
+   * @param {Result} result - The result to look for.
    * @returns An array holding all the found values.
    */
-  getResultValues(realization: IJobResultRealization, result: PhaseResult): number[];
+  getResultValues(realization: IJobResultRealization, result: Result): number[];
 
   /** Rounds number to 3 sig figs and adds commas where necessary.
    * @param {number} number - The number to be converted.
@@ -38,25 +39,25 @@ export default interface IJobResultProvider {
   /** Retrieves the mean, max, min, and standard deviation of a result
    * across all realizations. Also retrieves all values of the result.
    * @param {IJobResultRealization[]} allResults - The array of realization results.
-   * @param {PhaseResult} result - The result to get details for.
+   * @param {Result} result - The result to get details for.
    * @returns The mean, max, min, standard deviation, and all values of the result if it can be found.
    * Otherwise returns undefined.
    */
-  getResultDetails(allResults: IJobResultRealization[], result: PhaseResult): IResultDetails | undefined;
+  getResultDetails(allResults: IJobResultRealization[], result: Result): IResultDetails | undefined;
 
-  /** Retrieves the breakdown by each phase of a specific result.
+  /** Retrieves the breakdown by each element of a specific result.
    * @param {IJobResultRealization} realization - The job result realization.
-   * @param {PhaseResult} result - The result to get the breakdown for.
-   * @returns {{ phase: string; value: number }} An array of objects holding the phase's name and value for the
+   * @param {Result} result - The result to get the breakdown for.
+   * @returns An array of objects holding the element's name and value for the
    * inputted result if it exists
    */
-  getResultPhaseBreakdown(realization: IJobResultRealization, result: PhaseResult): { phase: string; value: number }[];
+  getResultElementBreakdown(realization: IJobResultRealization, result: Result): IElementBreakdown[];
 
   /** Retrieves the units for a given result (if they exist)
-   * @param {PhaseResult} result - The result to get units for.
+   * @param {Result} result - The result to get units for.
    * @returns The units for the given result (or undefined if they don't exist).
    */
-  getUnits(result: PhaseResult): string | undefined;
+  getUnits(result: Result): string | undefined;
 
   /** Resets stored results and details */
   reset(): void;

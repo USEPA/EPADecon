@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
-          @showDetails="showResultDetails($event, PhaseResult.TotalCost)"
+          @showDetails="showResultDetails($event, Result.TotalCost)"
           icon="mdi-currency-usd"
           text="Average Total Cost"
           :value="`$${averageTotalCost}`"
@@ -11,7 +11,7 @@
       </v-col>
       <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
-          @showDetails="showResultDetails($event, PhaseResult.AreaContaminated)"
+          @showDetails="showResultDetails($event, Result.AreaContaminated)"
           icon="mdi-earth"
           text="Average Total Area Contaminated"
           :value="`${averageTotalAreaContaminated} m^2`"
@@ -19,7 +19,7 @@
       </v-col>
       <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
-          @showDetails="showResultDetails($event, PhaseResult.Workdays)"
+          @showDetails="showResultDetails($event, Result.Workdays)"
           icon="mdi-calendar"
           text="Average Total Workdays"
           :value="averageTotalWorkdays"
@@ -27,7 +27,7 @@
       </v-col>
       <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
-          @showDetails="showResultDetails($event, PhaseResult.DecontaminationRounds)"
+          @showDetails="showResultDetails($event, Result.DecontaminationRounds)"
           icon="mdi-hand-water"
           text="Average Number of Decontamination Iterations"
           :value="averageDeconRounds"
@@ -47,7 +47,7 @@
     <v-row>
       <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
-          @showDetails="showResultDetails($event, PhaseResult.OnSiteDays)"
+          @showDetails="showResultDetails($event, Result.OnSiteDays)"
           icon="mdi-tent"
           text="Average Number of Onsite Days"
           :value="averageTotalOnSiteDays"
@@ -83,9 +83,10 @@ import container from '@/dependencyInjection/config';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 import { CycleColorProvider } from 'battelle-common-vue-charting';
 import { ChartData } from 'chart.js';
-import PhaseResult from '@/enums/jobs/results/phaseResult';
+import Result from '@/enums/jobs/results/result';
 import ResultDetails from '@/components/modals/results/ResultDetails.vue';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
+import IElementBreakdown from '@/interfaces/jobs/results/IElementBreakdown';
 import RealizationSummary from './RealizationSummary.vue';
 import DashboardResultCard from './DashboardResultCard.vue';
 import DashboardChartCard from './DashboardChartCard.vue';
@@ -125,24 +126,24 @@ export default class ViewResults extends Vue {
 
   workdayBreakdown: unknown;
 
-  PhaseResult = PhaseResult; // needed to use enum in template
+  Result = Result; // needed to use enum in template
 
   details: IResultDetails = { values: [], mean: 0, minimum: 0, maximum: 0, stdDev: 0 };
 
-  getPhaseBreakdownChartData(result: PhaseResult): ChartData {
-    const phaseResults: { phase: string; value: number }[] = [];
+  getElementBreakdownChartData(result: Result): ChartData {
+    const elementResults: IElementBreakdown[] = [];
     const numberRealizations = this.currentJob.results.length;
     const colorProvider = new CycleColorProvider();
     const colors: string[] = [];
 
     for (let i = 0, l1 = this.currentJob.results.length; i < l1; i += 1) {
-      const res = this.resultProvider.getResultPhaseBreakdown(this.currentJob.results[i], result);
+      const res = this.resultProvider.getResultElementBreakdown(this.currentJob.results[i], result);
       for (let j = 0, l2 = res.length; j < l2; j += 1) {
-        if (phaseResults[j] === undefined) {
-          phaseResults.push(res[j]);
+        if (elementResults[j] === undefined) {
+          elementResults.push(res[j]);
           colors.push(colorProvider.getNextColor());
         } else {
-          phaseResults[j].value += res[j].value ?? 0;
+          elementResults[j].value += res[j].value ?? 0;
         }
       }
     }
@@ -150,11 +151,11 @@ export default class ViewResults extends Vue {
     return {
       datasets: [
         {
-          data: phaseResults.map((p) => p.value / numberRealizations),
+          data: elementResults.map((e) => e.value / numberRealizations),
           backgroundColor: colors,
         },
       ],
-      labels: phaseResults.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase)),
+      labels: elementResults.map((e) => this.resultProvider.convertCamelToTitleCase(e.element)),
     };
   }
 
@@ -162,7 +163,7 @@ export default class ViewResults extends Vue {
     this.resultProvider.exportJobResults(this.currentJob);
   }
 
-  showResultDetails($event: string, result: PhaseResult): void {
+  showResultDetails($event: string, result: Result): void {
     const details = this.resultProvider.getResultDetails(this.currentJob.results, result);
     if (details) {
       this.details = details;
@@ -182,21 +183,21 @@ export default class ViewResults extends Vue {
     this.$router.push({ name: location });
   }
 
-  getAverageFormatted(result: PhaseResult): string {
+  getAverageFormatted(result: Result): string {
     const avg = this.resultProvider.getResultDetails(this.currentJob.results, result)?.mean ?? 0;
     return this.resultProvider.formatNumber(avg);
   }
 
   @Watch('currentJob')
   setValues(): void {
-    this.averageTotalCost = this.getAverageFormatted(PhaseResult.TotalCost);
-    this.averageTotalAreaContaminated = this.getAverageFormatted(PhaseResult.AreaContaminated);
-    this.averageTotalWorkdays = this.getAverageFormatted(PhaseResult.Workdays);
-    this.averageDeconRounds = this.getAverageFormatted(PhaseResult.DecontaminationRounds);
-    this.averageTotalOnSiteDays = this.getAverageFormatted(PhaseResult.OnSiteDays);
+    this.averageTotalCost = this.getAverageFormatted(Result.TotalCost);
+    this.averageTotalAreaContaminated = this.getAverageFormatted(Result.AreaContaminated);
+    this.averageTotalWorkdays = this.getAverageFormatted(Result.Workdays);
+    this.averageDeconRounds = this.getAverageFormatted(Result.DecontaminationRounds);
+    this.averageTotalOnSiteDays = this.getAverageFormatted(Result.OnSiteDays);
 
-    this.costBreakdown = this.getPhaseBreakdownChartData(PhaseResult.PhaseCost);
-    this.workdayBreakdown = this.getPhaseBreakdownChartData(PhaseResult.Workdays);
+    this.costBreakdown = this.getElementBreakdownChartData(Result.ElementCost);
+    this.workdayBreakdown = this.getElementBreakdownChartData(Result.Workdays);
   }
 
   created(): void {

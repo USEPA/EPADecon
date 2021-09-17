@@ -39,9 +39,10 @@ import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import { ChartData, Point } from 'chart.js';
 import { CycleColorProvider, DefaultChartData, CreateScatterChartDataset } from 'battelle-common-vue-charting';
-import PhaseResult from '@/enums/jobs/results/phaseResult';
+import Result from '@/enums/jobs/results/result';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import ChartOptions from '@/components/modals/results/ChartOptions.vue';
+import IElementBreakdown from '@/interfaces/jobs/results/IElementBreakdown';
 import { range } from 'lodash';
 import OutputStatisticsPanel from './OutputStatisticsPanel.vue';
 import ResultsChartPanel from './ResultsChartPanel.vue';
@@ -63,7 +64,7 @@ export default class RealizationSummary extends Vue {
 
   showOptionsModal = false;
 
-  selectedResults: { x: PhaseResult | null; y: PhaseResult | null } = { x: null, y: null };
+  selectedResults: { x: Result | null; y: Result | null } = { x: null, y: null };
 
   addRunToTable(runNumber: number): void {
     const table = this.$refs.realizationTable as RealizationTable;
@@ -112,35 +113,35 @@ export default class RealizationSummary extends Vue {
     };
   }
 
-  createPieChart(values: number[], label: PhaseResult | null): ChartData {
-    const phaseResults: { phase: string; value: number }[] = [];
+  createPieChart(values: number[], label: Result | null): ChartData {
+    const elementResults: IElementBreakdown[] = [];
     const numberRealizations = values.length;
     const colorProvider = new CycleColorProvider();
     const colors: string[] = [];
 
     if (label) {
       for (let i = 0, l1 = this.results.length; i < l1; i += 1) {
-        const res = this.resultProvider.getResultPhaseBreakdown(this.results[i], label);
+        const res = this.resultProvider.getResultElementBreakdown(this.results[i], label);
         for (let j = 0, l2 = res.length; j < l2; j += 1) {
-          if (phaseResults[j] === undefined) {
-            phaseResults.push(res[j]);
+          if (elementResults[j] === undefined) {
+            elementResults.push(res[j]);
             colors.push(colorProvider.getNextColor());
           } else {
-            phaseResults[j].value += res[j].value ?? 0;
+            elementResults[j].value += res[j].value ?? 0;
           }
         }
       }
     }
 
     const labels =
-      phaseResults.length > 1
-        ? phaseResults.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase))
+      elementResults.length > 1
+        ? elementResults.map((e) => this.resultProvider.convertCamelToTitleCase(e.element))
         : [this.resultProvider.convertCamelToTitleCase(label?.toString() ?? '')];
 
     return {
       datasets: [
         {
-          data: phaseResults.map((p) => p.value / numberRealizations),
+          data: elementResults.map((e) => e.value / numberRealizations),
           backgroundColor: colors,
         },
       ],
@@ -148,7 +149,7 @@ export default class RealizationSummary extends Vue {
     };
   }
 
-  createScatterPlot(xVals: number[], yVals: number[], labels: (PhaseResult | null)[]): ChartData {
+  createScatterPlot(xVals: number[], yVals: number[], labels: (Result | null)[]): ChartData {
     let xData: number[] = [];
     let yData: number[] = [];
     const { length } = xVals;
@@ -177,7 +178,7 @@ export default class RealizationSummary extends Vue {
     return new DefaultChartData([scatterDataSet]);
   }
 
-  setChartData({ x, y }: { x: PhaseResult | null; y: PhaseResult | null }): void {
+  setChartData({ x, y }: { x: Result | null; y: Result | null }): void {
     const xDetails = x ? this.resultProvider.getResultDetails(this.results, x) : null;
     const yDetails = y ? this.resultProvider.getResultDetails(this.results, y) : null;
 
@@ -200,7 +201,7 @@ export default class RealizationSummary extends Vue {
     this.getOutputStatistics(x, y);
   }
 
-  getOutputStatistics(xLabel: PhaseResult | null, yLabel: PhaseResult | null): void {
+  getOutputStatistics(xLabel: Result | null, yLabel: Result | null): void {
     const stats: { x: IResultDetails | null; y: IResultDetails | null } = { x: null, y: null };
 
     if (xLabel) {

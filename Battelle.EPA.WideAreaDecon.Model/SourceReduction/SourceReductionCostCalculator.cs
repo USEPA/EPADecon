@@ -15,26 +15,26 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         public EntranceExitCostCalculator Calculator_entEx { get; set; }
         public TravelCostCalculator Calculator_travel { get; set; }
 
-        //Phase time for scenario results
-        public Dictionary<PhaseDays, double> CalculateTime(double numberTeams, double saToBeSourceReduced, double area, Dictionary<PpeLevel, double> ppeLevelPerTeam)
+        //Element time for scenario results
+        public Dictionary<ElementDays, double> CalculateTime(double numberTeams, double saToBeSourceReduced, double area, Dictionary<PpeLevel, double> ppeLevelPerTeam)
         {
             var laborDays = Calculator_laborDays.CalculateLaborDays(numberTeams, saToBeSourceReduced, area);
             var workDays = Calculator_workDays.CalculateWorkDays(laborDays, numberTeams, ppeLevelPerTeam);
             var onsiteDays = Calculator_onsiteDays.CalculateOnsiteDays(workDays);
 
-            return new Dictionary<PhaseDays, double>
+            return new Dictionary<ElementDays, double>
             {
-                { PhaseDays.LaborDays, laborDays },
-                { PhaseDays.WorkDays, workDays },
-                { PhaseDays.OnsiteDays, onsiteDays }
+                { ElementDays.LaborDays, laborDays },
+                { ElementDays.WorkDays, workDays },
+                { ElementDays.OnsiteDays, onsiteDays }
             };
         }
 
-        //Phase costs for scenario results
-        public double CalculatePhaseCosts(Dictionary<PhaseDays, double> phaseDays, double numberTeams, double saToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
+        //Element costs for scenario results
+        public double CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, double saToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
         {
-            var laborCosts = Calculator_labor.CalculateLaborCost(phaseDays[PhaseDays.OnsiteDays], numberTeams, saToBeSourceReduced, costPerTonRemoved, area);
-            var entExCosts = Calculator_entEx.CalculateEntranceExitCost(phaseDays[PhaseDays.LaborDays], numberTeams, ppePerLevelPerTeam);
+            var laborCosts = Calculator_labor.CalculateLaborCost(elementDays[ElementDays.OnsiteDays], numberTeams, saToBeSourceReduced, costPerTonRemoved, area);
+            var entExCosts = Calculator_entEx.CalculateEntranceExitCost(elementDays[ElementDays.LaborDays], numberTeams, ppePerLevelPerTeam);
             
             return (laborCosts + entExCosts);
         }

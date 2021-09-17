@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import mockResults from '@/dataMocks/mockResults';
 import JobResultProvider from '@/implementations/providers/JobResultProvider';
-import PhaseResult from '@/enums/jobs/results/phaseResult';
+import Result from '@/enums/jobs/results/result';
 
 describe('JobResultProvider tests', () => {
   const results = mockResults;
@@ -9,10 +9,10 @@ describe('JobResultProvider tests', () => {
 
   it('total cost details are correct', () => {
     // Setup
-    const phaseResult = PhaseResult.TotalCost;
+    const elementResult = Result.TotalCost;
 
     // SUT
-    const result = provider.getResultDetails(results, phaseResult);
+    const result = provider.getResultDetails(results, elementResult);
 
     // Assert
     expect(result?.minimum).to.be.closeTo(105423639, 0.01);
@@ -23,10 +23,10 @@ describe('JobResultProvider tests', () => {
 
   it('total area contaminated details are correct', () => {
     // Setup
-    const phaseResult = PhaseResult.AreaContaminated;
+    const elementResult = Result.AreaContaminated;
 
     // SUT
-    const result = provider.getResultDetails(results, phaseResult);
+    const result = provider.getResultDetails(results, elementResult);
 
     // Assert
     expect(result?.minimum).to.be.closeTo(33471.481, 0.01);
@@ -37,10 +37,10 @@ describe('JobResultProvider tests', () => {
 
   it('total workdays details are correct', () => {
     // Setup
-    const phaseResult = PhaseResult.Workdays;
+    const elementResult = Result.Workdays;
 
     // SUT
-    const result = provider.getResultDetails(results, phaseResult);
+    const result = provider.getResultDetails(results, elementResult);
 
     // Assert
     expect(result?.minimum).to.be.closeTo(711.773, 0.01);
@@ -51,10 +51,10 @@ describe('JobResultProvider tests', () => {
 
   it('total on-site days details are correct', () => {
     // Setup
-    const phaseResult = PhaseResult.OnSiteDays;
+    const elementResult = Result.OnSiteDays;
 
     // SUT
-    const result = provider.getResultDetails(results, phaseResult);
+    const result = provider.getResultDetails(results, elementResult);
 
     // Assert
     expect(result?.minimum).to.be.closeTo(5725.696, 0.01);
@@ -65,10 +65,10 @@ describe('JobResultProvider tests', () => {
 
   it('total decontamination rounds details are correct', () => {
     // Setup
-    const phaseResult = PhaseResult.DecontaminationRounds;
+    const elementResult = Result.DecontaminationRounds;
 
     // SUT
-    const result = provider.getResultDetails(results, phaseResult);
+    const result = provider.getResultDetails(results, elementResult);
 
     // Assert
     expect(result?.minimum).to.equal(2);
@@ -79,11 +79,11 @@ describe('JobResultProvider tests', () => {
 
   it('number of values returned is correct', () => {
     // Setup
-    const phaseResult = PhaseResult.PhaseCost;
+    const elementResult = Result.ElementCost;
     const count = results.length;
 
     // SUT
-    const result = provider.getResultDetails(results, phaseResult);
+    const result = provider.getResultDetails(results, elementResult);
 
     // Assert
     expect(result?.values.length).to.equal(count);
@@ -91,10 +91,10 @@ describe('JobResultProvider tests', () => {
 
   it('invalid result returns undefined', () => {
     // Setup
-    const phaseResult = 'invalid' as PhaseResult;
+    const elementResult = 'invalid' as Result;
 
     // SUT
-    const result = provider.getResultDetails(results, phaseResult);
+    const result = provider.getResultDetails(results, elementResult);
 
     // Assert
     /* eslint-disable-next-line no-unused-expressions */

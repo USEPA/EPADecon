@@ -15,7 +15,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
         private readonly ParameterFilter[] _otherParameters;
         private readonly ParameterFilter[] _incidentCommandParameters;
         private readonly ParameterFilter[] _costParameters;
-        private readonly Dictionary<PhaseCategory, double> _phaseOnsiteDays;
+        private readonly Dictionary<ElementCategory, double> _elementOnsiteDays;
 
         public EventParameterManager(
             ParameterFilter[] csParameters,
@@ -25,7 +25,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             ParameterFilter[] otParameters,
             ParameterFilter[] icParameters,
             ParameterFilter[] costParameters,
-            Dictionary<PhaseCategory, double> phaseOnsiteDays)
+            Dictionary<ElementCategory, double> elementOnsiteDays)
         {
             _characterizationSamplingParameters = csParameters;
             _sourceReductionParameters = srParameters;
@@ -34,7 +34,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             _otherParameters = otParameters;
             _incidentCommandParameters = icParameters;
             _costParameters = costParameters;
-            _phaseOnsiteDays = phaseOnsiteDays;
+            _elementOnsiteDays = elementOnsiteDays;
         }
 
         public CalculatorManager RedrawParameters()
@@ -77,7 +77,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 [PersonnelLevel.PL4] = _characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
             };
             var roundtripDays = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
-            var onsiteDays = _phaseOnsiteDays[PhaseCategory.CharacterizationSampling];
+            var onsiteDays = _elementOnsiteDays[ElementCategory.CharacterizationSampling];
 
             return new CharacterizationSamplingParameters(
                 numTeams,
@@ -98,7 +98,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 [PersonnelLevel.PL4] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
             };
             var roundtripDays = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
-            var onsiteDays = _phaseOnsiteDays[PhaseCategory.SourceReduction];
+            var onsiteDays = _elementOnsiteDays[ElementCategory.SourceReduction];
             
             return new SourceReductionParameters(
                 numTeams,
@@ -119,7 +119,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             };
             var roundtripDays = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
             var numTeams = _decontaminationParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
-            var onsiteDays = _phaseOnsiteDays[PhaseCategory.Decontamination];
+            var onsiteDays = _elementOnsiteDays[ElementCategory.Decontamination];
 
             return new DecontaminationParameters(
                personnelReqPerTeam,
@@ -140,7 +140,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 [PersonnelLevel.PL4] = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
             };
             var roundtripDays = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
-            var onsiteDays = _phaseOnsiteDays[PhaseCategory.WasteSampling];
+            var onsiteDays = _elementOnsiteDays[ElementCategory.WasteSampling];
 
             return new WasteSamplingParameters(
                 numTeams,
@@ -160,7 +160,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 [PersonnelLevel.PL4] = _incidentCommandParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
             };
             var roundtripDays = _incidentCommandParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
-            var onsiteDays = _phaseOnsiteDays[PhaseCategory.IncidentCommand];
+            var onsiteDays = _elementOnsiteDays[ElementCategory.IncidentCommand];
 
             return new IncidentCommandParameters(
                 roundtripDays,

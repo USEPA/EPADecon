@@ -12,16 +12,16 @@ namespace Battelle.EPA.WideAreaDecon.Model
     public class ScenarioModelRunner
     {
         private readonly ParameterList _scenarioParameters;
-        private readonly DecontaminationPhase _phase;
+        private readonly DecontaminationElement _element;
         private readonly Dictionary<SurfaceType, ContaminationInformation> _buildingDetails;
 
         public ScenarioModelRunner(
             ParameterList scenarioParameters,
-            DecontaminationPhase phase,
+            DecontaminationElement element,
             Dictionary<SurfaceType, ContaminationInformation> buildingDetails)
         {
             _scenarioParameters = scenarioParameters;
-            _phase = phase;
+            _element = element;
             _buildingDetails = buildingDetails;
         }
 
@@ -37,11 +37,11 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 _scenarioParameters.Filters.First(f => f.Name == "Cost per Parameter").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
 
-            var calculatorManager = parameterManager.RedrawParameters(_buildingDetails, _phase);
+            var calculatorManager = parameterManager.RedrawParameters(_buildingDetails, _element);
 
             var resultsCalculator = parameterManager.SetDrawnParameters(calculatorManager);
 
-            return resultsCalculator.CalculateScenarioResults(parameterManager, calculatorManager, _buildingDetails, _phase);
+            return resultsCalculator.CalculateScenarioResults(parameterManager, calculatorManager, _buildingDetails, _element);
         }
     }
 }

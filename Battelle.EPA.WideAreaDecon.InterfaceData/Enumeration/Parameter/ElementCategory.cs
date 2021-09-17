@@ -5,7 +5,7 @@ using Newtonsoft.Json.Converters;
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
 {
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum PhaseCategory
+    public enum ElementCategory
     {
         [EnumMember(Value = "Incident Command")] IncidentCommand,
 
