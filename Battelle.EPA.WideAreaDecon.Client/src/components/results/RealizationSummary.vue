@@ -158,7 +158,7 @@ export default class RealizationSummary extends Vue {
       // take subset from random points
       const indices = this.getRandomIndices(xVals);
       xData = new Array(length).fill(undefined);
-      yData = xData;
+      yData = [...xData];
 
       indices.forEach((i) => {
         xData[i] = xVals[i];
