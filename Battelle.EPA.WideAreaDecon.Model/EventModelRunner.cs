@@ -36,6 +36,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 { ElementCategory.CharacterizationSampling, scenarioResults.characterizationSamplingResults.onSiteDays },
                 { ElementCategory.SourceReduction, scenarioResults.sourceReductionResults.onSiteDays },
                 { ElementCategory.Decontamination, scenarioResults.decontaminationResults.onSiteDays },
+                { ElementCategory.ClearanceSampling, scenarioResults.clearanceSamplingResults.onSiteDays },
                 { ElementCategory.WasteSampling, scenarioResults.wasteSamplingResults.onSiteDays },
                 { ElementCategory.IncidentCommand, scenarioResults.incidentCommandResults.onSiteDays }
             };
@@ -44,6 +45,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 _scenarioParameters.Filters.First(f => f.Name == "Characterization Sampling").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Source Reduction").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Decontamination").Filters,
+                _scenarioParameters.Filters.First(f => f.Name == "Clearance Sampling").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Waste Sampling").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Other").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Incident Command").Filters,
@@ -64,6 +66,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 characterizationSamplingResults = new GenericElementResults() { elementCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 sourceReductionResults = new GenericElementResults() { elementCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 decontaminationResults = new GenericElementResults() { elementCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                clearanceSamplingResults = new GenericElementResults() { elementCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 wasteSamplingResults = new GenericElementResults() { elementCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 incidentCommandResults = new IncidentCommandResults() { elementCost = 0.0, onSiteDays = 0.0 },
                 generalResults = new GeneralResults() { areaContaminated = 0.0, decontaminationRounds = 0, totalCost = 0.0 }
@@ -125,6 +128,10 @@ namespace Battelle.EPA.WideAreaDecon.Model
             summedResults.decontaminationResults.workDays += originalResults.decontaminationResults.workDays;
             summedResults.decontaminationResults.onSiteDays += originalResults.decontaminationResults.onSiteDays;
             summedResults.decontaminationResults.elementCost += originalResults.decontaminationResults.elementCost;
+
+            summedResults.clearanceSamplingResults.workDays += originalResults.clearanceSamplingResults.workDays;
+            summedResults.clearanceSamplingResults.onSiteDays += originalResults.clearanceSamplingResults.onSiteDays;
+            summedResults.clearanceSamplingResults.elementCost += originalResults.clearanceSamplingResults.elementCost;
 
             summedResults.wasteSamplingResults.workDays += originalResults.wasteSamplingResults.workDays;
             summedResults.wasteSamplingResults.onSiteDays += originalResults.wasteSamplingResults.onSiteDays;

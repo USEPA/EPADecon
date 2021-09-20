@@ -14,9 +14,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
         public TravelCostCalculator Calculator_travel { get; set; }
 
         //Element time for scenario results
-        public double CalculateTime(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC, double onsiteDaysWS)
+        public double CalculateTime(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC, double onsiteDaysCLS, double onsiteDaysWS)
         {
-            return Calculator_onsiteDays.CalculateOnSiteDays(onsiteDaysCS, onsiteDaysSR, onsiteDaysDC, onsiteDaysWS);
+            return Calculator_onsiteDays.CalculateOnSiteDays(onsiteDaysCS, onsiteDaysSR, onsiteDaysDC, onsiteDaysCLS, onsiteDaysWS);
         }
 
         //Element costs for scenario results

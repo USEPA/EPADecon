@@ -7,7 +7,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
     public class SourceReductionParameters
     {
-        public double surfaceAreaToBeSourceReduced;
+        public double massToBeSourceReduced;
         public double massPerSurfaceArea;
         public double massRemovedPerHourPerTeam;
         public Dictionary<PpeLevel, double> entryDuration;
@@ -24,7 +24,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 
         //Scenario parameters constructor
         public SourceReductionParameters(
-            double _surfaceAreaToBeSourceReduced,
+            double _massToBeSourceReduced,
             double _massPerSurfaceArea,
             double _massRemovedPerHourPerTeam,
             Dictionary<PpeLevel, double> _entryDuration,
@@ -38,7 +38,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _roundtripDays,
             Dictionary<PpeLevel, double> _ppeRequired)
         {
-            surfaceAreaToBeSourceReduced = _surfaceAreaToBeSourceReduced;
+            massToBeSourceReduced = _massToBeSourceReduced;
             massPerSurfaceArea = _massPerSurfaceArea;
             massRemovedPerHourPerTeam = _massRemovedPerHourPerTeam;
             entryDuration = _entryDuration;

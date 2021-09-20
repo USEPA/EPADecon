@@ -16,9 +16,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         public TravelCostCalculator Calculator_travel { get; set; }
 
         //Element time for scenario results
-        public Dictionary<ElementDays, double> CalculateTime(double numberTeams, double saToBeSourceReduced, double area, Dictionary<PpeLevel, double> ppeLevelPerTeam)
+        public Dictionary<ElementDays, double> CalculateTime(double numberTeams, double massToBeSourceReduced, double area, Dictionary<PpeLevel, double> ppeLevelPerTeam)
         {
-            var laborDays = Calculator_laborDays.CalculateLaborDays(numberTeams, saToBeSourceReduced, area);
+            var laborDays = Calculator_laborDays.CalculateLaborDays(numberTeams, massToBeSourceReduced, area);
             var workDays = Calculator_workDays.CalculateWorkDays(laborDays, numberTeams, ppeLevelPerTeam);
             var onsiteDays = Calculator_onsiteDays.CalculateOnsiteDays(workDays);
 
@@ -31,9 +31,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         }
 
         //Element costs for scenario results
-        public double CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, double saToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
+        public double CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, double massToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
         {
-            var laborCosts = Calculator_labor.CalculateLaborCost(elementDays[ElementDays.OnsiteDays], numberTeams, saToBeSourceReduced, costPerTonRemoved, area);
+            var laborCosts = Calculator_labor.CalculateLaborCost(elementDays[ElementDays.OnsiteDays], numberTeams, massToBeSourceReduced, costPerTonRemoved, area);
             var entExCosts = Calculator_entEx.CalculateEntranceExitCost(elementDays[ElementDays.LaborDays], numberTeams, ppePerLevelPerTeam);
             
             return (laborCosts + entExCosts);
