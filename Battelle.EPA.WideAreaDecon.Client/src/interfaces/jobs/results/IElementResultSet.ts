@@ -7,6 +7,7 @@ export default interface IElementResultSet {
   characterizationSamplingResults: IGenericElementResult;
   sourceReductionResults: IGenericElementResult;
   decontaminationResults: IGenericElementResult;
+  clearanceSamplingResults: IGenericElementResult;
   wasteSamplingResults: IGenericElementResult;
   incidentCommandResults: IIncidentCommandResult;
   generalResults: IGeneralResult;

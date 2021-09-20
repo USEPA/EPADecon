@@ -12,6 +12,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.8026379786681357, onSiteDays: 3.8026379786681357, elementCost: 133783 },
           decontaminationResults: { workDays: 4.580535885314582, onSiteDays: 4.580535885314582, elementCost: 137997 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.6777561387809504, onSiteDays: 6.594203447033332, elementCost: 24102 },
           incidentCommandResults: { onSiteDays: 331.4903094861629, elementCost: 1433954 },
           generalResults: {
@@ -30,6 +31,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 10.865930661801995, onSiteDays: 10.865930661801995, elementCost: 266865 },
           decontaminationResults: { workDays: 4.870484162557517, onSiteDays: 4.870484162557517, elementCost: 410316 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.625850787256893, onSiteDays: 12.266683786526565, elementCost: 116701 },
           incidentCommandResults: { onSiteDays: 627.5425118583695, elementCost: 2693114 },
           generalResults: {
@@ -48,6 +50,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 8.847621801878745, onSiteDays: 8.847621801878745, elementCost: 382195 },
           decontaminationResults: { workDays: 4.942231776644995, onSiteDays: 4.942231776644995, elementCost: 402931 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 8.726914004258017, onSiteDays: 32.142428272099124, elementCost: 341484 },
           incidentCommandResults: { onSiteDays: 494.8317208360038, elementCost: 2095188 },
           generalResults: {
@@ -67,6 +70,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 37.19723428387198, onSiteDays: 37.19723428387198, elementCost: 799448 },
         decontaminationResults: { workDays: 4.2998293054522545, onSiteDays: 4.2998293054522545, elementCost: 446932 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 9.24416531191135, onSiteDays: 19.501526219123768, elementCost: 263331 },
         incidentCommandResults: { onSiteDays: 5268.372570039462, elementCost: 22933401 },
         generalResults: {
@@ -85,6 +89,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 68.55047055790888, onSiteDays: 68.55047055790888, elementCost: 1729255 },
         decontaminationResults: { workDays: 3.7724872209998983, onSiteDays: 3.7724872209998983, elementCost: 312762 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 15.597191822696177, onSiteDays: 35.57154728470614, elementCost: 409756 },
         incidentCommandResults: { onSiteDays: 3839.906829029662, elementCost: 13220525 },
         generalResults: {
@@ -123,6 +128,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.1654404328053856, onSiteDays: 3.1654404328053856, elementCost: 127930 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 43748 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 318.0385657054482, elementCost: 1495645 },
           generalResults: {
@@ -141,6 +147,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.1130361576529206, onSiteDays: 3.1130361576529206, elementCost: 72806 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 239531 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 945.0152191981313, elementCost: 3463917 },
           generalResults: {
@@ -159,6 +166,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 36.48368557886288, onSiteDays: 36.48368557886288, elementCost: 1597442 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 328832 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 2059.952852215887, elementCost: 9611571 },
           generalResults: {
@@ -178,6 +186,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 26.910736947626255, onSiteDays: 26.910736947626255, elementCost: 432366 },
         decontaminationResults: { workDays: 3.03739820514745, onSiteDays: 3.03739820514745, elementCost: 183766 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 14.517058007056134, onSiteDays: 50.2510937807819, elementCost: 470552 },
         incidentCommandResults: { onSiteDays: 2280.709562540551, elementCost: 9382326 },
         generalResults: {
@@ -196,6 +205,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 278.5616121451874, onSiteDays: 278.5616121451874, elementCost: 3531760 },
         decontaminationResults: { workDays: 3.022658500360013, onSiteDays: 3.022658500360013, elementCost: 891745 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 12.895928457666704, onSiteDays: 72.77314741320042, elementCost: 495858 },
         incidentCommandResults: { onSiteDays: 6104.912856131787, elementCost: 22360024 },
         generalResults: {
@@ -234,6 +244,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.8973110936817419, onSiteDays: 0.8973110936817419, elementCost: 38976 },
           decontaminationResults: { workDays: 4.497773676993738, onSiteDays: 4.497773676993738, elementCost: 107447 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.7989709537364492, onSiteDays: 6.89311243989052, elementCost: 24315 },
           incidentCommandResults: { onSiteDays: 272.49558415391726, elementCost: 1195018 },
           generalResults: {
@@ -252,6 +263,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 24.566061814238047, onSiteDays: 24.566061814238047, elementCost: 334513 },
           decontaminationResults: { workDays: 3.901614706707563, onSiteDays: 3.901614706707563, elementCost: 184925 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.249520403790556, onSiteDays: 9.541513683174223, elementCost: 99924 },
           incidentCommandResults: { onSiteDays: 1426.9752200852508, elementCost: 4312668 },
           generalResults: {
@@ -270,6 +282,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 16.941198397824298, onSiteDays: 16.941198397824298, elementCost: 464016 },
           decontaminationResults: { workDays: 4.677601059358008, onSiteDays: 4.677601059358008, elementCost: 189910 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.6781381808131244, onSiteDays: 8.327329153854626, elementCost: 61296 },
           incidentCommandResults: { onSiteDays: 948.9361427801019, elementCost: 2937499 },
           generalResults: {
@@ -289,6 +302,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 53.545185324159874, onSiteDays: 53.545185324159874, elementCost: 1532638 },
         decontaminationResults: { workDays: 3.5281737028919564, onSiteDays: 3.5281737028919564, elementCost: 432346 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 34.39895620004004, onSiteDays: 64.66412466392221, elementCost: 898059 },
         incidentCommandResults: { onSiteDays: 3877.942360553576, elementCost: 13914324 },
         generalResults: {
@@ -307,6 +321,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 0.6946953187738321, onSiteDays: 0.6946953187738321, elementCost: 22850 },
         decontaminationResults: { workDays: 4.907319881466059, onSiteDays: 4.907319881466059, elementCost: 332373 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 0.871781841395182, onSiteDays: 7.926638820166939, elementCost: 30969 },
         incidentCommandResults: { onSiteDays: 1643.8522606033957, elementCost: 7079231 },
         generalResults: {
@@ -345,6 +360,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 8.274173603538205, onSiteDays: 8.274173603538205, elementCost: 204005 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 13772 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 182.84947286542388, elementCost: 832181 },
           generalResults: {
@@ -363,6 +379,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 83.1633493255666, onSiteDays: 83.1633493255666, elementCost: 1445574 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 160362 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 798.3934034403558, elementCost: 2574013 },
           generalResults: {
@@ -381,6 +398,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 11.294515923127783, onSiteDays: 11.294515923127783, elementCost: 344955 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 19407 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 336.4068673141211, elementCost: 1091355 },
           generalResults: {
@@ -400,6 +418,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 5.4215038840696606, onSiteDays: 5.4215038840696606, elementCost: 81784 },
         decontaminationResults: { workDays: 3.594498902232037, onSiteDays: 3.594498902232037, elementCost: 482898 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 10.2671515681987, onSiteDays: 19.939545938771396, elementCost: 297402 },
         incidentCommandResults: { onSiteDays: 1881.428812389037, elementCost: 6922148 },
         generalResults: {
@@ -418,6 +437,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 1.950501181290131, onSiteDays: 1.950501181290131, elementCost: 67443 },
         decontaminationResults: { workDays: 4.233557836905485, onSiteDays: 4.233557836905485, elementCost: 627825 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.9337709181504377, onSiteDays: 8.890672490894781, elementCost: 76850 },
         incidentCommandResults: { onSiteDays: 5571.246908190153, elementCost: 17357659 },
         generalResults: {
@@ -456,6 +476,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 11.554964712846463, onSiteDays: 11.554964712846463, elementCost: 153306 },
           decontaminationResults: { workDays: 3.4545484842859553, onSiteDays: 3.4545484842859553, elementCost: 296972 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.08296001760100809, onSiteDays: 5.085872644206778, elementCost: 3007 },
           incidentCommandResults: { onSiteDays: 374.5591076822682, elementCost: 1752130 },
           generalResults: {
@@ -474,6 +495,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.22791564215369672, onSiteDays: 0.22791564215369672, elementCost: 3467 },
           decontaminationResults: { workDays: 3.437088593011044, onSiteDays: 3.437088593011044, elementCost: 312601 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.978986094256499, onSiteDays: 6.703307895593715, elementCost: 40503 },
           incidentCommandResults: { onSiteDays: 960.3041237799658, elementCost: 4426934 },
           generalResults: {
@@ -492,6 +514,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 24.50397199523307, onSiteDays: 24.50397199523307, elementCost: 1099819 },
           decontaminationResults: { workDays: 4.985973464787466, onSiteDays: 4.985973464787466, elementCost: 415633 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 16.190734557665877, onSiteDays: 28.337311093047504, elementCost: 368663 },
           incidentCommandResults: { onSiteDays: 1122.2280208590855, elementCost: 4248016 },
           generalResults: {
@@ -511,6 +534,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 9.465863400485736, onSiteDays: 9.465863400485736, elementCost: 208263 },
         decontaminationResults: { workDays: 3.248706122918219, onSiteDays: 3.248706122918219, elementCost: 864699 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.0673610648920295, onSiteDays: 13.718023705520315, elementCost: 161414 },
         incidentCommandResults: { onSiteDays: 1232.9209610913385, elementCost: 4828820 },
         generalResults: {
@@ -529,6 +553,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 80.51462538952197, onSiteDays: 80.51462538952197, elementCost: 1999087 },
         decontaminationResults: { workDays: 4.9736222810981845, onSiteDays: 4.9736222810981845, elementCost: 434996 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 24.026747429771802, onSiteDays: 98.7321533520025, elementCost: 775561 },
         incidentCommandResults: { onSiteDays: 2136.3379734323207, elementCost: 7095236 },
         generalResults: {
@@ -567,6 +592,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.5456050337633886, onSiteDays: 0.5456050337633886, elementCost: 16245 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 48464 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 84.96851985192386, elementCost: 304994 },
           generalResults: {
@@ -585,6 +611,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.4629445001831167, onSiteDays: 1.4629445001831167, elementCost: 58286 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 219777 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 787.7739431331161, elementCost: 2458738 },
           generalResults: {
@@ -603,6 +630,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.5247286938655593, onSiteDays: 3.5247286938655593, elementCost: 116399 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 67268 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 617.4060230750252, elementCost: 2331403 },
           generalResults: {
@@ -622,6 +650,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 51.16481844674015, onSiteDays: 51.16481844674015, elementCost: 2507942 },
         decontaminationResults: { workDays: 4.432015711309392, onSiteDays: 4.432015711309392, elementCost: 307523 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 2.450720820519339, onSiteDays: 10.204527155497932, elementCost: 85779 },
         incidentCommandResults: { onSiteDays: 2380.6508506685723, elementCost: 7705994 },
         generalResults: {
@@ -640,6 +669,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 132.25091626886393, onSiteDays: 132.25091626886393, elementCost: 3587208 },
         decontaminationResults: { workDays: 4.957078462922265, onSiteDays: 4.957078462922265, elementCost: 587338 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 27.181477827221077, onSiteDays: 52.48483564145124, elementCost: 777402 },
         incidentCommandResults: { onSiteDays: 5282.163671324141, elementCost: 16977154 },
         generalResults: {
@@ -682,6 +712,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 25707,
           },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 65626 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 55.146795653447896, elementCost: 234004 },
           generalResults: {
@@ -704,6 +735,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 15882,
           },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 103866 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1024.5516632649646, elementCost: 3797314 },
           generalResults: {
@@ -722,6 +754,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 44.22925980137609, onSiteDays: 44.22925980137609, elementCost: 1173793 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 272502 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 836.9763585412273, elementCost: 3230333 },
           generalResults: {
@@ -741,6 +774,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 32.950643805762425, onSiteDays: 32.950643805762425, elementCost: 1349453 },
         decontaminationResults: { workDays: 4.502822919632965, onSiteDays: 4.502822919632965, elementCost: 426410 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 11.146224686253014, onSiteDays: 56.19627764929727, elementCost: 475641 },
         incidentCommandResults: { onSiteDays: 2760.58874087922, elementCost: 10584079 },
         generalResults: {
@@ -759,6 +793,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 32.19875966218309, onSiteDays: 32.19875966218309, elementCost: 731053 },
         decontaminationResults: { workDays: 4.782721069590822, onSiteDays: 4.782721069590822, elementCost: 524318 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 0.861563188726854, onSiteDays: 7.583839043054722, elementCost: 39001 },
         incidentCommandResults: { onSiteDays: 4699.683138127589, elementCost: 17196130 },
         generalResults: {
@@ -797,6 +832,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.9915351610002965, onSiteDays: 4.9915351610002965, elementCost: 75823 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 35920 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 185.27735210417944, elementCost: 894363 },
           generalResults: {
@@ -815,6 +851,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.6450871010692545, onSiteDays: 3.6450871010692545, elementCost: 94027 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 85941 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 92.21828574925232, elementCost: 407508 },
           generalResults: {
@@ -833,6 +870,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 25.118212096892023, onSiteDays: 25.118212096892023, elementCost: 441559 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 55448 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1033.8806204304244, elementCost: 3454157 },
           generalResults: {
@@ -852,6 +890,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 58.397826845661676, onSiteDays: 58.397826845661676, elementCost: 3003818 },
         decontaminationResults: { workDays: 4.414639061180558, onSiteDays: 4.414639061180558, elementCost: 269663 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 16.701924597710747, onSiteDays: 32.62236116533944, elementCost: 408378 },
         incidentCommandResults: { onSiteDays: 4809.27239957088, elementCost: 18204973 },
         generalResults: {
@@ -870,6 +909,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 212.6019553496979, onSiteDays: 212.6019553496979, elementCost: 3603929 },
         decontaminationResults: { workDays: 3.2936779172843504, onSiteDays: 3.2936779172843504, elementCost: 890401 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.372536475074982, onSiteDays: 20.364413034572507, elementCost: 135567 },
         incidentCommandResults: { onSiteDays: 2204.689854760936, elementCost: 10322403 },
         generalResults: {
@@ -908,6 +948,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.1220046637005343, onSiteDays: 1.1220046637005343, elementCost: 36589 },
           decontaminationResults: { workDays: 3.2420211411644755, onSiteDays: 3.2420211411644755, elementCost: 146498 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.4860558587555903, onSiteDays: 10.015351766737068, elementCost: 39719 },
           incidentCommandResults: { onSiteDays: 185.74745481659892, elementCost: 599566 },
           generalResults: {
@@ -926,6 +967,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.306216952675543, onSiteDays: 3.306216952675543, elementCost: 143742 },
           decontaminationResults: { workDays: 3.5817945358766696, onSiteDays: 3.5817945358766696, elementCost: 269062 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.102073604684808, onSiteDays: 8.742275982018752, elementCost: 42959 },
           incidentCommandResults: { onSiteDays: 642.6873156552219, elementCost: 2412993 },
           generalResults: {
@@ -944,6 +986,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 8.191475498964369, onSiteDays: 8.191475498964369, elementCost: 237074 },
           decontaminationResults: { workDays: 3.957991413529495, onSiteDays: 3.957991413529495, elementCost: 369877 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 8.305721268375073, onSiteDays: 21.887916443091598, elementCost: 278897 },
           incidentCommandResults: { onSiteDays: 1018.5566747862274, elementCost: 3581548 },
           generalResults: {
@@ -963,6 +1006,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 0.3022801707773751, onSiteDays: 0.3022801707773751, elementCost: 10927 },
         decontaminationResults: { workDays: 3.436984382205872, onSiteDays: 3.436984382205872, elementCost: 832266 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.4638807349887235, onSiteDays: 9.727619037206107, elementCost: 60175 },
         incidentCommandResults: { onSiteDays: 3036.981229657826, elementCost: 10593056 },
         generalResults: {
@@ -981,6 +1025,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 52.01793318783345, onSiteDays: 52.01793318783345, elementCost: 923488 },
         decontaminationResults: { workDays: 3.6097150977257906, onSiteDays: 3.6097150977257906, elementCost: 951824 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.9381599160969278, onSiteDays: 9.594110695655704, elementCost: 60989 },
         incidentCommandResults: { onSiteDays: 2486.639633785488, elementCost: 9635122 },
         generalResults: {
@@ -1019,6 +1064,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.363767849758341, onSiteDays: 4.363767849758341, elementCost: 114334 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 46341 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 226.3015285817394, elementCost: 1045982 },
           generalResults: {
@@ -1037,6 +1083,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.210921846109837, onSiteDays: 2.210921846109837, elementCost: 53496 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 198508 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 467.41577247088856, elementCost: 1641257 },
           generalResults: {
@@ -1055,6 +1102,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 27.04816763578724, onSiteDays: 27.04816763578724, elementCost: 1001924 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 131298 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 423.7684158843919, elementCost: 1928403 },
           generalResults: {
@@ -1074,6 +1122,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 63.2476197353389, onSiteDays: 63.2476197353389, elementCost: 1910781 },
         decontaminationResults: { workDays: 3.269102893366735, onSiteDays: 3.269102893366735, elementCost: 749808 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 2.8647048046918826, onSiteDays: 10.754665506904908, elementCost: 94610 },
         incidentCommandResults: { onSiteDays: 1882.0668583969914, elementCost: 6564220 },
         generalResults: {
@@ -1092,6 +1141,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 63.005332513221504, onSiteDays: 63.005332513221504, elementCost: 1855716 },
         decontaminationResults: { workDays: 3.9233766493674778, onSiteDays: 3.9233766493674778, elementCost: 1081323 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 27.37061548194755, onSiteDays: 44.134023459367185, elementCost: 697668 },
         incidentCommandResults: { onSiteDays: 8732.0178260133, elementCost: 34252710 },
         generalResults: {
@@ -1130,6 +1180,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.179508670162509, onSiteDays: 4.179508670162509, elementCost: 174413 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 7993 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 179.24451064377678, elementCost: 646746 },
           generalResults: {
@@ -1148,6 +1199,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 35.99573097244881, onSiteDays: 35.99573097244881, elementCost: 562224 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 146969 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1069.807015619865, elementCost: 4189414 },
           generalResults: {
@@ -1166,6 +1218,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.505289611205793, onSiteDays: 4.505289611205793, elementCost: 238004 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 113509 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 451.7634232312342, elementCost: 1969022 },
           generalResults: {
@@ -1185,6 +1238,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 11.717147076821103, onSiteDays: 11.717147076821103, elementCost: 553226 },
         decontaminationResults: { workDays: 3.360039454968655, onSiteDays: 3.360039454968655, elementCost: 350516 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.1144769437252542, onSiteDays: 5.901862094112605, elementCost: 34950 },
         incidentCommandResults: { onSiteDays: 6795.702198120061, elementCost: 29719584 },
         generalResults: {
@@ -1203,6 +1257,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 75.82279427949996, onSiteDays: 75.82279427949996, elementCost: 2032792 },
         decontaminationResults: { workDays: 3.7538204674501485, onSiteDays: 3.7538204674501485, elementCost: 409165 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 6.560001744817904, onSiteDays: 26.20304083995339, elementCost: 290002 },
         incidentCommandResults: { onSiteDays: 1090.6582506777165, elementCost: 4578843 },
         generalResults: {
@@ -1241,6 +1296,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.3910320533214673, onSiteDays: 2.3910320533214673, elementCost: 98950 },
           decontaminationResults: { workDays: 3.9881443458116017, onSiteDays: 3.9881443458116017, elementCost: 155159 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.4511058806650272, onSiteDays: 6.593238333239723, elementCost: 47437 },
           incidentCommandResults: { onSiteDays: 303.83440486081946, elementCost: 1129126 },
           generalResults: {
@@ -1263,6 +1319,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 1244392,
           },
           decontaminationResults: { workDays: 3.5591514363324155, onSiteDays: 3.5591514363324155, elementCost: 174631 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 9.80541673735331, onSiteDays: 23.924741766303217, elementCost: 286078 },
           incidentCommandResults: { onSiteDays: 543.4026489595636, elementCost: 2097467 },
           generalResults: {
@@ -1281,6 +1338,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 17.271325365713803, onSiteDays: 17.271325365713803, elementCost: 913001 },
           decontaminationResults: { workDays: 3.0857412032982663, onSiteDays: 3.0857412032982663, elementCost: 242876 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.1810261057316824, onSiteDays: 9.831407079352218, elementCost: 49048 },
           incidentCommandResults: { onSiteDays: 656.3205254448437, elementCost: 2463238 },
           generalResults: {
@@ -1300,6 +1358,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 45.93594156980928, onSiteDays: 45.93594156980928, elementCost: 1744321 },
         decontaminationResults: { workDays: 3.106054433646159, onSiteDays: 3.106054433646159, elementCost: 720967 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 0.7235436473831313, onSiteDays: 6.8357096560724, elementCost: 25957 },
         incidentCommandResults: { onSiteDays: 4051.955987185347, elementCost: 13926244 },
         generalResults: {
@@ -1318,6 +1377,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 47.32062135697889, onSiteDays: 47.32062135697889, elementCost: 811616 },
         decontaminationResults: { workDays: 3.1688058595566093, onSiteDays: 3.1688058595566093, elementCost: 261473 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.241643526202635, onSiteDays: 23.040398493354964, elementCost: 168926 },
         incidentCommandResults: { onSiteDays: 3767.2084866863042, elementCost: 15816252 },
         generalResults: {
@@ -1356,6 +1416,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.409794191235063, onSiteDays: 7.409794191235063, elementCost: 236864 },
           decontaminationResults: { workDays: 4.055278310332279, onSiteDays: 4.055278310332279, elementCost: 164603 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.7717181442784563, onSiteDays: 6.690153226181825, elementCost: 31843 },
           incidentCommandResults: { onSiteDays: 588.5237291249513, elementCost: 2079451 },
           generalResults: {
@@ -1374,6 +1435,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.354761925884471, onSiteDays: 4.354761925884471, elementCost: 265109 },
           decontaminationResults: { workDays: 3.952346210124052, onSiteDays: 3.952346210124052, elementCost: 306772 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 4.882463646513893, onSiteDays: 18.09537117470908, elementCost: 198057 },
           incidentCommandResults: { onSiteDays: 540.3017435623586, elementCost: 1712949 },
           generalResults: {
@@ -1392,6 +1454,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 26.63957568673675, onSiteDays: 26.63957568673675, elementCost: 721257 },
           decontaminationResults: { workDays: 3.788055129067054, onSiteDays: 3.788055129067054, elementCost: 236961 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 6.502366677909165, onSiteDays: 17.72842376306889, elementCost: 193182 },
           incidentCommandResults: { onSiteDays: 1241.256346434587, elementCost: 4773303 },
           generalResults: {
@@ -1411,6 +1474,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 73.32067536009308, onSiteDays: 73.32067536009308, elementCost: 776553 },
         decontaminationResults: { workDays: 3.89546581844228, onSiteDays: 3.89546581844228, elementCost: 283057 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 27.341679259372373, onSiteDays: 50.72650269177852, elementCost: 664837 },
         incidentCommandResults: { onSiteDays: 5401.530881914762, elementCost: 17817268 },
         generalResults: {
@@ -1429,6 +1493,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 179.48940442850306, onSiteDays: 179.48940442850306, elementCost: 2814876 },
         decontaminationResults: { workDays: 3.661052417163982, onSiteDays: 3.661052417163982, elementCost: 576405 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 15.722826900264709, onSiteDays: 35.02128427183341, elementCost: 398426 },
         incidentCommandResults: { onSiteDays: 3305.6872695381685, elementCost: 11773760 },
         generalResults: {
@@ -1467,6 +1532,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.6717601033198397, onSiteDays: 0.6717601033198397, elementCost: 19195 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 48201 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 97.96666390536642, elementCost: 397950 },
           generalResults: {
@@ -1485,6 +1551,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 11.074276198749681, onSiteDays: 11.074276198749681, elementCost: 371917 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 181875 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 502.3066811161506, elementCost: 1793570 },
           generalResults: {
@@ -1503,6 +1570,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 17.033317514528576, onSiteDays: 17.033317514528576, elementCost: 465344 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 176043 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 207.07172898552312, elementCost: 1004905 },
           generalResults: {
@@ -1522,6 +1590,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 2.4909783210574146, onSiteDays: 2.4909783210574146, elementCost: 67178 },
         decontaminationResults: { workDays: 3.324083113187012, onSiteDays: 3.324083113187012, elementCost: 455786 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 14.182858443495592, onSiteDays: 49.09278095979307, elementCost: 511054 },
         incidentCommandResults: { onSiteDays: 2338.4844469160225, elementCost: 7452777 },
         generalResults: {
@@ -1540,6 +1609,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 44.12644258855137, onSiteDays: 44.12644258855137, elementCost: 1024034 },
         decontaminationResults: { workDays: 4.998858426231625, onSiteDays: 4.998858426231625, elementCost: 531024 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 22.022386010467798, onSiteDays: 67.67081892484265, elementCost: 739805 },
         incidentCommandResults: { onSiteDays: 5530.758870304212, elementCost: 22853842 },
         generalResults: {
@@ -1578,6 +1648,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.652323908640703, onSiteDays: 5.652323908640703, elementCost: 100545 },
           decontaminationResults: { workDays: 3.1436373801305044, onSiteDays: 3.1436373801305044, elementCost: 251044 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.3557720106421722, onSiteDays: 6.037247521094739, elementCost: 14330 },
           incidentCommandResults: { onSiteDays: 522.2246647684182, elementCost: 2316187 },
           generalResults: {
@@ -1596,6 +1667,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.644962785117151, onSiteDays: 5.644962785117151, elementCost: 149823 },
           decontaminationResults: { workDays: 3.5971617932890454, onSiteDays: 3.5971617932890454, elementCost: 131256 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.0754666386264256, onSiteDays: 12.661070133133178, elementCost: 112905 },
           incidentCommandResults: { onSiteDays: 2189.5024234555854, elementCost: 7135225 },
           generalResults: {
@@ -1614,6 +1686,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 24.23377670961859, onSiteDays: 24.23377670961859, elementCost: 779620 },
           decontaminationResults: { workDays: 3.0994982598581116, onSiteDays: 3.0994982598581116, elementCost: 357600 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 5.549458868684641, onSiteDays: 15.899978398296131, elementCost: 235580 },
           incidentCommandResults: { onSiteDays: 2453.131688488604, elementCost: 11421867 },
           generalResults: {
@@ -1633,6 +1706,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 16.008950345377176, onSiteDays: 16.008950345377176, elementCost: 791917 },
         decontaminationResults: { workDays: 4.206009505597411, onSiteDays: 4.206009505597411, elementCost: 504241 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.880655282676763, onSiteDays: 14.259993762904237, elementCost: 214205 },
         incidentCommandResults: { onSiteDays: 5944.927310667624, elementCost: 18539073 },
         generalResults: {
@@ -1651,6 +1725,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 102.21317922550843, onSiteDays: 102.21317922550843, elementCost: 1603690 },
         decontaminationResults: { workDays: 4.406117354847052, onSiteDays: 4.406117354847052, elementCost: 773713 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 26.554849235907863, onSiteDays: 84.65874494066404, elementCost: 883290 },
         incidentCommandResults: { onSiteDays: 7997.963387183299, elementCost: 32709020 },
         generalResults: {
@@ -1689,6 +1764,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.5753129580669274, onSiteDays: 1.5753129580669274, elementCost: 73823 },
           decontaminationResults: { workDays: 3.234176211113617, onSiteDays: 3.234176211113617, elementCost: 252237 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.251831254729789, onSiteDays: 10.641778586981452, elementCost: 85890 },
           incidentCommandResults: { onSiteDays: 218.69985432520483, elementCost: 759670 },
           generalResults: {
@@ -1707,6 +1783,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 12.958628986874615, onSiteDays: 12.958628986874615, elementCost: 447726 },
           decontaminationResults: { workDays: 3.013087226080961, onSiteDays: 3.013087226080961, elementCost: 286111 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.3636119391920043, onSiteDays: 10.38263431506068, elementCost: 72648 },
           incidentCommandResults: { onSiteDays: 1922.6304499545638, elementCost: 8381910 },
           generalResults: {
@@ -1725,6 +1802,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.139810681972273, onSiteDays: 7.139810681972273, elementCost: 218605 },
           decontaminationResults: { workDays: 3.9125023747124947, onSiteDays: 3.9125023747124947, elementCost: 389582 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 5.981895671945629, onSiteDays: 13.689803340726165, elementCost: 139022 },
           incidentCommandResults: { onSiteDays: 1146.7056366353381, elementCost: 4907816 },
           generalResults: {
@@ -1744,6 +1822,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 63.17539159452597, onSiteDays: 63.17539159452597, elementCost: 1353243 },
         decontaminationResults: { workDays: 3.191235068298698, onSiteDays: 3.191235068298698, elementCost: 509591 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 3.110826181079427, onSiteDays: 10.667252667224577, elementCost: 108263 },
         incidentCommandResults: { onSiteDays: 4402.466621564958, elementCost: 17117778 },
         generalResults: {
@@ -1762,6 +1841,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 84.01425997027042, onSiteDays: 84.01425997027042, elementCost: 1388202 },
         decontaminationResults: { workDays: 3.608719888750631, onSiteDays: 3.608719888750631, elementCost: 342342 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 14.870180344553782, onSiteDays: 47.0115190241744, elementCost: 486932 },
         incidentCommandResults: { onSiteDays: 1992.2143250979182, elementCost: 8431146 },
         generalResults: {
@@ -1800,6 +1880,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 19.63449702829942, onSiteDays: 19.63449702829942, elementCost: 404575 },
           decontaminationResults: { workDays: 3.4422496935451052, onSiteDays: 3.4422496935451052, elementCost: 188938 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.2564564187069813, onSiteDays: 9.266387854184536, elementCost: 39999 },
           incidentCommandResults: { onSiteDays: 261.21653332873024, elementCost: 1282008 },
           generalResults: {
@@ -1818,6 +1899,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 17.71107486436544, onSiteDays: 17.71107486436544, elementCost: 554729 },
           decontaminationResults: { workDays: 3.3757723584714747, onSiteDays: 3.3757723584714747, elementCost: 141174 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 4.127270826220804, onSiteDays: 19.078280076389824, elementCost: 148685 },
           incidentCommandResults: { onSiteDays: 975.6578925098397, elementCost: 4615589 },
           generalResults: {
@@ -1836,6 +1918,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 15.82403920040029, onSiteDays: 15.82403920040029, elementCost: 585200 },
           decontaminationResults: { workDays: 3.3008650392994436, onSiteDays: 3.3008650392994436, elementCost: 314197 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.3989874275604384, onSiteDays: 6.659687624641543, elementCost: 17358 },
           incidentCommandResults: { onSiteDays: 3846.014810717262, elementCost: 13180556 },
           generalResults: {
@@ -1855,6 +1938,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 84.62127818042626, onSiteDays: 84.62127818042626, elementCost: 1905958 },
         decontaminationResults: { workDays: 3.6228567479697187, onSiteDays: 3.6228567479697187, elementCost: 196669 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 7.834896786634822, onSiteDays: 27.22974027610069, elementCost: 300549 },
         incidentCommandResults: { onSiteDays: 6789.75677291887, elementCost: 28874612 },
         generalResults: {
@@ -1873,6 +1957,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 54.15000531765002, onSiteDays: 54.15000531765002, elementCost: 1196058 },
         decontaminationResults: { workDays: 4.618662328370535, onSiteDays: 4.618662328370535, elementCost: 479889 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 3.683677576310373, onSiteDays: 11.05141501923907, elementCost: 117011 },
         incidentCommandResults: { onSiteDays: 1548.733612554475, elementCost: 5921974 },
         generalResults: {
@@ -1911,6 +1996,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.2445942489787232, onSiteDays: 1.2445942489787232, elementCost: 47510 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 29024 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 68.78984902938987, elementCost: 230648 },
           generalResults: {
@@ -1929,6 +2015,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.7381281794172354, onSiteDays: 2.7381281794172354, elementCost: 85678 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 31898 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 832.5368959204923, elementCost: 3262678 },
           generalResults: {
@@ -1951,6 +2038,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 1111818,
           },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 146122 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 323.48060111161277, elementCost: 1172845 },
           generalResults: {
@@ -1970,6 +2058,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 4.301870396608415, onSiteDays: 4.301870396608415, elementCost: 172407 },
         decontaminationResults: { workDays: 3.0464533679295456, onSiteDays: 3.0464533679295456, elementCost: 856374 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.8002025018747536, onSiteDays: 7.503274244080117, elementCost: 46681 },
         incidentCommandResults: { onSiteDays: 4685.687319211139, elementCost: 17397212 },
         generalResults: {
@@ -1988,6 +2077,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 7.705098710215269, onSiteDays: 7.705098710215269, elementCost: 243519 },
         decontaminationResults: { workDays: 4.092283664525553, onSiteDays: 4.092283664525553, elementCost: 232845 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 9.12216477618192, onSiteDays: 22.88714315105596, elementCost: 291284 },
         incidentCommandResults: { onSiteDays: 4996.22707589663, elementCost: 15898738 },
         generalResults: {
@@ -2026,6 +2116,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 8.973800495432707, onSiteDays: 8.973800495432707, elementCost: 375835 },
           decontaminationResults: { workDays: 3.6811816586836197, onSiteDays: 3.6811816586836197, elementCost: 111138 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.0058521962615126, onSiteDays: 6.8392372403095525, elementCost: 24951 },
           incidentCommandResults: { onSiteDays: 249.30255291857424, elementCost: 799288 },
           generalResults: {
@@ -2044,6 +2135,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 28.00140626720235, onSiteDays: 28.00140626720235, elementCost: 406684 },
           decontaminationResults: { workDays: 4.035263053382575, onSiteDays: 4.035263053382575, elementCost: 424364 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 5.101096837840123, onSiteDays: 19.316180506618203, elementCost: 197655 },
           incidentCommandResults: { onSiteDays: 2094.3926327235704, elementCost: 7656459 },
           generalResults: {
@@ -2062,6 +2154,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 10.681110825608092, onSiteDays: 10.681110825608092, elementCost: 399341 },
           decontaminationResults: { workDays: 3.8624935543310115, onSiteDays: 3.8624935543310115, elementCost: 270944 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.1333668553839287, onSiteDays: 6.45288093827061, elementCost: 29871 },
           incidentCommandResults: { onSiteDays: 1446.0632782791745, elementCost: 5058866 },
           generalResults: {
@@ -2081,6 +2174,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 80.81005706216476, onSiteDays: 80.81005706216476, elementCost: 2564152 },
         decontaminationResults: { workDays: 3.1109196194705833, onSiteDays: 3.1109196194705833, elementCost: 683845 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 18.690366836574977, onSiteDays: 62.46482069480642, elementCost: 688717 },
         incidentCommandResults: { onSiteDays: 4517.5556496962, elementCost: 14233615 },
         generalResults: {
@@ -2099,6 +2193,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 9.82402345906355, onSiteDays: 9.82402345906355, elementCost: 499606 },
         decontaminationResults: { workDays: 4.658926637763839, onSiteDays: 4.658926637763839, elementCost: 454727 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 6.193907241771747, onSiteDays: 20.832104799120067, elementCost: 238859 },
         incidentCommandResults: { onSiteDays: 3914.391121112613, elementCost: 15637816 },
         generalResults: {
@@ -2137,6 +2232,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.317594144705744, onSiteDays: 3.317594144705744, elementCost: 145196 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 26555 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 47.40937850579369, elementCost: 222569 },
           generalResults: {
@@ -2155,6 +2251,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.911951334635595, onSiteDays: 1.911951334635595, elementCost: 30778 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 174266 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 752.2864122169448, elementCost: 3630207 },
           generalResults: {
@@ -2173,6 +2270,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.3885116491259606, onSiteDays: 1.3885116491259606, elementCost: 31899 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 176226 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 266.06860302237175, elementCost: 909087 },
           generalResults: {
@@ -2192,6 +2290,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 39.621183904253456, onSiteDays: 39.621183904253456, elementCost: 1230140 },
         decontaminationResults: { workDays: 4.30374144234316, onSiteDays: 4.30374144234316, elementCost: 634388 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.178229001941854, onSiteDays: 7.8603434516542094, elementCost: 51798 },
         incidentCommandResults: { onSiteDays: 2191.004310272759, elementCost: 10177399 },
         generalResults: {
@@ -2210,6 +2309,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 6.905782910156371, onSiteDays: 6.905782910156371, elementCost: 333279 },
         decontaminationResults: { workDays: 4.556497357216779, onSiteDays: 4.556497357216779, elementCost: 332436 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.114264053469383, onSiteDays: 19.48123278149822, elementCost: 207258 },
         incidentCommandResults: { onSiteDays: 3638.8651532864565, elementCost: 12568406 },
         generalResults: {
@@ -2248,6 +2348,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.605295038512442, onSiteDays: 2.605295038512442, elementCost: 104359 },
           decontaminationResults: { workDays: 4.072950934309734, onSiteDays: 4.072950934309734, elementCost: 325309 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.2308088920856062, onSiteDays: 7.065754681460111, elementCost: 39057 },
           incidentCommandResults: { onSiteDays: 325.23186733091563, elementCost: 1403296 },
           generalResults: {
@@ -2266,6 +2367,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 20.768509263887506, onSiteDays: 20.768509263887506, elementCost: 706563 },
           decontaminationResults: { workDays: 3.648110176587503, onSiteDays: 3.648110176587503, elementCost: 280620 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.3511895670167227, onSiteDays: 14.051805800926841, elementCost: 95961 },
           incidentCommandResults: { onSiteDays: 997.2234712456184, elementCost: 4637837 },
           generalResults: {
@@ -2284,6 +2386,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.812916343020064, onSiteDays: 6.812916343020064, elementCost: 152029 },
           decontaminationResults: { workDays: 4.209599201849103, onSiteDays: 4.209599201849103, elementCost: 240341 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 6.11755588613844, onSiteDays: 22.676392580739975, elementCost: 251738 },
           incidentCommandResults: { onSiteDays: 790.9724889755738, elementCost: 3217124 },
           generalResults: {
@@ -2303,6 +2406,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 17.107832512285167, onSiteDays: 17.107832512285167, elementCost: 418871 },
         decontaminationResults: { workDays: 4.799629596015352, onSiteDays: 4.799629596015352, elementCost: 521257 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 14.590340989662188, onSiteDays: 34.976093334315806, elementCost: 585135 },
         incidentCommandResults: { onSiteDays: 2062.897442751591, elementCost: 9741093 },
         generalResults: {
@@ -2321,6 +2425,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 38.56219732810662, onSiteDays: 38.56219732810662, elementCost: 1271101 },
         decontaminationResults: { workDays: 4.586085547596702, onSiteDays: 4.586085547596702, elementCost: 624091 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 16.00938672200378, onSiteDays: 63.334437678971796, elementCost: 561948 },
         incidentCommandResults: { onSiteDays: 4620.786669253466, elementCost: 14777598 },
         generalResults: {
@@ -2359,6 +2464,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.9656160694047421, onSiteDays: 0.9656160694047421, elementCost: 28248 },
           decontaminationResults: { workDays: 4.985878920644959, onSiteDays: 4.985878920644959, elementCost: 403349 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.7833510472386752, onSiteDays: 8.567623021896798, elementCost: 28568 },
           incidentCommandResults: { onSiteDays: 331.76958450661834, elementCost: 1481862 },
           generalResults: {
@@ -2377,6 +2483,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.5323800814811674, onSiteDays: 7.5323800814811674, elementCost: 205758 },
           decontaminationResults: { workDays: 4.679531079176704, onSiteDays: 4.679531079176704, elementCost: 409064 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.583948831334865, onSiteDays: 11.325020017511505, elementCost: 142906 },
           incidentCommandResults: { onSiteDays: 888.6589653473504, elementCost: 4065996 },
           generalResults: {
@@ -2395,6 +2502,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.139918137804064, onSiteDays: 2.139918137804064, elementCost: 82551 },
           decontaminationResults: { workDays: 3.4952299158310587, onSiteDays: 3.4952299158310587, elementCost: 363506 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 5.040448334781137, onSiteDays: 13.549449948242149, elementCost: 183041 },
           incidentCommandResults: { onSiteDays: 579.2946294506175, elementCost: 2480005 },
           generalResults: {
@@ -2414,6 +2522,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 146.70012451196084, onSiteDays: 146.70012451196084, elementCost: 2867515 },
         decontaminationResults: { workDays: 3.7017406003320916, onSiteDays: 3.7017406003320916, elementCost: 541883 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 36.189993076633, onSiteDays: 85.6426652381341, elementCost: 875146 },
         incidentCommandResults: { onSiteDays: 2655.6975598931576, elementCost: 8641467 },
         generalResults: {
@@ -2432,6 +2541,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 11.966552363083508, onSiteDays: 11.966552363083508, elementCost: 254371 },
         decontaminationResults: { workDays: 4.412981132374373, onSiteDays: 4.412981132374373, elementCost: 171082 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 31.34227711387024, onSiteDays: 67.25501656763662, elementCost: 869361 },
         incidentCommandResults: { onSiteDays: 1939.7475300571687, elementCost: 7777170 },
         generalResults: {
@@ -2470,6 +2580,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.118681924673489, onSiteDays: 3.118681924673489, elementCost: 135167 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 47952 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 184.34253808974532, elementCost: 773306 },
           generalResults: {
@@ -2488,6 +2599,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 84.8935454809369, onSiteDays: 84.8935454809369, elementCost: 1547409 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 51554 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1319.7259301964016, elementCost: 5757639 },
           generalResults: {
@@ -2506,6 +2618,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.6951008571002237, onSiteDays: 3.6951008571002237, elementCost: 68371 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 236769 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1569.276495385926, elementCost: 5690782 },
           generalResults: {
@@ -2525,6 +2638,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 2.061849474503632, onSiteDays: 2.061849474503632, elementCost: 77405 },
         decontaminationResults: { workDays: 3.6079173550493824, onSiteDays: 3.6079173550493824, elementCost: 411619 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 10.408794883481225, onSiteDays: 44.44745224469878, elementCost: 451774 },
         incidentCommandResults: { onSiteDays: 7970.10046558258, elementCost: 36336986 },
         generalResults: {
@@ -2543,6 +2657,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 49.6480498581039, onSiteDays: 49.6480498581039, elementCost: 2309829 },
         decontaminationResults: { workDays: 3.3489064933613193, onSiteDays: 3.3489064933613193, elementCost: 626698 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 11.07441700297999, onSiteDays: 32.88364504419382, elementCost: 291678 },
         incidentCommandResults: { onSiteDays: 9262.126527338769, elementCost: 30797198 },
         generalResults: {
@@ -2581,6 +2696,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.1456346920150469, onSiteDays: 1.1456346920150469, elementCost: 41335 },
           decontaminationResults: { workDays: 4.61335929800136, onSiteDays: 4.61335929800136, elementCost: 289285 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.337519062109428, onSiteDays: 5.903707902440659, elementCost: 13590 },
           incidentCommandResults: { onSiteDays: 318.5993818028623, elementCost: 1455217 },
           generalResults: {
@@ -2599,6 +2715,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.07138909188352813, onSiteDays: 0.07138909188352813, elementCost: 5432 },
           decontaminationResults: { workDays: 4.674338466877662, onSiteDays: 4.674338466877662, elementCost: 269483 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 5.694848458598091, onSiteDays: 14.79591272344209, elementCost: 219073 },
           incidentCommandResults: { onSiteDays: 1068.1233146521834, elementCost: 3449679 },
           generalResults: {
@@ -2617,6 +2734,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 16.889993950443646, onSiteDays: 16.889993950443646, elementCost: 336811 },
           decontaminationResults: { workDays: 4.206046381780423, onSiteDays: 4.206046381780423, elementCost: 395737 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 6.246621066901127, onSiteDays: 18.549953878399105, elementCost: 168246 },
           incidentCommandResults: { onSiteDays: 939.8128465459802, elementCost: 3420251 },
           generalResults: {
@@ -2636,6 +2754,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 0.3853207661544582, onSiteDays: 0.3853207661544582, elementCost: 11229 },
         decontaminationResults: { workDays: 3.9498131319297975, onSiteDays: 3.9498131319297975, elementCost: 320813 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 12.697416746710617, onSiteDays: 79.74594638712564, elementCost: 567147 },
         incidentCommandResults: { onSiteDays: 2286.6513837199313, elementCost: 8685725 },
         generalResults: {
@@ -2654,6 +2773,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 64.04841604611158, onSiteDays: 64.04841604611158, elementCost: 1105963 },
         decontaminationResults: { workDays: 4.318400102043152, onSiteDays: 4.318400102043152, elementCost: 1013348 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 10.383593687273867, onSiteDays: 39.27871580532023, elementCost: 315044 },
         incidentCommandResults: { onSiteDays: 6394.730363651341, elementCost: 28819575 },
         generalResults: {
@@ -2692,6 +2812,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.846006519873166, onSiteDays: 4.846006519873166, elementCost: 106774 },
           decontaminationResults: { workDays: 3.921772611076425, onSiteDays: 3.921772611076425, elementCost: 134867 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.3791235444930687, onSiteDays: 5.9728877905840605, elementCost: 9003 },
           incidentCommandResults: { onSiteDays: 402.3377379606996, elementCost: 1874752 },
           generalResults: {
@@ -2710,6 +2831,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.3970405466354827, onSiteDays: 3.3970405466354827, elementCost: 117769 },
           decontaminationResults: { workDays: 3.155256062316535, onSiteDays: 3.155256062316535, elementCost: 318992 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 6.957038457507033, onSiteDays: 25.963383810301004, elementCost: 179982 },
           incidentCommandResults: { onSiteDays: 1001.4724407033258, elementCost: 3082967 },
           generalResults: {
@@ -2728,6 +2850,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 37.11744652033043, onSiteDays: 37.11744652033043, elementCost: 845401 },
           decontaminationResults: { workDays: 3.8188675029247223, onSiteDays: 3.8188675029247223, elementCost: 151646 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.9837392917712268, onSiteDays: 7.884312476693031, elementCost: 34959 },
           incidentCommandResults: { onSiteDays: 689.4204213856993, elementCost: 3038545 },
           generalResults: {
@@ -2747,6 +2870,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 11.24546108068586, onSiteDays: 11.24546108068586, elementCost: 496104 },
         decontaminationResults: { workDays: 3.0324544082471294, onSiteDays: 3.0324544082471294, elementCost: 424423 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 9.749618996025205, onSiteDays: 36.77582490500326, elementCost: 266120 },
         incidentCommandResults: { onSiteDays: 1421.2303544485244, elementCost: 5251884 },
         generalResults: {
@@ -2765,6 +2889,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 26.326454392623766, onSiteDays: 26.326454392623766, elementCost: 734867 },
         decontaminationResults: { workDays: 4.037889975830422, onSiteDays: 4.037889975830422, elementCost: 656267 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 39.34159777743296, onSiteDays: 65.70342439135203, elementCost: 941720 },
         incidentCommandResults: { onSiteDays: 3421.6761231910477, elementCost: 15924666 },
         generalResults: {
@@ -2803,6 +2928,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.2108088299501092, onSiteDays: 1.2108088299501092, elementCost: 25333 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 28278 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 59.724328733900414, elementCost: 193645 },
           generalResults: {
@@ -2821,6 +2947,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.192432830144869, onSiteDays: 7.192432830144869, elementCost: 138177 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 34190 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 342.47148724915655, elementCost: 1100404 },
           generalResults: {
@@ -2839,6 +2966,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.864281127241111, onSiteDays: 4.864281127241111, elementCost: 157296 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 42895 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 585.9691410149321, elementCost: 1919861 },
           generalResults: {
@@ -2858,6 +2986,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 36.11924640332527, onSiteDays: 36.11924640332527, elementCost: 1120721 },
         decontaminationResults: { workDays: 3.8983982980480416, onSiteDays: 3.8983982980480416, elementCost: 443630 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 28.377271792995, onSiteDays: 69.69081856854844, elementCost: 1089250 },
         incidentCommandResults: { onSiteDays: 4080.268607312604, elementCost: 15481947 },
         generalResults: {
@@ -2876,6 +3005,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 25.86178230809793, onSiteDays: 25.86178230809793, elementCost: 606497 },
         decontaminationResults: { workDays: 3.0067661185764627, onSiteDays: 3.0067661185764627, elementCost: 861428 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 13.479289098357173, onSiteDays: 38.24445290939681, elementCost: 342663 },
         incidentCommandResults: { onSiteDays: 1849.7128693392624, elementCost: 6201792 },
         generalResults: {
@@ -2914,6 +3044,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.561581213273905, onSiteDays: 2.561581213273905, elementCost: 79845 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 35483 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 36.989297279334906, elementCost: 143775 },
           generalResults: {
@@ -2932,6 +3063,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.937688148852012, onSiteDays: 2.937688148852012, elementCost: 170307 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 31749 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1367.5035515686309, elementCost: 6019585 },
           generalResults: {
@@ -2950,6 +3082,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 22.447984103945373, onSiteDays: 22.447984103945373, elementCost: 432417 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 19114 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 639.5658429358164, elementCost: 2836393 },
           generalResults: {
@@ -2969,6 +3102,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 22.852152316768017, onSiteDays: 22.852152316768017, elementCost: 889325 },
         decontaminationResults: { workDays: 3.7033133322147918, onSiteDays: 3.7033133322147918, elementCost: 536249 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 15.534296921103575, onSiteDays: 66.45134661362252, elementCost: 562994 },
         incidentCommandResults: { onSiteDays: 4007.3123160790083, elementCost: 16151220 },
         generalResults: {
@@ -2987,6 +3121,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 10.280494014567715, onSiteDays: 10.280494014567715, elementCost: 168613 },
         decontaminationResults: { workDays: 3.2846890534937123, onSiteDays: 3.2846890534937123, elementCost: 346605 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 18.88331351444032, onSiteDays: 103.60546419602782, elementCost: 723887 },
         incidentCommandResults: { onSiteDays: 2681.4569682193955, elementCost: 9924469 },
         generalResults: {
@@ -3025,6 +3160,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.3300525212961274, onSiteDays: 3.3300525212961274, elementCost: 80776 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 52152 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 225.24771274751177, elementCost: 886547 },
           generalResults: {
@@ -3043,6 +3179,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.8705626690567545, onSiteDays: 3.8705626690567545, elementCost: 159733 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 80611 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1426.474832113398, elementCost: 5433747 },
           generalResults: {
@@ -3061,6 +3198,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.557630547821011, onSiteDays: 7.557630547821011, elementCost: 192813 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 192196 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 655.7190671887179, elementCost: 2301148 },
           generalResults: {
@@ -3080,6 +3218,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 89.23849343031776, onSiteDays: 89.23849343031776, elementCost: 1103722 },
         decontaminationResults: { workDays: 3.6146327388972583, onSiteDays: 3.6146327388972583, elementCost: 319532 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 11.212186793979669, onSiteDays: 24.123060570247347, elementCost: 311839 },
         incidentCommandResults: { onSiteDays: 4729.1412790454415, elementCost: 19409151 },
         generalResults: {
@@ -3098,6 +3237,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 26.12214082199766, onSiteDays: 26.12214082199766, elementCost: 361913 },
         decontaminationResults: { workDays: 4.956961060864144, onSiteDays: 4.956961060864144, elementCost: 864838 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 17.593382483653453, onSiteDays: 67.90589726362727, elementCost: 606722 },
         incidentCommandResults: { onSiteDays: 2603.6595540399276, elementCost: 8048153 },
         generalResults: {
@@ -3136,6 +3276,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.723723257493317, onSiteDays: 1.723723257493317, elementCost: 81759 },
           decontaminationResults: { workDays: 4.424006999336185, onSiteDays: 4.424006999336185, elementCost: 168791 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.7881533323755419, onSiteDays: 7.809084563703647, elementCost: 55878 },
           incidentCommandResults: { onSiteDays: 375.19872323543785, elementCost: 1197792 },
           generalResults: {
@@ -3154,6 +3295,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.938065008785088, onSiteDays: 4.938065008785088, elementCost: 191061 },
           decontaminationResults: { workDays: 4.4809145479185775, onSiteDays: 4.4809145479185775, elementCost: 368580 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.7833945048443813, onSiteDays: 13.692172897673066, elementCost: 103021 },
           incidentCommandResults: { onSiteDays: 1126.2139016316714, elementCost: 3507501 },
           generalResults: {
@@ -3172,6 +3314,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.858466764690356, onSiteDays: 3.858466764690356, elementCost: 101520 },
           decontaminationResults: { workDays: 3.567971395460882, onSiteDays: 3.567971395460882, elementCost: 299006 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.2637052447644229, onSiteDays: 5.470838551558342, elementCost: 7416 },
           incidentCommandResults: { onSiteDays: 2100.4685344386403, elementCost: 8608688 },
           generalResults: {
@@ -3191,6 +3334,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 22.033479796689114, onSiteDays: 22.033479796689114, elementCost: 671082 },
         decontaminationResults: { workDays: 3.8456855120243705, onSiteDays: 3.8456855120243705, elementCost: 555736 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 24.74001829190114, onSiteDays: 72.33820392618597, elementCost: 673238 },
         incidentCommandResults: { onSiteDays: 2615.857242349745, elementCost: 10607904 },
         generalResults: {
@@ -3209,6 +3353,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 177.03983751131426, onSiteDays: 177.03983751131426, elementCost: 3276615 },
         decontaminationResults: { workDays: 4.433010133316976, onSiteDays: 4.433010133316976, elementCost: 898463 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 31.51953398316746, onSiteDays: 74.37761009635335, elementCost: 1041729 },
         incidentCommandResults: { onSiteDays: 3557.5073586515805, elementCost: 17088626 },
         generalResults: {
@@ -3247,6 +3392,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.650549397828918, onSiteDays: 5.650549397828918, elementCost: 326272 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 48086 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 136.99518011563467, elementCost: 468514 },
           generalResults: {
@@ -3265,6 +3411,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 54.092005018011776, onSiteDays: 54.092005018011776, elementCost: 985497 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 131164 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 533.4672092833985, elementCost: 2607780 },
           generalResults: {
@@ -3283,6 +3430,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 22.31173684530294, onSiteDays: 22.31173684530294, elementCost: 972547 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 42002 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1362.730727076984, elementCost: 6118651 },
           generalResults: {
@@ -3302,6 +3450,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 43.50422894101305, onSiteDays: 43.50422894101305, elementCost: 1830065 },
         decontaminationResults: { workDays: 3.443344710497964, onSiteDays: 3.443344710497964, elementCost: 329307 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 3.050656281456408, onSiteDays: 9.331215424291884, elementCost: 80599 },
         incidentCommandResults: { onSiteDays: 2723.0723861411034, elementCost: 13275956 },
         generalResults: {
@@ -3320,6 +3469,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 35.83534842745661, onSiteDays: 35.83534842745661, elementCost: 1016715 },
         decontaminationResults: { workDays: 4.905272135023324, onSiteDays: 4.905272135023324, elementCost: 446070 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 23.9444913034981, onSiteDays: 47.66547102481109, elementCost: 846199 },
         incidentCommandResults: { onSiteDays: 2705.0580898450116, elementCost: 9696415 },
         generalResults: {
@@ -3358,6 +3508,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.264365958077724, onSiteDays: 6.264365958077724, elementCost: 239403 },
           decontaminationResults: { workDays: 4.21606247574465, onSiteDays: 4.21606247574465, elementCost: 339228 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.0767480193883366, onSiteDays: 5.3150212029836545, elementCost: 3265 },
           incidentCommandResults: { onSiteDays: 139.9386355911196, elementCost: 520066 },
           generalResults: {
@@ -3376,6 +3527,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.3032714538347288, onSiteDays: 1.3032714538347288, elementCost: 18556 },
           decontaminationResults: { workDays: 3.2182696308517524, onSiteDays: 3.2182696308517524, elementCost: 323561 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.5480435301443018, onSiteDays: 9.156147307654091, elementCost: 56773 },
           incidentCommandResults: { onSiteDays: 1928.1389025590381, elementCost: 8838466 },
           generalResults: {
@@ -3394,6 +3546,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 28.663817978979274, onSiteDays: 28.663817978979274, elementCost: 753926 },
           decontaminationResults: { workDays: 3.1037398809808634, onSiteDays: 3.1037398809808634, elementCost: 235828 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.150736418631906, onSiteDays: 13.212521762512573, elementCost: 139286 },
           incidentCommandResults: { onSiteDays: 1435.0202937996073, elementCost: 4587379 },
           generalResults: {
@@ -3413,6 +3566,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 41.86138373687585, onSiteDays: 41.86138373687585, elementCost: 2149534 },
         decontaminationResults: { workDays: 4.641112131448722, onSiteDays: 4.641112131448722, elementCost: 635415 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.1212058958395017, onSiteDays: 6.6139523768116035, elementCost: 33274 },
         incidentCommandResults: { onSiteDays: 1010.6434096050859, elementCost: 3156868 },
         generalResults: {
@@ -3431,6 +3585,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 8.637740884274686, onSiteDays: 8.637740884274686, elementCost: 226514 },
         decontaminationResults: { workDays: 4.822277806657897, onSiteDays: 4.822277806657897, elementCost: 622493 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.949034904846099, onSiteDays: 22.95408766892606, elementCost: 221054 },
         incidentCommandResults: { onSiteDays: 7738.674617681406, elementCost: 33435056 },
         generalResults: {
@@ -3469,6 +3624,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.6485010649495315, onSiteDays: 6.6485010649495315, elementCost: 154943 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 27008 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 103.79514135494267, elementCost: 470198 },
           generalResults: {
@@ -3487,6 +3643,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 38.39327401054966, onSiteDays: 38.39327401054966, elementCost: 629511 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 157808 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 612.5438418198795, elementCost: 2489292 },
           generalResults: {
@@ -3505,6 +3662,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 23.791049780095005, onSiteDays: 23.791049780095005, elementCost: 451352 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 217999 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 543.9311369661153, elementCost: 2219742 },
           generalResults: {
@@ -3524,6 +3682,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 12.673893077902967, onSiteDays: 12.673893077902967, elementCost: 291576 },
         decontaminationResults: { workDays: 4.778703463677946, onSiteDays: 4.778703463677946, elementCost: 246314 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 2.959621107973773, onSiteDays: 10.44054619475937, elementCost: 72720 },
         incidentCommandResults: { onSiteDays: 3129.4027548831955, elementCost: 11302983 },
         generalResults: {
@@ -3542,6 +3701,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 33.5795658993805, onSiteDays: 33.5795658993805, elementCost: 711929 },
         decontaminationResults: { workDays: 3.137307081403515, onSiteDays: 3.137307081403515, elementCost: 732396 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 8.55302012800769, onSiteDays: 33.58609877146474, elementCost: 292281 },
         incidentCommandResults: { onSiteDays: 3805.712494184129, elementCost: 17426922 },
         generalResults: {
@@ -3580,6 +3740,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.956006556035091, onSiteDays: 5.956006556035091, elementCost: 164391 },
           decontaminationResults: { workDays: 3.4211656731602655, onSiteDays: 3.4211656731602655, elementCost: 165792 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.16488770851947973, onSiteDays: 3.971459073857191, elementCost: 6574 },
           incidentCommandResults: { onSiteDays: 332.23863984165075, elementCost: 1459074 },
           generalResults: {
@@ -3598,6 +3759,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 12.077392428675662, onSiteDays: 12.077392428675662, elementCost: 234378 },
           decontaminationResults: { workDays: 4.841177168730921, onSiteDays: 4.841177168730921, elementCost: 193946 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.4121827152059008, onSiteDays: 12.856376017853826, elementCost: 79669 },
           incidentCommandResults: { onSiteDays: 2110.9989078493477, elementCost: 7829777 },
           generalResults: {
@@ -3616,6 +3778,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 10.937345807266787, onSiteDays: 10.937345807266787, elementCost: 310783 },
           decontaminationResults: { workDays: 3.173579923383328, onSiteDays: 3.173579923383328, elementCost: 403072 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 11.43124732590095, onSiteDays: 22.550629394976383, elementCost: 280024 },
           incidentCommandResults: { onSiteDays: 1452.2757105006647, elementCost: 6070096 },
           generalResults: {
@@ -3635,6 +3798,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 55.80841173365672, onSiteDays: 55.80841173365672, elementCost: 2052071 },
         decontaminationResults: { workDays: 4.622408559923621, onSiteDays: 4.622408559923621, elementCost: 315021 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 19.03459001002822, onSiteDays: 49.06126536574879, elementCost: 501810 },
         incidentCommandResults: { onSiteDays: 5008.2626099202735, elementCost: 21993972 },
         generalResults: {
@@ -3653,6 +3817,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 48.9623311310413, onSiteDays: 48.9623311310413, elementCost: 825837 },
         decontaminationResults: { workDays: 3.051923872915079, onSiteDays: 3.051923872915079, elementCost: 441855 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 47.17318767953744, onSiteDays: 81.75502066781412, elementCost: 1143640 },
         incidentCommandResults: { onSiteDays: 8471.222049234864, elementCost: 28432502 },
         generalResults: {
@@ -3691,6 +3856,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.5640868903507705, onSiteDays: 1.5640868903507705, elementCost: 34079 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 36546 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 139.83284122618034, elementCost: 576339 },
           generalResults: {
@@ -3709,6 +3875,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 10.570057352510549, onSiteDays: 10.570057352510549, elementCost: 246048 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 88262 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 132.51492586171634, elementCost: 615098 },
           generalResults: {
@@ -3727,6 +3894,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.0465162038650195, onSiteDays: 3.0465162038650195, elementCost: 58789 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 139815 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 430.51619173882233, elementCost: 2045124 },
           generalResults: {
@@ -3746,6 +3914,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 8.799714918213018, onSiteDays: 8.799714918213018, elementCost: 218555 },
         decontaminationResults: { workDays: 3.5025825175695546, onSiteDays: 3.5025825175695546, elementCost: 569236 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 12.387075613137446, onSiteDays: 34.61922446032417, elementCost: 496926 },
         incidentCommandResults: { onSiteDays: 10793.213304326506, elementCost: 38358850 },
         generalResults: {
@@ -3764,6 +3933,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 10.1949151927393, onSiteDays: 10.1949151927393, elementCost: 298687 },
         decontaminationResults: { workDays: 4.711414346869899, onSiteDays: 4.711414346869899, elementCost: 304741 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 21.508805613994337, onSiteDays: 38.97612401977628, elementCost: 640477 },
         incidentCommandResults: { onSiteDays: 3862.108321085248, elementCost: 15578112 },
         generalResults: {
@@ -3802,6 +3972,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.0705700766928299, onSiteDays: 1.0705700766928299, elementCost: 23968 },
           decontaminationResults: { workDays: 3.2701272587920833, onSiteDays: 3.2701272587920833, elementCost: 199842 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.08010736539694154, onSiteDays: 5.409631963668033, elementCost: 2956 },
           incidentCommandResults: { onSiteDays: 182.61318336195205, elementCost: 772765 },
           generalResults: {
@@ -3820,6 +3991,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.270330412504012, onSiteDays: 1.270330412504012, elementCost: 30693 },
           decontaminationResults: { workDays: 4.850738689734307, onSiteDays: 4.850738689734307, elementCost: 426819 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 4.679400849880477, onSiteDays: 24.736524850832204, elementCost: 172233 },
           incidentCommandResults: { onSiteDays: 753.6129612469543, elementCost: 3650014 },
           generalResults: {
@@ -3838,6 +4010,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.2843696308810424, onSiteDays: 3.2843696308810424, elementCost: 158530 },
           decontaminationResults: { workDays: 3.7408103199537868, onSiteDays: 3.7408103199537868, elementCost: 451476 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.5803605519010604, onSiteDays: 6.708066158362223, elementCost: 42010 },
           incidentCommandResults: { onSiteDays: 2097.938473895275, elementCost: 10212069 },
           generalResults: {
@@ -3857,6 +4030,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 60.136281139830345, onSiteDays: 60.136281139830345, elementCost: 2585383 },
         decontaminationResults: { workDays: 4.112377668524249, onSiteDays: 4.112377668524249, elementCost: 316924 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 17.361171095709317, onSiteDays: 62.350509942361235, elementCost: 706828 },
         incidentCommandResults: { onSiteDays: 947.7988862009798, elementCost: 3505476 },
         generalResults: {
@@ -3875,6 +4049,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 141.7809967550958, onSiteDays: 141.7809967550958, elementCost: 2285331 },
         decontaminationResults: { workDays: 4.916737398113296, onSiteDays: 4.916737398113296, elementCost: 684378 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 18.786861947060377, onSiteDays: 56.99483707346121, elementCost: 678293 },
         incidentCommandResults: { onSiteDays: 4024.6657343625156, elementCost: 17484287 },
         generalResults: {
@@ -3913,6 +4088,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.1934573627626577, onSiteDays: 1.1934573627626577, elementCost: 29228 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 30910 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 167.5624910415338, elementCost: 787025 },
           generalResults: {
@@ -3931,6 +4107,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.9612449366200368, onSiteDays: 0.9612449366200368, elementCost: 19170 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 159458 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 761.9346027627712, elementCost: 3495885 },
           generalResults: {
@@ -3949,6 +4126,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 16.794133605003303, onSiteDays: 16.794133605003303, elementCost: 209527 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 138492 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 313.587155799055, elementCost: 1205264 },
           generalResults: {
@@ -3968,6 +4146,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 43.56194072196253, onSiteDays: 43.56194072196253, elementCost: 1117158 },
         decontaminationResults: { workDays: 4.501051243278443, onSiteDays: 4.501051243278443, elementCost: 955165 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 8.307633008143279, onSiteDays: 33.80214928798337, elementCost: 233510 },
         incidentCommandResults: { onSiteDays: 1491.9698667993193, elementCost: 7305216 },
         generalResults: {
@@ -3986,6 +4165,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 100.16692717669196, onSiteDays: 100.16692717669196, elementCost: 2972750 },
         decontaminationResults: { workDays: 3.8136796091715057, onSiteDays: 3.8136796091715057, elementCost: 555892 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 29.368431717197478, onSiteDays: 104.27198659093902, elementCost: 1295529 },
         incidentCommandResults: { onSiteDays: 1681.7042880663582, elementCost: 5458595 },
         generalResults: {
@@ -4024,6 +4204,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.6110326825460402, onSiteDays: 0.6110326825460402, elementCost: 16269 },
           decontaminationResults: { workDays: 4.071404595177482, onSiteDays: 4.071404595177482, elementCost: 291587 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.3855177880596162, onSiteDays: 5.485785948417536, elementCost: 10495 },
           incidentCommandResults: { onSiteDays: 299.34683542226077, elementCost: 905767 },
           generalResults: {
@@ -4042,6 +4223,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 46.73740034696399, onSiteDays: 46.73740034696399, elementCost: 1437859 },
           decontaminationResults: { workDays: 4.775029946531875, onSiteDays: 4.775029946531875, elementCost: 248132 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.6032611627184548, onSiteDays: 7.780184005552775, elementCost: 41272 },
           incidentCommandResults: { onSiteDays: 1702.2965220413419, elementCost: 7675919 },
           generalResults: {
@@ -4060,6 +4242,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 29.911271871572644, onSiteDays: 29.911271871572644, elementCost: 625168 },
           decontaminationResults: { workDays: 4.967570872038503, onSiteDays: 4.967570872038503, elementCost: 287868 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.2512247179647233, onSiteDays: 9.693739397082537, elementCost: 99047 },
           incidentCommandResults: { onSiteDays: 2158.920390541605, elementCost: 9535096 },
           generalResults: {
@@ -4079,6 +4262,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 84.4450279917613, onSiteDays: 84.4450279917613, elementCost: 3600957 },
         decontaminationResults: { workDays: 4.803369917395377, onSiteDays: 4.803369917395377, elementCost: 351169 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 9.479113543049463, onSiteDays: 20.35740084951677, elementCost: 332934 },
         incidentCommandResults: { onSiteDays: 1526.9953062238749, elementCost: 4704050 },
         generalResults: {
@@ -4097,6 +4281,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 22.93530198137077, onSiteDays: 22.93530198137077, elementCost: 464932 },
         decontaminationResults: { workDays: 3.660189104420177, onSiteDays: 3.660189104420177, elementCost: 460059 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 15.561287289967012, onSiteDays: 31.396272163381383, elementCost: 524729 },
         incidentCommandResults: { onSiteDays: 4814.506825831228, elementCost: 15546674 },
         generalResults: {
@@ -4135,6 +4320,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.862966287273454, onSiteDays: 5.862966287273454, elementCost: 189055 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 64060 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 77.15781552433293, elementCost: 333852 },
           generalResults: {
@@ -4153,6 +4339,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 21.285716961038446, onSiteDays: 21.285716961038446, elementCost: 418827 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 198503 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 231.6270964263458, elementCost: 835215 },
           generalResults: {
@@ -4171,6 +4358,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.183297092458587, onSiteDays: 3.183297092458587, elementCost: 175460 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 264143 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 238.12764779970777, elementCost: 796463 },
           generalResults: {
@@ -4190,6 +4378,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 11.246157022867546, onSiteDays: 11.246157022867546, elementCost: 408685 },
         decontaminationResults: { workDays: 3.838347070114302, onSiteDays: 3.838347070114302, elementCost: 294598 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.080922839597388, onSiteDays: 11.514390099877353, elementCost: 134361 },
         incidentCommandResults: { onSiteDays: 3203.117108739795, elementCost: 10222012 },
         generalResults: {
@@ -4208,6 +4397,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 52.959326227068416, onSiteDays: 52.959326227068416, elementCost: 1087056 },
         decontaminationResults: { workDays: 3.3702034154837492, onSiteDays: 3.3702034154837492, elementCost: 157276 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 17.390794375671145, onSiteDays: 46.41589536112713, elementCost: 552437 },
         incidentCommandResults: { onSiteDays: 1200.0022910491516, elementCost: 5161998 },
         generalResults: {
@@ -4246,6 +4436,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.6210690959917602, onSiteDays: 1.6210690959917602, elementCost: 53985 },
           decontaminationResults: { workDays: 4.110897490547713, onSiteDays: 4.110897490547713, elementCost: 193476 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.2387920057133053, onSiteDays: 7.662241042802447, elementCost: 50993 },
           incidentCommandResults: { onSiteDays: 375.01588246324303, elementCost: 1436758 },
           generalResults: {
@@ -4264,6 +4455,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 27.323255348955794, onSiteDays: 27.323255348955794, elementCost: 395736 },
           decontaminationResults: { workDays: 4.687078404167453, onSiteDays: 4.687078404167453, elementCost: 185484 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.6224481672463249, onSiteDays: 6.235711448825458, elementCost: 15045 },
           incidentCommandResults: { onSiteDays: 1009.1264859245031, elementCost: 3848668 },
           generalResults: {
@@ -4282,6 +4474,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.3292333621868333, onSiteDays: 2.3292333621868333, elementCost: 58231 },
           decontaminationResults: { workDays: 4.93129181254918, onSiteDays: 4.93129181254918, elementCost: 441544 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.8562965376042492, onSiteDays: 5.752694329598841, elementCost: 29582 },
           incidentCommandResults: { onSiteDays: 1013.3886273885677, elementCost: 4527259 },
           generalResults: {
@@ -4301,6 +4494,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 78.5575019875406, onSiteDays: 78.5575019875406, elementCost: 1647771 },
         decontaminationResults: { workDays: 3.770893953454423, onSiteDays: 3.770893953454423, elementCost: 234982 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 0.8982953602826202, onSiteDays: 6.643588629558176, elementCost: 28226 },
         incidentCommandResults: { onSiteDays: 1421.9697305261002, elementCost: 5755520 },
         generalResults: {
@@ -4319,6 +4513,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 23.63645450883701, onSiteDays: 23.63645450883701, elementCost: 848149 },
         decontaminationResults: { workDays: 3.774242918187343, onSiteDays: 3.774242918187343, elementCost: 477613 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 2.790166604004685, onSiteDays: 9.458117045114815, elementCost: 67423 },
         incidentCommandResults: { onSiteDays: 4132.000528949364, elementCost: 16860574 },
         generalResults: {
@@ -4357,6 +4552,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.9190181818108618, onSiteDays: 0.9190181818108618, elementCost: 27948 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 14503 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 349.69233692651994, elementCost: 1150929 },
           generalResults: {
@@ -4375,6 +4571,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.983787243939948, onSiteDays: 5.983787243939948, elementCost: 147058 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 241135 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 293.8281401194552, elementCost: 1332835 },
           generalResults: {
@@ -4397,6 +4594,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 1709463,
           },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 17296 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1097.2547197208983, elementCost: 3487312 },
           generalResults: {
@@ -4416,6 +4614,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 11.215912111272274, onSiteDays: 11.215912111272274, elementCost: 332208 },
         decontaminationResults: { workDays: 4.647579049143842, onSiteDays: 4.647579049143842, elementCost: 655830 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.813540359625079, onSiteDays: 27.34636379096036, elementCost: 262154 },
         incidentCommandResults: { onSiteDays: 5707.927117299216, elementCost: 23844753 },
         generalResults: {
@@ -4434,6 +4633,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 27.790088360847463, onSiteDays: 27.790088360847463, elementCost: 676799 },
         decontaminationResults: { workDays: 3.933853737761698, onSiteDays: 3.933853737761698, elementCost: 594212 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 21.9599558956407, onSiteDays: 69.20622844528583, elementCost: 654718 },
         incidentCommandResults: { onSiteDays: 2218.2355458835523, elementCost: 10272231 },
         generalResults: {
@@ -4472,6 +4672,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.6787641233778219, onSiteDays: 1.6787641233778219, elementCost: 94285 },
           decontaminationResults: { workDays: 3.318631015326509, onSiteDays: 3.318631015326509, elementCost: 149213 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.972338998460384, onSiteDays: 14.595779933129567, elementCost: 94567 },
           incidentCommandResults: { onSiteDays: 122.24002320878887, elementCost: 452985 },
           generalResults: {
@@ -4490,6 +4691,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 8.677848330162957, onSiteDays: 8.677848330162957, elementCost: 275197 },
           decontaminationResults: { workDays: 4.861969594811548, onSiteDays: 4.861969594811548, elementCost: 621146 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 5.914816009579766, onSiteDays: 27.445466251726447, elementCost: 219087 },
           incidentCommandResults: { onSiteDays: 936.5423775970697, elementCost: 4168855 },
           generalResults: {
@@ -4508,6 +4710,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.697204739907011, onSiteDays: 5.697204739907011, elementCost: 210428 },
           decontaminationResults: { workDays: 4.681131461095328, onSiteDays: 4.681131461095328, elementCost: 462770 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 5.468042811839072, onSiteDays: 16.194976900958167, elementCost: 230929 },
           incidentCommandResults: { onSiteDays: 1434.276817978797, elementCost: 4820308 },
           generalResults: {
@@ -4527,6 +4730,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 129.59831491228533, onSiteDays: 129.59831491228533, elementCost: 1911887 },
         decontaminationResults: { workDays: 3.1104173064488956, onSiteDays: 3.1104173064488956, elementCost: 194821 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 12.7660249678185, onSiteDays: 44.109728515289085, elementCost: 462998 },
         incidentCommandResults: { onSiteDays: 1785.8508923317306, elementCost: 6737736 },
         generalResults: {
@@ -4545,6 +4749,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 50.7088847557108, onSiteDays: 50.7088847557108, elementCost: 1833208 },
         decontaminationResults: { workDays: 3.8140557829323356, onSiteDays: 3.8140557829323356, elementCost: 407840 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 12.386361268836952, onSiteDays: 30.138929378847074, elementCost: 486478 },
         incidentCommandResults: { onSiteDays: 6055.478865004632, elementCost: 25863928 },
         generalResults: {
@@ -4583,6 +4788,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 10.411132604064433, onSiteDays: 10.411132604064433, elementCost: 171832 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 20527 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 90.47154086662599, elementCost: 350036 },
           generalResults: {
@@ -4601,6 +4807,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 8.269468495899462, onSiteDays: 8.269468495899462, elementCost: 111374 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 112879 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 181.64661454835, elementCost: 787196 },
           generalResults: {
@@ -4619,6 +4826,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 16.903343835669034, onSiteDays: 16.903343835669034, elementCost: 372096 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 157406 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1386.7931573672404, elementCost: 5920519 },
           generalResults: {
@@ -4638,6 +4846,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 14.77820274569086, onSiteDays: 14.77820274569086, elementCost: 235805 },
         decontaminationResults: { workDays: 3.52433435444821, onSiteDays: 3.52433435444821, elementCost: 898853 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 3.7774733315176534, onSiteDays: 15.091332772032459, elementCost: 136230 },
         incidentCommandResults: { onSiteDays: 3323.9081128531625, elementCost: 13054655 },
         generalResults: {
@@ -4656,6 +4865,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 55.01171731081204, onSiteDays: 55.01171731081204, elementCost: 2316862 },
         decontaminationResults: { workDays: 4.5437579759265665, onSiteDays: 4.5437579759265665, elementCost: 741870 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.9006241799341643, onSiteDays: 7.8970297089327985, elementCost: 55279 },
         incidentCommandResults: { onSiteDays: 2636.0427790649755, elementCost: 9534317 },
         generalResults: {
@@ -4694,6 +4904,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.359850500024692, onSiteDays: 6.359850500024692, elementCost: 289683 },
           decontaminationResults: { workDays: 4.733709577409018, onSiteDays: 4.733709577409018, elementCost: 272009 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.20003240979022865, onSiteDays: 5.716898577934719, elementCost: 8694 },
           incidentCommandResults: { onSiteDays: 224.54673441426985, elementCost: 728581 },
           generalResults: {
@@ -4712,6 +4923,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.883370788202795, onSiteDays: 3.883370788202795, elementCost: 220014 },
           decontaminationResults: { workDays: 3.075449824816419, onSiteDays: 3.075449824816419, elementCost: 292070 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 12.987954286354737, onSiteDays: 29.749243471696552, elementCost: 345404 },
           incidentCommandResults: { onSiteDays: 1262.7533258141355, elementCost: 6002646 },
           generalResults: {
@@ -4730,6 +4942,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 29.46576767582178, onSiteDays: 29.46576767582178, elementCost: 397254 },
           decontaminationResults: { workDays: 4.019308725609283, onSiteDays: 4.019308725609283, elementCost: 421645 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.1044218491364943, onSiteDays: 6.789261931654037, elementCost: 28974 },
           incidentCommandResults: { onSiteDays: 913.5243089563481, elementCost: 4009073 },
           generalResults: {
@@ -4749,6 +4962,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 69.82922993131062, onSiteDays: 69.82922993131062, elementCost: 2147902 },
         decontaminationResults: { workDays: 4.747659851738172, onSiteDays: 4.747659851738172, elementCost: 521268 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.8996652133032725, onSiteDays: 26.28451109641163, elementCost: 257498 },
         incidentCommandResults: { onSiteDays: 2318.966146855619, elementCost: 10376271 },
         generalResults: {
@@ -4767,6 +4981,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 39.93021002548455, onSiteDays: 39.93021002548455, elementCost: 1400112 },
         decontaminationResults: { workDays: 4.916702268625773, onSiteDays: 4.916702268625773, elementCost: 513705 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.159886266521863, onSiteDays: 19.600591376242487, elementCost: 138808 },
         incidentCommandResults: { onSiteDays: 2210.4417478175474, elementCost: 7059965 },
         generalResults: {
@@ -4805,6 +5020,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.6630074578244, onSiteDays: 4.6630074578244, elementCost: 156475 },
           decontaminationResults: { workDays: 4.837210089861697, onSiteDays: 4.837210089861697, elementCost: 182669 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.34574070762185083, onSiteDays: 4.5122255653695404, elementCost: 14098 },
           incidentCommandResults: { onSiteDays: 245.6036473450946, elementCost: 929725 },
           generalResults: {
@@ -4823,6 +5039,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.174543930680404, onSiteDays: 5.174543930680404, elementCost: 193242 },
           decontaminationResults: { workDays: 4.271399713417376, onSiteDays: 4.271399713417376, elementCost: 355672 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.2598223064265364, onSiteDays: 8.255935321475452, elementCost: 54381 },
           incidentCommandResults: { onSiteDays: 3666.5803071046153, elementCost: 17559937 },
           generalResults: {
@@ -4841,6 +5058,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 24.866970213509795, onSiteDays: 24.866970213509795, elementCost: 672626 },
           decontaminationResults: { workDays: 4.895055563630317, onSiteDays: 4.895055563630317, elementCost: 176432 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.385905292110628, onSiteDays: 8.801188579812319, elementCost: 60663 },
           incidentCommandResults: { onSiteDays: 1089.0270257680065, elementCost: 4941999 },
           generalResults: {
@@ -4860,6 +5078,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 14.015263920009055, onSiteDays: 14.015263920009055, elementCost: 358637 },
         decontaminationResults: { workDays: 3.1863123043874073, onSiteDays: 3.1863123043874073, elementCost: 892783 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 22.8575727935978, onSiteDays: 85.6657414262497, elementCost: 711572 },
         incidentCommandResults: { onSiteDays: 4540.710339737835, elementCost: 19557583 },
         generalResults: {
@@ -4878,6 +5097,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 10.966687171145608, onSiteDays: 10.966687171145608, elementCost: 405101 },
         decontaminationResults: { workDays: 3.2862693351428653, onSiteDays: 3.2862693351428653, elementCost: 256691 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 12.774301134871846, onSiteDays: 47.53990088189576, elementCost: 517788 },
         incidentCommandResults: { onSiteDays: 2200.9390728549197, elementCost: 10186363 },
         generalResults: {
@@ -4916,6 +5136,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.904534173272299, onSiteDays: 4.904534173272299, elementCost: 68126 },
           decontaminationResults: { workDays: 4.287490174939737, onSiteDays: 4.287490174939737, elementCost: 158744 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.2448453457754082, onSiteDays: 5.411326851932767, elementCost: 5706 },
           incidentCommandResults: { onSiteDays: 397.7743199178262, elementCost: 1819273 },
           generalResults: {
@@ -4934,6 +5155,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 13.805633994001916, onSiteDays: 13.805633994001916, elementCost: 563101 },
           decontaminationResults: { workDays: 3.1734660361366034, onSiteDays: 3.1734660361366034, elementCost: 267396 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.1681137827259385, onSiteDays: 4.427544443041802, elementCost: 6197 },
           incidentCommandResults: { onSiteDays: 1951.8011204572722, elementCost: 6250853 },
           generalResults: {
@@ -4952,6 +5174,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.3413133187712134, onSiteDays: 2.3413133187712134, elementCost: 52264 },
           decontaminationResults: { workDays: 4.683865155951088, onSiteDays: 4.683865155951088, elementCost: 433320 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.216916644015518, onSiteDays: 7.079780099985787, elementCost: 43873 },
           incidentCommandResults: { onSiteDays: 1659.0062788811367, elementCost: 5881885 },
           generalResults: {
@@ -4971,6 +5194,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 4.826544316773854, onSiteDays: 4.826544316773854, elementCost: 120948 },
         decontaminationResults: { workDays: 3.561410312671543, onSiteDays: 3.561410312671543, elementCost: 368458 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 0.25936123746875756, onSiteDays: 5.575444338024083, elementCost: 6099 },
         incidentCommandResults: { onSiteDays: 1513.427117441119, elementCost: 6961826 },
         generalResults: {
@@ -4989,6 +5213,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 71.5630707380989, onSiteDays: 71.5630707380989, elementCost: 2258070 },
         decontaminationResults: { workDays: 3.77842449508105, onSiteDays: 3.77842449508105, elementCost: 419162 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.2205390620610412, onSiteDays: 9.936142384362741, elementCost: 42540 },
         incidentCommandResults: { onSiteDays: 2475.530336972707, elementCost: 7954798 },
         generalResults: {
@@ -5027,6 +5252,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.393415142473695, onSiteDays: 5.393415142473695, elementCost: 177860 },
           decontaminationResults: { workDays: 4.10911560317248, onSiteDays: 4.10911560317248, elementCost: 215119 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.8946667092693867, onSiteDays: 7.048892682337822, elementCost: 24252 },
           incidentCommandResults: { onSiteDays: 377.74816787597865, elementCost: 1164713 },
           generalResults: {
@@ -5045,6 +5271,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 21.60124419253258, onSiteDays: 21.60124419253258, elementCost: 385428 },
           decontaminationResults: { workDays: 3.9059685405590496, onSiteDays: 3.9059685405590496, elementCost: 444027 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.4972235640885305, onSiteDays: 9.241254853966844, elementCost: 41193 },
           incidentCommandResults: { onSiteDays: 1298.496510221034, elementCost: 4663184 },
           generalResults: {
@@ -5063,6 +5290,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 8.503367250688438, onSiteDays: 8.503367250688438, elementCost: 115221 },
           decontaminationResults: { workDays: 3.340900801667222, onSiteDays: 3.340900801667222, elementCost: 180025 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.8179454232892659, onSiteDays: 7.084967791204339, elementCost: 20655 },
           incidentCommandResults: { onSiteDays: 3480.105675528975, elementCost: 10888768 },
           generalResults: {
@@ -5082,6 +5310,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 11.943148066408481, onSiteDays: 11.943148066408481, elementCost: 137042 },
         decontaminationResults: { workDays: 3.3885820317986846, onSiteDays: 3.3885820317986846, elementCost: 600344 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 3.2942409975604954, onSiteDays: 14.32774229324638, elementCost: 132607 },
         incidentCommandResults: { onSiteDays: 6244.936820374547, elementCost: 29472717 },
         generalResults: {
@@ -5100,6 +5329,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 1.6729643635449798, onSiteDays: 1.6729643635449798, elementCost: 86226 },
         decontaminationResults: { workDays: 4.444786907975745, onSiteDays: 4.444786907975745, elementCost: 322327 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 2.7289580826311073, onSiteDays: 9.812370038695498, elementCost: 79953 },
         incidentCommandResults: { onSiteDays: 1300.8467462376063, elementCost: 5698814 },
         generalResults: {
@@ -5138,6 +5368,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.6113675797212244, onSiteDays: 3.6113675797212244, elementCost: 71104 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 18817 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 113.3201050899136, elementCost: 533106 },
           generalResults: {
@@ -5156,6 +5387,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.130562364176212, onSiteDays: 4.130562364176212, elementCost: 64823 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 50195 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 737.4173991612012, elementCost: 3246968 },
           generalResults: {
@@ -5174,6 +5406,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.5955826924625343, onSiteDays: 2.5955826924625343, elementCost: 121029 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 114424 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1188.075368354364, elementCost: 5406583 },
           generalResults: {
@@ -5193,6 +5426,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 2.439021577499373, onSiteDays: 2.439021577499373, elementCost: 84456 },
         decontaminationResults: { workDays: 3.292394815080891, onSiteDays: 3.292394815080891, elementCost: 785725 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 6.651154964363656, onSiteDays: 17.609792117733253, elementCost: 256513 },
         incidentCommandResults: { onSiteDays: 9490.18167577723, elementCost: 41751913 },
         generalResults: {
@@ -5211,6 +5445,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 28.770327694372938, onSiteDays: 28.770327694372938, elementCost: 1042643 },
         decontaminationResults: { workDays: 4.073863628104763, onSiteDays: 4.073863628104763, elementCost: 271632 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 3.386523583975686, onSiteDays: 14.155193340171293, elementCost: 134023 },
         incidentCommandResults: { onSiteDays: 1452.0103657608408, elementCost: 4770299 },
         generalResults: {
@@ -5249,6 +5484,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.063329187906904, onSiteDays: 2.063329187906904, elementCost: 27182 },
           decontaminationResults: { workDays: 3.4972164743806275, onSiteDays: 3.4972164743806275, elementCost: 120626 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.7914864259684662, onSiteDays: 6.174714850959653, elementCost: 28666 },
           incidentCommandResults: { onSiteDays: 432.31608087889083, elementCost: 2058858 },
           generalResults: {
@@ -5271,6 +5507,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 11556,
           },
           decontaminationResults: { workDays: 3.2279147212924237, onSiteDays: 3.2279147212924237, elementCost: 211226 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 6.485160347797962, onSiteDays: 15.824026631525907, elementCost: 170183 },
           incidentCommandResults: { onSiteDays: 1054.515847356664, elementCost: 4468219 },
           generalResults: {
@@ -5289,6 +5526,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.38458089717752, onSiteDays: 3.38458089717752, elementCost: 110612 },
           decontaminationResults: { workDays: 3.394257856624727, onSiteDays: 3.394257856624727, elementCost: 198267 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.6702441049065584, onSiteDays: 9.138067796605927, elementCost: 55449 },
           incidentCommandResults: { onSiteDays: 425.1718084190238, elementCost: 2005721 },
           generalResults: {
@@ -5308,6 +5546,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 28.21780930645697, onSiteDays: 28.21780930645697, elementCost: 841529 },
         decontaminationResults: { workDays: 3.1353788259754376, onSiteDays: 3.1353788259754376, elementCost: 317631 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 0.5866490403810142, onSiteDays: 6.392540229436576, elementCost: 23639 },
         incidentCommandResults: { onSiteDays: 8821.510856278717, elementCost: 33887189 },
         generalResults: {
@@ -5326,6 +5565,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 72.93639630133367, onSiteDays: 72.93639630133367, elementCost: 2429064 },
         decontaminationResults: { workDays: 3.084822411668678, onSiteDays: 3.084822411668678, elementCost: 123166 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 10.062386913544385, onSiteDays: 46.08738342289289, elementCost: 358533 },
         incidentCommandResults: { onSiteDays: 1735.8655341776803, elementCost: 5508027 },
         generalResults: {
@@ -5364,6 +5604,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.3774891560009772, onSiteDays: 1.3774891560009772, elementCost: 31786 },
           decontaminationResults: { workDays: 4.244687360069874, onSiteDays: 4.244687360069874, elementCost: 218585 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.2422933402877737, onSiteDays: 5.5285008684453265, elementCost: 10582 },
           incidentCommandResults: { onSiteDays: 553.7637923077629, elementCost: 1700121 },
           generalResults: {
@@ -5382,6 +5623,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.701852961574377, onSiteDays: 6.701852961574377, elementCost: 69609 },
           decontaminationResults: { workDays: 3.8732320123522617, onSiteDays: 3.8732320123522617, elementCost: 271696 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.0083687403232673, onSiteDays: 6.620350943980896, elementCost: 26961 },
           incidentCommandResults: { onSiteDays: 1438.4321853324263, elementCost: 6317331 },
           generalResults: {
@@ -5400,6 +5642,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 29.50912341627599, onSiteDays: 29.50912341627599, elementCost: 729905 },
           decontaminationResults: { workDays: 3.8654246523197333, onSiteDays: 3.8654246523197333, elementCost: 322977 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.8426005553992746, onSiteDays: 6.196823405179304, elementCost: 31475 },
           incidentCommandResults: { onSiteDays: 1043.8574913661157, elementCost: 4837982 },
           generalResults: {
@@ -5419,6 +5662,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 15.001245570761697, onSiteDays: 15.001245570761697, elementCost: 876242 },
         decontaminationResults: { workDays: 4.121648126542952, onSiteDays: 4.121648126542952, elementCost: 939328 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 13.68718975936015, onSiteDays: 31.903448005750285, elementCost: 485045 },
         incidentCommandResults: { onSiteDays: 1492.2247362307087, elementCost: 6146009 },
         generalResults: {
@@ -5437,6 +5681,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 165.53270184167346, onSiteDays: 165.53270184167346, elementCost: 5474043 },
         decontaminationResults: { workDays: 3.3525015298166547, onSiteDays: 3.3525015298166547, elementCost: 898073 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.288534394536744, onSiteDays: 15.750082239871464, elementCost: 148290 },
         incidentCommandResults: { onSiteDays: 6662.483478781675, elementCost: 21555043 },
         generalResults: {
@@ -5475,6 +5720,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 9.883033780796712, onSiteDays: 9.883033780796712, elementCost: 148871 },
           decontaminationResults: { workDays: 4.2612947931655905, onSiteDays: 4.2612947931655905, elementCost: 181039 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.7754553130275746, onSiteDays: 7.459490691866766, elementCost: 21011 },
           incidentCommandResults: { onSiteDays: 361.8745703260888, elementCost: 1533314 },
           generalResults: {
@@ -5493,6 +5739,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.437576446713008, onSiteDays: 6.437576446713008, elementCost: 219368 },
           decontaminationResults: { workDays: 3.718842435795544, onSiteDays: 3.718842435795544, elementCost: 316557 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.1374934620556643, onSiteDays: 7.6887368699496825, elementCost: 41346 },
           incidentCommandResults: { onSiteDays: 881.9560737522811, elementCost: 3928844 },
           generalResults: {
@@ -5511,6 +5758,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.6424971263710668, onSiteDays: 0.6424971263710668, elementCost: 21113 },
           decontaminationResults: { workDays: 3.6881869129576224, onSiteDays: 3.6881869129576224, elementCost: 350250 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.24774810973517006, onSiteDays: 4.715501484980542, elementCost: 6410 },
           incidentCommandResults: { onSiteDays: 1599.5295836790629, elementCost: 6420991 },
           generalResults: {
@@ -5530,6 +5778,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 1.3157371416978445, onSiteDays: 1.3157371416978445, elementCost: 66714 },
         decontaminationResults: { workDays: 4.852081657352876, onSiteDays: 4.852081657352876, elementCost: 489055 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 2.778793551309901, onSiteDays: 12.579412266338124, elementCost: 120376 },
         incidentCommandResults: { onSiteDays: 1416.6696100563215, elementCost: 5234607 },
         generalResults: {
@@ -5548,6 +5797,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 97.39013493767385, onSiteDays: 97.39013493767385, elementCost: 2311357 },
         decontaminationResults: { workDays: 4.587812109754378, onSiteDays: 4.587812109754378, elementCost: 632631 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.1137587859306428, onSiteDays: 6.664731915832701, elementCost: 33835 },
         incidentCommandResults: { onSiteDays: 2546.188356317719, elementCost: 11183405 },
         generalResults: {
@@ -5586,6 +5836,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.294885251462434, onSiteDays: 2.294885251462434, elementCost: 91673 },
           decontaminationResults: { workDays: 3.100135751557568, onSiteDays: 3.100135751557568, elementCost: 108104 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.7340810586949236, onSiteDays: 8.544505961388763, elementCost: 57480 },
           incidentCommandResults: { onSiteDays: 127.87312731636084, elementCost: 477587 },
           generalResults: {
@@ -5604,6 +5855,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 90.62850369526794, onSiteDays: 90.62850369526794, elementCost: 1838314 },
           decontaminationResults: { workDays: 4.06176627545193, onSiteDays: 4.06176627545193, elementCost: 190407 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.21078080376198102, onSiteDays: 5.625868515723525, elementCost: 6255 },
           incidentCommandResults: { onSiteDays: 852.0692360438755, elementCost: 4163498 },
           generalResults: {
@@ -5626,6 +5878,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 1248775,
           },
           decontaminationResults: { workDays: 3.504479469383247, onSiteDays: 3.504479469383247, elementCost: 158435 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 4.461647184982282, onSiteDays: 12.988595083205286, elementCost: 120893 },
           incidentCommandResults: { onSiteDays: 2787.557329246845, elementCost: 10683631 },
           generalResults: {
@@ -5645,6 +5898,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 167.2323880624868, onSiteDays: 167.2323880624868, elementCost: 2647564 },
         decontaminationResults: { workDays: 3.73220332728983, onSiteDays: 3.73220332728983, elementCost: 626696 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 0.9562451146938301, onSiteDays: 7.029636871281335, elementCost: 40593 },
         incidentCommandResults: { onSiteDays: 1389.1546636532055, elementCost: 6243841 },
         generalResults: {
@@ -5663,6 +5917,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 73.20741807121135, onSiteDays: 73.20741807121135, elementCost: 1703382 },
         decontaminationResults: { workDays: 3.754682309635608, onSiteDays: 3.754682309635608, elementCost: 287780 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 20.20977593200425, onSiteDays: 43.58911355353463, elementCost: 650098 },
         incidentCommandResults: { onSiteDays: 4336.745037625392, elementCost: 18663452 },
         generalResults: {
@@ -5701,6 +5956,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 11.049543848686316, onSiteDays: 11.049543848686316, elementCost: 163785 },
           decontaminationResults: { workDays: 3.241042607054357, onSiteDays: 3.241042607054357, elementCost: 163332 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.2581343284554385, onSiteDays: 10.501914224489848, elementCost: 96731 },
           incidentCommandResults: { onSiteDays: 296.84972327225626, elementCost: 1400671 },
           generalResults: {
@@ -5719,6 +5975,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 9.525402275473745, onSiteDays: 9.525402275473745, elementCost: 315048 },
           decontaminationResults: { workDays: 4.555847484515013, onSiteDays: 4.555847484515013, elementCost: 274019 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.640606319941328, onSiteDays: 17.072600253765316, elementCost: 92865 },
           incidentCommandResults: { onSiteDays: 1972.473329863398, elementCost: 6896598 },
           generalResults: {
@@ -5737,6 +5994,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 13.994805554219312, onSiteDays: 13.994805554219312, elementCost: 330323 },
           decontaminationResults: { workDays: 3.259481903225994, onSiteDays: 3.259481903225994, elementCost: 350098 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.713653882439501, onSiteDays: 7.219315287784186, elementCost: 21017 },
           incidentCommandResults: { onSiteDays: 2135.3060806113654, elementCost: 8946382 },
           generalResults: {
@@ -5756,6 +6014,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 0.7817945336154102, onSiteDays: 0.7817945336154102, elementCost: 40146 },
         decontaminationResults: { workDays: 4.184589938070762, onSiteDays: 4.184589938070762, elementCost: 446419 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.376617444242247, onSiteDays: 15.972158580399839, elementCost: 135958 },
         incidentCommandResults: { onSiteDays: 3444.475319264844, elementCost: 13366392 },
         generalResults: {
@@ -5774,6 +6033,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 93.31922733658462, onSiteDays: 93.31922733658462, elementCost: 1704345 },
         decontaminationResults: { workDays: 4.266226229087037, onSiteDays: 4.266226229087037, elementCost: 859541 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 10.415644435765978, onSiteDays: 27.87091779867886, elementCost: 440510 },
         incidentCommandResults: { onSiteDays: 3342.6576877655266, elementCost: 14195823 },
         generalResults: {
@@ -5812,6 +6072,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.112216317990854, onSiteDays: 5.112216317990854, elementCost: 121743 },
           decontaminationResults: { workDays: 3.6638018490429505, onSiteDays: 3.6638018490429505, elementCost: 247075 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.464033173735212, onSiteDays: 8.970504514692365, elementCost: 63487 },
           incidentCommandResults: { onSiteDays: 204.4370553922913, elementCost: 993273 },
           generalResults: {
@@ -5830,6 +6091,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 13.089198508481081, onSiteDays: 13.089198508481081, elementCost: 338671 },
           decontaminationResults: { workDays: 3.875045566092023, onSiteDays: 3.875045566092023, elementCost: 367547 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.0947738251653565, onSiteDays: 8.886258309127093, elementCost: 39864 },
           incidentCommandResults: { onSiteDays: 641.8913061174256, elementCost: 3141298 },
           generalResults: {
@@ -5848,6 +6110,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 25.693532582155868, onSiteDays: 25.693532582155868, elementCost: 425519 },
           decontaminationResults: { workDays: 4.763172366601222, onSiteDays: 4.763172366601222, elementCost: 408635 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.6799610600168808, onSiteDays: 9.998239773191026, elementCost: 57967 },
           incidentCommandResults: { onSiteDays: 607.9339817171399, elementCost: 2101109 },
           generalResults: {
@@ -5867,6 +6130,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 252.30924401926762, onSiteDays: 252.30924401926762, elementCost: 5272392 },
         decontaminationResults: { workDays: 4.379639196996493, onSiteDays: 4.379639196996493, elementCost: 315509 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 6.048632524146193, onSiteDays: 22.55823819963758, elementCost: 184373 },
         incidentCommandResults: { onSiteDays: 1624.1014368933493, elementCost: 6860361 },
         generalResults: {
@@ -5885,6 +6149,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 12.56860384334376, onSiteDays: 12.56860384334376, elementCost: 518838 },
         decontaminationResults: { workDays: 3.3800798753230086, onSiteDays: 3.3800798753230086, elementCost: 495539 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 8.918102741482853, onSiteDays: 29.864804619178784, elementCost: 375699 },
         incidentCommandResults: { onSiteDays: 1125.1333891185611, elementCost: 3850554 },
         generalResults: {
@@ -5923,6 +6188,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.3847960644083708, onSiteDays: 0.3847960644083708, elementCost: 19452 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 17943 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 61.817417491091085, elementCost: 239640 },
           generalResults: {
@@ -5941,6 +6207,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.4539443583202103, onSiteDays: 2.4539443583202103, elementCost: 78483 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 176007 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 70.35968414270381, elementCost: 222807 },
           generalResults: {
@@ -5959,6 +6226,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 8.016384984879007, onSiteDays: 8.016384984879007, elementCost: 351916 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 105072 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1138.2633844723127, elementCost: 5368222 },
           generalResults: {
@@ -5978,6 +6246,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 58.59221232471583, onSiteDays: 58.59221232471583, elementCost: 1217426 },
         decontaminationResults: { workDays: 4.294678197078099, onSiteDays: 4.294678197078099, elementCost: 597575 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 3.637108987364797, onSiteDays: 11.48292431909827, elementCost: 142614 },
         incidentCommandResults: { onSiteDays: 1913.2419623082637, elementCost: 6877692 },
         generalResults: {
@@ -5996,6 +6265,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 182.7571916352142, onSiteDays: 182.7571916352142, elementCost: 2704517 },
         decontaminationResults: { workDays: 3.761548468089092, onSiteDays: 3.761548468089092, elementCost: 677815 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 12.383406413550746, onSiteDays: 33.86368162098143, elementCost: 453364 },
         incidentCommandResults: { onSiteDays: 1937.7510383393278, elementCost: 8247359 },
         generalResults: {
@@ -6034,6 +6304,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.222709886065038, onSiteDays: 6.222709886065038, elementCost: 130154 },
           decontaminationResults: { workDays: 4.82597533423127, onSiteDays: 4.82597533423127, elementCost: 144379 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.0366300474128327, onSiteDays: 6.676202871587727, elementCost: 27553 },
           incidentCommandResults: { onSiteDays: 264.310451786977, elementCost: 1145259 },
           generalResults: {
@@ -6052,6 +6323,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.3317671289514977, onSiteDays: 0.3317671289514977, elementCost: 24721 },
           decontaminationResults: { workDays: 3.2436312684425226, onSiteDays: 3.2436312684425226, elementCost: 205200 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.6229088044500308, onSiteDays: 8.260523528444537, elementCost: 71197 },
           incidentCommandResults: { onSiteDays: 611.1618929972738, elementCost: 2446571 },
           generalResults: {
@@ -6070,6 +6342,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 13.667960919495563, onSiteDays: 13.667960919495563, elementCost: 435009 },
           decontaminationResults: { workDays: 4.325234660721671, onSiteDays: 4.325234660721671, elementCost: 279254 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.0856701735492122, onSiteDays: 9.365860888885155, elementCost: 55506 },
           incidentCommandResults: { onSiteDays: 642.6648967603068, elementCost: 3074751 },
           generalResults: {
@@ -6089,6 +6362,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 5.914577220036703, onSiteDays: 5.914577220036703, elementCost: 116168 },
         decontaminationResults: { workDays: 4.658134482721364, onSiteDays: 4.658134482721364, elementCost: 308090 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 16.29232743644407, onSiteDays: 59.776031197329644, elementCost: 380539 },
         incidentCommandResults: { onSiteDays: 1827.441110898902, elementCost: 8174733 },
         generalResults: {
@@ -6107,6 +6381,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 25.374179597875916, onSiteDays: 25.374179597875916, elementCost: 843609 },
         decontaminationResults: { workDays: 4.876315487985573, onSiteDays: 4.876315487985573, elementCost: 619405 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 17.608743357919852, onSiteDays: 46.66389118871332, elementCost: 768871 },
         incidentCommandResults: { onSiteDays: 1420.9119755226145, elementCost: 6462107 },
         generalResults: {
@@ -6145,6 +6420,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.922760964619819, onSiteDays: 1.922760964619819, elementCost: 32864 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 9895 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 30.429382849700563, elementCost: 93909 },
           generalResults: {
@@ -6163,6 +6439,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 10.634649524843798, onSiteDays: 10.634649524843798, elementCost: 657774 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 25577 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 439.7066824484515, elementCost: 1607301 },
           generalResults: {
@@ -6181,6 +6458,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 12.23353236506821, onSiteDays: 12.23353236506821, elementCost: 314671 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 46592 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 201.1917770419012, elementCost: 654443 },
           generalResults: {
@@ -6200,6 +6478,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 13.701319171308086, onSiteDays: 13.701319171308086, elementCost: 520549 },
         decontaminationResults: { workDays: 4.856012541767212, onSiteDays: 4.856012541767212, elementCost: 906986 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 12.298124547709243, onSiteDays: 29.1706916212136, elementCost: 369989 },
         incidentCommandResults: { onSiteDays: 5107.224941470824, elementCost: 22074394 },
         generalResults: {
@@ -6218,6 +6497,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 36.16543795304638, onSiteDays: 36.16543795304638, elementCost: 1256355 },
         decontaminationResults: { workDays: 3.890530133361586, onSiteDays: 3.890530133361586, elementCost: 383737 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.8688170902501555, onSiteDays: 10.663169986903107, elementCost: 81412 },
         incidentCommandResults: { onSiteDays: 6133.786052114858, elementCost: 19764526 },
         generalResults: {
@@ -6256,6 +6536,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 8.48892859119658, onSiteDays: 8.48892859119658, elementCost: 128534 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 29428 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 93.71231640819741, elementCost: 460563 },
           generalResults: {
@@ -6274,6 +6555,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 16.332263851008847, onSiteDays: 16.332263851008847, elementCost: 391439 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 204586 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 231.91552476148019, elementCost: 1113638 },
           generalResults: {
@@ -6292,6 +6574,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 23.591607148262824, onSiteDays: 23.591607148262824, elementCost: 919362 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 33888 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 268.7622727649526, elementCost: 865570 },
           generalResults: {
@@ -6311,6 +6594,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 58.553441878085806, onSiteDays: 58.553441878085806, elementCost: 2187005 },
         decontaminationResults: { workDays: 4.947774078684806, onSiteDays: 4.947774078684806, elementCost: 430914 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 41.42411331752526, onSiteDays: 98.98181137954694, elementCost: 1212761 },
         incidentCommandResults: { onSiteDays: 2916.879181164654, elementCost: 9478637 },
         generalResults: {
@@ -6329,6 +6613,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 56.44401212957777, onSiteDays: 56.44401212957777, elementCost: 2254400 },
         decontaminationResults: { workDays: 4.229568446806997, onSiteDays: 4.229568446806997, elementCost: 811098 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 15.601360153552958, onSiteDays: 37.442482963984624, elementCost: 385761 },
         incidentCommandResults: { onSiteDays: 669.7578585723614, elementCost: 2122484 },
         generalResults: {
@@ -6367,6 +6652,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.226093515148219, onSiteDays: 5.226093515148219, elementCost: 149431 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 40891 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 227.5829369744167, elementCost: 740318 },
           generalResults: {
@@ -6385,6 +6671,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.139179778234281, onSiteDays: 7.139179778234281, elementCost: 328299 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 122146 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 340.4437973816719, elementCost: 1154410 },
           generalResults: {
@@ -6403,6 +6690,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 30.23312805871194, onSiteDays: 30.23312805871194, elementCost: 1004941 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 116836 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 191.5519874346151, elementCost: 916248 },
           generalResults: {
@@ -6422,6 +6710,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 18.495340537480217, onSiteDays: 18.495340537480217, elementCost: 413722 },
         decontaminationResults: { workDays: 4.106290327642646, onSiteDays: 4.106290327642646, elementCost: 351784 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 11.227482910388067, onSiteDays: 35.988611327681305, elementCost: 423439 },
         incidentCommandResults: { onSiteDays: 3500.154389719961, elementCost: 10951275 },
         generalResults: {
@@ -6440,6 +6729,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 58.87081213614397, onSiteDays: 58.87081213614397, elementCost: 1443191 },
         decontaminationResults: { workDays: 4.449405685870304, onSiteDays: 4.449405685870304, elementCost: 579020 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 13.484065561800646, onSiteDays: 39.367896488708865, elementCost: 561729 },
         incidentCommandResults: { onSiteDays: 7980.51822901297, elementCost: 33920393 },
         generalResults: {
@@ -6478,6 +6768,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 8.494476493786161, onSiteDays: 8.494476493786161, elementCost: 115897 },
           decontaminationResults: { workDays: 4.997026996686363, onSiteDays: 4.997026996686363, elementCost: 198069 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.9149204391975848, onSiteDays: 7.040118336935772, elementCost: 37398 },
           incidentCommandResults: { onSiteDays: 311.7623417763504, elementCost: 1340008 },
           generalResults: {
@@ -6496,6 +6787,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 10.52878337006835, onSiteDays: 10.52878337006835, elementCost: 376507 },
           decontaminationResults: { workDays: 4.294973553925514, onSiteDays: 4.294973553925514, elementCost: 266029 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.797587454451705, onSiteDays: 12.534786084892872, elementCost: 106461 },
           incidentCommandResults: { onSiteDays: 1524.9915177786982, elementCost: 7366598 },
           generalResults: {
@@ -6514,6 +6806,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 81.8005028760819, onSiteDays: 81.8005028760819, elementCost: 1352254 },
           decontaminationResults: { workDays: 4.915945577415625, onSiteDays: 4.915945577415625, elementCost: 301394 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 8.017284511593177, onSiteDays: 27.5308236206288, elementCost: 238640 },
           incidentCommandResults: { onSiteDays: 1183.1513355429015, elementCost: 3803034 },
           generalResults: {
@@ -6533,6 +6826,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 21.039968601284777, onSiteDays: 21.039968601284777, elementCost: 767453 },
         decontaminationResults: { workDays: 4.1235253855408, onSiteDays: 4.1235253855408, elementCost: 589735 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.465917092564932, onSiteDays: 29.518636478706856, elementCost: 215215 },
         incidentCommandResults: { onSiteDays: 2658.6202393325866, elementCost: 12621582 },
         generalResults: {
@@ -6551,6 +6845,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 1.2487786999853605, onSiteDays: 1.2487786999853605, elementCost: 43708 },
         decontaminationResults: { workDays: 3.972027419361292, onSiteDays: 3.972027419361292, elementCost: 700195 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 17.482245752279688, onSiteDays: 49.60357532810102, elementCost: 703340 },
         incidentCommandResults: { onSiteDays: 2391.564366504767, elementCost: 10888356 },
         generalResults: {
@@ -6589,6 +6884,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.6951685957387195, onSiteDays: 7.6951685957387195, elementCost: 195806 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 7257 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 34.35507713094493, elementCost: 137428 },
           generalResults: {
@@ -6607,6 +6903,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 23.620130152193425, onSiteDays: 23.620130152193425, elementCost: 446885 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 197442 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 168.8343553179318, elementCost: 699912 },
           generalResults: {
@@ -6625,6 +6922,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.828616187203485, onSiteDays: 0.828616187203485, elementCost: 19116 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 47942 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1893.0196628950218, elementCost: 6364125 },
           generalResults: {
@@ -6644,6 +6942,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 15.85524524659039, onSiteDays: 15.85524524659039, elementCost: 289487 },
         decontaminationResults: { workDays: 3.755422927149437, onSiteDays: 3.755422927149437, elementCost: 742711 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 15.575421279898968, onSiteDays: 34.74316565953953, elementCost: 499642 },
         incidentCommandResults: { onSiteDays: 1736.3365913422494, elementCost: 7733517 },
         generalResults: {
@@ -6662,6 +6961,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 37.4455430244094, onSiteDays: 37.4455430244094, elementCost: 1185349 },
         decontaminationResults: { workDays: 4.000912503106732, onSiteDays: 4.000912503106732, elementCost: 996094 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.259130980744302, onSiteDays: 8.097662019566089, elementCost: 55245 },
         incidentCommandResults: { onSiteDays: 7795.78581105862, elementCost: 26885063 },
         generalResults: {
@@ -6700,6 +7000,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.07313182849556, onSiteDays: 5.07313182849556, elementCost: 216641 },
           decontaminationResults: { workDays: 4.738221349599357, onSiteDays: 4.738221349599357, elementCost: 132064 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.25789020253402456, onSiteDays: 5.886226071298276, elementCost: 9580 },
           incidentCommandResults: { onSiteDays: 250.70110828274574, elementCost: 1021413 },
           generalResults: {
@@ -6718,6 +7019,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 25.212559008107554, onSiteDays: 25.212559008107554, elementCost: 425817 },
           decontaminationResults: { workDays: 3.046031461573679, onSiteDays: 3.046031461573679, elementCost: 281435 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 13.61135451735751, onSiteDays: 48.665607253676484, elementCost: 343039 },
           incidentCommandResults: { onSiteDays: 1039.0307716272296, elementCost: 4555813 },
           generalResults: {
@@ -6736,6 +7038,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 38.57921919198758, onSiteDays: 38.57921919198758, elementCost: 955152 },
           decontaminationResults: { workDays: 3.116153399952723, onSiteDays: 3.116153399952723, elementCost: 198666 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 12.075560206104212, onSiteDays: 33.11189967682795, elementCost: 362596 },
           incidentCommandResults: { onSiteDays: 1744.6545830716996, elementCost: 6737554 },
           generalResults: {
@@ -6755,6 +7058,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 3.062624031547692, onSiteDays: 3.062624031547692, elementCost: 86502 },
         decontaminationResults: { workDays: 4.294503558262834, onSiteDays: 4.294503558262834, elementCost: 507752 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 12.018040460943899, onSiteDays: 30.77695030888271, elementCost: 344625 },
         incidentCommandResults: { onSiteDays: 1481.8347675132889, elementCost: 6454174 },
         generalResults: {
@@ -6773,6 +7077,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 66.17803099795606, onSiteDays: 66.17803099795606, elementCost: 1340686 },
         decontaminationResults: { workDays: 3.676842352998639, onSiteDays: 3.676842352998639, elementCost: 1011559 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 10.387475242692808, onSiteDays: 28.042386094244762, elementCost: 332237 },
         incidentCommandResults: { onSiteDays: 4172.349138192509, elementCost: 13317800 },
         generalResults: {
@@ -6811,6 +7116,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.5881113626957934, onSiteDays: 1.5881113626957934, elementCost: 73452 },
           decontaminationResults: { workDays: 4.6970030199030885, onSiteDays: 4.6970030199030885, elementCost: 266823 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.23531420257103972, onSiteDays: 5.399678441565163, elementCost: 5815 },
           incidentCommandResults: { onSiteDays: 410.6654652745028, elementCost: 1551215 },
           generalResults: {
@@ -6829,6 +7135,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 25.369362030183705, onSiteDays: 25.369362030183705, elementCost: 438828 },
           decontaminationResults: { workDays: 4.1239849611008506, onSiteDays: 4.1239849611008506, elementCost: 341141 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.7295434179696625, onSiteDays: 6.491692569747714, elementCost: 24296 },
           incidentCommandResults: { onSiteDays: 2000.7690175894502, elementCost: 8186362 },
           generalResults: {
@@ -6847,6 +7154,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.929117722033192, onSiteDays: 4.929117722033192, elementCost: 131643 },
           decontaminationResults: { workDays: 3.478871924448496, onSiteDays: 3.478871924448496, elementCost: 475348 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.4428263963373358, onSiteDays: 8.59991677382054, elementCost: 49909 },
           incidentCommandResults: { onSiteDays: 1542.7747475737356, elementCost: 4797543 },
           generalResults: {
@@ -6866,6 +7174,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 40.37314136041148, onSiteDays: 40.37314136041148, elementCost: 865096 },
         decontaminationResults: { workDays: 4.206407883951069, onSiteDays: 4.206407883951069, elementCost: 453706 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 13.328564717989673, onSiteDays: 32.56047568668776, elementCost: 419733 },
         incidentCommandResults: { onSiteDays: 1994.526827038275, elementCost: 6703974 },
         generalResults: {
@@ -6884,6 +7193,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 22.3445189261681, onSiteDays: 22.3445189261681, elementCost: 513430 },
         decontaminationResults: { workDays: 4.479363662069515, onSiteDays: 4.479363662069515, elementCost: 535588 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 3.259642974756769, onSiteDays: 10.226653404571135, elementCost: 79371 },
         incidentCommandResults: { onSiteDays: 2119.810575513824, elementCost: 7634305 },
         generalResults: {
@@ -6922,6 +7232,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.136954764464435, onSiteDays: 3.136954764464435, elementCost: 129719 },
           decontaminationResults: { workDays: 3.413052515688597, onSiteDays: 3.413052515688597, elementCost: 139547 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.1821107521652912, onSiteDays: 6.977132275704788, elementCost: 51577 },
           incidentCommandResults: { onSiteDays: 150.68396657232134, elementCost: 576491 },
           generalResults: {
@@ -6940,6 +7251,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.2499696973571144, onSiteDays: 3.2499696973571144, elementCost: 114835 },
           decontaminationResults: { workDays: 3.7859473844957416, onSiteDays: 3.7859473844957416, elementCost: 355949 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.3652580752301733, onSiteDays: 6.067696552018459, elementCost: 16487 },
           incidentCommandResults: { onSiteDays: 644.273107014695, elementCost: 3128230 },
           generalResults: {
@@ -6958,6 +7270,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.546892568836808, onSiteDays: 7.546892568836808, elementCost: 181485 },
           decontaminationResults: { workDays: 3.896711857732551, onSiteDays: 3.896711857732551, elementCost: 177940 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 10.739844713058636, onSiteDays: 39.61149077490447, elementCost: 340004 },
           incidentCommandResults: { onSiteDays: 458.0778513447161, elementCost: 1757488 },
           generalResults: {
@@ -6977,6 +7290,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 162.94344613690595, onSiteDays: 162.94344613690595, elementCost: 2444473 },
         decontaminationResults: { workDays: 3.1916153599022925, onSiteDays: 3.1916153599022925, elementCost: 759844 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 10.131630586264068, onSiteDays: 26.558233362114066, elementCost: 386823 },
         incidentCommandResults: { onSiteDays: 5037.299075771734, elementCost: 22268860 },
         generalResults: {
@@ -6995,6 +7309,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 33.35769578573188, onSiteDays: 33.35769578573188, elementCost: 1516453 },
         decontaminationResults: { workDays: 4.486438909891629, onSiteDays: 4.486438909891629, elementCost: 314981 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 28.712658143720574, onSiteDays: 69.4321988249074, elementCost: 782711 },
         incidentCommandResults: { onSiteDays: 1703.0704375698574, elementCost: 7814113 },
         generalResults: {
@@ -7033,6 +7348,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 5.669842914970185, onSiteDays: 5.669842914970185, elementCost: 181181 },
           decontaminationResults: { workDays: 4.78654784937076, onSiteDays: 4.78654784937076, elementCost: 364988 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.22226653524169818, onSiteDays: 5.889467775584449, elementCost: 9915 },
           incidentCommandResults: { onSiteDays: 393.365596220281, elementCost: 1499529 },
           generalResults: {
@@ -7051,6 +7367,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.185445365805581, onSiteDays: 3.185445365805581, elementCost: 121856 },
           decontaminationResults: { workDays: 4.197062377165319, onSiteDays: 4.197062377165319, elementCost: 349455 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.0209138907074466, onSiteDays: 8.298998547415017, elementCost: 57212 },
           incidentCommandResults: { onSiteDays: 1329.3299787975038, elementCost: 6490050 },
           generalResults: {
@@ -7073,6 +7390,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 1162380,
           },
           decontaminationResults: { workDays: 3.434909012269906, onSiteDays: 3.434909012269906, elementCost: 366094 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.7144214697418675, onSiteDays: 7.050982961123861, elementCost: 17274 },
           incidentCommandResults: { onSiteDays: 952.5620227065758, elementCost: 2953114 },
           generalResults: {
@@ -7092,6 +7410,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 9.937438426492523, onSiteDays: 9.937438426492523, elementCost: 150617 },
         decontaminationResults: { workDays: 3.379715061834947, onSiteDays: 3.379715061834947, elementCost: 628552 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 8.243942712265369, onSiteDays: 36.497446800106964, elementCost: 259034 },
         incidentCommandResults: { onSiteDays: 953.3031963243354, elementCost: 3789767 },
         generalResults: {
@@ -7110,6 +7429,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 20.529163098918417, onSiteDays: 20.529163098918417, elementCost: 737840 },
         decontaminationResults: { workDays: 3.6257331717353622, onSiteDays: 3.6257331717353622, elementCost: 237369 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.023338928775494, onSiteDays: 13.710647804911279, elementCost: 224179 },
         incidentCommandResults: { onSiteDays: 2562.760658014612, elementCost: 9551564 },
         generalResults: {
@@ -7148,6 +7468,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.0045050373715236, onSiteDays: 3.0045050373715236, elementCost: 135902 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 38251 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 97.43720608178585, elementCost: 375070 },
           generalResults: {
@@ -7166,6 +7487,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 13.30004176821378, onSiteDays: 13.30004176821378, elementCost: 494972 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 48431 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 95.37526004442688, elementCost: 332933 },
           generalResults: {
@@ -7188,6 +7510,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 5925,
           },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 160187 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 79.55163952943326, elementCost: 334610 },
           generalResults: {
@@ -7207,6 +7530,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 22.069950748573824, onSiteDays: 22.069950748573824, elementCost: 613586 },
         decontaminationResults: { workDays: 4.390502806145349, onSiteDays: 4.390502806145349, elementCost: 576817 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 2.7322211202524325, onSiteDays: 12.926609477438358, elementCost: 108364 },
         incidentCommandResults: { onSiteDays: 990.2764291704565, elementCost: 4255952 },
         generalResults: {
@@ -7225,6 +7549,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 25.08864697398299, onSiteDays: 25.08864697398299, elementCost: 666848 },
         decontaminationResults: { workDays: 4.474185428459706, onSiteDays: 4.474185428459706, elementCost: 263271 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 7.862807691773232, onSiteDays: 30.4453833447196, elementCost: 241363 },
         incidentCommandResults: { onSiteDays: 1600.2073519613086, elementCost: 6675447 },
         generalResults: {
@@ -7263,6 +7588,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.6069045613658096, onSiteDays: 0.6069045613658096, elementCost: 24488 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 43032 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 309.1896621706628, elementCost: 1199700 },
           generalResults: {
@@ -7281,6 +7607,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 16.24071426351071, onSiteDays: 16.24071426351071, elementCost: 903639 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 57064 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 463.40695739101824, elementCost: 2262778 },
           generalResults: {
@@ -7299,6 +7626,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 11.250448151955533, onSiteDays: 11.250448151955533, elementCost: 445981 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 55789 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 367.1633351332532, elementCost: 1281875 },
           generalResults: {
@@ -7318,6 +7646,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 55.59774898830736, onSiteDays: 55.59774898830736, elementCost: 2582466 },
         decontaminationResults: { workDays: 4.969900636461075, onSiteDays: 4.969900636461075, elementCost: 977451 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 9.975303459776002, onSiteDays: 21.064081285693526, elementCost: 294086 },
         incidentCommandResults: { onSiteDays: 3424.59626170102, elementCost: 14962266 },
         generalResults: {
@@ -7336,6 +7665,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 71.82085726160444, onSiteDays: 71.82085726160444, elementCost: 3228531 },
         decontaminationResults: { workDays: 3.7916213457453116, onSiteDays: 3.7916213457453116, elementCost: 603528 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 7.766634329985866, onSiteDays: 20.88967623042037, elementCost: 221247 },
         incidentCommandResults: { onSiteDays: 2763.1040999531097, elementCost: 11454373 },
         generalResults: {
@@ -7374,6 +7704,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.6327099060652634, onSiteDays: 1.6327099060652634, elementCost: 100364 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 37353 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 212.23015312205462, elementCost: 874517 },
           generalResults: {
@@ -7392,6 +7723,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.99185785457083, onSiteDays: 4.99185785457083, elementCost: 100180 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 16361 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 762.8782158640827, elementCost: 2581954 },
           generalResults: {
@@ -7410,6 +7742,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.54836063254429, onSiteDays: 7.54836063254429, elementCost: 127060 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 175251 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 176.3315727166712, elementCost: 771953 },
           generalResults: {
@@ -7429,6 +7762,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 3.3483454716516823, onSiteDays: 3.3483454716516823, elementCost: 181632 },
         decontaminationResults: { workDays: 3.2937664096927657, onSiteDays: 3.2937664096927657, elementCost: 401066 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 18.73814882316144, onSiteDays: 56.91638800821792, elementCost: 670622 },
         incidentCommandResults: { onSiteDays: 1011.2585514165155, elementCost: 4613429 },
         generalResults: {
@@ -7447,6 +7781,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 199.0088360940449, onSiteDays: 199.0088360940449, elementCost: 3398136 },
         decontaminationResults: { workDays: 3.1303477394698067, onSiteDays: 3.1303477394698067, elementCost: 415745 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 13.260201206740744, onSiteDays: 41.699314087568055, elementCost: 344135 },
         incidentCommandResults: { onSiteDays: 1911.2352776897205, elementCost: 7819042 },
         generalResults: {
@@ -7485,6 +7820,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.566826961659893, onSiteDays: 2.566826961659893, elementCost: 142967 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 39079 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 64.15972105583712, elementCost: 272767 },
           generalResults: {
@@ -7503,6 +7839,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 28.71171396390308, onSiteDays: 28.71171396390308, elementCost: 572817 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 179366 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1069.142717143042, elementCost: 4370729 },
           generalResults: {
@@ -7521,6 +7858,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 16.553336590500923, onSiteDays: 16.553336590500923, elementCost: 686028 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 149478 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 255.0731682000676, elementCost: 1215955 },
           generalResults: {
@@ -7540,6 +7878,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 66.20995504800243, onSiteDays: 66.20995504800243, elementCost: 1039387 },
         decontaminationResults: { workDays: 3.1813348606651033, onSiteDays: 3.1813348606651033, elementCost: 556753 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.4758984684056056, onSiteDays: 9.212382142286124, elementCost: 64627 },
         incidentCommandResults: { onSiteDays: 2786.531895013439, elementCost: 9560531 },
         generalResults: {
@@ -7558,6 +7897,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 3.774767368986902, onSiteDays: 3.774767368986902, elementCost: 171919 },
         decontaminationResults: { workDays: 4.045282938295343, onSiteDays: 4.045282938295343, elementCost: 503130 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.8139442510891441, onSiteDays: 9.140431056912112, elementCost: 63495 },
         incidentCommandResults: { onSiteDays: 1462.6431700078037, elementCost: 5654385 },
         generalResults: {
@@ -7600,6 +7940,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 4570,
           },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 42650 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 170.61904721907877, elementCost: 561504 },
           generalResults: {
@@ -7618,6 +7959,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 30.02163448175682, onSiteDays: 30.02163448175682, elementCost: 569354 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 56408 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 944.2963466831125, elementCost: 2917294 },
           generalResults: {
@@ -7636,6 +7978,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 17.847395429392424, onSiteDays: 17.847395429392424, elementCost: 245202 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 121565 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 743.1259890174829, elementCost: 3444341 },
           generalResults: {
@@ -7655,6 +7998,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 26.58404996886934, onSiteDays: 26.58404996886934, elementCost: 1056812 },
         decontaminationResults: { workDays: 4.414977810209379, onSiteDays: 4.414977810209379, elementCost: 298953 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.890636987539405, onSiteDays: 13.242399308546897, elementCost: 186927 },
         incidentCommandResults: { onSiteDays: 3097.207901269697, elementCost: 13312270 },
         generalResults: {
@@ -7673,6 +8017,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 58.31565649930019, onSiteDays: 58.31565649930019, elementCost: 1279870 },
         decontaminationResults: { workDays: 3.4153106371907773, onSiteDays: 3.4153106371907773, elementCost: 471457 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 9.502229622250745, onSiteDays: 49.478060570568694, elementCost: 394030 },
         incidentCommandResults: { onSiteDays: 2223.3519595205917, elementCost: 9308779 },
         generalResults: {
@@ -7711,6 +8056,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.9976911679610923, onSiteDays: 0.9976911679610923, elementCost: 31137 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 21238 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 267.60588410963686, elementCost: 1227324 },
           generalResults: {
@@ -7729,6 +8075,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 14.55532148299227, onSiteDays: 14.55532148299227, elementCost: 230914 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 91141 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 223.1191577812538, elementCost: 940516 },
           generalResults: {
@@ -7747,6 +8094,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.2398953456746717, onSiteDays: 2.2398953456746717, elementCost: 62728 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 19694 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 175.66657531083726, elementCost: 838805 },
           generalResults: {
@@ -7766,6 +8114,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 85.24922127303626, onSiteDays: 85.24922127303626, elementCost: 1263594 },
         decontaminationResults: { workDays: 3.9131550316030985, onSiteDays: 3.9131550316030985, elementCost: 290745 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 12.277048125791369, onSiteDays: 40.372396245009625, elementCost: 383933 },
         incidentCommandResults: { onSiteDays: 3395.9687864442253, elementCost: 13862978 },
         generalResults: {
@@ -7784,6 +8133,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 11.994529739293755, onSiteDays: 11.994529739293755, elementCost: 468739 },
         decontaminationResults: { workDays: 4.453200308944378, onSiteDays: 4.453200308944378, elementCost: 421011 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.5874106630490274, onSiteDays: 7.367438704352654, elementCost: 56209 },
         incidentCommandResults: { onSiteDays: 4461.219568349079, elementCost: 17129402 },
         generalResults: {
@@ -7822,6 +8172,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.2925979115387948, onSiteDays: 0.2925979115387948, elementCost: 18848 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 16828 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 86.3140506479673, elementCost: 394866 },
           generalResults: {
@@ -7840,6 +8191,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.5090042171488545, onSiteDays: 4.5090042171488545, elementCost: 236324 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 212781 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 949.1268737471654, elementCost: 3923886 },
           generalResults: {
@@ -7858,6 +8210,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 18.183056663082972, onSiteDays: 18.183056663082972, elementCost: 511369 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 178017 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 863.9843321369409, elementCost: 3151396 },
           generalResults: {
@@ -7877,6 +8230,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 189.60024357339762, onSiteDays: 189.60024357339762, elementCost: 4780035 },
         decontaminationResults: { workDays: 4.21366709545573, onSiteDays: 4.21366709545573, elementCost: 525142 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 10.484512469833744, onSiteDays: 37.78434144014317, elementCost: 453385 },
         incidentCommandResults: { onSiteDays: 2223.432202739646, elementCost: 7004582 },
         generalResults: {
@@ -7895,6 +8249,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 60.505699219874714, onSiteDays: 60.505699219874714, elementCost: 2233057 },
         decontaminationResults: { workDays: 3.409226439988526, onSiteDays: 3.409226439988526, elementCost: 521547 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 17.87181461355245, onSiteDays: 53.93436154842371, elementCost: 693498 },
         incidentCommandResults: { onSiteDays: 2015.8704105864488, elementCost: 6911011 },
         generalResults: {
@@ -7933,6 +8288,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.0954723696315805, onSiteDays: 4.0954723696315805, elementCost: 146097 },
           decontaminationResults: { workDays: 3.2764041810940028, onSiteDays: 3.2764041810940028, elementCost: 290521 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.0708950798300623, onSiteDays: 8.100831269984418, elementCost: 29657 },
           incidentCommandResults: { onSiteDays: 346.392186995923, elementCost: 1615709 },
           generalResults: {
@@ -7951,6 +8307,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.4545407715487108, onSiteDays: 0.4545407715487108, elementCost: 22992 },
           decontaminationResults: { workDays: 4.561493929373448, onSiteDays: 4.561493929373448, elementCost: 327554 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.2516853647955166, onSiteDays: 11.560459838759888, elementCost: 73512 },
           incidentCommandResults: { onSiteDays: 889.8175614984699, elementCost: 3662993 },
           generalResults: {
@@ -7969,6 +8326,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.291194171419785, onSiteDays: 7.291194171419785, elementCost: 205956 },
           decontaminationResults: { workDays: 3.421203437825014, onSiteDays: 3.421203437825014, elementCost: 328956 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.6207745346655936, onSiteDays: 5.211032381613822, elementCost: 24797 },
           incidentCommandResults: { onSiteDays: 656.6427457966711, elementCost: 3033173 },
           generalResults: {
@@ -7988,6 +8346,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 3.949615252438615, onSiteDays: 3.949615252438615, elementCost: 114044 },
         decontaminationResults: { workDays: 3.629564043746694, onSiteDays: 3.629564043746694, elementCost: 487120 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 3.8483971727962594, onSiteDays: 11.892729616940594, elementCost: 110225 },
         incidentCommandResults: { onSiteDays: 3507.2611423307003, elementCost: 13391187 },
         generalResults: {
@@ -8006,6 +8365,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 30.06703280302908, onSiteDays: 30.06703280302908, elementCost: 815970 },
         decontaminationResults: { workDays: 4.332040713944481, onSiteDays: 4.332040713944481, elementCost: 470277 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 25.825526935452014, onSiteDays: 61.96926109891133, elementCost: 734879 },
         incidentCommandResults: { onSiteDays: 2156.7879636761854, elementCost: 7190880 },
         generalResults: {
@@ -8044,6 +8404,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 10.856205267349297, onSiteDays: 10.856205267349297, elementCost: 176024 },
           decontaminationResults: { workDays: 4.277323472145322, onSiteDays: 4.277323472145322, elementCost: 217659 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.977469064728514, onSiteDays: 10.647667790351903, elementCost: 89547 },
           incidentCommandResults: { onSiteDays: 221.16971810815818, elementCost: 1045170 },
           generalResults: {
@@ -8062,6 +8423,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 9.182350783994078, onSiteDays: 9.182350783994078, elementCost: 249438 },
           decontaminationResults: { workDays: 4.537044220496212, onSiteDays: 4.537044220496212, elementCost: 298852 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 13.192873291477293, onSiteDays: 25.14138359171914, elementCost: 317206 },
           incidentCommandResults: { onSiteDays: 520.3973431888381, elementCost: 2209318 },
           generalResults: {
@@ -8080,6 +8442,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 10.953211716318407, onSiteDays: 10.953211716318407, elementCost: 379967 },
           decontaminationResults: { workDays: 4.823635289404456, onSiteDays: 4.823635289404456, elementCost: 326115 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.4898318582182015, onSiteDays: 12.179373347046402, elementCost: 93393 },
           incidentCommandResults: { onSiteDays: 1807.9611977236586, elementCost: 5626978 },
           generalResults: {
@@ -8099,6 +8462,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 32.70563561647243, onSiteDays: 32.70563561647243, elementCost: 1510353 },
         decontaminationResults: { workDays: 3.837535745193608, onSiteDays: 3.837535745193608, elementCost: 474353 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.4303928842535525, onSiteDays: 13.969561650504911, elementCost: 110938 },
         incidentCommandResults: { onSiteDays: 2629.634209121501, elementCost: 8034023 },
         generalResults: {
@@ -8117,6 +8481,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 38.733084068123475, onSiteDays: 38.733084068123475, elementCost: 1636016 },
         decontaminationResults: { workDays: 3.4686631244767137, onSiteDays: 3.4686631244767137, elementCost: 402541 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 9.519132050700028, onSiteDays: 21.62760393216353, elementCost: 247498 },
         incidentCommandResults: { onSiteDays: 2734.6343441886324, elementCost: 12986603 },
         generalResults: {
@@ -8155,6 +8520,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.36122350088139, onSiteDays: 2.36122350088139, elementCost: 124412 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 20781 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 200.6567844611467, elementCost: 858971 },
           generalResults: {
@@ -8173,6 +8539,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 22.618287405844242, onSiteDays: 22.618287405844242, elementCost: 499046 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 158923 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 71.68763528030712, elementCost: 355210 },
           generalResults: {
@@ -8191,6 +8558,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 57.799902042266055, onSiteDays: 57.799902042266055, elementCost: 735652 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 138015 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 714.8732214994648, elementCost: 2909632 },
           generalResults: {
@@ -8210,6 +8578,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 35.09051823357478, onSiteDays: 35.09051823357478, elementCost: 1688377 },
         decontaminationResults: { workDays: 4.249050375364965, onSiteDays: 4.249050375364965, elementCost: 853719 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 11.84650700234341, onSiteDays: 54.21391768560049, elementCost: 429246 },
         incidentCommandResults: { onSiteDays: 4622.388196588927, elementCost: 16531575 },
         generalResults: {
@@ -8228,6 +8597,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 5.100354855904205, onSiteDays: 5.100354855904205, elementCost: 279090 },
         decontaminationResults: { workDays: 4.200714875292199, onSiteDays: 4.200714875292199, elementCost: 302197 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 0.40734797552139385, onSiteDays: 4.887346341517426, elementCost: 15187 },
         incidentCommandResults: { onSiteDays: 1411.8604527758598, elementCost: 6290340 },
         generalResults: {
@@ -8266,6 +8636,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.0719661063058281, onSiteDays: 1.0719661063058281, elementCost: 32732 },
           decontaminationResults: { workDays: 4.421492514531476, onSiteDays: 4.421492514531476, elementCost: 192710 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.5812857409299395, onSiteDays: 4.98789002523147, elementCost: 16304 },
           incidentCommandResults: { onSiteDays: 73.98514525841095, elementCost: 300223 },
           generalResults: {
@@ -8284,6 +8655,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 11.133615434874912, onSiteDays: 11.133615434874912, elementCost: 419902 },
           decontaminationResults: { workDays: 4.9774504927865815, onSiteDays: 4.9774504927865815, elementCost: 306212 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.370208523404648, onSiteDays: 12.274706563799244, elementCost: 86168 },
           incidentCommandResults: { onSiteDays: 1112.2397838136637, elementCost: 5211345 },
           generalResults: {
@@ -8302,6 +8674,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.961576518439411, onSiteDays: 7.961576518439411, elementCost: 290079 },
           decontaminationResults: { workDays: 3.4726295705122476, onSiteDays: 3.4726295705122476, elementCost: 110224 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 6.454198627029842, onSiteDays: 14.93180958331968, elementCost: 183046 },
           incidentCommandResults: { onSiteDays: 1966.2464131342663, elementCost: 8292090 },
           generalResults: {
@@ -8321,6 +8694,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 54.43191940637494, onSiteDays: 54.43191940637494, elementCost: 1434847 },
         decontaminationResults: { workDays: 3.6682527304320254, onSiteDays: 3.6682527304320254, elementCost: 644758 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 6.818572563026496, onSiteDays: 17.802373829642026, elementCost: 286633 },
         incidentCommandResults: { onSiteDays: 3617.3007971324055, elementCost: 15282621 },
         generalResults: {
@@ -8339,6 +8713,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 1.0330753309109626, onSiteDays: 1.0330753309109626, elementCost: 72939 },
         decontaminationResults: { workDays: 4.582287653717745, onSiteDays: 4.582287653717745, elementCost: 206129 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 7.10485190781726, onSiteDays: 31.009732516796195, elementCost: 270040 },
         incidentCommandResults: { onSiteDays: 3246.89575520832, elementCost: 11297480 },
         generalResults: {
@@ -8377,6 +8752,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.873862906550707, onSiteDays: 7.873862906550707, elementCost: 109993 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 16576 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 70.71920147202906, elementCost: 266266 },
           generalResults: {
@@ -8395,6 +8771,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.14553850609997, onSiteDays: 6.14553850609997, elementCost: 275797 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 19943 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 200.99328927252475, elementCost: 782444 },
           generalResults: {
@@ -8417,6 +8794,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 1795884,
           },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 250430 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1383.945249335859, elementCost: 5847738 },
           generalResults: {
@@ -8436,6 +8814,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 52.34489704936217, onSiteDays: 52.34489704936217, elementCost: 1774703 },
         decontaminationResults: { workDays: 3.229903271475319, onSiteDays: 3.229903271475319, elementCost: 330959 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 36.217840505107326, onSiteDays: 63.672669229833446, elementCost: 1042023 },
         incidentCommandResults: { onSiteDays: 3934.091335929052, elementCost: 14919759 },
         generalResults: {
@@ -8454,6 +8833,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 14.25299406782294, onSiteDays: 14.25299406782294, elementCost: 558947 },
         decontaminationResults: { workDays: 4.793738720424878, onSiteDays: 4.793738720424878, elementCost: 548226 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 16.050846569795944, onSiteDays: 28.776981530522285, elementCost: 437586 },
         incidentCommandResults: { onSiteDays: 3897.04398499689, elementCost: 12688296 },
         generalResults: {
@@ -8492,6 +8872,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.1608199607977694, onSiteDays: 3.1608199607977694, elementCost: 46249 },
           decontaminationResults: { workDays: 3.5436556019223424, onSiteDays: 3.5436556019223424, elementCost: 231481 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.5587442736243285, onSiteDays: 5.802486652396483, elementCost: 13089 },
           incidentCommandResults: { onSiteDays: 599.881857339389, elementCost: 2706114 },
           generalResults: {
@@ -8510,6 +8891,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.308391887702138, onSiteDays: 3.308391887702138, elementCost: 107520 },
           decontaminationResults: { workDays: 3.1282646633051954, onSiteDays: 3.1282646633051954, elementCost: 263879 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 5.002212157536354, onSiteDays: 19.216477120601574, elementCost: 162787 },
           incidentCommandResults: { onSiteDays: 947.2003579757724, elementCost: 3931742 },
           generalResults: {
@@ -8532,6 +8914,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 1221228,
           },
           decontaminationResults: { workDays: 4.458479329351913, onSiteDays: 4.458479329351913, elementCost: 444527 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.01214845795906, onSiteDays: 12.534667440997111, elementCost: 80965 },
           incidentCommandResults: { onSiteDays: 2583.099507524273, elementCost: 11024921 },
           generalResults: {
@@ -8551,6 +8934,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 158.63741372518274, onSiteDays: 158.63741372518274, elementCost: 5501360 },
         decontaminationResults: { workDays: 3.532251771197713, onSiteDays: 3.532251771197713, elementCost: 209525 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.572998847336041, onSiteDays: 15.188424390606137, elementCost: 252997 },
         incidentCommandResults: { onSiteDays: 4098.993304877714, elementCost: 17075036 },
         generalResults: {
@@ -8569,6 +8953,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 60.05209460090555, onSiteDays: 60.05209460090555, elementCost: 2333030 },
         decontaminationResults: { workDays: 3.6934139045638528, onSiteDays: 3.6934139045638528, elementCost: 304006 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 13.337687268736763, onSiteDays: 37.317063787238986, elementCost: 337828 },
         incidentCommandResults: { onSiteDays: 3221.6920330124444, elementCost: 14322294 },
         generalResults: {
@@ -8607,6 +8992,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.0242829215156224, onSiteDays: 2.0242829215156224, elementCost: 104630 },
           decontaminationResults: { workDays: 4.800589745352182, onSiteDays: 4.800589745352182, elementCost: 282643 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.08476628686523667, onSiteDays: 5.848382982650112, elementCost: 3497 },
           incidentCommandResults: { onSiteDays: 521.9934002603513, elementCost: 1985837 },
           generalResults: {
@@ -8625,6 +9011,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 13.405309870811642, onSiteDays: 13.405309870811642, elementCost: 545964 },
           decontaminationResults: { workDays: 3.994013163492552, onSiteDays: 3.994013163492552, elementCost: 275732 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 9.507784933141615, onSiteDays: 37.286545847069476, elementCost: 256215 },
           incidentCommandResults: { onSiteDays: 836.0565989786658, elementCost: 3444963 },
           generalResults: {
@@ -8643,6 +9030,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.9512179628788133, onSiteDays: 1.9512179628788133, elementCost: 83220 },
           decontaminationResults: { workDays: 4.959980083620171, onSiteDays: 4.959980083620171, elementCost: 531787 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.2590719946803937, onSiteDays: 13.139392505314849, elementCost: 102150 },
           incidentCommandResults: { onSiteDays: 1049.4394087655419, elementCost: 4703630 },
           generalResults: {
@@ -8662,6 +9050,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 99.60832453818992, onSiteDays: 99.60832453818992, elementCost: 1470666 },
         decontaminationResults: { workDays: 3.303090512823102, onSiteDays: 3.303090512823102, elementCost: 481045 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 13.538040178437141, onSiteDays: 56.17108857622021, elementCost: 414023 },
         incidentCommandResults: { onSiteDays: 8930.392950480124, elementCost: 41685641 },
         generalResults: {
@@ -8680,6 +9069,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 21.463035536375124, onSiteDays: 21.463035536375124, elementCost: 767697 },
         decontaminationResults: { workDays: 3.763161252896106, onSiteDays: 3.763161252896106, elementCost: 738566 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 26.839963672012942, onSiteDays: 85.20955799957301, elementCost: 975424 },
         incidentCommandResults: { onSiteDays: 5026.9079620558505, elementCost: 19634456 },
         generalResults: {
@@ -8718,6 +9108,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.563946361329625, onSiteDays: 7.563946361329625, elementCost: 174511 },
           decontaminationResults: { workDays: 3.1728167552903335, onSiteDays: 3.1728167552903335, elementCost: 215829 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.6577623895086784, onSiteDays: 11.387841487124872, elementCost: 45904 },
           incidentCommandResults: { onSiteDays: 258.24006677736435, elementCost: 872252 },
           generalResults: {
@@ -8736,6 +9127,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 11.612890034839658, onSiteDays: 11.612890034839658, elementCost: 470751 },
           decontaminationResults: { workDays: 3.0994666964047277, onSiteDays: 3.0994666964047277, elementCost: 274604 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.9521803265208892, onSiteDays: 9.223378495537418, elementCost: 90258 },
           incidentCommandResults: { onSiteDays: 1202.8191175629743, elementCost: 3910124 },
           generalResults: {
@@ -8754,6 +9146,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 31.084771279621876, onSiteDays: 31.084771279621876, elementCost: 684990 },
           decontaminationResults: { workDays: 4.552489873383308, onSiteDays: 4.552489873383308, elementCost: 245499 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 5.510541420028356, onSiteDays: 20.804232470880397, elementCost: 214787 },
           incidentCommandResults: { onSiteDays: 1282.1750160018034, elementCost: 4560740 },
           generalResults: {
@@ -8773,6 +9166,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 24.437241245037363, onSiteDays: 24.437241245037363, elementCost: 924400 },
         decontaminationResults: { workDays: 3.0320432623922926, onSiteDays: 3.0320432623922926, elementCost: 736330 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 10.01534391533067, onSiteDays: 49.66775521343089, elementCost: 413258 },
         incidentCommandResults: { onSiteDays: 1205.0293711104132, elementCost: 4454527 },
         generalResults: {
@@ -8791,6 +9185,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 82.4116351780446, onSiteDays: 82.4116351780446, elementCost: 1375459 },
         decontaminationResults: { workDays: 4.568734537709675, onSiteDays: 4.568734537709675, elementCost: 756507 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 2.6239690553043187, onSiteDays: 9.227356806227352, elementCost: 112961 },
         incidentCommandResults: { onSiteDays: 4193.6783049187825, elementCost: 15241588 },
         generalResults: {
@@ -8829,6 +9224,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.323117780668124, onSiteDays: 6.323117780668124, elementCost: 267066 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 63000 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 362.13547853980043, elementCost: 1433983 },
           generalResults: {
@@ -8851,6 +9247,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 1922301,
           },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 123128 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1216.4658482800105, elementCost: 5714823 },
           generalResults: {
@@ -8869,6 +9266,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 30.5349240672441, onSiteDays: 30.5349240672441, elementCost: 588846 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 84418 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 322.63595763408114, elementCost: 996439 },
           generalResults: {
@@ -8888,6 +9286,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 10.915499185022881, onSiteDays: 10.915499185022881, elementCost: 479642 },
         decontaminationResults: { workDays: 3.2185663753698037, onSiteDays: 3.2185663753698037, elementCost: 522806 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 9.932003502584907, onSiteDays: 25.91563340612587, elementCost: 420373 },
         incidentCommandResults: { onSiteDays: 4920.483397139717, elementCost: 17366634 },
         generalResults: {
@@ -8906,6 +9305,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 35.91965706296065, onSiteDays: 35.91965706296065, elementCost: 829527 },
         decontaminationResults: { workDays: 4.936497197006013, onSiteDays: 4.936497197006013, elementCost: 632548 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 46.792710175735344, onSiteDays: 79.32440622106938, elementCost: 1142928 },
         incidentCommandResults: { onSiteDays: 4031.1200907453326, elementCost: 13904354 },
         generalResults: {
@@ -8944,6 +9344,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 20.14043483192934, onSiteDays: 20.14043483192934, elementCost: 328788 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 18488 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 216.31903045788374, elementCost: 857773 },
           generalResults: {
@@ -8962,6 +9363,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 89.05628347673539, onSiteDays: 89.05628347673539, elementCost: 1180330 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 249326 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1304.309664527674, elementCost: 4506714 },
           generalResults: {
@@ -8980,6 +9382,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 26.38800282254614, onSiteDays: 26.38800282254614, elementCost: 617351 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 94375 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 424.1534682416699, elementCost: 1385432 },
           generalResults: {
@@ -8999,6 +9402,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 19.291062925881697, onSiteDays: 19.291062925881697, elementCost: 936173 },
         decontaminationResults: { workDays: 3.894518517166031, onSiteDays: 3.894518517166031, elementCost: 865295 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 18.144286663311792, onSiteDays: 37.19015218898186, elementCost: 661303 },
         incidentCommandResults: { onSiteDays: 4622.730697633803, elementCost: 14722483 },
         generalResults: {
@@ -9017,6 +9421,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 45.13841712346633, onSiteDays: 45.13841712346633, elementCost: 1260240 },
         decontaminationResults: { workDays: 4.57486336668368, onSiteDays: 4.57486336668368, elementCost: 648665 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.910064640707996, onSiteDays: 20.543892197337275, elementCost: 205776 },
         incidentCommandResults: { onSiteDays: 2164.2602792768407, elementCost: 6947648 },
         generalResults: {
@@ -9055,6 +9460,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.205631399225057, onSiteDays: 6.205631399225057, elementCost: 274250 },
           decontaminationResults: { workDays: 3.2392587634360552, onSiteDays: 3.2392587634360552, elementCost: 122956 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.04756162267826821, onSiteDays: 4.836445122302649, elementCost: 1988 },
           incidentCommandResults: { onSiteDays: 259.00386465544295, elementCost: 1012691 },
           generalResults: {
@@ -9073,6 +9479,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.2490500118673524, onSiteDays: 1.2490500118673524, elementCost: 55795 },
           decontaminationResults: { workDays: 4.203689097241426, onSiteDays: 4.203689097241426, elementCost: 514172 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.246378739377308, onSiteDays: 12.462456968971422, elementCost: 100033 },
           incidentCommandResults: { onSiteDays: 2110.889285963537, elementCost: 9519563 },
           generalResults: {
@@ -9091,6 +9498,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 35.18055793413506, onSiteDays: 35.18055793413506, elementCost: 848884 },
           decontaminationResults: { workDays: 4.07753814549128, onSiteDays: 4.07753814549128, elementCost: 290511 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 5.924495177254471, onSiteDays: 14.786687562646575, elementCost: 145679 },
           incidentCommandResults: { onSiteDays: 2746.8584828410203, elementCost: 11556651 },
           generalResults: {
@@ -9110,6 +9518,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 126.25557526804326, onSiteDays: 126.25557526804326, elementCost: 1374231 },
         decontaminationResults: { workDays: 4.440123120658129, onSiteDays: 4.440123120658129, elementCost: 926108 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 25.44242909632143, onSiteDays: 79.586501092438, elementCost: 1065185 },
         incidentCommandResults: { onSiteDays: 4276.763641927466, elementCost: 13635825 },
         generalResults: {
@@ -9128,6 +9537,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 48.448095144083226, onSiteDays: 48.448095144083226, elementCost: 1939873 },
         decontaminationResults: { workDays: 4.047253637352784, onSiteDays: 4.047253637352784, elementCost: 650456 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 7.351981559960664, onSiteDays: 16.996422229577, elementCost: 215872 },
         incidentCommandResults: { onSiteDays: 1866.4180971114904, elementCost: 7062644 },
         generalResults: {
@@ -9166,6 +9576,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.3738949391674735, onSiteDays: 1.3738949391674735, elementCost: 67246 },
           decontaminationResults: { workDays: 4.790427382520965, onSiteDays: 4.790427382520965, elementCost: 318095 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.6119109918571606, onSiteDays: 7.145003842224891, elementCost: 50063 },
           incidentCommandResults: { onSiteDays: 248.78097798015853, elementCost: 1134976 },
           generalResults: {
@@ -9184,6 +9595,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 22.298066485603393, onSiteDays: 22.298066485603393, elementCost: 586092 },
           decontaminationResults: { workDays: 3.339765306175632, onSiteDays: 3.339765306175632, elementCost: 185338 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.865257163546118, onSiteDays: 6.60714640071233, elementCost: 39068 },
           incidentCommandResults: { onSiteDays: 1289.6999381401795, elementCost: 4126786 },
           generalResults: {
@@ -9202,6 +9614,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 15.882643786526257, onSiteDays: 15.882643786526257, elementCost: 464405 },
           decontaminationResults: { workDays: 4.988557594825643, onSiteDays: 4.988557594825643, elementCost: 167578 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.4883695648419817, onSiteDays: 10.234008647832571, elementCost: 100340 },
           incidentCommandResults: { onSiteDays: 1272.6302026014191, elementCost: 5911501 },
           generalResults: {
@@ -9221,6 +9634,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 35.718254740738345, onSiteDays: 35.718254740738345, elementCost: 1324144 },
         decontaminationResults: { workDays: 4.134514158855778, onSiteDays: 4.134514158855778, elementCost: 537714 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 23.931755270867423, onSiteDays: 80.48334972216571, elementCost: 962826 },
         incidentCommandResults: { onSiteDays: 4346.9656579595085, elementCost: 17912336 },
         generalResults: {
@@ -9239,6 +9653,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 45.9897221545514, onSiteDays: 45.9897221545514, elementCost: 1186810 },
         decontaminationResults: { workDays: 3.0656459443424002, onSiteDays: 3.0656459443424002, elementCost: 138511 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 7.840695564288478, onSiteDays: 37.24449931510501, elementCost: 349479 },
         incidentCommandResults: { onSiteDays: 1776.183936223422, elementCost: 8435308 },
         generalResults: {
@@ -9277,6 +9692,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.1092693323513125, onSiteDays: 2.1092693323513125, elementCost: 65757 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 54843 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 334.4510619843827, elementCost: 1293369 },
           generalResults: {
@@ -9295,6 +9711,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 13.826073966201267, onSiteDays: 13.826073966201267, elementCost: 356958 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 45094 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 359.5162544103747, elementCost: 1233177 },
           generalResults: {
@@ -9313,6 +9730,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 46.70224410226874, onSiteDays: 46.70224410226874, elementCost: 1325963 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 214311 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 148.07543738982915, elementCost: 586075 },
           generalResults: {
@@ -9332,6 +9750,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 148.81220479975855, onSiteDays: 148.81220479975855, elementCost: 3102169 },
         decontaminationResults: { workDays: 4.434309385585205, onSiteDays: 4.434309385585205, elementCost: 506486 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 15.200416211742882, onSiteDays: 34.95486404681135, elementCost: 559649 },
         incidentCommandResults: { onSiteDays: 3111.55092740815, elementCost: 11120169 },
         generalResults: {
@@ -9350,6 +9769,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 44.06122212931774, onSiteDays: 44.06122212931774, elementCost: 724533 },
         decontaminationResults: { workDays: 3.5727721407480475, onSiteDays: 3.5727721407480475, elementCost: 566182 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.5504937816752562, onSiteDays: 8.510105253820312, elementCost: 57878 },
         incidentCommandResults: { onSiteDays: 1073.3493182872926, elementCost: 4239336 },
         generalResults: {
@@ -9388,6 +9808,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 12.677011884595487, onSiteDays: 12.677011884595487, elementCost: 225088 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 33364 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 127.42452051109136, elementCost: 520885 },
           generalResults: {
@@ -9406,6 +9827,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 7.64646342089925, onSiteDays: 7.64646342089925, elementCost: 356790 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 60136 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 461.8576991270831, elementCost: 1481939 },
           generalResults: {
@@ -9424,6 +9846,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 15.749449218407698, onSiteDays: 15.749449218407698, elementCost: 488759 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 121010 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 849.7827644915266, elementCost: 3923094 },
           generalResults: {
@@ -9443,6 +9866,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 54.2647904016616, onSiteDays: 54.2647904016616, elementCost: 1012071 },
         decontaminationResults: { workDays: 3.280148616591503, onSiteDays: 3.280148616591503, elementCost: 465103 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.735257893321215, onSiteDays: 17.51022979549476, elementCost: 174062 },
         incidentCommandResults: { onSiteDays: 3822.0361051159675, elementCost: 14836736 },
         generalResults: {
@@ -9461,6 +9885,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 22.42581167831758, onSiteDays: 22.42581167831758, elementCost: 451009 },
         decontaminationResults: { workDays: 4.61098754396918, onSiteDays: 4.61098754396918, elementCost: 153335 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.622305132811226, onSiteDays: 15.51386888109101, elementCost: 117770 },
         incidentCommandResults: { onSiteDays: 4059.4684006418147, elementCost: 17513922 },
         generalResults: {
@@ -9499,6 +9924,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 8.70241652057933, onSiteDays: 8.70241652057933, elementCost: 213718 },
           decontaminationResults: { workDays: 3.8384170664563815, onSiteDays: 3.8384170664563815, elementCost: 145322 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.6075050684383653, onSiteDays: 6.270428451816125, elementCost: 20880 },
           incidentCommandResults: { onSiteDays: 337.526326607006, elementCost: 1474330 },
           generalResults: {
@@ -9517,6 +9943,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 44.25308450124168, onSiteDays: 44.25308450124168, elementCost: 887492 },
           decontaminationResults: { workDays: 4.086331806398539, onSiteDays: 4.086331806398539, elementCost: 455097 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.0850821531492083, onSiteDays: 12.054914866778754, elementCost: 86872 },
           incidentCommandResults: { onSiteDays: 301.8443222304366, elementCost: 1238819 },
           generalResults: {
@@ -9535,6 +9962,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.390190429808635, onSiteDays: 3.390190429808635, elementCost: 116842 },
           decontaminationResults: { workDays: 3.067472469542984, onSiteDays: 3.067472469542984, elementCost: 241026 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.5305176110482592, onSiteDays: 17.64978674758993, elementCost: 123296 },
           incidentCommandResults: { onSiteDays: 1562.384142862943, elementCost: 4862998 },
           generalResults: {
@@ -9554,6 +9982,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 103.61545198916164, onSiteDays: 103.61545198916164, elementCost: 1757245 },
         decontaminationResults: { workDays: 4.324609384714767, onSiteDays: 4.324609384714767, elementCost: 585779 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.03675648916939, onSiteDays: 15.12200734991672, elementCost: 150781 },
         incidentCommandResults: { onSiteDays: 5450.634529355577, elementCost: 18670652 },
         generalResults: {
@@ -9572,6 +10001,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 14.27736826494198, onSiteDays: 14.27736826494198, elementCost: 261913 },
         decontaminationResults: { workDays: 3.2485061972980636, onSiteDays: 3.2485061972980636, elementCost: 954472 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 25.97684635006215, onSiteDays: 69.14866424693486, elementCost: 905752 },
         incidentCommandResults: { onSiteDays: 2645.1001742340422, elementCost: 11170412 },
         generalResults: {
@@ -9610,6 +10040,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.7544145297320277, onSiteDays: 0.7544145297320277, elementCost: 15929 },
           decontaminationResults: { workDays: 3.584775427492516, onSiteDays: 3.584775427492516, elementCost: 130845 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.3731110174899122, onSiteDays: 9.709153574799974, elementCost: 48860 },
           incidentCommandResults: { onSiteDays: 650.0161558722515, elementCost: 2987574 },
           generalResults: {
@@ -9628,6 +10059,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.19647874230790102, onSiteDays: 0.19647874230790102, elementCost: 7745 },
           decontaminationResults: { workDays: 4.828210579191383, onSiteDays: 4.828210579191383, elementCost: 365012 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 5.09863464541779, onSiteDays: 15.64638130059642, elementCost: 141825 },
           incidentCommandResults: { onSiteDays: 1021.1860895870142, elementCost: 4318492 },
           generalResults: {
@@ -9646,6 +10078,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 38.88478954407684, onSiteDays: 38.88478954407684, elementCost: 956087 },
           decontaminationResults: { workDays: 4.186067567483072, onSiteDays: 4.186067567483072, elementCost: 214590 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.843106267732114, onSiteDays: 11.870362272222538, elementCost: 115482 },
           incidentCommandResults: { onSiteDays: 2643.358649498632, elementCost: 9930970 },
           generalResults: {
@@ -9665,6 +10098,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 43.6101831386089, onSiteDays: 43.6101831386089, elementCost: 1579836 },
         decontaminationResults: { workDays: 3.63927631840093, onSiteDays: 3.63927631840093, elementCost: 493466 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 9.091658358875764, onSiteDays: 33.75077262273559, elementCost: 358810 },
         incidentCommandResults: { onSiteDays: 5128.87016000005, elementCost: 24024847 },
         generalResults: {
@@ -9683,6 +10117,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 18.41789453468369, onSiteDays: 18.41789453468369, elementCost: 411365 },
         decontaminationResults: { workDays: 4.376471524447313, onSiteDays: 4.376471524447313, elementCost: 319034 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.091724534186952, onSiteDays: 11.649706623682846, elementCost: 132542 },
         incidentCommandResults: { onSiteDays: 642.5422800119838, elementCost: 3091551 },
         generalResults: {
@@ -9721,6 +10156,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.2083285727758275, onSiteDays: 3.2083285727758275, elementCost: 69832 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 33173 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 119.32011810223814, elementCost: 547987 },
           generalResults: {
@@ -9739,6 +10175,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 0.5095959385684181, onSiteDays: 0.5095959385684181, elementCost: 34347 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 104612 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 1528.3418884451512, elementCost: 5879166 },
           generalResults: {
@@ -9757,6 +10194,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.9829670257468894, onSiteDays: 1.9829670257468894, elementCost: 58865 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 251598 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 649.7069687954832, elementCost: 2707847 },
           generalResults: {
@@ -9776,6 +10214,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 45.6604042698106, onSiteDays: 45.6604042698106, elementCost: 1508880 },
         decontaminationResults: { workDays: 3.739552576267056, onSiteDays: 3.739552576267056, elementCost: 487249 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 0.37907539737173596, onSiteDays: 5.719286342875125, elementCost: 10060 },
         incidentCommandResults: { onSiteDays: 5167.295109135657, elementCost: 19304602 },
         generalResults: {
@@ -9794,6 +10233,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 16.88987847459282, onSiteDays: 16.88987847459282, elementCost: 513349 },
         decontaminationResults: { workDays: 4.086823203853989, onSiteDays: 4.086823203853989, elementCost: 222464 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.71605896806424, onSiteDays: 30.91971508552868, elementCost: 257606 },
         incidentCommandResults: { onSiteDays: 4483.225869240633, elementCost: 19226446 },
         generalResults: {
@@ -9832,6 +10272,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.686052827994912, onSiteDays: 6.686052827994912, elementCost: 294125 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 43462 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 54.023503655661806, elementCost: 232303 },
           generalResults: {
@@ -9850,6 +10291,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 9.89928190001891, onSiteDays: 9.89928190001891, elementCost: 456536 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 194901 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 974.2092454437009, elementCost: 3269664 },
           generalResults: {
@@ -9868,6 +10310,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.1852525212538647, onSiteDays: 2.1852525212538647, elementCost: 66364 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 37034 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 537.6981350550577, elementCost: 2305093 },
           generalResults: {
@@ -9887,6 +10330,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 44.6722507423021, onSiteDays: 44.6722507423021, elementCost: 1855780 },
         decontaminationResults: { workDays: 3.957300412691501, onSiteDays: 3.957300412691501, elementCost: 868450 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.137598978078418, onSiteDays: 21.058327030992583, elementCost: 130011 },
         incidentCommandResults: { onSiteDays: 8380.763870174094, elementCost: 33581067 },
         generalResults: {
@@ -9905,6 +10349,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 207.0967948440173, onSiteDays: 207.0967948440173, elementCost: 2228043 },
         decontaminationResults: { workDays: 3.076825604326284, onSiteDays: 3.076825604326284, elementCost: 481585 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 3.138041621219291, onSiteDays: 12.677609946544939, elementCost: 134899 },
         incidentCommandResults: { onSiteDays: 4941.553945128553, elementCost: 20677231 },
         generalResults: {
@@ -9943,6 +10388,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.648683692107705, onSiteDays: 6.648683692107705, elementCost: 225002 },
           decontaminationResults: { workDays: 3.1743367910791043, onSiteDays: 3.1743367910791043, elementCost: 160917 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.4519287330496635, onSiteDays: 5.777095868544612, elementCost: 20189 },
           incidentCommandResults: { onSiteDays: 345.61551534270296, elementCost: 1203061 },
           generalResults: {
@@ -9965,6 +10411,7 @@ const mockResults: IJobResultRealization[] = [
             elementCost: 1295331,
           },
           decontaminationResults: { workDays: 4.520387346744627, onSiteDays: 4.520387346744627, elementCost: 423681 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.6290366390929872, onSiteDays: 5.714945124440835, elementCost: 17893 },
           incidentCommandResults: { onSiteDays: 920.8285703166367, elementCost: 3124309 },
           generalResults: {
@@ -9983,6 +10430,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 8.410039858611286, onSiteDays: 8.410039858611286, elementCost: 334231 },
           decontaminationResults: { workDays: 4.5249158045102185, onSiteDays: 4.5249158045102185, elementCost: 281984 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 9.155168408020744, onSiteDays: 23.314874576407107, elementCost: 329410 },
           incidentCommandResults: { onSiteDays: 1112.8306595387603, elementCost: 5345063 },
           generalResults: {
@@ -10002,6 +10450,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 1.0120331326144427, onSiteDays: 1.0120331326144427, elementCost: 17433 },
         decontaminationResults: { workDays: 4.495936547754318, onSiteDays: 4.495936547754318, elementCost: 664849 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.634988937233206, onSiteDays: 15.052369716884364, elementCost: 157598 },
         incidentCommandResults: { onSiteDays: 1498.2014532492487, elementCost: 5233915 },
         generalResults: {
@@ -10020,6 +10469,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 3.0199408876857103, onSiteDays: 3.0199408876857103, elementCost: 93670 },
         decontaminationResults: { workDays: 3.304601781141153, onSiteDays: 3.304601781141153, elementCost: 668039 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 1.0241433414300998, onSiteDays: 7.049394061795861, elementCost: 37840 },
         incidentCommandResults: { onSiteDays: 1665.8702846512444, elementCost: 5390728 },
         generalResults: {
@@ -10058,6 +10508,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.225323192433276, onSiteDays: 6.225323192433276, elementCost: 183160 },
           decontaminationResults: { workDays: 3.8596508262817864, onSiteDays: 3.8596508262817864, elementCost: 267954 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.1416266617209722, onSiteDays: 5.730002819163095, elementCost: 6440 },
           incidentCommandResults: { onSiteDays: 120.11376299799367, elementCost: 446228 },
           generalResults: {
@@ -10076,6 +10527,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 49.12615511137916, onSiteDays: 49.12615511137916, elementCost: 771529 },
           decontaminationResults: { workDays: 3.2655074298999986, onSiteDays: 3.2655074298999986, elementCost: 271914 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.6804314766186903, onSiteDays: 11.398886459490821, elementCost: 113316 },
           incidentCommandResults: { onSiteDays: 1050.9638252539742, elementCost: 4971886 },
           generalResults: {
@@ -10094,6 +10546,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 13.579687169020406, onSiteDays: 13.579687169020406, elementCost: 540063 },
           decontaminationResults: { workDays: 3.6381301941904542, onSiteDays: 3.6381301941904542, elementCost: 163626 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.9552077518688178, onSiteDays: 8.708434026060875, elementCost: 46250 },
           incidentCommandResults: { onSiteDays: 634.1158150842555, elementCost: 2758771 },
           generalResults: {
@@ -10113,6 +10566,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 6.21163672192937, onSiteDays: 6.21163672192937, elementCost: 276417 },
         decontaminationResults: { workDays: 3.8135420439796386, onSiteDays: 3.8135420439796386, elementCost: 433781 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 2.1974200600049048, onSiteDays: 8.343054054082478, elementCost: 69217 },
         incidentCommandResults: { onSiteDays: 2829.5038197200597, elementCost: 13736928 },
         generalResults: {
@@ -10131,6 +10585,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 89.01761579976707, onSiteDays: 89.01761579976707, elementCost: 2924908 },
         decontaminationResults: { workDays: 3.0863575497843225, onSiteDays: 3.0863575497843225, elementCost: 588253 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 11.73928006468875, onSiteDays: 25.57943888972857, elementCost: 283835 },
         incidentCommandResults: { onSiteDays: 5030.049670387269, elementCost: 23351160 },
         generalResults: {
@@ -10169,6 +10624,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.7798069734282804, onSiteDays: 1.7798069734282804, elementCost: 77057 },
           decontaminationResults: { workDays: 3.227973809053184, onSiteDays: 3.227973809053184, elementCost: 141263 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.3784336029623426, onSiteDays: 5.716405470741643, elementCost: 9626 },
           incidentCommandResults: { onSiteDays: 165.4469723341469, elementCost: 779730 },
           generalResults: {
@@ -10187,6 +10643,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 33.95743245906108, onSiteDays: 33.95743245906108, elementCost: 748109 },
           decontaminationResults: { workDays: 3.737476628911094, onSiteDays: 3.737476628911094, elementCost: 393561 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 5.192347508820317, onSiteDays: 15.194267502946655, elementCost: 178742 },
           incidentCommandResults: { onSiteDays: 806.6653771121371, elementCost: 3831888 },
           generalResults: {
@@ -10205,6 +10662,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 30.38289675699862, onSiteDays: 30.38289675699862, elementCost: 1034262 },
           decontaminationResults: { workDays: 4.770183193909513, onSiteDays: 4.770183193909513, elementCost: 239246 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.50265578136528, onSiteDays: 10.308084464942493, elementCost: 51827 },
           incidentCommandResults: { onSiteDays: 2906.7533943766603, elementCost: 11029942 },
           generalResults: {
@@ -10224,6 +10682,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 15.231413063245284, onSiteDays: 15.231413063245284, elementCost: 316223 },
         decontaminationResults: { workDays: 4.540233442918452, onSiteDays: 4.540233442918452, elementCost: 838724 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 29.242575868941415, onSiteDays: 69.30256319308336, elementCost: 790808 },
         incidentCommandResults: { onSiteDays: 12173.699739867525, elementCost: 49605881 },
         generalResults: {
@@ -10242,6 +10701,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 0.11748308050471509, onSiteDays: 0.11748308050471509, elementCost: 6504 },
         decontaminationResults: { workDays: 3.1417630967082837, onSiteDays: 3.1417630967082837, elementCost: 296519 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 11.560082019800634, onSiteDays: 29.408070392954286, elementCost: 371675 },
         incidentCommandResults: { onSiteDays: 1614.918549250336, elementCost: 7918016 },
         generalResults: {
@@ -10280,6 +10740,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.3573347768485804, onSiteDays: 1.3573347768485804, elementCost: 45645 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 36086 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 72.42263816359363, elementCost: 228935 },
           generalResults: {
@@ -10298,6 +10759,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.4795596625117793, onSiteDays: 2.4795596625117793, elementCost: 63956 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 175121 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 473.97567417778123, elementCost: 2022984 },
           generalResults: {
@@ -10316,6 +10778,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.8622701155560097, onSiteDays: 2.8622701155560097, elementCost: 182737 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 79711 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 721.292524447212, elementCost: 2302062 },
           generalResults: {
@@ -10335,6 +10798,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 0.771389158392329, onSiteDays: 0.771389158392329, elementCost: 28982 },
         decontaminationResults: { workDays: 4.784137405404853, onSiteDays: 4.784137405404853, elementCost: 256040 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 0.45083700454845527, onSiteDays: 7.09049393805438, elementCost: 16889 },
         incidentCommandResults: { onSiteDays: 1414.8305222885165, elementCost: 4297026 },
         generalResults: {
@@ -10353,6 +10817,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 17.56739263438267, onSiteDays: 17.56739263438267, elementCost: 539966 },
         decontaminationResults: { workDays: 3.0909159230280006, onSiteDays: 3.0909159230280006, elementCost: 332903 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 2.1223354437636517, onSiteDays: 8.07035918730237, elementCost: 69616 },
         incidentCommandResults: { onSiteDays: 11005.67031967961, elementCost: 43683006 },
         generalResults: {
@@ -10391,6 +10856,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.1553880909523175, onSiteDays: 1.1553880909523175, elementCost: 52238 },
           decontaminationResults: { workDays: 3.7258972974321565, onSiteDays: 3.7258972974321565, elementCost: 129664 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.401427624747012, onSiteDays: 10.148479330030998, elementCost: 47365 },
           incidentCommandResults: { onSiteDays: 260.15684544635405, elementCost: 1171820 },
           generalResults: {
@@ -10409,6 +10875,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 16.17810278535536, onSiteDays: 16.17810278535536, elementCost: 583479 },
           decontaminationResults: { workDays: 3.793494939523166, onSiteDays: 3.793494939523166, elementCost: 115620 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.3753062955856215, onSiteDays: 12.657511757989145, elementCost: 116393 },
           incidentCommandResults: { onSiteDays: 1180.3563146614767, elementCost: 5665878 },
           generalResults: {
@@ -10427,6 +10894,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 12.736637769677014, onSiteDays: 12.736637769677014, elementCost: 304783 },
           decontaminationResults: { workDays: 3.3133343579977135, onSiteDays: 3.3133343579977135, elementCost: 307378 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.1869506588623953, onSiteDays: 18.340146475562836, elementCost: 110390 },
           incidentCommandResults: { onSiteDays: 1871.6027003652819, elementCost: 8228382 },
           generalResults: {
@@ -10446,6 +10914,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 127.59283015300113, onSiteDays: 127.59283015300113, elementCost: 1935559 },
         decontaminationResults: { workDays: 4.4496477137901, onSiteDays: 4.4496477137901, elementCost: 559196 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 5.696971155981559, onSiteDays: 16.987196972940733, elementCost: 211255 },
         incidentCommandResults: { onSiteDays: 3316.5536175780558, elementCost: 12613542 },
         generalResults: {
@@ -10464,6 +10933,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 13.120268162755968, onSiteDays: 13.120268162755968, elementCost: 401917 },
         decontaminationResults: { workDays: 4.360201456900733, onSiteDays: 4.360201456900733, elementCost: 211969 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.990557740680525, onSiteDays: 14.772459814085128, elementCost: 130950 },
         incidentCommandResults: { onSiteDays: 3483.067160394621, elementCost: 15875242 },
         generalResults: {
@@ -10502,6 +10972,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 4.107899202915143, onSiteDays: 4.107899202915143, elementCost: 131671 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 34337 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 231.54893653415834, elementCost: 760846 },
           generalResults: {
@@ -10520,6 +10991,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 17.542905915118155, onSiteDays: 17.542905915118155, elementCost: 386761 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 153943 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 515.159064550629, elementCost: 1875547 },
           generalResults: {
@@ -10538,6 +11010,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 3.325874468556677, onSiteDays: 3.325874468556677, elementCost: 157805 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 26399 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 128.22496214071856, elementCost: 605363 },
           generalResults: {
@@ -10557,6 +11030,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 67.39365862421334, onSiteDays: 67.39365862421334, elementCost: 2256687 },
         decontaminationResults: { workDays: 4.399747779918776, onSiteDays: 4.399747779918776, elementCost: 557334 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 22.634171054582485, onSiteDays: 64.13399843066615, elementCost: 769890 },
         incidentCommandResults: { onSiteDays: 4744.270551309264, elementCost: 18308062 },
         generalResults: {
@@ -10575,6 +11049,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 6.405351143553137, onSiteDays: 6.405351143553137, elementCost: 219079 },
         decontaminationResults: { workDays: 4.036382023486397, onSiteDays: 4.036382023486397, elementCost: 640024 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 41.3616396238986, onSiteDays: 141.4422256753768, elementCost: 1094491 },
         incidentCommandResults: { onSiteDays: 4362.767388996681, elementCost: 20194244 },
         generalResults: {
@@ -10613,6 +11088,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.9037642652402968, onSiteDays: 1.9037642652402968, elementCost: 50038 },
           decontaminationResults: { workDays: 4.603190803342311, onSiteDays: 4.603190803342311, elementCost: 172576 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.7372965663961387, onSiteDays: 7.228062050349094, elementCost: 31384 },
           incidentCommandResults: { onSiteDays: 202.5911999255089, elementCost: 903806 },
           generalResults: {
@@ -10631,6 +11107,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 22.79870107370109, onSiteDays: 22.79870107370109, elementCost: 988192 },
           decontaminationResults: { workDays: 3.9563152871458596, onSiteDays: 3.9563152871458596, elementCost: 242321 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 4.02232061477298, onSiteDays: 15.795223667776579, elementCost: 96214 },
           incidentCommandResults: { onSiteDays: 779.9177908995349, elementCost: 3535476 },
           generalResults: {
@@ -10649,6 +11126,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 31.15894200690409, onSiteDays: 31.15894200690409, elementCost: 481421 },
           decontaminationResults: { workDays: 4.39655737611385, onSiteDays: 4.39655737611385, elementCost: 325184 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 9.730916533563093, onSiteDays: 22.906844887767857, elementCost: 281972 },
           incidentCommandResults: { onSiteDays: 1105.7364211104061, elementCost: 4166485 },
           generalResults: {
@@ -10668,6 +11146,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 151.9306121152788, onSiteDays: 151.9306121152788, elementCost: 2982466 },
         decontaminationResults: { workDays: 4.223004097869388, onSiteDays: 4.223004097869388, elementCost: 348396 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 4.089683918078919, onSiteDays: 12.281659166209149, elementCost: 130327 },
         incidentCommandResults: { onSiteDays: 2261.3643943566763, elementCost: 7497592 },
         generalResults: {
@@ -10686,6 +11165,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 32.09797433030818, onSiteDays: 32.09797433030818, elementCost: 1415557 },
         decontaminationResults: { workDays: 3.170913293531843, onSiteDays: 3.170913293531843, elementCost: 256358 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 10.264943897442626, onSiteDays: 22.906776784414973, elementCost: 450098 },
         incidentCommandResults: { onSiteDays: 851.910536000812, elementCost: 2644796 },
         generalResults: {
@@ -10724,6 +11204,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.4032431787344275, onSiteDays: 1.4032431787344275, elementCost: 68016 },
           decontaminationResults: { workDays: 4.579613404250614, onSiteDays: 4.579613404250614, elementCost: 255228 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 1.687531118514549, onSiteDays: 8.384756640374569, elementCost: 64112 },
           incidentCommandResults: { onSiteDays: 297.76000362739717, elementCost: 1327473 },
           generalResults: {
@@ -10742,6 +11223,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.1669142060490216, onSiteDays: 1.1669142060490216, elementCost: 36442 },
           decontaminationResults: { workDays: 4.5472965039190125, onSiteDays: 4.5472965039190125, elementCost: 419904 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.4026204617865398, onSiteDays: 6.099402057278641, elementCost: 13556 },
           incidentCommandResults: { onSiteDays: 1392.2475707954122, elementCost: 6643954 },
           generalResults: {
@@ -10760,6 +11242,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 25.277956275589926, onSiteDays: 25.277956275589926, elementCost: 644505 },
           decontaminationResults: { workDays: 3.804297595937806, onSiteDays: 3.804297595937806, elementCost: 310577 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 3.1929400655392226, onSiteDays: 18.833545870819712, elementCost: 142468 },
           incidentCommandResults: { onSiteDays: 580.2760844361768, elementCost: 1866935 },
           generalResults: {
@@ -10779,6 +11262,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 36.410501418462594, onSiteDays: 36.410501418462594, elementCost: 1472183 },
         decontaminationResults: { workDays: 3.369693401821352, onSiteDays: 3.369693401821352, elementCost: 931070 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 11.242919311907707, onSiteDays: 44.65894761291765, elementCost: 352655 },
         incidentCommandResults: { onSiteDays: 3409.0790618937076, elementCost: 12132415 },
         generalResults: {
@@ -10797,6 +11281,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 48.30220367816065, onSiteDays: 48.30220367816065, elementCost: 939268 },
         decontaminationResults: { workDays: 3.5680117035675822, onSiteDays: 3.5680117035675822, elementCost: 558729 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 2.3231338503722143, onSiteDays: 8.543157514265998, elementCost: 72392 },
         incidentCommandResults: { onSiteDays: 4274.773866471002, elementCost: 16111580 },
         generalResults: {
@@ -10835,6 +11320,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.035884624825051, onSiteDays: 2.035884624825051, elementCost: 60187 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 57531 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 63.268968281310215, elementCost: 249119 },
           generalResults: {
@@ -10853,6 +11339,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 15.089997778204612, onSiteDays: 15.089997778204612, elementCost: 437169 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 83927 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 308.5113585530125, elementCost: 1179430 },
           generalResults: {
@@ -10871,6 +11358,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 11.13867370135744, onSiteDays: 11.13867370135744, elementCost: 419992 },
           decontaminationResults: { workDays: 0, onSiteDays: 0, elementCost: 111099 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           incidentCommandResults: { onSiteDays: 315.0667549133856, elementCost: 1323991 },
           generalResults: {
@@ -10890,6 +11378,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 33.929030435971, onSiteDays: 33.929030435971, elementCost: 1073546 },
         decontaminationResults: { workDays: 4.304740990815857, onSiteDays: 4.304740990815857, elementCost: 467329 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 17.48751552666508, onSiteDays: 74.87822739845252, elementCost: 675760 },
         incidentCommandResults: { onSiteDays: 3437.518799612625, elementCost: 16311040 },
         generalResults: {
@@ -10908,6 +11397,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 117.1331507069782, onSiteDays: 117.1331507069782, elementCost: 1886459 },
         decontaminationResults: { workDays: 4.689562231229981, onSiteDays: 4.689562231229981, elementCost: 721960 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 19.33682201891408, onSiteDays: 39.98827167595866, elementCost: 568126 },
         incidentCommandResults: { onSiteDays: 3659.271028199734, elementCost: 13644083 },
         generalResults: {
@@ -10946,6 +11436,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.8191939822771803, onSiteDays: 1.8191939822771803, elementCost: 56540 },
           decontaminationResults: { workDays: 4.693277130297682, onSiteDays: 4.693277130297682, elementCost: 279896 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.5948287227214444, onSiteDays: 6.326356404772513, elementCost: 23046 },
           incidentCommandResults: { onSiteDays: 206.194812898653, elementCost: 911849 },
           generalResults: {
@@ -10964,6 +11455,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 40.186553684755665, onSiteDays: 40.186553684755665, elementCost: 897872 },
           decontaminationResults: { workDays: 4.752502824122203, onSiteDays: 4.752502824122203, elementCost: 346327 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.10980401552040066, onSiteDays: 5.663652041182114, elementCost: 3315 },
           incidentCommandResults: { onSiteDays: 814.139449341605, elementCost: 2813049 },
           generalResults: {
@@ -10982,6 +11474,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 66.64891340982061, onSiteDays: 66.64891340982061, elementCost: 1197417 },
           decontaminationResults: { workDays: 3.9842872421686275, onSiteDays: 3.9842872421686275, elementCost: 241850 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.62969221652346, onSiteDays: 9.33507871733348, elementCost: 89498 },
           incidentCommandResults: { onSiteDays: 1976.985143422426, elementCost: 7198574 },
           generalResults: {
@@ -11001,6 +11494,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 88.38743334755941, onSiteDays: 88.38743334755941, elementCost: 1318803 },
         decontaminationResults: { workDays: 4.178234792588799, onSiteDays: 4.178234792588799, elementCost: 568481 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 40.4146997171352, onSiteDays: 95.1023754743209, elementCost: 1143664 },
         incidentCommandResults: { onSiteDays: 5414.9179982737, elementCost: 25134078 },
         generalResults: {
@@ -11019,6 +11513,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 6.569024944150996, onSiteDays: 6.569024944150996, elementCost: 184706 },
         decontaminationResults: { workDays: 3.069165689421158, onSiteDays: 3.069165689421158, elementCost: 302731 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 6.279206399082541, onSiteDays: 18.3543624679893, elementCost: 273511 },
         incidentCommandResults: { onSiteDays: 2863.8406498183717, elementCost: 9204056 },
         generalResults: {
@@ -11057,6 +11552,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 1.8969046545148132, onSiteDays: 1.8969046545148132, elementCost: 67726 },
           decontaminationResults: { workDays: 3.9277452581859533, onSiteDays: 3.9277452581859533, elementCost: 204891 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 0.07854949196685591, onSiteDays: 5.531843430847897, elementCost: 2853 },
           incidentCommandResults: { onSiteDays: 383.0830826666654, elementCost: 1353349 },
           generalResults: {
@@ -11075,6 +11571,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 6.188805518506913, onSiteDays: 6.188805518506913, elementCost: 324107 },
           decontaminationResults: { workDays: 4.414732681916732, onSiteDays: 4.414732681916732, elementCost: 510625 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 2.900957475345663, onSiteDays: 11.629734912466368, elementCost: 113832 },
           incidentCommandResults: { onSiteDays: 660.228319419062, elementCost: 3192548 },
           generalResults: {
@@ -11093,6 +11590,7 @@ const mockResults: IJobResultRealization[] = [
           },
           sourceReductionResults: { workDays: 2.114736638159073, onSiteDays: 2.114736638159073, elementCost: 52452 },
           decontaminationResults: { workDays: 4.396249201008176, onSiteDays: 4.396249201008176, elementCost: 365496 },
+          clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
           wasteSamplingResults: { workDays: 4.2014732771581995, onSiteDays: 18.933247120412705, elementCost: 154961 },
           incidentCommandResults: { onSiteDays: 1230.1158695071465, elementCost: 4770696 },
           generalResults: {
@@ -11112,6 +11610,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 4.953388923049372, onSiteDays: 4.953388923049372, elementCost: 74067 },
         decontaminationResults: { workDays: 3.5314500421591686, onSiteDays: 3.5314500421591686, elementCost: 418794 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 6.314889265266353, onSiteDays: 14.380906879943833, elementCost: 185144 },
         incidentCommandResults: { onSiteDays: 2816.00461811663, elementCost: 9639877 },
         generalResults: {
@@ -11130,6 +11629,7 @@ const mockResults: IJobResultRealization[] = [
         },
         sourceReductionResults: { workDays: 82.41964181342527, onSiteDays: 82.41964181342527, elementCost: 2370168 },
         decontaminationResults: { workDays: 3.966078446005955, onSiteDays: 3.966078446005955, elementCost: 760518 },
+        clearanceSamplingResults: { workDays: 0, onSiteDays: 0, elementCost: 0 },
         wasteSamplingResults: { workDays: 32.811458821361605, onSiteDays: 70.98957808861744, elementCost: 1160875 },
         incidentCommandResults: { onSiteDays: 1971.016600885953, elementCost: 7561940 },
         generalResults: {
