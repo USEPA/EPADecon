@@ -163,11 +163,16 @@ export default class JobResultProvider implements IJobResultProvider {
         return undefined;
       }
 
-      this.savedResults[result] = { ...instances };
+      this.savedResults[result] = [...instances];
     }
-    const indoorLocations = Object.values(allResults[0].scenarioResults.indoorResults).filter((resultSet) => resultSet)
-      .length;
-    const otherLocations = Object.values(allResults[0].scenarioResults).filter((resultSet) => resultSet).length - 1;
+    const indoorLocations = Object.values(allResults[0].scenarioResults.indoorResults ?? {}).filter(
+      (resultSet) => resultSet,
+    ).length;
+    let otherLocations = Object.values(allResults[0].scenarioResults).filter((resultSet) => resultSet).length;
+    if (indoorLocations) {
+      // subtract indoor since it was included twice
+      otherLocations -= 1;
+    }
     const numLocations = indoorLocations + otherLocations;
     const numOccurrencesPerLocation = instances.length / (allResults.length * numLocations);
     const oneOccurrenceAtLocation = numOccurrencesPerLocation === 1;
@@ -259,7 +264,8 @@ export default class JobResultProvider implements IJobResultProvider {
     for (let i = 0, l3 = entries.length; i < l3; i += 1) {
       const [location, resultSet] = entries[i];
       if (!resultSet) {
-        return;
+        // eslint-disable-next-line no-continue
+        continue;
       }
 
       const resultSets = this.isIndoor(location) ? Object.values(resultSet) : [resultSet];
