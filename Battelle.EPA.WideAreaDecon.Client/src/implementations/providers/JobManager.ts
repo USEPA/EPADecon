@@ -22,7 +22,7 @@ export default class JobManager {
       .withUrl(this.apiEndpoint, {
         transport: HttpTransportType.WebSockets,
       })
-      .configureLogging(LogLevel.Debug)
+      .configureLogging(LogLevel.Error) // change to debug if needed
       .build();
 
     // eslint-disable-next-line @typescript-eslint/no-this-alias
