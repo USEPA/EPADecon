@@ -164,6 +164,9 @@ export default class RealizationSummary extends Vue {
         xData[i] = xVals[i];
         yData[i] = yVals[i];
       });
+    } else {
+      xData = xVals;
+      yData = yVals;
     }
 
     const dataPoints: Point[] = xData.map((x, i) => {
