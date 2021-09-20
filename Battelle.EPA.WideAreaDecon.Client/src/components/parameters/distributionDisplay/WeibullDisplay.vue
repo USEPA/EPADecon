@@ -93,6 +93,10 @@ export default class WeibullDisplay extends BaseDistributionDisplay {
     return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
   }
 
+  get min(): number {
+    return super.min <= 1 ? 1 + this.step : super.min;
+  }
+
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number[]): void {
     if (this.ignoreNextValueSliderChange) {
