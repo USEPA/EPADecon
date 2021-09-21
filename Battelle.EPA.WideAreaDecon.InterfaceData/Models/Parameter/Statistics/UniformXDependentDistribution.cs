@@ -77,7 +77,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
                 }
 
                 // select random index (x value)
-                int index = new Random().Next(0, XValues.Length);
+                int index = Convert.ToInt32(new Stats.UniformDistribution(0, XValues.Length - 1).Draw());
 
                 // create uniform distribution from max and mins at x value
                 double min = YMinimumValues[index];
