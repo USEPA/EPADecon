@@ -1,11 +1,11 @@
 <template>
-  <v-card height="600">
+  <v-card height="100%">
     <v-card-title v-text="'Output Statistics'"></v-card-title>
     <v-divider class="mx-4" color="grey"></v-divider>
     <v-card-text>
       <div v-if="hideStats">Statistics will be displayed when a chart has been created</div>
       <div v-else>
-        <v-simple-table v-for="(result, index) in resultsFormatted" :key="`${result}-${index}`">
+        <v-simple-table v-for="(result, index) in resultsFormatted" class="mb-2" :key="`${result}-${index}`">
           <template v-slot:default v-if="result">
             <thead>
               <tr>

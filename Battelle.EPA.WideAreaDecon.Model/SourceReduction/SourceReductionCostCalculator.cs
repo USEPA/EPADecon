@@ -16,9 +16,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         public TravelCostCalculator Calculator_travel { get; set; }
 
         //Phase time for scenario results
-        public Dictionary<PhaseDays, double> CalculateTime(double numberTeams, double saToBeSourceReduced, double area, Dictionary<PpeLevel, double> ppeLevelPerTeam)
+        public Dictionary<PhaseDays, double> CalculateTime(double numberTeams, double massToBeSourceReduced, double area, Dictionary<PpeLevel, double> ppeLevelPerTeam)
         {
-            var laborDays = Calculator_laborDays.CalculateLaborDays(numberTeams, saToBeSourceReduced, area);
+            var laborDays = Calculator_laborDays.CalculateLaborDays(numberTeams, massToBeSourceReduced, area);
             var workDays = Calculator_workDays.CalculateWorkDays(laborDays, numberTeams, ppeLevelPerTeam);
             var onsiteDays = Calculator_onsiteDays.CalculateOnsiteDays(workDays);
 
@@ -31,9 +31,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         }
 
         //Phase costs for scenario results
-        public double CalculatePhaseCosts(Dictionary<PhaseDays, double> phaseDays, double numberTeams, double saToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
+        public double CalculatePhaseCosts(Dictionary<PhaseDays, double> phaseDays, double numberTeams, double massToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
         {
-            var laborCosts = Calculator_labor.CalculateLaborCost(phaseDays[PhaseDays.OnsiteDays], numberTeams, saToBeSourceReduced, costPerTonRemoved, area);
+            var laborCosts = Calculator_labor.CalculateLaborCost(phaseDays[PhaseDays.OnsiteDays], numberTeams, massToBeSourceReduced, costPerTonRemoved, area);
             var entExCosts = Calculator_entEx.CalculateEntranceExitCost(phaseDays[PhaseDays.LaborDays], numberTeams, ppePerLevelPerTeam);
             
             return (laborCosts + entExCosts);

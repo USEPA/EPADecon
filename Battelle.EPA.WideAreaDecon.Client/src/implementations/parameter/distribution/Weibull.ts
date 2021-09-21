@@ -78,9 +78,13 @@ export default class Weibull implements IUnivariateParameter {
   }
 
   get distribution(): Distribution | undefined {
-    if (this.k === undefined || this.lambda === undefined) {
+    const k = Utility.convertToLog10(this.k);
+    const lambda = Utility.convertToLog10(this.lambda);
+
+    if (k === undefined || lambda === undefined) {
       return undefined;
     }
-    return new WeibullDistribution(this.k, this.lambda);
+
+    return new WeibullDistribution(k, lambda);
   }
 }

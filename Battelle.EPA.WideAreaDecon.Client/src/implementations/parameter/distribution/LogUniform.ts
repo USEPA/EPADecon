@@ -32,13 +32,13 @@ export default class LogUniform implements IUnivariateParameter {
   metaData: ParameterMetaData;
 
   public get isSet(): boolean {
-    return this.min !== undefined && this.max !== undefined;
+    return this.min !== undefined && this.max !== undefined && this.min < this.max;
   }
 
-  constructor(metaData = new ParameterMetaData(), logMin?: number, logMax?: number) {
-    this.min = logMin;
-    this.max = logMax;
+  constructor(metaData = new ParameterMetaData(), min?: number, max?: number) {
     this.metaData = metaData;
+    this.min = min;
+    this.max = max;
   }
 
   isEquivalent(other: IParameter): boolean {

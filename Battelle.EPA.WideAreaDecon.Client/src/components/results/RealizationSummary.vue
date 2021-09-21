@@ -26,7 +26,7 @@
       <realization-table ref="realizationTable"></realization-table>
     </v-row>
 
-    <chart-options @createChart="setChartData" v-model="showOptionsModal" :selected="selectedResults"></chart-options>
+    <chart-options @createChart="setChartData" v-model="showOptionsModal" ref="options" />
   </v-container>
 </template>
 
@@ -103,7 +103,8 @@ export default class RealizationSummary extends Vue {
           data: binVals,
           backgroundColor: color,
           barPercentage: 1,
-          categoryPercentage: 0.5,
+          categoryPercentage: 1,
+          borderWidth: 0.5,
         },
       ],
     };
@@ -185,18 +186,19 @@ export default class RealizationSummary extends Vue {
 
     if (xLabel) {
       stats.x = this.resultProvider.getResultDetails(this.results, xLabel) ?? null;
-      this.$set(this.selectedResults, 'x', xLabel);
     }
     if (yLabel) {
       stats.y = this.resultProvider.getResultDetails(this.results, yLabel) ?? null;
-      this.$set(this.selectedResults, 'y', yLabel);
     }
 
+    this.$set(this.selectedResults, 'x', xLabel ?? null);
+    this.$set(this.selectedResults, 'y', yLabel ?? null);
     this.$set(this, 'outputStatistics', stats);
   }
 
-  removeSelectedResult(axis: string): void {
+  removeSelectedResult(axis: 'x' | 'y'): void {
     this.$set(this.selectedResults, axis, null);
+    (this.$refs.options as ChartOptions).selected[axis] = null;
     this.setChartData(this.selectedResults);
   }
 }

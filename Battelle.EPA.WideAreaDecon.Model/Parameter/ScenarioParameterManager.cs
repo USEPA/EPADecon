@@ -15,6 +15,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
         private readonly ParameterFilter[] _characterizationSamplingParameters;
         private readonly ParameterFilter[] _sourceReductionParameters;
         private readonly ParameterFilter[] _decontaminationParameters;
+        private readonly ParameterFilter[] _clearanceSamplingParameters;
         private readonly ParameterFilter[] _wasteSamplingParameters;
         private readonly IParameter[] _efficacyParameters;
         private readonly ParameterFilter[] _incidentCommandParameters;
@@ -25,6 +26,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             ParameterFilter[] csParameters,
             ParameterFilter[] srParameters,
             ParameterFilter[] dcParameters,
+            ParameterFilter[] clsParameters,
             ParameterFilter[] wsParameters,
             IParameter[] effParameters,
             ParameterFilter[] icParameters,
@@ -34,6 +36,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             _characterizationSamplingParameters = csParameters;
             _sourceReductionParameters = srParameters;
             _decontaminationParameters = dcParameters;
+            _clearanceSamplingParameters = clsParameters;
             _wasteSamplingParameters = wsParameters;
             _efficacyParameters = effParameters;
             _incidentCommandParameters = icParameters;
@@ -49,6 +52,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 _characterizationSamplingParameters = SetCharacterizationSamplingParameters(),
                 _sourceReductionParameters = SetSourceReductionParameters(),
                 _decontaminationParameters = SetDecontaminationParameters(scenarioDefinitionDetails, phase),
+                _clearanceSamplingParameters = SetClearanceSamplingParameters(),
                 _wasteSamplingParameters = SetWasteSamplingParameters(),
                 _incidentCommandParameters = SetIncidentCommandParameters(),
                 _costParameters = SetCostParameters()
@@ -64,6 +68,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 _characterizationSamplingCostCalculator = calculatorCreator._characterizationSamplingFactory.GetCalculator(),
                 _sourceReductionCostCalculator = calculatorCreator._sourceReductionFactory.GetCalculator(),
                 _decontaminationCostCalculator = calculatorCreator._decontaminationFactory.GetCalculator(),
+                _clearanceSamplingCostCalculator = calculatorCreator._clearanceSamplingFactory.GetCalculator(),
                 _wasteSamplingCostCalculator = calculatorCreator._wasteSamplingFactory.GetCalculator(),
                 _incidentCommandCostCalculator = calculatorCreator._incidentCommandFactory.GetCalculator()
             };
@@ -151,7 +156,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
 
         private SourceReductionParameters SetSourceReductionParameters()
         {
-            var surfaceAreaToBeSourceReduced = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction Surface Area to be Source Reduced").CreateDistribution().Draw();
+            var massToBeSourceReduced = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction of Total Waste Mass to be Source Reduced").CreateDistribution().Draw();
             var massPerSurfaceArea = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Mass of Waste per Surface Area").CreateDistribution().Draw();
             var massRemovedPerHourPerTeam = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Mass of Waste Removed per Hour per Team").CreateDistribution().Draw();
             var respiratorsPerPerson = _sourceReductionParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Number of Respirators per Person").CreateDistribution().Draw();
@@ -189,7 +194,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             };
 
             return new SourceReductionParameters(
-                surfaceAreaToBeSourceReduced,
+                massToBeSourceReduced,
                 massPerSurfaceArea,
                 massRemovedPerHourPerTeam,
                 entryDuration,
@@ -275,6 +280,86 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 scenarioDefinitionDetails,
                 fumigationAgentVolume,
                 agentVolume);
+        }
+
+        private ClearanceSamplingParameters SetClearanceSamplingParameters()
+        {
+            var labUptimesHours = new List<double>();
+            var labDistanceFromSite = new List<double>();
+            var labThroughput = new List<double>();
+
+            var fractionSurfaceSampled = _clearanceSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
+            var fractionSampledWipe = fractionSurfaceSampled * 0.5;
+            var fractionSampledHepa = fractionSurfaceSampled * 0.5;
+            var surfaceAreaPerWipe = _clearanceSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per Wipe").CreateDistribution().Draw();
+            var surfaceAreaPerHepa = _clearanceSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per HEPA Sock").CreateDistribution().Draw();
+            var wipesPerHrPerTeam = _clearanceSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Wipes per Hour per Team").CreateDistribution().Draw();
+            var hepaSocksPerHrPerTeam = _clearanceSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "HEPA Socks per Hour per Team").CreateDistribution().Draw();
+            var numTeams = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
+            var samplePackageTime = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Packaging Time per Sample").CreateDistribution().Draw();
+            var numLabs = (int)_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Labs").CreateDistribution().Draw();
+            for (int i = 0; i < numLabs; i++)
+            {
+                labUptimesHours.Add(_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Uptime Hours per Day").CreateDistribution().Draw());
+                labDistanceFromSite.Add(_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance from Site").CreateDistribution().Draw());
+                labThroughput.Add(_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Throughput Samples per Day").CreateDistribution().Draw());
+            }
+            var resultTransmissionToIC = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Time of Result Transmission to IC").CreateDistribution().Draw();
+
+            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
+            {
+                [PersonnelLevel.OSC] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL1] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-1)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL2] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-2)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL3] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-3)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL4] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
+            };
+            var personnelOverheadDays = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Personnel Overhead Days").CreateDistribution().Draw();
+            var roundtripDays = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
+            var entryPrepTime = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Prep Time per Team per Entry").CreateDistribution().Draw();
+            var deconLineTime = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon Line Time per Team per Exit").CreateDistribution().Draw();
+            var postEntryRest = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Post-Entry Rest Period").CreateDistribution().Draw();
+            var respiratorsPerPerson = _clearanceSamplingParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Number of Respirators per Person").CreateDistribution().Draw();
+
+            var ppeRequired = new Dictionary<PpeLevel, double>
+            {
+                [PpeLevel.A] = _clearanceSamplingParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Fraction PPE Required (A)").CreateDistribution().Draw(),
+                [PpeLevel.B] = _clearanceSamplingParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Fraction PPE Required (B)").CreateDistribution().Draw(),
+                [PpeLevel.C] = _clearanceSamplingParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Fraction PPE Required (C)").CreateDistribution().Draw(),
+                [PpeLevel.D] = _clearanceSamplingParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Fraction PPE Required (D)").CreateDistribution().Draw()
+            };
+
+            var entryDuration = new Dictionary<PpeLevel, double>
+            {
+                [PpeLevel.A] = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (A)").CreateDistribution().Draw(),
+                [PpeLevel.B] = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (B)").CreateDistribution().Draw(),
+                [PpeLevel.C] = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (C)").CreateDistribution().Draw(),
+                [PpeLevel.D] = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Entry Duration Based on PPE Level (D)").CreateDistribution().Draw()
+            };
+
+            return new ClearanceSamplingParameters(
+                fractionSampledWipe,
+                fractionSampledHepa,
+                surfaceAreaPerWipe,
+                surfaceAreaPerHepa,
+                wipesPerHrPerTeam,
+                hepaSocksPerHrPerTeam,
+                numTeams,
+                samplePackageTime,
+                numLabs,
+                labUptimesHours,
+                labDistanceFromSite,
+                labThroughput,
+                resultTransmissionToIC,
+                personnelReqPerTeam,
+                personnelOverheadDays,
+                roundtripDays,
+                entryDuration,
+                entryPrepTime,
+                deconLineTime,
+                postEntryRest,
+                respiratorsPerPerson,
+                ppeRequired);
         }
 
         private WasteSamplingParameters SetWasteSamplingParameters()

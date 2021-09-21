@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-dialog v-model="isVisible" max-width="800">
       <v-card>
-        <v-card-title class="headline" v-text="`${title} Details`"></v-card-title>
+        <v-card-title class="headline" v-text="`${title} - Details`" />
         <v-card-text>
           <v-container>
             <v-row>
@@ -10,7 +10,8 @@
                 <chart-js-wrapper type="bar" :data="chartData" :options="options" :plugins="[]" :key="title" />
               </v-col>
             </v-row>
-            <v-row>
+
+            <v-row justify="center">
               <v-col>
                 <p class="text-body-2 mb-0">{{ resultProvider.formatNumber(details.mean) }}</p>
                 <p class="text-subtitle-1">Mean</p>

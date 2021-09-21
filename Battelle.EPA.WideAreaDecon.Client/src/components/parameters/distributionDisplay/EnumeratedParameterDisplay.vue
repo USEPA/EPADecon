@@ -3,7 +3,7 @@
     <v-row>
       <v-col><v-spacer /></v-col>
     </v-row>
-    <div v-if="!isTextDistribution">
+    <template v-if="!isTextDistribution">
       <v-row>
         <v-col cols="4" xl="3">
           <v-overflow-btn
@@ -37,31 +37,31 @@
             <template v-slot:item="{ item, attrs, on }">
               <v-list-item :class="getClass(item[0])" v-bind="attrs" v-on="on">
                 <v-list-item-content>
-                  <v-list-item-title :id="attrs['aria-labelledby']" v-text="item[0]"></v-list-item-title>
+                  <v-list-item-title :id="attrs['aria-labelledby']" v-text="item[0]" />
                 </v-list-item-content>
               </v-list-item>
             </template>
           </v-overflow-btn>
         </v-col>
       </v-row>
-      <component :key="getSelectedCategoryName()" :is="display.distComponent" :parameter-value="selectedCategory">
-      </component>
-      <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
+      <component :key="getSelectedCategoryName()" :is="display.distComponent" :parameter-value="selectedCategory" />
+      <div v-if="display.displayChart" class="py-5" style="width: 100%; height: 400px">
         <distribution-chart
           :data-generator="display.dataGenerator"
           :distribution-series="display.chartData"
-          :xAxisLabel="display.xAxisLabel"
-          :yAxisLabel="'Probability of Selection'"
-        ></distribution-chart>
-      </v-card>
-    </div>
-    <div v-else>
+          :x-axis-label="display.xAxisLabel"
+          :y-axis-label="'Probability of Selection'"
+          :force-x-axis-min-zero="false"
+        />
+      </div>
+    </template>
+    <template v-else>
       <text-value-display
         :key="getSelectedCategoryName()"
         :is="display.distComponent"
         :parameter-value="parameterValue"
-      ></text-value-display>
-    </div>
+      />
+    </template>
   </v-container>
 </template>
 

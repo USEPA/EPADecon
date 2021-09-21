@@ -70,6 +70,11 @@ export default class ChartOptionsProvider implements IChartOptionsProvider {
       const y = this.resultProvider.formatNumber(data.y);
       return `(${x}, ${y})`;
     },
+    title: (tooltipItems) => {
+      return tooltipItems.length > 1
+        ? `Runs ${tooltipItems.map((i) => i.dataIndex + 1).join(', ')}`
+        : `Run ${tooltipItems[0].dataIndex + 1}`;
+    },
   };
 
   private scatterScales = {
@@ -115,7 +120,14 @@ export default class ChartOptionsProvider implements IChartOptionsProvider {
 
   getHistogramOptions(): ChartOptions {
     // @ts-expect-error (types for chart.js wants ALL properties defined on scales)
-    return this.getChartOptions(this.histogramCallback, this.histogramScales);
+    const opts = this.getChartOptions(this.histogramCallback, this.histogramScales);
+    if (opts.plugins) {
+      // hide legend on histograms
+      opts.plugins.legend = {
+        display: false,
+      };
+    }
+    return opts;
   }
 
   getPieOptions(): ChartOptions {

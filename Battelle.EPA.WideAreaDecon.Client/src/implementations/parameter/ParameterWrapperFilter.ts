@@ -1,5 +1,5 @@
 import IParameterNode from '@/interfaces/parameter/IParameterNode';
-import { JsonProperty, Serializable, deserialize } from 'typescript-json-serializer';
+import { JsonProperty, Serializable, deserialize, serialize } from 'typescript-json-serializer';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ParameterDeserializer from '@/serialization/parameter/ParameterDeserializer';
 import ParameterWrapper from './ParameterWrapper';
@@ -19,7 +19,7 @@ export default class ParameterWrapperFilter implements IParameterNode {
   @JsonProperty({
     onSerialize: (params: Array<ParameterWrapper>) => {
       // only need current
-      return params.map((param) => param.current);
+      return params.map((param) => serialize(param.current));
     },
     onDeserialize: (params: Array<IParameter>) => {
       return params.map((param) => {

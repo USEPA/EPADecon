@@ -36,6 +36,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 { PhaseCategory.CharacterizationSampling, scenarioResults.characterizationSamplingResults.onSiteDays },
                 { PhaseCategory.SourceReduction, scenarioResults.sourceReductionResults.onSiteDays },
                 { PhaseCategory.Decontamination, scenarioResults.decontaminationResults.onSiteDays },
+                { PhaseCategory.ClearanceSampling, scenarioResults.clearanceSamplingResults.onSiteDays },
                 { PhaseCategory.WasteSampling, scenarioResults.wasteSamplingResults.onSiteDays },
                 { PhaseCategory.IncidentCommand, scenarioResults.incidentCommandResults.onSiteDays }
             };
@@ -44,6 +45,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 _scenarioParameters.Filters.First(f => f.Name == "Characterization Sampling").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Source Reduction").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Decontamination").Filters,
+                _scenarioParameters.Filters.First(f => f.Name == "Clearance Sampling").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Waste Sampling").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Other").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Incident Command").Filters,
@@ -64,6 +66,7 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 characterizationSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 sourceReductionResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 decontaminationResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                clearanceSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 wasteSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
                 incidentCommandResults = new IncidentCommandResults() { phaseCost = 0.0, onSiteDays = 0.0 },
                 generalResults = new GeneralResults() { areaContaminated = 0.0, decontaminationRounds = 0, totalCost = 0.0 }
@@ -125,6 +128,10 @@ namespace Battelle.EPA.WideAreaDecon.Model
             summedResults.decontaminationResults.workDays += originalResults.decontaminationResults.workDays;
             summedResults.decontaminationResults.onSiteDays += originalResults.decontaminationResults.onSiteDays;
             summedResults.decontaminationResults.phaseCost += originalResults.decontaminationResults.phaseCost;
+
+            summedResults.clearanceSamplingResults.workDays += originalResults.clearanceSamplingResults.workDays;
+            summedResults.clearanceSamplingResults.onSiteDays += originalResults.clearanceSamplingResults.onSiteDays;
+            summedResults.clearanceSamplingResults.phaseCost += originalResults.clearanceSamplingResults.phaseCost;
 
             summedResults.wasteSamplingResults.workDays += originalResults.wasteSamplingResults.workDays;
             summedResults.wasteSamplingResults.onSiteDays += originalResults.wasteSamplingResults.onSiteDays;

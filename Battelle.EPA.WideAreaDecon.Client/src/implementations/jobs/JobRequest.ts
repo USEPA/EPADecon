@@ -15,6 +15,7 @@ export default class JobRequest implements IJobRequest {
   @JsonProperty()
   status: JobStatus;
 
+  @JsonProperty()
   progress: number;
 
   @JsonProperty()

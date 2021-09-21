@@ -19,7 +19,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-simple-table class="overflow-x-hidden" ref="table">
+        <v-simple-table class="overflow-x-hidden">
           <template v-slot:default>
             <thead>
               <tr>
@@ -41,11 +41,6 @@
             </tbody>
           </template>
         </v-simple-table>
-
-        <!-- Table Scrollbar -->
-        <div class="scrollbarContainer" ref="scroll">
-          <div class="scrollbar" :style="{ width: tableWidth + 'px' }"></div>
-        </div>
       </v-col>
     </v-row>
   </div>
@@ -79,10 +74,6 @@ export default class TextParameterDisplay extends Vue implements IParameterDispl
   selectedCategory = this.categories[0];
 
   selectedMethods: (boolean | null)[][] = [];
-
-  get tableWidth(): number {
-    return this.applicationMethods.length * 110;
-  }
 
   isChecked(method: ApplicationMethod, surface: SurfaceType): boolean {
     const { value } = this.parameterValue.values[surface] as TextValue;
@@ -125,21 +116,8 @@ export default class TextParameterDisplay extends Vue implements IParameterDispl
     this.setSelectedMethods();
   }
 
-  vuetifyColorProps(): unknown {
-    return {
-      '--primary-color': this.$vuetify.theme.currentTheme.primary,
-    };
-  }
-
   created(): void {
     this.getSurfacesForCategory();
-  }
-
-  mounted(): void {
-    (this.$refs.scroll as Element).addEventListener('scroll', () => {
-      const { scrollLeft } = this.$refs.scroll as Element;
-      (this.$refs.table as Vue).$el.scroll({ left: scrollLeft });
-    });
   }
 }
 </script>
@@ -157,18 +135,6 @@ export default class TextParameterDisplay extends Vue implements IParameterDispl
     max-width: 110px;
     word-wrap: break-word;
     hyphens: auto;
-  }
-}
-
-.scrollbarContainer {
-  width: 100%;
-  overflow-x: auto;
-  position: sticky;
-  bottom: 36px; // anything under 36px is the footer
-  z-index: 2;
-
-  & > .scrollbar {
-    height: 5px;
   }
 }
 </style>

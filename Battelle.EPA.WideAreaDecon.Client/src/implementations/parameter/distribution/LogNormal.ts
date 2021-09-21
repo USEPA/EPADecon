@@ -3,6 +3,7 @@ import Distribution, { LogNormalDistribution } from 'battelle-common-typescript-
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
+import { convertToLog10 } from '@/mixin/mathUtilityMixin';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
@@ -36,10 +37,14 @@ export default class LogNormal implements IUnivariateParameter {
   }
 
   public get distribution(): Distribution | undefined {
-    if (this.mean === undefined || this.stdDev === undefined) {
+    const logMean = convertToLog10(this.mean);
+    const logStdDev = convertToLog10(this.stdDev);
+
+    if (logMean === undefined || logStdDev === undefined) {
       return undefined;
     }
-    return new LogNormalDistribution(this.mean, this.stdDev);
+
+    return new LogNormalDistribution(logMean, logStdDev);
   }
 
   constructor(metaData = new ParameterMetaData(), mean?: number, stdDev?: number) {

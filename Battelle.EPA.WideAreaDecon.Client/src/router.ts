@@ -60,5 +60,9 @@ export default new Router({
       component: RealizationSummary,
       beforeEnter: pageRequiresResults,
     },
+    {
+      path: '*',
+      redirect: { name: 'home' },
+    },
   ],
 });

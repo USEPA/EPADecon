@@ -3,6 +3,7 @@ import Distribution, { TruncatedLogNormalDistribution } from 'battelle-common-ty
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
+import { convertToLog10 } from '@/mixin/mathUtilityMixin';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
@@ -17,10 +18,10 @@ export default class TruncatedLogNormal implements IUnivariateParameter {
   max?: number;
 
   @JsonProperty()
-  mean?: number; // logMean
+  mean?: number;
 
   @JsonProperty()
-  stdDev?: number; // logStdDev
+  stdDev?: number;
 
   get mode(): number | undefined {
     return this.mean !== undefined ? 10 ** this.mean : undefined; // TODO: how to calculate
@@ -30,15 +31,21 @@ export default class TruncatedLogNormal implements IUnivariateParameter {
   metaData: ParameterMetaData;
 
   public get isSet(): boolean {
-    return this.min !== undefined && this.max !== undefined && this.mean !== undefined && this.stdDev !== undefined;
+    return (
+      this.min !== undefined &&
+      this.max !== undefined &&
+      this.mean !== undefined &&
+      this.stdDev !== undefined &&
+      this.min < this.max
+    );
   }
 
-  constructor(metaData = new ParameterMetaData(), min?: number, max?: number, logMean?: number, logStdDev?: number) {
+  constructor(metaData = new ParameterMetaData(), min?: number, max?: number, mean?: number, stdDev?: number) {
+    this.metaData = metaData;
     this.min = min;
     this.max = max;
-    this.mean = logMean;
-    this.stdDev = logStdDev;
-    this.metaData = metaData;
+    this.mean = mean;
+    this.stdDev = stdDev;
   }
 
   isEquivalent(other: IParameter): boolean {
@@ -56,9 +63,13 @@ export default class TruncatedLogNormal implements IUnivariateParameter {
   }
 
   get distribution(): Distribution | undefined {
-    if (this.min === undefined || this.max === undefined || this.mean === undefined || this.stdDev === undefined) {
+    const logMean = convertToLog10(this.mean);
+    const logStdDev = convertToLog10(this.stdDev);
+
+    if (this.min === undefined || this.max === undefined || logMean === undefined || logStdDev === undefined) {
       return undefined;
     }
-    return new TruncatedLogNormalDistribution(this.mean, this.stdDev, this.min, this.max);
+
+    return new TruncatedLogNormalDistribution(logMean, logStdDev, this.min, this.max);
   }
 }

@@ -30,5 +30,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Interfaces
         /// <returns>The requested job</returns>
         JobRequest GetJob(Guid id);
         //bool UpdateJob(JobRequest newJob);
+        /// <summary>
+        /// Cancels the currently running job
+        /// </summary>
+        void CancelJob();
     }
 }

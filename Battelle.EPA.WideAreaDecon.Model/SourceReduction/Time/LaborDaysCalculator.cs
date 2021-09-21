@@ -15,9 +15,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction.Time
             _massPerSa = massPerSa;
         }
 
-        public double CalculateLaborDays(double numberTeams, double saToBeSourceReduced, double area)
+        public double CalculateLaborDays(double numberTeams, double massToBeSourceReduced, double area)
         {
-            return (saToBeSourceReduced * area) * _massPerSa / (GlobalConstants.HoursPerWorkDay * _massRemovedPerHrPerTeam * numberTeams);
+            return (massToBeSourceReduced * area * _massPerSa) / (GlobalConstants.HoursPerWorkDay * _massRemovedPerHrPerTeam * numberTeams);
         }
     }
 }
