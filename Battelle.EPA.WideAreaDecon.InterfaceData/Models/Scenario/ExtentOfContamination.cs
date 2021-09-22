@@ -18,7 +18,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario
         private const string OutdoorSurfaceBreakoutName = "Outdoor Surface Type Breakout";
         private const string UndergroundSurfaceBreakoutName = "Underground Surface Type Breakout";
 
-        public EnumeratedParameter<DecontaminationPhase> Area { get; set; }
+        public EnumeratedParameter<DecontaminationPhase> AreaContaminated { get; set; }
         public EnumeratedParameter<DecontaminationPhase> Loading { get; set; }
         public EnumeratedFraction<BuildingCategory> IndoorBuildingBreakout { get; set; }
         public EnumeratedFraction<SurfaceType> IndoorSurfaceBreakout { get; set; }
@@ -32,9 +32,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario
             {
                 rows.Add(sheet.GetRow(i));
             }
+
             return new ExtentOfContamination()
             {
-                Area = EnumeratedParameter<DecontaminationPhase>.FromExcel(new ParameterMetaData()
+                AreaContaminated = EnumeratedParameter<DecontaminationPhase>.FromExcel(new ParameterMetaData()
                 {
                     Category = SheetName,
                     Name = AreaRowName,
@@ -81,7 +82,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario
                 Filters = new ParameterFilter[0],
                 Parameters = new IParameter[]
                 {
-                    Area,
+                    AreaContaminated,
                     Loading,
                     IndoorBuildingBreakout,
                     IndoorSurfaceBreakout,
