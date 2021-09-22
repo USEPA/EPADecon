@@ -1,13 +1,36 @@
 import IParameterNode from '@/interfaces/parameter/IParameterNode';
+import { JsonProperty, Serializable, deserialize, serialize } from 'typescript-json-serializer';
+import IParameter from '@/interfaces/parameter/IParameter';
+import ParameterDeserializer from '@/serialization/parameter/ParameterDeserializer';
 import ParameterWrapper from './ParameterWrapper';
 
+@Serializable()
 export default class ParameterWrapperFilter implements IParameterNode {
+  @JsonProperty()
   name: string;
 
   parent: IParameterNode | null;
 
+  @JsonProperty({
+    predicate: () => ParameterWrapperFilter,
+  })
   public filters: Array<ParameterWrapperFilter>;
 
+  @JsonProperty({
+    onSerialize: (params: Array<ParameterWrapper>) => {
+      // only need current
+      return params.map((param) => serialize(param.current));
+    },
+    onDeserialize: (params: Array<IParameter>) => {
+      return params.map((param) => {
+        // deserialize IParameter JSON into appropriate distribution
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const parameterType: any = ParameterDeserializer.predicate(param);
+        const parameter = deserialize<IParameter>(param, parameterType);
+        return new ParameterWrapper(null, parameter);
+      });
+    },
+  })
   public parameters: Array<ParameterWrapper>;
 
   constructor(
@@ -23,7 +46,7 @@ export default class ParameterWrapperFilter implements IParameterNode {
   }
 
   public allParametersValid(): boolean {
-    return this.filters.every((f) => f.allParametersValid()) && this.parameters.every((p) => p.current.isSet());
+    return this.filters.every((f) => f.allParametersValid()) && this.parameters.every((p) => p.current.isSet);
   }
 
   public anyParameterChanged(): boolean {
@@ -36,7 +59,7 @@ export default class ParameterWrapperFilter implements IParameterNode {
       sum += f.numberInvalidParameters();
     });
     this.parameters.forEach((p) => {
-      sum += p.current.isSet() ? 0 : 1;
+      sum += p.current.isSet ? 0 : 1;
     });
     return sum;
   }

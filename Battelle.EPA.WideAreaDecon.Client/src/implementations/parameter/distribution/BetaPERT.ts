@@ -1,33 +1,33 @@
-import { JsonProperty } from 'typescript-json-serializer';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import Distribution, { PertDistribution } from 'battelle-common-typescript-statistics';
+import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
-export default class BetaPERT implements IParameter {
+@Serializable()
+export default class BetaPERT implements IUnivariateParameter {
   @JsonProperty()
-  name: string;
+  readonly type: ParameterType = ParameterType.pert;
 
   @JsonProperty()
-  type: ParameterType = ParameterType.pert;
+  min?: number;
 
   @JsonProperty()
-  min: number | undefined;
-
-  @JsonProperty()
-  max: number | undefined;
-
-  @JsonProperty()
-  mode: number | undefined;
+  max?: number;
 
   get mean(): number | undefined {
-    if (this.min === undefined || this.max === undefined || this.mode === undefined) {
+    if (!(this.min !== undefined && this.max !== undefined && this.mode !== undefined)) {
       return undefined;
     }
     return (this.min + 4 * this.mode + this.max) / 6.0;
   }
 
+  @JsonProperty()
+  mode?: number;
+
   get stdDev(): number | undefined {
-    if (this.min === undefined || this.max === undefined || this.mode === undefined) {
+    if (!(this.min !== undefined && this.max !== undefined && this.mode !== undefined)) {
       return undefined;
     }
     return (this.max - this.min) / 6.0;
@@ -36,16 +36,22 @@ export default class BetaPERT implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  public isSet(): boolean {
-    return this.min !== undefined && this.max !== undefined && this.mode !== undefined;
+  public get isSet(): boolean {
+    return this.min !== undefined && this.max !== undefined && this.mode !== undefined && this.min < this.max;
   }
 
-  constructor(name = 'unknown', metaData = new ParameterMetaData(), min?: number, max?: number, mode?: number) {
-    this.name = name;
+  constructor(metaData = new ParameterMetaData(), min?: number, max?: number, mode?: number) {
     this.min = min;
     this.max = max;
     this.mode = mode;
     this.metaData = metaData;
+  }
+
+  get distribution(): Distribution | undefined {
+    if (this.min === undefined || this.max === undefined || this.mode === undefined) {
+      return undefined;
+    }
+    return new PertDistribution(this.mode, this.min, this.max);
   }
 
   isEquivalent(other: IParameter): boolean {

@@ -1,23 +1,27 @@
-import { JsonProperty } from 'typescript-json-serializer';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import Distribution, { UniformDistribution } from 'battelle-common-typescript-statistics';
+import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
-export default class Uniform implements IParameter {
+@Serializable()
+export default class Uniform implements IUnivariateParameter {
   @JsonProperty()
-  name: string;
+  readonly type: ParameterType = ParameterType.uniform;
 
   @JsonProperty()
-  type: ParameterType = ParameterType.uniform;
+  min?: number;
 
   @JsonProperty()
-  min: number | undefined;
-
-  @JsonProperty()
-  max: number | undefined;
+  max?: number;
 
   get mean(): number | undefined {
-    return this.min !== undefined && this.max !== undefined ? (this.min + this.max) / 2.0 : undefined;
+    return !!this.min && !!this.max ? (this.min + this.max) / 2.0 : undefined;
+  }
+
+  get mode(): number | undefined {
+    return this.mean;
   }
 
   get stdDev(): number | undefined {
@@ -27,15 +31,21 @@ export default class Uniform implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  public isSet(): boolean {
-    return this.min !== undefined && this.max !== undefined;
+  public get isSet(): boolean {
+    return this.min !== undefined && this.max !== undefined && this.min < this.max;
   }
 
-  constructor(name = 'unknown', metaData = new ParameterMetaData(), min?: number, max?: number) {
-    this.name = name;
+  constructor(metaData = new ParameterMetaData(), min?: number, max?: number) {
     this.min = min;
     this.max = max;
     this.metaData = metaData;
+  }
+
+  get distribution(): Distribution | undefined {
+    if (this.min === undefined || this.max === undefined) {
+      return undefined;
+    }
+    return new UniformDistribution(this.min, this.max);
   }
 
   isEquivalent(other: IParameter): boolean {

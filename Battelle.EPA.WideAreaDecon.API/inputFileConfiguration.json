@@ -1,0 +1,36 @@
+{
+  "ScenarioParameters": {
+    "Provider": {
+      "Type": "ExcelDefineScenario",
+      "FileName": "InputFiles\\DefineScenario.xlsx",
+      "FileInfoSheetName": "Internal - File Info",
+      "GenericSheetNames": [
+        "Extent of Contamination",
+        "Incident Command",
+        "Characterization Sampling",
+        "Source Reduction",
+        "Decontamination",
+        "Clearance Sampling",
+        "Waste Sampling",
+        "Cost per Parameter"
+      ]
+    }
+  },
+  "BaselineParameters": {
+    "Provider": {
+      "Type": "ExcelModifyParameter",
+      "FileName": "InputFiles\\ModifyParameters.xlsx",
+      "FileInfoSheetName": "Internal - File Info",
+      "GenericSheetNames": [
+        "Incident Command",
+        "Characterization Sampling",
+        "Source Reduction",
+        "Decontamination",
+        "Clearance Sampling",
+        "Waste Sampling",
+        "Other",
+        "Cost per Parameter"
+      ]
+    }
+  }
+}

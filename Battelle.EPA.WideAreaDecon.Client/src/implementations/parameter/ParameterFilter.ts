@@ -11,9 +11,7 @@ export default class ParameterFilter {
   name: string;
 
   @JsonProperty({
-    predicate: () => {
-      return ParameterFilter;
-    },
+    predicate: () => ParameterFilter,
   })
   public filters: Array<ParameterFilter>;
 
@@ -36,7 +34,7 @@ export default class ParameterFilter {
   }
 
   public allParametersValid(): boolean {
-    return this.filters.every((f) => f.allParametersValid()) && this.parameters.every((p) => p.isSet());
+    return this.filters.every((f) => f.allParametersValid()) && this.parameters.every((p) => p.isSet);
   }
 
   public numberInvalidParameters(): number {
@@ -45,7 +43,7 @@ export default class ParameterFilter {
       sum += f.numberInvalidParameters();
     });
     this.parameters.forEach((p) => {
-      sum += p.isSet() ? 0 : 1;
+      sum += p.isSet ? 0 : 1;
     });
     return sum;
   }

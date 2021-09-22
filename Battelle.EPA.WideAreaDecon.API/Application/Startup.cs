@@ -1,7 +1,10 @@
 using System;
 using System.IO;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
 using Battelle.EPA.WideAreaDecon.API.Services;
 using ElectronNET.API;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +15,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using VueCliMiddleware;
+using Battelle.EPA.WideAreaDecon.API.Hubs;
 
 namespace Battelle.EPA.WideAreaDecon.API.Application
 {
@@ -54,7 +59,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
                     "v1",
                     new OpenApiInfo
                     {
-                        Title = "Wide ARea Decon Rest API",
+                        Title = "Wide Area Decon Rest API",
                         Version = "v1"
                     });
 
@@ -135,6 +140,30 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             services.AddTransient<
                 IClientConfigurationService,
                 ClientConfigurationService>();
+
+            services.AddSignalR()
+                .AddNewtonsoftJsonProtocol();
+
+            var inputFile = Configuration.GetValue<string>("InputFileConfiguration");
+
+            if (!File.Exists(inputFile))
+            {
+                throw new ApplicationException($"Could not find input file configuration file: {inputFile}");
+            }
+
+            var inputFileConfiguration =
+                JsonConvert.DeserializeObject<InputFileConfiguration>(File.ReadAllText(inputFile)) ??
+                throw new ApplicationException("Failed to deserialize to input file configuration");
+
+            services.AddSingleton(inputFileConfiguration.ScenarioParameters);
+            services.AddSingleton(inputFileConfiguration.BaselineParameters);
+
+            services.AddSingleton<IParameterListProvider>(new EmptyParameterListProvider());
+
+            services.AddSingleton<IJobManager, JobManager>();
+
+            services.AddTransient<JobStatusUpdater>();
+            services.AddTransient<JobProgressUpdater>();
         }
 
         private void ConfigureEndpoints(IEndpointRouteBuilder endpoints)
@@ -142,6 +171,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller}/{action=Index}/{id?}");
+
+            endpoints.MapHub<JobStatusHub>("/api/job-status-hub");
 #if DEBUG
             endpoints.MapToVueCliProxy(
                 "{*path}",

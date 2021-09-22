@@ -4,11 +4,12 @@
       <v-icon v-on="on" @click="selectedHelpItem = item">help</v-icon>
     </template>
     <v-card class="mx-auto">
-      <v-system-bar color="primary" height="60">
-        <v-toolbar-title class="title">{{ item.title }} Info...</v-toolbar-title>
+      <v-system-bar class="mb-3" color="primary" height="60">
+        <v-card-title class="title">{{ item.title }} Info...</v-card-title>
         <v-spacer />
         <v-icon @click="dialog = false" size="45">mdi-close</v-icon>
       </v-system-bar>
+
       <v-card-text class="body-1" v-text="item.helpMessage" />
     </v-card>
   </v-dialog>

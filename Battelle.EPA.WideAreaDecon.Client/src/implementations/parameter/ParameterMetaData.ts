@@ -1,19 +1,33 @@
+import DecontaminationElement from '@/enums/parameter/decontaminationElement';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
 export default class ParameterMetaData {
   @JsonProperty()
-  min?: number;
+  validElements?: DecontaminationElement[];
 
   @JsonProperty()
-  max?: number;
+  category?: string;
 
   @JsonProperty()
-  step?: number;
+  name = 'unknown';
+
+  @JsonProperty()
+  description?: string;
 
   @JsonProperty()
   units?: string;
 
   @JsonProperty()
-  description?: string;
+  lowerLimit = 0;
+
+  @JsonProperty()
+  upperLimit = 1;
+
+  @JsonProperty()
+  step = 0.1;
+
+  get hasDescription(): boolean {
+    return this.description !== undefined && this.description !== '';
+  }
 }

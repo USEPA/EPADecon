@@ -33,7 +33,7 @@ Vue.use(Vuetify, {
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function GetVuetifyInstance(config: IVuetifyThemeSettings) {
   return new Vuetify(config as never);
 }

@@ -7,6 +7,12 @@ const PROVIDER_TYPES = {
   ImageProvider: Symbol('IImageProvider'),
   HomeOptionsProvider: Symbol('IHomeOptionsProvider'),
   ScenarioParameterProvider: Symbol('IScenarioParameterProvider'),
+  BackendScenarioDefinitionProvider: Symbol('BackendScenarioDefinitionProvider'),
+  BackendScenarioParameterProvider: Symbol('BackendScenarioParameterProvider'),
+  ChartOptionsProvider: Symbol('ChartOptionsProvider'),
+  DistributionDisplayProvider: Symbol('DistributionDisplayProvider'),
+  JobProvider: Symbol('IJobProvider'),
+  JobResultProvider: Symbol('IJobResultProvider'),
 };
 
 export default PROVIDER_TYPES;

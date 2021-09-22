@@ -18,7 +18,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         /// <param name="config"></param>
         public ClientConfigurationService(IConfiguration config)
         {
-            _config = config ?? 
+            _config = config ??
                 throw new ArgumentNullException(nameof(config));
         }
 

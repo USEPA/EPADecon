@@ -2,7 +2,7 @@
   "version": 1,
   "filters": [
     {
-      "name": "Interior",
+      "name": "Interior - Test",
       "filters": [],
       "parameters": [
         {
@@ -20,7 +20,8 @@
                   "max": 1000000,
                   "units": "m^2",
                   "step": 1
-                }
+                },
+                "value": null
               }
             },
             {

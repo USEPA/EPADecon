@@ -9,12 +9,22 @@ import IApplicationActionProvider from '@/interfaces/providers/IApplicationActio
 import IClientConfigurationProvider from '@/interfaces/providers/IClientConfigurationProvider';
 import IScenarioDefinitionProvider from '@/interfaces/providers/IScenarioDefinitionProvider';
 import DefaultScenarioDefinitionProvider from '@/implementations/providers/DefaultScenarioDefinitionProvider';
+import BackendScenarioDefinitionProvider from '@/implementations/providers/BackendScenarioDefinitionProvider';
 import IImageProvider from '@/interfaces/providers/IImageProvider';
 import DefaultImageProvider from '@/implementations/providers/DefaultImageProvider';
 import IHomeOptionsProvider from '@/interfaces/providers/IHomeOptionsProvider';
 import DefaultHomeOptionsProvider from '@/implementations/providers/DefaultHomeOptionsProvider';
 import IScenarioParameterProvider from '@/interfaces/providers/IScenarioParameterProvider';
 import DefaultScenarioParameterProvider from '@/implementations/providers/DefaultScenarioParameterProvider';
+import BackendScenarioParameterProvider from '@/implementations/providers/BackendScenarioParameterProvider';
+import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
+import DistributionDisplayProvider from '@/implementations/providers/DistributionDisplayProvider';
+import IJobProvider from '@/interfaces/providers/IJobProvider';
+import JobProvider from '@/implementations/providers/JobProvider';
+import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
+import JobResultProvider from '@/implementations/providers/JobResultProvider';
+import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
+import ChartOptionsProvider from '@/implementations/providers/ChartOptionsProvider';
 import PROVIDER_TYPES from './providers.types';
 
 const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => {
@@ -32,11 +42,31 @@ const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => 
 
   bind<IScenarioDefinitionProvider>(PROVIDER_TYPES.ScenarioDefinitionProvider).to(DefaultScenarioDefinitionProvider);
 
+  bind<IScenarioDefinitionProvider>(PROVIDER_TYPES.ScenarioDefinitionProvider).to(BackendScenarioDefinitionProvider);
+
+  bind<BackendScenarioDefinitionProvider>(PROVIDER_TYPES.BackendScenarioDefinitionProvider).to(
+    BackendScenarioDefinitionProvider,
+  );
+
   bind<IImageProvider>(PROVIDER_TYPES.ImageProvider).to(DefaultImageProvider);
 
   bind<IHomeOptionsProvider>(PROVIDER_TYPES.HomeOptionsProvider).to(DefaultHomeOptionsProvider);
 
   bind<IScenarioParameterProvider>(PROVIDER_TYPES.ScenarioParameterProvider).to(DefaultScenarioParameterProvider);
+
+  bind<IScenarioParameterProvider>(PROVIDER_TYPES.ScenarioParameterProvider).to(BackendScenarioParameterProvider);
+
+  bind<BackendScenarioParameterProvider>(PROVIDER_TYPES.BackendScenarioParameterProvider).to(
+    BackendScenarioParameterProvider,
+  );
+
+  bind<IChartOptionsProvider>(PROVIDER_TYPES.ChartOptionsProvider).to(ChartOptionsProvider);
+
+  bind<IDistributionDisplayProvider>(PROVIDER_TYPES.DistributionDisplayProvider).to(DistributionDisplayProvider);
+
+  bind<IJobProvider>(PROVIDER_TYPES.JobProvider).to(JobProvider);
+
+  bind<IJobResultProvider>(PROVIDER_TYPES.JobResultProvider).to(JobResultProvider).inSingletonScope();
 });
 
 export default providersContainerModule;

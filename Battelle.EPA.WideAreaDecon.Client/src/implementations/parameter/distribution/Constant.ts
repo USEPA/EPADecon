@@ -1,27 +1,49 @@
-import { JsonProperty } from 'typescript-json-serializer';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import IUnivariateParameter from '@/interfaces/parameter/IUnivariateParameter';
 import ParameterMetaData from '../ParameterMetaData';
 
-export default class Constant implements IParameter {
-  @JsonProperty()
-  name: string;
+@Serializable()
+export default class Constant implements IUnivariateParameter {
+  private readonly numStdDevs = 5;
 
   @JsonProperty()
   readonly type: ParameterType = ParameterType.constant;
 
   @JsonProperty()
-  value: number | undefined;
-
-  @JsonProperty()
   metaData: ParameterMetaData;
 
-  public isSet(): boolean {
+  locked?: boolean;
+
+  public get isSet(): boolean {
     return this.value !== undefined;
   }
 
-  constructor(name = 'unknown', metaData = new ParameterMetaData(), value?: number) {
-    this.name = name;
+  @JsonProperty()
+  public value?: number;
+
+  public get min(): number {
+    return this.metaData.lowerLimit;
+  }
+
+  public get max(): number {
+    return this.metaData.upperLimit;
+  }
+
+  public get mean(): number | undefined {
+    return this.value;
+  }
+
+  public get mode(): number | undefined {
+    return this.value;
+  }
+
+  public get stdDev(): number {
+    return (this.metaData.upperLimit - this.metaData.lowerLimit) / this.numStdDevs;
+  }
+
+  constructor(metaData = new ParameterMetaData(), value?: number) {
     this.value = value;
     this.metaData = metaData;
   }

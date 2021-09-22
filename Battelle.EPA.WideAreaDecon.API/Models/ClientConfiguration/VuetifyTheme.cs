@@ -12,11 +12,13 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration
         /// </summary>
         [JsonProperty("dark", NullValueHandling = NullValueHandling.Ignore)]
         public bool? DarkModeEnabled { get; set; }
+
         /// <summary>
         /// Whether or not all themes should be disabled
         /// </summary>
         [JsonProperty("disable", NullValueHandling = NullValueHandling.Ignore)]
         public bool? DisableThemes { get; set; }
+
         /// <summary>
         /// The color schemes for light and dark which are set
         /// </summary>

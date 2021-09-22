@@ -1,10 +1,10 @@
 <template>
   <v-card height="100%" width="100%">
     <v-row dense>
-      <v-col cols="auto" class="mr-auto">
-        <v-card-title v-if="shouldIncludeTitle" v-text="currentSelectedParameter.path" />
+      <v-col cols="5" xl="6">
+        <v-card-title v-if="shouldIncludeTitle">{{ currentSelectedParameter.path }}</v-card-title>
       </v-col>
-      <v-col align-self="center" cols="3">
+      <v-col cols="3" xl="2" offset="1">
         <v-overflow-btn
           v-if="isChangeableDist"
           @change="onDistributionTypeChange"
@@ -13,89 +13,120 @@
           :items="distNames"
           filled
           dense
-        />
+        ></v-overflow-btn>
       </v-col>
-      <v-col style="margin-top:7px" cols="2">
-        <v-btn height="45" v-if="shouldIncludeTitle && parameterHasChanged" color="secondary" @click="resetParameter">
+      <v-col cols="3" xl="2" style="margin-top: 7px">
+        <v-btn
+          height="45"
+          v-if="shouldIncludeTitle"
+          :disabled="!parameterHasChanged"
+          color="secondary"
+          @click="resetParameter"
+        >
           Reset Parameter
         </v-btn>
       </v-col>
     </v-row>
-    <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
-    <component :key="componentKey" :is="distComponent" :selected-parameter="currentSelectedParameter"> </component>
+    <v-divider color="grey" v-if="shouldIncludeTitle" />
+    <component
+      :key="currentSelectedParameter.path"
+      :is="display.distComponent"
+      :parameter-value="currentSelectedParameter.current"
+    />
+    <v-container v-if="display.displayChart">
+      <div class="py-5" style="width: 100%; height: 400px">
+        <distribution-chart
+          :distribution-series="display.chartData"
+          :x-axis-label="display.xAxisLabel"
+          :y-axis-label="'Probability of Selection'"
+          :data-generator="display.dataGenerator"
+          :force-x-axis-min-zero="false"
+          ref="dist"
+        />
+      </div>
+    </v-container>
   </v-card>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Watch } from 'vue-property-decorator';
-import { State } from 'vuex-class';
-import ParameterType from '@/enums/parameter/parameterTypes';
+import { Action, Getter, State } from 'vuex-class';
+import ParameterType from '@/enums/parameter/parameterType';
 import NullDisplay from '@/components/parameters/distributionDisplay/NullDisplay.vue';
 import UnknownDisplay from '@/components/parameters/distributionDisplay/UnknownDisplay.vue';
 import ConstantDisplay from '@/components/parameters/distributionDisplay/ConstantDisplay.vue';
-import ContaminatedBuildingTypes from '@/components/parameters/distributionDisplay/ContaminatedBuildingTypesDisplay.vue';
 import LogUniformDisplay from '@/components/parameters/distributionDisplay/LogUniformDisplay.vue';
 import BetaPertDisplay from '@/components/parameters/distributionDisplay/BetaPertDisplay.vue';
 import TruncatedLogNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedLogNormalDisplay.vue';
 import TruncatedNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedNormalDisplay.vue';
+import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNormalDisplay.vue';
 import UniformDisplay from '@/components/parameters/distributionDisplay/UniformDisplay.vue';
+import UniformXDependentDisplay from '@/components/parameters/distributionDisplay/UniformXDependentDisplay.vue';
+import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullDisplay.vue';
+import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
+import EnumeratedFractionDisplay from '@/components/parameters/distributionDisplay/EnumeratedFractionDisplay.vue';
+import EnumeratedParameterDisplay from '@/components/parameters/distributionDisplay/EnumeratedParameterDisplay.vue';
+import TextValueDisplay from '@/components/parameters/distributionDisplay/TextValueDisplay.vue';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
-import { changeableDistributionTypes } from '@/mixin/parameterMixin';
+import { changeableDistributionTypes, nonLogDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
+import { DistributionChart } from 'battelle-common-vue-charting';
+import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
+import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
 
 @Component({
   components: {
     NullDisplay,
     UnknownDisplay,
     ConstantDisplay,
-    ContaminatedBuildingTypes,
     LogUniformDisplay,
     BetaPertDisplay,
     TruncatedLogNormalDisplay,
     TruncatedNormalDisplay,
+    UniformXDependentDisplay,
     UniformDisplay,
+    LogNormalDisplay,
+    WeibullDisplay,
+    BimodalTruncatedNormalDisplay,
+    EnumeratedFractionDisplay,
+    EnumeratedParameterDisplay,
+    DistributionChart,
+    TextValueDisplay,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
   @State currentSelectedParameter!: ParameterWrapper;
 
+  @Getter hasResults!: boolean;
+
+  @Action resetCurrentJobRequest!: () => void;
+
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
-  @Watch('currentSelectedParameter')
-  onCurrentSelectedParameterChange() {
-    this.currentDistType = this.currentSelectedParameter.type;
-  }
+  @Watch('currentSelectedParameter', { deep: true })
+  onCurrentSelectedParameterChange(newValue: ParameterWrapper, oldValue: ParameterWrapper): void {
+    this.currentDistType = newValue.type;
 
-  componentKey = 0;
+    const isDifferentParameter = oldValue.path !== newValue.path;
+    if (this.hasResults && !isDifferentParameter) {
+      this.resetCurrentJobRequest();
+    }
+  }
 
   currentDistType = ParameterType.constant;
 
-  distNames = changeableDistributionTypes;
+  get display(): DistributionDisplay {
+    return container
+      .get<IDistributionDisplayProvider>(TYPES.DistributionDisplayProvider)
+      .getDistributionDisplay(this.currentSelectedParameter.baseline, this.currentSelectedParameter.current);
+  }
 
-  get distComponent(): string {
-    switch (this.currentSelectedParameter.current.type) {
-      case ParameterType.null:
-        return 'null-display';
-      case ParameterType.constant:
-        return 'constant-display';
-      case ParameterType.logUniform:
-        return 'log-uniform-display';
-      case ParameterType.pert:
-        return 'beta-pert-display';
-      case ParameterType.contaminatedBuildingTypes:
-        return 'contaminated-building-types-display';
-      case ParameterType.truncatedLogNormal:
-        return 'truncated-log-normal-display';
-      case ParameterType.truncatedNormal:
-        return 'truncated-normal-display';
-      case ParameterType.uniform:
-        return 'uniform-display';
-      default:
-        return 'unknown-display';
-    }
+  get distNames(): ParameterType[] {
+    const { upperLimit, step } = this.currentSelectedParameter.baseline.metaData;
+    return upperLimit > 1 + step ? changeableDistributionTypes : nonLogDistributionTypes;
   }
 
   get isChangeableDist(): boolean {
@@ -110,10 +141,9 @@ export default class ParameterDistributionSelector extends Vue {
     return this.currentSelectedParameter.isChanged();
   }
 
-  resetParameter() {
+  resetParameter(): void {
     this.$store.commit('resetCurrentSelectedParameter');
     this.currentDistType = this.currentSelectedParameter.type;
-    this.componentKey += 1;
   }
 
   onDistributionTypeChange(): void {
@@ -123,10 +153,14 @@ export default class ParameterDistributionSelector extends Vue {
     );
   }
 
-  created() {
+  created(): void {
     this.currentDistType = this.currentSelectedParameter.type;
   }
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.v-card__title {
+  word-break: normal;
+}
+</style>

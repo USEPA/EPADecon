@@ -8,26 +8,39 @@
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**;dist\</DefaultItemExcludes>
     <Authors>Kevin Wegman</Authors>
     <Company>Battelle Memorial Institute</Company>
-    <Description>Application to calculate the decontamination costs associated with a wide are contamination event</Description>
+    <Description>Application to calculate the decontamination costs associated with a wide area contamination event</Description>
     <AssemblyName>Battelle.EPA.WideAreaDecon.API</AssemblyName>
     <RootNamespace>Battelle.EPA.WideAreaDecon.API</RootNamespace>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="7.30.2" />
+    <!--<PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />-->
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="5.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="5.0.0" />
     <PackageReference Include="VueCliMiddleware" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="DotNetCore.NPOI" Version="1.2.2" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\InputFiles\ModifyParameters.xlsx" Link="InputFiles\ModifyParameters.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\InputFiles\DefineScenario.xlsx" Link="InputFiles\DefineScenario.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="..\README.md" />
   </ItemGroup>
   <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Battelle.EPA.WideAreaDecon.API.xml</DocumentationFile>
   </PropertyGroup>
+  <!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>5</WarningLevel>
+  </PropertyGroup>-->
   <Target Name="DeleteNPMBuild" AfterTargets="AfterClean">
     <Exec WorkingDirectory="$(SpaRoot)" Command="rmdir /S /Q dist" />
   </Target>
@@ -61,6 +74,11 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Battelle.EPA.WideAreaDecon.InterfaceData\Battelle.EPA.WideAreaDecon.InterfaceData.csproj" />
+    <ProjectReference Include="..\Battelle.EPA.WideAreaDecon.Model\Battelle.EPA.WideAreaDecon.Model.csproj" />
+  </ItemGroup>
   <ItemGroup>
     <Content Update="appsettings.Development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -73,6 +91,9 @@
     </Content>
     <Content Update="electron.manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="inputFileConfiguration.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="Schema\appsettings.schema.json" schema_4appsettings_1schema_1json__JsonSchema="http://json-schema.org/draft-04/schema#" /></VisualStudio></ProjectExtensions>
