@@ -18,27 +18,27 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         public EntranceExitCostCalculator Calculator_entEx { get; set; }
         public TravelCostCalculator Calculator_travel { get; set; }
 
-        //Phase time for scenario results
-        public Tuple<List<Dictionary<ApplicationMethod, double>>, Dictionary<PhaseDays, double>> CalculateTime()
+        //Element time for scenario results
+        public Tuple<List<Dictionary<ApplicationMethod, double>>, Dictionary<ElementDays, double>> CalculateTime()
         {
             var laborDays = Calculator_laborDays.CalculateLaborDays();
             var workDays = Calculator_workDays.CalculateWorkDays(laborDays);
             var onsiteDays = Calculator_onsiteDays.CalculateOnsiteDays(workDays);
 
-            var phaseDays = new Dictionary<PhaseDays, double>
+            var elementDays = new Dictionary<ElementDays, double>
             {
-                { PhaseDays.WorkDays, workDays },
-                { PhaseDays.OnsiteDays, onsiteDays }
+                { ElementDays.WorkDays, workDays },
+                { ElementDays.OnsiteDays, onsiteDays }
             };
 
-            return new Tuple<List<Dictionary<ApplicationMethod, double>>, Dictionary<PhaseDays, double>> (laborDays, phaseDays);
+            return new Tuple<List<Dictionary<ApplicationMethod, double>>, Dictionary<ElementDays, double>> (laborDays, elementDays);
         }
 
-        //Phase costs for scenario results
-        public double CalculatePhaseCosts(Dictionary<PhaseDays, double> phaseDays, double numberTeams, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<SurfaceType, ApplicationMethod> treatmentMethods, List<Dictionary<ApplicationMethod, double>> decontaminationWorkdays)
+        //Element costs for scenario results
+        public double CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<SurfaceType, ApplicationMethod> treatmentMethods, List<Dictionary<ApplicationMethod, double>> decontaminationWorkdays)
         {
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(areaContaminated, treatmentMethods);
-            var laborCosts = Calculator_labor.CalculateLaborCost(phaseDays[PhaseDays.OnsiteDays], numberTeams);
+            var laborCosts = Calculator_labor.CalculateLaborCost(elementDays[ElementDays.OnsiteDays], numberTeams);
             var entExCosts = Calculator_entEx.CalculateEntranceExitCost(numberTeams, ppeEachLevelPerTeam, decontaminationWorkdays);
             
             return (suppliesCosts + laborCosts + entExCosts);

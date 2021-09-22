@@ -1,6 +1,6 @@
-import IPhaseResult from './IPhaseResult';
+import IElementResult from './IElementResult';
 
-export default interface IGeneralResult extends IPhaseResult {
+export default interface IGeneralResult extends IElementResult {
   totalCost: number;
   areaContaminated: number;
   decontaminationRounds: number;

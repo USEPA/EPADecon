@@ -59,9 +59,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                 scenarioDefinitionDetails.Add(surface, info);
             }
 
-            var indoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationPhase.Indoor);
-            var outdoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationPhase.Outdoor);
-            var undergroundParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationPhase.Underground);
+            var indoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationElement.Indoor);
+            var outdoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationElement.Outdoor);
+            var undergroundParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationElement.Underground);
 
             Assert.Pass();
         }

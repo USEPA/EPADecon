@@ -70,7 +70,7 @@ import container from '@/dependencyInjection/config';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
-import PhaseResult from '@/enums/jobs/results/phaseResult';
+import Result from '@/enums/jobs/results/result';
 import store from '@/store';
 import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 
@@ -102,44 +102,44 @@ export default class RealizationDetails extends Vue {
   setValues(): void {
     this.results = store.state.currentJob.results[this.realizationNumber - 1];
 
-    this.totalCost = this.getResult(PhaseResult.TotalCost) ?? 0;
-    this.areaContaminated = this.getResult(PhaseResult.AreaContaminated) ?? 0;
-    this.totalWorkdays = this.getResult(PhaseResult.Workdays) ?? 0;
-    this.deconRounds = this.getResult(PhaseResult.DecontaminationRounds) ?? 0;
+    this.totalCost = this.getResult(Result.TotalCost) ?? 0;
+    this.areaContaminated = this.getResult(Result.AreaContaminated) ?? 0;
+    this.totalWorkdays = this.getResult(Result.Workdays) ?? 0;
+    this.deconRounds = this.getResult(Result.DecontaminationRounds) ?? 0;
 
     this.chartKey += 2;
   }
 
-  getResult(result: PhaseResult): number | undefined {
+  getResult(result: Result): number | undefined {
     return this.results ? this.resultProvider.getResultValues(this.results, result).reduce((a, b) => a + b) : undefined;
   }
 
-  getResultChartData(result: PhaseResult): ChartData {
+  getResultChartData(result: Result): ChartData {
     if (!this.results) {
       return new DefaultChartData([]);
     }
 
-    const breakdown = this.resultProvider.getResultPhaseBreakdown(this.results, result);
+    const breakdown = this.resultProvider.getResultElementBreakdown(this.results, result);
     const colorProvider = new CycleColorProvider();
     const colors = breakdown.map(() => colorProvider.getNextColor());
 
     return {
       datasets: [
         {
-          data: breakdown.map((p) => p.value),
+          data: breakdown.map((e) => e.value),
           backgroundColor: colors,
         },
       ],
-      labels: breakdown.map((p) => this.resultProvider.convertCamelToTitleCase(p.phase)),
+      labels: breakdown.map((e) => this.resultProvider.convertCamelToTitleCase(e.element)),
     };
   }
 
   get costChartData(): ChartData {
-    return this.getResultChartData(PhaseResult.PhaseCost);
+    return this.getResultChartData(Result.ElementCost);
   }
 
   get workdayChartData(): ChartData {
-    return this.getResultChartData(PhaseResult.Workdays);
+    return this.getResultChartData(Result.Workdays);
   }
 
   get chartOptions(): ChartOptions {

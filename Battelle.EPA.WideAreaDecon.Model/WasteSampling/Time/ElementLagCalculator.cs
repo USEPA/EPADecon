@@ -6,7 +6,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 {
-    public class PhaseLagCalculator : IPhaseLagCalculator
+    public class ElementLagCalculator : IElementLagCalculator
     {
         private readonly double _solidWastePerSurfaceArea;
         private readonly double _liquidWastePerSurfaceArea;
@@ -17,7 +17,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
         private readonly List<double> _labDistanceFromSite;
         private readonly List<double> _labThroughput;
 
-        public PhaseLagCalculator(
+        public ElementLagCalculator(
             double solidWastePerSurfaceArea,  
             double liquidWastePerSurfaceArea, 
             double massPerWasteSample,
@@ -37,7 +37,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
             _labThroughput = labThroughput;
         }
 
-        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double CalculateElementLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             numberLabs = _labDistanceFromSite.Count;
 

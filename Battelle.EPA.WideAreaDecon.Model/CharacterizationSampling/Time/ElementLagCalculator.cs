@@ -4,9 +4,9 @@ using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
-namespace Battelle.EPA.WideAreaDecon.Model.ClearanceSampling.Time
+namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Time
 {
-    public class PhaseLagCalculator : IPhaseLagCalculator
+    public class ElementLagCalculator : IElementLagCalculator
     {
         private readonly double _surfaceAreaPerWipe;
         private readonly double _surfaceAreaPerHepa;
@@ -15,7 +15,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.ClearanceSampling.Time
         private readonly List<double> _labDistanceFromSite;
         private readonly List<double> _labThroughput;
 
-        public PhaseLagCalculator(
+        public ElementLagCalculator(
             double surfaceAreaPerWipe,  
             double surfaceAreaPerHepa, 
             List<double> labUptimesHours, 
@@ -31,7 +31,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.ClearanceSampling.Time
             _labThroughput = labThroughput;
         }
 
-        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double CalculateElementLagTime(int numberLabs, double sampleTimeTransmitted, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             numberLabs = _labDistanceFromSite.Count;
 

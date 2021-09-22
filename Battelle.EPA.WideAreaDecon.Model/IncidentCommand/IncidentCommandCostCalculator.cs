@@ -13,14 +13,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
         public SuppliesCostCalculator Calculator_supplies { get; set; }
         public TravelCostCalculator Calculator_travel { get; set; }
 
-        //Phase time for scenario results
+        //Element time for scenario results
         public double CalculateTime(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC, double onsiteDaysCLS, double onsiteDaysWS)
         {
             return Calculator_onsiteDays.CalculateOnSiteDays(onsiteDaysCS, onsiteDaysSR, onsiteDaysDC, onsiteDaysCLS, onsiteDaysWS);
         }
 
-        //Phase costs for scenario results
-        public double CalculatePhaseCosts(double onSiteDays)
+        //Element costs for scenario results
+        public double CalculateElementCosts(double onSiteDays)
         {
             var laborCosts = Calculator_labor.CalculateLaborCost(onSiteDays);
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(onSiteDays);

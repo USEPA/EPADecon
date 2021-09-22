@@ -16,36 +16,36 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling
         public WorkDaysCalculator Calculator_workdays { get; set; }
         public OnsiteDaysCalculator Calculator_onsiteDays { get; set; }
         public AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
-        public PhaseLagCalculator Calculator_phaseLag { get; set; }
+        public ElementLagCalculator Calculator_elementLag { get; set; }
         public TravelCostCalculator Calculator_travel { get; set; }
 
-        //Phase time for scenario results
-        public Dictionary<PhaseDays, double> CalculateTime(double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
+        //Element time for scenario results
+        public Dictionary<ElementDays, double> CalculateTime(double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
             var laborDays = Calculator_laborDays.CalculateLaborDays(numberTeams, fractionSampled, areaContaminated);
             var workDays = Calculator_workdays.CalculateWorkDays(laborDays, numberTeams, ppePerLevelPerTeam);
             var onsiteDays = Calculator_onsiteDays.CalculateOnsiteDays(workDays);
 
-            return new Dictionary<PhaseDays, double>()
+            return new Dictionary<ElementDays, double>()
             {
-                { PhaseDays.LaborDays, laborDays },
-                { PhaseDays.WorkDays, workDays },
-                { PhaseDays.OnsiteDays, onsiteDays }
+                { ElementDays.LaborDays, laborDays },
+                { ElementDays.WorkDays, workDays },
+                { ElementDays.OnsiteDays, onsiteDays }
             };
         }
 
-        //Phase lag due to lab analysis duration for scenario results
-        public double CalculatePhaseLag(int numberLabs, double sampleTimeTransmitted, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        //Element lag due to lab analysis duration for scenario results
+        public double CalculateElementLag(int numberLabs, double sampleTimeTransmitted, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return Calculator_phaseLag.CalculatePhaseLagTime(numberLabs, sampleTimeTransmitted, fractionSampled, areaContaminated);
+            return Calculator_elementLag.CalculateElementLagTime(numberLabs, sampleTimeTransmitted, fractionSampled, areaContaminated);
         }
 
-        //Phase costs for scenario results
-        public double CalculatePhaseCosts(Dictionary<PhaseDays, double> phaseDays, double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
+        //Element costs for scenario results
+        public double CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
-            var entExCosts = Calculator_entEx.CalculateEntrancesExitsCost(phaseDays[PhaseDays.LaborDays], numberTeams, ppePerLevelPerTeam);
+            var entExCosts = Calculator_entEx.CalculateEntrancesExitsCost(elementDays[ElementDays.LaborDays], numberTeams, ppePerLevelPerTeam);
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(fractionSampled, areaContaminated);
-            var laborCosts = Calculator_labor.CalculateLaborCost(phaseDays[PhaseDays.OnsiteDays], numberTeams);
+            var laborCosts = Calculator_labor.CalculateLaborCost(elementDays[ElementDays.OnsiteDays], numberTeams);
             var analysisCosts = Calculator_analysis.CalculateAnalysisQuantityCost(fractionSampled, areaContaminated);
 
             return (entExCosts + suppliesCosts + laborCosts + analysisCosts);
