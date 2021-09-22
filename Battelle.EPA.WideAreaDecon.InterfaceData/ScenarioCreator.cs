@@ -7,15 +7,15 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData
 {
     public class ScenarioCreator : IScenarioCreator
     {
-        private readonly EnumeratedParameter<DecontaminationPhase> _areaContaminated;
-        private readonly EnumeratedParameter<DecontaminationPhase> _loading;
+        private readonly EnumeratedParameter<DecontaminationElement> _areaContaminated;
+        private readonly EnumeratedParameter<DecontaminationElement> _loading;
         private readonly EnumeratedFraction<BuildingCategory> _indoorContaminationBreakout;
         private readonly EnumeratedFraction<SurfaceType> _indoorSurfaceTypeBreakout;
         private readonly EnumeratedFraction<SurfaceType> _outdoorSurfaceTypeBreakout;
         private readonly EnumeratedFraction<SurfaceType> _undergroundSurfaceTypeBreakout;
 
-        public ScenarioCreator(EnumeratedParameter<DecontaminationPhase> areaContaminated,
-            EnumeratedParameter<DecontaminationPhase> loading,
+        public ScenarioCreator(EnumeratedParameter<DecontaminationElement> areaContaminated,
+            EnumeratedParameter<DecontaminationElement> loading,
             EnumeratedFraction<BuildingCategory> indoorContaminationBreakout,
             EnumeratedFraction<SurfaceType> indoorSurfaceTypeBreakout,
             EnumeratedFraction<SurfaceType> outdoorSurfaceTypeBreakout,
@@ -39,8 +39,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData
 
         private Dictionary<BuildingCategory, Dictionary<SurfaceType, ContaminationInformation>> CreateIndoorBuildings()
         {
-            var areaContaminated = _areaContaminated.Values[DecontaminationPhase.Indoor].CreateDistribution().Draw();
-            var loading = _loading.Values[DecontaminationPhase.Indoor].CreateDistribution().Draw();
+            var areaContaminated = _areaContaminated.Values[DecontaminationElement.Indoor].CreateDistribution().Draw();
+            var loading = _loading.Values[DecontaminationElement.Indoor].CreateDistribution().Draw();
 
             var contaminationBreakout = _indoorContaminationBreakout.Values.ToDictionary((v) => v.Key, (v) => new ContaminationInformation(areaContaminated * v.Value.Value.Value, loading * v.Value.Value.Value));
 
@@ -75,16 +75,16 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData
 
         private Dictionary<SurfaceType, ContaminationInformation> CreateUndergroundBuildings()
         {
-            var areaContaminated = _areaContaminated.Values[DecontaminationPhase.Underground].CreateDistribution().Draw();
-            var loading = _loading.Values[DecontaminationPhase.Underground].CreateDistribution().Draw();
+            var areaContaminated = _areaContaminated.Values[DecontaminationElement.Underground].CreateDistribution().Draw();
+            var loading = _loading.Values[DecontaminationElement.Underground].CreateDistribution().Draw();
 
             return _undergroundSurfaceTypeBreakout.Values.ToDictionary(v => v.Key, v => new ContaminationInformation(areaContaminated * v.Value.Value.Value, loading * v.Value.Value.Value));
         }
 
         private Dictionary<SurfaceType, ContaminationInformation> CreateOutdoorAreas()
         {
-            var areaContaminated = _areaContaminated.Values[DecontaminationPhase.Outdoor].CreateDistribution().Draw();
-            var loading = _loading.Values[DecontaminationPhase.Outdoor].CreateDistribution().Draw();
+            var areaContaminated = _areaContaminated.Values[DecontaminationElement.Outdoor].CreateDistribution().Draw();
+            var loading = _loading.Values[DecontaminationElement.Outdoor].CreateDistribution().Draw();
 
             return _outdoorSurfaceTypeBreakout.Values.ToDictionary(v => v.Key, v => new ContaminationInformation(areaContaminated * v.Value.Value.Value, loading * v.Value.Value.Value));
         }

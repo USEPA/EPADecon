@@ -93,13 +93,13 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             SurfaceType.UndergroundHvac,
         };
 
-        public static SurfaceType[] GetSurfaceTypesForPhase(DecontaminationPhase phase)
+        public static SurfaceType[] GetSurfaceTypesForElement(DecontaminationElement element)
         {
-            return phase switch
+            return element switch
             {
-                DecontaminationPhase.Indoor => IndoorSurfaceTypes,
-                DecontaminationPhase.Outdoor => OutdoorSurfaceTypes,
-                DecontaminationPhase.Underground => UndergroundSurfaceTypes,
+                DecontaminationElement.Indoor => IndoorSurfaceTypes,
+                DecontaminationElement.Outdoor => OutdoorSurfaceTypes,
+                DecontaminationElement.Underground => UndergroundSurfaceTypes,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

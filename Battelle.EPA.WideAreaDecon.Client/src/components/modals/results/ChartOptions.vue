@@ -14,7 +14,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(result, i) in phaseResultNames" :key="result">
+                <tr v-for="(result, i) in resultNames" :key="result">
                   <td class="text-left">{{ result }}</td>
                   <td class="text-center">
                     <v-checkbox
@@ -22,11 +22,11 @@
                       on-icon="mdi-checkbox-marked-circle"
                       :ripple="false"
                       v-model="selected.x"
-                      :value="phaseResultValues[i]"
+                      :value="resultValues[i]"
                     />
                   </td>
                   <td class="text-center">
-                    <v-checkbox :ripple="false" v-model="selected.y" :value="phaseResultValues[i]" />
+                    <v-checkbox :ripple="false" v-model="selected.y" :value="resultValues[i]" />
                   </td>
                 </tr>
               </tbody>
@@ -47,7 +47,7 @@
 
 <script lang="ts">
 import { Component, VModel, Vue } from 'vue-property-decorator';
-import PhaseResult from '@/enums/jobs/results/phaseResult';
+import Result from '@/enums/jobs/results/result';
 import container from '@/dependencyInjection/config';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import TYPES from '@/dependencyInjection/types';
@@ -56,7 +56,7 @@ import TYPES from '@/dependencyInjection/types';
 export default class ChartOptions extends Vue {
   @VModel({ default: () => false }) isVisible!: boolean;
 
-  selected: { x: PhaseResult | null; y: PhaseResult | null } = { x: null, y: null };
+  selected: { x: Result | null; y: Result | null } = { x: null, y: null };
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
@@ -64,13 +64,13 @@ export default class ChartOptions extends Vue {
     return Object.values(this.selected).some((o) => o);
   }
 
-  get phaseResultNames(): string[] {
-    return Object.keys(PhaseResult).map((p) => this.resultProvider.convertCamelToTitleCase(p));
+  get resultNames(): string[] {
+    return Object.keys(Result).map((p) => this.resultProvider.convertCamelToTitleCase(p));
   }
 
   // eslint-disable-next-line class-methods-use-this
-  get phaseResultValues(): PhaseResult[] {
-    return Object.values(PhaseResult);
+  get resultValues(): Result[] {
+    return Object.values(Result);
   }
 
   get createText(): string {

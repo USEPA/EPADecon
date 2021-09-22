@@ -1,9 +1,9 @@
 import IIndoorResult from './IIndoorResult';
-import IPhaseResultSet from './IPhaseResultSet';
+import IElementResultSet from './IElementResultSet';
 
 export default interface IScenarioResults {
   indoorResults: IIndoorResult;
-  outdoorResults: IPhaseResultSet;
-  undergroundResults: IPhaseResultSet;
-  [key: string]: IPhaseResultSet | IIndoorResult;
+  outdoorResults: IElementResultSet;
+  undergroundResults: IElementResultSet;
+  [key: string]: IElementResultSet | IIndoorResult;
 }

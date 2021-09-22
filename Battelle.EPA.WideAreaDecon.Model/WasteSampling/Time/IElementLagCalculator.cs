@@ -5,8 +5,8 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 {
-    public interface IPhaseLagCalculator
+    public interface IElementLagCalculator
     {
-        public double CalculatePhaseLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated);
+        public double CalculateElementLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated);
     }
 }

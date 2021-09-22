@@ -16,37 +16,37 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         public OnsiteDaysCalculator Calculator_onsiteDays { get; set; }
         public EntrancesExitsCostCalculator Calculator_entEx { get; set; }
         public AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
-        public PhaseLagCalculator Calculator_phaseLag { get; set; }
+        public ElementLagCalculator Calculator_elementLag { get; set; }
         public TravelCostCalculator Calculator_travel { get; set; }
 
-        //Phase time for scenario results
-        public Dictionary<PhaseDays, double> CalculateTime(double numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<PpeLevel, double> ppeLevelPerTeam)
+        //Element time for scenario results
+        public Dictionary<ElementDays, double> CalculateTime(double numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<PpeLevel, double> ppeLevelPerTeam)
         {
             var laborDays = Calculator_laborDays.CalculateLaborDays(numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated);
             var workDays = Calculator_workdays.CalculateWorkDays(laborDays, numberTeams, ppeLevelPerTeam);
             var onsiteDays = Calculator_onsiteDays.CalculateOnsiteDays(workDays);
 
-            return new Dictionary<PhaseDays, double>()
+            return new Dictionary<ElementDays, double>()
             {
-                { PhaseDays.LaborDays, laborDays },
-                { PhaseDays.WorkDays, workDays },
-                { PhaseDays.OnsiteDays, onsiteDays }
+                { ElementDays.LaborDays, laborDays },
+                { ElementDays.WorkDays, workDays },
+                { ElementDays.OnsiteDays, onsiteDays }
             };
         }
 
-        //Phase lag due to lab analysis duration for scenario results
-        public double CalculatePhaseLag(int numberLabs, double sampleTimeTransmitted, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        //Element lag due to lab analysis duration for scenario results
+        public double CalculateElementLag(int numberLabs, double sampleTimeTransmitted, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return Calculator_phaseLag.CalculatePhaseLagTime(numberLabs, sampleTimeTransmitted, fractionSampledWipe, fractionSampledHepa, areaContaminated);
+            return Calculator_elementLag.CalculateElementLagTime(numberLabs, sampleTimeTransmitted, fractionSampledWipe, fractionSampledHepa, areaContaminated);
         }
 
-        //Phase costs for scenario results
-        public double CalculatePhaseCosts(Dictionary<PhaseDays, double> phaseDays, double numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
+        //Element costs for scenario results
+        public double CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
              Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
             var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated);
-            var laborCosts = Calculator_labor.CalculateLaborCost(phaseDays[PhaseDays.OnsiteDays], numberTeams);
-            var entExCosts = Calculator_entEx.CalculateEntrancesExitsCost(phaseDays[PhaseDays.LaborDays], numberTeams, ppePerLevelPerTeam);
+            var laborCosts = Calculator_labor.CalculateLaborCost(elementDays[ElementDays.OnsiteDays], numberTeams);
+            var entExCosts = Calculator_entEx.CalculateEntrancesExitsCost(elementDays[ElementDays.LaborDays], numberTeams, ppePerLevelPerTeam);
             var analysisCosts = Calculator_analysis.CalculateAnalysisQuantityCost(fractionSampledWipe, fractionSampledHepa, areaContaminated);
             
             return (suppliesCosts + laborCosts + entExCosts + analysisCosts);

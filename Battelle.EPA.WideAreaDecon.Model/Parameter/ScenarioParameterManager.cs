@@ -45,13 +45,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
         }
 
         public CalculatorManager RedrawParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails,
-            DecontaminationPhase phase)
+            DecontaminationElement element)
         {
             return new CalculatorManager()
             {
                 _characterizationSamplingParameters = SetCharacterizationSamplingParameters(),
                 _sourceReductionParameters = SetSourceReductionParameters(),
-                _decontaminationParameters = SetDecontaminationParameters(scenarioDefinitionDetails, phase),
+                _decontaminationParameters = SetDecontaminationParameters(scenarioDefinitionDetails, element),
                 _clearanceSamplingParameters = SetClearanceSamplingParameters(),
                 _wasteSamplingParameters = SetWasteSamplingParameters(),
                 _incidentCommandParameters = SetIncidentCommandParameters(),
@@ -209,9 +209,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 ppeRequired);
         }
 
-        private DecontaminationParameters SetDecontaminationParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails, DecontaminationPhase phase)
+        private DecontaminationParameters SetDecontaminationParameters(Dictionary<SurfaceType, ContaminationInformation> scenarioDefinitionDetails, DecontaminationElement element)
         {
-            var surfaces = SurfaceTypeHelper.GetSurfaceTypesForPhase(phase);
+            var surfaces = SurfaceTypeHelper.GetSurfaceTypesForElement(element);
             var applicationMethods = SetTreatmentMethods(surfaces);
             var initialSporeLoading = new Dictionary<SurfaceType, double>();
             var treatmentDaysPerAm = new Dictionary<ApplicationMethod, double>();

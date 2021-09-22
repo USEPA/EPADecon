@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-shadow
-enum PhaseResult {
+enum Result {
   Workdays = 'workDays',
   OnSiteDays = 'onSiteDays',
-  PhaseCost = 'phaseCost',
+  ElementCost = 'elementCost',
   TotalCost = 'totalCost',
   AreaContaminated = 'areaContaminated',
   DecontaminationRounds = 'decontaminationRounds',
@@ -10,4 +10,4 @@ enum PhaseResult {
   AqueousWasteProduced = 'aqueousWasteProduced',
 }
 
-export default PhaseResult;
+export default Result;
