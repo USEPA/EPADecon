@@ -75,7 +75,7 @@ import { changeableDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
-import { DistributionChart } from 'battelle-common-vue-charting/src/index';
+import { DistributionChart } from 'battelle-common-vue-charting';
 import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
 import ContaminationDefinitionDisplay from '@/components/parameters/ContaminationDefinitionDisplay.vue';
