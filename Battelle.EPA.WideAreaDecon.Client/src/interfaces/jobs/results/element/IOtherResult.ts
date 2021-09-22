@@ -1,6 +1,6 @@
-import IPhaseResult from './IPhaseResult';
+import IElementResult from './IElementResult';
 
-export default interface IOtherResult extends IPhaseResult {
+export default interface IOtherResult extends IElementResult {
   characterizationSamplingTravelCost: number;
   sourceReductionTravelCost: number;
   decontaminationTravelCost: number;

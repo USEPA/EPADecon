@@ -106,8 +106,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         .First(f => f.Name == "Extent of Contamination").Parameters;
 
                     var scenarioCreator = new ScenarioCreator(
-                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Area Contaminated") as EnumeratedParameter<DecontaminationPhase>,
-                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Loading") as EnumeratedParameter<DecontaminationPhase>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Area Contaminated") as EnumeratedParameter<DecontaminationElement>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Loading") as EnumeratedParameter<DecontaminationElement>,
                         extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Contamination Breakout") as EnumeratedFraction<BuildingCategory>,
                         extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
                         extentOfContaminationParameters.First(p => p.MetaData.Name == "Outdoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
@@ -142,7 +142,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         {
                             if (building.Value.Count > 0)
                             {
-                                var indoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Indoor, building.Value);
+                                var indoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationElement.Indoor, building.Value);
                                 realizationResults.scenarioResults.indoorResults.Add(building.Key, indoorModelRunner.RunScenarioModel());
                             }
                         }
@@ -155,7 +155,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         //RUN OUTDOOR SCENARIO
                         if (scenarios[s].OutdoorAreasContaminated.Sum(x => x.Value.AreaContaminated) > 0)
                         {
-                            var outdoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Outdoor, scenarios[s].OutdoorAreasContaminated);
+                            var outdoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationElement.Outdoor, scenarios[s].OutdoorAreasContaminated);
                             realizationResults.scenarioResults.outdoorResults = outdoorModelRunner.RunScenarioModel();
                         } else
                         {
@@ -165,7 +165,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         //RUN UNDERGROUND SCENARIO
                         if (scenarios[s].UndergroundBuildingsContaminated.Sum(x => x.Value.AreaContaminated) > 0)
                         {
-                            var undergroundModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationPhase.Underground, scenarios[s].UndergroundBuildingsContaminated);
+                            var undergroundModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationElement.Underground, scenarios[s].UndergroundBuildingsContaminated);
                             realizationResults.scenarioResults.undergroundResults = undergroundModelRunner.RunScenarioModel();
                         } else
                         {

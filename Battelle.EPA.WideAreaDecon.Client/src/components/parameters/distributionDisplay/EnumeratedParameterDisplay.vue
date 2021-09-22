@@ -23,6 +23,7 @@
           <v-overflow-btn
             @change="onCategoryChanged"
             class="my-2"
+            :error-messages="!parameterValue.isSet ? [noAreaErrorMessage] : null"
             :items="categories"
             :item-text="[0]"
             :item-value="[1]"
@@ -143,6 +144,12 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
   get isTextDistribution(): boolean {
     return this.currentDistType === ParameterType.textValue;
+  }
+
+  get noAreaErrorMessage(): string {
+    return !this.parameterValue.isSet && Object.values(this.parameterValue.values).every((val) => val.isSet)
+      ? 'At least one category must have a definitive area contaminated'
+      : '';
   }
 
   onCategoryChanged(): void {

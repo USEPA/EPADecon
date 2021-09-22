@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
 {
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum DecontaminationPhase
+    public enum DecontaminationElement
     {
         Indoor,
         Underground,

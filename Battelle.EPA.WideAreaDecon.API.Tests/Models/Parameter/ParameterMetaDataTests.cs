@@ -27,7 +27,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Step = 1,
                 Name = "Test 0",
                 Units = "Units 0",
-                ValidPhases = new[] {DecontaminationPhase.Indoor}
+                ValidElements = new[] {DecontaminationElement.Indoor}
             },
             new ParameterMetaData
             {
@@ -38,7 +38,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Step = 1,
                 Name = "Test 1",
                 Units = "Units 1",
-                ValidPhases = new[] {DecontaminationPhase.Outdoor}
+                ValidElements = new[] {DecontaminationElement.Outdoor}
             },
             new ParameterMetaData
             {
@@ -49,8 +49,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Step = 1,
                 Name = "Test 2",
                 Units = "Units 2",
-                ValidPhases = new[]
-                    {DecontaminationPhase.Indoor, DecontaminationPhase.Outdoor, DecontaminationPhase.Underground}
+                ValidElements = new[]
+                    {DecontaminationElement.Indoor, DecontaminationElement.Outdoor, DecontaminationElement.Underground}
             },
             new ParameterMetaData
             {
@@ -61,7 +61,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Step = 1,
                 Name = "Test 3",
                 Units = "Units 3",
-                ValidPhases = new[] {DecontaminationPhase.Indoor, DecontaminationPhase.Underground}
+                ValidElements = new[] {DecontaminationElement.Indoor, DecontaminationElement.Underground}
             },
             new ParameterMetaData
             {
@@ -72,7 +72,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Step = 0.01,
                 Name = "Test 4",
                 Units = "Units 4",
-                ValidPhases = new[] {DecontaminationPhase.Indoor, DecontaminationPhase.Outdoor}
+                ValidElements = new[] {DecontaminationElement.Indoor, DecontaminationElement.Outdoor}
             },
             new ParameterMetaData
             {
@@ -83,7 +83,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Step = 0.01,
                 Name = "Test 5",
                 Units = "Units 5",
-                ValidPhases = new[] {DecontaminationPhase.Indoor, DecontaminationPhase.Outdoor}
+                ValidElements = new[] {DecontaminationElement.Indoor, DecontaminationElement.Outdoor}
             },
             new ParameterMetaData
             {
@@ -94,7 +94,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 Step = 0.01,
                 Name = "Test 6",
                 Units = "Units 6",
-                ValidPhases = new[] {DecontaminationPhase.Indoor, DecontaminationPhase.Outdoor}
+                ValidElements = new[] {DecontaminationElement.Indoor, DecontaminationElement.Outdoor}
             }
         };
 
@@ -119,11 +119,11 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Models.Parameter
                 var expected = _expected[i - 1];
                 var actual = ParameterMetaData.FromExcel(sheet.GetRow(i));
 
-                Assert.AreEqual(expected.ValidPhases.Length, actual.ValidPhases.Length,
-                    $"Incorrect number of valid phases for entry {i}");
-                for (var j = 0; j < expected.ValidPhases.Length; j++)
-                    Assert.AreEqual(expected.ValidPhases[j], actual.ValidPhases[j],
-                        $"Mismatch for entry {i} and phase {j}");
+                Assert.AreEqual(expected.ValidElements.Length, actual.ValidElements.Length,
+                    $"Incorrect number of valid elements for entry {i}");
+                for (var j = 0; j < expected.ValidElements.Length; j++)
+                    Assert.AreEqual(expected.ValidElements[j], actual.ValidElements[j],
+                        $"Mismatch for entry {i} and element {j}");
 
                 Assert.AreEqual(expected.Category, actual.Category,
                     $"Incorrect {nameof(expected.Category)} for entry {i}");

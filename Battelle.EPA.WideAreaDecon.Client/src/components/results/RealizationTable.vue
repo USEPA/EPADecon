@@ -56,19 +56,19 @@
               </tr>
             </thead>
 
-            <tbody v-for="(phaseResult, phaseName) in exisitingLocation" :key="phaseName">
+            <tbody v-for="(elementResult, elementName) in exisitingLocation" :key="elementName">
               <tr>
                 <td class="text-subtitle-1 font-weight-medium">
-                  {{ resultProvider.convertCamelToTitleCase(phaseName) }}
+                  {{ resultProvider.convertCamelToTitleCase(elementName) }}
                 </td>
                 <td :colspan="displayedRunNumbers.length" />
               </tr>
 
-              <tr v-for="(_, result) in phaseResult" :key="result">
+              <tr v-for="(_, result) in elementResult" :key="result">
                 <td class="pl-8">{{ resultProvider.convertCamelToTitleCase(result) }}</td>
 
                 <td v-for="runNumber in displayedRunNumbers" :key="runNumber">
-                  {{ getCellValueSingleLocation(phaseName, result, runNumber) }}
+                  {{ getCellValueSingleLocation(elementName, result, runNumber) }}
                 </td>
               </tr>
             </tbody>
@@ -103,20 +103,20 @@
               </tr>
             </thead>
 
-            <tbody v-for="(phaseResult, phaseName) in exisitingLocation" :key="phaseName">
+            <tbody v-for="(elementResult, elementName) in exisitingLocation" :key="elementName">
               <tr>
                 <td class="text-subtitle-1 font-weight-medium">
-                  {{ resultProvider.convertCamelToTitleCase(phaseName) }}
+                  {{ resultProvider.convertCamelToTitleCase(elementName) }}
                 </td>
 
                 <td :class="getCellClass(i)" v-for="i in locations.length * displayedRunNumbers.length" :key="i" />
               </tr>
 
-              <tr v-for="(_, result) in phaseResult" :key="result">
+              <tr v-for="(_, result) in elementResult" :key="result">
                 <td>{{ resultProvider.convertCamelToTitleCase(result) }}</td>
 
                 <td :class="getCellClass(i + 1)" v-for="(location, i) in tableLocations" :key="`${location} - ${i}`">
-                  {{ getCellValueAllLocations(location, phaseName, result, i) }}
+                  {{ getCellValueAllLocations(location, elementName, result, i) }}
                 </td>
               </tr>
             </tbody>
@@ -132,16 +132,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
-import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
+import IElementResultSet from '@/interfaces/jobs/results/IElementResultSet';
 import BuildingCategory from '@/enums/parameter/buildingCategory';
 import RealizationDetails from '@/components/modals/results/RealizationDetails.vue';
-import PhaseResult from '@/enums/jobs/results/phaseResult';
+import Result from '@/enums/jobs/results/result';
 
 @Component({ components: { RealizationDetails } })
 export default class RealizationTable extends Vue {
@@ -179,7 +179,7 @@ export default class RealizationTable extends Vue {
     return [...Array(length)].flatMap(() => this.locations);
   }
 
-  get exisitingLocation(): IPhaseResultSet | null {
+  get exisitingLocation(): IElementResultSet | null {
     const { scenarioResults } = this.results[0];
     if (scenarioResults.indoorResults) {
       // indoor exists
@@ -216,17 +216,17 @@ export default class RealizationTable extends Vue {
     return cellNumber && cellNumber % this.locations.length === 0 && cellNumber ? 'border-right' : '';
   }
 
-  getCellValueAllLocations(location: string, phaseName: string, result: PhaseResult, index: number): string {
-    const value = this.getLocationResults(this.calculateRunNumber(index), location)[phaseName][result];
+  getCellValueAllLocations(location: string, elementName: string, result: Result, index: number): string {
+    const value = this.getLocationResults(this.calculateRunNumber(index), location)[elementName][result];
     return this.resultProvider.formatNumber(value);
   }
 
-  getCellValueSingleLocation(phaseName: string, result: PhaseResult, runNumber: number): string {
-    const value = this.getLocationResults(runNumber)[phaseName][result];
+  getCellValueSingleLocation(elementName: string, result: Result, runNumber: number): string {
+    const value = this.getLocationResults(runNumber)[elementName][result];
     return this.resultProvider.formatNumber(value);
   }
 
-  getLocationResults(runNumber: number, location?: string): IPhaseResultSet {
+  getLocationResults(runNumber: number, location?: string): IElementResultSet {
     const run = this.resultProvider.getRealizationResults(this.results, runNumber).scenarioResults;
 
     let selectedLocation = (location !== undefined ? location : this.selectedLocation).replace(/ Building$/, '');
@@ -236,7 +236,7 @@ export default class RealizationTable extends Vue {
       selectedLocation = selectedLocation[0].toLowerCase() + `${selectedLocation}Results`.substring(1);
     }
 
-    return isIndoor ? run.indoorResults[selectedLocation] : (run[selectedLocation] as IPhaseResultSet);
+    return isIndoor ? run.indoorResults[selectedLocation] : (run[selectedLocation] as IElementResultSet);
   }
 
   removeRunFromTable(runNumber: number): void {

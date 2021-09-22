@@ -18,8 +18,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario
         private const string OutdoorSurfaceBreakoutName = "Outdoor Surface Type Breakout";
         private const string UndergroundSurfaceBreakoutName = "Underground Surface Type Breakout";
 
-        public EnumeratedParameter<DecontaminationPhase> AreaContaminated { get; set; }
-        public EnumeratedParameter<DecontaminationPhase> Loading { get; set; }
+        public EnumeratedParameter<DecontaminationElement> AreaContaminated { get; set; }
+        public EnumeratedParameter<DecontaminationElement> Loading { get; set; }
         public EnumeratedFraction<BuildingCategory> IndoorBuildingBreakout { get; set; }
         public EnumeratedFraction<SurfaceType> IndoorSurfaceBreakout { get; set; }
         public EnumeratedFraction<SurfaceType> OutdoorSurfaceBreakout { get; set; }
@@ -35,17 +35,17 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario
 
             return new ExtentOfContamination()
             {
-                AreaContaminated = EnumeratedParameter<DecontaminationPhase>.FromExcel(new ParameterMetaData()
+                AreaContaminated = EnumeratedParameter<DecontaminationElement>.FromExcel(new ParameterMetaData()
                 {
                     Category = SheetName,
                     Name = AreaRowName,
-                    Description = "The amount of contaminated area for each phase"
+                    Description = "The amount of contaminated area for each element"
                 }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == AreaRowName)),
-                Loading = EnumeratedParameter<DecontaminationPhase>.FromExcel(new ParameterMetaData()
+                Loading = EnumeratedParameter<DecontaminationElement>.FromExcel(new ParameterMetaData()
                 {
                     Category = SheetName,
                     Name = LoadingRowName,
-                    Description = "The loading of contaminate for each phase"
+                    Description = "The loading of contaminate for each element"
                 }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == LoadingRowName)),
                 IndoorBuildingBreakout = EnumeratedFraction<BuildingCategory>.FromExcel(new ParameterMetaData()
                 {

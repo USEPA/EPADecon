@@ -25,18 +25,19 @@ export default class DistributionDisplay {
   get dataGenerator(): DistributionDataGenerator {
     // don't use baseline distribution if constant distribution
     const useBaseline = this.baseline.type !== ParameterType.constant;
+    const ignoreWeibullMinMax = !useBaseline && this.current.type === ParameterType.weibull;
 
     let min = useBaseline ? this.baseline.metaData.lowerLimit : this.current.metaData.lowerLimit;
     let max = useBaseline ? this.baseline.metaData.upperLimit : this.current.metaData.upperLimit;
 
-    if (this.current.min !== undefined) {
+    if (this.current.min !== undefined && !ignoreWeibullMinMax) {
       min =
         useBaseline && this.baseline.min !== undefined
           ? this.getMin(this.current.min, this.baseline.min)
           : this.current.min;
     }
 
-    if (this.current.max !== undefined) {
+    if (this.current.max !== undefined && !ignoreWeibullMinMax) {
       max =
         useBaseline && this.baseline.max !== undefined
           ? this.getMax(this.current.max, this.baseline.max)

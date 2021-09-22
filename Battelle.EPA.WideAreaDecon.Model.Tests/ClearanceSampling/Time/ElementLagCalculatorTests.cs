@@ -7,9 +7,9 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests.ClearanceSampling.Time
 {
-    public class PhaseLagCalculatorTests
+    public class ElementLagCalculatorTests
     {
-        private PhaseLagCalculator Calculator { get; set; }
+        private ElementLagCalculator Calculator { get; set; }
 
         [SetUp]
         public void Setup()
@@ -21,7 +21,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.ClearanceSampling.Time
             var labUptimesHours = new List<double> { 12.0, 12.0, 12.0 };
             var labDistanceFromSite = new List<double> { 40.0, 40.0, 40.0 };
 
-            Calculator = new PhaseLagCalculator(
+            Calculator = new ElementLagCalculator(
                 surfaceAreaPerWipe, 
                 surfaceAreaPerHepa, 
                 labUptimesHours, 
@@ -32,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.ClearanceSampling.Time
         }
 
         [Test]
-        public void CalculateCSPhaseLagTime()
+        public void CalculateCSElementLagTime()
         {
             var numberLabs = 3;
             var sampleTimeTransmitted = 24.0;
@@ -46,8 +46,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.ClearanceSampling.Time
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(6.36340723, Calculator.CalculatePhaseLagTime(numberLabs, sampleTimeTransmitted, fractionSampledWipe, fractionSampledHepa, areaContaminated), 
-                1e-6, "Incorrect phase lag cost calculated");
+            Assert.AreEqual(6.36340723, Calculator.CalculateElementLagTime(numberLabs, sampleTimeTransmitted, fractionSampledWipe, fractionSampledHepa, areaContaminated), 
+                1e-6, "Incorrect element lag cost calculated");
         }
     }
 }

@@ -6,11 +6,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results
 {
     public class ScenarioRealizationResults
     {
-        public GenericPhaseResults characterizationSamplingResults { get; set; }
-        public GenericPhaseResults sourceReductionResults { get; set; }
-        public GenericPhaseResults decontaminationResults { get; set; }
-        public GenericPhaseResults clearanceSamplingResults { get; set; }
-        public GenericPhaseResults wasteSamplingResults { get; set; }
+        public GenericElementResults characterizationSamplingResults { get; set; }
+        public GenericElementResults sourceReductionResults { get; set; }
+        public GenericElementResults decontaminationResults { get; set; }
+        public GenericElementResults clearanceSamplingResults { get; set; }
+        public GenericElementResults wasteSamplingResults { get; set; }
         public IncidentCommandResults incidentCommandResults { get; set; }
         public GeneralResults generalResults { get; set; }
     }

@@ -381,13 +381,13 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     return true;
   }
 
-  onHover(event: ChartEvent, elements: ActiveElement[]): void {
+  onHover(_: ChartEvent, elements: ActiveElement[]): void {
     if (elements.length !== 0) {
-      this.selectedIndex = elements[0].index;
+      this.selectedIndex = Math.max(...elements.map((e) => e.index));
     }
   }
 
-  onClick(event: ChartEvent, elements: ActiveElement[]): void {
+  onClick(_: ChartEvent, elements: ActiveElement[]): void {
     if (elements.length === 0) {
       this.selectedIndex = -1;
     }

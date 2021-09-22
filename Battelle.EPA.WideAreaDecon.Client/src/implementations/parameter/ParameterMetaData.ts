@@ -1,10 +1,10 @@
-import DecontaminationPhase from '@/enums/parameter/decontaminationPhase';
+import DecontaminationElement from '@/enums/parameter/decontaminationElement';
 import { Serializable, JsonProperty } from 'typescript-json-serializer';
 
 @Serializable()
 export default class ParameterMetaData {
   @JsonProperty()
-  validPhases?: DecontaminationPhase[];
+  validElements?: DecontaminationElement[];
 
   @JsonProperty()
   category?: string;

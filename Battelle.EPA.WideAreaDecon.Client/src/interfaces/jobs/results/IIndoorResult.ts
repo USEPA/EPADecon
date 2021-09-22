@@ -1,7 +1,7 @@
 // import BuildingCategory from '@/enums/parameter/buildingCategory';
-import IPhaseResultSet from './IPhaseResultSet';
+import IElementResultSet from './IElementResultSet';
 
 // TODO limit buildings to those in BuildingCategory
 export default interface IIndoorResult {
-  [building: string]: IPhaseResultSet;
+  [building: string]: IElementResultSet;
 }
