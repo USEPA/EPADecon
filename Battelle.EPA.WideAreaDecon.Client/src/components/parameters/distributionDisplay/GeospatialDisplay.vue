@@ -92,7 +92,8 @@ export default class GeospatialDisplay extends Vue{
   }
 }
 </script>
-<style>
+
+<style lang="scss" scoped>
 #map {
   position: absolute;
   margin: 0;
