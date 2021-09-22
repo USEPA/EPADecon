@@ -18,7 +18,6 @@
                     ref="costChart"
                   />
                 </div>
-                <div ref="costLegend" class="chartLegend" v-html="costLegend" :key="chartKey"></div>
               </v-col>
               <v-col cols="6" sm="12" md="6">
                 <h3 class="text-subtitle-1 mb-2">Workday Breakdown by Element</h3>
@@ -32,10 +31,9 @@
                     ref="workdayChart"
                   />
                 </div>
-                <div ref="workdayLegend" class="chartLegend" v-html="workdayLegend" :key="chartKey + 1"></div>
               </v-col>
             </v-row>
-            <v-row class="mt-15">
+            <v-row justify="center" class="mt-6">
               <v-col>
                 <p class="text-body-2 mb-0">${{ resultProvider.formatNumber(totalCost) }}</p>
                 <p class="text-subtitle-1">Total Cost</p>
@@ -66,9 +64,8 @@
 
 <script lang="ts">
 import { Component, Prop, VModel, Vue, Watch } from 'vue-property-decorator';
-import { ChartJsWrapper, CycleColorProvider, DefaultChartData } from 'battelle-common-vue-charting/src';
-import IChartJsWrapper from '@/interfaces/component/IChartJsWrapper';
-import Chart, { ChartColor, ChartData, ChartOptions } from 'chart.js';
+import { ChartJsWrapper, CycleColorProvider, DefaultChartData } from 'battelle-common-vue-charting';
+import { ChartData, ChartOptions } from 'chart.js';
 import container from '@/dependencyInjection/config';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import TYPES from '@/dependencyInjection/types';
@@ -100,10 +97,6 @@ export default class RealizationDetails extends Vue {
   totalWorkdays = 0;
 
   deconRounds = 0;
-
-  costLegend: unknown = null;
-
-  workdayLegend: unknown = null;
 
   @Watch('realizationNumber')
   setValues(): void {
@@ -141,53 +134,6 @@ export default class RealizationDetails extends Vue {
     };
   }
 
-  getChartInstance(isCost: boolean): Chart {
-    return ((isCost ? this.$refs.costChart : this.$refs.workdayChart) as IChartJsWrapper)?.chart;
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  getListChildren(ref: Element): Element[] {
-    return Object.values(ref.firstElementChild?.children ?? {});
-  }
-
-  initializeChart(): void {
-    this.costLegend = this.getChartInstance(true).generateLegend();
-    this.workdayLegend = this.getChartInstance(false).generateLegend();
-
-    this.initializeLegend(this.$refs.costLegend as Element, true);
-    this.initializeLegend(this.$refs.workdayLegend as Element, false);
-  }
-
-  initializeLegend(ref: Element, isCost: boolean): void {
-    const children = this.getListChildren(ref);
-    for (let i = 0; i < children.length; i += 1) {
-      const child = children[i]; // child is <li> element in chart legend
-
-      child.addEventListener('click', () => {
-        this.toggleLegendLabel(child, i, isCost);
-      });
-    }
-  }
-
-  toggleChartData(index: number, isCost: boolean): void {
-    const chart = this.getChartInstance(isCost);
-
-    const meta = chart.getDatasetMeta(0).data[index];
-    meta.hidden = !meta.hidden;
-
-    chart.update();
-  }
-
-  toggleLegendLabel(li: Element, index: number, isCost: boolean): void {
-    if (li?.classList.contains(this.disabledClass) ?? false) {
-      li?.classList.remove(this.disabledClass);
-    } else {
-      li?.classList.add(this.disabledClass);
-    }
-
-    this.toggleChartData(index, isCost);
-  }
-
   get costChartData(): ChartData {
     return this.getResultChartData(PhaseResult.PhaseCost);
   }
@@ -198,33 +144,13 @@ export default class RealizationDetails extends Vue {
 
   get chartOptions(): ChartOptions {
     const options = this.chartOptionsProvider.getPieOptions();
-    options.legend = {
-      display: false,
-    };
-
-    options.legendCallback = (chart) => {
-      const text = [];
-      text.push('<ul>');
-      for (let i = 0; i < (chart.data.datasets?.[0].data?.length ?? 0); i += 1) {
-        if (chart.data.datasets?.[0].data?.[i]) {
-          text.push(
-            `<li><span style="background-color: ${
-              (chart.data.datasets?.[0].backgroundColor as ChartColor[])?.[i]
-            }"></span>`,
-          );
-          text.push(chart.data.labels?.[i]);
-          text.push('</li>');
-        }
-      }
-      text.push('</ul>');
-      return text.join('');
-    };
+    if (options.plugins) {
+      options.plugins.legend = {
+        position: 'bottom',
+      };
+    }
 
     return options;
-  }
-
-  updated(): void {
-    this.initializeChart();
   }
 }
 </script>
@@ -232,27 +158,5 @@ export default class RealizationDetails extends Vue {
 <style lang="scss" scoped>
 .chart {
   height: 400px;
-}
-
-.chartLegend ::v-deep {
-  & > ul {
-    list-style: none;
-
-    & > li {
-      display: flex;
-      align-items: center;
-
-      &.disabled {
-        text-decoration: line-through;
-      }
-
-      & > span {
-        display: inline-block;
-        width: 32px;
-        height: 13px;
-        margin-right: 10px;
-      }
-    }
-  }
 }
 </style>

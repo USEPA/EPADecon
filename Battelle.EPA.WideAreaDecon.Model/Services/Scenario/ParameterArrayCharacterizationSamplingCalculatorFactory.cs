@@ -1,5 +1,6 @@
 using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
-using System;
+using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Cost;
+using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Time;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
@@ -11,6 +12,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
     {
         public LaborCostCalculator Calculator_labor { get; set; }
         public SuppliesCostCalculator Calculator_supplies { get; set; }
+        public LaborDaysCalculator Calculator_laborDays { get; set; }
+        public WorkDaysCalculator Calculator_workdays { get; set; }
+        public OnsiteDaysCalculator Calculator_onsiteDays { get; set; }
         public EntrancesExitsCostCalculator Calculator_entEx { get; set; }
         public AnalysisQuantityCostCalculator Calculator_analysis { get; set; }
         public PhaseLagCalculator Calculator_phaseLag { get; set; }
@@ -22,11 +26,28 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             Calculator_supplies = new SuppliesCostCalculator(
                 csParameters.surfaceAreaPerWipe,
                 csParameters.surfaceAreaPerHepa,
-                csParameters.wipesPerHrPerTeam,
                 csParameters.hepaSocksPerHrPerTeam,
                 costParameters.wipeCost,
                 costParameters.hepaCost,
                 costParameters.vacuumRentalCostPerDay
+            );
+
+            Calculator_laborDays = new LaborDaysCalculator(
+                csParameters.surfaceAreaPerWipe,
+                csParameters.surfaceAreaPerHepa,
+                csParameters.wipesPerHrPerTeam,
+                csParameters.hepaSocksPerHrPerTeam
+            );
+
+            Calculator_workdays = new WorkDaysCalculator(
+                csParameters.entryDuration,
+                csParameters.entryPrepTime,
+                csParameters.deconLineTime,
+                csParameters.postEntryRest
+            );
+
+            Calculator_onsiteDays = new OnsiteDaysCalculator(
+                csParameters.personnelOverheadDays
             );
 
             Calculator_phaseLag = new PhaseLagCalculator(
@@ -40,13 +61,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
 
             Calculator_labor = new LaborCostCalculator(
                 csParameters.personnelReqPerTeam,
-                csParameters.personnelOverheadDays,
-                csParameters.entriesPerTeam,
-                csParameters.hoursEntering,
-                csParameters.hoursExiting,
-                costParameters.hourlyRate,
-                Calculator_supplies,
-                Calculator_phaseLag
+                costParameters.hourlyRate
             );
 
             Calculator_analysis = new AnalysisQuantityCostCalculator(
@@ -58,12 +73,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
 
             Calculator_entEx = new EntrancesExitsCostCalculator(
                 csParameters.personnelReqPerTeam,
-                csParameters.entriesPerTeam,
                 csParameters.respiratorsPerPerson,
                 costParameters.respiratorCost,
                 costParameters.ppeCost,
-                Calculator_labor,
-                Calculator_supplies
+                csParameters.entryDuration,
+                costParameters.entryPrepCost,
+                costParameters.deconLineCost
             );
         }
 
@@ -73,6 +88,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             {
                 Calculator_labor = Calculator_labor,
                 Calculator_supplies = Calculator_supplies,
+                Calculator_laborDays = Calculator_laborDays,
+                Calculator_workdays = Calculator_workdays,
+                Calculator_onsiteDays = Calculator_onsiteDays,
                 Calculator_entEx = Calculator_entEx,
                 Calculator_analysis = Calculator_analysis,
                 Calculator_phaseLag = Calculator_phaseLag

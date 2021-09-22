@@ -1,4 +1,5 @@
 import PhaseResult from '@/enums/jobs/results/phaseResult';
+import JobRequest from '@/implementations/jobs/JobRequest';
 import IJobResultRealization from '../jobs/results/IJobResultRealization';
 import IResultDetails from '../jobs/results/IResultDetails';
 
@@ -10,9 +11,9 @@ export default interface IJobResultProvider {
   convertCamelToTitleCase(name: string): string;
 
   /** Exports job results to a Microsoft Excel file.
-   * @param {IJobResultRealization[]} results - The job results to be exported.
+   * @param {JobRequest} job - The job with results to export.
    */
-  exportJobResults(results: IJobResultRealization[]): void;
+  exportJobResults(job: JobRequest): void;
 
   /** Finds all values of a given result.
    * @param {IJobResultRealization} realization - The job result realization to parse.
@@ -21,7 +22,7 @@ export default interface IJobResultProvider {
    */
   getResultValues(realization: IJobResultRealization, result: PhaseResult): number[];
 
-  /** Rounds number to 3 decimal places and adds commas where necessary.
+  /** Rounds number to 3 sig figs and adds commas where necessary.
    * @param {number} number - The number to be converted.
    * @returns A number in a more readable format.
    */

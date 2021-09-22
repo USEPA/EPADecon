@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container v-if="currentJob.results.length">
     <v-row>
       <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
@@ -60,10 +60,10 @@
         <v-card style="height: 100%">
           <v-card-title class="headline pl-5" v-text="'Actions'"></v-card-title>
           <v-card-text class="d-flex justify-space-between flex-wrap px-5">
-            <v-btn color="secondary" class="mb-2" v-text="'Summary'" @click="navigate('jobSummary')"></v-btn>
-            <v-btn color="secondary" v-text="'View Parameters'" @click="viewParameters"></v-btn>
-            <v-btn color="secondary" v-text="'Run Job Again'" @click="runJobAgain"></v-btn>
-            <v-btn color="secondary" v-text="'Export Results'" @click="exportResults"></v-btn>
+            <v-btn color="secondary" class="mb-2" v-text="'Summary'" @click="navigate('jobSummary')" />
+            <v-btn color="secondary" v-text="'View Parameters'" @click="viewParameters" />
+            <v-btn color="secondary" v-text="'Run Job Again'" @click="$emit('showRunModal')" />
+            <v-btn color="secondary" v-text="'Export Results'" @click="exportResults" />
           </v-card-text>
         </v-card>
       </v-col>
@@ -81,7 +81,7 @@ import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import TYPES from '@/dependencyInjection/types';
 import container from '@/dependencyInjection/config';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
-import { CycleColorProvider } from 'battelle-common-vue-charting/src';
+import { CycleColorProvider } from 'battelle-common-vue-charting';
 import { ChartData } from 'chart.js';
 import PhaseResult from '@/enums/jobs/results/phaseResult';
 import ResultDetails from '@/components/modals/results/ResultDetails.vue';
@@ -104,8 +104,6 @@ export default class ViewResults extends Vue {
   @Action setScenarioDefinition!: (newDefinition: ParameterWrapperList) => void;
 
   @Action setScenarioParameters!: (newParameters: ParameterWrapperList) => void;
-
-  @Action setRepeatRun!: (newValue: boolean) => void;
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
@@ -157,12 +155,7 @@ export default class ViewResults extends Vue {
   }
 
   exportResults(): void {
-    this.resultProvider.exportJobResults(this.currentJob.results);
-  }
-
-  runJobAgain(): void {
-    this.setRepeatRun(true);
-    this.$emit('showRunModal');
+    this.resultProvider.exportJobResults(this.currentJob);
   }
 
   showResultDetails($event: string, result: PhaseResult): void {
@@ -197,12 +190,6 @@ export default class ViewResults extends Vue {
     this.averageTotalWorkdays = this.getAverageFormatted(PhaseResult.Workdays);
     this.averageDeconRounds = this.getAverageFormatted(PhaseResult.DecontaminationRounds);
     this.averageTotalOnSiteDays = this.getAverageFormatted(PhaseResult.OnSiteDays);
-
-    // const avgOnSiteDays =
-    //   this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.OnSiteDays)?.mean ?? 0;
-    // const avgWorkdays = this.resultProvider.getResultDetails(this.currentJob.results, PhaseResult.Workdays)?.mean ?? 0;
-
-    // this.averageTotalOnSiteDays = this.resultProvider.formatNumber(avgOnSiteDays - avgWorkdays);
   }
 
   created(): void {

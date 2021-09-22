@@ -9,10 +9,6 @@ const runSettingsMutations: MutationTree<IRootState> = {
   updateHasResults(state, newState: boolean): void {
     state.runSettings.hasResults = newState;
   },
-
-  updateRepeatRun(state, newState: boolean): void {
-    state.runSettings.repeatRun = newState;
-  },
 };
 
 export default runSettingsMutations;

@@ -35,6 +35,10 @@ const jobRequestActions: ActionTree<IRootState, IRootState> = {
     }
   },
 
+  cancelCurrentJobRequest: async (_, JobProvider: IJobProvider) => {
+    await JobProvider.cancelJobRequest();
+  },
+
   resetCurrentJobRequest: ({ commit }) => {
     const job = new JobRequest(JobStatus.unknown, new ParameterWrapperList(), new ParameterWrapperList(), 0, 0, 0);
     commit('setCurrentJob', job);

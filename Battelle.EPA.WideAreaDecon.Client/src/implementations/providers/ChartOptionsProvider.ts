@@ -2,9 +2,9 @@ import TYPES from '@/dependencyInjection/types';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
-import { ChartOptions, ChartScales, ChartTooltipCallback } from 'chart.js';
+import { ChartOptions, ChartType, ScaleChartOptions, TooltipCallbacks } from 'chart.js';
 import { inject, injectable } from 'inversify';
-import { DefaultChartOptions } from 'battelle-common-vue-charting/src';
+import { CreateDefaultChartOptions } from 'battelle-common-vue-charting';
 
 @injectable()
 export default class ChartOptionsProvider implements IChartOptionsProvider {
@@ -16,99 +16,96 @@ export default class ChartOptionsProvider implements IChartOptionsProvider {
 
   details?: IResultDetails;
 
-  private histogramCallback: ChartTooltipCallback = {
-    title: ([item], data) => {
+  private tickCallback = (value: number): string => this.resultProvider.formatNumber(value);
+
+  private histogramCallback: Partial<TooltipCallbacks<'bar'>> = {
+    title: (tooltipItems) => {
       if (!this.details) {
         return '';
       }
 
-      const ticks = data.labels as number[];
-      const index = item.index ?? 0;
-      const upper = this.resultProvider.formatNumber(ticks[index + 1] ?? this.details.maximum);
-      const lower = this.resultProvider.formatNumber(ticks[index]);
+      const index = tooltipItems[0].dataIndex;
+      const ticks =
+        tooltipItems[0].chart.data.labels?.map((l) => Number.parseFloat((l as string).replace(/,/g, ''))) ?? [];
+
+      if (ticks.length === 1) {
+        return this.resultProvider.formatNumber(ticks[0]);
+      }
+
+      const upper = this.resultProvider.formatNumber(
+        index === ticks.length - 1 ? this.details.maximum : ticks[index + 1],
+      );
+      const lower = this.resultProvider.formatNumber(index === 0 ? this.details.minimum : ticks[index]);
 
       return `${lower} - ${upper}`;
     },
   };
 
-  private histogramScales: ChartScales = {
-    xAxes: [
-      {
-        scaleLabel: {
-          display: false,
-        },
-        ticks: {
-          callback: (value: number): string => this.resultProvider.formatNumber(value),
-        },
+  private histogramScales = {
+    y: {
+      title: {
+        display: true,
+        text: 'Number of Realizations',
       },
-    ],
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true,
-          callback: (value: number): string => this.resultProvider.formatNumber(value),
-        },
-        scaleLabel: {
-          display: true,
-          labelString: 'Number of Realizations',
-        },
+      ticks: {
+        callback: this.tickCallback,
       },
-    ],
-  };
-
-  private pieCallback: ChartTooltipCallback = {
-    title: ([item], data) => {
-      const index = item.index ?? 0;
-      return data.labels?.[index].toString() ?? '';
-    },
-    label: (item, data) => {
-      const index = item.index ?? 0;
-      const value = (data.datasets?.[0].data?.[index] as number) ?? 0;
-      return this.resultProvider.formatNumber(value);
+      beginAtZero: true,
     },
   };
 
-  private pieScales: ChartScales = {};
+  private pieCallback: Partial<TooltipCallbacks<'pie'>> = {
+    title: (toolTipItems) => {
+      return toolTipItems[0].dataset.label ?? '';
+    },
+    label: (tooltipItem) => this.resultProvider.formatNumber(tooltipItem.parsed),
+  };
 
-  private scatterCallback: ChartTooltipCallback = {
-    label: (item) => {
-      const x = this.resultProvider.formatNumber(Number(item.xLabel));
-      const y = this.resultProvider.formatNumber(Number(item.yLabel));
+  private pieScales = {};
+
+  private scatterCallback: Partial<TooltipCallbacks<'scatter'>> = {
+    label: (tooltipItem) => {
+      const data = tooltipItem.parsed;
+      const x = this.resultProvider.formatNumber(data.x);
+      const y = this.resultProvider.formatNumber(data.y);
       return `(${x}, ${y})`;
     },
+    title: (tooltipItems) => {
+      return tooltipItems.length > 1
+        ? `Runs ${tooltipItems.map((i) => i.dataIndex + 1).join(', ')}`
+        : `Run ${tooltipItems[0].dataIndex + 1}`;
+    },
   };
 
-  private scatterScales: ChartScales = {
-    xAxes: [
-      {
-        scaleLabel: {
-          display: false,
-        },
-        ticks: {
-          callback: (value: number): string => this.resultProvider.formatNumber(value),
-        },
+  private scatterScales = {
+    x: {
+      title: {
+        display: false,
       },
-    ],
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true,
-          callback: (value: number): string => this.resultProvider.formatNumber(value),
-        },
-        scaleLabel: {
-          display: false,
-        },
+      ticks: {
+        callback: this.tickCallback,
       },
-    ],
+    },
+    y: {
+      title: {
+        display: false,
+      },
+      ticks: {
+        callback: this.tickCallback,
+      },
+      beginAtZero: true,
+    },
   };
 
-  // eslint-disable-next-line class-methods-use-this
-  private getChartOptions(tooltipCallback: ChartTooltipCallback, scales: ChartScales): ChartOptions {
-    const options = new DefaultChartOptions();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private getChartOptions(tooltipCallback: any, scales: Partial<ScaleChartOptions<ChartType>>): ChartOptions {
+    const options = this.getDefaultOptions();
 
-    options.tooltips = {
-      enabled: true,
-      callbacks: tooltipCallback,
+    options.plugins = {
+      tooltip: {
+        enabled: true,
+        callbacks: tooltipCallback,
+      },
     };
 
     options.scales = scales;
@@ -118,11 +115,19 @@ export default class ChartOptionsProvider implements IChartOptionsProvider {
 
   // eslint-disable-next-line class-methods-use-this
   getDefaultOptions(): ChartOptions {
-    return new DefaultChartOptions();
+    return CreateDefaultChartOptions();
   }
 
   getHistogramOptions(): ChartOptions {
-    return this.getChartOptions(this.histogramCallback, this.histogramScales);
+    // @ts-expect-error (types for chart.js wants ALL properties defined on scales)
+    const opts = this.getChartOptions(this.histogramCallback, this.histogramScales);
+    if (opts.plugins) {
+      // hide legend on histograms
+      opts.plugins.legend = {
+        display: false,
+      };
+    }
+    return opts;
   }
 
   getPieOptions(): ChartOptions {
@@ -130,6 +135,7 @@ export default class ChartOptionsProvider implements IChartOptionsProvider {
   }
 
   getScatterOptions(): ChartOptions {
+    // @ts-expect-error (types for chart.js wants ALL properties defined on scales)
     return this.getChartOptions(this.scatterCallback, this.scatterScales);
   }
 }

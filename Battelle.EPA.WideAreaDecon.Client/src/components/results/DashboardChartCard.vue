@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { ChartJsWrapper, PositionType } from 'battelle-common-vue-charting/src';
+import { ChartJsWrapper } from 'battelle-common-vue-charting';
 import { ChartData } from 'chart.js';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
@@ -26,10 +26,11 @@ export default class DashboardChartCard extends Vue {
   options = this.chartOptionsProvider.getPieOptions();
 
   initializeChart(): void {
-    this.options.maintainAspectRatio = true;
-    this.options.legend = {
-      position: PositionType.Right,
-    };
+    if (this.options.plugins) {
+      this.options.plugins.legend = {
+        position: 'right',
+      };
+    }
   }
 
   created(): void {

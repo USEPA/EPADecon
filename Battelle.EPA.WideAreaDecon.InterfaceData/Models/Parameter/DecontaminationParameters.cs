@@ -11,14 +11,14 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public IParameter[] efficacyParameters;
         public Dictionary<SurfaceType, ApplicationMethod> applicationMethods;
         public Dictionary<SurfaceType, double> initialSporeLoading;
-        public double desiredSporeThreshold;
         public Dictionary<ApplicationMethod, double> treatmentDaysPerAm;
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
         public double personnelOverhead;
         public double roundtripDays;
-        public double numEntriesPerTeamPerDay;
-        public double hoursPerEntryPerTeam;
-        public double hoursPerExitPerTeam;
+        public Dictionary<PpeLevel, double> entryDuration;
+        public double entryPrepTime;
+        public double deconLineTime;
+        public double postEntryRest;
         public double respiratorsPerPerson;
         public double numTeams;
         public Dictionary<PpeLevel, double> ppeRequired;
@@ -32,14 +32,14 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             IParameter[] _efficacyParameters,
             Dictionary<SurfaceType, ApplicationMethod> _applicationMethods,
             Dictionary<SurfaceType, double> _initialSporeLoading,
-            double _desiredSporeThreshold,
             Dictionary<ApplicationMethod, double> _treatmentDaysPerAm,
             Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
             double _personnelOverhead,
             double _roundtripDays,
-            double _numEntriesPerTeamPerDay,
-            double _hoursPerEntryPerTeam,
-            double _hoursPerExitPerTeam,
+            Dictionary<PpeLevel, double> _entryDuration,
+            double _entryPrepTime,
+            double _deconLineTime,
+            double _postEntryRest,
             double _respiratorsPerPerson,
             double _numTeams,
             Dictionary<PpeLevel, double> _ppeRequired,
@@ -52,13 +52,13 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             initialSporeLoading = _initialSporeLoading;
             treatmentDaysPerAm = _treatmentDaysPerAm;
             agentVolume = _agentVolume;
-            desiredSporeThreshold = _desiredSporeThreshold;
             personnelReqPerTeam = _personnelReqPerTeam;
             personnelOverhead = _personnelOverhead;
             roundtripDays = _roundtripDays;
-            numEntriesPerTeamPerDay = _numEntriesPerTeamPerDay;
-            hoursPerEntryPerTeam = _hoursPerEntryPerTeam;
-            hoursPerExitPerTeam = _hoursPerExitPerTeam;
+            entryDuration = _entryDuration;
+            entryPrepTime = _entryPrepTime;
+            deconLineTime = _deconLineTime;
+            postEntryRest = _postEntryRest;
             respiratorsPerPerson = _respiratorsPerPerson;
             numTeams = _numTeams;
             ppeRequired = _ppeRequired;

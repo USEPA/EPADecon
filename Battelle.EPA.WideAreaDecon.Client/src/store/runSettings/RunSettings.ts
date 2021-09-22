@@ -4,6 +4,4 @@ export default class RunSettings implements IRunSettings {
   canRun = false;
 
   hasResults = false;
-
-  repeatRun = false;
 }

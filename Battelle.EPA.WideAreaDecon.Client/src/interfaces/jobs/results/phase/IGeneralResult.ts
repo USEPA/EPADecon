@@ -4,4 +4,6 @@ export default interface IGeneralResult extends IPhaseResult {
   totalCost: number;
   areaContaminated: number;
   decontaminationRounds: number;
+  solidWasteProduced: number;
+  aqueousWasteProduced: number;
 }

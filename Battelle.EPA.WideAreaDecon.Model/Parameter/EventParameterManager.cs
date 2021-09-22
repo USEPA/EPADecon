@@ -11,6 +11,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
         private readonly ParameterFilter[] _characterizationSamplingParameters;
         private readonly ParameterFilter[] _sourceReductionParameters;
         private readonly ParameterFilter[] _decontaminationParameters;
+        private readonly ParameterFilter[] _clearanceSamplingParameters;
+        private readonly ParameterFilter[] _wasteSamplingParameters;
         private readonly ParameterFilter[] _otherParameters;
         private readonly ParameterFilter[] _incidentCommandParameters;
         private readonly ParameterFilter[] _costParameters;
@@ -20,6 +22,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             ParameterFilter[] csParameters,
             ParameterFilter[] srParameters,
             ParameterFilter[] dcParameters,
+            ParameterFilter[] clsParameters,
+            ParameterFilter[] wsParameters,
             ParameterFilter[] otParameters,
             ParameterFilter[] icParameters,
             ParameterFilter[] costParameters,
@@ -28,6 +32,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             _characterizationSamplingParameters = csParameters;
             _sourceReductionParameters = srParameters;
             _decontaminationParameters = dcParameters;
+            _clearanceSamplingParameters = clsParameters;
+            _wasteSamplingParameters = wsParameters;
             _otherParameters = otParameters;
             _incidentCommandParameters = icParameters;
             _costParameters = costParameters;
@@ -41,6 +47,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 _characterizationSamplingParameters = SetCharacterizationSamplingParameters(),
                 _sourceReductionParameters = SetSourceReductionParameters(),
                 _decontaminationParameters = SetDecontaminationParameters(),
+                _clearanceSamplingParameters = SetClearanceSamplingParameters(),
+                _wasteSamplingParameters = SetWasteSamplingParameters(),
                 _incidentCommandParameters = SetIncidentCommandParameters(),
                 _otherParameters = SetOtherParameters(),
                 _costParameters = SetCostParameters()
@@ -56,6 +64,8 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 _characterizationSamplingCostCalculator = calculatorCreator._characterizationSamplingFactory.GetCalculator(),
                 _sourceReductionCostCalculator = calculatorCreator._sourceReductionFactory.GetCalculator(),
                 _decontaminationCostCalculator = calculatorCreator._decontaminationFactory.GetCalculator(),
+                _clearanceSamplingCostCalculator = calculatorCreator._clearanceSamplingFactory.GetCalculator(),
+                _wasteSamplingCostCalculator = calculatorCreator._wasteSamplingFactory.GetCalculator(),
                 _incidentCommandCostCalculator = calculatorCreator._incidentCommandFactory.GetCalculator()
             };
         }
@@ -120,6 +130,48 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                personnelReqPerTeam,
                 roundtripDays,
                 numTeams,
+                onsiteDays);
+        }
+
+        private ClearanceSamplingParameters SetClearanceSamplingParameters()
+        {
+            var numTeams = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
+            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
+            {
+                [PersonnelLevel.OSC] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL1] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-1)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL2] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-2)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL3] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-3)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL4] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
+            };
+            var roundtripDays = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
+            var onsiteDays = _phaseOnsiteDays[PhaseCategory.ClearanceSampling];
+
+            return new ClearanceSamplingParameters(
+                numTeams,
+                personnelReqPerTeam,
+                roundtripDays,
+                onsiteDays);
+        }
+
+        private WasteSamplingParameters SetWasteSamplingParameters()
+        {
+            var numTeams = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
+            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
+            {
+                [PersonnelLevel.OSC] = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL1] = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-1)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL2] = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-2)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL3] = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-3)").CreateDistribution().Draw(),
+                [PersonnelLevel.PL4] = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
+            };
+            var roundtripDays = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
+            var onsiteDays = _phaseOnsiteDays[PhaseCategory.WasteSampling];
+
+            return new WasteSamplingParameters(
+                numTeams,
+                personnelReqPerTeam,
+                roundtripDays,
                 onsiteDays);
         }
 

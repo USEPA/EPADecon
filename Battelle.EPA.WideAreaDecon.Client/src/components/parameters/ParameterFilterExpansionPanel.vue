@@ -12,7 +12,7 @@
           <v-list-item-icon v-on="on" />
           <v-list-item-title
             v-on="on"
-            :class="getParameterClass(param)"
+            :class="[getParameterClass(param), 'ml-2']"
             v-text="param.current.metaData.name"
           ></v-list-item-title>
           <v-list-item-icon v-on="on">

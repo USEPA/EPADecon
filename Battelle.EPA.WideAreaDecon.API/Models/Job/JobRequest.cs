@@ -29,5 +29,11 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Job
         public int NumberRealizations { get; set; }
 
         public List<JobResults> Results { get; set; }
+
+        [JsonProperty]
+        public ulong Seed1 { get; set; }
+
+        [JsonProperty]
+        public ulong Seed2 { get; set; }
     }
 }

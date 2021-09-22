@@ -29,26 +29,24 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
         public EventResults RunEventModel()
         {
+            var scenarioResults = SumScenarioResults();
+
             var phaseOnsiteDays = new Dictionary<PhaseCategory, double>
             {
-                { PhaseCategory.CharacterizationSampling, _outdoorResults.totalCharacterizationSamplingResults.onSiteDays + _undergroundResults.totalCharacterizationSamplingResults.onSiteDays },
-                { PhaseCategory.SourceReduction, _outdoorResults.sourceReductionResults.onSiteDays + _undergroundResults.sourceReductionResults.onSiteDays },
-                { PhaseCategory.Decontamination, _outdoorResults.decontaminationResults.onSiteDays + _undergroundResults.decontaminationResults.onSiteDays },
-                { PhaseCategory.IncidentCommand, _outdoorResults.incidentCommandResults.onSiteDays + _undergroundResults.incidentCommandResults.onSiteDays }
+                { PhaseCategory.CharacterizationSampling, scenarioResults.characterizationSamplingResults.onSiteDays },
+                { PhaseCategory.SourceReduction, scenarioResults.sourceReductionResults.onSiteDays },
+                { PhaseCategory.Decontamination, scenarioResults.decontaminationResults.onSiteDays },
+                { PhaseCategory.ClearanceSampling, scenarioResults.clearanceSamplingResults.onSiteDays },
+                { PhaseCategory.WasteSampling, scenarioResults.wasteSamplingResults.onSiteDays },
+                { PhaseCategory.IncidentCommand, scenarioResults.incidentCommandResults.onSiteDays }
             };
-
-            foreach (var building in _indoorResults.Keys.ToList())
-            {
-                phaseOnsiteDays[PhaseCategory.CharacterizationSampling] += _indoorResults[building].totalCharacterizationSamplingResults.onSiteDays;
-                phaseOnsiteDays[PhaseCategory.SourceReduction] += _indoorResults[building].sourceReductionResults.onSiteDays;
-                phaseOnsiteDays[PhaseCategory.Decontamination] += _indoorResults[building].decontaminationResults.onSiteDays;
-                phaseOnsiteDays[PhaseCategory.IncidentCommand] += _indoorResults[building].incidentCommandResults.onSiteDays;
-            }
 
             var parameterManager = new EventParameterManager(
                 _scenarioParameters.Filters.First(f => f.Name == "Characterization Sampling").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Source Reduction").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Decontamination").Filters,
+                _scenarioParameters.Filters.First(f => f.Name == "Clearance Sampling").Filters,
+                _scenarioParameters.Filters.First(f => f.Name == "Waste Sampling").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Other").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Incident Command").Filters,
                 _scenarioParameters.Filters.First(f => f.Name == "Cost per Parameter").Filters,
@@ -58,7 +56,95 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             var resultsCalculator = parameterManager.SetDrawnParameters(calculatorManager);
 
-            return resultsCalculator.CalculateEventResults(calculatorManager, _indoorResults, _outdoorResults, _undergroundResults);
+            return resultsCalculator.CalculateEventResults(calculatorManager, scenarioResults);
+        }
+
+        public ScenarioRealizationResults SumScenarioResults()
+        {
+            var realizationResults = new ScenarioRealizationResults()
+            {
+                characterizationSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                sourceReductionResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                decontaminationResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                clearanceSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                wasteSamplingResults = new GenericPhaseResults() { phaseCost = 0.0, workDays = 0.0, onSiteDays = 0.0 },
+                incidentCommandResults = new IncidentCommandResults() { phaseCost = 0.0, onSiteDays = 0.0 },
+                generalResults = new GeneralResults() { areaContaminated = 0.0, decontaminationRounds = 0, totalCost = 0.0 }
+            };
+
+            var scenarioRunFlag = new Dictionary<DecontaminationPhase, bool>
+            {
+                { DecontaminationPhase.Indoor, true },
+                { DecontaminationPhase.Outdoor, true },
+                { DecontaminationPhase.Underground, true }
+            };
+
+            if (_indoorResults != null)
+            {
+                foreach (var building in _indoorResults.Values.ToList())
+                {
+                    AddResults(realizationResults, building);
+                }
+
+            } else
+            {
+                scenarioRunFlag[DecontaminationPhase.Indoor] = false;
+            }
+
+            if (_outdoorResults != null)
+            {
+                AddResults(realizationResults, _outdoorResults);
+            } else
+            {
+                scenarioRunFlag[DecontaminationPhase.Outdoor] = false;
+            }
+
+            if (_undergroundResults != null)
+            {
+                AddResults(realizationResults, _undergroundResults);
+            } else
+            {
+                scenarioRunFlag[DecontaminationPhase.Underground] = false;
+            }
+
+            if (scenarioRunFlag.All(x => x.Value == false))
+            {
+                throw new ApplicationException("An indoor, outdoor, or underground scenario must be run");
+            }
+
+            return realizationResults;
+        }
+
+        private void AddResults(ScenarioRealizationResults summedResults, ScenarioRealizationResults originalResults)
+        {
+            summedResults.characterizationSamplingResults.workDays += originalResults.characterizationSamplingResults.workDays;
+            summedResults.characterizationSamplingResults.onSiteDays += originalResults.characterizationSamplingResults.onSiteDays;
+            summedResults.characterizationSamplingResults.phaseCost += originalResults.characterizationSamplingResults.phaseCost;
+
+            summedResults.sourceReductionResults.workDays += originalResults.sourceReductionResults.workDays;
+            summedResults.sourceReductionResults.onSiteDays += originalResults.sourceReductionResults.onSiteDays;
+            summedResults.sourceReductionResults.phaseCost += originalResults.sourceReductionResults.phaseCost;
+
+            summedResults.decontaminationResults.workDays += originalResults.decontaminationResults.workDays;
+            summedResults.decontaminationResults.onSiteDays += originalResults.decontaminationResults.onSiteDays;
+            summedResults.decontaminationResults.phaseCost += originalResults.decontaminationResults.phaseCost;
+
+            summedResults.clearanceSamplingResults.workDays += originalResults.clearanceSamplingResults.workDays;
+            summedResults.clearanceSamplingResults.onSiteDays += originalResults.clearanceSamplingResults.onSiteDays;
+            summedResults.clearanceSamplingResults.phaseCost += originalResults.clearanceSamplingResults.phaseCost;
+
+            summedResults.wasteSamplingResults.workDays += originalResults.wasteSamplingResults.workDays;
+            summedResults.wasteSamplingResults.onSiteDays += originalResults.wasteSamplingResults.onSiteDays;
+            summedResults.wasteSamplingResults.phaseCost += originalResults.wasteSamplingResults.phaseCost;
+
+            summedResults.incidentCommandResults.onSiteDays += originalResults.incidentCommandResults.onSiteDays;
+            summedResults.incidentCommandResults.phaseCost += originalResults.incidentCommandResults.phaseCost;
+
+            summedResults.generalResults.totalCost += originalResults.generalResults.totalCost;
+            summedResults.generalResults.areaContaminated += originalResults.generalResults.areaContaminated;
+            summedResults.generalResults.decontaminationRounds += originalResults.generalResults.decontaminationRounds;
+            summedResults.generalResults.solidWasteProduced += originalResults.generalResults.solidWasteProduced;
+            summedResults.generalResults.aqueousWasteProduced += originalResults.generalResults.aqueousWasteProduced;
         }
     }
 }

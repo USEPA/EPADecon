@@ -7,13 +7,14 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
     public class SourceReductionParameters
     {
-        public double surfaceAreaToBeSourceReduced;
+        public double massToBeSourceReduced;
         public double massPerSurfaceArea;
         public double massRemovedPerHourPerTeam;
-        public double numEntriesPerDay;
+        public Dictionary<PpeLevel, double> entryDuration;
+        public double entryPrepTime;
+        public double deconLineTime;
+        public double postEntryRest;
         public double respiratorsPerPerson;
-        public double hoursEntering;
-        public double hoursExiting;
         public double numTeams;
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
         public double personnelOverheadDays;
@@ -23,26 +24,28 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 
         //Scenario parameters constructor
         public SourceReductionParameters(
-            double _surfaceAreaToBeSourceReduced,
+            double _massToBeSourceReduced,
             double _massPerSurfaceArea,
             double _massRemovedPerHourPerTeam,
-            double _numEntriesPerDay,
+            Dictionary<PpeLevel, double> _entryDuration,
+            double _entryPrepTime,
+            double _deconLineTime,
+            double _postEntryRest,
             double _respiratorsPerPerson,
-            double _hoursEntering,
-            double _hoursExiting,
             double _numTeams,
             Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
             double _personnelOverheadDays,
             double _roundtripDays,
             Dictionary<PpeLevel, double> _ppeRequired)
         {
-            surfaceAreaToBeSourceReduced = _surfaceAreaToBeSourceReduced;
+            massToBeSourceReduced = _massToBeSourceReduced;
             massPerSurfaceArea = _massPerSurfaceArea;
             massRemovedPerHourPerTeam = _massRemovedPerHourPerTeam;
-            numEntriesPerDay = _numEntriesPerDay;
+            entryDuration = _entryDuration;
+            entryPrepTime = _entryPrepTime;
+            deconLineTime = _deconLineTime;
+            postEntryRest = _postEntryRest;
             respiratorsPerPerson = _respiratorsPerPerson;
-            hoursEntering = _hoursEntering;
-            hoursExiting = _hoursExiting;
             numTeams = _numTeams;
             personnelReqPerTeam = _personnelReqPerTeam;
             personnelOverheadDays = _personnelOverheadDays;

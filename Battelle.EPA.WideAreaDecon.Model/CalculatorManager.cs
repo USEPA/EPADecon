@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
-using Battelle.EPA.WideAreaDecon.Model.Services;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
@@ -11,6 +8,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
         public CharacterizationSamplingParameters _characterizationSamplingParameters { get; set; }
         public SourceReductionParameters _sourceReductionParameters { get; set; }
         public DecontaminationParameters _decontaminationParameters { get; set; }
+        public ClearanceSamplingParameters _clearanceSamplingParameters { get; set; }
+        public WasteSamplingParameters _wasteSamplingParameters { get; set; }
         public IncidentCommandParameters _incidentCommandParameters { get; set; }
         public OtherParameters _otherParameters { get; set; }
         public CostParameters _costParameters { get; set; }
@@ -29,10 +28,15 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 _decontaminationParameters,
                 _costParameters);
 
+            var clsCalculatorFactory = new Services.Scenario.ParameterArrayClearanceSamplingCalculatorFactory(
+                _clearanceSamplingParameters,
+                _costParameters);
+
+            var wsCalculatorFactory = new Services.Scenario.ParameterArrayWasteSamplingCalculatorFactory(
+                _wasteSamplingParameters,
+                _costParameters);
+
             var icCalculatorFactory = new Services.Scenario.ParameterArrayIncidentCommandCalculatorFactory(
-                _characterizationSamplingParameters,
-                _sourceReductionParameters,
-                _decontaminationParameters,
                 _incidentCommandParameters,
                 _costParameters);
 
@@ -40,6 +44,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 _characterizationSamplingFactory = csCalculatorFactory,
                 _sourceReductionFactory = srCalculatorFactory,
                 _decontaminationFactory = dcCalculatorFactory,
+                _clearanceSamplingFactory = clsCalculatorFactory,
+                _wasteSamplingFactory = wsCalculatorFactory,
                 _incidentCommandFactory = icCalculatorFactory
             };
         }
@@ -58,6 +64,14 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 _otherParameters,
                 _costParameters);
 
+            var clsCalculatorFactory = new Services.Event.ParameterArrayClearanceSamplingCalculatorFactory(
+                _otherParameters,
+                _costParameters);
+
+            var wsCalculatorFactory = new Services.Event.ParameterArrayWasteSamplingCalculatorFactory(
+                _otherParameters,
+                _costParameters);
+
             var icCalculatorFactory = new Services.Event.ParameterArrayIncidentCommandCalculatorFactory(
                 _otherParameters,
                 _costParameters);
@@ -67,6 +81,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
                 _characterizationSamplingFactory = csCalculatorFactory,
                 _sourceReductionFactory = srCalculatorFactory,
                 _decontaminationFactory = dcCalculatorFactory,
+                _clearanceSamplingFactory = clsCalculatorFactory,
+                _wasteSamplingFactory = wsCalculatorFactory,
                 _incidentCommandFactory = icCalculatorFactory
             };
         }

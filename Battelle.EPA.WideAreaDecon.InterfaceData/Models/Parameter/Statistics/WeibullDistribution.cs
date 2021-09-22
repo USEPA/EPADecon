@@ -3,7 +3,6 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Attributes;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Helpers;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
@@ -27,6 +26,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         [ExcelProperty(ParameterLocationHelper.Parameter2)]
         public double? Lambda { get; set; }
 
+        private double? LogK => MathHelper.ConvertToLog10(K);
+
+        private double? LogLambda => MathHelper.ConvertToLog10(Lambda);
+
 
         public static WeibullDistribution FromExcel(ParameterMetaData metaData, IRow row)
         {
@@ -40,9 +43,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public Stats.IDistribution CreateDistribution()
         {
-            if (K.HasValue && Lambda.HasValue)
+            if (LogK.HasValue && LogLambda.HasValue)
             {
-                return new Stats.WeibullDistribution(K.Value, Lambda.Value);
+                return new Stats.WeibullDistribution(LogK.Value, LogLambda.Value);
             }
             throw new ArgumentNullException();
         }

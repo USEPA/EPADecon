@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
-using Battelle.EPA.WideAreaDecon.API.Models.Job;
+﻿using Battelle.EPA.WideAreaDecon.API.Models.Job;
 using Battelle.EPA.WideAreaDecon.API.Hubs;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
 using Microsoft.AspNetCore.SignalR;
