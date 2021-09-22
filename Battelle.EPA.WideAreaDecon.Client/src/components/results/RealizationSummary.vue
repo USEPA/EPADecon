@@ -58,7 +58,7 @@ export default class RealizationSummary extends Vue {
 
   chartType = '';
 
-  maxScatterPoints = 5;
+  maxScatterPoints = 1000;
 
   outputStatistics: { x: IResultDetails | null; y: IResultDetails | null } = { x: null, y: null };
 
