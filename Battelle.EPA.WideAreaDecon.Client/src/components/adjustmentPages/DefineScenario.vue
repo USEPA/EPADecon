@@ -36,8 +36,7 @@
       </v-row>
 
       <parameter-selection-drawer :parameters="scenarioDefinition" />
-      <parameter-distribution-selector v-if="scenarioDefinitionMode === 'manual'" />
-      <geospatial-parameter-distribution-selector v-else />
+      <parameter-distribution-selector />
     </template>
   </v-container>
 </template>
@@ -49,7 +48,6 @@ import { Action, State } from 'vuex-class';
 import ParameterSelectionDrawer from '@/components/parameters/ParameterSelectionDrawer.vue';
 import ParameterList from '@/implementations/parameter/ParameterList';
 import ParameterDistributionSelector from '@/components/parameters/distributionDisplay/ParameterDistributionSelector.vue';
-import GeospatialParameterDistributionSelector from '@/components/parameters/distributionDisplay/GeospatialParameterDistributionSelector.vue';
 import container from '@/dependencyInjection/config';
 import IImageProvider from '@/interfaces/providers/IImageProvider';
 import TYPES from '@/dependencyInjection/types';
@@ -57,7 +55,7 @@ import { ScenarioDefinitionMode } from '@/types';
 import ParameterWrapper from '../../implementations/parameter/ParameterWrapper';
 
 @Component({
-  components: { ParameterSelectionDrawer, ParameterDistributionSelector, GeospatialParameterDistributionSelector },
+  components: { ParameterSelectionDrawer, ParameterDistributionSelector },
 })
 export default class DefineScenario extends Vue {
   @State scenarioDefinition!: ParameterList;

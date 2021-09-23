@@ -4,6 +4,7 @@
       <v-col cols="5" xl="6">
         <v-card-title v-if="shouldIncludeTitle">{{ currentSelectedParameter.path }}</v-card-title>
       </v-col>
+
       <v-col cols="3" xl="2" offset="1">
         <v-overflow-btn
           v-if="isChangeableDist"
@@ -13,8 +14,9 @@
           :items="distNames"
           filled
           dense
-        ></v-overflow-btn>
+        />
       </v-col>
+
       <v-col cols="3" xl="2" style="margin-top: 7px">
         <v-btn
           height="45"
@@ -27,12 +29,17 @@
         </v-btn>
       </v-col>
     </v-row>
+
     <v-divider color="grey" v-if="shouldIncludeTitle" />
+
     <component
+      v-if="scenarioDefinitionMode === 'manual'"
       :key="currentSelectedParameter.path"
       :is="display.distComponent"
       :parameter-value="currentSelectedParameter.current"
     />
+    <geospatial-display v-else />
+
     <v-container v-if="display.displayChart">
       <div class="py-5" style="width: 100%; height: 400px">
         <distribution-chart
@@ -77,6 +84,8 @@ import { DistributionChart } from 'battelle-common-vue-charting';
 import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
 import ContaminationDefinitionDisplay from '@/components/parameters/ContaminationDefinitionDisplay.vue';
+import GeospatialDisplay from '@/components/parameters/distributionDisplay/GeospatialDisplay.vue';
+import { ScenarioDefinitionMode } from '@/types';
 
 @Component({
   components: {
@@ -97,10 +106,13 @@ import ContaminationDefinitionDisplay from '@/components/parameters/Contaminatio
     ContaminationDefinitionDisplay,
     DistributionChart,
     TextValueDisplay,
+    GeospatialDisplay,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
   @State currentSelectedParameter!: ParameterWrapper;
+
+  @State scenarioDefinitionMode!: ScenarioDefinitionMode;
 
   @Getter hasResults!: boolean;
 
