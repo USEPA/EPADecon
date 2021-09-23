@@ -1,5 +1,6 @@
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 import IRootState from '@/interfaces/store/IRootState';
+import { ScenarioDefinitionMode } from '@/types';
 import { ActionTree } from 'vuex';
 
 const parameterSelectionActions: ActionTree<IRootState, IRootState> = {
@@ -8,6 +9,9 @@ const parameterSelectionActions: ActionTree<IRootState, IRootState> = {
   },
   setScenarioParameters({ commit }, newParameters: ParameterWrapperList): void {
     commit('setScenarioParameters', newParameters);
+  },
+  setScenarioDefinitionMode({ commit }, newMode: ScenarioDefinitionMode | null): void {
+    commit('setScenarioDefinitionMode', newMode);
   },
 };
 

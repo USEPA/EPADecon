@@ -1,6 +1,6 @@
 <template>
-  <v-container :fill-height="!!selection" fluid>
-    <template v-if="!selection">
+  <v-container :fill-height="!!scenarioDefinitionMode" fluid>
+    <template v-if="!scenarioDefinitionMode">
       <v-row justify="center">
         <v-card v-for="option in options" :key="option.title" flat class="pa-5">
           <v-toolbar color="primary" width="250">
@@ -23,7 +23,7 @@
             </v-dialog>
           </v-toolbar>
 
-          <v-card @click="selection = option.value" height="250" rounded="t-0" width="250">
+          <v-card @click="setScenarioDefinitionMode(option.value)" height="250" rounded="t-0" width="250">
             <v-img :src="getImage(option.image)" width="250" height="250" />
           </v-card>
         </v-card>
@@ -32,11 +32,11 @@
 
     <template v-else>
       <v-row align="center">
-        <v-btn @click="selection = null"> Change Selection Method </v-btn>
+        <v-btn @click="setScenarioDefinitionMode(null)"> Change Selection Method </v-btn>
       </v-row>
 
       <parameter-selection-drawer :parameters="scenarioDefinition" />
-      <parameter-distribution-selector v-if="selection === 'manual'" />
+      <parameter-distribution-selector v-if="scenarioDefinitionMode === 'manual'" />
       <geospatial-parameter-distribution-selector v-else />
     </template>
   </v-container>
@@ -45,7 +45,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import { State } from 'vuex-class';
+import { Action, State } from 'vuex-class';
 import ParameterSelectionDrawer from '@/components/parameters/ParameterSelectionDrawer.vue';
 import ParameterList from '@/implementations/parameter/ParameterList';
 import ParameterDistributionSelector from '@/components/parameters/distributionDisplay/ParameterDistributionSelector.vue';
@@ -53,6 +53,7 @@ import GeospatialParameterDistributionSelector from '@/components/parameters/dis
 import container from '@/dependencyInjection/config';
 import IImageProvider from '@/interfaces/providers/IImageProvider';
 import TYPES from '@/dependencyInjection/types';
+import { ScenarioDefinitionMode } from '@/types';
 import ParameterWrapper from '../../implementations/parameter/ParameterWrapper';
 
 @Component({
@@ -61,10 +62,11 @@ import ParameterWrapper from '../../implementations/parameter/ParameterWrapper';
 export default class DefineScenario extends Vue {
   @State scenarioDefinition!: ParameterList;
 
-  imgProvider = container.get<IImageProvider>(TYPES.ImageProvider);
+  @State scenarioDefinitionMode!: ScenarioDefinitionMode | null;
 
-  // TODO move to store
-  selection: 'geospatial' | 'manual' | null = null;
+  @Action setScenarioDefinitionMode!: (newMode: ScenarioDefinitionMode | null) => void;
+
+  imgProvider = container.get<IImageProvider>(TYPES.ImageProvider);
 
   // TODO move to provider
   options = [

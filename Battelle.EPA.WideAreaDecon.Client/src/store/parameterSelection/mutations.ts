@@ -3,6 +3,7 @@ import IRootState from '@/interfaces/store/IRootState';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 import IParameter from '@/interfaces/parameter/IParameter';
+import { ScenarioDefinitionMode } from '@/types';
 
 const parameterSelectionMutations: MutationTree<IRootState> = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -22,6 +23,9 @@ const parameterSelectionMutations: MutationTree<IRootState> = {
   },
   setScenarioParameters(state: IRootState, newParameters: ParameterWrapperList) {
     state.scenarioParameters = newParameters;
+  },
+  setScenarioDefinitionMode(state: IRootState, newMode: ScenarioDefinitionMode | null) {
+    state.scenarioDefinitionMode = newMode;
   },
 };
 
