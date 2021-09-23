@@ -18,8 +18,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario
         private const string OutdoorSurfaceBreakoutName = "Outdoor Surface Type Breakout";
         private const string UndergroundSurfaceBreakoutName = "Underground Surface Type Breakout";
 
-        public EnumeratedParameter<DecontaminationElement> AreaContaminated { get; set; }
-        public EnumeratedParameter<DecontaminationElement> Loading { get; set; }
+        public ContaminationDefinition Contamination { get; set; }
         public EnumeratedFraction<BuildingCategory> IndoorBuildingBreakout { get; set; }
         public EnumeratedFraction<SurfaceType> IndoorSurfaceBreakout { get; set; }
         public EnumeratedFraction<SurfaceType> OutdoorSurfaceBreakout { get; set; }
@@ -35,18 +34,27 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario
 
             return new ExtentOfContamination()
             {
-                AreaContaminated = EnumeratedParameter<DecontaminationElement>.FromExcel(new ParameterMetaData()
+                Contamination = new ContaminationDefinition
                 {
-                    Category = SheetName,
-                    Name = AreaRowName,
-                    Description = "The amount of contaminated area for each element"
-                }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == AreaRowName)),
-                Loading = EnumeratedParameter<DecontaminationElement>.FromExcel(new ParameterMetaData()
-                {
-                    Category = SheetName,
-                    Name = LoadingRowName,
-                    Description = "The loading of contaminate for each element"
-                }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == LoadingRowName)),
+                    AreaContaminated = EnumeratedParameter<DecontaminationElement>.FromExcel(new ParameterMetaData()
+                    {
+                        Category = SheetName,
+                        Name = AreaRowName,
+                        Description = "The amount of contaminated area for each element"
+                    }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == AreaRowName)),
+                    Loading = EnumeratedParameter<DecontaminationElement>.FromExcel(new ParameterMetaData()
+                    {
+                        Category = SheetName,
+                        Name = LoadingRowName,
+                        Description = "The loading of contaminate for each element"
+                    }, rows.Where(row => ParameterMetaData.FromExcel(row).Name == LoadingRowName)),
+                    MetaData = new ParameterMetaData
+                    {
+                        Category = SheetName,
+                        Name = "Contamination Definition",
+                        Description = "Contaminated area details",
+                    },
+                },
                 IndoorBuildingBreakout = EnumeratedFraction<BuildingCategory>.FromExcel(new ParameterMetaData()
                 {
                     Category = SheetName,
@@ -82,8 +90,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario
                 Filters = new ParameterFilter[0],
                 Parameters = new IParameter[]
                 {
-                    AreaContaminated,
-                    Loading,
+                    Contamination,
                     IndoorBuildingBreakout,
                     IndoorSurfaceBreakout,
                     OutdoorSurfaceBreakout,
