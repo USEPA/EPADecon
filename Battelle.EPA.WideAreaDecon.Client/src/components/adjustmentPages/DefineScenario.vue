@@ -1,64 +1,45 @@
 <template>
-  <div>
-    <v-container v-if="!selection">
-      <v-row align="center">
-        <v-col align="right">
-          <v-card width="260">
-            <v-toolbar width="300" color="primary">
-              <v-toolbar-title class="subtitle-1"> Geospatial Selection </v-toolbar-title>
-              <v-spacer />
-              <v-dialog v-model="geoDialog" max-width="600">
-                <template v-slot:activator="{ on }">
-                  <v-icon v-on="on">help</v-icon>
-                </template>
-                <v-card class="mx-auto">
-                  <v-system-bar color="primary" height="60">
-                    <v-toolbar-title class="title">Geospatial Selection</v-toolbar-title>
-                    <v-spacer />
-                    <v-icon @click="geoDialog = false" size="45">mdi-close</v-icon>
-                  </v-system-bar>
-                  <v-card-text class="body-1" v-text="'Place plumes on a map to define the area contaminated'" />
-                </v-card>
-              </v-dialog>
-            </v-toolbar>
-            <v-btn height="250" outlined @click="makeSelection(true)">
-              <v-img src="@/assets/MapPlume.png" width="225" height="225" />
-            </v-btn>
+  <v-container :fill-height="!!selection" fluid>
+    <template v-if="!selection">
+      <v-row justify="center">
+        <v-card v-for="option in options" :key="option.title" flat class="pa-5">
+          <v-toolbar color="primary" width="250">
+            <v-toolbar-title class="subtitle-1"> {{ option.title }} </v-toolbar-title>
+
+            <v-spacer />
+
+            <v-dialog v-model="option.helpActive" max-width="600">
+              <template v-slot:activator="{ on }">
+                <v-icon v-on="on">help</v-icon>
+              </template>
+              <v-card class="mx-auto">
+                <v-system-bar class="mb-3" color="primary" height="60">
+                  <v-card-title class="title"> {{ option.title }} </v-card-title>
+                  <v-spacer />
+                  <v-icon @click="option.helpActive = false" size="45">mdi-close</v-icon>
+                </v-system-bar>
+                <v-card-text class="body-1"> {{ option.helpMessage }} </v-card-text>
+              </v-card>
+            </v-dialog>
+          </v-toolbar>
+
+          <v-card @click="selection = option.value" height="250" rounded="t-0" width="250">
+            <v-img :src="getImage(option.image)" width="250" height="250" />
           </v-card>
-        </v-col>
-        <v-col align="left">
-          <v-card width="260">
-            <v-toolbar width="300" color="primary">
-              <v-toolbar-title class="subtitle-1"> Manual Selection </v-toolbar-title>
-              <v-spacer />
-              <v-dialog v-model="dialog" max-width="600">
-                <template v-slot:activator="{ on }">
-                  <v-icon v-on="on">help</v-icon>
-                </template>
-                <v-card class="mx-auto">
-                  <v-system-bar color="primary" height="60">
-                    <v-toolbar-title class="title">Manual Selection</v-toolbar-title>
-                    <v-spacer />
-                    <v-icon @click="dialog = false" size="45">mdi-close</v-icon>
-                  </v-system-bar>
-                  <v-card-text class="body-1" v-text="'Enter the total area contaminated manualy'" />
-                </v-card>
-              </v-dialog>
-            </v-toolbar>
-            <v-btn height="250" outlined @click="makeSelection(false)">
-              <v-img src="@/assets/CreateScenario.png" max-width="225" max-height="225" />
-            </v-btn>
-          </v-card>
-        </v-col>
+        </v-card>
       </v-row>
-    </v-container>
-    <v-btn v-if="selection" @click="selection = false"> Selection Method </v-btn>
-    <v-container v-if="selection" fill-height fluid>
+    </template>
+
+    <template v-else>
+      <v-row align="center">
+        <v-btn @click="selection = null"> Change Selection Method </v-btn>
+      </v-row>
+
       <parameter-selection-drawer :parameters="scenarioDefinition" />
-      <parameter-distribution-selector v-if="!geoSpatial" />
-      <geospatial-parameter-distribution-selector v-if="geoSpatial" />
-    </v-container>
-  </div>
+      <parameter-distribution-selector v-if="selection === 'manual'" />
+      <geospatial-parameter-distribution-selector v-else />
+    </template>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -69,6 +50,9 @@ import ParameterSelectionDrawer from '@/components/parameters/ParameterSelection
 import ParameterList from '@/implementations/parameter/ParameterList';
 import ParameterDistributionSelector from '@/components/parameters/distributionDisplay/ParameterDistributionSelector.vue';
 import GeospatialParameterDistributionSelector from '@/components/parameters/distributionDisplay/GeospatialParameterDistributionSelector.vue';
+import container from '@/dependencyInjection/config';
+import IImageProvider from '@/interfaces/providers/IImageProvider';
+import TYPES from '@/dependencyInjection/types';
 import ParameterWrapper from '../../implementations/parameter/ParameterWrapper';
 
 @Component({
@@ -77,17 +61,31 @@ import ParameterWrapper from '../../implementations/parameter/ParameterWrapper';
 export default class DefineScenario extends Vue {
   @State scenarioDefinition!: ParameterList;
 
-  selection = false;
+  imgProvider = container.get<IImageProvider>(TYPES.ImageProvider);
 
-  geoSpatial = false;
+  // TODO move to store
+  selection: 'geospatial' | 'manual' | null = null;
 
-  geoDialog = false;
+  // TODO move to provider
+  options = [
+    {
+      title: 'Geospatial Selection',
+      image: 'MapPlume',
+      helpMessage: 'Place plumes on a map to define the area contaminated',
+      helpActive: false,
+      value: 'geospatial',
+    },
+    {
+      title: 'Manual Selection',
+      image: 'CreateScenario', // TODO find different image
+      helpMessage: 'Enter the total area contaminated manualy',
+      helpActive: false,
+      value: 'manual',
+    },
+  ];
 
-  dialog = false;
-
-  makeSelection(choice: boolean): void {
-    this.selection = true;
-    this.geoSpatial = choice;
+  getImage(img: string): unknown {
+    return this.imgProvider.getImage(img);
   }
 
   created(): void {

@@ -24,7 +24,13 @@
                   <v-spacer />
                   <home-option-help :item="item"></home-option-help>
                 </v-toolbar>
-                <v-card :color="'secondary'" class="d-flex align-center" height="300" @click="itemSelected(item)">
+                <v-card
+                  :color="'secondary'"
+                  class="d-flex align-center"
+                  height="300"
+                  rounded="t-0"
+                  @click="itemSelected(item)"
+                >
                   <v-img :src="getImage(item.image)" max-width="300" />
                 </v-card>
               </v-container>

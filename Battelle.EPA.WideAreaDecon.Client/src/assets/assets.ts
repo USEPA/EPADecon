@@ -5,7 +5,7 @@ var assets = {
   EpaLogo: require('@/assets/epaLogo.png'),
   LoadPresetScenario: require('@/assets/LoadPresetScenario.png'),
   LoadPreviousScenario: require('@/assets/LoadPreviousScenario.png'),
-  OpenLayers: require('@/assets/OpenLayers.png'),
+  MapPlume: require('@/assets/MapPlume.png'),
 };
 
 export default assets as never;
