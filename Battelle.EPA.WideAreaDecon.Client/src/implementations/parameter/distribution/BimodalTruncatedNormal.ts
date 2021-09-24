@@ -70,7 +70,8 @@ export default class BimodalTruncatedNormal implements IUnivariateParameter {
       this.mean2 !== undefined &&
       this.stdDev2 !== undefined &&
       this.min !== undefined &&
-      this.max !== undefined
+      this.max !== undefined &&
+      this.min < this.max
     );
   }
 

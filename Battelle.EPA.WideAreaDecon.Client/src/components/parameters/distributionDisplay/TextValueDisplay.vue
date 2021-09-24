@@ -1,85 +1,140 @@
 <template>
-  <v-container :style="vuetifyColorProps()">
-    <v-row
-      ><v-col><v-spacer /></v-col
-    ></v-row>
+  <div>
+    <v-row>
+      <v-col cols="4" xl="3" offset="7" offset-xl="8">
+        <v-overflow-btn
+          class="my-2"
+          @change="getSurfacesForCategory"
+          filled
+          dense
+          :items="categories"
+          v-model="selectedCategory"
+          ref="categorySelect"
+        >
+          <template v-slot:prepend>
+            <p>Category:</p>
+          </template>
+        </v-overflow-btn>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
-        <v-slider>
-          <template v-slot:prepend>
-            <p class="grey--text"></p>
+        <v-simple-table class="overflow-x-hidden">
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th></th>
+                <th v-for="method in applicationMethods" :key="method" class="text-body-2 text-center">{{ method }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(surface, row) in visibleSurfaces" :key="surface">
+                <td>{{ surface }}</td>
+                <td v-for="(method, col) in applicationMethods" :key="`${surface}-${method}`">
+                  <div class="d-flex justify-center">
+                    <v-radio-group v-model="selectedMethods[row][col]" :name="surface">
+                      <v-radio color="primary" @change="setMethodForSurface(method, surface)" :value="true"></v-radio>
+                    </v-radio-group>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
           </template>
-          <template v-slot:append>
-            <p class="grey--text"></p>
-          </template>
-        </v-slider>
+        </v-simple-table>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="4" class="mr-auto">
-        <v-card class="pa-2" outlined tile>
-          <v-text-field>
-            <template v-slot:append>
-              <p class="grey--text"></p>
-            </template>
-          </v-text-field>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import TextValue from '@/implementations/parameter/distribution/TextValue';
+import SurfaceType from '@/enums/parameter/surfaceType';
+import ApplicationMethod from '@/enums/parameter/applicationMethod';
+import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
 
 @Component
 export default class TextParameterDisplay extends Vue implements IParameterDisplay {
-  @Prop({ required: true }) parameterValue!: TextValue;
+  @Prop({ required: true }) parameterValue!: EnumeratedParameter;
 
-  vuetifyColorProps(): unknown {
-    return {
-      '--primary-color': this.$vuetify.theme.currentTheme.primary,
-    };
+  applicationMethods = Object.values(ApplicationMethod);
+
+  categories: string[] = ['Indoor', 'Outdoor', 'Underground'];
+
+  indoorRegex = /^Indoor/;
+
+  outdoorRegex = /^(?:(?!(Indoor|Underground))).+/; // NOT indoor or underground
+
+  undergroundRegex = /^Underground/;
+
+  visibleSurfaces: SurfaceType[] = [];
+
+  selectedCategory = this.categories[0];
+
+  selectedMethods: (boolean | null)[][] = [];
+
+  isChecked(method: ApplicationMethod, surface: SurfaceType): boolean {
+    const { value } = this.parameterValue.values[surface] as TextValue;
+    return value === method;
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  validationRules(value: string): boolean | string {
-    const num = Number(value);
-    if (!Number.isNaN(num)) {
-      return 'Value must be text!';
+  getRegexForCurrentCategory(): RegExp | null {
+    switch (this.selectedCategory) {
+      case this.categories[0]:
+        return this.indoorRegex;
+      case this.categories[1]:
+        return this.outdoorRegex;
+      case this.categories[2]:
+        return this.undergroundRegex;
+      default:
+        return null;
     }
-    return true;
+  }
+
+  setSelectedMethods(): void {
+    const selectedMethods = this.visibleSurfaces.map((surface) => {
+      return this.applicationMethods.map((method) => this.isChecked(method, surface) || null);
+    });
+
+    this.$set(this, 'selectedMethods', selectedMethods);
+  }
+
+  @Watch('parameterValue')
+  getSurfacesForCategory(): void {
+    const regex = this.getRegexForCurrentCategory();
+    if (regex) {
+      const surfaceNames = Object.keys(this.parameterValue.values).filter((v) => regex.test(v));
+      this.visibleSurfaces = surfaceNames.map((s) => s as SurfaceType);
+    }
+    this.setSelectedMethods();
+  }
+
+  setMethodForSurface(method: ApplicationMethod, surface: SurfaceType): void {
+    (this.parameterValue.values[surface] as TextValue).value = method;
+    this.setSelectedMethods();
+  }
+
+  created(): void {
+    this.getSurfacesForCategory();
   }
 }
 </script>
 
-<style lang="scss">
-.v-slider__track-container {
-  height: 8px !important;
+<style lang="scss" scoped>
+::v-deep .v-input--selection-controls__input {
+  margin-right: 0;
 }
-.v-slider__track-fill {
-  border-radius: 5px !important;
-}
-.v-slider__track-background {
-  border-radius: 5px !important;
-}
-.v-slider__thumb {
-  width: 24px !important;
-  height: 24px !important;
-  left: -12px !important;
-}
-.v-slider__thumb:before {
-  left: -6px !important;
-  top: -6px !important;
-}
-.theme--light.v-card.v-card--outlined {
-  border: 2px solid !important;
-  border-color: var(--primary-color) !important;
-  border-radius: 5px !important;
+
+.v-data-table__wrapper > table {
+  table-layout: fixed;
+
+  & > tbody > tr > td {
+    min-width: 110px;
+    max-width: 110px;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
 }
 </style>
-
-<style scoped lang="scss4"></style>

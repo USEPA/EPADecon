@@ -6,13 +6,13 @@ using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
+using Battelle.EPA.WideAreaDecon.Model.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests
 {
     public class ParameterManagerTests
     {
-        private ParameterManager Manager { get; set; }
+        private ScenarioParameterManager Manager { get; set; }
 
         [SetUp]
         public void Setup()
@@ -28,18 +28,21 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                     "Characterization Sampling",
                     "Source Reduction",
                     "Decontamination",
+                    "Clearance Sampling",
+                    "Waste Sampling",
                     "Other",
                     "Cost per Parameter"
                 }
             };
             var scenarioDetails = modifyParameters.GetParameterList();
 
-            Manager = new ParameterManager(
+            Manager = new ScenarioParameterManager(
                 scenarioDetails.Filters.First(f => f.Name == "Characterization Sampling").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Source Reduction").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Decontamination").Filters,
+                scenarioDetails.Filters.First(f => f.Name == "Clearance Sampling").Filters,
+                scenarioDetails.Filters.First(f => f.Name == "Waste Sampling").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Efficacy").Parameters,
-                scenarioDetails.Filters.First(f => f.Name == "Other").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Incident Command").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Cost per Parameter").Filters,
                 scenarioDetails.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
@@ -56,9 +59,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                 scenarioDefinitionDetails.Add(surface, info);
             }
 
-            var indoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationPhase.Indoor);
-            var outdoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationPhase.Outdoor);
-            var undergroundParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationPhase.Underground);
+            var indoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationElement.Indoor);
+            var outdoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationElement.Outdoor);
+            var undergroundParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationElement.Underground);
 
             Assert.Pass();
         }

@@ -30,7 +30,13 @@ export default class TruncatedNormal implements IUnivariateParameter {
   metaData: ParameterMetaData;
 
   public get isSet(): boolean {
-    return this.min !== undefined && this.max !== undefined && this.mean !== undefined && this.stdDev !== undefined;
+    return (
+      this.min !== undefined &&
+      this.max !== undefined &&
+      this.mean !== undefined &&
+      this.stdDev !== undefined &&
+      this.min < this.max
+    );
   }
 
   constructor(metaData = new ParameterMetaData(), min?: number, max?: number, mean?: number, stdDev?: number) {

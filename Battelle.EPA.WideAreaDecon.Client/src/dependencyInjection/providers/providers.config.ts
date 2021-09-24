@@ -23,6 +23,8 @@ import IJobProvider from '@/interfaces/providers/IJobProvider';
 import JobProvider from '@/implementations/providers/JobProvider';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import JobResultProvider from '@/implementations/providers/JobResultProvider';
+import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
+import ChartOptionsProvider from '@/implementations/providers/ChartOptionsProvider';
 import PROVIDER_TYPES from './providers.types';
 
 const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => {
@@ -58,11 +60,13 @@ const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => 
     BackendScenarioParameterProvider,
   );
 
+  bind<IChartOptionsProvider>(PROVIDER_TYPES.ChartOptionsProvider).to(ChartOptionsProvider);
+
   bind<IDistributionDisplayProvider>(PROVIDER_TYPES.DistributionDisplayProvider).to(DistributionDisplayProvider);
 
   bind<IJobProvider>(PROVIDER_TYPES.JobProvider).to(JobProvider);
 
-  bind<IJobResultProvider>(PROVIDER_TYPES.JobResultProvider).to(JobResultProvider);
+  bind<IJobResultProvider>(PROVIDER_TYPES.JobResultProvider).to(JobResultProvider).inSingletonScope();
 });
 
 export default providersContainerModule;

@@ -1,6 +1,7 @@
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import UniformXDependentSerializer from '@/serialization/parameter/UniformXDependentSerializer';
 import ParameterMetaData from '../ParameterMetaData';
 
 @Serializable()
@@ -18,20 +19,43 @@ export default class UniformXDependent implements IParameter {
     return !!this.xValues && !!this.dependentVariable && minsLessThanMaxes;
   }
 
-  @JsonProperty()
+  @JsonProperty(UniformXDependentSerializer)
   xValues?: number[];
 
-  @JsonProperty()
+  @JsonProperty(UniformXDependentSerializer)
   yMinimumValues?: number[];
 
-  @JsonProperty()
+  @JsonProperty(UniformXDependentSerializer)
   yMaximumValues?: number[];
 
-  @JsonProperty()
+  @JsonProperty({
+    ...UniformXDependentSerializer,
+    onDeserialize: (values: string[], dist: UniformXDependent) => {
+      // eslint-disable-next-line no-param-reassign
+      [dist.selectedVariable] = values;
+      return values;
+    },
+  })
   dependentVariable?: string[];
 
   @JsonProperty()
   metaData: ParameterMetaData;
+
+  selectedVariable: string;
+
+  get selectedVariableIndices(): number[] {
+    if (!this.dependentVariable) {
+      return [];
+    }
+
+    const indices: number[] = [];
+    this.dependentVariable.forEach((v, i) => {
+      if (v === this.selectedVariable) {
+        indices.push(i);
+      }
+    });
+    return indices;
+  }
 
   constructor(
     metaData = new ParameterMetaData(),
@@ -45,6 +69,7 @@ export default class UniformXDependent implements IParameter {
     this.yMinimumValues = yMinimumValues;
     this.yMaximumValues = yMaximumValues;
     this.dependentVariable = dependentVariable;
+    this.selectedVariable = '';
   }
 
   isEquivalent(other: UniformXDependent): boolean {

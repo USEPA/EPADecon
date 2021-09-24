@@ -22,6 +22,31 @@ export default class DistributionDisplay {
     return distributions;
   }
 
+  get dataGenerator(): DistributionDataGenerator {
+    // don't use baseline distribution if constant distribution
+    const useBaseline = this.baseline.type !== ParameterType.constant;
+    const ignoreWeibullMinMax = !useBaseline && this.current.type === ParameterType.weibull;
+
+    let min = useBaseline ? this.baseline.metaData.lowerLimit : this.current.metaData.lowerLimit;
+    let max = useBaseline ? this.baseline.metaData.upperLimit : this.current.metaData.upperLimit;
+
+    if (this.current.min !== undefined && !ignoreWeibullMinMax) {
+      min =
+        useBaseline && this.baseline.min !== undefined
+          ? this.getMin(this.current.min, this.baseline.min)
+          : this.current.min;
+    }
+
+    if (this.current.max !== undefined && !ignoreWeibullMinMax) {
+      max =
+        useBaseline && this.baseline.max !== undefined
+          ? this.getMax(this.current.max, this.baseline.max)
+          : this.current.max;
+    }
+
+    return new DistributionDataGenerator(1000, min, max);
+  }
+
   get displayChart(): boolean {
     switch (this.current.type) {
       case ParameterType.uniform:
@@ -37,26 +62,11 @@ export default class DistributionDisplay {
       case ParameterType.enumeratedFraction:
       case ParameterType.enumeratedParameter:
       case ParameterType.uniformXDependent:
+      case ParameterType.textValue:
       case ParameterType.null:
       default:
         return false;
     }
-  }
-
-  get dataGenerator(): DistributionDataGenerator {
-    let min = this.baseline.metaData.lowerLimit;
-    let max = this.baseline.metaData.upperLimit;
-
-    if (this.current.min !== undefined && this.baseline.min !== undefined) {
-      min = this.current.min < this.baseline.min ? this.current.min : this.baseline.min;
-    }
-
-    if (this.current.max !== undefined && this.baseline.max !== undefined) {
-      max = this.current.max > this.baseline.max ? this.current.max : this.baseline.max;
-    }
-
-    const gen = new DistributionDataGenerator(1000, min, max);
-    return gen;
   }
 
   get distComponent(): string {
@@ -87,6 +97,8 @@ export default class DistributionDisplay {
         return 'enumerated-fraction-display';
       case ParameterType.enumeratedParameter:
         return 'enumerated-parameter-display';
+      case ParameterType.textValue:
+        return 'text-value-display';
       default:
         return 'unknown-display';
     }
@@ -99,5 +111,19 @@ export default class DistributionDisplay {
   constructor(baseline: IParameter, current: IParameter) {
     this.baseline = baseline as IUnivariateParameter;
     this.current = current as IUnivariateParameter;
+  }
+
+  /** Compares two numbers and returns the number with the lower value */
+  // eslint-disable-next-line class-methods-use-this
+  private getMin(first: number, second: number): number {
+    const diff = first - second;
+    return diff > 0 ? second : first;
+  }
+
+  /** Compares two numbers and returns the number with the larger value */
+  // eslint-disable-next-line class-methods-use-this
+  private getMax(first: number, second: number): number {
+    const diff = first - second;
+    return diff > 0 ? first : second;
   }
 }

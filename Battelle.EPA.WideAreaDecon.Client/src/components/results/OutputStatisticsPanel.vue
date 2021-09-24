@@ -1,11 +1,11 @@
 <template>
-  <v-card height="600">
+  <v-card height="100%">
     <v-card-title v-text="'Output Statistics'"></v-card-title>
     <v-divider class="mx-4" color="grey"></v-divider>
     <v-card-text>
       <div v-if="hideStats">Statistics will be displayed when a chart has been created</div>
       <div v-else>
-        <v-simple-table v-for="(result, index) in resultsFormatted" :key="`${result}-${index}`">
+        <v-simple-table v-for="(result, index) in resultsFormatted" class="mb-2" :key="`${result}-${index}`">
           <template v-slot:default v-if="result">
             <thead>
               <tr>
@@ -15,7 +15,7 @@
             <tbody>
               <tr v-for="(value, detail) of detailsWithoutValues[index]" :key="detail">
                 <td>{{ resultProvider.convertCamelToTitleCase(detail) }}</td>
-                <td class="text-right">{{ value }}</td>
+                <td class="text-right">{{ resultProvider.formatNumber(value) }}</td>
               </tr>
             </tbody>
           </template>
@@ -32,13 +32,13 @@ import { omit } from 'lodash';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
-import PhaseResult from '@/enums/jobs/results/phaseResult';
+import Result from '@/enums/jobs/results/result';
 
 @Component
 export default class OutputStatisticsPanel extends Vue {
   @Prop() details!: { x: IResultDetails | null; y: IResultDetails | null };
 
-  @Prop() results!: { x: PhaseResult | null; y: PhaseResult | null };
+  @Prop() results!: { x: Result | null; y: Result | null };
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 

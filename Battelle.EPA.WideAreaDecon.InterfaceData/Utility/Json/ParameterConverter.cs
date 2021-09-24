@@ -76,7 +76,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json
                 ParameterType.LogNormal => JsonObject.ToObject<LogNormalDistribution>(),
                 ParameterType.LogUniform => JsonObject.ToObject<LogUniformDistribution>(),
                 ParameterType.Pert => JsonObject.ToObject<BetaPertDistribution>(),
-                ParameterType.TruncatedLogNormal => JsonObject.ToObject<TruncatedNormalDistribution>(),
+                ParameterType.TruncatedLogNormal => JsonObject.ToObject<TruncatedLogNormalDistribution>(),
                 ParameterType.TruncatedNormal => JsonObject.ToObject<TruncatedNormalDistribution>(),
                 ParameterType.Uniform => JsonObject.ToObject<UniformDistribution>(),
                 ParameterType.UniformXDependent => JsonObject.ToObject<UniformXDependentDistribution>(),
@@ -95,7 +95,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json
 
             return typeName switch
             {
-                "DecontaminationPhase" => JsonObject.ToObject<EnumeratedParameter<DecontaminationPhase>>(serializer),
+                "DecontaminationElement" => JsonObject.ToObject<EnumeratedParameter<DecontaminationElement>>(serializer),
                 "ApplicationMethod" => JsonObject.ToObject<EnumeratedParameter<ApplicationMethod>>(serializer),
                 "SurfaceType" => JsonObject.ToObject<EnumeratedParameter<SurfaceType>>(serializer),
                 _ => throw new SerializationException($"Uknown enumerated parameter type name {typeName} found")

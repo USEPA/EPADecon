@@ -5,6 +5,7 @@ import IJobProvider from '@/interfaces/providers/IJobProvider';
 import JobStatus from '@/enums/jobs/jobStatus';
 import JobRequest from '@/implementations/jobs/JobRequest';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
+import IGetJobResultsPayload from '@/interfaces/store/jobs/IGetJobResultsPayload';
 
 const jobRequestActions: ActionTree<IRootState, IRootState> = {
   createJobRequest: (
@@ -28,11 +29,16 @@ const jobRequestActions: ActionTree<IRootState, IRootState> = {
     }
   },
 
-  getCurrentJobResults: async ({ commit, state }, jobProvider: IJobProvider) => {
+  getCurrentJobResults: async ({ commit, state }, { jobProvider, resultProvider }: IGetJobResultsPayload) => {
     const job = await jobProvider.getJobRequest(state.currentJob.id);
     if (job) {
+      resultProvider.reset();
       commit('setCurrentJob', job);
     }
+  },
+
+  cancelCurrentJobRequest: async (_, JobProvider: IJobProvider) => {
+    await JobProvider.cancelJobRequest();
   },
 
   resetCurrentJobRequest: ({ commit }) => {

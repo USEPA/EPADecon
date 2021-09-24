@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Attributes;
@@ -42,6 +37,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         [ExcelProperty(ParameterLocationHelper.Parameter4)]
         public double? StdDev { get; set; }
 
+        private double? LogMean => MathHelper.ConvertToLog10(Mean);
+
+        private double? LogStdDev => MathHelper.ConvertToLog10(StdDev);
+
         public static TruncatedLogNormalDistribution FromExcel(ParameterMetaData metaData, IRow information)
         {
             var minimum = typeof(TruncatedLogNormalDistribution).GetCellValue(nameof(Min), information)
@@ -79,9 +78,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public Stats.IDistribution CreateDistribution()
         {
-            if (Min.HasValue && Max.HasValue && Mean.HasValue && StdDev.HasValue)
+            if (Min.HasValue && Max.HasValue && LogMean.HasValue && LogStdDev.HasValue)
             {
-                return new Stats.TruncatedLogNormalDistribution(Mean.Value, StdDev.Value, Min.Value, Max.Value);
+                return new Stats.TruncatedLogNormalDistribution(LogMean.Value, LogStdDev.Value, Min.Value, Max.Value);
             }
             throw new ArgumentNullException();
         }

@@ -1,10 +1,10 @@
 <template>
   <v-card height="100%" width="100%">
     <v-row dense>
-      <v-col cols="auto" class="mr-auto">
-        <v-card-title v-if="shouldIncludeTitle" v-text="currentSelectedParameter.path" />
+      <v-col cols="5" xl="6">
+        <v-card-title v-if="shouldIncludeTitle">{{ currentSelectedParameter.path }}</v-card-title>
       </v-col>
-      <v-col align-self="center" cols="3">
+      <v-col cols="3" xl="2" offset="1">
         <v-overflow-btn
           v-if="isChangeableDist"
           @change="onDistributionTypeChange"
@@ -13,30 +13,37 @@
           :items="distNames"
           filled
           dense
-        />
+        ></v-overflow-btn>
       </v-col>
-      <v-col style="margin-top: 7px" cols="2">
-        <v-btn height="45" v-if="shouldIncludeTitle && parameterHasChanged" color="secondary" @click="resetParameter">
+      <v-col cols="3" xl="2" style="margin-top: 7px">
+        <v-btn
+          height="45"
+          v-if="shouldIncludeTitle"
+          :disabled="!parameterHasChanged"
+          color="secondary"
+          @click="resetParameter"
+        >
           Reset Parameter
         </v-btn>
       </v-col>
     </v-row>
-    <v-divider color="grey" v-if="shouldIncludeTitle"></v-divider>
+    <v-divider color="grey" v-if="shouldIncludeTitle" />
     <component
       :key="currentSelectedParameter.path"
       :is="display.distComponent"
       :parameter-value="currentSelectedParameter.current"
-    >
-    </component>
-    <v-container>
-      <v-card v-if="display.displayChart" flat class="pa-5" tile width="100%" height="400">
+    />
+    <v-container v-if="display.displayChart">
+      <div class="py-5" style="width: 100%; height: 400px">
         <distribution-chart
           :distribution-series="display.chartData"
-          :xAxisLabel="display.xAxisLabel"
-          :yAxisLabel="'Probability of Selection'"
+          :x-axis-label="display.xAxisLabel"
+          :y-axis-label="'Probability of Selection'"
           :data-generator="display.dataGenerator"
-        ></distribution-chart>
-      </v-card>
+          :force-x-axis-min-zero="false"
+          ref="dist"
+        />
+      </div>
     </v-container>
   </v-card>
 </template>
@@ -60,12 +67,13 @@ import WeibullDisplay from '@/components/parameters/distributionDisplay/WeibullD
 import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionDisplay/BimodalTruncatedNormalDisplay.vue';
 import EnumeratedFractionDisplay from '@/components/parameters/distributionDisplay/EnumeratedFractionDisplay.vue';
 import EnumeratedParameterDisplay from '@/components/parameters/distributionDisplay/EnumeratedParameterDisplay.vue';
+import TextValueDisplay from '@/components/parameters/distributionDisplay/TextValueDisplay.vue';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
-import { changeableDistributionTypes } from '@/mixin/parameterMixin';
+import { changeableDistributionTypes, nonLogDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
 import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
-import { DistributionChart } from 'battelle-common-vue-charting/src/index';
+import { DistributionChart } from 'battelle-common-vue-charting';
 import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
 
@@ -86,6 +94,7 @@ import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDi
     EnumeratedFractionDisplay,
     EnumeratedParameterDisplay,
     DistributionChart,
+    TextValueDisplay,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
@@ -97,26 +106,27 @@ export default class ParameterDistributionSelector extends Vue {
 
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
-  @Watch('currentSelectedParameter')
-  onCurrentSelectedParameterChange(): void {
-    this.currentDistType = this.currentSelectedParameter.type;
-  }
+  @Watch('currentSelectedParameter', { deep: true })
+  onCurrentSelectedParameterChange(newValue: ParameterWrapper, oldValue: ParameterWrapper): void {
+    this.currentDistType = newValue.type;
 
-  @Watch('parameterHasChanged')
-  onParameterChanged(newValue: boolean): void {
-    if (newValue && this.hasResults) {
+    const isDifferentParameter = oldValue.path !== newValue.path;
+    if (this.hasResults && !isDifferentParameter) {
       this.resetCurrentJobRequest();
     }
   }
 
   currentDistType = ParameterType.constant;
 
-  distNames = changeableDistributionTypes;
-
   get display(): DistributionDisplay {
     return container
       .get<IDistributionDisplayProvider>(TYPES.DistributionDisplayProvider)
       .getDistributionDisplay(this.currentSelectedParameter.baseline, this.currentSelectedParameter.current);
+  }
+
+  get distNames(): ParameterType[] {
+    const { upperLimit, step } = this.currentSelectedParameter.baseline.metaData;
+    return upperLimit > 1 + step ? changeableDistributionTypes : nonLogDistributionTypes;
   }
 
   get isChangeableDist(): boolean {
@@ -149,4 +159,8 @@ export default class ParameterDistributionSelector extends Vue {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.v-card__title {
+  word-break: normal;
+}
+</style>

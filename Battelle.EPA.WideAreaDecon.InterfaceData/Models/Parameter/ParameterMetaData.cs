@@ -9,7 +9,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
     public class ParameterMetaData
     {
-        [ExcelProperty(0)] public DecontaminationPhase[] ValidPhases { get; set; }
+        [ExcelProperty(0)] public DecontaminationElement[] ValidElements { get; set; }
         [ExcelProperty(1)] public string Category { get; set; }
         [ExcelProperty(2)] public string Name { get; set; }
         [ExcelProperty(3)] public string Description { get; set; }
@@ -29,10 +29,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             {
                 return new ParameterMetaData()
                 {
-                    ValidPhases = typeof(ParameterMetaData).GetCellValue(nameof(ValidPhases), row)
+                    ValidElements = typeof(ParameterMetaData).GetCellValue(nameof(ValidElements), row)
                             ?.Split(';')
-                            .Select(Enum.Parse<DecontaminationPhase>).ToArray() ??
-                        throw new ApplicationException("Error determining Valid Phases"),
+                            .Select(Enum.Parse<DecontaminationElement>).ToArray() ??
+                        throw new ApplicationException("Error determining Valid Elements"),
                     Category = typeof(ParameterMetaData).GetCellValue(nameof(Category), row),
                     Name = name,
                     Description = typeof(ParameterMetaData).GetCellValue(nameof(Description), row),
@@ -45,10 +45,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 
             return new ParameterMetaData()
             {
-                ValidPhases = typeof(ParameterMetaData).GetCellValue(nameof(ValidPhases), row)
+                ValidElements = typeof(ParameterMetaData).GetCellValue(nameof(ValidElements), row)
                         ?.Split(';')
-                        .Select(Enum.Parse<DecontaminationPhase>).ToArray() ??
-                    throw new ApplicationException("Error determining Valid Phases"),
+                        .Select(Enum.Parse<DecontaminationElement>).ToArray() ??
+                    throw new ApplicationException("Error determining Valid Elements"),
                 Category = typeof(ParameterMetaData).GetCellValue(nameof(Category), row),
                 Name = name,
                 Description = typeof(ParameterMetaData).GetCellValue(nameof(Description), row),

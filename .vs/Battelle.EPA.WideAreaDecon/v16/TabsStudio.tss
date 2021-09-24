@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>R:\EPA\WideAreaDecon\Battelle.EPA.WideAreaDecon.Model\CharacterizationSampling\LaborCostCalculator.cs</string>
+      <string>R:\EPA\WideAreaDecon\Battelle.EPA.WideAreaDecon.Model\ClearanceSampling\Cost\LaborCostCalculator.cs</string>
+      <string>R:\EPA\WideAreaDecon\Battelle.EPA.WideAreaDecon.Model\IncidentCommand\LaborCostCalculator.cs</string>
+    </ArrayOfString>
+  </ArrayOfArrayOfString>
+</ArrayOfArrayOfArrayOfString>

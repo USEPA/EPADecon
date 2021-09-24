@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Newtonsoft.Json;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.Job
 {
@@ -26,6 +28,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Job
         [JsonProperty(Required = Required.Always)]
         public int NumberRealizations { get; set; }
 
-        public object Results { get; set; }
+        public List<JobResults> Results { get; set; }
+
+        [JsonProperty]
+        public ulong Seed1 { get; set; }
+
+        [JsonProperty]
+        public ulong Seed2 { get; set; }
     }
 }

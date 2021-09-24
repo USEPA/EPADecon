@@ -4,6 +4,8 @@ import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
 import EnumeratedParameterDeserializer from '@/serialization/parameter/EnumeratedParameterDeserializer';
 import ParameterMetaData from '../ParameterMetaData';
+import Constant from '../distribution/Constant';
+import Uniform from '../distribution/Uniform';
 
 @Serializable()
 export default class EnumeratedParameter implements IParameter {
@@ -13,9 +15,32 @@ export default class EnumeratedParameter implements IParameter {
   public get isSet(): boolean {
     const valueEntries = Object.values(this.values);
 
-    const result = valueEntries.every((val: IParameter) => {
-      return val.isSet;
-    });
+    let result = valueEntries.every((val: IParameter) => val.isSet);
+
+    if (this.metaData.name === 'Area Contaminated' && result) {
+      result = valueEntries.some((val: IParameter) => {
+        switch (val.type) {
+          case ParameterType.constant: {
+            const cast = val as Constant;
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            return cast.value! > 0;
+          }
+          case ParameterType.uniform:
+          case ParameterType.pert:
+          case ParameterType.truncatedNormal:
+          case ParameterType.truncatedLogNormal:
+          case ParameterType.logUniform:
+          case ParameterType.bimodalTruncatedNormal: {
+            // these distributions all have a min/max so casting to Uniform should be alright
+            const cast = val as Uniform;
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            return cast.min! > 0;
+          }
+          default:
+            return false;
+        }
+      });
+    }
 
     return result;
   }

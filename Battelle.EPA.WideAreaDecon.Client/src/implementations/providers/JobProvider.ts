@@ -8,6 +8,8 @@ import ParameterWrapperList from '../parameter/ParameterWrapperList';
 
 @injectable()
 export default class JobProvider implements IJobProvider {
+  readonly url = '/api/JobRequest';
+
   /* eslint-disable class-methods-use-this */
   createJobRequest(
     scenarioDefinition: ParameterWrapperList,
@@ -20,14 +22,18 @@ export default class JobProvider implements IJobProvider {
     return job;
   }
 
-  async postJobRequest(job: JobRequest): Promise<string> {
+  postJobRequest(job: JobRequest): Promise<string> {
     const serializedJob = serialize(job);
-    return Axios.post<string>('/api/JobRequest', serializedJob).then((response) => response.data);
+    return Axios.post<string>(this.url, serializedJob).then((response) => response.data);
   }
 
-  async getJobRequest(id: string): Promise<JobRequest> {
-    return Axios.get<JobRequest>(`/api/JobRequest`, { params: { id } }).then((response) =>
+  getJobRequest(id: string): Promise<JobRequest> {
+    return Axios.get<JobRequest>(this.url, { params: { id } }).then((response) =>
       deserialize<JobRequest>(response.data, JobRequest),
     );
+  }
+
+  cancelJobRequest(): void {
+    Axios.delete(this.url);
   }
 }

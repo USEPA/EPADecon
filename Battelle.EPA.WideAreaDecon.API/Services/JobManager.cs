@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +14,7 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.Model;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
 using Microsoft.AspNetCore.SignalR;
+using Battelle.RiskAssessment.Common.Statistics;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
@@ -48,7 +49,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
             await Task.Delay(1000);
 
             await _statusUpdater.UpdateJobStatus(job, JobStatus.Queued);
-            //_progressUpdater.UpdateJobProgress(job, 0.0);
 
             Queued.Enqueue(job);
         }
@@ -85,15 +85,29 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         private Task ConvertAndExecuteJob() => Task.Run(async () =>
             {
                 await _statusUpdater.UpdateJobStatus(Running, JobStatus.Running);
+                _progressUpdater.UpdateJobProgress(Running, 0.0);
+                var progressIncrement = 1.0 / Running.NumberRealizations * 100;
 
                 try
                 {
+                    // Set seeds using values from job
+                    LibraryInfo.SetSeed(Running.Seed1, Running.Seed2);
+
+                    UniformDistribution dist = new UniformDistribution(1, long.MaxValue);
+
+                    var seeds = new Tuple<ulong, ulong>[Running.NumberRealizations];
+
+                    for (int i = 0; i < Running.NumberRealizations; i++)
+                    {
+                        seeds[i] = new Tuple<ulong, ulong>(Convert.ToUInt64(dist.Draw()), Convert.ToUInt64(dist.Draw()));
+                    }
+
                     var extentOfContaminationParameters = Running.DefineScenario.Filters
                         .First(f => f.Name == "Extent of Contamination").Parameters;
 
                     var scenarioCreator = new ScenarioCreator(
-                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Area Contaminated") as EnumeratedParameter<DecontaminationPhase>,
-                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Loading") as EnumeratedParameter<DecontaminationPhase>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Area Contaminated") as EnumeratedParameter<DecontaminationElement>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Loading") as EnumeratedParameter<DecontaminationElement>,
                         extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Contamination Breakout") as EnumeratedFraction<BuildingCategory>,
                         extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
                         extentOfContaminationParameters.First(p => p.MetaData.Name == "Outdoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
@@ -106,60 +120,93 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                         scenarios.Add(scenarioCreator.CreateRealizationScenario());
                     }
 
-                    var parameterManager = new ParameterManager(
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Characterization Sampling").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Source Reduction").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Efficacy").Parameters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Other").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Incident Command").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Cost per Parameter").Filters,
-                        Running.ModifyParameter.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
-
-                    var scenarioResults = new List<object>();
+                    var results = new List<JobResults>();
 
                     for (int s = 0; s < scenarios.Count(); s++)
                     {
-                        var realizationResults = new Dictionary<DecontaminationPhase, object>();
+                        LibraryInfo.SetSeed(seeds[s].Item1, seeds[s].Item2);
 
-                        //INDOOR SCENARIO
-                        var buildingResults = new Dictionary<BuildingCategory, Results>();
+                        var realizationResults = new JobResults()
+                        {
+                            scenarioResults = new ScenarioTypeResults()
+                            {
+                                indoorResults = new Dictionary<BuildingCategory, ScenarioRealizationResults>(),
+                                outdoorResults = new ScenarioRealizationResults(),
+                                undergroundResults = new ScenarioRealizationResults()
+                            },
+                            eventResults = new EventResults()
+                        };
+
+                        //RUN INDOOR SCENARIO
                         foreach (var building in scenarios[s].IndoorBuildingsContaminated)
                         {
                             if (building.Value.Count > 0)
                             {
-                                var indoorModelRunner = new ModelRunner(Running.ModifyParameter, DecontaminationPhase.Indoor, building.Value);
-
-                                buildingResults.Add(building.Key, indoorModelRunner.RunModel());
+                                var indoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationElement.Indoor, building.Value);
+                                realizationResults.scenarioResults.indoorResults.Add(building.Key, indoorModelRunner.RunScenarioModel());
                             }
                         }
 
-                        realizationResults.Add(DecontaminationPhase.Indoor, buildingResults);
+                        if (realizationResults.scenarioResults.indoorResults.Count == 0)
+                        {
+                            realizationResults.scenarioResults.indoorResults = null;
+                        }
 
-                        //OUTDOOR SCENARIO
-                        var outdoorModelRunner = new ModelRunner(Running.ModifyParameter, DecontaminationPhase.Outdoor, scenarios[s].OutdoorAreasContaminated);
+                        //RUN OUTDOOR SCENARIO
+                        if (scenarios[s].OutdoorAreasContaminated.Sum(x => x.Value.AreaContaminated) > 0)
+                        {
+                            var outdoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationElement.Outdoor, scenarios[s].OutdoorAreasContaminated);
+                            realizationResults.scenarioResults.outdoorResults = outdoorModelRunner.RunScenarioModel();
+                        } else
+                        {
+                            realizationResults.scenarioResults.outdoorResults = null;
+                        }
 
-                        realizationResults.Add(DecontaminationPhase.Outdoor, outdoorModelRunner.RunModel());
+                        //RUN UNDERGROUND SCENARIO
+                        if (scenarios[s].UndergroundBuildingsContaminated.Sum(x => x.Value.AreaContaminated) > 0)
+                        {
+                            var undergroundModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationElement.Underground, scenarios[s].UndergroundBuildingsContaminated);
+                            realizationResults.scenarioResults.undergroundResults = undergroundModelRunner.RunScenarioModel();
+                        } else
+                        {
+                            realizationResults.scenarioResults.undergroundResults = null;
+                        }
 
-                        //UNDERGROUND SCENARIO
-                        var undergroundModelRunner = new ModelRunner(Running.ModifyParameter, DecontaminationPhase.Underground, scenarios[s].UndergroundBuildingsContaminated);
-
-                        realizationResults.Add(DecontaminationPhase.Underground, undergroundModelRunner.RunModel());
+                        //RUN EVENT-SPECIFIC MODELS
+                        var eventModelRunner = new EventModelRunner(Running.ModifyParameter, realizationResults.scenarioResults.indoorResults, realizationResults.scenarioResults.outdoorResults, realizationResults.scenarioResults.undergroundResults);
+                        realizationResults.eventResults = eventModelRunner.RunEventModel();
 
                         //Store results for realization
-                        scenarioResults.Add(realizationResults);
+                        results.Add(realizationResults);
+
+                        //Update job progress
+                        _progressUpdater.UpdateJobProgress(Running, Running.Progress + progressIncrement);
+
+                        //Cancel job if requested
+                        cancelCancellationTokenSource.Token.ThrowIfCancellationRequested();
                     }
 
                     //Store results of model in job
-                    Running.Results = scenarioResults;
+                    Running.Results = results;
 
                     await _statusUpdater.UpdateJobStatus(Running, JobStatus.Completed);
-                    
-                } catch (Exception e)
+                    _progressUpdater.UpdateJobProgress(Running, 100.0);
+                }
+                catch (OperationCanceledException e)
+                {
+                    // Job was cancelled
+                    Console.WriteLine(e);
+                    await _statusUpdater.UpdateJobStatus(Running, JobStatus.Cancelled);
+                }
+                catch (Exception e)
                 {
                     Console.Error.WriteLine(e);
                     // TODO display error on front end?
                     await _statusUpdater.UpdateJobStatus(Running, JobStatus.Error);
+                }
+                finally
+                {
+                    cancelCancellationTokenSource.Dispose();
                 }
 
                 Finished.Add(Running);
@@ -169,6 +216,14 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         public JobStatus GetStatus(Guid id) => GetJob(id)?.Status ?? JobStatus.Unknown;
 
         public JobRequest GetJob(Guid id) => AllJobs.FirstOrDefault(request => request.Id == id);
+
+        public void CancelJob()
+        {
+            if (Running != null && !cancelCancellationTokenSource.IsCancellationRequested)
+            {
+                cancelCancellationTokenSource.Cancel();
+            }
+        }
 
         //public bool UpdateJob(JobRequest newJob)
         //{

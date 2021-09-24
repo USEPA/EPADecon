@@ -26,6 +26,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         [ExcelProperty(ParameterLocationHelper.Parameter2)]
         public double? StdDev { get; set; }
 
+        private double? LogMean => MathHelper.ConvertToLog10(Mean);
+
+        private double? LogStdDev => MathHelper.ConvertToLog10(StdDev);
+
         public static LogNormalDistribution FromExcel(ParameterMetaData metaData, IRow information)
         {
             var mean = typeof(LogNormalDistribution).GetCellValue(nameof(Mean), information)?.ConvertToOptionalDouble();
@@ -46,9 +50,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public Stats.IDistribution CreateDistribution()
         {
-            if (Mean.HasValue && StdDev.HasValue)
+            if (LogMean.HasValue && LogStdDev.HasValue)
             {
-                return new Stats.LogNormalDistribution(Mean.Value, StdDev.Value);
+                return new Stats.LogNormalDistribution(LogMean.Value, LogStdDev.Value);
             }
             throw new ArgumentNullException();
         }

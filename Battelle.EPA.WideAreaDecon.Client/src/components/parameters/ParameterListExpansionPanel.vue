@@ -1,23 +1,27 @@
 <template>
   <v-list>
     <v-list-item-group>
-      <v-list-group active-class="secondary--text" v-for="(item, i) in getFilters()" :key="i">
-        <template v-slot:activator>
-          <v-list-item-icon>
-            <v-badge
-              offset-y="20"
-              v-if="item.numberInvalidParameters() > 0"
-              color="error"
-              :content="item.numberInvalidParameters()"
-            />
-          </v-list-item-icon>
-          <v-list-item-title>{{ item.name }}</v-list-item-title>
-          <v-list-item-icon>
-            <v-icon v-if="item.anyParameterChanged()">fa-edit</v-icon>
-          </v-list-item-icon>
-        </template>
-        <parameter-filter-expansion-panel :filter="item" />
-      </v-list-group>
+      <template v-if="filters.length > 1">
+        <v-list-group active-class="secondary--text" v-for="(item, i) in filters" :key="i">
+          <template v-slot:activator>
+            <v-list-item-icon>
+              <v-badge
+                offset-y="20"
+                v-if="item.numberInvalidParameters() > 0"
+                color="error"
+                :content="item.numberInvalidParameters()"
+              />
+            </v-list-item-icon>
+            <v-list-item-title>{{ item.name }}</v-list-item-title>
+            <v-list-item-icon>
+              <v-icon v-if="item.anyParameterChanged()">fa-edit</v-icon>
+            </v-list-item-icon>
+          </template>
+          <parameter-filter-expansion-panel :filter="item" />
+        </v-list-group>
+      </template>
+
+      <parameter-filter-expansion-panel v-else :filter="filters[0]" id="singleFilter" />
     </v-list-item-group>
   </v-list>
 </template>
@@ -42,10 +46,18 @@ export default class ParameterListExpansionPanel extends Vue {
   @Prop()
   list!: ParameterWrapperList;
 
-  getFilters(): ParameterWrapperFilter[] {
+  get filters(): ParameterWrapperFilter[] {
     return this.list.filters;
   }
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+#singleFilter {
+  padding: 0;
+
+  ::v-deep .v-list-item .v-list-item__icon:first-child {
+    margin-right: 8px !important;
+  }
+}
+</style>

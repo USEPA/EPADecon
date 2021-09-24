@@ -9,12 +9,12 @@
 
           <v-col class="ml-auto" cols="3" style="margin-top: 7px">
             <v-select
-              label="Building"
+              label="Location"
               :items="['All', ...locations]"
               v-model="selectedLocation"
               outlined
               hide-details="auto"
-            ></v-select>
+            />
           </v-col>
 
           <v-col cols="2" style="margin-top: 7px">
@@ -25,7 +25,7 @@
               :rules="[validationRulesRunNumber]"
               hide-details="auto"
               outlined
-            ></v-text-field>
+            />
           </v-col>
 
           <v-col cols="1" class="align-self-center">
@@ -40,14 +40,14 @@
           </v-col>
         </v-row>
 
-        <v-divider color="grey"></v-divider>
+        <v-divider color="grey" />
 
         <v-simple-table v-if="displayedRunNumbers.length" dense class="overflow-x-hidden" ref="table">
           <template v-if="selectedLocation !== 'All'" v-slot:default>
             <thead>
               <tr>
                 <th></th>
-                <th class="text-body-1 py-3" v-for="runNumber in displayedRunNumbers" :key="runNumber">
+                <th class="text-body-1 py-3" v-for="runNumber of displayedRunNumbers" :key="runNumber">
                   Run {{ runNumber }}
                   <v-icon class="ml-1" small @click="removeRunFromTable(runNumber)">mdi-close-circle</v-icon>
 
@@ -56,19 +56,19 @@
               </tr>
             </thead>
 
-            <tbody v-for="(phaseResult, phaseName) in results[0].Outdoor" :key="phaseName">
+            <tbody v-for="(elementResult, elementName) in exisitingLocation" :key="elementName">
               <tr>
                 <td class="text-subtitle-1 font-weight-medium">
-                  {{ resultProvider.convertCamelToTitleCase(phaseName) }}
+                  {{ resultProvider.convertCamelToTitleCase(elementName) }}
                 </td>
-                <td :colspan="displayedRunNumbers.length"></td>
+                <td :colspan="displayedRunNumbers.length" />
               </tr>
 
-              <tr v-for="(_, result) in phaseResult" :key="result">
+              <tr v-for="(_, result) in elementResult" :key="result">
                 <td class="pl-8">{{ resultProvider.convertCamelToTitleCase(result) }}</td>
 
                 <td v-for="runNumber in displayedRunNumbers" :key="runNumber">
-                  {{ getLocationResults(runNumber)[phaseName][result] }}
+                  {{ getCellValueSingleLocation(elementName, result, runNumber) }}
                 </td>
               </tr>
             </tbody>
@@ -77,11 +77,11 @@
           <template v-else v-slot:default>
             <thead>
               <tr>
-                <th></th>
+                <th />
                 <th
                   class="text-body-1 py-3 border-right"
                   :colspan="locations.length"
-                  v-for="runNumber in displayedRunNumbers"
+                  v-for="runNumber of displayedRunNumbers"
                   :key="runNumber"
                 >
                   Run {{ runNumber }}
@@ -92,7 +92,7 @@
               </tr>
 
               <tr>
-                <th></th>
+                <th />
                 <th
                   :class="`text-body-1 ${getCellClass(i + 1)}`"
                   v-for="(location, i) in tableLocations"
@@ -103,20 +103,20 @@
               </tr>
             </thead>
 
-            <tbody v-for="(phaseResult, phaseName) in results[0].Outdoor" :key="phaseName">
+            <tbody v-for="(elementResult, elementName) in exisitingLocation" :key="elementName">
               <tr>
                 <td class="text-subtitle-1 font-weight-medium">
-                  {{ resultProvider.convertCamelToTitleCase(phaseName) }}
+                  {{ resultProvider.convertCamelToTitleCase(elementName) }}
                 </td>
 
-                <td :class="getCellClass(i)" v-for="i in locations.length * displayedRunNumbers.length" :key="i"></td>
+                <td :class="getCellClass(i)" v-for="i in locations.length * displayedRunNumbers.length" :key="i" />
               </tr>
 
-              <tr v-for="(_, result) in phaseResult" :key="result">
+              <tr v-for="(_, result) in elementResult" :key="result">
                 <td>{{ resultProvider.convertCamelToTitleCase(result) }}</td>
 
                 <td :class="getCellClass(i + 1)" v-for="(location, i) in tableLocations" :key="`${location} - ${i}`">
-                  {{ getLocationResults(calculateRunNumber(i), location)[phaseName][result] }}
+                  {{ getCellValueAllLocations(location, elementName, result, i) }}
                 </td>
               </tr>
             </tbody>
@@ -124,11 +124,6 @@
         </v-simple-table>
 
         <v-card-text v-else>Please select at least one realization to display a summary for</v-card-text>
-
-        <!-- Table Scrollbar -->
-        <div class="scrollbarContainer" style="" ref="scroll">
-          <div class="scrollbar" :style="`width: ${tableWidth}px`"></div>
-        </div>
       </v-container>
     </v-card>
 
@@ -137,15 +132,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
-import IPhaseResultSet from '@/interfaces/jobs/results/IPhaseResultSet';
+import IElementResultSet from '@/interfaces/jobs/results/IElementResultSet';
 import BuildingCategory from '@/enums/parameter/buildingCategory';
 import RealizationDetails from '@/components/modals/results/RealizationDetails.vue';
+import Result from '@/enums/jobs/results/result';
 
 @Component({ components: { RealizationDetails } })
 export default class RealizationTable extends Vue {
@@ -166,8 +162,16 @@ export default class RealizationTable extends Vue {
   tableWidth = 0;
 
   get locations(): string[] {
-    const outUnd = Object.keys(this.results[0]).splice(1);
-    return [...Object.keys(this.results[0].Indoor).map((l) => `${l} Building`), ...outUnd];
+    const existingLocations = Object.entries(this.results[0].scenarioResults).filter(
+      ([, resultSet]) => resultSet !== null,
+    );
+
+    return existingLocations.flatMap(([location, resultSet]) => {
+      const isIndoor = location.toLowerCase().includes('indoor');
+      return isIndoor
+        ? Object.keys(resultSet).map((l) => `${l} Building`)
+        : this.resultProvider.convertCamelToTitleCase(location.replace('Results', ''));
+    });
   }
 
   get tableLocations(): string[] {
@@ -175,13 +179,24 @@ export default class RealizationTable extends Vue {
     return [...Array(length)].flatMap(() => this.locations);
   }
 
-  @Watch('displayedRunNumbers.length')
-  @Watch('selectedLocation')
-  onTableLegnthChanged(): void {
-    this.$nextTick(() => {
-      // get width of table
-      this.tableWidth = (this.$refs.table as Vue)?.$el.firstElementChild?.firstElementChild?.clientWidth ?? 0;
-    });
+  get exisitingLocation(): IElementResultSet | null {
+    const { scenarioResults } = this.results[0];
+    if (scenarioResults.indoorResults) {
+      // indoor exists
+      return Object.values(scenarioResults.indoorResults)[0];
+    }
+
+    if (scenarioResults.outdoorResults) {
+      // outdoor exists
+      return scenarioResults.outdoorResults;
+    }
+
+    if (scenarioResults.undergroundResults) {
+      // underground exists
+      return scenarioResults.undergroundResults;
+    }
+
+    return null;
   }
 
   addRunToTable(): void {
@@ -192,19 +207,36 @@ export default class RealizationTable extends Vue {
   }
 
   calculateRunNumber(index: number): number {
-    const { length } = this.locations;
-    return Math.floor((index + length) / length);
+    const locationsPerRun = this.locations.length;
+    const runIndex = Math.floor((index + locationsPerRun) / locationsPerRun) - 1;
+    return this.displayedRunNumbers[runIndex];
   }
 
   getCellClass(cellNumber: number): string {
     return cellNumber && cellNumber % this.locations.length === 0 && cellNumber ? 'border-right' : '';
   }
 
-  getLocationResults(runNumber: number, location?: string): IPhaseResultSet {
-    const run = this.resultProvider.getRealizationResults(this.results, runNumber);
-    const selectedLocation = (location !== undefined ? location : this.selectedLocation).replace(/ Building$/, '');
+  getCellValueAllLocations(location: string, elementName: string, result: Result, index: number): string {
+    const value = this.getLocationResults(this.calculateRunNumber(index), location)[elementName][result];
+    return this.resultProvider.formatNumber(value);
+  }
+
+  getCellValueSingleLocation(elementName: string, result: Result, runNumber: number): string {
+    const value = this.getLocationResults(runNumber)[elementName][result];
+    return this.resultProvider.formatNumber(value);
+  }
+
+  getLocationResults(runNumber: number, location?: string): IElementResultSet {
+    const run = this.resultProvider.getRealizationResults(this.results, runNumber).scenarioResults;
+
+    let selectedLocation = (location !== undefined ? location : this.selectedLocation).replace(/ Building$/, '');
+
     const isIndoor = Object.keys(BuildingCategory).includes(selectedLocation);
-    return isIndoor ? run.Indoor[selectedLocation] : (run[selectedLocation] as IPhaseResultSet);
+    if (!isIndoor) {
+      selectedLocation = selectedLocation[0].toLowerCase() + `${selectedLocation}Results`.substring(1);
+    }
+
+    return isIndoor ? run.indoorResults[selectedLocation] : (run[selectedLocation] as IElementResultSet);
   }
 
   removeRunFromTable(runNumber: number): void {
@@ -229,13 +261,6 @@ export default class RealizationTable extends Vue {
       return 'Value must be a whole number';
     }
     return true;
-  }
-
-  mounted(): void {
-    (this.$refs.scroll as Element).addEventListener('scroll', () => {
-      const { scrollLeft } = this.$refs.scroll as Element;
-      (this.$refs.table as Vue).$el.scroll({ left: scrollLeft });
-    });
   }
 }
 </script>
@@ -270,17 +295,5 @@ export default class RealizationTable extends Vue {
 
 .border-right:not(:last-child) {
   border-right: 2px solid rgba(0, 0, 0, 0.12);
-}
-
-.scrollbarContainer {
-  width: 100%;
-  overflow-x: auto;
-  position: sticky;
-  bottom: 36px; // anything under 36px is the footer
-  z-index: 2;
-
-  & > .scrollbar {
-    height: 5px;
-  }
 }
 </style>
