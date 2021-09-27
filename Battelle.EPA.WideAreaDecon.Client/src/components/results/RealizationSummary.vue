@@ -209,6 +209,9 @@ export default class RealizationSummary extends Vue {
     }
 
     this.getOutputStatistics(x, y);
+
+    this.$set(this.selectedResults, 'x', x ? JSON.parse(JSON.stringify(x)) : null);
+    this.$set(this.selectedResults, 'y', [...(y ?? [])]);
   }
 
   getOutputStatistics(x: Result | null, y: Result[]): void {
@@ -223,8 +226,6 @@ export default class RealizationSummary extends Vue {
         .filter((d) => d) as IResultDetails[];
     }
 
-    this.$set(this.selectedResults, 'x', x ?? null);
-    this.$set(this.selectedResults, 'y', y ?? []);
     this.$set(this, 'outputStatistics', stats);
   }
 
