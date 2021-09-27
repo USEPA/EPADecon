@@ -135,8 +135,7 @@ export default class ResultsChartPanel extends Vue {
     if (!el) {
       return;
     }
-    const { index } = el;
-    this.$emit('addRun', index + 1);
+    this.$emit('addRun', el.index + 1);
   }
 
   onLabelClicked(label: string): void {
