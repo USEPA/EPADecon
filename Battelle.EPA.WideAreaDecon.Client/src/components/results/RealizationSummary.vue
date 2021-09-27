@@ -27,7 +27,7 @@
       <realization-table ref="realizationTable"></realization-table>
     </v-row>
 
-    <chart-options @createChart="setChartData" v-model="showOptionsModal" ref="options" />
+    <chart-options @createChart="updateSelections" v-model="showOptionsModal" ref="options" />
   </v-container>
 </template>
 
@@ -66,7 +66,7 @@ export default class RealizationSummary extends Vue {
     y: [],
   };
 
-  prevScatterSeries: { result: Result; color: string }[] = [];
+  savedLabelColors: Partial<Record<Result, string>> = {};
 
   showOptionsModal = false;
 
@@ -168,22 +168,23 @@ export default class RealizationSummary extends Vue {
       const yData = indices.map((i) => series[i]);
       const dataPoints: Point[] = xData.map((x, i) => ({ x, y: yData[i] }));
 
-      const yLabel = this.resultProvider.convertCamelToTitleCase(yLabels[seriesIndex]);
+      const res = yLabels[seriesIndex];
+      const yLabel = this.resultProvider.convertCamelToTitleCase(res);
+      // use prev color if it exists
+      const prev = this.savedLabelColors[res];
 
-      const dataset = CreateScatterChartDataset(dataPoints, `${yLabel} vs ${xLabel}`, colorProvider);
-
-      // const prevIndex = this.prevScatterSeries.findIndex((s) => s.result === yLabels[seriesIndex]);
-      // if (prevIndex !== -1 && yLabels.length > 1) {
-      //   const prev = this.prevScatterSeries[prevIndex];
-      //   dataset.backgroundColor = prev.color;
-      //   dataset.borderColor = prev.color;
-      //   this.prevScatterSeries.splice(prevIndex, 1);
-      // }
+      const dataset = CreateScatterChartDataset(
+        dataPoints,
+        `${yLabel} vs ${xLabel}`,
+        colorProvider,
+        undefined,
+        prev,
+        prev,
+      );
 
       datasets.push(dataset);
     });
 
-    // this.prevScatterSeries = yLabels.map((y, i) => ({ result: y, color: datasets[i].backgroundColor as string }));
     return new DefaultChartData(datasets);
   }
 
@@ -219,6 +220,11 @@ export default class RealizationSummary extends Vue {
     options.selected = { ...this.selectedResults };
 
     this.showOptionsModal = true;
+  }
+
+  updateSelections(selected: ChartOptions['selected']): void {
+    this.savedLabelColors = {};
+    this.setChartData(selected);
   }
 
   getOutputStatistics(x: Result | null, y: Result[]): void {
@@ -259,6 +265,11 @@ export default class RealizationSummary extends Vue {
   }
 
   removeYLabel(yLabelIndex: number): void {
+    // save colors
+    this.savedLabelColors = this.selectedResults.y.reduce((prev, cur, i) => {
+      return i === yLabelIndex ? prev : { ...prev, [cur]: this.chartData?.datasets[i].backgroundColor as string };
+    }, {});
+
     this.selectedResults.y.splice(yLabelIndex, 1);
     this.setChartData(this.selectedResults);
   }
