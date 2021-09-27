@@ -128,9 +128,10 @@ export default class ResultsChartPanel extends Vue {
     if (newY.length) {
       this.$nextTick(() => {
         const yLabel = this.$refs.yLabel as Element;
-        const yLabelTop = yLabel.clientWidth / 2;
+        const offset = yLabel.clientWidth / 2;
+        const percent = yLabel.clientHeight > 40 ? '55' : '50';
 
-        yLabel.setAttribute('style', `top: calc(50% + ${yLabelTop}px)`);
+        yLabel.setAttribute('style', `top: calc(${percent}% + ${offset}px)`);
 
         (this.$refs.scatter as ScatterPlotWrapper).$el.setAttribute(
           'style',
@@ -181,6 +182,6 @@ export default class ResultsChartPanel extends Vue {
   position: absolute;
   transform-origin: 0 0;
   transform: translateY(-50%) rotate(-90deg);
-  max-width: 400px;
+  max-width: 355px;
 }
 </style>
