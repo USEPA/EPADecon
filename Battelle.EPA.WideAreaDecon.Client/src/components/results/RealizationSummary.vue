@@ -12,7 +12,7 @@
       <v-col cols="9">
         <results-chart-panel
           @addRun="addRunToTable"
-          @showOptions="showOptionsModal = true"
+          @showOptions="showChartOptions"
           @removeXLabel="removeXLabel"
           @removeYLabel="removeYLabel"
           :chartData="chartData"
@@ -212,6 +212,13 @@ export default class RealizationSummary extends Vue {
 
     this.$set(this.selectedResults, 'x', x ? JSON.parse(JSON.stringify(x)) : null);
     this.$set(this.selectedResults, 'y', [...(y ?? [])]);
+  }
+
+  showChartOptions(): void {
+    const options = this.$refs.options as ChartOptions;
+    options.selected = { ...this.selectedResults };
+
+    this.showOptionsModal = true;
   }
 
   getOutputStatistics(x: Result | null, y: Result[]): void {
