@@ -1,121 +1,104 @@
 <template>
-  <div id="map" ref="rootmap">
-    <div style="position: absolute; z-index: 9999; background: ghostwhite; display: flex">
-      <div>Geometry type &nbsp;</div>
-      <select v-model="typeSelected" @change="getTypeSelected">
-        <option value="Point">Point</option>
-        <option value="LineString">LineString</option>
-        <option value="Polygon">Polygon</option>
-        <option value="Circle">Circle</option>
-        <option value="None">None</option>
-      </select>
-    </div>
+  <div>
+    <div id="map" ref="map" />
+
+    <v-overflow-btn :items="['None', 'Box', 'Circle', 'Square']" label="Plume Shape" v-model="drawShape" />
   </div>
 </template>
 <script lang="ts">
-/* eslint-disable */
-// import openlayer css for style
-import "ol/ol.css";
-import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
-import Map from "ol/Map";
-import View from "ol/View";
-import { defaults as defaultControls, ScaleLine } from "ol/control";
-import {Tile as TileLayer, Vector} from 'ol/layer';
-import VectorLayer from 'ol/layer/Vector';
-import {OSM, Vector as VectorSource} from 'ol/source';
-import { Style, Stroke } from 'ol/style';
-import Draw from 'ol/interaction/Draw';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { DrawShape } from '@/types';
+import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
+import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
+import Draw, { createBox, createRegularPolygon } from 'ol/interaction/Draw';
+import Map from 'ol/Map';
+import View, { ViewOptions } from 'ol/View';
+import Polygon from 'ol/geom/Polygon';
+import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+import { OSM, Vector as VectorSource } from 'ol/source';
+import { defaults as DefaultControls, ScaleLine } from 'ol/control';
 
 @Component
-export default class GeospatialDisplay extends Vue{
-  mounted() {
-    this.initiateMap();
-  }
+export default class GeospatialDisplay extends Vue implements IParameterDisplay {
+  @Prop() parameterValue!: EnumeratedParameter;
 
-  initiateMap() {
-    // create vector layer
-    var source = new VectorSource();
-    var vector = new VectorLayer({
-      source: source
-    });
-    // create title layer
-    var raster = new TileLayer({
-      source: new OSM(),
-    });
-    // create map with 2 layer
-    var map = new Map({
-      controls: defaultControls().extend([
-        new ScaleLine({
-          units: "degrees",
-        }),
-      ]),
-      target: "map",
-      layers: [raster, vector],
-      view: new View({
-        projection: "EPSG:4326",
-        center: [0, 0],
-        zoom: 2,
-      }),
-    });
-    // Add a layer for the drawn line
-    this.drawLayer = new VectorLayer({
-        //source corresponding to layer
-        source: new Vector(),
+  readonly raster = new TileLayer({ source: new OSM() });
 
-    })
-    //Add layer to the map
-    this.map.addLayer(this.drawLayer);
-  }
+  readonly source = new VectorSource({ wrapX: false });
 
-  getTypeSelected() {
-    this.draw && this.map.removeInteraction(this.draw);
-    //Draw a new Interaction based on the value of typeSelect
+  draw: Draw | null = null;
+
+  map: Map | null = null;
+
+  drawShape: DrawShape = 'None';
+
+  static defaultViewOptions: ViewOptions = {
+    projection: 'EPSG:4326',
+    center: [0, 0],
+    zoom: 2,
+    extent: [-130, 22, -60, 51],
+  };
+
+  @Watch('drawShape')
+  resetMapDrawings(): void {
+    if (this.map && this.draw) {
+      this.map.removeInteraction(this.draw);
+    }
     this.addInteraction();
   }
 
-  addInteraction() {
-    let value = this.typeSelected;
+  addInteraction(): void {
+    let value = this.drawShape;
     if (value !== 'None') {
+      let geometryFunction;
+      switch (value) {
+        case 'Square': {
+          value = 'Circle';
+          geometryFunction = createRegularPolygon(4);
+          break;
+        }
+        case 'Box': {
+          value = 'Circle';
+          geometryFunction = createBox();
+          break;
+        }
+        default:
+          break;
+      }
+
       this.draw = new Draw({
-        source: this.drawLayer.getSource(),
-        type: this.typeSelected,
-        style: new Style({
-          stroke: new Stroke({
-            color: 'blue',
-            width: 3,
-          }),
-        }),
+        source: this.source,
+        type: value,
+        geometryFunction,
       });
-      this.map.addInteraction(this.draw);
+
+      this.map?.addInteraction(this.draw);
     }
+  }
+
+  initMap(): void {
+    const vector = new VectorLayer({ source: this.source });
+
+    this.map = new Map({
+      layers: [this.raster, vector],
+      target: 'map',
+      view: new View({ ...GeospatialDisplay.defaultViewOptions }),
+      controls: DefaultControls().extend([new ScaleLine({ units: 'degrees' })]),
+    });
+  }
+
+  mounted(): void {
+    this.initMap();
+    this.addInteraction();
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '~ol/ol.css';
+
 #map {
-  position: absolute;
-  margin: 0;
-  padding: 0;
   height: 500px;
-  width: 99%;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-#nav a.router-link-exact-active {
-  color: #42b983;
+  width: 100%;
 }
 </style>

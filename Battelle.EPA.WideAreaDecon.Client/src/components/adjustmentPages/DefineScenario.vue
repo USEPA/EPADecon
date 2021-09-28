@@ -31,10 +31,6 @@
     </template>
 
     <template v-else>
-      <v-row align="center">
-        <v-btn @click="setScenarioDefinitionMode(null)"> Change Selection Method </v-btn>
-      </v-row>
-
       <parameter-selection-drawer :parameters="scenarioDefinition" />
       <parameter-distribution-selector />
     </template>

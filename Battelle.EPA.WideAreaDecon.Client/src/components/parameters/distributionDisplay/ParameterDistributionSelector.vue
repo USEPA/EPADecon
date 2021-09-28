@@ -33,12 +33,10 @@
     <v-divider color="grey" v-if="shouldIncludeTitle" />
 
     <component
-      v-if="scenarioDefinitionMode === 'manual'"
       :key="currentSelectedParameter.path"
       :is="display.distComponent"
       :parameter-value="currentSelectedParameter.current"
     />
-    <geospatial-display v-else />
 
     <v-container v-if="display.displayChart">
       <div class="py-5" style="width: 100%; height: 400px">
@@ -83,8 +81,7 @@ import TYPES from '@/dependencyInjection/types';
 import { DistributionChart } from 'battelle-common-vue-charting';
 import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
-import ContaminationDefinitionDisplay from '@/components/parameters/ContaminationDefinitionDisplay.vue';
-import GeospatialDisplay from '@/components/parameters/distributionDisplay/GeospatialDisplay.vue';
+import ContaminationDefinitionDisplay from '@/components/parameters/distributionDisplay/ContaminationDefinitionDisplay.vue';
 import { ScenarioDefinitionMode } from '@/types';
 
 @Component({
@@ -106,7 +103,6 @@ import { ScenarioDefinitionMode } from '@/types';
     ContaminationDefinitionDisplay,
     DistributionChart,
     TextValueDisplay,
-    GeospatialDisplay,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
