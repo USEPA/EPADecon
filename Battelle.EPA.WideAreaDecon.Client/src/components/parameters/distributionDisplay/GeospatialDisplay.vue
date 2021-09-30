@@ -1,17 +1,25 @@
 <template>
-  <div id="map-container">
-    <div id="map" />
+  <div>
+    <div id="map-container">
+      <div id="map" />
 
-    <v-select
-      :items="['None', 'Box', 'Circle', 'Square']"
-      background-color="white"
-      class="plume-shape-selector"
-      placeholder="Plume Shape"
-      dense
-      hide-details
-      outlined
-      v-model="drawShape"
-    />
+      <v-select
+        :items="['None', 'Box', 'Circle', 'Square']"
+        background-color="white"
+        class="plume-shape-selector"
+        placeholder="Plume Shape"
+        dense
+        hide-details
+        outlined
+        v-model="drawShape"
+      />
+    </div>
+
+    <v-text-field label="Area" readonly :value="area">
+      <!-- <template v-slot:append>
+        <span class="grey--text">{{ parameterValue.metaData.units }}</span>
+      </template> -->
+    </v-text-field>
   </div>
 </template>
 <script lang="ts">
@@ -20,11 +28,12 @@ import { DrawShape } from '@/types';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
 import Draw, { createBox, createRegularPolygon } from 'ol/interaction/Draw';
+// import { Select, Translate, defaults as defaultInteractions } from 'ol/interaction';
 import Map from 'ol/Map';
 import View, { ViewOptions } from 'ol/View';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
-import { defaults as DefaultControls, ScaleLine } from 'ol/control';
+import { defaults as defaultControls, ScaleLine } from 'ol/control';
 import { getArea } from 'ol/sphere';
 import { unByKey } from 'ol/Observable';
 import Feature from 'ol/Feature';
@@ -56,24 +65,22 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   drawShape: DrawShape = 'None';
 
-  sketch: Feature<Geometry> | null = null;
+  // select: Select = new Select(); // TODO potentially make readonly
 
-  get areaInMeters(): number {
-    const metersPerUnit = this.map?.getView().getProjection().getMetersPerUnit() ?? 1;
-    return this.area;
-  }
+  sketch: Feature<Geometry> | null = null;
 
   @Watch('drawShape')
   resetMapDrawings(): void {
     if (this.draw) {
       this.map?.removeInteraction(this.draw);
+      this.source.clear();
     }
     this.addInteraction();
   }
 
   addInteraction(): void {
     let type = this.drawShape;
-    if (type !== 'None' && !this.area) {
+    if (type !== 'None') {
       let geometryFunction;
       switch (type) {
         case 'Square': {
@@ -118,7 +125,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
       let listener: any;
 
       this.draw.on('drawstart', ({ feature }) => {
-        // clear existing features (sketches)
+        // clear existing plumes
         this.source.clear();
 
         this.sketch = feature as Feature<Geometry>;
@@ -134,8 +141,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
         listener = this.sketch.getGeometry()?.on('change', ({ target }) => {
           const polygon = target as Polygon;
-          // TODO figure out area computation
-          this.area = polygon.getType() === 'Circle' ? this.getAreaOfCircle(polygon) : getArea(polygon);
+          this.area = polygon.getType() === 'Circle' ? this.getAreaOfCircle(polygon) : this.formatArea(polygon);
         });
       });
 
@@ -150,19 +156,27 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   initMap(): void {
     const vector = new VectorLayer({ source: this.source });
+    // const translate = new Translate({ features: this.select.getFeatures() });
 
     this.map = new Map({
+      // interactions: defaultInteractions().extend([this.select, translate]),
       layers: [this.raster, vector],
       target: 'map',
       view: new View({ ...this.defaultViewOptions }),
-      controls: DefaultControls().extend([new ScaleLine({ units: 'degrees' })]),
+      controls: defaultControls().extend([new ScaleLine({ units: 'degrees' })]),
     });
   }
 
   // eslint-disable-next-line class-methods-use-this
+  formatArea(polygon: Polygon): number {
+    // transform polygon to projection capable of area calculations
+    const geom = polygon.clone().transform('EPSG:4326', 'EPSG:3857');
+    return getArea(geom);
+  }
+
   getAreaOfCircle(polygon: Polygon): number {
     const circle = fromCircle((polygon as unknown) as Circle);
-    return getArea(circle);
+    return this.formatArea(circle);
   }
 
   mounted(): void {
