@@ -1,10 +1,17 @@
 <template>
-  <div>
-    <div>{{ areaInMeters }} m<sup>2</sup></div>
+  <div id="map-container">
+    <div id="map" />
 
-    <div id="map" ref="map" />
-
-    <v-overflow-btn :items="['None', 'Box', 'Circle', 'Square']" label="Plume Shape" v-model="drawShape" />
+    <v-select
+      :items="['None', 'Box', 'Circle', 'Square']"
+      background-color="white"
+      class="plume-shape-selector"
+      placeholder="Plume Shape"
+      dense
+      hide-details
+      outlined
+      v-model="drawShape"
+    />
   </div>
 </template>
 <script lang="ts">
@@ -23,7 +30,6 @@ import { unByKey } from 'ol/Observable';
 import Feature from 'ol/Feature';
 import { Circle, Geometry, Polygon } from 'ol/geom';
 import { fromCircle } from 'ol/geom/Polygon';
-import { getCenter, getWidth } from 'ol/extent';
 import { Circle as CircleStyle, Fill, Style } from 'ol/style';
 import { CycleColorProvider } from 'battelle-common-vue-charting';
 
@@ -54,7 +60,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   get areaInMeters(): number {
     const metersPerUnit = this.map?.getView().getProjection().getMetersPerUnit() ?? 1;
-    return this.area * metersPerUnit ** 2;
+    return this.area;
   }
 
   @Watch('drawShape')
@@ -97,10 +103,11 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
             color,
           }),
           image: new CircleStyle({
-            radius: 5,
             fill: new Fill({
               color,
             }),
+            radius: 5,
+            rotateWithView: true,
           }),
         }),
       });
@@ -111,6 +118,9 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
       let listener: any;
 
       this.draw.on('drawstart', ({ feature }) => {
+        // clear existing features (sketches)
+        this.source.clear();
+
         this.sketch = feature as Feature<Geometry>;
 
         // set style of feature
@@ -125,7 +135,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
         listener = this.sketch.getGeometry()?.on('change', ({ target }) => {
           const polygon = target as Polygon;
           // TODO figure out area computation
-          this.area = polygon.getType() === 'Circle' ? this.getAreaOfCircle(polygon) : polygon.getArea();
+          this.area = polygon.getType() === 'Circle' ? this.getAreaOfCircle(polygon) : getArea(polygon);
         });
       });
 
@@ -151,8 +161,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   // eslint-disable-next-line class-methods-use-this
   getAreaOfCircle(polygon: Polygon): number {
-    const extent = polygon.getExtent();
-    const circle = fromCircle(new Circle(getCenter(extent), getWidth(extent) / 2));
+    const circle = fromCircle((polygon as unknown) as Circle);
     return getArea(circle);
   }
 
@@ -169,5 +178,15 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 #map {
   height: 500px;
   width: 100%;
+}
+#map-container {
+  position: relative;
+}
+.plume-shape-selector {
+  max-width: 12rem;
+  opacity: 0.85;
+  position: absolute;
+  right: 0.75em;
+  top: 0.75em;
 }
 </style>
