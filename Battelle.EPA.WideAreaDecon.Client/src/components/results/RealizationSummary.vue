@@ -5,15 +5,16 @@
         <v-btn color="secondary" @click="$router.push({ name: 'viewResults' })" v-text="'Return to dashboard'"></v-btn>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row id="chart-row">
       <v-col cols="3">
         <output-statistics-panel :details="outputStatistics" :results="selectedResults"></output-statistics-panel>
       </v-col>
       <v-col cols="9">
         <results-chart-panel
           @addRun="addRunToTable"
-          @showOptions="showOptionsModal = true"
-          @removeLabel="removeSelectedResult"
+          @showOptions="showChartOptions"
+          @removeXLabel="removeXLabel"
+          @removeYLabel="removeYLabel"
           :chartData="chartData"
           :chartType="chartType"
           :chartLabels="selectedResults"
@@ -26,7 +27,7 @@
       <realization-table ref="realizationTable"></realization-table>
     </v-row>
 
-    <chart-options @createChart="setChartData" v-model="showOptionsModal" ref="options" />
+    <chart-options @createChart="updateSelections" v-model="showOptionsModal" ref="options" />
   </v-container>
 </template>
 
@@ -37,7 +38,7 @@ import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealizati
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
-import { ChartData, Point } from 'chart.js';
+import { ChartData, ChartDataset, Point } from 'chart.js';
 import { CycleColorProvider, DefaultChartData, CreateScatterChartDataset } from 'battelle-common-vue-charting';
 import Result from '@/enums/jobs/results/result';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
@@ -56,15 +57,20 @@ export default class RealizationSummary extends Vue {
 
   chartData: ChartData | null = null;
 
-  chartType = '';
+  chartType: 'bar' | 'pie' | 'scatter' | '' = '';
 
   maxScatterPoints = 1000;
 
-  outputStatistics: { x: IResultDetails | null; y: IResultDetails | null } = { x: null, y: null };
+  outputStatistics: { x: IResultDetails | null; y: IResultDetails[] } = {
+    x: null,
+    y: [],
+  };
+
+  savedLabelColors: Partial<Record<Result, string>> = {};
 
   showOptionsModal = false;
 
-  selectedResults: { x: Result | null; y: Result | null } = { x: null, y: null };
+  selectedResults: ChartOptions['selected'] = { x: null, y: [] };
 
   addRunToTable(runNumber: number): void {
     const table = this.$refs.realizationTable as RealizationTable;
@@ -149,73 +155,90 @@ export default class RealizationSummary extends Vue {
     };
   }
 
-  createScatterPlot(xVals: number[], yVals: number[], labels: (Result | null)[]): ChartData {
-    let xData: number[] = [];
-    let yData: number[] = [];
-    const { length } = xVals;
-
-    if (length > this.maxScatterPoints) {
-      // take subset from random points
-      const indices = this.getRandomIndices(xVals);
-      xData = new Array(length).fill(undefined);
-      yData = [...xData];
-
-      indices.forEach((i) => {
-        xData[i] = xVals[i];
-        yData[i] = yVals[i];
-      });
-    } else {
-      xData = xVals;
-      yData = yVals;
-    }
-
-    const dataPoints: Point[] = xData.map((x, i) => {
-      return { x, y: yData[i] };
-    });
+  createScatterPlot(xVals: number[], yVals: number[][], labels: Result[]): ChartData {
+    const datasets: ChartDataset[] = [];
     const colorProvider = new CycleColorProvider();
-    let [xLabel, yLabel] = labels as string[];
-    xLabel = this.resultProvider.convertCamelToTitleCase(xLabel);
-    yLabel = this.resultProvider.convertCamelToTitleCase(yLabel);
 
-    const scatterDataSet = CreateScatterChartDataset(dataPoints, `${yLabel} vs. ${xLabel}`, colorProvider);
-    return new DefaultChartData([scatterDataSet]);
+    const indices = xVals.length > this.maxScatterPoints ? this.getRandomIndices(xVals) : range(0, xVals.length);
+    const xData = indices.map((i) => xVals[i]);
+    const xLabel = this.resultProvider.convertCamelToTitleCase(labels[0] as string);
+    const yLabels = labels.slice(1);
+
+    yVals.forEach((series, seriesIndex) => {
+      const yData = indices.map((i) => series[i]);
+      const dataPoints: Point[] = xData.map((x, i) => ({ x, y: yData[i] }));
+
+      const res = yLabels[seriesIndex];
+      const yLabel = this.resultProvider.convertCamelToTitleCase(res);
+      // use prev color if it exists
+      const prev = this.savedLabelColors[res];
+
+      const dataset = CreateScatterChartDataset(
+        dataPoints,
+        `${yLabel} vs ${xLabel}`,
+        colorProvider,
+        undefined,
+        prev,
+        prev,
+      );
+
+      datasets.push(dataset);
+    });
+
+    return new DefaultChartData(datasets);
   }
 
-  setChartData({ x, y }: { x: Result | null; y: Result | null }): void {
+  setChartData({ x, y }: RealizationSummary['selectedResults']): void {
     const xDetails = x ? this.resultProvider.getResultDetails(this.results, x) : null;
-    const yDetails = y ? this.resultProvider.getResultDetails(this.results, y) : null;
+    const yDetails = y.map((r) => this.resultProvider.getResultDetails(this.results, r)?.values ?? []);
 
-    if (xDetails && !yDetails) {
+    if (xDetails && !yDetails.length) {
       // histogram
       this.chartType = 'bar';
       this.chartData = this.createHistogram(xDetails);
-    } else if (!xDetails && yDetails) {
+    } else if (!xDetails && yDetails.length) {
       // pie chart
       this.chartType = 'pie';
-      this.chartData = this.createPieChart(yDetails.values, y);
-    } else if (xDetails && yDetails) {
+      this.chartData = this.createPieChart(yDetails[0], y[0]);
+    } else if (xDetails && yDetails.length) {
       // scatter plot
       this.chartType = 'scatter';
-      this.chartData = this.createScatterPlot(xDetails.values, yDetails.values, [x, y]);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.chartData = this.createScatterPlot(xDetails.values, yDetails, [x!, ...y]);
     } else {
       this.chartData = null;
     }
 
     this.getOutputStatistics(x, y);
+
+    this.$set(this.selectedResults, 'x', x ? JSON.parse(JSON.stringify(x)) : null);
+    this.$set(this.selectedResults, 'y', [...(y ?? [])]);
   }
 
-  getOutputStatistics(xLabel: Result | null, yLabel: Result | null): void {
-    const stats: { x: IResultDetails | null; y: IResultDetails | null } = { x: null, y: null };
+  showChartOptions(): void {
+    const options = this.$refs.options as ChartOptions;
+    options.selected = { ...this.selectedResults };
 
-    if (xLabel) {
-      stats.x = this.resultProvider.getResultDetails(this.results, xLabel) ?? null;
+    this.showOptionsModal = true;
+  }
+
+  updateSelections(selected: ChartOptions['selected']): void {
+    this.savedLabelColors = {};
+    this.setChartData(selected);
+  }
+
+  getOutputStatistics(x: Result | null, y: Result[]): void {
+    const stats: this['outputStatistics'] = { x: null, y: [] };
+
+    if (x) {
+      stats.x = this.resultProvider.getResultDetails(this.results, x) ?? null;
     }
-    if (yLabel) {
-      stats.y = this.resultProvider.getResultDetails(this.results, yLabel) ?? null;
+    if (y) {
+      stats.y = y
+        .map((r) => this.resultProvider.getResultDetails(this.results, r))
+        .filter((d) => d) as IResultDetails[];
     }
 
-    this.$set(this.selectedResults, 'x', xLabel ?? null);
-    this.$set(this.selectedResults, 'y', yLabel ?? null);
     this.$set(this, 'outputStatistics', stats);
   }
 
@@ -230,12 +253,31 @@ export default class RealizationSummary extends Vue {
     return indices;
   }
 
-  removeSelectedResult(axis: 'x' | 'y'): void {
-    this.$set(this.selectedResults, axis, null);
-    (this.$refs.options as ChartOptions).selected[axis] = null;
+  removeXLabel(): void {
+    this.$set(this.selectedResults, 'x', null);
+    (this.$refs.options as ChartOptions).selected.x = null;
+
+    if (this.selectedResults.y.length > 1) {
+      this.selectedResults.y.splice(0);
+    }
+
+    this.setChartData(this.selectedResults);
+  }
+
+  removeYLabel(yLabelIndex: number): void {
+    // save colors
+    this.savedLabelColors = this.selectedResults.y.reduce((prev, cur, i) => {
+      return i === yLabelIndex ? prev : { ...prev, [cur]: this.chartData?.datasets[i].backgroundColor as string };
+    }, {});
+
+    this.selectedResults.y.splice(yLabelIndex, 1);
     this.setChartData(this.selectedResults);
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#chart-row {
+  min-height: 630px;
+}
+</style>
