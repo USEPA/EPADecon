@@ -16,12 +16,19 @@
     </div>
 
     <v-text-field label="Area" readonly :value="area">
-      <!-- <template v-slot:append>
-        <span class="grey--text">{{ parameterValue.metaData.units }}</span>
-      </template> -->
+      <template v-slot:append>
+        <span class="grey--text">m^2</span>
+      </template>
     </v-text-field>
+
+    <!-- <v-select :items="['Constant', 'Uniform']" v-model="distType" /> -->
+
+    <!-- <v-btn>Remove Plume</v-btn> -->
+
+    <!-- <v-select :items="" v-model="location" /> -->
   </div>
 </template>
+
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { DrawShape } from '@/types';
@@ -37,10 +44,21 @@ import { defaults as defaultControls, ScaleLine } from 'ol/control';
 import { getArea } from 'ol/sphere';
 import { unByKey } from 'ol/Observable';
 import Feature from 'ol/Feature';
-import { Circle, Geometry, Polygon } from 'ol/geom';
+import { Circle, Geometry, LinearRing, Polygon } from 'ol/geom';
 import { fromCircle } from 'ol/geom/Polygon';
 import { Circle as CircleStyle, Fill, Style } from 'ol/style';
 import { CycleColorProvider } from 'battelle-common-vue-charting';
+import axios from 'axios';
+import intersect from '@turf/intersect';
+import { GeoJSON } from 'ol/format';
+
+// TODO
+interface IOpenDataBuilding {
+  // eslint-disable-next-line camelcase
+  the_geom: {
+    coordinates: number[][][][];
+  };
+}
 
 @Component
 export default class GeospatialDisplay extends Vue implements IParameterDisplay {
@@ -57,17 +75,21 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   readonly source = new VectorSource({ wrapX: false });
 
-  area = 0;
+  buildingAreasInPlume: number[] = [];
 
   draw: Draw | null = null;
 
   map: Map | null = null;
+
+  // distType: 'Constant' | 'Uniform' = 'Constant';
 
   drawShape: DrawShape = 'None';
 
   // select: Select = new Select(); // TODO potentially make readonly
 
   sketch: Feature<Geometry> | null = null;
+
+  totalArea = 0;
 
   @Watch('drawShape')
   resetMapDrawings(): void {
@@ -141,11 +163,29 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
         listener = this.sketch.getGeometry()?.on('change', ({ target }) => {
           const polygon = target as Polygon;
-          this.area = polygon.getType() === 'Circle' ? this.getAreaOfCircle(polygon) : this.formatArea(polygon);
+          this.totalArea = polygon.getType() === 'Circle' ? this.getAreaOfCircle(polygon) : this.formatArea(polygon);
         });
       });
 
-      this.draw.on('drawend', () => {
+      this.draw.on('drawend', ({ feature }) => {
+        // TODO work on different dist types...
+        // if (this.distType === 'Uniform') {
+        //   const feat = feature as Feature<Circle>;
+        //   const center = feat.getGeometry()?.getCenter();
+        //   const radius = feat.getGeometry()?.getRadius();
+        //   const geometry = fromCircle(feat.getGeometry(radius));
+        //   // Create a second circle with radius divided by 2 with same center
+        //   const innerRing = fromCircle(new Circle(center, radius / 2));
+        //   // Create a linearRing to create the hole, based on innerRing coordinates
+        //   const linearRing = new LinearRing(innerRing.getCoordinates()[0]);
+        //   // Append it to the geometry
+        //   geometry.appendLinearRing(linearRing);
+        //   // Overwrite the ol.geom.Circle geometry with the ol.geom.Polygon with hole
+        //   // Caution: now you have an ol.geom.Polygon, you can't edit it with the radius
+        //   feature.setGeometry(geometry);
+        // }
+        this.getBuildingAreasInPlume(feature);
+
         // unset sketch
         this.sketch = null;
         // remove draw event listener
@@ -177,6 +217,32 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   getAreaOfCircle(polygon: Polygon): number {
     const circle = fromCircle((polygon as unknown) as Circle);
     return this.formatArea(circle);
+  }
+
+  async getBuildingAreasInPlume(feat: Feature<Polygon>): Promise<void> {
+    // TODO may need to update url also may need account token
+    const url = 'https://data.cityofnewyork.us/resource/iues-xngg.json';
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const coords = feat
+      .getGeometry()!
+      .getCoordinates()[0]
+      .flatMap((xy) => xy.join(' '))
+      .join(', ');
+    const query = `$where=intersects(the_geom, 'POLYGON((${coords}))')`;
+
+    const { data } = await axios.get<IOpenDataBuilding[]>(`${url}?${query}`);
+    const formatter = new GeoJSON();
+
+    this.buildingAreasInPlume = data.map((building) => {
+      // approximate area for each building
+      const [buildingCoords] = building.the_geom.coordinates;
+      const buildingFeat = new Feature<Polygon>(new Polygon(buildingCoords));
+
+      const overlap = intersect(formatter.writeFeatureObject(feat), formatter.writeFeatureObject(buildingFeat));
+
+      return overlap ? this.formatArea(formatter.readFeature(overlap).getGeometry()) : 0;
+    });
   }
 
   mounted(): void {
