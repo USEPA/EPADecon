@@ -15,7 +15,7 @@
       />
     </div>
 
-    <v-text-field label="Area" readonly :value="area">
+    <v-text-field label="Area" readonly :value="totalArea">
       <template v-slot:append>
         <span class="grey--text">m^2</span>
       </template>
@@ -46,7 +46,7 @@ import { unByKey } from 'ol/Observable';
 import Feature from 'ol/Feature';
 import { Circle, Geometry, LinearRing, Polygon } from 'ol/geom';
 import { fromCircle } from 'ol/geom/Polygon';
-import { Circle as CircleStyle, Fill, Style } from 'ol/style';
+import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import { CycleColorProvider } from 'battelle-common-vue-charting';
 import axios from 'axios';
 import intersect from '@turf/intersect';
@@ -90,6 +90,10 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   sketch: Feature<Geometry> | null = null;
 
   totalArea = 0;
+
+  get indoorArea(): number {
+    return this.buildingAreasInPlume.reduce((acc, cur) => acc + cur, 0);
+  }
 
   @Watch('drawShape')
   resetMapDrawings(): void {
@@ -239,9 +243,21 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
       const [buildingCoords] = building.the_geom.coordinates;
       const buildingFeat = new Feature<Polygon>(new Polygon(buildingCoords));
 
-      const overlap = intersect(formatter.writeFeatureObject(feat), formatter.writeFeatureObject(buildingFeat));
+      const overlap = formatter.readFeature(
+        intersect(formatter.writeFeatureObject(feat), formatter.writeFeatureObject(buildingFeat)),
+      );
+      // show building on map
+      overlap.setStyle(
+        new Style({
+          stroke: new Stroke({
+            color: 'rgba(0, 0, 0, 255)',
+            width: 0.4,
+          }),
+        }),
+      );
+      this.source.addFeature(overlap);
 
-      return overlap ? this.formatArea(formatter.readFeature(overlap).getGeometry()) : 0;
+      return overlap ? this.formatArea(overlap.getGeometry()) : 0;
     });
   }
 
