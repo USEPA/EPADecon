@@ -200,7 +200,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
         });
       });
 
-      this.draw.on('drawend', ({ feature }) => {
+      this.draw.on('drawend', async ({ feature }) => {
         // TODO work on different dist types...
         // if (this.distType === 'Uniform') {
         //   const feat = feature as Feature<Circle>;
@@ -217,7 +217,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
         //   // Caution: now you have an ol.geom.Polygon, you can't edit it with the radius
         //   feature.setGeometry(geometry);
         // }
-        this.getBuildingAreasInPlume(feature);
+        await this.getBuildingAreasInPlume(feature);
 
         // unset sketch
         this.sketch = null;
