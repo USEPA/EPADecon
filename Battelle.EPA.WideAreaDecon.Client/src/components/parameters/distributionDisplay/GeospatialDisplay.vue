@@ -25,7 +25,7 @@
 
     <!-- <v-btn>Remove Plume</v-btn> -->
 
-    <!-- <v-select :items="" v-model="location" /> -->
+    <v-select :items="Object.values(mapLocation)" label="City" v-model="location" />
   </div>
 </template>
 
@@ -48,27 +48,29 @@ import { Circle, Geometry, LinearRing, Polygon } from 'ol/geom';
 import { fromCircle } from 'ol/geom/Polygon';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import { CycleColorProvider } from 'battelle-common-vue-charting';
-import axios from 'axios';
 import intersect from '@turf/intersect';
 import { GeoJSON } from 'ol/format';
-
-// TODO
-interface IOpenDataBuilding {
-  // eslint-disable-next-line camelcase
-  the_geom: {
-    coordinates: number[][][][];
-  };
-}
+import MapLocation from '@/enums/maps/MapLocation';
+import container from '@/dependencyInjection/config';
+import TYPES from '@/dependencyInjection/types';
+import IBuildingDataProvider from '@/interfaces/providers/IBuildingDataProvider';
 
 @Component
 export default class GeospatialDisplay extends Vue implements IParameterDisplay {
   @Prop() parameterValue!: EnumeratedParameter;
 
-  readonly defaultViewOptions: ViewOptions = {
+  readonly bostonViewOptions: ViewOptions = {
     projection: 'EPSG:4326',
-    center: [-73.98, 40.76], // Manhattan
+    center: [-71.06, 42.36],
     zoom: 12,
-    extent: [-130, 22, -60, 51],
+    extent: [-71.185103, 42.226274, -70.915158, 42.407244],
+  };
+
+  readonly nycViewOptions: ViewOptions = {
+    projection: 'EPSG:4326',
+    center: [-73.98, 40.76],
+    zoom: 12,
+    extent: [-74.265361, 40.486498, -73.692699, 40.926853],
   };
 
   readonly raster = new TileLayer({ source: new OSM() });
@@ -77,13 +79,21 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   buildingAreasInPlume: number[] = [];
 
+  buildingDataProvider = container.get<IBuildingDataProvider>(TYPES.BuildingDataProvider);
+
   draw: Draw | null = null;
 
+  location = MapLocation.NewYorkCity;
+
   map: Map | null = null;
+
+  mapLocation = MapLocation;
 
   // distType: 'Constant' | 'Uniform' = 'Constant';
 
   drawShape: DrawShape = 'None';
+
+  formatter = new GeoJSON();
 
   // select: Select = new Select(); // TODO potentially make readonly
 
@@ -95,6 +105,17 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     return this.buildingAreasInPlume.reduce((acc, cur) => acc + cur, 0);
   }
 
+  get viewOptions(): ViewOptions {
+    switch (this.location) {
+      case MapLocation.NewYorkCity:
+        return this.nycViewOptions;
+      case MapLocation.Boston:
+        return this.bostonViewOptions;
+      default:
+        return {};
+    }
+  }
+
   @Watch('drawShape')
   resetMapDrawings(): void {
     if (this.draw) {
@@ -102,6 +123,14 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
       this.source.clear();
     }
     this.addInteraction();
+    this.clearArea();
+  }
+
+  @Watch('location')
+  changeMapLocation(): void {
+    this.map?.setView(new View(this.viewOptions));
+    this.resetMapDrawings();
+    this.clearArea();
   }
 
   addInteraction(): void {
@@ -198,6 +227,11 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     }
   }
 
+  clearArea(): void {
+    this.totalArea = 0;
+    this.buildingAreasInPlume.splice(0);
+  }
+
   initMap(): void {
     const vector = new VectorLayer({ source: this.source });
     // const translate = new Translate({ features: this.select.getFeatures() });
@@ -206,8 +240,8 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
       // interactions: defaultInteractions().extend([this.select, translate]),
       layers: [this.raster, vector],
       target: 'map',
-      view: new View({ ...this.defaultViewOptions }),
-      controls: defaultControls().extend([new ScaleLine({ units: 'degrees' })]),
+      view: new View({ ...this.viewOptions }),
+      controls: defaultControls().extend([new ScaleLine({ units: 'metric' })]),
     });
   }
 
@@ -224,29 +258,14 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   }
 
   async getBuildingAreasInPlume(feat: Feature<Polygon>): Promise<void> {
-    // TODO may need to update url also may need account token
-    const url = 'https://data.cityofnewyork.us/resource/iues-xngg.json';
+    const buildingCoords = await this.buildingDataProvider.getInstersectingBuildingCoordinates(feat, this.location);
+    this.buildingAreasInPlume = buildingCoords.map((coords) => {
+      const buildingFeat = new Feature(new Polygon([coords]));
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const coords = feat
-      .getGeometry()!
-      .getCoordinates()[0]
-      .flatMap((xy) => xy.join(' '))
-      .join(', ');
-    const query = `$where=intersects(the_geom, 'POLYGON((${coords}))')`;
-
-    const { data } = await axios.get<IOpenDataBuilding[]>(`${url}?${query}`);
-    const formatter = new GeoJSON();
-
-    this.buildingAreasInPlume = data.map((building) => {
-      // approximate area for each building
-      const [buildingCoords] = building.the_geom.coordinates;
-      const buildingFeat = new Feature<Polygon>(new Polygon(buildingCoords));
-
-      const overlap = formatter.readFeature(
-        intersect(formatter.writeFeatureObject(feat), formatter.writeFeatureObject(buildingFeat)),
+      const overlap = this.formatter.readFeature(
+        intersect(this.formatter.writeFeatureObject(feat), this.formatter.writeFeatureObject(buildingFeat)),
       );
-      // show building on map
+      // add building to map
       overlap.setStyle(
         new Style({
           stroke: new Stroke({
