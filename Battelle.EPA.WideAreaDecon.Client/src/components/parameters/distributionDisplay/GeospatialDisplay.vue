@@ -54,24 +54,18 @@ import MapLocation from '@/enums/maps/MapLocation';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IBuildingDataProvider from '@/interfaces/providers/IBuildingDataProvider';
+import {
+  bostonViewOptions,
+  dcViewOptions,
+  newOrleansViewOptions,
+  nycViewOptions,
+  phillyViewOptions,
+  sanFranciscoViewOptions,
+} from '@/constants';
 
 @Component
 export default class GeospatialDisplay extends Vue implements IParameterDisplay {
   @Prop() parameterValue!: EnumeratedParameter;
-
-  readonly bostonViewOptions: ViewOptions = {
-    projection: 'EPSG:4326',
-    center: [-71.06, 42.36],
-    zoom: 12,
-    extent: [-71.185103, 42.226274, -70.915158, 42.407244],
-  };
-
-  readonly nycViewOptions: ViewOptions = {
-    projection: 'EPSG:4326',
-    center: [-73.98, 40.76],
-    zoom: 12,
-    extent: [-74.265361, 40.486498, -73.692699, 40.926853],
-  };
 
   readonly raster = new TileLayer({ source: new OSM() });
 
@@ -107,10 +101,18 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   get viewOptions(): ViewOptions {
     switch (this.location) {
-      case MapLocation.NewYorkCity:
-        return this.nycViewOptions;
       case MapLocation.Boston:
-        return this.bostonViewOptions;
+        return bostonViewOptions;
+      case MapLocation.NewOrleans:
+        return newOrleansViewOptions;
+      case MapLocation.NewYorkCity:
+        return nycViewOptions;
+      case MapLocation.Philadelphia:
+        return phillyViewOptions;
+      case MapLocation.SanFrancisco:
+        return sanFranciscoViewOptions;
+      // case MapLocation.WashingtonDc:
+      //   return dcViewOptions;
       default:
         return {};
     }
