@@ -25,8 +25,8 @@ const newOrleansViewOptions: ViewOptions = {
 
 const nycViewOptions: ViewOptions = {
   ...commonViewOptions,
-  center: [-73.98, 40.76],
-  extent: [-74.265361, 40.486498, -73.692699, 40.926853],
+  center: [-73.93, 40.73],
+  extent: [-74.261239, 40.486498, -73.692699, 40.926853],
 };
 
 const phillyViewOptions: ViewOptions = {
