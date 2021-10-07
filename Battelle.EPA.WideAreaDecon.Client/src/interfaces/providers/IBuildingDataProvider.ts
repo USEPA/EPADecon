@@ -1,4 +1,4 @@
-import MapLocation from '@/enums/maps/MapLocation';
+import MapLocation from '@/enums/maps/mapLocation';
 import Feature from 'ol/Feature';
 import { Polygon } from 'ol/geom';
 

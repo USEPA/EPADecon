@@ -1,32 +1,69 @@
 <template>
-  <div>
-    <div id="map-container">
+  <v-container>
+    <v-row id="map-container">
       <div id="map" />
 
-      <v-select
-        :items="['None', 'Box', 'Circle', 'Square']"
-        background-color="white"
-        class="plume-shape-selector"
-        placeholder="Plume Shape"
-        dense
-        hide-details
-        outlined
-        v-model="drawShape"
-      />
-    </div>
+      <v-toolbar id="map-tools" dense floating rounded>
+        <v-menu bottom offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon v-bind="attrs" v-on="on">
+              <v-icon> {{ currentToolIcon }} </v-icon>
+            </v-btn>
+          </template>
+          <v-list class="mt-2 ml-n1">
+            <template v-for="control of mapControls">
+              <v-tooltip left :key="control.shape">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-list-item @click="drawShape = control.shape" v-bind="attrs" v-on="on">
+                    <v-icon :class="{ 'primary--text': control.shape === drawShape }"> {{ control.icon }} </v-icon>
+                  </v-list-item>
+                </template>
+                {{ control.tooltip }}
+              </v-tooltip>
+            </template>
+          </v-list>
+        </v-menu>
 
-    <v-text-field label="Area" readonly :value="totalArea">
+        <v-btn icon>
+          <v-icon>mdi-map-marker</v-icon>
+        </v-btn>
+      </v-toolbar>
+    </v-row>
+
+    <v-row>
+      <v-col cols="3">
+        <p>Building Protection Factor</p>
+
+        <v-slider :max="0.5" :min="0.2" :step="0.01" thumb-label class="align-center" v-model="bpf">
+          <template #prepend>
+            <span class="grey--text">{{ bpfMin }}</span>
+          </template>
+
+          <template #append>
+            <span class="grey--text">{{ bpfMax }}</span>
+
+            <!-- <v-card class="pa-2" outlined tile>
+              <v-text-field :rules="[validationRulesBpf]" type="number" v-model.number="bpf" />
+            </v-card> -->
+          </template>
+        </v-slider>
+      </v-col>
+
+      <!-- <v-col> </v-col> -->
+    </v-row>
+
+    <!-- <v-text-field label="Area" readonly :value="totalArea">
       <template v-slot:append>
         <span class="grey--text">m^2</span>
       </template>
-    </v-text-field>
+    </v-text-field> -->
 
     <!-- <v-select :items="['Constant', 'Uniform']" v-model="distType" /> -->
 
     <!-- <v-btn>Remove Plume</v-btn> -->
 
-    <v-select :items="Object.values(mapLocation)" label="City" v-model="location" />
-  </div>
+    <v-select :items="Object.values(mapLocation)" id="city-selector" label="City" v-model="location" />
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -35,7 +72,7 @@ import { DrawShape } from '@/types';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
 import Draw, { createBox, createRegularPolygon } from 'ol/interaction/Draw';
-// import { Select, Translate, defaults as defaultInteractions } from 'ol/interaction';
+import { Select, Translate, defaults as defaultInteractions } from 'ol/interaction';
 import Map from 'ol/Map';
 import View, { ViewOptions } from 'ol/View';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
@@ -50,7 +87,7 @@ import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import { CycleColorProvider } from 'battelle-common-vue-charting';
 import intersect from '@turf/intersect';
 import { GeoJSON } from 'ol/format';
-import MapLocation from '@/enums/maps/MapLocation';
+import MapLocation from '@/enums/maps/mapLocation';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IBuildingDataProvider from '@/interfaces/providers/IBuildingDataProvider';
@@ -75,11 +112,41 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   buildingDataProvider = container.get<IBuildingDataProvider>(TYPES.BuildingDataProvider);
 
+  /** Building Protection Factor (used for estimating indoor area contaminated) */
+  bpf = 0.5;
+
+  bpfMax = 0.5;
+
+  bpfMin = 0.2;
+
   draw: Draw | null = null;
 
   location = MapLocation.NewYorkCity;
 
   map: Map | null = null;
+
+  mapControls = [
+    {
+      icon: 'mdi-cursor-move',
+      shape: 'None',
+      tooltip: 'Drag tool',
+    },
+    {
+      icon: 'mdi-circle-outline',
+      shape: 'Circle',
+      tooltip: 'Circle tool',
+    },
+    {
+      icon: 'mdi-rectangle-outline',
+      shape: 'Box',
+      tooltip: 'Box tool',
+    },
+    {
+      icon: 'mdi-square-outline',
+      shape: 'Square',
+      tooltip: 'Square tool',
+    },
+  ];
 
   mapLocation = MapLocation;
 
@@ -91,12 +158,14 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   // select: Select = new Select(); // TODO potentially make readonly
 
+  selectedMode = '';
+
   sketch: Feature<Geometry> | null = null;
 
   totalArea = 0;
 
-  get indoorArea(): number {
-    return this.buildingAreasInPlume.reduce((acc, cur) => acc + cur, 0);
+  get currentToolIcon(): string {
+    return this.mapControls.find((c) => c.shape === this.drawShape)?.icon ?? '';
   }
 
   get viewOptions(): ViewOptions {
@@ -111,8 +180,8 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
         return phillyViewOptions;
       case MapLocation.SanFrancisco:
         return sanFranciscoViewOptions;
-      // case MapLocation.WashingtonDc:
-      //   return dcViewOptions;
+      case MapLocation.WashingtonDc:
+        return dcViewOptions;
       default:
         return {};
     }
@@ -128,6 +197,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     this.clearArea();
   }
 
+  @Watch('parameterValue')
   @Watch('location')
   changeMapLocation(): void {
     this.map?.setView(new View(this.viewOptions));
@@ -227,6 +297,8 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
         this.sketch = null;
         // remove draw event listener
         unByKey(listener);
+        // set area values for parameter
+        this.setParameterValues();
       });
     }
   }
@@ -284,6 +356,30 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     });
   }
 
+  setParameterValues(): void {
+    // TODO handle multiple dist types
+    // indoor
+    const buildingAreaSum = this.buildingAreasInPlume.reduce((acc, cur) => acc + cur, 0);
+    const indoorArea = (1 - this.bpf) * buildingAreaSum;
+    this.$set(this.parameterValue.values.Indoor, 'value', indoorArea);
+    // underground TODO
+    const undergroundArea = 0;
+    this.$set(this.parameterValue.values.Underground, 'value', undergroundArea);
+    // outdoor
+    const outdoorArea = this.totalArea - indoorArea; // TODO account for underground?
+    this.$set(this.parameterValue.values.Outdoor, 'value', outdoorArea);
+  }
+
+  validationRulesBpf(input: number): boolean | string {
+    if (input > this.bpfMax) {
+      return `Value must be less than or equal to ${this.bpfMax}`;
+    }
+    if (input < this.bpfMin) {
+      return `Value must be greater than or equal to ${this.bpfMin}`;
+    }
+    return true;
+  }
+
   mounted(): void {
     this.initMap();
     this.addInteraction();
@@ -301,6 +397,13 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 #map-container {
   position: relative;
 }
+#map-tools {
+  opacity: 0.85;
+  position: absolute;
+  right: 0.75em;
+  top: 0.75em;
+}
+// TODO potentially remove this class
 .plume-shape-selector {
   max-width: 12rem;
   opacity: 0.85;

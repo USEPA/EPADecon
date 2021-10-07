@@ -1,4 +1,4 @@
-import MapLocation from '@/enums/maps/MapLocation';
+import MapLocation from '@/enums/maps/mapLocation';
 import IBuildingDataProvider from '@/interfaces/providers/IBuildingDataProvider';
 import { ArcGisBuildingData, SodaBuildingData } from '@/types';
 import Feature from 'ol/Feature';
@@ -38,7 +38,7 @@ export default class BuildingDataProvider implements IBuildingDataProvider {
       case MapLocation.WashingtonDc: {
         const query = `query?where=1=1&geometry={ "rings": [ ${JSON.stringify(
           plumeCoords,
-        )} ]}&geometryType=esriGeometryPolygon&spatialRel=esriSpatialRelIntersects&inSR=4326&outSR=4326&outFields=&f=pjson`;
+        )} ]}&geometryType=esriGeometryPolygon&spatialRel=esriSpatialRelIntersects&inSR=4326&outSR=4326&outFields=&f=json`;
         request = `${url}/${query}`;
         break;
       }
