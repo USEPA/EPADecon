@@ -24,9 +24,24 @@
           </v-list>
         </v-menu>
 
-        <v-btn icon>
-          <v-icon>mdi-map-marker</v-icon>
-        </v-btn>
+        <v-menu bottom left offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon v-bind="attrs" v-on="on">
+              <v-icon> mdi-crosshairs-gps </v-icon>
+            </v-btn>
+          </template>
+          <v-list class="mt-2 ml-n1">
+            <v-list-item
+              v-for="location of Object.values(mapLocations)"
+              @click="mapLocation = location"
+              :key="location"
+              v-bind="attrs"
+              v-on="on"
+            >
+              <span :class="{ 'primary--text': location === mapLocation }">{{ location }}</span>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </v-toolbar>
     </v-row>
 
@@ -61,8 +76,6 @@
     <!-- <v-select :items="['Constant', 'Uniform']" v-model="distType" /> -->
 
     <!-- <v-btn>Remove Plume</v-btn> -->
-
-    <v-select :items="Object.values(mapLocation)" id="city-selector" label="City" v-model="location" />
   </v-container>
 </template>
 
@@ -121,8 +134,6 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   draw: Draw | null = null;
 
-  location = MapLocation.NewYorkCity;
-
   map: Map | null = null;
 
   mapControls = [
@@ -148,7 +159,9 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     },
   ];
 
-  mapLocation = MapLocation;
+  mapLocation = MapLocation.NewYorkCity;
+
+  mapLocations = MapLocation;
 
   // distType: 'Constant' | 'Uniform' = 'Constant';
 
@@ -157,8 +170,6 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   formatter = new GeoJSON();
 
   // select: Select = new Select(); // TODO potentially make readonly
-
-  selectedMode = '';
 
   sketch: Feature<Geometry> | null = null;
 
@@ -169,7 +180,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   }
 
   get viewOptions(): ViewOptions {
-    switch (this.location) {
+    switch (this.mapLocation) {
       case MapLocation.Boston:
         return bostonViewOptions;
       case MapLocation.NewOrleans:
@@ -198,7 +209,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   }
 
   @Watch('parameterValue')
-  @Watch('location')
+  @Watch('mapLocation')
   changeMapLocation(): void {
     this.map?.setView(new View(this.viewOptions));
     this.resetMapDrawings();
@@ -334,7 +345,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   }
 
   async getBuildingAreasInPlume(feat: Feature<Polygon>): Promise<void> {
-    const buildingCoords = await this.buildingDataProvider.getInstersectingBuildingCoordinates(feat, this.location);
+    const buildingCoords = await this.buildingDataProvider.getInstersectingBuildingCoordinates(feat, this.mapLocation);
     this.buildingAreasInPlume = buildingCoords.map((coords) => {
       const buildingFeat = new Feature(new Polygon([coords]));
 
