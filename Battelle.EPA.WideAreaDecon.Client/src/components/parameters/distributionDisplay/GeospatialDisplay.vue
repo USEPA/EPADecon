@@ -4,42 +4,74 @@
       <div id="map" />
 
       <v-toolbar id="map-tools" dense floating rounded>
-        <v-menu bottom offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn icon v-bind="attrs" v-on="on">
-              <v-icon> {{ currentToolIcon }} </v-icon>
-            </v-btn>
-          </template>
-          <v-list class="mt-2 ml-n1">
-            <template v-for="control of mapControls">
-              <v-tooltip left :key="control.shape">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-list-item @click="drawShape = control.shape" v-bind="attrs" v-on="on">
-                    <v-icon :class="{ 'primary--text': control.shape === drawShape }"> {{ control.icon }} </v-icon>
-                  </v-list-item>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on: tOn, attrs: tAttrs }">
+            <v-menu bottom offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn icon v-bind="{ ...attrs, ...tAttrs }" v-on="{ ...on, ...tOn }">
+                  <v-icon> {{ currentToolIcon }} </v-icon>
+                </v-btn>
+              </template>
+              <v-list class="mt-2 ml-n1">
+                <template v-for="tool of mapTools">
+                  <v-tooltip left :key="tool.shape">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-list-item @click="drawShape = tool.shape" v-bind="attrs" v-on="on">
+                        <v-icon :class="{ 'primary--text': tool.shape === drawShape }"> {{ tool.icon }} </v-icon>
+                      </v-list-item>
+                    </template>
+                    {{ tool.tooltip }}
+                  </v-tooltip>
                 </template>
-                {{ control.tooltip }}
-              </v-tooltip>
-            </template>
-          </v-list>
-        </v-menu>
+              </v-list>
+            </v-menu>
+          </template>
+          Change tool
+        </v-tooltip>
 
-        <v-menu bottom left offset-y>
-          <template v-slot:activator="{ on, attrs }">
+        <v-tooltip bottom>
+          <template v-slot:activator="{ attrs, on }">
+            <v-btn @click="resetMapDrawings" :disabled="!mapHasDrawing" icon v-bind="attrs" v-on="on">
+              <v-icon> mdi-delete </v-icon>
+            </v-btn>
+          </template>
+          Remove plume
+        </v-tooltip>
+
+        <!-- <v-menu bottom left offset-y>
+          <template v-slot:activator="{ attrs, on }">
             <v-btn icon v-bind="attrs" v-on="on">
-              <v-icon> mdi-map-marker </v-icon>
+              <v-icon> mdi-chart-box-outline </v-icon>
             </v-btn>
           </template>
           <v-list class="mt-2 ml-n1">
-            <v-list-item
-              v-for="location of Object.values(mapLocations)"
-              @click="mapLocation = location"
-              :key="location"
-            >
-              <span :class="{ 'primary--text': location === mapLocation }">{{ location }}</span>
+            <v-list-item v-for="dist of mapDistributions" @click="distMode = dist" :key="dist">
+              <span :class="{ 'primary--text': dist === distMode }">{{ dist }}</span>
             </v-list-item>
           </v-list>
-        </v-menu>
+        </v-menu> -->
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on: tOn, attrs: tAttrs }">
+            <v-menu bottom left offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn icon v-bind="{ ...attrs, ...tAttrs }" v-on="{ ...on, ...tOn }">
+                  <v-icon> mdi-map-marker </v-icon>
+                </v-btn>
+              </template>
+              <v-list class="mt-2 ml-n1">
+                <v-list-item
+                  v-for="location of Object.values(mapLocations)"
+                  @click="mapLocation = location"
+                  :key="location"
+                >
+                  <span :class="{ 'primary--text': location === mapLocation }">{{ location }}</span>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </template>
+          Change location
+        </v-tooltip>
       </v-toolbar>
     </v-row>
 
@@ -135,15 +167,19 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   bpfMin = 0.2;
 
+  // distMode: 'Constant' | 'Uniform' = 'Constant';
+
   draw: Draw | null = null;
 
   map: Map | null = null;
 
-  mapControls = [
+  // mapDistributions = ['Constant', 'Uniform'];
+
+  mapTools = [
     {
       icon: 'mdi-cursor-move',
       shape: 'None',
-      tooltip: 'Drag tool',
+      tooltip: 'Pan tool',
     },
     {
       icon: 'mdi-circle-outline',
@@ -166,8 +202,6 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   mapLocations = MapLocation;
 
-  // distType: 'Constant' | 'Uniform' = 'Constant';
-
   drawShape: DrawShape = 'None';
 
   formatter = new GeoJSON();
@@ -179,13 +213,17 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   totalArea = 0;
 
   get currentToolIcon(): string {
-    return this.mapControls.find((c) => c.shape === this.drawShape)?.icon ?? '';
+    return this.mapTools.find((c) => c.shape === this.drawShape)?.icon ?? '';
   }
 
   get formattedArea(): string {
     return this.totalArea > 10000
       ? `${Math.round((this.totalArea / 1000000) * 100) / 100} km^2`
       : `${Math.round(this.totalArea * 100) / 100} m^2`;
+  }
+
+  get mapHasDrawing(): boolean {
+    return this.source.getFeatures().length > 0;
   }
 
   get viewOptions(): ViewOptions {
@@ -276,7 +314,6 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
         this.source.clear();
 
         this.sketch = feature as Feature<Geometry>;
-
         // set style of feature
         this.sketch.setStyle(
           new Style({
@@ -285,6 +322,8 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
             }),
           }),
         );
+
+        this.initAreaTooltip();
 
         listener = this.sketch.getGeometry()?.on('change', ({ target }) => {
           let polygon = target as Polygon;
@@ -304,21 +343,36 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
       this.draw.on('drawend', async ({ feature }: { feature: Feature<Polygon> }) => {
         // TODO work on different dist types...
-        // if (this.distType === 'Uniform') {
-        //   const feat = feature as Feature<Circle>;
-        //   const center = feat.getGeometry()?.getCenter();
-        //   const radius = feat.getGeometry()?.getRadius();
-        //   const geometry = fromCircle(feat.getGeometry(radius));
-        //   // Create a second circle with radius divided by 2 with same center
-        //   const innerRing = fromCircle(new Circle(center, radius / 2));
-        //   // Create a linearRing to create the hole, based on innerRing coordinates
-        //   const linearRing = new LinearRing(innerRing.getCoordinates()[0]);
-        //   // Append it to the geometry
-        //   geometry.appendLinearRing(linearRing);
-        //   // Overwrite the ol.geom.Circle geometry with the ol.geom.Polygon with hole
-        //   // Caution: now you have an ol.geom.Polygon, you can't edit it with the radius
-        //   feature.setGeometry(geometry);
+        // if (this.distMode === 'Uniform') {
+        //   const draw = new Draw({
+        //     source: this.source,
+        //     type,
+        //     geometryFunction,
+        //     features: new Collection([feature]),
+        //   });
+
+        //   draw.setActive(true);
+        //   this.map?.addInteraction(draw);
+
+        //   draw.on('drawend', (event) => {
+        //     console.log(event.feature);
+        //   });
+
+        // const feat = feature as Feature<Circle>;
+        // const center = feat.getGeometry()?.getCenter();
+        // const radius = feat.getGeometry()?.getRadius();
+        // const geometry = fromCircle(feat.getGeometry(radius));
+        // // Create a second circle with radius divided by 2 with same center
+        // const innerRing = fromCircle(new Circle(center, radius / 2));
+        // // Create a linearRing to create the hole, based on innerRing coordinates
+        // const linearRing = new LinearRing(innerRing.getCoordinates()[0]);
+        // // Append it to the geometry
+        // geometry.appendLinearRing(linearRing);
+        // Overwrite the ol.geom.Circle geometry with the ol.geom.Polygon with hole
+        // Caution: now you have an ol.geom.Polygon, you can't edit it with the radius
+        // feature.setGeometry(geometry);
         // }
+
         const geom = feature.getGeometry() as Polygon | Circle;
         const feat = geom.getType() === 'Circle' ? new Feature(fromCircle(geom as Circle)) : feature;
         await this.getBuildingAreasInPlume(feat);
@@ -394,7 +448,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   }
 
   setParameterValues(): void {
-    // TODO handle multiple dist types
+    // TODO handle multiple dist types?
     // indoor
     const buildingAreaSum = this.buildingAreasInPlume.reduce((acc, cur) => acc + cur, 0);
     const indoorArea = (1 - this.bpf) * buildingAreaSum;
