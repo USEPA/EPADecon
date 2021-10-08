@@ -27,7 +27,7 @@
         <v-menu bottom left offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn icon v-bind="attrs" v-on="on">
-              <v-icon> mdi-crosshairs-gps </v-icon>
+              <v-icon> mdi-map-marker </v-icon>
             </v-btn>
           </template>
           <v-list class="mt-2 ml-n1">
@@ -35,8 +35,6 @@
               v-for="location of Object.values(mapLocations)"
               @click="mapLocation = location"
               :key="location"
-              v-bind="attrs"
-              v-on="on"
             >
               <span :class="{ 'primary--text': location === mapLocation }">{{ location }}</span>
             </v-list-item>
@@ -112,6 +110,7 @@ import {
   phillyViewOptions,
   sanFranciscoViewOptions,
 } from '@/constants';
+import Overlay from 'ol/Overlay';
 
 @Component
 export default class GeospatialDisplay extends Vue implements IParameterDisplay {
@@ -120,6 +119,10 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   readonly raster = new TileLayer({ source: new OSM() });
 
   readonly source = new VectorSource({ wrapX: false });
+
+  areaTooltip: Overlay | null = null;
+
+  areaTooltipEl: HTMLElement | null = null;
 
   buildingAreasInPlume: number[] = [];
 
@@ -179,6 +182,12 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     return this.mapControls.find((c) => c.shape === this.drawShape)?.icon ?? '';
   }
 
+  get formattedArea(): string {
+    return this.totalArea > 10000
+      ? `${Math.round((this.totalArea / 1000000) * 100) / 100} km^2`
+      : `${Math.round(this.totalArea * 100) / 100} m^2`;
+  }
+
   get viewOptions(): ViewOptions {
     switch (this.mapLocation) {
       case MapLocation.Boston:
@@ -205,6 +214,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
       this.source.clear();
     }
     this.addInteraction();
+    this.initAreaTooltip();
     this.clearArea();
   }
 
@@ -213,7 +223,6 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   changeMapLocation(): void {
     this.map?.setView(new View(this.viewOptions));
     this.resetMapDrawings();
-    this.clearArea();
   }
 
   addInteraction(): void {
@@ -278,8 +287,18 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
         );
 
         listener = this.sketch.getGeometry()?.on('change', ({ target }) => {
-          const polygon = target as Polygon;
-          this.totalArea = polygon.getType() === 'Circle' ? this.getAreaOfCircle(polygon) : this.formatArea(polygon);
+          let polygon = target as Polygon;
+
+          if (polygon.getType() === 'Circle') {
+            polygon = fromCircle((polygon as unknown) as Circle);
+          }
+
+          this.totalArea = this.getAreaOfPolygon(polygon);
+          if (this.areaTooltipEl) {
+            // update tooltip
+            this.areaTooltip?.setPosition(polygon.getInteriorPoint().getCoordinates());
+            this.areaTooltipEl.innerText = this.formattedArea;
+          }
         });
       });
 
@@ -319,6 +338,18 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     this.buildingAreasInPlume.splice(0);
   }
 
+  initAreaTooltip(): void {
+    if (this.areaTooltipEl) {
+      this.areaTooltipEl.parentElement?.removeChild(this.areaTooltipEl);
+    }
+
+    this.areaTooltipEl = document.createElement('div');
+    this.areaTooltipEl.classList.add('ol-tooltip', 'v-tooltip__content');
+
+    this.areaTooltip = new Overlay({ element: this.areaTooltipEl });
+    this.map?.addOverlay(this.areaTooltip);
+  }
+
   initMap(): void {
     const vector = new VectorLayer({ source: this.source });
     // const translate = new Translate({ features: this.select.getFeatures() });
@@ -333,15 +364,10 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   }
 
   // eslint-disable-next-line class-methods-use-this
-  formatArea(polygon: Polygon): number {
+  getAreaOfPolygon(polygon: Polygon): number {
     // transform polygon to projection capable of area calculations
     const geom = polygon.clone().transform('EPSG:4326', 'EPSG:3857');
     return getArea(geom);
-  }
-
-  getAreaOfCircle(polygon: Polygon): number {
-    const circle = fromCircle((polygon as unknown) as Circle);
-    return this.formatArea(circle);
   }
 
   async getBuildingAreasInPlume(feat: Feature<Polygon>): Promise<void> {
@@ -363,7 +389,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
       );
       this.source.addFeature(overlap);
 
-      return overlap ? this.formatArea(overlap.getGeometry()) : 0;
+      return overlap ? this.getAreaOfPolygon(overlap.getGeometry()) : 0;
     });
   }
 
@@ -393,6 +419,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   mounted(): void {
     this.initMap();
+    this.initAreaTooltip();
     this.addInteraction();
   }
 }
@@ -409,14 +436,6 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   position: relative;
 }
 #map-tools {
-  opacity: 0.85;
-  position: absolute;
-  right: 0.75em;
-  top: 0.75em;
-}
-// TODO potentially remove this class
-.plume-shape-selector {
-  max-width: 12rem;
   opacity: 0.85;
   position: absolute;
   right: 0.75em;
