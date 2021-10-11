@@ -1,25 +1,39 @@
 import MapLocation from '@/enums/maps/mapLocation';
-import IBuildingDataProvider from '@/interfaces/providers/IBuildingDataProvider';
-import { ArcGisBuildingData, SodaBuildingData } from '@/types';
+import ICityDataProvider from '@/interfaces/providers/ICityDataProvider';
+import { ArcGisBuildingData, SodaBuildingData, SodaSubwayData } from '@/types';
 import Feature from 'ol/Feature';
 import { Polygon } from 'ol/geom';
 import axios from 'axios';
 import { injectable } from 'inversify';
 
 @injectable()
-export default class BuildingDataProvider implements IBuildingDataProvider {
-  private readonly urls = {
-    boston: 'https://gis.cityofboston.gov/arcgis/rest/services/SAM/FinalImprovements/MapServer/0',
-    dc: 'https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Facility_and_Structure/MapServer/1',
-    newOrleans: 'https://data.nola.gov/resource/wx44-n52t.json',
-    nyc: 'https://data.cityofnewyork.us/resource/iues-xngg.json',
-    philly: 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/LI_BUILDING_FOOTPRINTS/FeatureServer/0',
-    sanFrancisco: 'https://data.sfgov.org/resource/ynuv-fyni.json',
+export default class CityDataProvider implements ICityDataProvider {
+  private readonly urls: Record<string, Record<string, string>> = {
+    boston: {
+      building: 'https://gis.cityofboston.gov/arcgis/rest/services/SAM/FinalImprovements/MapServer/0',
+    },
+    dc: {
+      building: 'https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Facility_and_Structure/MapServer/1',
+    },
+    newOrleans: {
+      building: 'https://data.nola.gov/resource/wx44-n52t.json',
+    },
+    nyc: {
+      building: 'https://data.cityofnewyork.us/resource/iues-xngg.json',
+      subway: 'https://data.cityofnewyork.us/resource/s7zz-qmyz.json',
+    },
+    philly: {
+      building:
+        'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/LI_BUILDING_FOOTPRINTS/FeatureServer/0',
+    },
+    sanFrancisco: {
+      building: 'https://data.sfgov.org/resource/ynuv-fyni.json',
+    },
   };
 
   async getInstersectingBuildingCoordinates(plume: Feature<Polygon>, location: MapLocation): Promise<number[][][]> {
-    const [plumeCoords] = plume.getGeometry()?.getCoordinates() ?? [];
-    const url = this.getUrlForLocation(location);
+    const plumeCoords = this.getPlumeCoordinates(plume);
+    const url = this.getUrlForLocation(location).building;
     let request = '';
 
     // build request based on location
@@ -73,7 +87,50 @@ export default class BuildingDataProvider implements IBuildingDataProvider {
     return buildingCoords;
   }
 
-  private getUrlForLocation(location: MapLocation): string {
+  async getIntersectingSubwayCoordinates(plume: Feature<Polygon>, location: MapLocation): Promise<number[][][]> {
+    const plumeCoords = this.getPlumeCoordinates(plume);
+    const url = this.getUrlForLocation(location).subway;
+    let request = '';
+
+    if (!url) {
+      throw new Error('Location does not have subway data');
+    }
+
+    // build request based on location
+    switch (location) {
+      case MapLocation.NewYorkCity: {
+        const coords = plumeCoords.flatMap((xy) => xy.join(' ')).join(', ');
+        const query = `$select=the_geom&$where=intersects(the_geom, 'POLYGON((${coords}))')`;
+        request = `${url}?${query}`;
+        break;
+      }
+      default:
+        throw new Error('invalid location');
+    }
+
+    const { data } = await axios.get(`${request}`); // TODO add token to soda reqs
+    let subwayCoords: number[][][] = [];
+
+    switch (location) {
+      // SODA
+      case MapLocation.NewYorkCity: {
+        subwayCoords = (data as SodaSubwayData[]).map((subway) => subway.the_geom.coordinates);
+        break;
+      }
+      default:
+        throw new Error('invalid location');
+    }
+
+    return subwayCoords;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  private getPlumeCoordinates(plume: Feature<Polygon>): number[][] {
+    const [coords] = plume.getGeometry()?.getCoordinates() ?? [];
+    return coords;
+  }
+
+  private getUrlForLocation(location: MapLocation): Record<string, string> {
     switch (location) {
       case MapLocation.Boston:
         return this.urls.boston;

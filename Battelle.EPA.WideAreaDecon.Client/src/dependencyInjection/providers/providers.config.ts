@@ -25,8 +25,8 @@ import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import JobResultProvider from '@/implementations/providers/JobResultProvider';
 import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 import ChartOptionsProvider from '@/implementations/providers/ChartOptionsProvider';
-import IBuildingDataProvider from '@/interfaces/providers/IBuildingDataProvider';
-import BuildingDataProvider from '@/implementations/providers/BuildingDataProvider';
+import ICityDataProvider from '@/interfaces/providers/ICityDataProvider';
+import CityDataProvider from '@/implementations/providers/CityDataProvider';
 import PROVIDER_TYPES from './providers.types';
 
 const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => {
@@ -62,7 +62,7 @@ const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => 
     BackendScenarioParameterProvider,
   );
 
-  bind<IBuildingDataProvider>(PROVIDER_TYPES.BuildingDataProvider).to(BuildingDataProvider);
+  bind<ICityDataProvider>(PROVIDER_TYPES.CityDataProvider).to(CityDataProvider);
 
   bind<IChartOptionsProvider>(PROVIDER_TYPES.ChartOptionsProvider).to(ChartOptionsProvider);
 
