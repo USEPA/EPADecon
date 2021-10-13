@@ -1,7 +1,6 @@
 import MapLocation from '@/enums/maps/mapLocation';
 import ICityDataProvider from '@/interfaces/providers/ICityDataProvider';
 import { ArcGisBuildingData, SodaBuildingData, SodaSubwayData } from '@/types';
-import Feature from 'ol/Feature';
 import { Polygon } from 'ol/geom';
 import axios from 'axios';
 import { injectable } from 'inversify';
@@ -31,7 +30,7 @@ export default class CityDataProvider implements ICityDataProvider {
     },
   };
 
-  async getInstersectingBuildingCoordinates(plume: Feature<Polygon>, location: MapLocation): Promise<number[][][]> {
+  async getInstersectingBuildingCoordinates(plume: Polygon, location: MapLocation): Promise<number[][][]> {
     const plumeCoords = this.getPlumeCoordinates(plume);
     const url = this.getUrlForLocation(location).building;
     let request = '';
@@ -87,7 +86,7 @@ export default class CityDataProvider implements ICityDataProvider {
     return buildingCoords;
   }
 
-  async getIntersectingSubwayCoordinates(plume: Feature<Polygon>, location: MapLocation): Promise<number[][][]> {
+  async getIntersectingSubwayCoordinates(plume: Polygon, location: MapLocation): Promise<number[][][]> {
     const plumeCoords = this.getPlumeCoordinates(plume);
     const url = this.getUrlForLocation(location).subway;
     let request = '';
@@ -125,8 +124,8 @@ export default class CityDataProvider implements ICityDataProvider {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  private getPlumeCoordinates(plume: Feature<Polygon>): number[][] {
-    const [coords] = plume.getGeometry()?.getCoordinates() ?? [];
+  private getPlumeCoordinates(plume: Polygon): number[][] {
+    const [coords] = plume.getCoordinates();
     return coords;
   }
 

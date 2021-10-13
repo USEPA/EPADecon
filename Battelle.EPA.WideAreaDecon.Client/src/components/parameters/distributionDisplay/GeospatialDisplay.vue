@@ -401,9 +401,9 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
         // }
 
         const geom = feature.getGeometry() as Polygon | Circle;
-        const feat = geom.getType() === 'Circle' ? new Feature(fromCircle(geom as Circle)) : feature;
-        await this.getBuildingAreasInPlume(feat);
-        await this.getSubwayAreasInPlume(feat);
+        const polygon = geom.getType() === 'Circle' ? fromCircle(geom as Circle) : (geom as Polygon);
+        await this.getBuildingAreasInPlume(polygon);
+        await this.getSubwayAreasInPlume(polygon);
 
         // unset sketch
         this.sketch = null;
@@ -453,15 +453,14 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     return getArea(geom);
   }
 
-  async getBuildingAreasInPlume(feat: Feature<Polygon>): Promise<void> {
-    const buildingCoords = await this.cityDataProvider.getInstersectingBuildingCoordinates(feat, this.mapLocation);
-    const poly = feat.getGeometry() as Polygon;
+  async getBuildingAreasInPlume(polygon: Polygon): Promise<void> {
+    const buildingCoords = await this.cityDataProvider.getInstersectingBuildingCoordinates(polygon, this.mapLocation);
     this.buildingAreasInPlume = buildingCoords.map((coords) => {
       const building = new Polygon([coords]);
 
       const overlap = this.formatter.readFeature(
         intersect(
-          this.formatter.writeGeometryObject(poly) as GeoJSONPolygon,
+          this.formatter.writeGeometryObject(polygon) as GeoJSONPolygon,
           this.formatter.writeGeometryObject(building) as GeoJSONPolygon,
         ),
       );
@@ -480,10 +479,9 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     });
   }
 
-  async getSubwayAreasInPlume(feat: Feature<Polygon>): Promise<void> {
-    const subwayCoords = await this.cityDataProvider.getIntersectingSubwayCoordinates(feat, this.mapLocation);
-    const poly = feat.getGeometry() as Polygon;
-    const plumeAsLine = polygonToLine(this.formatter.writeGeometryObject(poly) as GeoJSONPolygon);
+  async getSubwayAreasInPlume(polygon: Polygon): Promise<void> {
+    const subwayCoords = await this.cityDataProvider.getIntersectingSubwayCoordinates(polygon, this.mapLocation);
+    const plumeAsLine = polygonToLine(this.formatter.writeGeometryObject(polygon) as GeoJSONPolygon);
 
     this.subwayLineLengthsInPlume = subwayCoords.map((coords) => {
       const lineString = this.formatter.writeGeometryObject(new LineString(coords)) as GeoJSONLineString;
