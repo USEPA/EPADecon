@@ -79,33 +79,48 @@
       <v-col cols="3">
         <p>Building Protection Factor</p>
 
-        <v-slider :max="0.5" :min="0.2" :step="0.01" thumb-label class="align-center" v-model="bpf">
-          <template #prepend>
-            <span class="grey--text">{{ bpfMin }}</span>
-          </template>
-
+        <v-slider :max="pfMax" :min="pfMin" :step="0.01" hide-details thumb-label class="align-center" v-model="bpf">
           <template #append>
-            <span class="grey--text">{{ bpfMax }}</span>
+            <v-text-field :rules="[validationRulesPf]" hide-details type="number" v-model.number="bpf" />
+          </template>
+        </v-slider>
+      </v-col>
+    </v-row>
 
-            <!-- <v-card class="pa-2" outlined tile>
-              <v-text-field :rules="[validationRulesBpf]" type="number" v-model.number="bpf" />
-            </v-card> -->
+    <v-row>
+      <v-col cols="3">
+        <p>Subway Protection Factor</p>
+
+        <v-slider :max="pfMax" :min="pfMin" :step="0.01" hide-details thumb-label class="align-center" v-model="spf">
+          <template #append>
+            <v-text-field :rules="[validationRulesPf]" hide-details type="number" v-model.number="spf" />
           </template>
         </v-slider>
       </v-col>
 
-      <!-- <v-col> </v-col> -->
+      <v-col cols="3">
+        <p>Subway Tunnel Width</p>
+
+        <v-slider
+          :max="subwayWidthMax"
+          :min="subwayWidthMin"
+          :step="0.01"
+          hide-details
+          thumb-label
+          class="align-center"
+          v-model="subwayTunnelWidth"
+        >
+          <template #append>
+            <v-text-field
+              :rules="[validationRulesSubway]"
+              type="number"
+              hide-details
+              v-model.number="subwayTunnelWidth"
+            />
+          </template>
+        </v-slider>
+      </v-col>
     </v-row>
-
-    <!-- <v-text-field label="Area" readonly :value="totalArea">
-      <template v-slot:append>
-        <span class="grey--text">m^2</span>
-      </template>
-    </v-text-field> -->
-
-    <!-- <v-select :items="['Constant', 'Uniform']" v-model="distType" /> -->
-
-    <!-- <v-btn>Remove Plume</v-btn> -->
   </v-container>
 </template>
 
@@ -121,10 +136,10 @@ import View, { ViewOptions } from 'ol/View';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { defaults as defaultControls, ScaleLine } from 'ol/control';
-import { getArea } from 'ol/sphere';
+import { getArea, getLength } from 'ol/sphere';
 import { unByKey } from 'ol/Observable';
 import Feature from 'ol/Feature';
-import { Circle, Geometry, LinearRing, Polygon } from 'ol/geom';
+import { Circle, Geometry, LinearRing, LineString, Point, Polygon } from 'ol/geom';
 import { fromCircle } from 'ol/geom/Polygon';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import { CycleColorProvider } from 'battelle-common-vue-charting';
@@ -133,7 +148,7 @@ import { GeoJSON } from 'ol/format';
 import MapLocation from '@/enums/maps/mapLocation';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
-import IBuildingDataProvider from '@/interfaces/providers/IBuildingDataProvider';
+import ICityDataProvider from '@/interfaces/providers/ICityDataProvider';
 import {
   bostonViewOptions,
   dcViewOptions,
@@ -141,8 +156,10 @@ import {
   nycViewOptions,
   phillyViewOptions,
   sanFranciscoViewOptions,
+  validateWithLimits,
 } from '@/constants';
 import Overlay from 'ol/Overlay';
+import { GeoJSONPolygon } from 'ol/format/GeoJSON';
 
 @Component
 export default class GeospatialDisplay extends Vue implements IParameterDisplay {
@@ -158,18 +175,16 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   buildingAreasInPlume: number[] = [];
 
-  buildingDataProvider = container.get<IBuildingDataProvider>(TYPES.BuildingDataProvider);
+  cityDataProvider = container.get<ICityDataProvider>(TYPES.CityDataProvider);
 
   /** Building Protection Factor (used for estimating indoor area contaminated) */
   bpf = 0.5;
 
-  bpfMax = 0.5;
-
-  bpfMin = 0.2;
-
   // distMode: 'Constant' | 'Uniform' = 'Constant';
 
   draw: Draw | null = null;
+
+  drawShape: DrawShape = 'None';
 
   map: Map | null = null;
 
@@ -202,13 +217,26 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   mapLocations = MapLocation;
 
-  drawShape: DrawShape = 'None';
+  pfMax = 0.5;
+
+  pfMin = 0.2;
 
   formatter = new GeoJSON();
 
   // select: Select = new Select(); // TODO potentially make readonly
 
   sketch: Feature<Geometry> | null = null;
+
+  /** Subway Protection Factor (used for estimating underground area contaminated) */
+  spf = 0.3;
+
+  subwayLineLengthsInPlume: number[] = [];
+
+  subwayTunnelWidth = 4.27;
+
+  subwayWidthMax = 4.5;
+
+  subwayWidthMin = 4;
 
   totalArea = 0;
 
@@ -376,6 +404,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
         const geom = feature.getGeometry() as Polygon | Circle;
         const feat = geom.getType() === 'Circle' ? new Feature(fromCircle(geom as Circle)) : feature;
         await this.getBuildingAreasInPlume(feat);
+        await this.getSubwayAreasInPlume(feat);
 
         // unset sketch
         this.sketch = null;
@@ -390,6 +419,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   clearArea(): void {
     this.totalArea = 0;
     this.buildingAreasInPlume.splice(0);
+    this.subwayLineLengthsInPlume.splice(0);
   }
 
   initAreaTooltip(): void {
@@ -425,19 +455,23 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   }
 
   async getBuildingAreasInPlume(feat: Feature<Polygon>): Promise<void> {
-    const buildingCoords = await this.buildingDataProvider.getInstersectingBuildingCoordinates(feat, this.mapLocation);
+    const buildingCoords = await this.cityDataProvider.getInstersectingBuildingCoordinates(feat, this.mapLocation);
+    const poly = feat.getGeometry() as Polygon;
     this.buildingAreasInPlume = buildingCoords.map((coords) => {
-      const buildingFeat = new Feature(new Polygon([coords]));
+      const building = new Polygon([coords]);
 
       const overlap = this.formatter.readFeature(
-        intersect(this.formatter.writeFeatureObject(feat), this.formatter.writeFeatureObject(buildingFeat)),
+        intersect(
+          this.formatter.writeGeometryObject(poly) as GeoJSONPolygon,
+          this.formatter.writeGeometryObject(building) as GeoJSONPolygon,
+        ),
       );
       // add building to map
       overlap.setStyle(
         new Style({
           stroke: new Stroke({
-            color: 'rgba(0, 0, 0, 255)',
-            width: 0.4,
+            color: 'rgba(0, 0, 0, 1)',
+            width: 0.6,
           }),
         }),
       );
@@ -447,28 +481,51 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     });
   }
 
+  async getSubwayAreasInPlume(feat: Feature<Polygon>): Promise<void> {
+    const subwayCoords = await this.cityDataProvider.getIntersectingSubwayCoordinates(feat, this.mapLocation);
+    this.subwayLineLengthsInPlume = subwayCoords.map((coords) => {
+      const coordsInPlume = coords.map((coord) => {
+        return coord;
+      });
+      const lineFeat = new Feature(new LineString(coordsInPlume));
+
+      lineFeat.setStyle(
+        new Style({
+          stroke: new Stroke({
+            color: 'rgba(0, 0, 0, 1)',
+            lineDash: [5],
+            width: 0.7,
+          }),
+        }),
+      );
+      this.source.addFeature(lineFeat);
+
+      const line = lineFeat.getGeometry()?.clone().transform('EPSG:4326', 'EPSG:3857') as Geometry;
+      return getLength(line);
+    });
+  }
+
   setParameterValues(): void {
-    // TODO handle multiple dist types?
+    // TODO handle multiple dist types
     // indoor
     const buildingAreaSum = this.buildingAreasInPlume.reduce((acc, cur) => acc + cur, 0);
     const indoorArea = (1 - this.bpf) * buildingAreaSum;
     this.$set(this.parameterValue.values.Indoor, 'value', indoorArea);
     // underground TODO
-    const undergroundArea = 0;
+    const subwayLengthSum = this.subwayLineLengthsInPlume.reduce((acc, cur) => acc + cur, 0);
+    const undergroundArea = (1 - this.spf) * (subwayLengthSum * this.subwayTunnelWidth);
     this.$set(this.parameterValue.values.Underground, 'value', undergroundArea);
     // outdoor
-    const outdoorArea = this.totalArea - indoorArea; // TODO account for underground?
+    const outdoorArea = this.totalArea - indoorArea - undergroundArea;
     this.$set(this.parameterValue.values.Outdoor, 'value', outdoorArea);
   }
 
-  validationRulesBpf(input: number): boolean | string {
-    if (input > this.bpfMax) {
-      return `Value must be less than or equal to ${this.bpfMax}`;
-    }
-    if (input < this.bpfMin) {
-      return `Value must be greater than or equal to ${this.bpfMin}`;
-    }
-    return true;
+  validationRulesPf(value: number): boolean | string {
+    return validateWithLimits(this.pfMin, this.pfMax, value);
+  }
+
+  validationRulesSubway(value: number): boolean | string {
+    return validateWithLimits(this.subwayWidthMin, this.subwayWidthMax, value);
   }
 
   mounted(): void {
