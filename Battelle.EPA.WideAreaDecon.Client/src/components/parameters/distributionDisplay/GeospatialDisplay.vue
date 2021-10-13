@@ -130,7 +130,6 @@ import { DrawShape } from '@/types';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
 import Draw, { createBox, createRegularPolygon } from 'ol/interaction/Draw';
-import { Select, Translate, defaults as defaultInteractions } from 'ol/interaction';
 import Map from 'ol/Map';
 import View, { ViewOptions } from 'ol/View';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
@@ -139,11 +138,11 @@ import { defaults as defaultControls, ScaleLine } from 'ol/control';
 import { getArea, getLength } from 'ol/sphere';
 import { unByKey } from 'ol/Observable';
 import Feature from 'ol/Feature';
-import { Circle, Geometry, LinearRing, LineString, Point, Polygon } from 'ol/geom';
+import { Circle, Geometry, LineString, Polygon } from 'ol/geom';
 import { fromCircle } from 'ol/geom/Polygon';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import { CycleColorProvider } from 'battelle-common-vue-charting';
-import intersect from '@turf/intersect';
+import { intersect, lineIntersect, lineSlice, polygonToLine } from '@/utilities';
 import { GeoJSON } from 'ol/format';
 import MapLocation from '@/enums/maps/mapLocation';
 import container from '@/dependencyInjection/config';
@@ -159,7 +158,7 @@ import {
   validateWithLimits,
 } from '@/constants';
 import Overlay from 'ol/Overlay';
-import { GeoJSONPolygon } from 'ol/format/GeoJSON';
+import { GeoJSONLineString, GeoJSONPolygon } from 'ol/format/GeoJSON';
 
 @Component
 export default class GeospatialDisplay extends Vue implements IParameterDisplay {
@@ -483,18 +482,36 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   async getSubwayAreasInPlume(feat: Feature<Polygon>): Promise<void> {
     const subwayCoords = await this.cityDataProvider.getIntersectingSubwayCoordinates(feat, this.mapLocation);
+    const poly = feat.getGeometry() as Polygon;
+    const plumeAsLine = polygonToLine(this.formatter.writeGeometryObject(poly) as GeoJSONPolygon);
+
     this.subwayLineLengthsInPlume = subwayCoords.map((coords) => {
-      const coordsInPlume = coords.map((coord) => {
-        return coord;
-      });
-      const lineFeat = new Feature(new LineString(coordsInPlume));
+      const lineString = this.formatter.writeGeometryObject(new LineString(coords)) as GeoJSONLineString;
+      const intersectingPoints = lineIntersect(plumeAsLine, lineString);
+
+      let lineFeat = new Feature<LineString>();
+      if (!intersectingPoints.features.length) {
+        lineFeat = new Feature(this.formatter.readGeometry(lineString) as LineString);
+      } else if (intersectingPoints.features.length < 2) {
+        const startsInPlume = this.source.getFeaturesAtCoordinate(lineString.coordinates[0]).length > 0;
+        const start = this.source.getFeaturesAtCoordinate(lineString.coordinates[0]).length
+          ? lineString.coordinates[0]
+          : intersectingPoints.features[0].geometry.coordinates;
+        const stop = startsInPlume
+          ? intersectingPoints.features[0].geometry.coordinates
+          : lineString.coordinates[lineString.coordinates.length - 1];
+        lineFeat = this.formatter.readFeature(lineSlice(start, stop, lineString));
+      } else {
+        const [start, stop] = intersectingPoints.features.map((p) => p.geometry.coordinates);
+        lineFeat = this.formatter.readFeature(lineSlice(start, stop, lineString));
+      }
 
       lineFeat.setStyle(
         new Style({
           stroke: new Stroke({
             color: 'rgba(0, 0, 0, 1)',
             lineDash: [5],
-            width: 0.7,
+            width: 0.75,
           }),
         }),
       );
