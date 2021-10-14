@@ -76,6 +76,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json
                 ParameterType.LogNormal => JsonObject.ToObject<LogNormalDistribution>(),
                 ParameterType.LogUniform => JsonObject.ToObject<LogUniformDistribution>(),
                 ParameterType.Pert => JsonObject.ToObject<BetaPertDistribution>(),
+                ParameterType.ScaledBeta => JsonObject.ToObject<ScaledBetaDistribution>(),
                 ParameterType.TruncatedLogNormal => JsonObject.ToObject<TruncatedLogNormalDistribution>(),
                 ParameterType.TruncatedNormal => JsonObject.ToObject<TruncatedNormalDistribution>(),
                 ParameterType.Uniform => JsonObject.ToObject<UniformDistribution>(),
