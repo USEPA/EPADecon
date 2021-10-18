@@ -9,6 +9,7 @@ import Uniform from '../distribution/Uniform';
 import TruncatedNormal from '../distribution/TruncatedNormal';
 import TruncatedLogNormal from '../distribution/TruncatedLogNormal';
 import BetaPERT from '../distribution/BetaPERT';
+import ScaledBeta from '../distribution/ScaledBeta';
 import LogUniform from '../distribution/LogUniform';
 import Constant from '../distribution/Constant';
 import { isUnivariateDistribution } from '../distribution/UnivariateDistributionType';
@@ -49,6 +50,8 @@ export default class ParameterConverter implements IParameterConverter {
         return new NullParameter();
       case ParameterType.pert:
         return new BetaPERT(old.metaData, min, max, mode);
+      case ParameterType.scaledBeta:
+        return new ScaledBeta(old.metaData, min, max);
       case ParameterType.truncatedLogNormal:
         return new TruncatedLogNormal(old.metaData, min, max, mean, stdDev);
       case ParameterType.truncatedNormal:
@@ -109,6 +112,8 @@ export default class ParameterConverter implements IParameterConverter {
         return new NullParameter();
       case ParameterType.pert:
         return new BetaPERT(old.metaData);
+      case ParameterType.scaledBeta:
+        return new ScaledBeta(old.metaData);
       case ParameterType.truncatedLogNormal:
         return new TruncatedLogNormal(old.metaData);
       case ParameterType.truncatedNormal:

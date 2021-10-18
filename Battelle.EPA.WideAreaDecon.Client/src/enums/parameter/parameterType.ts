@@ -4,6 +4,7 @@ enum ParameterType {
   uniform = 'Uniform',
   uniformXDependent = 'Uniform X Dependent',
   pert = 'Beta PERT',
+  scaledBeta = 'Scaled Beta',
   truncatedNormal = 'Truncated Normal',
   bimodalTruncatedNormal = 'Bimodal Truncated Normal',
   logUniform = 'Log Uniform',

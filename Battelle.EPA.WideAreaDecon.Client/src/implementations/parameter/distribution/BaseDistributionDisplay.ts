@@ -84,7 +84,7 @@ export default class BaseParameterDisplay extends Vue implements IParameterDispl
    * @returns True if the value is valid in the given bounds or an error message if it is invalid
    */
   // eslint-disable-next-line class-methods-use-this
-  private validateWithLimits(lower: number, upper: number, value: number, inclusive = true): boolean | string {
+  protected validateWithLimits(lower: number, upper: number, value: number, inclusive = true): boolean | string {
     if (inclusive) {
       if (value < lower) {
         return `Value must be greater than or equal to ${lower}`;

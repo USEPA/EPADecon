@@ -4,6 +4,7 @@ import BimodalTruncatedNormal from '@/implementations/parameter/distribution/Bim
 import Constant from '@/implementations/parameter/distribution/Constant';
 import LogNormal from '@/implementations/parameter/distribution/LogNormal';
 import LogUniform from '@/implementations/parameter/distribution/LogUniform';
+import ScaledBeta from '@/implementations/parameter/distribution/ScaledBeta';
 import TruncatedLogNormal from '@/implementations/parameter/distribution/TruncatedLogNormal';
 import TruncatedNormal from '@/implementations/parameter/distribution/TruncatedNormal';
 import Uniform from '@/implementations/parameter/distribution/Uniform';
@@ -29,6 +30,8 @@ export default {
         return UniformXDependent;
       case ParameterType.pert:
         return BetaPERT;
+      case ParameterType.scaledBeta:
+        return ScaledBeta;
       case ParameterType.truncatedNormal:
         return TruncatedNormal;
       case ParameterType.bimodalTruncatedNormal:
