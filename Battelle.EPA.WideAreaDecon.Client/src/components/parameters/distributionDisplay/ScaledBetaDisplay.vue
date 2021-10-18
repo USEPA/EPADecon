@@ -203,8 +203,8 @@ export default class ScaledBetaDisplay extends BaseParameterDisplay {
     this.textMin = min?.toString() ?? '';
     this.textMax = max?.toString() ?? '';
 
-    this.$set(this.parameterValue, 'min', min ?? this.parameterValue.metaData.lowerLimit);
-    this.$set(this.parameterValue, 'max', max ?? this.parameterValue.metaData.upperLimit);
+    this.$set(this.parameterValue, 'min', min ?? this.min);
+    this.$set(this.parameterValue, 'max', max ?? this.max);
   }
 
   @Watch('parameterValue')
