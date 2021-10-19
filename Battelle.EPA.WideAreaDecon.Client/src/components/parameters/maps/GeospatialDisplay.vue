@@ -79,7 +79,16 @@
       <v-col cols="3">
         <p>Building Protection Factor</p>
 
-        <v-slider :max="pfMax" :min="pfMin" :step="0.01" hide-details thumb-label class="align-center" v-model="bpf">
+        <v-slider
+          @change="setParameterValues"
+          :max="pfMax"
+          :min="pfMin"
+          :step="0.01"
+          hide-details
+          thumb-label
+          class="align-center"
+          v-model="bpf"
+        >
           <template #append>
             <v-text-field :rules="[validationRulesPf]" hide-details type="number" v-model.number="bpf" />
           </template>
@@ -91,7 +100,16 @@
       <v-col cols="3">
         <p>Subway Protection Factor</p>
 
-        <v-slider :max="pfMax" :min="pfMin" :step="0.01" hide-details thumb-label class="align-center" v-model="spf">
+        <v-slider
+          @change="setParameterValues"
+          :max="pfMax"
+          :min="pfMin"
+          :step="0.01"
+          hide-details
+          thumb-label
+          class="align-center"
+          v-model="spf"
+        >
           <template #append>
             <v-text-field :rules="[validationRulesPf]" hide-details type="number" v-model.number="spf" />
           </template>
@@ -102,6 +120,7 @@
         <p>Subway Tunnel Width</p>
 
         <v-slider
+          @change="setParameterValues"
           :max="subwayWidthMax"
           :min="subwayWidthMin"
           :step="0.01"
@@ -127,8 +146,9 @@
         <p>Indoor Loading</p>
 
         <v-slider
-          :max="subwayWidthMax"
-          :min="subwayWidthMin"
+          @change="setParameterValues"
+          :max="loadingLimits.indoor.max"
+          :min="loadingLimits.indoor.min"
           :step="0.01"
           hide-details
           thumb-label
@@ -136,7 +156,7 @@
           v-model="loading.indoor"
         >
           <template #append>
-            <v-text-field :rules="[validationRulesSubway]" type="number" hide-details v-model.number="loading.indoor" />
+            <v-text-field type="number" hide-details v-model.number="loading.indoor" />
           </template>
         </v-slider>
       </v-col>
@@ -145,8 +165,9 @@
         <p>Outdoor Loading</p>
 
         <v-slider
-          :max="subwayWidthMax"
-          :min="subwayWidthMin"
+          @change="setParameterValues"
+          :max="loadingLimits.outdoor.max"
+          :min="loadingLimits.outdoor.min"
           :step="0.01"
           hide-details
           thumb-label
@@ -154,12 +175,7 @@
           v-model="loading.outdoor"
         >
           <template #append>
-            <v-text-field
-              :rules="[validationRulesSubway]"
-              type="number"
-              hide-details
-              v-model.number="loading.outdoor"
-            />
+            <v-text-field type="number" hide-details v-model.number="loading.outdoor" />
           </template>
         </v-slider>
       </v-col>
@@ -168,8 +184,9 @@
         <p>Underground Loading</p>
 
         <v-slider
-          :max="subwayWidthMax"
-          :min="subwayWidthMin"
+          @change="setParameterValues"
+          :max="loadingLimits.underground.max"
+          :min="loadingLimits.underground.min"
           :step="0.01"
           hide-details
           thumb-label
@@ -178,7 +195,8 @@
         >
           <template #append>
             <v-text-field
-              :rules="[validationRulesSubway]"
+              :max="loadingLimits.underground.max"
+              :min="loadingLimits.underground.min"
               type="number"
               hide-details
               v-model.number="loading.underground"
@@ -194,21 +212,8 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { DrawShape } from '@/types';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import Draw, { createBox, createRegularPolygon } from 'ol/interaction/Draw';
-import Map from 'ol/Map';
-import View, { ViewOptions } from 'ol/View';
-import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import { OSM, Vector as VectorSource } from 'ol/source';
-import { defaults as defaultControls, ScaleLine } from 'ol/control';
-import { getArea, getLength } from 'ol/sphere';
-import { unByKey } from 'ol/Observable';
-import Feature from 'ol/Feature';
-import { Circle, Geometry, LineString, Polygon } from 'ol/geom';
-import { fromCircle } from 'ol/geom/Polygon';
-import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
-import { CycleColorProvider } from 'battelle-common-vue-charting';
-import { intersect, lineIntersect, lineSlice, polygonToLine } from '@/utilities';
-import { GeoJSON } from 'ol/format';
+import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
+import IParameter from '@/interfaces/parameter/IParameter';
 import MapLocation from '@/enums/maps/mapLocation';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
@@ -222,9 +227,23 @@ import {
   sanFranciscoViewOptions,
   validateWithLimits,
 } from '@/constants';
+import { CycleColorProvider } from 'battelle-common-vue-charting';
+import { intersect, lineIntersect, lineSlice, polygonToLine } from '@/utilities';
+import Draw, { createBox, createRegularPolygon } from 'ol/interaction/Draw';
+import Map from 'ol/Map';
+import View, { ViewOptions } from 'ol/View';
+import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+import { OSM, Vector as VectorSource } from 'ol/source';
+import { defaults as defaultControls, ScaleLine } from 'ol/control';
+import { getArea, getLength } from 'ol/sphere';
+import { unByKey } from 'ol/Observable';
+import Feature from 'ol/Feature';
+import { Circle, Geometry, LineString, Polygon } from 'ol/geom';
+import { fromCircle } from 'ol/geom/Polygon';
+import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
+import { GeoJSON } from 'ol/format';
 import Overlay from 'ol/Overlay';
 import { GeoJSONLineString, GeoJSONPolygon } from 'ol/format/GeoJSON';
-import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
 
 @Component
 export default class GeospatialDisplay extends Vue implements IParameterDisplay {
@@ -311,6 +330,10 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   totalArea = 0;
 
+  get areaLimits(): unknown {
+    return this.getParameterLimits(this.parameterValue.areaContaminated.values);
+  }
+
   get currentToolIcon(): string {
     return this.mapTools.find((c) => c.shape === this.drawShape)?.icon ?? '';
   }
@@ -319,6 +342,10 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     return this.totalArea > 10000
       ? `${Math.round((this.totalArea / 1000000) * 100) / 100} km^2`
       : `${Math.round(this.totalArea * 100) / 100} m^2`;
+  }
+
+  get loadingLimits(): unknown {
+    return this.getParameterLimits(this.parameterValue.loading.values);
   }
 
   get mapHasDrawing(): boolean {
@@ -523,6 +550,26 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     // transform polygon to projection capable of area calculations
     const geom = polygon.clone().transform('EPSG:4326', 'EPSG:3857');
     return getArea(geom);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getParameterLimits(parameters: Record<string, IParameter>): unknown {
+    const { Indoor, Outdoor, Underground } = parameters;
+
+    return {
+      indoor: {
+        max: Indoor.metaData.upperLimit,
+        min: Indoor.metaData.lowerLimit,
+      },
+      outdoor: {
+        max: Outdoor.metaData.upperLimit,
+        min: Outdoor.metaData.lowerLimit,
+      },
+      underground: {
+        max: Underground.metaData.upperLimit,
+        min: Underground.metaData.lowerLimit,
+      },
+    };
   }
 
   async getBuildingAreasInPlume(polygon: Polygon): Promise<void> {
