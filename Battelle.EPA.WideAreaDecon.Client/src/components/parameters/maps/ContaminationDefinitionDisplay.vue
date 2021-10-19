@@ -2,7 +2,7 @@
   <v-container>
     <v-row v-if="scenarioDefinitionMode === 'geospatial'">
       <v-col>
-        <geospatial-display :parameterValue="parameterValue.areaContaminated" />
+        <geospatial-display :parameterValue="parameterValue" />
       </v-col>
     </v-row>
 
@@ -21,7 +21,7 @@ import { State } from 'vuex-class';
 import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import { ScenarioDefinitionMode } from '@/types';
-import EnumeratedParameterDisplay from './EnumeratedParameterDisplay.vue';
+import EnumeratedParameterDisplay from '../distributionDisplay/EnumeratedParameterDisplay.vue';
 import GeospatialDisplay from './GeospatialDisplay.vue';
 
 @Component({

@@ -121,6 +121,72 @@
         </v-slider>
       </v-col>
     </v-row>
+
+    <v-row>
+      <v-col cols="3">
+        <p>Indoor Loading</p>
+
+        <v-slider
+          :max="subwayWidthMax"
+          :min="subwayWidthMin"
+          :step="0.01"
+          hide-details
+          thumb-label
+          class="align-center"
+          v-model="loading.indoor"
+        >
+          <template #append>
+            <v-text-field :rules="[validationRulesSubway]" type="number" hide-details v-model.number="loading.indoor" />
+          </template>
+        </v-slider>
+      </v-col>
+
+      <v-col cols="3">
+        <p>Outdoor Loading</p>
+
+        <v-slider
+          :max="subwayWidthMax"
+          :min="subwayWidthMin"
+          :step="0.01"
+          hide-details
+          thumb-label
+          class="align-center"
+          v-model="loading.outdoor"
+        >
+          <template #append>
+            <v-text-field
+              :rules="[validationRulesSubway]"
+              type="number"
+              hide-details
+              v-model.number="loading.outdoor"
+            />
+          </template>
+        </v-slider>
+      </v-col>
+
+      <v-col cols="3">
+        <p>Underground Loading</p>
+
+        <v-slider
+          :max="subwayWidthMax"
+          :min="subwayWidthMin"
+          :step="0.01"
+          hide-details
+          thumb-label
+          class="align-center"
+          v-model="loading.underground"
+        >
+          <template #append>
+            <v-text-field
+              :rules="[validationRulesSubway]"
+              type="number"
+              hide-details
+              v-model.number="loading.underground"
+            />
+          </template>
+        </v-slider>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -128,7 +194,6 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { DrawShape } from '@/types';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
-import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
 import Draw, { createBox, createRegularPolygon } from 'ol/interaction/Draw';
 import Map from 'ol/Map';
 import View, { ViewOptions } from 'ol/View';
@@ -159,10 +224,11 @@ import {
 } from '@/constants';
 import Overlay from 'ol/Overlay';
 import { GeoJSONLineString, GeoJSONPolygon } from 'ol/format/GeoJSON';
+import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
 
 @Component
 export default class GeospatialDisplay extends Vue implements IParameterDisplay {
-  @Prop() parameterValue!: EnumeratedParameter;
+  @Prop({ required: true }) parameterValue!: ContaminationDefinition;
 
   readonly raster = new TileLayer({ source: new OSM() });
 
@@ -221,6 +287,12 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   pfMin = 0.2;
 
   formatter = new GeoJSON();
+
+  loading = {
+    indoor: 0,
+    outdoor: 0,
+    underground: 0,
+  };
 
   // select: Select = new Select(); // TODO potentially make readonly
 
@@ -525,14 +597,17 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     // indoor
     const buildingAreaSum = this.buildingAreasInPlume.reduce((acc, cur) => acc + cur, 0);
     const indoorArea = (1 - this.bpf) * buildingAreaSum;
-    this.$set(this.parameterValue.values.Indoor, 'value', indoorArea);
-    // underground TODO
+    this.$set(this.parameterValue.areaContaminated.values.Indoor, 'value', indoorArea);
+    this.$set(this.parameterValue.loading.values.Indoor, 'value', this.loading.indoor);
+    // underground TODO figure out area calc
     const subwayLengthSum = this.subwayLineLengthsInPlume.reduce((acc, cur) => acc + cur, 0);
     const undergroundArea = (1 - this.spf) * (subwayLengthSum * this.subwayTunnelWidth);
-    this.$set(this.parameterValue.values.Underground, 'value', undergroundArea);
+    this.$set(this.parameterValue.areaContaminated.values.Underground, 'value', undergroundArea);
+    this.$set(this.parameterValue.loading.values.Underground, 'value', this.loading.underground);
     // outdoor
     const outdoorArea = this.totalArea - indoorArea - undergroundArea;
-    this.$set(this.parameterValue.values.Outdoor, 'value', outdoorArea);
+    this.$set(this.parameterValue.areaContaminated.values.Outdoor, 'value', outdoorArea);
+    this.$set(this.parameterValue.loading.values.Outdoor, 'value', this.loading.outdoor);
   }
 
   validationRulesPf(value: number): boolean | string {

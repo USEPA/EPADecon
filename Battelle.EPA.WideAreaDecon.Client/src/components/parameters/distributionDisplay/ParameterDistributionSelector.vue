@@ -81,7 +81,7 @@ import TYPES from '@/dependencyInjection/types';
 import { DistributionChart } from 'battelle-common-vue-charting';
 import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
-import ContaminationDefinitionDisplay from '@/components/parameters/distributionDisplay/ContaminationDefinitionDisplay.vue';
+import ContaminationDefinitionDisplay from '@/components/parameters/maps/ContaminationDefinitionDisplay.vue';
 import { ScenarioDefinitionMode } from '@/types';
 
 @Component({
