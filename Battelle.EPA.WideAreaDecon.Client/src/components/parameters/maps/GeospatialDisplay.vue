@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="pb-9">
     <v-row id="map-container">
       <div id="map" />
 
@@ -38,19 +38,6 @@
           Remove plume
         </v-tooltip>
 
-        <!-- <v-menu bottom left offset-y>
-          <template v-slot:activator="{ attrs, on }">
-            <v-btn icon v-bind="attrs" v-on="on">
-              <v-icon> mdi-chart-box-outline </v-icon>
-            </v-btn>
-          </template>
-          <v-list class="mt-2 ml-n1">
-            <v-list-item v-for="dist of mapDistributions" @click="distMode = dist" :key="dist">
-              <span :class="{ 'primary--text': dist === distMode }">{{ dist }}</span>
-            </v-list-item>
-          </v-list>
-        </v-menu> -->
-
         <v-tooltip bottom>
           <template v-slot:activator="{ on: tOn, attrs: tAttrs }">
             <v-menu bottom left offset-y>
@@ -76,75 +63,7 @@
     </v-row>
 
     <v-row>
-      <v-col cols="3">
-        <p>Building Protection Factor</p>
-
-        <v-slider
-          @change="setParameterValues"
-          :max="pfMax"
-          :min="pfMin"
-          :step="0.01"
-          hide-details
-          thumb-label
-          class="align-center"
-          v-model="bpf"
-        >
-          <template #append>
-            <v-text-field :rules="[validationRulesPf]" hide-details type="number" v-model.number="bpf" />
-          </template>
-        </v-slider>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col cols="3">
-        <p>Subway Protection Factor</p>
-
-        <v-slider
-          @change="setParameterValues"
-          :max="pfMax"
-          :min="pfMin"
-          :step="0.01"
-          hide-details
-          thumb-label
-          class="align-center"
-          v-model="spf"
-        >
-          <template #append>
-            <v-text-field :rules="[validationRulesPf]" hide-details type="number" v-model.number="spf" />
-          </template>
-        </v-slider>
-      </v-col>
-
-      <v-col cols="3">
-        <p>Subway Tunnel Width</p>
-
-        <v-slider
-          @change="setParameterValues"
-          :max="subwayWidthMax"
-          :min="subwayWidthMin"
-          :step="0.01"
-          hide-details
-          thumb-label
-          class="align-center"
-          v-model="subwayTunnelWidth"
-        >
-          <template #append>
-            <v-text-field
-              :rules="[validationRulesSubway]"
-              type="number"
-              hide-details
-              v-model.number="subwayTunnelWidth"
-            />
-          </template>
-        </v-slider>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col cols="3">
-        <p>Indoor Loading</p>
-
+      <v-col>
         <v-slider
           @change="setParameterValues"
           :max="loadingLimits.indoor.max"
@@ -155,15 +74,16 @@
           class="align-center"
           v-model="loading.indoor"
         >
+          <template #prepend>
+            <span class="grey--text">{{ loadingLimits.indoor.min }}</span>
+          </template>
           <template #append>
-            <v-text-field type="number" hide-details v-model.number="loading.indoor" />
+            <span class="grey--text">{{ loadingLimits.indoor.max }}</span>
           </template>
         </v-slider>
       </v-col>
 
-      <v-col cols="3">
-        <p>Outdoor Loading</p>
-
+      <v-col>
         <v-slider
           @change="setParameterValues"
           :max="loadingLimits.outdoor.max"
@@ -174,15 +94,16 @@
           class="align-center"
           v-model="loading.outdoor"
         >
+          <template #prepend>
+            <span class="grey--text">{{ loadingLimits.outdoor.min }}</span>
+          </template>
           <template #append>
-            <v-text-field type="number" hide-details v-model.number="loading.outdoor" />
+            <span class="grey--text">{{ loadingLimits.outdoor.max }}</span>
           </template>
         </v-slider>
       </v-col>
 
-      <v-col cols="3">
-        <p>Underground Loading</p>
-
+      <v-col>
         <v-slider
           @change="setParameterValues"
           :max="loadingLimits.underground.max"
@@ -193,16 +114,149 @@
           class="align-center"
           v-model="loading.underground"
         >
+          <template #prepend>
+            <span class="grey--text">{{ loadingLimits.underground.min }}</span>
+          </template>
           <template #append>
-            <v-text-field
-              :max="loadingLimits.underground.max"
-              :min="loadingLimits.underground.min"
-              type="number"
-              hide-details
-              v-model.number="loading.underground"
-            />
+            <span class="grey--text">{{ loadingLimits.underground.max }}</span>
           </template>
         </v-slider>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <v-slider
+          @change="setParameterValues"
+          :max="pfMax"
+          :min="pfMin"
+          :step="0.01"
+          hide-details
+          thumb-label
+          class="align-center"
+          v-model="bpf"
+        >
+          <template #prepend>
+            <span class="grey--text">{{ pfMin }}</span>
+          </template>
+          <template #append>
+            <span class="grey--text">{{ pfMax }}</span>
+          </template>
+        </v-slider>
+      </v-col>
+
+      <v-col>
+        <v-slider
+          @change="setParameterValues"
+          :max="pfMax"
+          :min="pfMin"
+          :step="0.01"
+          hide-details
+          thumb-label
+          class="align-center"
+          v-model="spf"
+        >
+          <template #prepend>
+            <span class="grey--text">{{ pfMin }}</span>
+          </template>
+          <template #append>
+            <span class="grey--text">{{ pfMax }}</span>
+          </template>
+        </v-slider>
+      </v-col>
+
+      <v-col>
+        <v-slider
+          @change="setParameterValues"
+          :max="subwayWidthMax"
+          :min="subwayWidthMin"
+          :step="0.01"
+          hide-details
+          thumb-label
+          class="align-center"
+          v-model="subwayTunnelWidth"
+        >
+          <template #prepend>
+            <span class="grey--text">{{ subwayWidthMin }}</span>
+          </template>
+          <template #append>
+            <span class="grey--text">{{ subwayWidthMax }}</span>
+          </template>
+        </v-slider>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <v-card class="pa-2" outlined tile>
+          <v-text-field label="Indoor Loading" type="number" hide-details v-model.number="loading.indoor">
+            <template #append>
+              <span class="grey--text">{{ parameterValue.loading.values.Indoor.metaData.units }}</span>
+            </template>
+          </v-text-field>
+        </v-card>
+      </v-col>
+
+      <v-col>
+        <v-card class="pa-2" outlined tile>
+          <v-text-field label="Outdoor Loading" type="number" hide-details v-model.number="loading.outdoor">
+            <template #append>
+              <span class="grey--text">{{ parameterValue.loading.values.Outdoor.metaData.units }}</span>
+            </template>
+          </v-text-field>
+        </v-card>
+      </v-col>
+
+      <v-col>
+        <v-card class="pa-2" outlined tile>
+          <v-text-field label="Underground Loading" type="number" hide-details v-model.number="loading.underground">
+            <template #append>
+              <span class="grey--text">{{ parameterValue.loading.values.Underground.metaData.units }}</span>
+            </template>
+          </v-text-field>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <v-card class="pa-2" outlined tile>
+          <v-text-field
+            :rules="[validationRulesPf]"
+            label="Building Protection Factor"
+            type="number"
+            hide-details
+            v-model.number="bpf"
+          />
+        </v-card>
+      </v-col>
+
+      <v-col>
+        <v-card class="pa-2" outlined tile>
+          <v-text-field
+            :rules="[validationRulesPf]"
+            label="Subway Protection Factor"
+            type="number"
+            hide-details
+            v-model.number="spf"
+          />
+        </v-card>
+      </v-col>
+
+      <v-col>
+        <v-card class="pa-2" outlined tile>
+          <v-text-field
+            :rules="[validationRulesSubway]"
+            label="Subway Tunnel Width"
+            type="number"
+            hide-details
+            v-model.number="subwayTunnelWidth"
+          >
+            <template #append>
+              <span class="grey--text">m</span>
+            </template>
+          </v-text-field>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -213,7 +267,6 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { DrawShape } from '@/types';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
-import IParameter from '@/interfaces/parameter/IParameter';
 import MapLocation from '@/enums/maps/mapLocation';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
@@ -251,8 +304,6 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   readonly raster = new TileLayer({ source: new OSM() });
 
-  readonly source = new VectorSource({ wrapX: false });
-
   areaTooltip: Overlay | null = null;
 
   areaTooltipEl: HTMLElement | null = null;
@@ -263,8 +314,6 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   /** Building Protection Factor (used for estimating indoor area contaminated) */
   bpf = 0.5;
-
-  // distMode: 'Constant' | 'Uniform' = 'Constant';
 
   draw: Draw | null = null;
 
@@ -313,9 +362,9 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     underground: 0,
   };
 
-  // select: Select = new Select(); // TODO potentially make readonly
-
   sketch: Feature<Geometry> | null = null;
+
+  source = new VectorSource({ wrapX: false });
 
   /** Subway Protection Factor (used for estimating underground area contaminated) */
   spf = 0.3;
@@ -330,10 +379,6 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   totalArea = 0;
 
-  get areaLimits(): unknown {
-    return this.getParameterLimits(this.parameterValue.areaContaminated.values);
-  }
-
   get currentToolIcon(): string {
     return this.mapTools.find((c) => c.shape === this.drawShape)?.icon ?? '';
   }
@@ -345,7 +390,22 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   }
 
   get loadingLimits(): unknown {
-    return this.getParameterLimits(this.parameterValue.loading.values);
+    const { Indoor, Outdoor, Underground } = this.parameterValue.loading.values;
+
+    return {
+      indoor: {
+        max: Indoor.metaData.upperLimit,
+        min: Indoor.metaData.lowerLimit,
+      },
+      outdoor: {
+        max: Outdoor.metaData.upperLimit,
+        min: Outdoor.metaData.lowerLimit,
+      },
+      underground: {
+        max: Underground.metaData.upperLimit,
+        min: Underground.metaData.lowerLimit,
+      },
+    };
   }
 
   get mapHasDrawing(): boolean {
@@ -468,37 +528,6 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
       });
 
       this.draw.on('drawend', async ({ feature }: { feature: Feature<Polygon> }) => {
-        // TODO work on different dist types...
-        // if (this.distMode === 'Uniform') {
-        //   const draw = new Draw({
-        //     source: this.source,
-        //     type,
-        //     geometryFunction,
-        //     features: new Collection([feature]),
-        //   });
-
-        //   draw.setActive(true);
-        //   this.map?.addInteraction(draw);
-
-        //   draw.on('drawend', (event) => {
-        //     console.log(event.feature);
-        //   });
-
-        // const feat = feature as Feature<Circle>;
-        // const center = feat.getGeometry()?.getCenter();
-        // const radius = feat.getGeometry()?.getRadius();
-        // const geometry = fromCircle(feat.getGeometry(radius));
-        // // Create a second circle with radius divided by 2 with same center
-        // const innerRing = fromCircle(new Circle(center, radius / 2));
-        // // Create a linearRing to create the hole, based on innerRing coordinates
-        // const linearRing = new LinearRing(innerRing.getCoordinates()[0]);
-        // // Append it to the geometry
-        // geometry.appendLinearRing(linearRing);
-        // Overwrite the ol.geom.Circle geometry with the ol.geom.Polygon with hole
-        // Caution: now you have an ol.geom.Polygon, you can't edit it with the radius
-        // feature.setGeometry(geometry);
-        // }
-
         const geom = feature.getGeometry() as Polygon | Circle;
         const polygon = geom.getType() === 'Circle' ? fromCircle(geom as Circle) : (geom as Polygon);
         await this.getBuildingAreasInPlume(polygon);
@@ -534,10 +563,8 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   initMap(): void {
     const vector = new VectorLayer({ source: this.source });
-    // const translate = new Translate({ features: this.select.getFeatures() });
 
     this.map = new Map({
-      // interactions: defaultInteractions().extend([this.select, translate]),
       layers: [this.raster, vector],
       target: 'map',
       view: new View({ ...this.viewOptions }),
@@ -550,26 +577,6 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     // transform polygon to projection capable of area calculations
     const geom = polygon.clone().transform('EPSG:4326', 'EPSG:3857');
     return getArea(geom);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  getParameterLimits(parameters: Record<string, IParameter>): unknown {
-    const { Indoor, Outdoor, Underground } = parameters;
-
-    return {
-      indoor: {
-        max: Indoor.metaData.upperLimit,
-        min: Indoor.metaData.lowerLimit,
-      },
-      outdoor: {
-        max: Outdoor.metaData.upperLimit,
-        min: Outdoor.metaData.lowerLimit,
-      },
-      underground: {
-        max: Underground.metaData.upperLimit,
-        min: Underground.metaData.lowerLimit,
-      },
-    };
   }
 
   async getBuildingAreasInPlume(polygon: Polygon): Promise<void> {
@@ -611,9 +618,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
         lineFeat = new Feature(this.formatter.readGeometry(lineString) as LineString);
       } else if (intersectingPoints.features.length < 2) {
         const startsInPlume = this.source.getFeaturesAtCoordinate(lineString.coordinates[0]).length > 0;
-        const start = this.source.getFeaturesAtCoordinate(lineString.coordinates[0]).length
-          ? lineString.coordinates[0]
-          : intersectingPoints.features[0].geometry.coordinates;
+        const start = startsInPlume ? lineString.coordinates[0] : intersectingPoints.features[0].geometry.coordinates;
         const stop = startsInPlume
           ? intersectingPoints.features[0].geometry.coordinates
           : lineString.coordinates[lineString.coordinates.length - 1];
@@ -640,16 +645,17 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   }
 
   setParameterValues(): void {
-    // TODO handle multiple dist types
     // indoor
     const buildingAreaSum = this.buildingAreasInPlume.reduce((acc, cur) => acc + cur, 0);
     const indoorArea = (1 - this.bpf) * buildingAreaSum;
     this.$set(this.parameterValue.areaContaminated.values.Indoor, 'value', indoorArea);
+    // this.$set(this.loading, 'indoor', this.parameterValue.loading.values.Indoor.value);
     this.$set(this.parameterValue.loading.values.Indoor, 'value', this.loading.indoor);
-    // underground TODO figure out area calc
+    // underground
     const subwayLengthSum = this.subwayLineLengthsInPlume.reduce((acc, cur) => acc + cur, 0);
-    const undergroundArea = (1 - this.spf) * (subwayLengthSum * this.subwayTunnelWidth);
+    const undergroundArea = (1 - this.spf) * (subwayLengthSum * this.subwayTunnelWidth); // TODO figure out area calc
     this.$set(this.parameterValue.areaContaminated.values.Underground, 'value', undergroundArea);
+    // this.$set(this.loading, 'indoor', this.parameterValue.loading.values.Indoor.value);
     this.$set(this.parameterValue.loading.values.Underground, 'value', this.loading.underground);
     // outdoor
     const outdoorArea = this.totalArea - indoorArea - undergroundArea;
