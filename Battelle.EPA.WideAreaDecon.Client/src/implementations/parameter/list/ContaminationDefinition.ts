@@ -2,6 +2,7 @@ import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import { isEqual } from 'lodash';
 import ParameterType from '@/enums/parameter/parameterType';
 import IParameter from '@/interfaces/parameter/IParameter';
+import { Vector as VectorSource } from 'ol/source';
 import ParameterMetaData from '../ParameterMetaData';
 import EnumeratedParameter from './enumeratedParameter';
 
@@ -26,6 +27,14 @@ export default class ContaminationDefinition implements IParameter {
 
   @JsonProperty({ predicate: () => EnumeratedParameter })
   areaContaminated: EnumeratedParameter;
+
+  mapSource = new VectorSource({ wrapX: false });
+
+  buildingProtectionFactor = 0.5;
+
+  subwayProtectionFactor = 0.3;
+
+  subwayTunnelWidth = 4.27;
 
   constructor(metaData = new ParameterMetaData(), loading: EnumeratedParameter, areaContaminated: EnumeratedParameter) {
     this.metaData = metaData;

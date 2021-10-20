@@ -286,7 +286,7 @@ import Draw, { createBox, createRegularPolygon } from 'ol/interaction/Draw';
 import Map from 'ol/Map';
 import View, { ViewOptions } from 'ol/View';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import { OSM, Vector as VectorSource } from 'ol/source';
+import { OSM } from 'ol/source';
 import { defaults as defaultControls, ScaleLine } from 'ol/control';
 import { getArea, getLength } from 'ol/sphere';
 import { unByKey } from 'ol/Observable';
@@ -297,6 +297,7 @@ import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import { GeoJSON } from 'ol/format';
 import Overlay from 'ol/Overlay';
 import { GeoJSONLineString, GeoJSONPolygon } from 'ol/format/GeoJSON';
+import Constant from '@/implementations/parameter/distribution/Constant';
 
 @Component
 export default class GeospatialDisplay extends Vue implements IParameterDisplay {
@@ -313,15 +314,13 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   cityDataProvider = container.get<ICityDataProvider>(TYPES.CityDataProvider);
 
   /** Building Protection Factor (used for estimating indoor area contaminated) */
-  bpf = 0.5;
+  bpf = this.parameterValue.buildingProtectionFactor;
 
   draw: Draw | null = null;
 
   drawShape: DrawShape = 'None';
 
   map: Map | null = null;
-
-  // mapDistributions = ['Constant', 'Uniform'];
 
   mapTools = [
     {
@@ -356,22 +355,18 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   formatter = new GeoJSON();
 
-  loading = {
-    indoor: 0,
-    outdoor: 0,
-    underground: 0,
-  };
+  loading = this.getLoadingValues();
 
   sketch: Feature<Geometry> | null = null;
 
-  source = new VectorSource({ wrapX: false });
+  source = this.parameterValue.mapSource;
 
   /** Subway Protection Factor (used for estimating underground area contaminated) */
-  spf = 0.3;
+  spf = this.parameterValue.subwayProtectionFactor;
 
   subwayLineLengthsInPlume: number[] = [];
 
-  subwayTunnelWidth = 4.27;
+  subwayTunnelWidth = this.parameterValue.subwayTunnelWidth;
 
   subwayWidthMax = 4.5;
 
@@ -435,18 +430,27 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   resetMapDrawings(): void {
     if (this.draw) {
       this.map?.removeInteraction(this.draw);
-      this.source.clear();
     }
     this.addInteraction();
     this.initAreaTooltip();
     this.clearArea();
+    this.source.clear();
   }
 
-  @Watch('parameterValue')
   @Watch('mapLocation')
   changeMapLocation(): void {
     this.map?.setView(new View(this.viewOptions));
     this.resetMapDrawings();
+  }
+
+  @Watch('parameterValue')
+  resetParameterValues(): void {
+    this.changeMapLocation();
+
+    this.bpf = this.parameterValue.buildingProtectionFactor;
+    this.subwayTunnelWidth = this.parameterValue.subwayTunnelWidth;
+    this.spf = this.parameterValue.subwayProtectionFactor;
+    this.loading = this.getLoadingValues();
   }
 
   addInteraction(): void {
@@ -579,6 +583,16 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     return getArea(geom);
   }
 
+  getLoadingValues(): { indoor: number; outdoor: number; underground: number } {
+    const { Indoor, Outdoor, Underground } = this.parameterValue.loading.values as Record<string, Constant>;
+
+    return {
+      indoor: Indoor.value ?? (Indoor.metaData.lowerLimit + Indoor.metaData.upperLimit) / 2,
+      outdoor: Outdoor.value ?? (Outdoor.metaData.lowerLimit + Outdoor.metaData.upperLimit) / 2,
+      underground: Underground.value ?? (Underground.metaData.lowerLimit + Underground.metaData.upperLimit) / 2,
+    };
+  }
+
   async getBuildingAreasInPlume(polygon: Polygon): Promise<void> {
     const buildingCoords = await this.cityDataProvider.getInstersectingBuildingCoordinates(polygon, this.mapLocation);
     this.buildingAreasInPlume = buildingCoords.map((coords) => {
@@ -645,22 +659,27 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   }
 
   setParameterValues(): void {
-    // indoor
+    // indoor area
     const buildingAreaSum = this.buildingAreasInPlume.reduce((acc, cur) => acc + cur, 0);
     const indoorArea = (1 - this.bpf) * buildingAreaSum;
     this.$set(this.parameterValue.areaContaminated.values.Indoor, 'value', indoorArea);
-    // this.$set(this.loading, 'indoor', this.parameterValue.loading.values.Indoor.value);
     this.$set(this.parameterValue.loading.values.Indoor, 'value', this.loading.indoor);
+    this.$set(this.parameterValue, 'buildingProtectionFactor', this.bpf);
+
     // underground
     const subwayLengthSum = this.subwayLineLengthsInPlume.reduce((acc, cur) => acc + cur, 0);
     const undergroundArea = (1 - this.spf) * (subwayLengthSum * this.subwayTunnelWidth); // TODO figure out area calc
     this.$set(this.parameterValue.areaContaminated.values.Underground, 'value', undergroundArea);
-    // this.$set(this.loading, 'indoor', this.parameterValue.loading.values.Indoor.value);
     this.$set(this.parameterValue.loading.values.Underground, 'value', this.loading.underground);
+    this.$set(this.parameterValue, 'subwayProtectionFactor', this.spf);
+    this.$set(this.parameterValue, 'subwayTunnelWidth', this.subwayTunnelWidth);
+
     // outdoor
     const outdoorArea = this.totalArea - indoorArea - undergroundArea;
     this.$set(this.parameterValue.areaContaminated.values.Outdoor, 'value', outdoorArea);
     this.$set(this.parameterValue.loading.values.Outdoor, 'value', this.loading.outdoor);
+
+    this.parameterValue.mapSource = this.source;
   }
 
   validationRulesPf(value: number): boolean | string {
