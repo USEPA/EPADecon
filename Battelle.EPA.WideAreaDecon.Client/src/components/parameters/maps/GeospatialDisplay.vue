@@ -298,6 +298,7 @@ import { GeoJSON } from 'ol/format';
 import Overlay from 'ol/Overlay';
 import { GeoJSONLineString, GeoJSONPolygon } from 'ol/format/GeoJSON';
 import Constant from '@/implementations/parameter/distribution/Constant';
+import VectorSource from 'ol/source/Vector';
 
 @Component
 export default class GeospatialDisplay extends Vue implements IParameterDisplay {
@@ -359,7 +360,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   sketch: Feature<Geometry> | null = null;
 
-  source = this.parameterValue.mapSource;
+  source: VectorSource<Geometry> = this.parameterValue.mapSource;
 
   /** Subway Protection Factor (used for estimating underground area contaminated) */
   spf = this.parameterValue.subwayProtectionFactor;
@@ -523,15 +524,12 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
           }
 
           this.totalArea = this.getAreaOfPolygon(polygon);
-          if (this.areaTooltipEl) {
-            // update tooltip
-            this.areaTooltip?.setPosition(polygon.getInteriorPoint().getCoordinates());
-            this.areaTooltipEl.innerText = this.formattedArea;
-          }
+          this.updateAreaTooltip(polygon);
         });
       });
 
       this.draw.on('drawend', async ({ feature }: { feature: Feature<Polygon> }) => {
+        feature.set('type', 'plume');
         const geom = feature.getGeometry() as Polygon | Circle;
         const polygon = geom.getType() === 'Circle' ? fromCircle(geom as Circle) : (geom as Polygon);
         await this.getBuildingAreasInPlume(polygon);
@@ -574,6 +572,31 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
       view: new View({ ...this.viewOptions }),
       controls: defaultControls().extend([new ScaleLine({ units: 'metric' })]),
     });
+
+    if (this.parameterValue.areaContaminated.isSet) {
+      const feats = this.source.getFeatures();
+      feats.forEach((feature) => {
+        const type = feature.get('type');
+        if (type === 'plume') {
+          const geom = feature.getGeometry() as Polygon | Circle;
+          const extent = geom.getExtent();
+          this.totalArea = this.getAreaOfPolygon(
+            geom.getType() === 'Circle' ? fromCircle(geom as Circle) : (geom as Polygon),
+          );
+          this.map?.getView().fit(extent);
+          return;
+        }
+        if (type === 'building') {
+          const area = this.getAreaOfPolygon(feature.getGeometry() as Polygon);
+          this.buildingAreasInPlume.push(area);
+          return;
+        }
+        if (type === 'subway') {
+          const len = this.getLengthOfLine(feature.getGeometry() as LineString);
+          this.subwayLineLengthsInPlume.push(len);
+        }
+      });
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -581,6 +604,13 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     // transform polygon to projection capable of area calculations
     const geom = polygon.clone().transform('EPSG:4326', 'EPSG:3857');
     return getArea(geom);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getLengthOfLine(line: LineString): number {
+    // transform line to projection capable of length calculation
+    const geom = line.clone().transform('EPSG:4326', 'EPSG:3857');
+    return getLength(geom);
   }
 
   getLoadingValues(): { indoor: number; outdoor: number; underground: number } {
@@ -613,6 +643,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
           }),
         }),
       );
+      overlap.set('type', 'building');
       this.source.addFeature(overlap);
 
       return overlap ? this.getAreaOfPolygon(overlap.getGeometry()) : 0;
@@ -651,10 +682,10 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
           }),
         }),
       );
+      lineFeat.set('type', 'subway');
       this.source.addFeature(lineFeat);
 
-      const line = lineFeat.getGeometry()?.clone().transform('EPSG:4326', 'EPSG:3857') as Geometry;
-      return getLength(line);
+      return this.getLengthOfLine(lineFeat.getGeometry() as LineString);
     });
   }
 
@@ -680,6 +711,13 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     this.$set(this.parameterValue.loading.values.Outdoor, 'value', this.loading.outdoor);
 
     this.parameterValue.mapSource = this.source;
+  }
+
+  updateAreaTooltip(polygon: Polygon): void {
+    if (this.areaTooltipEl) {
+      this.areaTooltip?.setPosition(polygon.getInteriorPoint().getCoordinates());
+      this.areaTooltipEl.innerText = this.formattedArea;
+    }
   }
 
   validationRulesPf(value: number): boolean | string {
