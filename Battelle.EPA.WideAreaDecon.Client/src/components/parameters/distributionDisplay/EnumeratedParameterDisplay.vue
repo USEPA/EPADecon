@@ -93,6 +93,7 @@ import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
 import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
+import store from '@/store';
 
 @Component({
   components: {
@@ -115,7 +116,7 @@ import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDi
 export default class EnumeratedParameterDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: EnumeratedParameter;
 
-  baseline: EnumeratedParameter = this.$store.state.currentSelectedParameter.baseline;
+  @Prop({ default: () => store.state.currentSelectedParameter.baseline }) baseline!: EnumeratedParameter;
 
   selectedCategory: IParameter = Object.values(this.parameterValue.values)[0];
 
@@ -210,7 +211,6 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     [[, this.selectedCategory]] = this.categories;
     this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
 
-    this.baseline = this.$store.state.currentSelectedParameter.baseline;
     [this.baselineCategory] = Object.values(this.baseline.values);
   }
 

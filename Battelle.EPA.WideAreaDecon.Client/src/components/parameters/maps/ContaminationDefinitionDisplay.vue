@@ -6,11 +6,35 @@
       </v-col>
     </v-row>
 
-    <v-row v-else>
-      <div>TODO</div>
-      <!-- <enumerated-parameter-display :parameterValue="parameterValue.areaContaminated" />
+    <v-row v-else class="d-block">
+      <v-item-group class="d-flex justify-center mt-2" tag="div" mandatory v-model="window">
+        <v-item v-for="parameter of parameters" :key="parameter" v-slot="{ active, toggle }">
+          <div class="mr-5">
+            <v-btn @click="toggle" :color="parameter.isSet ? '' : 'error'" :input-value="active" icon>
+              <v-icon>mdi-record</v-icon>
+            </v-btn>
+            <v-tooltip top>
+              <template v-slot:activator="{ attrs, on }">
+                <span v-bind="attrs" v-on="on">{{ parameter.metaData.name }}</span>
+              </template>
+              {{ parameter.metaData.description }}
+            </v-tooltip>
+          </div>
+        </v-item>
+      </v-item-group>
 
-      <enumerated-parameter-display :parameterValue="parameterValue.loading" /> -->
+      <v-window v-model="window">
+        <v-window-item>
+          <enumerated-parameter-display
+            :baseline="baseline.areaContaminated"
+            :parameterValue="parameterValue.areaContaminated"
+          />
+        </v-window-item>
+
+        <v-window-item>
+          <enumerated-parameter-display :baseline="baseline.loading" :parameterValue="parameterValue.loading" />
+        </v-window-item>
+      </v-window>
     </v-row>
   </v-container>
 </template>
@@ -21,6 +45,7 @@ import { State } from 'vuex-class';
 import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import { ScenarioDefinitionMode } from '@/types';
+import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
 import EnumeratedParameterDisplay from '../distributionDisplay/EnumeratedParameterDisplay.vue';
 import GeospatialDisplay from './GeospatialDisplay.vue';
 
@@ -35,7 +60,13 @@ export default class ContaminationDefinitionDisplay extends Vue implements IPara
 
   @State scenarioDefinitionMode!: ScenarioDefinitionMode;
 
-  // TODO: create another EnumeratedParameterDisplay to handle contamination definition better - similar to current display
+  baseline = this.$store.state.currentSelectedParameter.baseline;
+
+  window = 0;
+
+  get parameters(): EnumeratedParameter[] {
+    return [this.parameterValue.areaContaminated, this.parameterValue.loading];
+  }
 }
 </script>
 
