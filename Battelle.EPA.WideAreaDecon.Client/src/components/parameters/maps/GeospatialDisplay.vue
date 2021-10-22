@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pb-9">
+  <v-container>
     <v-row id="map-container">
       <div id="map" />
 

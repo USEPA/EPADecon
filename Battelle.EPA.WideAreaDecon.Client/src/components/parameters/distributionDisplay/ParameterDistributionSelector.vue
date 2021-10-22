@@ -1,45 +1,45 @@
 <template>
-  <v-card height="100%" width="100%">
-    <v-row dense>
-      <v-col cols="5" xl="6">
-        <v-card-title v-if="shouldIncludeTitle">{{ currentSelectedParameter.path }}</v-card-title>
-      </v-col>
+  <v-card min-height="100%" width="100%">
+    <v-container>
+      <v-row v-if="shouldIncludeTitle || isChangeableDist" dense>
+        <v-col cols="5" xl="6">
+          <v-card-title v-if="shouldIncludeTitle">{{ currentSelectedParameter.path }}</v-card-title>
+        </v-col>
 
-      <v-col cols="3" xl="2" offset="1">
-        <v-overflow-btn
-          v-if="isChangeableDist"
-          @change="onDistributionTypeChange"
-          class="my-2"
-          v-model="currentDistType"
-          :items="distNames"
-          filled
-          dense
-        />
-      </v-col>
+        <v-col cols="3" xl="2" offset="1">
+          <v-overflow-btn
+            v-if="isChangeableDist"
+            @change="onDistributionTypeChange"
+            class="my-2"
+            v-model="currentDistType"
+            :items="distNames"
+            filled
+            dense
+          />
+        </v-col>
 
-      <v-col cols="3" xl="2" style="margin-top: 7px">
-        <v-btn
-          height="45"
-          v-if="shouldIncludeTitle"
-          :disabled="!parameterHasChanged"
-          color="secondary"
-          @click="resetParameter"
-        >
-          Reset Parameter
-        </v-btn>
-      </v-col>
-    </v-row>
+        <v-col cols="3" xl="2" style="margin-top: 7px">
+          <v-btn
+            height="45"
+            v-if="shouldIncludeTitle"
+            :disabled="!parameterHasChanged"
+            color="secondary"
+            @click="resetParameter"
+          >
+            Reset Parameter
+          </v-btn>
+        </v-col>
+      </v-row>
 
-    <v-divider color="grey" v-if="shouldIncludeTitle" />
+      <v-divider color="grey" v-if="shouldIncludeTitle" />
 
-    <component
-      :key="currentSelectedParameter.path"
-      :is="display.distComponent"
-      :parameter-value="currentSelectedParameter.current"
-    />
+      <component
+        :key="currentSelectedParameter.path"
+        :is="display.distComponent"
+        :parameter-value="currentSelectedParameter.current"
+      />
 
-    <v-container v-if="display.displayChart">
-      <div class="py-5" style="width: 100%; height: 400px">
+      <div v-if="display.displayChart" class="py-5" style="width: 100%; height: 400px">
         <distribution-chart
           :distribution-series="display.chartData"
           :x-axis-label="display.xAxisLabel"

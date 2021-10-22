@@ -13,6 +13,9 @@ const parameterSelectionActions: ActionTree<IRootState, IRootState> = {
   setScenarioDefinitionMode({ commit }, newMode: ScenarioDefinitionMode | null): void {
     commit('setScenarioDefinitionMode', newMode);
   },
+  resetCurrentSelectedParameter({ commit }): void {
+    commit('resetCurrentSelectedParameter');
+  },
 };
 
 export default parameterSelectionActions;
