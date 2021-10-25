@@ -639,7 +639,7 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
         new Style({
           stroke: new Stroke({
             color: 'rgba(0, 0, 0, 1)',
-            width: 0.6,
+            width: 0.8,
           }),
         }),
       );
@@ -677,8 +677,8 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
         new Style({
           stroke: new Stroke({
             color: 'rgba(0, 0, 0, 1)',
-            lineDash: [5],
-            width: 0.75,
+            lineDash: [15],
+            width: 1,
           }),
         }),
       );
