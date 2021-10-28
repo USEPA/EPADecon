@@ -27,7 +27,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Time
             foreach (SurfaceType surface in surfaceSporeLoading.Keys.ToList())
             {
                 surfaceSporeLoading[surface] = surfaceSporeLoading[surface] > efficacyValues[surface] ? 
-                    surfaceSporeLoading[surface] -= efficacyValues[surface] : 0.0;
+                    Math.Log10(Math.Pow(10, surfaceSporeLoading[surface]) / Math.Pow(10, efficacyValues[surface])) : 0.0;
             }
 
             return surfaceSporeLoading;
