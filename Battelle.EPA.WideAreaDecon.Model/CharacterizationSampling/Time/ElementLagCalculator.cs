@@ -64,7 +64,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Time
 
             double totalPackagingTime = (_samplePackageTime * (totalHepa + totalWipes)) / (GlobalConstants.MinutesToHours * GlobalConstants.HoursPerWorkDay);
 
-            return totalPackagingTime + maxLabTime + (sampleTimeTransmitted / GlobalConstants.HoursPerWorkDay);
+            return totalPackagingTime + maxLabTime + (sampleTimeTransmitted / (GlobalConstants.HoursPerWorkDay * 2));
         }
     }
 }

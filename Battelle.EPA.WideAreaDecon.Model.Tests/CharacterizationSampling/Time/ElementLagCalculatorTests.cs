@@ -46,7 +46,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.CharacterizationSampling.Time
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(7.32574836119393, Calculator.CalculateElementLagTime(numberLabs, sampleTimeTransmitted, fractionSampledWipe, fractionSampledHepa, areaContaminated), 
+            Assert.AreEqual(6.32574836119393, Calculator.CalculateElementLagTime(numberLabs, sampleTimeTransmitted, fractionSampledWipe, fractionSampledHepa, areaContaminated), 
                 1e-6, "Incorrect element lag cost calculated");
         }
     }
