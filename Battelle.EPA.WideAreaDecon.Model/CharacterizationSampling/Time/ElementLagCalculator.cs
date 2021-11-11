@@ -12,7 +12,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Time
         private readonly double _surfaceAreaPerHepa;
         private readonly double _samplePackageTime;
         private readonly List<double> _labUptimesHours;
-        private readonly List<double> _labDistanceFromSite;
+        private readonly List<double> _sampleShippingTime;
         private readonly List<double> _labThroughput;
 
         public ElementLagCalculator(
@@ -20,20 +20,20 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Time
             double surfaceAreaPerHepa, 
             List<double> labUptimesHours, 
             double samplePackageTime,
-            List<double> labDistanceFromSite,
+            List<double> sampleShippingTime,
             List<double> labThroughput)
         {
             _surfaceAreaPerWipe = surfaceAreaPerWipe;
             _surfaceAreaPerHepa = surfaceAreaPerHepa;
             _labUptimesHours = labUptimesHours;
             _samplePackageTime = samplePackageTime;
-            _labDistanceFromSite = labDistanceFromSite;
+            _sampleShippingTime = sampleShippingTime;
             _labThroughput = labThroughput;
         }
 
         public double CalculateElementLagTime(int numberLabs, double sampleTimeTransmitted, double _fractionSampledWipe, double _fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            numberLabs = _labDistanceFromSite.Count;
+            numberLabs = _sampleShippingTime.Count;
 
             var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
 
@@ -52,7 +52,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Time
 
             for (int i = 0; i < numberLabs; i++)
             {
-                shippingTimePerLab[i] = _labDistanceFromSite[i] / (GlobalConstants.HoursPerWorkDay * GlobalConstants.AssumedDriverSpeed);
+                shippingTimePerLab[i] = _sampleShippingTime[i] / (GlobalConstants.HoursPerWorkDay * 2);
 
                 analysisTimePerLab[i] = (wipesPerLab + hepaPerLab) / _labThroughput[i];
 

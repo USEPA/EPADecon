@@ -22,7 +22,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public double samplePackageTime;
         public int numLabs;
         public List<double> labUptimesHours;
-        public List<double> labDistanceFromSite;
+        public List<double> sampleShippingTime;
         public List<double> labThroughput;
         public double resultTransmissionToIC;
         public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
@@ -48,7 +48,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             double _samplePackageTime,
             int _numLabs,
             List<double> _labUptimeHours,
-            List<double> _labDistanceFromSite,
+            List<double> _sampleShippingTime,
             List<double> _labThroughput,
             double _resultTransmissionToIC,
             Dictionary<PersonnelLevel, double> _personnelPerTeam,
@@ -71,7 +71,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
             samplePackageTime = _samplePackageTime;
             numLabs = _numLabs;
             labUptimesHours = _labUptimeHours;
-            labDistanceFromSite = _labDistanceFromSite;
+            sampleShippingTime = _sampleShippingTime;
             labThroughput = _labThroughput;
             resultTransmissionToIC = _resultTransmissionToIC;
             personnelReqPerTeam = _personnelPerTeam;

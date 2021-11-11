@@ -77,7 +77,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
         private CharacterizationSamplingParameters SetCharacterizationSamplingParameters()
         {
             var labUptimesHours = new List<double>();
-            var labDistanceFromSite = new List<double>();
+            var sampleShippingTime = new List<double>();
             var labThroughput = new List<double>();
 
             var fractionSurfaceSampled = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
@@ -93,7 +93,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             for (int i = 0; i < numLabs; i++)
             {
                 labUptimesHours.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Uptime Hours per Day").CreateDistribution().Draw());
-                labDistanceFromSite.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance from Site").CreateDistribution().Draw());
+                sampleShippingTime.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Sample Shipping Time").CreateDistribution().Draw());
                 labThroughput.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Throughput Samples per Day").CreateDistribution().Draw());
             }
             var resultTransmissionToIC = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Time of Result Transmission to IC").CreateDistribution().Draw();
@@ -140,7 +140,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 samplePackageTime,
                 numLabs,
                 labUptimesHours,
-                labDistanceFromSite,
+                sampleShippingTime,
                 labThroughput,
                 resultTransmissionToIC,
                 personnelReqPerTeam,
@@ -285,7 +285,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
         private ClearanceSamplingParameters SetClearanceSamplingParameters()
         {
             var labUptimesHours = new List<double>();
-            var labDistanceFromSite = new List<double>();
+            var sampleShippingTime = new List<double>();
             var labThroughput = new List<double>();
 
             var fractionSurfaceSampled = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
@@ -301,7 +301,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             for (int i = 0; i < numLabs; i++)
             {
                 labUptimesHours.Add(_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Uptime Hours per Day").CreateDistribution().Draw());
-                labDistanceFromSite.Add(_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance from Site").CreateDistribution().Draw());
+                sampleShippingTime.Add(_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Sample Shipping Time").CreateDistribution().Draw());
                 labThroughput.Add(_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Throughput Samples per Day").CreateDistribution().Draw());
             }
             var resultTransmissionToIC = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Time of Result Transmission to IC").CreateDistribution().Draw();
@@ -348,7 +348,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 samplePackageTime,
                 numLabs,
                 labUptimesHours,
-                labDistanceFromSite,
+                sampleShippingTime,
                 labThroughput,
                 resultTransmissionToIC,
                 personnelReqPerTeam,
@@ -365,7 +365,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
         private WasteSamplingParameters SetWasteSamplingParameters()
         {
             var labUptimesHours = new List<double>();
-            var labDistanceFromSite = new List<double>();
+            var sampleShippingTime = new List<double>();
             var labThroughput = new List<double>();
 
             double fractionSampled = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction of Waste Sampled").CreateDistribution().Draw();
@@ -399,7 +399,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             for (int i = 0; i < numLabs; i++)
             {
                 labUptimesHours.Add(_wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Uptime Hours per Day").CreateDistribution().Draw());
-                labDistanceFromSite.Add(_wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance from Site").CreateDistribution().Draw());
+                sampleShippingTime.Add(_wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Sample Shipping Time").CreateDistribution().Draw());
                 labThroughput.Add(_wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Throughput Samples per Day").CreateDistribution().Draw());
             }
             var resultTransmissionToIC = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Time of Result Transmission to IC").CreateDistribution().Draw();
@@ -432,7 +432,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 samplePackageTime,
                 numLabs,
                 labUptimesHours,
-                labDistanceFromSite,
+                sampleShippingTime,
                 labThroughput,
                 resultTransmissionToIC,
                 personnelReqPerTeam,

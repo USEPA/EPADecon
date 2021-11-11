@@ -14,7 +14,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
         private readonly double _volumePerWasteSample;
         private readonly double _samplePackageTime;
         private readonly List<double> _labUptimesHours;
-        private readonly List<double> _labDistanceFromSite;
+        private readonly List<double> _sampleShippingTime;
         private readonly List<double> _labThroughput;
 
         public ElementLagCalculator(
@@ -24,7 +24,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
             double volumePerWasteSample,
             List<double> labUptimesHours, 
             double samplePackageTime,
-            List<double> labDistanceFromSite,
+            List<double> sampleShippingTime,
             List<double> labThroughput)
         {
             _solidWastePerSurfaceArea = solidWastePerSurfaceArea;
@@ -33,13 +33,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
             _volumePerWasteSample = volumePerWasteSample;
             _labUptimesHours = labUptimesHours;
             _samplePackageTime = samplePackageTime;
-            _labDistanceFromSite = labDistanceFromSite;
+            _sampleShippingTime = sampleShippingTime;
             _labThroughput = labThroughput;
         }
 
         public double CalculateElementLagTime(int numberLabs, double sampleTimeTransmitted, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            numberLabs = _labDistanceFromSite.Count;
+            numberLabs = _sampleShippingTime.Count;
 
             var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
 
@@ -59,7 +59,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 
             for (int i = 0; i < numberLabs; i++)
             {
-                shippingTimePerLab[i] = _labDistanceFromSite[i] / (GlobalConstants.HoursPerWorkDay * GlobalConstants.AssumedDriverSpeed);
+                shippingTimePerLab[i] = _sampleShippingTime[i] / (GlobalConstants.HoursPerWorkDay * 2);
 
                 analysisTimePerLab[i] = samplesPerLab / _labThroughput[i];
 
