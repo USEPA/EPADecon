@@ -18,7 +18,7 @@ export default class CityDataProvider implements ICityDataProvider {
       building: 'https://data.nola.gov/resource/wx44-n52t.json',
     },
     nyc: {
-      building: 'https://data.cityofnewyork.us/resource/cwab-e33n.json',
+      building: 'https://data.cityofnewyork.us/resource/qb5r-6dgf.json',
       subway: 'https://data.cityofnewyork.us/resource/s7zz-qmyz.json',
     },
     philly: {
