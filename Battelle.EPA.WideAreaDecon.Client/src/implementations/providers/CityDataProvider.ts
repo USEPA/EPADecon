@@ -4,35 +4,25 @@ import { ArcGisBuildingData, SodaBuildingData, SodaSubwayData } from '@/types';
 import { Polygon } from 'ol/geom';
 import axios from 'axios';
 import { injectable } from 'inversify';
+import CityDataAPI from './CityDataAPI';
+import CityLinkLists from '../City/CityLinkLists';
+import CityLink from '../City/CityLink';
 
 @injectable()
 export default class CityDataProvider implements ICityDataProvider {
-  private readonly urls: Record<string, Record<string, string>> = {
-    boston: {
-      building: 'https://gis.cityofboston.gov/arcgis/rest/services/SAM/FinalImprovements/MapServer/0',
-    },
-    dc: {
-      building: 'https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Facility_and_Structure/MapServer/1',
-    },
-    newOrleans: {
-      building: 'https://data.nola.gov/resource/wx44-n52t.json',
-    },
-    nyc: {
-      building: 'https://data.cityofnewyork.us/resource/qb5r-6dgf.json',
-      subway: 'https://data.cityofnewyork.us/resource/s7zz-qmyz.json',
-    },
-    philly: {
-      building:
-        'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/LI_BUILDING_FOOTPRINTS/FeatureServer/0',
-    },
-    sanFrancisco: {
-      building: 'https://data.sfgov.org/resource/ynuv-fyni.json',
-    },
-  };
+  private citydata = new CityDataAPI();
+
+  private urls!: CityLinkLists;
+
+  constructor() {
+    this.citydata.getCityLinks().then((value) => {
+      this.urls = value;
+    });
+  }
 
   async getInstersectingBuildingCoordinates(plume: Polygon, location: MapLocation): Promise<number[][][]> {
     const plumeCoords = this.getPlumeCoordinates(plume);
-    const url = this.getUrlForLocation(location).building;
+    const url = this.getUrlForLocation(location).buildingLink;
     let request = '';
 
     // build request based on location
@@ -88,7 +78,7 @@ export default class CityDataProvider implements ICityDataProvider {
 
   async getIntersectingSubwayCoordinates(plume: Polygon, location: MapLocation): Promise<number[][][]> {
     const plumeCoords = this.getPlumeCoordinates(plume);
-    const url = this.getUrlForLocation(location).subway;
+    const url = this.getUrlForLocation(location).subwayLink;
     let request = '';
 
     if (!url) {
@@ -129,20 +119,44 @@ export default class CityDataProvider implements ICityDataProvider {
     return coords;
   }
 
-  private getUrlForLocation(location: MapLocation): Record<string, string> {
+  private getUrlForLocation(location: MapLocation): CityLink {
     switch (location) {
       case MapLocation.Boston:
-        return this.urls.boston;
+        return (
+          this.urls.cities.find((value) => {
+            return value.name === MapLocation.Boston;
+          }) ?? new CityLink(MapLocation.Boston)
+        );
       case MapLocation.NewOrleans:
-        return this.urls.newOrleans;
+        return (
+          this.urls.cities.find((value) => {
+            return value.name === MapLocation.NewOrleans;
+          }) ?? new CityLink(MapLocation.NewOrleans)
+        );
       case MapLocation.NewYorkCity:
-        return this.urls.nyc;
+        return (
+          this.urls.cities.find((value) => {
+            return value.name === MapLocation.NewYorkCity;
+          }) ?? new CityLink(MapLocation.NewYorkCity)
+        );
       case MapLocation.Philadelphia:
-        return this.urls.philly;
+        return (
+          this.urls.cities.find((value) => {
+            return value.name === MapLocation.Philadelphia;
+          }) ?? new CityLink(MapLocation.Philadelphia)
+        );
       case MapLocation.SanFrancisco:
-        return this.urls.sanFrancisco;
+        return (
+          this.urls.cities.find((value) => {
+            return value.name === MapLocation.SanFrancisco;
+          }) ?? new CityLink(MapLocation.SanFrancisco)
+        );
       case MapLocation.WashingtonDc:
-        return this.urls.dc;
+        return (
+          this.urls.cities.find((value) => {
+            return value.name === MapLocation.WashingtonDc;
+          }) ?? new CityLink(MapLocation.WashingtonDc)
+        );
       default:
         throw new Error('invalid location');
     }

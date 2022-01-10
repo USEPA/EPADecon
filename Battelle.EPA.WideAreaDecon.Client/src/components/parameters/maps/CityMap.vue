@@ -81,6 +81,7 @@ import MapLocation from '@/enums/maps/mapLocation';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import ICityDataProvider from '@/interfaces/providers/ICityDataProvider';
+import ICityDataAPI from '@/interfaces/providers/ICityDataAPI';
 import {
   bostonViewOptions,
   dcViewOptions,

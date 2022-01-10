@@ -14,6 +14,7 @@ const PROVIDER_TYPES = {
   DistributionDisplayProvider: Symbol('DistributionDisplayProvider'),
   JobProvider: Symbol('IJobProvider'),
   JobResultProvider: Symbol('IJobResultProvider'),
+  CityDataAPI: Symbol('ICityDataAPI'),
 };
 
 export default PROVIDER_TYPES;
