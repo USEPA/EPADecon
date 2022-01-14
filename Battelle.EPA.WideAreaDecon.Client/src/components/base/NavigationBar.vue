@@ -27,7 +27,7 @@
           <v-btn v-on="on" @click="displayRunModal" :color="'secondary'" v-if="!onResultsPage && canRun">
             Run Scenario
           </v-btn>
-          <v-btn color="error" v-if="!onResultsPage && !canRun"> Can't Run </v-btn>
+          <v-btn color="error" @click="displayErrorModal" v-if="!onResultsPage && !canRun"> Can't Run </v-btn>
         </div>
       </template>
       <span v-if="canRun">Runs the model and generates results</span>
@@ -146,6 +146,10 @@ export default class NavigationBar extends Vue {
 
   displayRunModal(): void {
     this.$emit('showRunModal');
+  }
+
+  displayErrorModal(): void {
+    this.$emit('showErrorModal');
   }
 
   getClassName(name: string): string {
