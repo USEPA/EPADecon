@@ -78,6 +78,9 @@ import { Component, Watch } from 'vue-property-decorator';
 import { Action, State } from 'vuex-class';
 import JobRequest from '@/implementations/jobs/JobRequest';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
+import ICurrentJob from '@/interfaces/store/jobs/ICurrentJob';
+import { nameof } from 'ts-simple-nameof';
+import { StoreNames } from '@/constants/store/store';
 import TYPES from '@/dependencyInjection/types';
 import container from '@/dependencyInjection/config';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
@@ -90,6 +93,7 @@ import IElementBreakdown from '@/interfaces/jobs/results/IElementBreakdown';
 import RealizationSummary from './RealizationSummary.vue';
 import DashboardResultCard from './DashboardResultCard.vue';
 import DashboardChartCard from './DashboardChartCard.vue';
+import { ParameterSelectionStoreActions } from '@/constants/store/ParameterSelection';
 
 @Component({
   components: {
@@ -100,11 +104,13 @@ import DashboardChartCard from './DashboardChartCard.vue';
   },
 })
 export default class ViewResults extends Vue {
-  @State currentJob!: JobRequest;
+  @State(nameof<ICurrentJob>((s) => s.currentJob), { namespace: StoreNames.JOBS }) currentJob!: JobRequest;
 
-  @Action setScenarioDefinition!: (newDefinition: ParameterWrapperList) => void;
+  @Action(ParameterSelectionStoreActions.SET_SCENARIO_DEFINITION, { namespace: StoreNames.PARAMETER_SELECTION })
+  setScenarioDefinition!: (newDefinition: ParameterWrapperList) => void;
 
-  @Action setScenarioParameters!: (newParameters: ParameterWrapperList) => void;
+  @Action(ParameterSelectionStoreActions.SET_SCENARIO_PARAMETERS, { namespace: StoreNames.PARAMETER_SELECTION })
+  setScenarioParameters!: (newParameters: ParameterWrapperList) => void;
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 

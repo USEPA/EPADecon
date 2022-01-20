@@ -38,6 +38,9 @@ import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import { ChartData, Point } from 'chart.js';
+import { nameof } from 'ts-simple-nameof';
+import ICurrentJob from '@/interfaces/store/jobs/ICurrentJob';
+import { StoreNames } from '@/constants/store/store';
 import { CycleColorProvider, DefaultChartData, CreateScatterChartDataset } from 'battelle-common-vue-charting';
 import Result from '@/enums/jobs/results/result';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
@@ -50,7 +53,8 @@ import RealizationTable from './RealizationTable.vue';
 
 @Component({ components: { ChartOptions, OutputStatisticsPanel, RealizationTable, ResultsChartPanel } })
 export default class RealizationSummary extends Vue {
-  @State((state) => state.currentJob.results) results!: IJobResultRealization[];
+  @State(nameof<ICurrentJob>((s) => s.currentJob.results), { namespace: StoreNames.JOBS })
+  results!: IJobResultRealization[];
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 

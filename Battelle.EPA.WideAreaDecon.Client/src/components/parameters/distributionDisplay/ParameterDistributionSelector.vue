@@ -83,6 +83,10 @@ import DistributionDisplay from '@/implementations/parameter/distribution/Distri
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
 import ContaminationDefinitionDisplay from '@/components/parameters/maps/ContaminationDefinitionDisplay.vue';
 import { ScenarioDefinitionMode } from '@/types';
+import { nameof } from 'ts-simple-nameof';
+import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
+import { StoreNames } from '@/constants/store/store';
+import { JobsStoreActions } from '@/constants/store/Jobs';
 
 @Component({
   components: {
@@ -106,13 +110,16 @@ import { ScenarioDefinitionMode } from '@/types';
   },
 })
 export default class ParameterDistributionSelector extends Vue {
-  @State currentSelectedParameter!: ParameterWrapper;
+  @State(nameof<IParameterSelection>((s) => s.currentSelectedParameter), { namespace: StoreNames.PARAMETER_SELECTION })
+  currentSelectedParameter!: ParameterWrapper;
 
-  @State scenarioDefinitionMode!: ScenarioDefinitionMode;
+  @State(nameof<IParameterSelection>((s) => s.scenarioDefinitionMode), { namespace: StoreNames.PARAMETER_SELECTION })
+  scenarioDefinitionMode!: ScenarioDefinitionMode;
 
   @Getter hasResults!: boolean;
 
-  @Action resetCurrentJobRequest!: () => void;
+  @Action(JobsStoreActions.RESET_CURRENT_JOB_REQUEST, { namespace: StoreNames.JOBS })
+  resetCurrentJobRequest!: () => void;
 
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 

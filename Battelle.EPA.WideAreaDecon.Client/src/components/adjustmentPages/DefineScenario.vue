@@ -42,7 +42,11 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import { nameof } from 'ts-simple-nameof';
+import { StoreNames } from '@/constants/store/store';
 import { Action, State } from 'vuex-class';
+import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
+import { ParameterSelectionStoreActions } from '@/constants/store/ParameterSelection';
 import ParameterSelectionDrawer from '@/components/parameters/ParameterSelectionDrawer.vue';
 import ParameterList from '@/implementations/parameter/ParameterList';
 import ParameterDistributionSelector from '@/components/parameters/distributionDisplay/ParameterDistributionSelector.vue';
@@ -56,11 +60,14 @@ import ParameterWrapper from '../../implementations/parameter/ParameterWrapper';
   components: { ParameterSelectionDrawer, ParameterDistributionSelector },
 })
 export default class DefineScenario extends Vue {
-  @State scenarioDefinition!: ParameterList;
+  @State(nameof<IParameterSelection>((s) => s.scenarioDefinition), { namespace: StoreNames.PARAMETER_SELECTION })
+  scenarioDefinition!: ParameterList;
 
-  @State scenarioDefinitionMode!: ScenarioDefinitionMode | null;
+  @State(nameof<IParameterSelection>((s) => s.scenarioDefinitionMode), { namespace: StoreNames.PARAMETER_SELECTION })
+  scenarioDefinitionMode!: ScenarioDefinitionMode | null;
 
-  @Action setScenarioDefinitionMode!: (newMode: ScenarioDefinitionMode | null) => void;
+  @Action(ParameterSelectionStoreActions.SET_SCENARIO_DEFINITION_MODE, { namespace: StoreNames.PARAMETER_SELECTION })
+  setScenarioDefinitionMode!: (newMode: ScenarioDefinitionMode | null) => void;
 
   imgProvider = container.get<IImageProvider>(TYPES.ImageProvider);
 

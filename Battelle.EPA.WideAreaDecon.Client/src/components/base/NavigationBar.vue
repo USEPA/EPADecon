@@ -115,22 +115,34 @@ import INavigationItem from '@/interfaces/configuration/INavigationItem';
 import container from '@/dependencyInjection/config';
 import IImageProvider from '@/interfaces/providers/IImageProvider';
 import TYPES from '@/dependencyInjection/types';
+import { nameof } from 'ts-simple-nameof';
+import { StoreNames } from '@/constants/store/store';
+import IClientConfiguration from '@/interfaces/configuration/IClientConfiguration';
+import IAppSettings from '@/interfaces/store/appSettings/IAppSettings';
+import INavigationSettings from '@/interfaces/store/navigationSettings/INavigationSettings';
+import { ParameterSelectionStoreGetters } from '@/constants/store/ParameterSelection';
+import { JobsStoreGetters } from '@/constants/store/Jobs';
 
 @Component
 export default class NavigationBar extends Vue {
-  @State applicationTitle!: string;
+  @State(nameof<IClientConfiguration>((s) => s.applicationTitle), { namespace: StoreNames.CLIENT_CONFIGURATION })
+  applicationTitle!: string;
 
-  @State applicationAcronym!: string;
+  @State(nameof<IClientConfiguration>((s) => s.applicationAcronym), { namespace: StoreNames.CLIENT_CONFIGURATION })
+  applicationAcronym!: string;
 
-  @Getter canRun!: boolean;
+  @State(nameof<IAppSettings>((s) => s.applicationActions), { namespace: StoreNames.APPSETTINGS })
+  applicationActions!: IApplicationAction[];
 
-  @Getter hasResults!: boolean;
+  @State(nameof<IAppSettings>((s) => s.applicationTitle), { namespace: StoreNames.APPSETTINGS })
+  navigationItems!: INavigationItem[];
 
-  @State applicationActions!: IApplicationAction[];
+  @State(nameof<INavigationSettings>((s) => s.enableNavigationTabs), { namespace: StoreNames.NAVIGATION_SETTINGS })
+  enableNavigationTabs!: boolean;
 
-  @State navigationItems!: INavigationItem[];
+  @Getter(ParameterSelectionStoreGetters.CAN_RUN, { namespace: StoreNames.PARAMETER_SELECTION }) canRun!: boolean;
 
-  @State enableNavigationTabs!: boolean;
+  @Getter(JobsStoreGetters.HAS_RESULTS, { namespace: StoreNames.JOBS }) hasResults!: boolean;
 
   imageProvider = container.get<IImageProvider>(TYPES.ImageProvider);
 

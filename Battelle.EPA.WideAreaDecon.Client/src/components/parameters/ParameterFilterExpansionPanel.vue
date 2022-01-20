@@ -60,14 +60,19 @@ import { Component, Prop } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 import ParameterWrapperFilter from '@/implementations/parameter/ParameterWrapperFilter';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
+import { StoreNames } from '@/constants/store/store';
+import { nameof } from 'ts-simple-nameof';
+import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
+import IAppSettings from '@/interfaces/store/appSettings/IAppSettings';
 
 @Component({
   name: 'ParameterFilterExpansionPanel',
 })
 export default class ParameterFilterExpansionPanel extends Vue {
-  @State errorIcon!: string;
+  @State(nameof<IAppSettings>((s) => s.errorIcon), { namespace: StoreNames.APPSETTINGS }) errorIcon!: string;
 
-  @State currentSelectedParameter!: ParameterWrapper;
+  @State(nameof<IParameterSelection>((s) => s.currentSelectedParameter), { namespace: StoreNames.PARAMETER_SELECTION })
+  currentSelectedParameter!: ParameterWrapper;
 
   @Prop() filter!: ParameterWrapperFilter;
 

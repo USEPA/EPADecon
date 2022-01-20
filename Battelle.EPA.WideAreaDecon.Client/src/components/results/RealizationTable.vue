@@ -142,10 +142,14 @@ import IElementResultSet from '@/interfaces/jobs/results/IElementResultSet';
 import BuildingCategory from '@/enums/parameter/buildingCategory';
 import RealizationDetails from '@/components/modals/results/RealizationDetails.vue';
 import Result from '@/enums/jobs/results/result';
+import { nameof } from 'ts-simple-nameof';
+import ICurrentJob from '@/interfaces/store/jobs/ICurrentJob';
+import { StoreNames } from '@/constants/store/store';
 
 @Component({ components: { RealizationDetails } })
 export default class RealizationTable extends Vue {
-  @State((state) => state.currentJob.results) results!: IJobResultRealization[];
+  @State(nameof<ICurrentJob>((s) => s.currentJob.results), { namespace: StoreNames.JOBS })
+  results!: IJobResultRealization[];
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 

@@ -50,10 +50,14 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Action, State } from 'vuex-class';
+import { ParameterSelectionStoreActions } from '@/constants/store/ParameterSelection';
 import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import { ScenarioDefinitionMode } from '@/types';
 import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
+import { nameof } from 'ts-simple-nameof';
+import { StoreNames } from '@/constants/store/store';
+import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
 import EnumeratedParameterDisplay from '../distributionDisplay/EnumeratedParameterDisplay.vue';
 import GeospatialDisplay from './GeospatialDisplay.vue';
 
@@ -66,11 +70,16 @@ import GeospatialDisplay from './GeospatialDisplay.vue';
 export default class ContaminationDefinitionDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: ContaminationDefinition;
 
-  @State scenarioDefinitionMode!: ScenarioDefinitionMode;
+  @State(nameof<IParameterSelection>((s) => s.scenarioDefinitionMode), { namespace: StoreNames.PARAMETER_SELECTION })
+  scenarioDefinitionMode!: ScenarioDefinitionMode;
 
-  @Action setScenarioDefinitionMode!: (newMode: ScenarioDefinitionMode) => void;
+  @Action(ParameterSelectionStoreActions.SET_SCENARIO_DEFINITION_MODE, { namespace: StoreNames.PARAMETER_SELECTION })
+  setScenarioDefinitionMode!: (newMode: ScenarioDefinitionMode) => void;
 
-  @Action resetCurrentSelectedParameter!: () => void;
+  @Action(ParameterSelectionStoreActions.RESET_CURRENT_SELECTED_PARAMETER, {
+    namespace: StoreNames.PARAMETER_SELECTION,
+  })
+  resetCurrentSelectedParameter!: () => void;
 
   baseline = this.$store.state.currentSelectedParameter.baseline;
 
