@@ -87,6 +87,7 @@ import { nameof } from 'ts-simple-nameof';
 import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
 import { StoreNames } from '@/constants/store/store';
 import { JobsStoreActions } from '@/constants/store/Jobs';
+import { ParameterSelectionStoreGetters } from '@/constants/store/ParameterSelection';
 
 @Component({
   components: {
@@ -116,7 +117,7 @@ export default class ParameterDistributionSelector extends Vue {
   @State(nameof<IParameterSelection>((s) => s.scenarioDefinitionMode), { namespace: StoreNames.PARAMETER_SELECTION })
   scenarioDefinitionMode!: ScenarioDefinitionMode;
 
-  @Getter hasResults!: boolean;
+  @Getter(ParameterSelectionStoreGetters.CAN_RUN, { namespace: StoreNames.PARAMETER_SELECTION }) hasResults!: boolean;
 
   @Action(JobsStoreActions.RESET_CURRENT_JOB_REQUEST, { namespace: StoreNames.JOBS })
   resetCurrentJobRequest!: () => void;

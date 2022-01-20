@@ -88,7 +88,8 @@ import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import { nameof } from 'ts-simple-nameof';
 import { StoreNames } from '@/constants/store/store';
 import ICurrentJob from '@/interfaces/store/jobs/ICurrentJob';
-import { JobsStoreActions } from '@/constants/store/Jobs';
+import { JobsStoreActions, JobsStoreGetters } from '@/constants/store/Jobs';
+import { ParameterSelectionStoreGetters } from '@/constants/store/ParameterSelection';
 
 @Component
 export default class RunScenario extends Vue {
@@ -112,9 +113,9 @@ export default class RunScenario extends Vue {
   @Action(JobsStoreActions.UPDATE_JOB_PROGRESS, { namespace: StoreNames.JOBS })
   UpdateJobProgress!: (progress: number) => void;
 
-  @Getter canRun!: boolean;
+  @Getter(ParameterSelectionStoreGetters.CAN_RUN, { namespace: StoreNames.PARAMETER_SELECTION }) canRun!: boolean;
 
-  @Getter hasResults!: boolean;
+  @Getter(JobsStoreGetters.HAS_RESULTS, { namespace: StoreNames.JOBS }) hasResults!: boolean;
 
   @State(nameof<ICurrentJob>((s) => s.currentJob), { namespace: StoreNames.JOBS })
   currentJob!: JobRequest;

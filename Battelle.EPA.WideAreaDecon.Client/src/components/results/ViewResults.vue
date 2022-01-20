@@ -77,6 +77,7 @@ import Vue from 'vue';
 import { Component, Watch } from 'vue-property-decorator';
 import { Action, State } from 'vuex-class';
 import JobRequest from '@/implementations/jobs/JobRequest';
+import { ParameterSelectionStoreActions } from '@/constants/store/ParameterSelection';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import ICurrentJob from '@/interfaces/store/jobs/ICurrentJob';
 import { nameof } from 'ts-simple-nameof';
@@ -93,7 +94,6 @@ import IElementBreakdown from '@/interfaces/jobs/results/IElementBreakdown';
 import RealizationSummary from './RealizationSummary.vue';
 import DashboardResultCard from './DashboardResultCard.vue';
 import DashboardChartCard from './DashboardChartCard.vue';
-import { ParameterSelectionStoreActions } from '@/constants/store/ParameterSelection';
 
 @Component({
   components: {

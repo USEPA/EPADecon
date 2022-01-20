@@ -64,6 +64,7 @@ import LoadPreviousScenario from '@/components/modals/load/LoadPreviousScenario.
 import { nameof } from 'ts-simple-nameof';
 import { StoreNames } from '@/constants/store/store';
 import IClientConfiguration from '@/interfaces/configuration/IClientConfiguration';
+import { NavigationSettingsStoreMutations } from '@/constants/store/NavigationSettings';
 
 @Component({ components: { HomeOptionHelp, LoadPreDefinedScenario, LoadPreviousScenario } })
 export default class Home extends Vue {
@@ -95,7 +96,7 @@ export default class Home extends Vue {
   }
 
   created(): void {
-    this.$store.commit('disableNavigationTabs');
+    this.$store.commit(`${StoreNames.NAVIGATION_SETTINGS}/${NavigationSettingsStoreMutations.DISABLE_NAVIGATION_TABS}`);
   }
 }
 </script>

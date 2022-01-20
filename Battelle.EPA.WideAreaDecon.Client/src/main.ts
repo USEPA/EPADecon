@@ -55,10 +55,18 @@ const navigationItems = container.get<INavigationItemProvider>(TYPES.NavigationI
 Promise.all([clientConfigPromise, scenarioDefPromise, scenarioParamsPromise]).finally(() => {
   store.replaceState({
     ...store.state,
-    ...defaultConfig,
-    ...defaultScenario.toWrapperList(),
-    ...defaultParameters.toWrapperList(),
-    ...{ applicationActions, navigationItems },
+    CLIENT_CONFIGURATION: {
+      ...defaultConfig,
+    },
+    PARAMETER_SELECTION: {
+      ...store.state.PARAMETER_SELECTION,
+      ...defaultScenario.toWrapperList(),
+      ...defaultParameters.toWrapperList(),
+    },
+    APPSETTINGS: {
+      ...store.state.APPSETTINGS,
+      ...{ applicationActions, navigationItems },
+    },
   });
   const vuetify = GetVuetify(defaultConfig);
   new Vue({
