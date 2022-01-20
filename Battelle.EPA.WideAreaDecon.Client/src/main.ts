@@ -60,12 +60,13 @@ Promise.all([clientConfigPromise, scenarioDefPromise, scenarioParamsPromise]).fi
     },
     PARAMETER_SELECTION: {
       ...store.state.PARAMETER_SELECTION,
-      ...defaultScenario.toWrapperList(),
-      ...defaultParameters.toWrapperList(),
+      scenarioDefinition: defaultScenario.toWrapperList(),
+      scenarioParameters: defaultParameters.toWrapperList(),
     },
     APPSETTINGS: {
       ...store.state.APPSETTINGS,
-      ...{ applicationActions, navigationItems },
+      applicationActions,
+      navigationItems,
     },
   });
   const vuetify = GetVuetify(defaultConfig);

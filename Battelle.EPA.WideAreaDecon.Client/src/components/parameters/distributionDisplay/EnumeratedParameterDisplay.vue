@@ -116,7 +116,8 @@ import store from '@/store';
 export default class EnumeratedParameterDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: EnumeratedParameter;
 
-  @Prop({ default: () => store.state.currentSelectedParameter.baseline }) baseline!: EnumeratedParameter;
+  @Prop({ default: () => store.state.PARAMETER_SELECTION.currentSelectedParameter.baseline })
+  baseline!: EnumeratedParameter;
 
   selectedCategory: IParameter = Object.values(this.parameterValue.values)[0];
 

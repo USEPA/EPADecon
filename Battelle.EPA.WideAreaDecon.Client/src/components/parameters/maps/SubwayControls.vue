@@ -6,11 +6,19 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
 import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
+import { State } from 'vuex-class';
+import { nameof } from 'ts-simple-nameof';
+import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
+import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
+import { StoreNames } from '@/constants/store/store';
 import EnumeratedParameterDisplay from '../distributionDisplay/EnumeratedParameterDisplay.vue';
 
 @Component({ components: { EnumeratedParameterDisplay } })
 export default class SubwayControls extends Vue {
   @Prop() parameterValue!: ContaminationDefinition;
+
+  @State(nameof<IParameterSelection>((s) => s.currentSelectedParameter), { namespace: StoreNames.PARAMETER_SELECTION })
+  currentSelectedParameter!: ParameterWrapper;
 
   baseline = new EnumeratedParameter();
 
@@ -23,7 +31,7 @@ export default class SubwayControls extends Vue {
   }
 
   created(): void {
-    const { subwayProtectionFactor, subwayTunnelWidth, metaData } = this.$store.state.currentSelectedParameter
+    const { subwayProtectionFactor, subwayTunnelWidth, metaData } = this.currentSelectedParameter
       .baseline as ContaminationDefinition;
 
     const baselineValues = {

@@ -87,7 +87,7 @@ import { nameof } from 'ts-simple-nameof';
 import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
 import { StoreNames } from '@/constants/store/store';
 import { JobsStoreActions } from '@/constants/store/Jobs';
-import { ParameterSelectionStoreGetters } from '@/constants/store/ParameterSelection';
+import { ParameterSelectionStoreGetters, ParameterSelectionStoreMutations } from '@/constants/store/ParameterSelection';
 
 @Component({
   components: {
@@ -160,13 +160,15 @@ export default class ParameterDistributionSelector extends Vue {
   }
 
   resetParameter(): void {
-    this.$store.commit('resetCurrentSelectedParameter');
+    this.$store.commit(
+      `${StoreNames.PARAMETER_SELECTION}/${ParameterSelectionStoreMutations.RESET_CURRENT_SELECTED_PARAMETER}`,
+    );
     this.currentDistType = this.currentSelectedParameter.type;
   }
 
   onDistributionTypeChange(): void {
     this.$store.commit(
-      'changeCurrentParameterType',
+      `${StoreNames.PARAMETER_SELECTION}/${ParameterSelectionStoreMutations.CHANGE_CURRENT_PARAMETER_TYPE}`,
       this.parameterConverter.convertToNewType(this.currentSelectedParameter.current, this.currentDistType),
     );
   }

@@ -46,7 +46,7 @@ import { nameof } from 'ts-simple-nameof';
 import { StoreNames } from '@/constants/store/store';
 import { Action, State } from 'vuex-class';
 import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
-import { ParameterSelectionStoreActions } from '@/constants/store/ParameterSelection';
+import { ParameterSelectionStoreActions, ParameterSelectionStoreMutations } from '@/constants/store/ParameterSelection';
 import ParameterSelectionDrawer from '@/components/parameters/ParameterSelectionDrawer.vue';
 import ParameterList from '@/implementations/parameter/ParameterList';
 import ParameterDistributionSelector from '@/components/parameters/distributionDisplay/ParameterDistributionSelector.vue';
@@ -54,6 +54,7 @@ import container from '@/dependencyInjection/config';
 import IImageProvider from '@/interfaces/providers/IImageProvider';
 import TYPES from '@/dependencyInjection/types';
 import { ScenarioDefinitionMode } from '@/types';
+import { NavigationSettingsStoreMutations } from '@/constants/store/NavigationSettings';
 import ParameterWrapper from '../../implementations/parameter/ParameterWrapper';
 
 @Component({
@@ -94,8 +95,11 @@ export default class DefineScenario extends Vue {
   }
 
   created(): void {
-    this.$store.commit('changeCurrentSelectedParameter', new ParameterWrapper());
-    this.$store.commit('enableNavigationTabs');
+    this.$store.commit(
+      `${StoreNames.PARAMETER_SELECTION}/${ParameterSelectionStoreMutations.CHANGE_CURRENT_SELECTED_PARAMETER}`,
+      new ParameterWrapper(),
+    );
+    this.$store.commit(`${StoreNames.NAVIGATION_SETTINGS}/${NavigationSettingsStoreMutations.ENABLE_NAVIGATION_TABS}`);
   }
 }
 </script>

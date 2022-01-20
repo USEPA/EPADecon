@@ -52,6 +52,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Action, State } from 'vuex-class';
 import { ParameterSelectionStoreActions } from '@/constants/store/ParameterSelection';
 import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
+import IParameter from '@/interfaces/parameter/IParameter';
+import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import { ScenarioDefinitionMode } from '@/types';
 import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
@@ -81,7 +83,12 @@ export default class ContaminationDefinitionDisplay extends Vue implements IPara
   })
   resetCurrentSelectedParameter!: () => void;
 
-  baseline = this.$store.state.currentSelectedParameter.baseline;
+  @State(nameof<IParameterSelection>((s) => s.currentSelectedParameter), { namespace: StoreNames.PARAMETER_SELECTION })
+  currentSelectedParameter!: ParameterWrapper;
+
+  get baseline(): IParameter {
+    return this.currentSelectedParameter.baseline;
+  }
 
   window = 0;
 

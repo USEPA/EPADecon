@@ -122,6 +122,7 @@ import IAppSettings from '@/interfaces/store/appSettings/IAppSettings';
 import INavigationSettings from '@/interfaces/store/navigationSettings/INavigationSettings';
 import { ParameterSelectionStoreGetters } from '@/constants/store/ParameterSelection';
 import { JobsStoreGetters } from '@/constants/store/Jobs';
+import { AppSettingsStoreMutations } from '@/constants/store/appsettings';
 
 @Component
 export default class NavigationBar extends Vue {
@@ -134,7 +135,7 @@ export default class NavigationBar extends Vue {
   @State(nameof<IAppSettings>((s) => s.applicationActions), { namespace: StoreNames.APPSETTINGS })
   applicationActions!: IApplicationAction[];
 
-  @State(nameof<IAppSettings>((s) => s.applicationTitle), { namespace: StoreNames.APPSETTINGS })
+  @State(nameof<IAppSettings>((s) => s.navigationItems), { namespace: StoreNames.APPSETTINGS })
   navigationItems!: INavigationItem[];
 
   @State(nameof<INavigationSettings>((s) => s.enableNavigationTabs), { namespace: StoreNames.NAVIGATION_SETTINGS })
@@ -154,7 +155,7 @@ export default class NavigationBar extends Vue {
   enableResultsNavigationTab(newValue: boolean): void {
     const items = this.navigationItems;
     items[items.length - 1].enabled = newValue;
-    store.commit('setNavigationItems', items);
+    store.commit(`${StoreNames.APPSETTINGS}/${AppSettingsStoreMutations.SET_NAVIGATION_ITEMS}`, items);
   }
 
   get onResultsPage(): boolean {
