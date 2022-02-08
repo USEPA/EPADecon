@@ -14,7 +14,7 @@ import { StoreNames } from '@/constants/store/store';
 import EnumeratedParameterDisplay from '../distributionDisplay/EnumeratedParameterDisplay.vue';
 
 @Component({ components: { EnumeratedParameterDisplay } })
-export default class SubwayControls extends Vue {
+export default class BuildingControls extends Vue {
   @Prop() parameterValue!: ContaminationDefinition;
 
   baseline = new EnumeratedParameter();
