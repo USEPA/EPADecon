@@ -14,7 +14,7 @@ import { StoreNames } from '@/constants/store/store';
 import EnumeratedParameterDisplay from '../distributionDisplay/EnumeratedParameterDisplay.vue';
 
 @Component({ components: { EnumeratedParameterDisplay } })
-export default class SubwayControls extends Vue {
+export default class PlumeConcentration extends Vue {
   @Prop() parameterValue!: ContaminationDefinition;
 
   baseline = new EnumeratedParameter();
@@ -30,13 +30,13 @@ export default class SubwayControls extends Vue {
   currentSelectedParameter!: ParameterWrapper;
 
   created(): void {
-    const { buildingProtectionFactor, metaData } = this.currentSelectedParameter.baseline as ContaminationDefinition;
+    const { plumeConcentrationFactor, metaData } = this.currentSelectedParameter.baseline as ContaminationDefinition;
 
     const baselineValues = {
-      'Building Protection Factor': buildingProtectionFactor,
+      'Plume Concentration Factor': plumeConcentrationFactor,
     };
     const currentValues = {
-      'Building Protection Factor': this.parameterValue.buildingProtectionFactor,
+      'Plume Concentration Factor': this.parameterValue.plumeConcentrationFactor,
     };
 
     this.baseline = new EnumeratedParameter(metaData, undefined, baselineValues);

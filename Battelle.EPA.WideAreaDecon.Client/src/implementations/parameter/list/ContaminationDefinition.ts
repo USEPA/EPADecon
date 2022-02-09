@@ -25,6 +25,14 @@ export default class ContaminationDefinition implements IParameter {
     step: 0.01,
   };
 
+  static plumeFactorMetaData = {
+    category: 'Contamination Definition',
+    lowerLimit: 0,
+    upperLimit: 100,
+    units: '', // TODO figure out units
+    step: 0.5,
+  };
+
   static subwayMetaData = {
     category: 'Contamination Definition',
     lowerLimit: 4,
@@ -56,6 +64,11 @@ export default class ContaminationDefinition implements IParameter {
   subwayProtectionFactor: IParameter = new Constant(
     ContaminationDefinition.protectionFactorMetaData as ParameterMetaData,
     0.3,
+  );
+
+  plumeConcentrationFactor: IParameter = new Constant(
+    ContaminationDefinition.plumeFactorMetaData as ParameterMetaData,
+    5,
   );
 
   subwayTunnelWidth: IParameter = new Constant(ContaminationDefinition.subwayMetaData as ParameterMetaData, 4.27);
