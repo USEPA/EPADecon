@@ -135,7 +135,15 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   }
 
   get distNames(): ParameterType[] {
-    if (this.categories.find((val) => val[0] === 'Plume Concentration Factor')) {
+    if (
+      this.categories.find(
+        (val) =>
+          val[0] === 'Plume Concentration Factor' ||
+          val[0] === 'Building Protection Factor' ||
+          val[0] === 'Subway Protection Factor' ||
+          val[0] === 'Subway Tunnel Width',
+      )
+    ) {
       return [ParameterType.constant];
     }
     return this.baselineCategory.type === ParameterType.uniformXDependent

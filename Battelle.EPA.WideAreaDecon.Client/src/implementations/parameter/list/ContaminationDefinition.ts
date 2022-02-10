@@ -30,7 +30,7 @@ export default class ContaminationDefinition implements IParameter {
     lowerLimit: 0,
     upperLimit: 100,
     units: '', // TODO figure out units
-    step: 0.5,
+    step: 0.01,
   };
 
   static subwayMetaData = {
