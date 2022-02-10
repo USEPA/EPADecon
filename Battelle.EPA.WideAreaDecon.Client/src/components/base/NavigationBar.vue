@@ -24,21 +24,15 @@
     <v-tooltip bottom :color="canRun ? 'info' : 'error'" :disabled="onResultsPage">
       <template v-slot:activator="{ on }">
         <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'">
-          <v-btn
-            v-on="on"
-            @click="displayRunModal"
-            :disabled="!canRun"
-            :color="canRun ? 'secondary' : ''"
-            :style="{ visibility: onResultsPage ? 'hidden' : 'visible' }"
-          >
+          <v-btn v-on="on" @click="displayRunModal" :color="'secondary'" v-if="!onResultsPage && canRun">
             Run Scenario
           </v-btn>
+          <v-btn color="error" @click="displayErrorModal" v-if="!onResultsPage && !canRun"> Can't Run </v-btn>
         </div>
       </template>
       <span v-if="canRun">Runs the model and generates results</span>
       <span v-else>Please define scenario to run model...</span>
     </v-tooltip>
-
     <!-- Dropdown menu -->
     <v-menu left bottom v-if="false">
       <template v-slot:activator="{ on }">
@@ -165,6 +159,10 @@ export default class NavigationBar extends Vue {
 
   displayRunModal(): void {
     this.$emit('showRunModal');
+  }
+
+  displayErrorModal(): void {
+    this.$emit('showErrorModal');
   }
 
   getClassName(name: string): string {
