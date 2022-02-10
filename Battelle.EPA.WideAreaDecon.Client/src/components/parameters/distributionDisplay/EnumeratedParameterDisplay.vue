@@ -180,7 +180,9 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
         ? this.baselineCategory
         : this.parameterConverter.convertToNewType(this.selectedCategory, this.currentDistType);
 
+    console.log(this.parameterValue.values[category]);
     this.parameterValue.values[category] = this.selectedCategory;
+    console.log(this.parameterValue.values[category]);
   }
 
   getSelectedCategoryName(): string {
@@ -214,7 +216,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     }
   }
 
-  @Watch('parameterValue')
+  @Watch('parameterValue', { deep: true })
   onParameterChanged(): void {
     if (this.isTextDistribution) {
       return;
@@ -224,6 +226,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
 
     [this.baselineCategory] = Object.values(this.baseline.values);
+    this.$emit('param-changed');
   }
 
   created(): void {

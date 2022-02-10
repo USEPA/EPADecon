@@ -8,6 +8,7 @@
       <v-tab-item v-for="tab of tabNames" :key="tab">
         <component
           @values-changed="setParameterValues"
+          @param-changed="setParameterValues"
           :is="getTabComponent(tab)"
           :parameterValue="parameterValue"
           :ref="tab"
@@ -21,6 +22,7 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
+import Constant from '@/implementations/parameter/distribution/Constant';
 import CityMap from './CityMap.vue';
 import BuildingControls from './BuildingControls.vue';
 import SubwayControls from './SubwayControls.vue';
@@ -29,8 +31,6 @@ import PlumeConcentration from './PlumeConcentration.vue';
 @Component({ components: { BuildingControls, CityMap, SubwayControls, PlumeConcentration } })
 export default class GeospatialDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: ContaminationDefinition;
-
-  plumeConcentration = 30;
 
   tab = 0;
 
@@ -64,35 +64,29 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   setParameterValues(): void {
     const [{ buildingAreasInPlume, source, subwayLineLengthsInPlume, totalArea }] = this.$refs.map as CityMap[];
 
-    console.log('setting parameter values');
-
-    const bpf = 0.5;
-    const spf = 0.5;
-    const subwayTunnelWidth = 30;
+    const bpf = (this.parameterValue.buildingProtectionFactor as Constant).value ?? 0.2;
+    const spf = (this.parameterValue.subwayProtectionFactor as Constant).value ?? 0.2;
+    const subwayTunnelWidth = (this.parameterValue.subwayTunnelWidth as Constant).value ?? 4;
+    const plumeConcentration = (this.parameterValue.plumeConcentrationFactor as Constant).value ?? 5;
 
     // indoor area
     const buildingAreaSum = buildingAreasInPlume.reduce((acc, cur) => acc + cur, 0);
-    const LoadingIndoor = bpf * this.plumeConcentration;
+    const LoadingIndoor = bpf * plumeConcentration;
     this.$set(this.parameterValue.areaContaminated.values.Indoor, 'value', buildingAreaSum);
     this.$set(this.parameterValue.loading.values.Indoor, 'value', LoadingIndoor);
-    this.$set(this.parameterValue, 'buildingProtectionFactor', bpf);
 
     // underground
     const undergroundArea = subwayLineLengthsInPlume.reduce((acc, cur) => acc + cur, 0) * subwayTunnelWidth;
-    const LoadingUnderground = spf * this.plumeConcentration;
+    const LoadingUnderground = spf * plumeConcentration;
     this.$set(this.parameterValue.areaContaminated.values.Underground, 'value', undergroundArea);
     this.$set(this.parameterValue.loading.values.Underground, 'value', LoadingUnderground);
-    this.$set(this.parameterValue, 'subwayProtectionFactor', spf);
-    this.$set(this.parameterValue, 'subwayTunnelWidth', subwayTunnelWidth);
 
     // outdoor
     const outdoorArea = totalArea - buildingAreaSum - undergroundArea;
     this.$set(this.parameterValue.areaContaminated.values.Outdoor, 'value', outdoorArea);
-    this.$set(this.parameterValue.loading.values.Outdoor, 'value', this.plumeConcentration);
+    this.$set(this.parameterValue.loading.values.Outdoor, 'value', plumeConcentration);
 
     this.parameterValue.mapSource = source;
-
-    console.log(this.parameterValue);
   }
 }
 </script>

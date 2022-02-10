@@ -33,12 +33,16 @@ import ParameterList from '@/implementations/parameter/ParameterList';
 import ParameterFilter from '@/implementations/parameter/ParameterFilter';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 import ParameterWrapperFilter from '@/implementations/parameter/ParameterWrapperFilter';
+import { nameof } from 'ts-simple-nameof';
+import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
+import { StoreNames } from '@/constants/store/store';
 
 @Component
 export default class ParamErrorsModals extends Vue {
   @VModel({ default: () => false }) isVisible!: boolean;
 
-  @State scenarioDefinition!: ParameterWrapperList;
+  @State(nameof<IParameterSelection>((s) => s.scenarioDefinition), { namespace: StoreNames.PARAMETER_SELECTION })
+  scenarioDefinition!: ParameterWrapperList;
 
   // eslint-disable-next-line class-methods-use-this
   get unsetParams(): string[] {

@@ -1,5 +1,5 @@
 <template>
-  <enumerated-parameter-display :parameterValue="current" :baseline="baseline" />
+  <enumerated-parameter-display :parameterValue="current" :baseline="baseline" @param-changed="paramChanged" />
 </template>
 
 <script lang="ts">
@@ -28,6 +28,10 @@ export default class PlumeConcentration extends Vue {
 
   @State(nameof<IParameterSelection>((s) => s.currentSelectedParameter), { namespace: StoreNames.PARAMETER_SELECTION })
   currentSelectedParameter!: ParameterWrapper;
+
+  paramChanged(): void {
+    this.$emit('param-changed');
+  }
 
   created(): void {
     const { plumeConcentrationFactor, metaData } = this.currentSelectedParameter.baseline as ContaminationDefinition;

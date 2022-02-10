@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
 import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
 import { State } from 'vuex-class';
@@ -14,7 +14,7 @@ import { StoreNames } from '@/constants/store/store';
 import EnumeratedParameterDisplay from '../distributionDisplay/EnumeratedParameterDisplay.vue';
 
 @Component({ components: { EnumeratedParameterDisplay } })
-export default class SubwayControls extends Vue {
+export default class BuildingControls extends Vue {
   @Prop() parameterValue!: ContaminationDefinition;
 
   baseline = new EnumeratedParameter();
