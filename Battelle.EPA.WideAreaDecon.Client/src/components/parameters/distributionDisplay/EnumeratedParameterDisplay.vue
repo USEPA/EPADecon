@@ -216,7 +216,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     }
   }
 
-  @Watch('parameterValue', { deep: true })
+  @Watch('parameterValue')
   onParameterChanged(): void {
     if (this.isTextDistribution) {
       return;
@@ -226,6 +226,10 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
 
     [this.baselineCategory] = Object.values(this.baseline.values);
+  }
+
+  @Watch('parameterValue', { deep: true })
+  emitChange(): void {
     this.$emit('param-changed');
   }
 
