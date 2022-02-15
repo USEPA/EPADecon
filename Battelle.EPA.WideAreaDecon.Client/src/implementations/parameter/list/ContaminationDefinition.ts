@@ -27,9 +27,9 @@ export default class ContaminationDefinition implements IParameter {
 
   static plumeFactorMetaData = {
     category: 'Contamination Definition',
-    lowerLimit: 0,
-    upperLimit: 100,
-    units: '', // TODO figure out units
+    lowerLimit: -1,
+    upperLimit: 10,
+    units: 'log(cfu / m^2)', // TODO figure out units
     step: 0.01,
   };
 
