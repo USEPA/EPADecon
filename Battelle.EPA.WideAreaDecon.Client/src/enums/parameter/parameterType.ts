@@ -14,6 +14,7 @@ enum ParameterType {
   textValue = 'Text',
   enumeratedFraction = 'Enumerated Fraction',
   enumeratedParameter = 'Enumerated Parameter',
+  contaminationDefinition = 'Contamination Definition',
   null = 'Null',
 }
 

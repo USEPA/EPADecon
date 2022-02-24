@@ -102,13 +102,17 @@ export default class DistributionDisplay {
         return 'enumerated-parameter-display';
       case ParameterType.textValue:
         return 'text-value-display';
+      case ParameterType.contaminationDefinition:
+        return 'contamination-definition-display';
       default:
         return 'unknown-display';
     }
   }
 
   get xAxisLabel(): string {
-    return `${this.baseline.metaData.description} (${this.baseline.metaData.units})` ?? '';
+    return `${this.baseline.metaData.description} ${
+      this.baseline.metaData.units?.length ? `(${this.baseline.metaData.units})` : ''
+    }`;
   }
 
   constructor(baseline: IParameter, current: IParameter) {

@@ -1,9 +1,13 @@
+import { UserVuetifyPreset } from 'vuetify';
 import INavigationItem from '@/interfaces/configuration/INavigationItem';
 import IApplicationAction from '@/interfaces/configuration/IApplicationAction';
-import IRunSettings from '../runSettings/IRunSettings';
 
 export default interface IAppSettings {
+  theme: Partial<UserVuetifyPreset>;
   navigationItems: INavigationItem[];
   applicationActions: IApplicationAction[];
-  runSettings: IRunSettings;
+  applicationTitle: string;
+  applicationVersion: string;
+  publisherName: string;
+  errorIcon: string;
 }

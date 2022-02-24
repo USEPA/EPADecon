@@ -1,40 +1,45 @@
 <template>
-  <v-card height="100%" width="100%">
-    <v-row dense>
-      <v-col cols="5" xl="6">
-        <v-card-title v-if="shouldIncludeTitle">{{ currentSelectedParameter.path }}</v-card-title>
-      </v-col>
-      <v-col cols="3" xl="2" offset="1">
-        <v-overflow-btn
-          v-if="isChangeableDist"
-          @change="onDistributionTypeChange"
-          class="my-2"
-          v-model="currentDistType"
-          :items="distNames"
-          filled
-          dense
-        ></v-overflow-btn>
-      </v-col>
-      <v-col cols="3" xl="2" style="margin-top: 7px">
-        <v-btn
-          height="45"
-          v-if="shouldIncludeTitle"
-          :disabled="!parameterHasChanged"
-          color="secondary"
-          @click="resetParameter"
-        >
-          Reset Parameter
-        </v-btn>
-      </v-col>
-    </v-row>
-    <v-divider color="grey" v-if="shouldIncludeTitle" />
-    <component
-      :key="currentSelectedParameter.path"
-      :is="display.distComponent"
-      :parameter-value="currentSelectedParameter.current"
-    />
-    <v-container v-if="display.displayChart">
-      <div class="py-5" style="width: 100%; height: 400px">
+  <v-card min-height="100%" width="100%">
+    <v-container>
+      <v-row v-if="shouldIncludeTitle || isChangeableDist" dense>
+        <v-col cols="5" xl="6">
+          <v-card-title v-if="shouldIncludeTitle">{{ currentSelectedParameter.path }}</v-card-title>
+        </v-col>
+
+        <v-col cols="3" xl="2" offset="1">
+          <v-overflow-btn
+            v-if="isChangeableDist"
+            @change="onDistributionTypeChange"
+            class="my-2"
+            v-model="currentDistType"
+            :items="distNames"
+            filled
+            dense
+          />
+        </v-col>
+
+        <v-col cols="3" xl="2" style="margin-top: 7px">
+          <v-btn
+            height="45"
+            v-if="shouldIncludeTitle"
+            :disabled="!parameterHasChanged"
+            color="secondary"
+            @click="resetParameter"
+          >
+            Reset Parameter
+          </v-btn>
+        </v-col>
+      </v-row>
+
+      <v-divider color="grey" v-if="shouldIncludeTitle" />
+
+      <component
+        :key="currentSelectedParameter.path"
+        :is="display.distComponent"
+        :parameter-value="currentSelectedParameter.current"
+      />
+
+      <div v-if="display.displayChart" class="py-5" style="width: 100%; height: 400px">
         <distribution-chart
           :distribution-series="display.chartData"
           :x-axis-label="display.xAxisLabel"
@@ -77,6 +82,13 @@ import TYPES from '@/dependencyInjection/types';
 import { DistributionChart } from 'battelle-common-vue-charting';
 import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
+import ContaminationDefinitionDisplay from '@/components/parameters/maps/ContaminationDefinitionDisplay.vue';
+import { ScenarioDefinitionMode } from '@/types';
+import { nameof } from 'ts-simple-nameof';
+import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
+import { StoreNames } from '@/constants/store/store';
+import { JobsStoreActions } from '@/constants/store/Jobs';
+import { ParameterSelectionStoreGetters, ParameterSelectionStoreMutations } from '@/constants/store/ParameterSelection';
 
 @Component({
   components: {
@@ -95,16 +107,22 @@ import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDi
     BimodalTruncatedNormalDisplay,
     EnumeratedFractionDisplay,
     EnumeratedParameterDisplay,
+    ContaminationDefinitionDisplay,
     DistributionChart,
     TextValueDisplay,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
-  @State currentSelectedParameter!: ParameterWrapper;
+  @State(nameof<IParameterSelection>((s) => s.currentSelectedParameter), { namespace: StoreNames.PARAMETER_SELECTION })
+  currentSelectedParameter!: ParameterWrapper;
 
-  @Getter hasResults!: boolean;
+  @State(nameof<IParameterSelection>((s) => s.scenarioDefinitionMode), { namespace: StoreNames.PARAMETER_SELECTION })
+  scenarioDefinitionMode!: ScenarioDefinitionMode;
 
-  @Action resetCurrentJobRequest!: () => void;
+  @Getter(ParameterSelectionStoreGetters.CAN_RUN, { namespace: StoreNames.PARAMETER_SELECTION }) hasResults!: boolean;
+
+  @Action(JobsStoreActions.RESET_CURRENT_JOB_REQUEST, { namespace: StoreNames.JOBS })
+  resetCurrentJobRequest!: () => void;
 
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
@@ -144,13 +162,15 @@ export default class ParameterDistributionSelector extends Vue {
   }
 
   resetParameter(): void {
-    this.$store.commit('resetCurrentSelectedParameter');
+    this.$store.commit(
+      `${StoreNames.PARAMETER_SELECTION}/${ParameterSelectionStoreMutations.RESET_CURRENT_SELECTED_PARAMETER}`,
+    );
     this.currentDistType = this.currentSelectedParameter.type;
   }
 
   onDistributionTypeChange(): void {
     this.$store.commit(
-      'changeCurrentParameterType',
+      `${StoreNames.PARAMETER_SELECTION}/${ParameterSelectionStoreMutations.CHANGE_CURRENT_PARAMETER_TYPE}`,
       this.parameterConverter.convertToNewType(this.currentSelectedParameter.current, this.currentDistType),
     );
   }

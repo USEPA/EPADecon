@@ -19,5 +19,3 @@ export default class ParameterSelectionDrawer extends Vue {
   @Prop({ required: true }) parameters!: ParameterList;
 }
 </script>
-
-<style scoped lang="scss"></style>

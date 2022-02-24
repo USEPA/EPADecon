@@ -1,11 +1,9 @@
 <template>
-  <v-container fill-height fluid>
-    <v-row align="center" justify="center">
-      <v-col>
-        <p class="text-center display-3">Select a parameter to edit from the left menu...</p>
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-row align="center" class="mt-16" justify="center">
+    <v-col>
+      <p class="text-center display-3">Select a parameter to edit from the left menu...</p>
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">

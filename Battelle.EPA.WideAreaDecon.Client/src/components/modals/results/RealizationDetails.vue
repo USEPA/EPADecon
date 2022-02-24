@@ -100,7 +100,7 @@ export default class RealizationDetails extends Vue {
 
   @Watch('realizationNumber')
   setValues(): void {
-    this.results = store.state.currentJob.results[this.realizationNumber - 1];
+    this.results = store.state.JOBS.currentJob.results[this.realizationNumber - 1];
 
     this.totalCost = this.getResult(Result.TotalCost) ?? 0;
     this.areaContaminated = this.getResult(Result.AreaContaminated) ?? 0;

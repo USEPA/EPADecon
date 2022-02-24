@@ -24,7 +24,13 @@
                   <v-spacer />
                   <home-option-help :item="item"></home-option-help>
                 </v-toolbar>
-                <v-card :color="'secondary'" class="d-flex align-center" height="300" @click="itemSelected(item)">
+                <v-card
+                  :color="'secondary'"
+                  class="d-flex align-center"
+                  height="300"
+                  rounded="t-0"
+                  @click="itemSelected(item)"
+                >
                   <v-img :src="getImage(item.image)" max-width="300" />
                 </v-card>
               </v-container>
@@ -55,12 +61,18 @@ import IHomeOptions from '@/interfaces/configuration/IHomeOptions';
 import HomeOptionHelp from '@/components/modals/HomeOptionHelp.vue';
 import LoadPreDefinedScenario from '@/components/modals/load/LoadPreDefinedScenario.vue';
 import LoadPreviousScenario from '@/components/modals/load/LoadPreviousScenario.vue';
+import { nameof } from 'ts-simple-nameof';
+import { StoreNames } from '@/constants/store/store';
+import IClientConfiguration from '@/interfaces/configuration/IClientConfiguration';
+import { NavigationSettingsStoreMutations } from '@/constants/store/NavigationSettings';
 
 @Component({ components: { HomeOptionHelp, LoadPreDefinedScenario, LoadPreviousScenario } })
 export default class Home extends Vue {
-  @State applicationTitle!: string;
+  @State(nameof<IClientConfiguration>((s) => s.applicationTitle), { namespace: StoreNames.CLIENT_CONFIGURATION })
+  applicationTitle!: string;
 
-  @State applicationSponsor!: string;
+  @State(nameof<IClientConfiguration>((s) => s.applicationSponsor), { namespace: StoreNames.CLIENT_CONFIGURATION })
+  applicationSponsor!: string;
 
   data = container.get<IHomeOptionsProvider>(TYPES.HomeOptionsProvider).getOptions();
 
@@ -84,7 +96,7 @@ export default class Home extends Vue {
   }
 
   created(): void {
-    this.$store.commit('disableNavigationTabs');
+    this.$store.commit(`${StoreNames.NAVIGATION_SETTINGS}/${NavigationSettingsStoreMutations.DISABLE_NAVIGATION_TABS}`);
   }
 }
 </script>

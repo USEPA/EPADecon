@@ -18,7 +18,6 @@ import IApplicationActionProvider from './interfaces/providers/IApplicationActio
 import INavigationItemProvider from './interfaces/providers/INavigationItemProvider';
 import IScenarioParameterProvider from './interfaces/providers/IScenarioParameterProvider';
 import ParameterList from './implementations/parameter/ParameterList';
-import ParameterSelection from './store/parameterSelection/ParameterSelection';
 
 Vue.config.productionTip = false;
 
@@ -56,9 +55,19 @@ const navigationItems = container.get<INavigationItemProvider>(TYPES.NavigationI
 Promise.all([clientConfigPromise, scenarioDefPromise, scenarioParamsPromise]).finally(() => {
   store.replaceState({
     ...store.state,
-    ...defaultConfig,
-    ...new ParameterSelection(defaultScenario.toWrapperList(), defaultParameters.toWrapperList()),
-    ...{ applicationActions, navigationItems },
+    CLIENT_CONFIGURATION: {
+      ...defaultConfig,
+    },
+    PARAMETER_SELECTION: {
+      ...store.state.PARAMETER_SELECTION,
+      scenarioDefinition: defaultScenario.toWrapperList(),
+      scenarioParameters: defaultParameters.toWrapperList(),
+    },
+    APPSETTINGS: {
+      ...store.state.APPSETTINGS,
+      applicationActions,
+      navigationItems,
+    },
   });
   const vuetify = GetVuetify(defaultConfig);
   new Vue({
