@@ -28,15 +28,14 @@ jobs:
   - task: UseNode@1
     inputs:
       version: '12.x'
-  - task: Npm@1
+  
+  - task: CmdLine@2
     inputs:
-      command: 'install'
-      workingDir: 'Battelle.EPA.WideAreaDecon.Client'
-  - task: Npm@1
+      script: 'npm install'
+
+  - task: CmdLine@2
     inputs:
-      command: 'custom'
-      workingDir: 'Battelle.EPA.WideAreaDecon.Client'
-      customCommand: 'run test'
+      script: 'npm run test'
 
 - job: Package_Installation_Files
   pool: 'default'
