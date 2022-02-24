@@ -1,6 +1,6 @@
 # Introduction
 
-
+The Wide-Area Decontamination Tool estimates the cost and time associated with a remediation effort following the release of a biological agent in human-usable indoor, outdoor, and underground areas.
 
 # Getting Started
 
