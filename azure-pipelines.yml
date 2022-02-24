@@ -32,10 +32,12 @@ jobs:
   - task: CmdLine@2
     inputs:
       script: 'npm install'
+      workingDirectory: Battelle.EPA.WideAreaDecon.Client
 
   - task: CmdLine@2
     inputs:
       script: 'npm run test'
+      workingDirectory: Battelle.EPA.WideAreaDecon.Client
 
 - job: Package_Installation_Files
   pool: 'default'
