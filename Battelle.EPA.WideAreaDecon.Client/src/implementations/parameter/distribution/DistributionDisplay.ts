@@ -51,6 +51,7 @@ export default class DistributionDisplay {
     switch (this.current.type) {
       case ParameterType.uniform:
       case ParameterType.pert:
+      case ParameterType.scaledBeta:
       case ParameterType.truncatedNormal:
       case ParameterType.bimodalTruncatedNormal:
       case ParameterType.logUniform:
@@ -79,6 +80,8 @@ export default class DistributionDisplay {
         return 'log-uniform-display';
       case ParameterType.pert:
         return 'beta-pert-display';
+      case ParameterType.scaledBeta:
+        return 'scaled-beta-display';
       case ParameterType.truncatedLogNormal:
         return 'truncated-log-normal-display';
       case ParameterType.truncatedNormal:

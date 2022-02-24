@@ -14,6 +14,15 @@ export default class JobResultProvider implements IJobResultProvider {
 
   private savedDetails: { [key: string]: IResultDetails } = {};
 
+  /** List of results that have a total value listed in event results */
+  private readonly totalInEventResults = [
+    Result.AreaContaminated,
+    Result.AqueousWasteProduced,
+    Result.OnSiteDays,
+    Result.SolidWasteProduced,
+    Result.TotalCost,
+  ];
+
   /* eslint-disable class-methods-use-this */
   exportJobResults(job: JobRequest): void {
     const { results } = job;
@@ -179,28 +188,38 @@ export default class JobResultProvider implements IJobResultProvider {
     const step = numLocations * numOccurrencesPerLocation;
     const sums: number[] = [];
 
-    for (let i = 0, l1 = instances.length; i < l1; i += step) {
-      const next: number[] = [];
-      if (oneOccurrenceAtLocation) {
-        next.push(...instances.splice(0, numLocations));
-      } else {
-        // get sum of instances for each location
-        for (let j = 0; j < numLocations; j += 1) {
-          const locationVals = instances.splice(0, numOccurrencesPerLocation);
-          let sum = 0;
-          for (let k = 0; k < numOccurrencesPerLocation; k += 1) {
-            sum += locationVals[k];
-          }
-          next.push(sum);
+    if (this.totalExistsInEventResults(result)) {
+      // get value from event results rather than summing up instances
+      for (let i = 0; i < allResults.length; i += 1) {
+        const sum = this.findEventResult(allResults[i], result);
+        if (sum !== undefined) {
+          sums.push(sum);
         }
       }
+    } else {
+      for (let i = 0, l1 = instances.length; i < l1; i += step) {
+        const next: number[] = [];
+        if (oneOccurrenceAtLocation) {
+          next.push(...instances.splice(0, numLocations));
+        } else {
+          // get sum of instances for each location
+          for (let j = 0; j < numLocations; j += 1) {
+            const locationVals = instances.splice(0, numOccurrencesPerLocation);
+            let sum = 0;
+            for (let k = 0; k < numOccurrencesPerLocation; k += 1) {
+              sum += locationVals[k];
+            }
+            next.push(sum);
+          }
+        }
 
-      // sum the locations
-      let sum = 0;
-      for (let j = 0, l2 = next.length; j < l2; j += 1) {
-        sum += next[j];
+        // sum the locations
+        let sum = 0;
+        for (let j = 0, l2 = next.length; j < l2; j += 1) {
+          sum += next[j];
+        }
+        sums.push(sum);
       }
-      sums.push(sum);
     }
 
     // credit to Foxcode's answer: https://stackoverflow.com/a/53577159
@@ -251,6 +270,10 @@ export default class JobResultProvider implements IJobResultProvider {
     this.savedResults = {};
   }
 
+  private totalExistsInEventResults(result: Result): boolean {
+    return this.totalInEventResults.includes(result);
+  }
+
   private findResultValues(
     realization: IJobResultRealization,
     result: Result,
@@ -278,6 +301,28 @@ export default class JobResultProvider implements IJobResultProvider {
         }
       }
     }
+  }
+
+  private findEventResult(realization: IJobResultRealization, result: Result): number | undefined {
+    const { eventResults } = realization;
+    let eventResult = '';
+    switch (result) {
+      case Result.OnSiteDays:
+        eventResult = 'totalEventDuration';
+        break;
+      case Result.AreaContaminated:
+        eventResult = 'totalContaminationArea';
+        break;
+      case Result.TotalCost:
+        eventResult = 'totalEventCost';
+        break;
+      default:
+        eventResult = `total${result.slice(0, 1).toUpperCase() + result.slice(1)}`;
+    }
+
+    return typeof eventResults[eventResult] === 'number'
+      ? (eventResults[eventResult] as number)
+      : eventResults.otherResults[result];
   }
 
   private isIndoor(location: string): boolean {

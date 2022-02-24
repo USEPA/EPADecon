@@ -78,6 +78,7 @@ import UnknownDisplay from '@/components/parameters/distributionDisplay/UnknownD
 import ConstantDisplay from '@/components/parameters/distributionDisplay/ConstantDisplay.vue';
 import LogUniformDisplay from '@/components/parameters/distributionDisplay/LogUniformDisplay.vue';
 import BetaPertDisplay from '@/components/parameters/distributionDisplay/BetaPertDisplay.vue';
+import ScaledBetaDisplay from '@/components/parameters/distributionDisplay/ScaledBetaDisplay.vue';
 import TruncatedLogNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedLogNormalDisplay.vue';
 import TruncatedNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedNormalDisplay.vue';
 import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNormalDisplay.vue';
@@ -102,6 +103,7 @@ import store from '@/store';
     ConstantDisplay,
     LogUniformDisplay,
     BetaPertDisplay,
+    ScaledBetaDisplay,
     TruncatedLogNormalDisplay,
     TruncatedNormalDisplay,
     UniformDisplay,

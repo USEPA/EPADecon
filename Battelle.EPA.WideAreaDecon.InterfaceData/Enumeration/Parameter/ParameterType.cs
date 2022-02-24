@@ -19,6 +19,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
         [EnumMember(Value = "Beta PERT")] 
         Pert,
 
+        [EnumMember(Value = "Scaled Beta")]
+        ScaledBeta,
+
         [EnumMember(Value = "Truncated Normal")]
         TruncatedNormal,
 

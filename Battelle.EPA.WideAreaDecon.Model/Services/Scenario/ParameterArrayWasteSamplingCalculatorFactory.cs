@@ -65,7 +65,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 wsParameters.volumePerWasteSample,
                 wsParameters.labUptimesHours,
                 wsParameters.samplePackageTime,
-                wsParameters.labDistanceFromSite,
+                wsParameters.sampleShippingTime,
                 wsParameters.labThroughput
             );
 

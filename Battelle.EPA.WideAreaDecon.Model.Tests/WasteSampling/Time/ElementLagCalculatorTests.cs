@@ -21,7 +21,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
             var samplePackageTime = 1.63;
             var labThroughput = new List<double> { 50, 50, 50 };
             var labUptimesHours = new List<double> { 12.0, 12.0, 12.0 };
-            var labDistanceFromSite = new List<double> { 40.0, 40.0, 40.0 };
+            var sampleShippingTime = new List<double> { 24.0, 24.0, 24.0 };
 
             Calculator = new ElementLagCalculator(
                 solidWastePerSurfaceArea,
@@ -30,13 +30,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
                 volumePerWasteSample,
                 labUptimesHours, 
                 samplePackageTime,
-                labDistanceFromSite,
+                sampleShippingTime,
                 labThroughput
             );
         }
 
         [Test]
-        public void CalculateCSElementLagTime()
+        public void CalculateWSElementLagTime()
         {
             var numberLabs = 3;
             var sampleTimeTransmitted = 24.0;
@@ -49,7 +49,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(13.2566819020775, Calculator.CalculateElementLagTime(numberLabs, sampleTimeTransmitted, fractionSampled, areaContaminated), 
+            Assert.AreEqual(13.2190230334327, Calculator.CalculateElementLagTime(numberLabs, sampleTimeTransmitted, fractionSampled, areaContaminated), 
                 1e-6, "Incorrect element lag cost calculated");
         }
     }

@@ -77,23 +77,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
         private CharacterizationSamplingParameters SetCharacterizationSamplingParameters()
         {
             var labUptimesHours = new List<double>();
-            var labDistanceFromSite = new List<double>();
+            var sampleShippingTime = new List<double>();
             var labThroughput = new List<double>();
 
-            var fractionSurfaceSampled = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
+            var fractionSurfaceSampled = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
             var fractionSampledWipe =  fractionSurfaceSampled * 0.5;
             var fractionSampledHepa = fractionSurfaceSampled * 0.5;
             var surfaceAreaPerWipe = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per Wipe").CreateDistribution().Draw();
-            var surfaceAreaPerHepa = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per HEPA Sock").CreateDistribution().Draw();
+            var surfaceAreaPerHepa = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per Vacuum Sample").CreateDistribution().Draw();
             var wipesPerHrPerTeam = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Wipes per Hour per Team").CreateDistribution().Draw();
-            var hepaSocksPerHrPerTeam = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "HEPA Socks per Hour per Team").CreateDistribution().Draw();
+            var hepaSocksPerHrPerTeam = _characterizationSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Vacuum Samples per Hour per Team").CreateDistribution().Draw();
             var numTeams = _characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
             var samplePackageTime = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Packaging Time per Sample").CreateDistribution().Draw();
             var numLabs = (int)_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Labs").CreateDistribution().Draw();
             for (int i = 0; i < numLabs; i++)
             {
                 labUptimesHours.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Uptime Hours per Day").CreateDistribution().Draw());
-                labDistanceFromSite.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance from Site").CreateDistribution().Draw());
+                sampleShippingTime.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Sample Shipping Time").CreateDistribution().Draw());
                 labThroughput.Add(_characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Throughput Samples per Day").CreateDistribution().Draw());
             }
             var resultTransmissionToIC = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Time of Result Transmission to IC").CreateDistribution().Draw();
@@ -140,7 +140,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 samplePackageTime,
                 numLabs,
                 labUptimesHours,
-                labDistanceFromSite,
+                sampleShippingTime,
                 labThroughput,
                 resultTransmissionToIC,
                 personnelReqPerTeam,
@@ -224,7 +224,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             }
             foreach (ApplicationMethod method in Enum.GetValues(typeof(ApplicationMethod)))
             {
-                treatmentDaysPerAm.Add(method, _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon + Drying Days").CreateDistribution().Draw());
+                treatmentDaysPerAm.Add(method, _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Decon, Drying, and Venting Days").CreateDistribution().Draw());
             }
 
             var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
@@ -285,23 +285,23 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
         private ClearanceSamplingParameters SetClearanceSamplingParameters()
         {
             var labUptimesHours = new List<double>();
-            var labDistanceFromSite = new List<double>();
+            var sampleShippingTime = new List<double>();
             var labThroughput = new List<double>();
 
-            var fractionSurfaceSampled = _clearanceSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
+            var fractionSurfaceSampled = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction of Surface Sampled").CreateDistribution().Draw();
             var fractionSampledWipe = fractionSurfaceSampled * 0.5;
             var fractionSampledHepa = fractionSurfaceSampled * 0.5;
             var surfaceAreaPerWipe = _clearanceSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per Wipe").CreateDistribution().Draw();
-            var surfaceAreaPerHepa = _clearanceSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per HEPA Sock").CreateDistribution().Draw();
+            var surfaceAreaPerHepa = _clearanceSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Surface Area per Vacuum Sample").CreateDistribution().Draw();
             var wipesPerHrPerTeam = _clearanceSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Wipes per Hour per Team").CreateDistribution().Draw();
-            var hepaSocksPerHrPerTeam = _clearanceSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "HEPA Socks per Hour per Team").CreateDistribution().Draw();
+            var hepaSocksPerHrPerTeam = _clearanceSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Vacuum Samples per Hour per Team").CreateDistribution().Draw();
             var numTeams = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
             var samplePackageTime = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Packaging Time per Sample").CreateDistribution().Draw();
             var numLabs = (int)_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Labs").CreateDistribution().Draw();
             for (int i = 0; i < numLabs; i++)
             {
                 labUptimesHours.Add(_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Uptime Hours per Day").CreateDistribution().Draw());
-                labDistanceFromSite.Add(_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance from Site").CreateDistribution().Draw());
+                sampleShippingTime.Add(_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Sample Shipping Time").CreateDistribution().Draw());
                 labThroughput.Add(_clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Throughput Samples per Day").CreateDistribution().Draw());
             }
             var resultTransmissionToIC = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Time of Result Transmission to IC").CreateDistribution().Draw();
@@ -348,7 +348,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 samplePackageTime,
                 numLabs,
                 labUptimesHours,
-                labDistanceFromSite,
+                sampleShippingTime,
                 labThroughput,
                 resultTransmissionToIC,
                 personnelReqPerTeam,
@@ -365,10 +365,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
         private WasteSamplingParameters SetWasteSamplingParameters()
         {
             var labUptimesHours = new List<double>();
-            var labDistanceFromSite = new List<double>();
+            var sampleShippingTime = new List<double>();
             var labThroughput = new List<double>();
 
-            double fractionSampled = _wasteSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Fraction of Waste Sampled").CreateDistribution().Draw();
+            double fractionSampled = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Fraction of Waste Sampled").CreateDistribution().Draw();
             double massPerWasteSample = _wasteSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Mass per Waste Sample").CreateDistribution().Draw();
             double volumePerWasteSample = _wasteSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Volume per Waste Sample").CreateDistribution().Draw();
             double wasteSamplesPerHrPerTeam = _wasteSamplingParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Waste Samples per Hour per Team").CreateDistribution().Draw();
@@ -399,7 +399,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             for (int i = 0; i < numLabs; i++)
             {
                 labUptimesHours.Add(_wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Uptime Hours per Day").CreateDistribution().Draw());
-                labDistanceFromSite.Add(_wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Distance from Site").CreateDistribution().Draw());
+                sampleShippingTime.Add(_wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Sample Shipping Time").CreateDistribution().Draw());
                 labThroughput.Add(_wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Lab Throughput Samples per Day").CreateDistribution().Draw());
             }
             var resultTransmissionToIC = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Time of Result Transmission to IC").CreateDistribution().Draw();
@@ -432,7 +432,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                 samplePackageTime,
                 numLabs,
                 labUptimesHours,
-                labDistanceFromSite,
+                sampleShippingTime,
                 labThroughput,
                 resultTransmissionToIC,
                 personnelReqPerTeam,
@@ -473,7 +473,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             var icRentalCostPerDay = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Rentals per Day (IC)").CreateDistribution().Draw();
             var icSuppliesCostPerDay = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Supplies Cost per Day (IC)").CreateDistribution().Draw();
             var wipeCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per One Wipe").CreateDistribution().Draw();
-            var hepaCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per One HEPA Sock").CreateDistribution().Draw();
+            var hepaCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per One Vacuum Sample").CreateDistribution().Draw();
             var wasteSampleCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per One Waste Sample").CreateDistribution().Draw();
             var respiratorCost = _costParameters.First(p => p.Name == "Safety").Parameters.First(n => n.MetaData.Name == "Respirator").CreateDistribution().Draw();
 
@@ -486,10 +486,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             };
 
             var wipeAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per Wipe Sample Analyzed").CreateDistribution().Draw();
-            var hepaAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per HEPA Sample Analyzed").CreateDistribution().Draw();
+            var hepaAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per Vacuum Sample Analyzed").CreateDistribution().Draw();
             var solidWasteSampleAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per Solid Waste Sample Analyzed").CreateDistribution().Draw();
             var liquidWasteSampleAnalysisCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost per Liquid Waste Sample Analyzed").CreateDistribution().Draw();
-            var vacuumRentalCostPerDay = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "HEPA Vacuum Rental per Day").CreateDistribution().Draw();
+            var vacuumRentalCostPerDay = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Vacuum Rental per Day").CreateDistribution().Draw();
             var costPerMassOfMaterialRemoved = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Material Removal per Mass").CreateDistribution().Draw();
             var deconAgentCostPerVolume = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Cost of Decon Agent").CreateDistribution().Draw();
             var deconMaterialsCost = _costParameters.First(p => p.Name == "Supplies").Parameters.First(n => n.MetaData.Name == "Decon Material Cost per Surface Area").CreateDistribution().Draw();
