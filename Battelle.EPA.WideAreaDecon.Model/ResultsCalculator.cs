@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling;
@@ -118,8 +118,6 @@ namespace Battelle.EPA.WideAreaDecon.Model
             for (int i = 0; i < results.generalResults.decontaminationRounds; i++)
             {
                 // redraw clearance sampling values for each new round of decontamination
-                parameters = parameterManager.RedrawParameters(areaContaminated, element);
-                // redraw characterization sampling values for each new round of decontamination
                 parameters = parameterManager.RedrawParameters(areaContaminated, element);
 
                 var resultsCalculator = parameterManager.SetDrawnParameters(parameters);

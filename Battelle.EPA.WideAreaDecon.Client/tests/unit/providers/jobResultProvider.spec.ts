@@ -15,10 +15,10 @@ describe('JobResultProvider tests', () => {
     const result = provider.getResultDetails(results, elementResult);
 
     // Assert
-    expect(result?.minimum).to.be.closeTo(105423639, 0.01);
-    expect(result?.maximum).to.be.closeTo(585818515, 0.01);
-    expect(result?.mean).to.be.closeTo(299191054, 0.01);
-    expect(result?.stdDev).to.be.closeTo(90854663.08, 0.01);
+    expect(result?.minimum).to.be.closeTo(114005969.309, 0.01);
+    expect(result?.maximum).to.be.closeTo(685279590.017, 0.01);
+    expect(result?.mean).to.be.closeTo(343915536.597, 0.01);
+    expect(result?.stdDev).to.be.closeTo(105544594.042, 0.01);
   });
 
   it('total area contaminated details are correct', () => {
@@ -57,10 +57,10 @@ describe('JobResultProvider tests', () => {
     const result = provider.getResultDetails(results, elementResult);
 
     // Assert
-    expect(result?.minimum).to.be.closeTo(5725.696, 0.01);
-    expect(result?.maximum).to.be.closeTo(40611.144, 0.01);
-    expect(result?.mean).to.be.closeTo(18800.77, 0.01);
-    expect(result?.stdDev).to.be.closeTo(6449.312, 0.01);
+    expect(result?.minimum).to.be.closeTo(2862.848, 0.01);
+    expect(result?.maximum).to.be.closeTo(20305.572, 0.01);
+    expect(result?.mean).to.be.closeTo(9400.384, 0.01);
+    expect(result?.stdDev).to.be.closeTo(3224.656, 0.01);
   });
 
   it('total decontamination rounds details are correct', () => {

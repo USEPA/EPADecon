@@ -94,10 +94,18 @@ import container from '@/dependencyInjection/config';
 import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 import TYPES from '@/dependencyInjection/types';
 import IChartJsWrapper from '@/interfaces/component/IChartJsWrapper';
+import { State } from 'vuex-class';
+import { nameof } from 'ts-simple-nameof';
+import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
+import { StoreNames } from '@/constants/store/store';
+import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 
 @Component({ components: { ScatterPlotWrapper } })
 export default class UniformXDependentDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: UniformXDependent;
+
+  @State(nameof<IParameterSelection>((s) => s.currentSelectedParameter), { namespace: StoreNames.PARAMETER_SELECTION })
+  scenarioParameters!: ParameterWrapper;
 
   private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
 

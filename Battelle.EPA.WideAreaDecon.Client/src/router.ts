@@ -8,11 +8,13 @@ import Home from '@/components/base/Home.vue';
 import ViewResults from '@/components/results/ViewResults.vue';
 import RealizationSummary from '@/components/results/RealizationSummary.vue';
 import store from '@/store';
+import { StoreNames } from './constants/store/store';
+import { JobsStoreGetters } from './constants/store/Jobs';
 
 Vue.use(Router);
 
 const pageRequiresResults = (to: Route, from: Route, next: NavigationGuardNext) => {
-  if (!store.getters.hasResults) {
+  if (!store.getters[`${StoreNames.JOBS}/${JobsStoreGetters.HAS_RESULTS}`]) {
     next({ name: 'defineScenario' });
   } else {
     next();

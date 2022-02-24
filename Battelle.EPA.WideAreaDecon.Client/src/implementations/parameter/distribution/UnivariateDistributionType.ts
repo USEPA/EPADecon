@@ -10,6 +10,7 @@ import BimodalTruncatedNormal from './BimodalTruncatedNormal';
 import LogNormal from './LogNormal';
 import Weibull from './Weibull';
 import TextValue from './TextValue';
+import ScaledBeta from './ScaledBeta';
 
 type UnivariateDistributionType =
   | BetaPERT
@@ -17,6 +18,7 @@ type UnivariateDistributionType =
   | Constant
   | LogNormal
   | LogUniform
+  | ScaledBeta
   | TruncatedLogNormal
   | TruncatedNormal
   | Uniform
@@ -30,6 +32,7 @@ function isUnivariateDistribution(param: IParameter): boolean {
     case ParameterType.logNormal:
     case ParameterType.logUniform:
     case ParameterType.pert:
+    case ParameterType.scaledBeta:
     case ParameterType.truncatedLogNormal:
     case ParameterType.truncatedNormal:
     case ParameterType.uniform:
