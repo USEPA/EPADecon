@@ -24,21 +24,15 @@
     <v-tooltip bottom :color="canRun ? 'info' : 'error'" :disabled="onResultsPage">
       <template v-slot:activator="{ on }">
         <div v-on="on" :class="canRun ? 'v-btn' : 'disabled-tool-tip'">
-          <v-btn
-            v-on="on"
-            @click="displayRunModal"
-            :disabled="!canRun"
-            :color="canRun ? 'secondary' : ''"
-            :style="{ visibility: onResultsPage ? 'hidden' : 'visible' }"
-          >
+          <v-btn v-on="on" @click="displayRunModal" :color="'secondary'" v-if="!onResultsPage && canRun">
             Run Scenario
           </v-btn>
+          <v-btn color="error" @click="displayErrorModal" v-if="!onResultsPage && !canRun"> Can't Run </v-btn>
         </div>
       </template>
       <span v-if="canRun">Runs the model and generates results</span>
       <span v-else>Please define scenario to run model...</span>
     </v-tooltip>
-
     <!-- Dropdown menu -->
     <v-menu left bottom v-if="false">
       <template v-slot:activator="{ on }">
@@ -115,22 +109,35 @@ import INavigationItem from '@/interfaces/configuration/INavigationItem';
 import container from '@/dependencyInjection/config';
 import IImageProvider from '@/interfaces/providers/IImageProvider';
 import TYPES from '@/dependencyInjection/types';
+import { nameof } from 'ts-simple-nameof';
+import { StoreNames } from '@/constants/store/store';
+import IClientConfiguration from '@/interfaces/configuration/IClientConfiguration';
+import IAppSettings from '@/interfaces/store/appSettings/IAppSettings';
+import INavigationSettings from '@/interfaces/store/navigationSettings/INavigationSettings';
+import { ParameterSelectionStoreGetters } from '@/constants/store/ParameterSelection';
+import { JobsStoreGetters } from '@/constants/store/Jobs';
+import { AppSettingsStoreMutations } from '@/constants/store/appsettings';
 
 @Component
 export default class NavigationBar extends Vue {
-  @State applicationTitle!: string;
+  @State(nameof<IClientConfiguration>((s) => s.applicationTitle), { namespace: StoreNames.CLIENT_CONFIGURATION })
+  applicationTitle!: string;
 
-  @State applicationAcronym!: string;
+  @State(nameof<IClientConfiguration>((s) => s.applicationAcronym), { namespace: StoreNames.CLIENT_CONFIGURATION })
+  applicationAcronym!: string;
 
-  @Getter canRun!: boolean;
+  @State(nameof<IAppSettings>((s) => s.applicationActions), { namespace: StoreNames.APPSETTINGS })
+  applicationActions!: IApplicationAction[];
 
-  @Getter hasResults!: boolean;
+  @State(nameof<IAppSettings>((s) => s.navigationItems), { namespace: StoreNames.APPSETTINGS })
+  navigationItems!: INavigationItem[];
 
-  @State applicationActions!: IApplicationAction[];
+  @State(nameof<INavigationSettings>((s) => s.enableNavigationTabs), { namespace: StoreNames.NAVIGATION_SETTINGS })
+  enableNavigationTabs!: boolean;
 
-  @State navigationItems!: INavigationItem[];
+  @Getter(ParameterSelectionStoreGetters.CAN_RUN, { namespace: StoreNames.PARAMETER_SELECTION }) canRun!: boolean;
 
-  @State enableNavigationTabs!: boolean;
+  @Getter(JobsStoreGetters.HAS_RESULTS, { namespace: StoreNames.JOBS }) hasResults!: boolean;
 
   imageProvider = container.get<IImageProvider>(TYPES.ImageProvider);
 
@@ -142,7 +149,7 @@ export default class NavigationBar extends Vue {
   enableResultsNavigationTab(newValue: boolean): void {
     const items = this.navigationItems;
     items[items.length - 1].enabled = newValue;
-    store.commit('setNavigationItems', items);
+    store.commit(`${StoreNames.APPSETTINGS}/${AppSettingsStoreMutations.SET_NAVIGATION_ITEMS}`, items);
   }
 
   get onResultsPage(): boolean {
@@ -152,6 +159,10 @@ export default class NavigationBar extends Vue {
 
   displayRunModal(): void {
     this.$emit('showRunModal');
+  }
+
+  displayErrorModal(): void {
+    this.$emit('showErrorModal');
   }
 
   getClassName(name: string): string {

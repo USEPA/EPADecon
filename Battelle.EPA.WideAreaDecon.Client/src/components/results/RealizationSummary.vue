@@ -36,9 +36,13 @@ import { State } from 'vuex-class';
 import { Component, Vue } from 'vue-property-decorator';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
 import container from '@/dependencyInjection/config';
+import JobRequest from '@/implementations/jobs/JobRequest';
 import TYPES from '@/dependencyInjection/types';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
 import { ChartData, ChartDataset, Point } from 'chart.js';
+import { nameof } from 'ts-simple-nameof';
+import ICurrentJob from '@/interfaces/store/jobs/ICurrentJob';
+import { StoreNames } from '@/constants/store/store';
 import { CycleColorProvider, DefaultChartData, CreateScatterChartDataset } from 'battelle-common-vue-charting';
 import Result from '@/enums/jobs/results/result';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
@@ -51,7 +55,8 @@ import RealizationTable from './RealizationTable.vue';
 
 @Component({ components: { ChartOptions, OutputStatisticsPanel, RealizationTable, ResultsChartPanel } })
 export default class RealizationSummary extends Vue {
-  @State((state) => state.currentJob.results) results!: IJobResultRealization[];
+  @State(nameof<ICurrentJob>((s) => s.currentJob), { namespace: StoreNames.JOBS })
+  currJob!: JobRequest;
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
@@ -126,8 +131,8 @@ export default class RealizationSummary extends Vue {
     const colors: string[] = [];
 
     if (label) {
-      for (let i = 0, l1 = this.results.length; i < l1; i += 1) {
-        const res = this.resultProvider.getResultElementBreakdown(this.results[i], label);
+      for (let i = 0, l1 = this.currJob.results.length; i < l1; i += 1) {
+        const res = this.resultProvider.getResultElementBreakdown(this.currJob.results[i], label);
         for (let j = 0, l2 = res.length; j < l2; j += 1) {
           if (elementResults[j] === undefined) {
             elementResults.push(res[j]);
@@ -189,8 +194,8 @@ export default class RealizationSummary extends Vue {
   }
 
   setChartData({ x, y }: RealizationSummary['selectedResults']): void {
-    const xDetails = x ? this.resultProvider.getResultDetails(this.results, x) : null;
-    const yDetails = y.map((r) => this.resultProvider.getResultDetails(this.results, r)?.values ?? []);
+    const xDetails = x ? this.resultProvider.getResultDetails(this.currJob.results, x) : null;
+    const yDetails = y.map((r) => this.resultProvider.getResultDetails(this.currJob.results, r)?.values ?? []);
 
     if (xDetails && !yDetails.length) {
       // histogram
@@ -231,11 +236,11 @@ export default class RealizationSummary extends Vue {
     const stats: this['outputStatistics'] = { x: null, y: [] };
 
     if (x) {
-      stats.x = this.resultProvider.getResultDetails(this.results, x) ?? null;
+      stats.x = this.resultProvider.getResultDetails(this.currJob.results, x) ?? null;
     }
     if (y) {
       stats.y = y
-        .map((r) => this.resultProvider.getResultDetails(this.results, r))
+        .map((r) => this.resultProvider.getResultDetails(this.currJob.results, r))
         .filter((d) => d) as IResultDetails[];
     }
 

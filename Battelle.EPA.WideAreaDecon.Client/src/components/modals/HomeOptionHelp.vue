@@ -24,6 +24,9 @@ import IImageProvider from '@/interfaces/providers/IImageProvider';
 import TYPES from '@/dependencyInjection/types';
 import IHomeOptionsProvider from '@/interfaces/providers/IHomeOptionsProvider';
 import IHomeOptions from '@/interfaces/configuration/IHomeOptions';
+import { nameof } from 'ts-simple-nameof';
+import IClientConfiguration from '@/interfaces/configuration/IClientConfiguration';
+import { StoreNames } from '@/constants/store/store';
 
 @Component
 export default class HomeOptionHelp extends Vue {
@@ -31,9 +34,11 @@ export default class HomeOptionHelp extends Vue {
 
   @Prop({ default: 600 }) maxWidth!: number;
 
-  @State applicationTitle!: string;
+  @State(nameof<IClientConfiguration>((s) => s.applicationTitle), { namespace: StoreNames.CLIENT_CONFIGURATION })
+  applicationTitle!: string;
 
-  @State applicationSponsor!: string;
+  @State(nameof<IClientConfiguration>((s) => s.applicationSponsor), { namespace: StoreNames.CLIENT_CONFIGURATION })
+  applicationSponsor!: string;
 
   dialog = false;
 

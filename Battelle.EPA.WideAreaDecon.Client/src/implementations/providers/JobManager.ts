@@ -1,5 +1,6 @@
 import JobStatus from '@/enums/jobs/jobStatus';
-import { HttpTransportType, HubConnection, HubConnectionBuilder, LogLevel } from '@aspnet/signalr';
+import { HttpTransportType, HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
+import RetryPolicy from './RetryPolicy';
 
 export default class JobManager {
   readonly apiEndpoint = '/api/job-status-hub';
@@ -22,6 +23,7 @@ export default class JobManager {
       .withUrl(this.apiEndpoint, {
         transport: HttpTransportType.WebSockets,
       })
+      .withAutomaticReconnect(new RetryPolicy())
       .configureLogging(LogLevel.Error) // change to debug if needed
       .build();
 

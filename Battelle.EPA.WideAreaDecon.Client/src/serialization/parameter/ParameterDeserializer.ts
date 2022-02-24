@@ -13,6 +13,7 @@ import TextValue from '@/implementations/parameter/distribution/TextValue';
 import EnumeratedFraction from '@/implementations/parameter/list/enumeratedFraction';
 import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
 import IParameter from '@/interfaces/parameter/IParameter';
+import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
 
 export default {
   predicate: (value: unknown): unknown => {
@@ -47,6 +48,8 @@ export default {
         return EnumeratedFraction;
       case ParameterType.enumeratedParameter:
         return EnumeratedParameter;
+      case ParameterType.contaminationDefinition:
+        return ContaminationDefinition;
       default:
         return undefined;
     }
