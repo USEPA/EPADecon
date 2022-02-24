@@ -85,28 +85,40 @@ import JobManager from '@/implementations/providers/JobManager';
 import JobStatus from '@/enums/jobs/jobStatus';
 import IGetJobResultsPayload from '@/interfaces/store/jobs/IGetJobResultsPayload';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
+import { nameof } from 'ts-simple-nameof';
+import { StoreNames } from '@/constants/store/store';
+import ICurrentJob from '@/interfaces/store/jobs/ICurrentJob';
+import { JobsStoreActions, JobsStoreGetters } from '@/constants/store/Jobs';
+import { ParameterSelectionStoreGetters } from '@/constants/store/ParameterSelection';
 
 @Component
 export default class RunScenario extends Vue {
   @VModel({ default: () => false }) isVisible!: boolean;
 
-  @Action createJobRequest!: (payload: ICreateJobRequestPayload) => void;
+  @Action(JobsStoreActions.CREATE_JOB_REQUEST, { namespace: StoreNames.JOBS })
+  createJobRequest!: (payload: ICreateJobRequestPayload) => void;
 
-  @Action postCurrentJobRequest!: (jobProvider: IJobProvider) => Promise<void>;
+  @Action(JobsStoreActions.POST_CURRENT_JOB_REQUEST, { namespace: StoreNames.JOBS })
+  postCurrentJobRequest!: (jobProvider: IJobProvider) => Promise<void>;
 
-  @Action getCurrentJobResults!: (payload: IGetJobResultsPayload) => Promise<void>;
+  @Action(JobsStoreActions.GET_CURRENT_JOB_RESULTS, { namespace: StoreNames.JOBS })
+  getCurrentJobResults!: (payload: IGetJobResultsPayload) => Promise<void>;
 
-  @Action cancelCurrentJobRequest!: (jobProvider: IJobProvider) => Promise<JobRequest>;
+  @Action(JobsStoreActions.CANCEL_CURRENT_JOB_REQUEST, { namespace: StoreNames.JOBS })
+  cancelCurrentJobRequest!: (jobProvider: IJobProvider) => Promise<JobRequest>;
 
-  @Action UpdateJobStatus!: (status: JobStatus) => void;
+  @Action(JobsStoreActions.UPDATE_JOB_STATUS, { namespace: StoreNames.JOBS })
+  UpdateJobStatus!: (status: JobStatus) => void;
 
-  @Action UpdateJobProgress!: (progress: number) => void;
+  @Action(JobsStoreActions.UPDATE_JOB_PROGRESS, { namespace: StoreNames.JOBS })
+  UpdateJobProgress!: (progress: number) => void;
 
-  @Getter canRun!: boolean;
+  @Getter(ParameterSelectionStoreGetters.CAN_RUN, { namespace: StoreNames.PARAMETER_SELECTION }) canRun!: boolean;
 
-  @Getter hasResults!: boolean;
+  @Getter(JobsStoreGetters.HAS_RESULTS, { namespace: StoreNames.JOBS }) hasResults!: boolean;
 
-  @State currentJob!: JobRequest;
+  @State(nameof<ICurrentJob>((s) => s.currentJob), { namespace: StoreNames.JOBS })
+  currentJob!: JobRequest;
 
   jobProvider = container.get<IJobProvider>(TYPES.JobProvider);
 

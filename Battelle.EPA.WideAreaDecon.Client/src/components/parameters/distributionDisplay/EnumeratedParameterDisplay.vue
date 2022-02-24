@@ -78,6 +78,7 @@ import UnknownDisplay from '@/components/parameters/distributionDisplay/UnknownD
 import ConstantDisplay from '@/components/parameters/distributionDisplay/ConstantDisplay.vue';
 import LogUniformDisplay from '@/components/parameters/distributionDisplay/LogUniformDisplay.vue';
 import BetaPertDisplay from '@/components/parameters/distributionDisplay/BetaPertDisplay.vue';
+import ScaledBetaDisplay from '@/components/parameters/distributionDisplay/ScaledBetaDisplay.vue';
 import TruncatedLogNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedLogNormalDisplay.vue';
 import TruncatedNormalDisplay from '@/components/parameters/distributionDisplay/TruncatedNormalDisplay.vue';
 import LogNormalDisplay from '@/components/parameters/distributionDisplay/LogNormalDisplay.vue';
@@ -93,6 +94,7 @@ import IParameterConverter from '@/interfaces/parameter/IParameterConverter';
 import TYPES from '@/dependencyInjection/types';
 import DistributionDisplay from '@/implementations/parameter/distribution/DistributionDisplay';
 import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDisplayProvider';
+import store from '@/store';
 
 @Component({
   components: {
@@ -101,6 +103,7 @@ import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDi
     ConstantDisplay,
     LogUniformDisplay,
     BetaPertDisplay,
+    ScaledBetaDisplay,
     TruncatedLogNormalDisplay,
     TruncatedNormalDisplay,
     UniformDisplay,
@@ -115,7 +118,8 @@ import IDistributionDisplayProvider from '@/interfaces/providers/IDistributionDi
 export default class EnumeratedParameterDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: EnumeratedParameter;
 
-  baseline: EnumeratedParameter = this.$store.state.currentSelectedParameter.baseline;
+  @Prop({ default: () => store.state.PARAMETER_SELECTION.currentSelectedParameter.baseline })
+  baseline!: EnumeratedParameter;
 
   selectedCategory: IParameter = Object.values(this.parameterValue.values)[0];
 
@@ -133,6 +137,17 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   }
 
   get distNames(): ParameterType[] {
+    if (
+      this.categories.find(
+        (val) =>
+          val[0] === 'Plume Concentration Factor' ||
+          val[0] === 'Building Protection Factor' ||
+          val[0] === 'Subway Protection Factor' ||
+          val[0] === 'Subway Tunnel Width',
+      )
+    ) {
+      return [ParameterType.constant];
+    }
     return this.baselineCategory.type === ParameterType.uniformXDependent
       ? [...changeableDistributionTypes, ParameterType.uniformXDependent]
       : changeableDistributionTypes;
@@ -167,7 +182,9 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
         ? this.baselineCategory
         : this.parameterConverter.convertToNewType(this.selectedCategory, this.currentDistType);
 
+    console.log(this.parameterValue.values[category]);
     this.parameterValue.values[category] = this.selectedCategory;
+    console.log(this.parameterValue.values[category]);
   }
 
   getSelectedCategoryName(): string {
@@ -210,8 +227,12 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     [[, this.selectedCategory]] = this.categories;
     this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
 
-    this.baseline = this.$store.state.currentSelectedParameter.baseline;
     [this.baselineCategory] = Object.values(this.baseline.values);
+  }
+
+  @Watch('parameterValue', { deep: true })
+  emitChange(): void {
+    this.$emit('param-changed');
   }
 
   created(): void {

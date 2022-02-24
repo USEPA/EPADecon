@@ -4,6 +4,7 @@ enum ParameterType {
   uniform = 'Uniform',
   uniformXDependent = 'Uniform X Dependent',
   pert = 'Beta PERT',
+  scaledBeta = 'Scaled Beta',
   truncatedNormal = 'Truncated Normal',
   bimodalTruncatedNormal = 'Bimodal Truncated Normal',
   logUniform = 'Log Uniform',
@@ -13,6 +14,7 @@ enum ParameterType {
   textValue = 'Text',
   enumeratedFraction = 'Enumerated Fraction',
   enumeratedParameter = 'Enumerated Parameter',
+  contaminationDefinition = 'Contamination Definition',
   null = 'Null',
 }
 

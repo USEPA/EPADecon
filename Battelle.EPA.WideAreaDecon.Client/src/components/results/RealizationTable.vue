@@ -142,12 +142,19 @@ import IElementResultSet from '@/interfaces/jobs/results/IElementResultSet';
 import BuildingCategory from '@/enums/parameter/buildingCategory';
 import RealizationDetails from '@/components/modals/results/RealizationDetails.vue';
 import Result from '@/enums/jobs/results/result';
+import { nameof } from 'ts-simple-nameof';
+import ICurrentJob from '@/interfaces/store/jobs/ICurrentJob';
+import { StoreNames } from '@/constants/store/store';
+import JobRequest from '@/implementations/jobs/JobRequest';
 
 @Component({ components: { RealizationDetails } })
 export default class RealizationTable extends Vue {
-  @State((state) => state.currentJob.results) results!: IJobResultRealization[];
+  @State(nameof<ICurrentJob>((s) => s.currentJob), { namespace: StoreNames.JOBS })
+  currJob!: JobRequest;
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
+
+  results!: IJobResultRealization[];
 
   displayedRunNumbers: number[] = [];
 
@@ -162,7 +169,7 @@ export default class RealizationTable extends Vue {
   tableWidth = 0;
 
   get locations(): string[] {
-    const existingLocations = Object.entries(this.results[0].scenarioResults).filter(
+    const existingLocations = Object.entries(this.currJob.results[0].scenarioResults).filter(
       ([, resultSet]) => resultSet !== null,
     );
 
@@ -180,7 +187,7 @@ export default class RealizationTable extends Vue {
   }
 
   get exisitingLocation(): IElementResultSet | null {
-    const { scenarioResults } = this.results[0];
+    const { scenarioResults } = this.currJob.results[0];
     if (scenarioResults.indoorResults) {
       // indoor exists
       return Object.values(scenarioResults.indoorResults)[0];
@@ -261,6 +268,10 @@ export default class RealizationTable extends Vue {
       return 'Value must be a whole number';
     }
     return true;
+  }
+
+  mounted(): void {
+    this.results = this.currJob.results;
   }
 }
 </script>

@@ -20,7 +20,7 @@ export default class DefaultNavigationItemProvider implements INavigationItemPro
           disabled: 'ERROR - scenario definition should always be enabled',
         },
         () => {
-          return store.state.scenarioDefinition.numberInvalidParameters();
+          return store.state.PARAMETER_SELECTION.scenarioDefinition.numberInvalidParameters();
         },
       ),
       new NavigationItem(
@@ -33,7 +33,7 @@ export default class DefaultNavigationItemProvider implements INavigationItemPro
           disabled: 'ERROR - modify parameters should always be enabled',
         },
         () => {
-          return store.state.scenarioParameters.numberInvalidParameters();
+          return store.state.PARAMETER_SELECTION.scenarioParameters.numberInvalidParameters();
         },
       ),
       new NavigationItem(
