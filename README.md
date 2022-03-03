@@ -16,10 +16,16 @@ The Wide-Area Decontamination Tool (WADT) estimates the cost and time associated
 - ASP.Net Core 3.1 (Visual Studio 2019)
 - Node (https://nodejs.org/en/download/)
 
-## Initial Steps
+## Running the Application
 
-1) Clone the repository in the folder of your choice
-2) 
+When first getting started with the application, clone the repository in the folder of your choice. This initial step should only be performed once
+
+To run the application:
+1) Open the Battelle.EPA.WideAreaDecon.Client folder in Visual Studio Code
+2) Click the "Run API Server" button on the bottom toolbar
+3) Once the API server is running, click the "Run and Debug" button on the lefthand side toolbar (or 'Ctrl + Shift + D') to open the correct toolbar
+4) Click the green 'Run and Debug' arrow at the top of the displayed toolbar
+5) This should open a web browser with the tool
 
 ## Development dependencies
 
