@@ -116,9 +116,10 @@ To add unit tests in .NET code:
   2. Select the 'Test' option in the top toolbar 
   3. Open the Test Explorer by selecting the 'Test Explorer' option from the dropdown menu
   4. Add a test to the Battelle.EPA.WideAreaDecon.API.Tests, Battelle.EPA.WideAreaDecon.InterfaceData.Tests, or Battelle.EPA.WideAreaDecon.Model.Tests project by clicking the dropdown arrow next to the project in the Solution Explorer pane
-  5. Add a new test file by right clicking the desired location, hovering over the 'Add' option, and selecting the 'New Item..." option
-  6. Add a Visual C# Class item, using the Test naming convention (adding 'Tests' to the end of the class name)
-  7. Follow the NUnit Testing Framework, documented here: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-nunit#creating-the-first-test
+  5. Add a new test file by right-clicking the desired location, hovering over the 'Add' option, and selecting the 'New Item..." option
+  6. Add a Visual C# Class item, using the Test naming convention (adding 'Tests' to the end of the class name being tested)
+  7. Follow the NUnit Testing Framework, documented here: 
+    - https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-nunit#creating-the-first-test
 
 ### Running Tests
 
@@ -128,6 +129,7 @@ To run unit tests in .NET code:
   3. Open the Test Explorer by selecting the 'Test Explorer' option from the dropdown menu
   4. All tests will show up in the Test Explorer pane. Run an individual test by selecting the desired test and clicking the 'Run' button in the Test Explorer pane
   5. Alternately, run all tests by clicking the 'Run All Tests In View' button in the Test Explorer pane
+  6. Test results should be printed to the Test Explorer pane
 
 ## Unit testing for VueJs typescript
 
@@ -135,13 +137,25 @@ To run unit tests in .NET code:
 
 To add unit tests in VueJs typescript:
   1. Open the Battelle.EPA.WideAreaDecon.Client folder in Visual Studio Code
-  2. 
+  2. Add a test by dropping down the 'tests > unit > providers' structure in the Explorer pane and right-clicking to add a .spec.ts file
+  3. Use the Test naming convention (adding 'Tested' to the end of the class name being tested)
+  4. Follow the Mocha Testing Framework and Chai Library, documented here: 
+    - https://mochajs.org/#getting-started
+    - https://www.chaijs.com/
+  5. The tests generally follow this pattern
+    - Setup, where conditions for the test are setup (i.e. creating parameters to pass to the method being tested)
+    - SUT (system under test), where the method being tested is called
+    - Assert, where the results created by the method are verified
+  6. The test suite is written inside of a 'describe' method, which takes a description string (such as the name of the suite) and a function containing the unit tests as parameters. Inside the describe function (before the tests) you can define any variables that multiple tests will use
+  7. Unit tests are then written inside of an 'it' method, which also takes a description string and a function containing the unit test steps
 
 ### Running Tests
 
 To run unit tests in VueJs typescript:
   1. Open the Battelle.EPA.WideAreaDecon.Client folder in Visual Studio Code
-  2. Click the 'Run Unit Tests' button on the bottom toolbar
+  2. Run an individual test by opening the test file in Visual Studio Code and clicking the 'Run and Debug' tab on the left toolbar. Then click the 'Debug Mocha Test File' at the top of the pane
+  3. Alternately, run all tests by clicking the 'Run Unit Tests' button on the bottom toolbar
+  4. Test results should be printed to the terminal under the 'Debug Console' tab at the bottom of the screen
 
 ## Dependency Injection in Typescript
 
