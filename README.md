@@ -142,10 +142,10 @@ To add unit tests in VueJs typescript:
   4. Follow the Mocha Testing Framework and Chai Library, documented here: 
     - https://mochajs.org/#getting-started
     - https://www.chaijs.com/
-  5. The tests generally follow this pattern
-    - Setup, where conditions for the test are setup (i.e. creating parameters to pass to the method being tested)
-    - SUT (system under test), where the method being tested is called
-    - Assert, where the results created by the method are verified
+  5. Unit tests generally follow this pattern:
+    - Setup: where conditions for the test are setup (i.e. creating parameters to pass to the method being tested)
+    - SUT (System Under Test): where the method being tested is called
+    - Assert: where the results returned by the method are verified
   6. The test suite is written inside of a 'describe' method, which takes a description string (such as the name of the suite) and a function containing the unit tests as parameters. Inside the describe function (before the tests) you can define any variables that multiple tests will use
   7. Unit tests are then written inside of an 'it' method, which also takes a description string and a function containing the unit test steps
 
