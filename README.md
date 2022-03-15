@@ -1,6 +1,6 @@
 # Introduction
 
-The Wide-Area Decontamination Tool (WADT) estimates the cost and time associated with a remediation effort following the release of a biological agent in human-usable indoor, outdoor, and underground areas. The WADT utilizes a vairety of equations to calculate the cost and time associated with seven components of the decontamination process, including: 
+The Wide-Area Decontamination Tool (WADT) estimates the cost and time associated with a remediation effort following the release of a biological agent in human-usable indoor, outdoor, and underground areas. The WADT utilizes a vairety of equations to calculate the cost and time associated with seven components of the decontamination process, including:
   1. Incident Command: the oversight of all personnel and processes
   2. Characterization Sampling: the initial sampling of surfaces to determine the contaminant levels present before decontamination
   3. Source Reduction: the removal of material from the site area prior to decontamination to save the cost of decontaminating said materials
@@ -42,9 +42,10 @@ It is recommended that development is completed in two enviroments:
 
 To ensure consistency in refactoring and linting, please ensure the following extensions are installed to your Visual Studio Code:
 
-- ESLint (2.0.15)
-- Vetur (0.23.0)
-- Prettier - Code formatter (3.20.0)
+- ESLint (2.2.2)
+- Vetur (0.35.0)
+- Prettier - Code formatter (9.3.0)
+- Tasks (0.9.0)
 
 ### Visual Studio Code Settings
 
@@ -120,6 +121,9 @@ To add unit tests in .NET code:
   6. Add a Visual C# Class item, using the Test naming convention (adding 'Tests' to the end of the class name being tested)
   7. Follow the NUnit Testing Framework, documented here: 
     - https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-nunit#creating-the-first-test
+  8. Unit tests generally follow this pattern:
+    - Setup: where conditions for the test are setup (i.e., creating parameters to pass to the method being tested)
+    - Test: where the method being tested is called inside of an assert or similar statement, at which point the results returned by the method are verified
 
 ### Running Tests
 
@@ -143,7 +147,7 @@ To add unit tests in VueJs typescript:
     - https://mochajs.org/#getting-started
     - https://www.chaijs.com/
   5. Unit tests generally follow this pattern:
-    - Setup: where conditions for the test are setup (i.e. creating parameters to pass to the method being tested)
+    - Setup: where conditions for the test are setup (i.e., creating parameters to pass to the method being tested)
     - SUT (System Under Test): where the method being tested is called
     - Assert: where the results returned by the method are verified
   6. The test suite is written inside of a 'describe' method, which takes a description string (such as the name of the suite) and a function containing the unit tests as parameters. Inside the describe function (before the tests) you can define any variables that multiple tests will use
