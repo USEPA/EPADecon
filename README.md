@@ -18,7 +18,7 @@ The Wide-Area Decontamination Tool (WADT) estimates the cost and time associated
 
 ## Running the Application
 
-An executable will be delivered which runs the application
+An executable will be delivered which runs the application.
 
 # Contribute
 
