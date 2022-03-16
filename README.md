@@ -11,27 +11,20 @@ The Wide-Area Decontamination Tool (WADT) estimates the cost and time associated
 
 # Getting Started
 
-## Software dependencies
+## Software Dependencies
 
 - ASP.Net Core 3.1 (Visual Studio 2019)
 - Node (https://nodejs.org/en/download/)
 
 ## Running the Application
 
-When first getting started with the application, clone the repository in the folder of your choice. This initial step should only be performed once
-
-To run the application:
-1. Open the Battelle.EPA.WideAreaDecon.Client folder in Visual Studio Code
-2. Click the "Run API Server" button on the bottom toolbar
-3. Once the API server is running, click the "Run and Debug" button on the lefthand side toolbar (or 'Ctrl + Shift + D') to open the correct toolbar
-4. Click the green 'Run and Debug' arrow at the top of the displayed toolbar
-5. This should open a web browser with the tool
+An executable will be delivered which runs the application
 
 # Contribute
 
 Follow the standards set forth by the group for all .NET development.
 
-## Development dependencies
+## Development Dependencies
 
 It is recommended that development is completed in two enviroments:
 
@@ -98,17 +91,20 @@ To ensure consistency in refactoring and linting, please ensure your Visual Stud
 }
 ```
 
+## Running the Application in Development
 
-
-## Running the application
 The wide area decontamination tool is an ASP.Net Core application with a VueJs TypeScript frontend.
 
-Ensure that all dependencies listed above are installed and configured appropriately. To launch the application, run the following command from the WebServer project directory:
-```
-dotnet run
-```
+Ensure that all dependencies listed above are installed and configured appropriately. When first getting started with the application, clone the repository in the folder of your choice. This initial step should only be performed once:
 
-## Unit testing for .NET
+1. Open the Battelle.EPA.WideAreaDecon.Client folder in Visual Studio Code
+2. Click the "Run API Server" button on the bottom toolbar
+3. Once the API server is running, click the "Run and Debug" button on the lefthand side toolbar (or 'Ctrl + Shift + D') to open the correct toolbar
+4. Click the green 'Run and Debug' arrow at the top of the displayed toolbar
+5. This should open a web browser with the tool
+6. Alternatively, once the API server is running, you can navigate to localhost:5005 in a web browser
+
+## Unit Testing for .NET
 
 ### Adding Tests
 
@@ -135,7 +131,7 @@ To run unit tests in .NET code:
   5. Alternately, run all tests by clicking the 'Run All Tests In View' button in the Test Explorer pane
   6. Test results should be printed to the Test Explorer pane
 
-## Unit testing for VueJs typescript
+## Unit Testing for VueJs Typescript
 
 ### Adding Tests
 
