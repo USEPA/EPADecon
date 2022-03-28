@@ -23,7 +23,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration
         /// The title of the current application
         /// </summary>
         [JsonProperty("applicationTitle")]
-        public string Title => "Wide Area Decontamination Application";
+        public string Title => "Wide-Area Decontamination Tool";
 
         /// <summary>
         /// The publisher of the application 
@@ -35,7 +35,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration
         /// The acronym for the application
         /// </summary>
         [JsonProperty("applicationAcronym")]
-        public string Acronym => "WAD";
+        public string Acronym => "WADT";
 
         /// <summary>
         /// The agency sponsoring the development of the application

@@ -2,7 +2,7 @@ import TYPES from '@/dependencyInjection/types';
 import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 import IJobResultProvider from '@/interfaces/providers/IJobResultProvider';
-import { ChartOptions, ChartType, ScaleChartOptions, TooltipCallbacks } from 'chart.js';
+import { ChartOptions, ChartType, ScaleChartOptions, TooltipCallbacks, TooltipModel } from 'chart.js';
 import { inject, injectable } from 'inversify';
 import { CreateDefaultChartOptions } from 'battelle-common-vue-charting';
 
@@ -56,7 +56,7 @@ export default class ChartOptionsProvider implements IChartOptionsProvider {
 
   private pieCallback: Partial<TooltipCallbacks<'pie'>> = {
     title: (toolTipItems) => {
-      return toolTipItems[0].dataset.label ?? '';
+      return toolTipItems[0].label ?? '';
     },
     label: (tooltipItem) => this.resultProvider.formatNumber(tooltipItem.parsed),
   };
@@ -70,9 +70,19 @@ export default class ChartOptionsProvider implements IChartOptionsProvider {
       const y = this.resultProvider.formatNumber(data.y);
       return `(${x}, ${y})`;
     },
-    title: (tooltipItems) => {
-      return tooltipItems.length > 1
-        ? `Runs ${tooltipItems.map((i) => i.dataIndex + 1).join(', ')}`
+    title(this: TooltipModel<'scatter'>, tooltipItems) {
+      const maxItems = 5;
+      const { length } = tooltipItems;
+      let additional = '';
+
+      if (length > maxItems) {
+        // only display first 5 items
+        this.dataPoints.splice(5);
+        additional = `, and ${length - maxItems} more`;
+      }
+
+      return length > 1
+        ? `Runs ${tooltipItems.map((i) => i.dataIndex + 1).join(', ')}${additional}`
         : `Run ${tooltipItems[0].dataIndex + 1}`;
     },
   };

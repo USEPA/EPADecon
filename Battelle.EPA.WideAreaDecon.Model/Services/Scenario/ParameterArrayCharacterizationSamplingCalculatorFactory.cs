@@ -55,7 +55,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
                 csParameters.surfaceAreaPerHepa,
                 csParameters.labUptimesHours,
                 csParameters.samplePackageTime,
-                csParameters.labDistanceFromSite,
+                csParameters.sampleShippingTime,
                 csParameters.labThroughput
             );
 

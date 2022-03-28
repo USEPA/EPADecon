@@ -16,11 +16,12 @@
       <scatter-plot-wrapper
         v-if="chartType === 'scatter'"
         type="scatter"
-        class="pl-10 pr-2 mb-2"
         id="chartWrapper"
+        class="scatter pr-2 mb-2"
         :data="chartData"
         :options="options"
         :key="chartKey"
+        ref="scatter"
       />
       <chart-js-wrapper
         v-else
@@ -33,21 +34,22 @@
         :key="chartKey"
       />
 
-      <v-chip v-if="chartLabels.x" class="px-6" id="xLabel" close @click:close="onLabelClicked('x')" key="x">
+      <v-chip v-if="chartLabels.x" class="px-6" id="xLabel" close @click:close="$emit('removeXLabel')" key="x">
         {{ resultProvider.convertCamelToTitleCase(chartLabels.x) }}
       </v-chip>
 
-      <v-chip
-        v-if="chartLabels.y"
-        class="px-6"
-        id="yLabel"
-        close
-        @click:close="onLabelClicked('y')"
-        key="y"
-        ref="yLabel"
-      >
-        {{ resultProvider.convertCamelToTitleCase(chartLabels.y) }}
-      </v-chip>
+      <div v-if="chartLabels.y.length" class="d-flex flex-wrap justify-center" id="yLabel" ref="yLabel">
+        <v-chip
+          v-for="(label, i) of chartLabels.y"
+          @click:close="$emit('removeYLabel', i)"
+          :color="chartData.datasets[i].backgroundColor"
+          :key="label"
+          class="px-6 mx-1 mb-1"
+          close
+        >
+          {{ resultProvider.convertCamelToTitleCase(label) }}
+        </v-chip>
+      </div>
     </div>
   </v-card>
 </template>
@@ -66,11 +68,11 @@ import IResultDetails from '@/interfaces/jobs/results/IResultDetails';
 
 @Component({ components: { ChartJsWrapper, ChartOptions, ScatterPlotWrapper } })
 export default class ResultsChartPanel extends Vue {
-  @Prop() chartData!: ChartData;
+  @Prop() chartData!: ChartData | null;
 
   @Prop() chartType!: string;
 
-  @Prop() chartLabels!: { x: Result | null; y: Result | null };
+  @Prop() chartLabels!: { x: Result | null; y: Result[] };
 
   @Prop() details!: IResultDetails | null;
 
@@ -109,23 +111,32 @@ export default class ResultsChartPanel extends Vue {
       return;
     }
 
-    const dataset = this.chartData?.datasets?.[0];
-    if (dataset && Object.getOwnPropertyNames(dataset).includes('showLine')) {
-      (dataset as ChartDataset<'scatter'>).showLine = false;
-    }
+    this.chartData?.datasets?.forEach((dataset) => {
+      if (dataset && Object.getOwnPropertyNames(dataset).includes('showLine')) {
+        // eslint-disable-next-line no-param-reassign
+        (dataset as ChartDataset<'scatter'>).showLine = false;
+      }
+    });
   }
 
   /** Calculates and sets the value of the Y axis label's 'top' CSS property
-   *  This vertically centers the label next to the chart
+   *  This vertically centers the label next to the chart. Also adjust the chart's
+   *  left padding, this prevents the labels from overlapping the chart
    */
   @Watch('chartLabels.y')
-  setYLabelTop(newY: number | null): void {
-    if (newY) {
+  setYLabelTop(newY: Result[]): void {
+    if (newY.length) {
       this.$nextTick(() => {
-        const yLabel = (this.$refs.yLabel as Vue).$el;
-        const yLabelTop = yLabel.clientWidth / 2;
+        const yLabel = this.$refs.yLabel as Element;
+        const offset = yLabel.clientWidth / 2;
+        const percent = yLabel.clientHeight > 40 ? '55' : '50';
 
-        yLabel.setAttribute('style', `top: calc(50% + ${yLabelTop}px`);
+        yLabel.setAttribute('style', `top: calc(${percent}% + ${offset}px)`);
+
+        (this.$refs.scatter as ScatterPlotWrapper).$el.setAttribute(
+          'style',
+          `padding-left: ${yLabel.clientHeight + 5}px`,
+        );
       });
     }
   }
@@ -135,12 +146,7 @@ export default class ResultsChartPanel extends Vue {
     if (!el) {
       return;
     }
-    const { index } = el;
-    this.$emit('addRun', index + 1);
-  }
-
-  onLabelClicked(label: string): void {
-    this.$emit('removeLabel', label);
+    this.$emit('addRun', el.index + 1);
   }
 
   showOptions(): void {
@@ -160,6 +166,12 @@ export default class ResultsChartPanel extends Vue {
   max-height: 475px;
 }
 
+.scatter {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 #xLabel {
   position: absolute;
   left: 50%;
@@ -170,5 +182,6 @@ export default class ResultsChartPanel extends Vue {
   position: absolute;
   transform-origin: 0 0;
   transform: translateY(-50%) rotate(-90deg);
+  max-width: 355px;
 }
 </style>

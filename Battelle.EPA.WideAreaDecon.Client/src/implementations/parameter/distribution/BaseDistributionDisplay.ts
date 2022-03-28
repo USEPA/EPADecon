@@ -2,18 +2,19 @@ import Vue from 'vue';
 import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import IParameter from '@/interfaces/parameter/IParameter';
 import { logDistributionTypes } from '@/mixin/parameterMixin';
+import { validateWithLimits } from '@/constants';
 
 export default class BaseParameterDisplay extends Vue implements IParameterDisplay {
   parameterValue!: IParameter;
 
   inputValidationRules = {
-    general: (value: string): boolean | string => this.validateWithLimits(this.min, this.max, Number(value)),
+    general: (value: string): boolean | string => validateWithLimits(this.min, this.max, Number(value)),
     minMax: (min: string, max: string): boolean | string => min !== max || 'Min and max cannot be the same',
     stdDev: (value: string): boolean | string => {
       if (this.stdDevMin === undefined || this.stdDevMax === undefined) {
         return true;
       }
-      return this.validateWithLimits(this.stdDevMin, this.stdDevMax, Number(value));
+      return validateWithLimits(this.stdDevMin, this.stdDevMax, Number(value));
     },
   };
 
@@ -84,7 +85,7 @@ export default class BaseParameterDisplay extends Vue implements IParameterDispl
    * @returns True if the value is valid in the given bounds or an error message if it is invalid
    */
   // eslint-disable-next-line class-methods-use-this
-  private validateWithLimits(lower: number, upper: number, value: number, inclusive = true): boolean | string {
+  protected validateWithLimits(lower: number, upper: number, value: number, inclusive = true): boolean | string {
     if (inclusive) {
       if (value < lower) {
         return `Value must be greater than or equal to ${lower}`;

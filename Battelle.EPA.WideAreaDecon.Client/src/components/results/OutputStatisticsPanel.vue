@@ -1,7 +1,7 @@
 <template>
-  <v-card height="100%">
-    <v-card-title v-text="'Output Statistics'"></v-card-title>
-    <v-divider class="mx-4" color="grey"></v-divider>
+  <v-card height="100%" id="stats-panel">
+    <v-card-title v-text="'Output Statistics'" />
+    <v-divider class="mx-4" color="grey" />
     <v-card-text>
       <div v-if="hideStats">Statistics will be displayed when a chart has been created</div>
       <div v-else>
@@ -36,18 +36,18 @@ import Result from '@/enums/jobs/results/result';
 
 @Component
 export default class OutputStatisticsPanel extends Vue {
-  @Prop() details!: { x: IResultDetails | null; y: IResultDetails | null };
+  @Prop() details!: { x: IResultDetails | null; y: IResultDetails[] };
 
-  @Prop() results!: { x: Result | null; y: Result | null };
+  @Prop() results!: { x: Result | null; y: Result[] };
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
   get resultsFormatted(): (string | null)[] {
     return [
       ...new Set(
-        Object.values(this.results).map((r) => {
-          return r ? this.resultProvider.convertCamelToTitleCase(r as string) : r;
-        }),
+        [this.results.x, ...this.results.y].map((r) =>
+          r ? this.resultProvider.convertCamelToTitleCase(r as string) : r,
+        ),
       ),
     ];
   }
@@ -57,11 +57,14 @@ export default class OutputStatisticsPanel extends Vue {
   }
 
   get detailsWithoutValues(): ({ mean: number; minimum: number; maximum: number; stdDev: number } | null)[] {
-    return Object.values(this.details).map((d) => {
-      return d ? omit(d, ['values']) : d;
-    });
+    return [this.details.x, ...this.details.y].map((d) => (d ? omit(d, ['values']) : d));
   }
 }
 </script>
 
-<style></style>
+<style scoped lang="scss">
+#stats-panel {
+  max-height: 630px;
+  overflow-y: auto;
+}
+</style>

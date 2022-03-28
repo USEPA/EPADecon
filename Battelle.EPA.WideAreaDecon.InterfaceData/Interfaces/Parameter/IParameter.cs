@@ -16,6 +16,7 @@ using TruncatedNormalDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Mod
 using UniformDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.UniformDistribution;
 using WeibullDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.WeibullDistribution;
 using BimodalTruncatedNormalDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.BimodalTruncatedNormalDistribution;
+using ScaledBetaDistribution = Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics.ScaledBetaDistribution;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter
 {
@@ -44,6 +45,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter
                 ParameterType.Constant => ConstantDistribution.FromExcel(metaData, row),
                 ParameterType.Uniform => UniformDistribution.FromExcel(metaData, row),
                 ParameterType.Pert => BetaPertDistribution.FromExcel(metaData, row),
+                ParameterType.ScaledBeta => ScaledBetaDistribution.FromExcel(metaData, row),
                 ParameterType.TruncatedNormal => TruncatedNormalDistribution.FromExcel(metaData, row),
                 ParameterType.LogUniform => LogUniformDistribution.FromExcel(metaData, row),
                 ParameterType.TruncatedLogNormal => TruncatedLogNormalDistribution.FromExcel(metaData, row),
