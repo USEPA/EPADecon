@@ -24,6 +24,8 @@
     "battelle-common-typescript-statistics": "^0.0.18",
     "battelle-common-vue-charting": "^0.0.30",
     "chart.js": "^3.4.1",
+    "battelle-common-typescript-statistics": "../BuildPackages/battelle-common-typescript-statistics-0.0.16.tgz",
+    "battelle-common-vue-charting": "../BuildPackages/battelle-common-vue-charting-0.0.21.tgz",
     "clone": "^2.1.2",
     "comment-json": "^4.1.0",
     "core-js": "^3.8.1",
