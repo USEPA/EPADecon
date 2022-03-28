@@ -9,7 +9,6 @@ module.exports = {
   ],
   rules: {
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
-    'prfixWithI': 'always'
     // 'no-console': 'error',
     // 'no-debugger': 'error',
     // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
