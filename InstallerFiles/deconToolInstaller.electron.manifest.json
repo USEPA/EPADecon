@@ -1,7 +1,7 @@
 {
   "executable": "Battelle.EPA.WideAreaDecon.API",
   "description": "Wide Area Decontamination Tool",
-  "name": "Wide Area Decon",
+  "name": "wide-area-decon",
   "author": "Battelle Memorial Institute",
   "splashscreen": {
     "imageFile": ""
