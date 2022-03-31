@@ -404,7 +404,7 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
 
   // adapted from mawir's answer on Stack Overflow: https://stackoverflow.com/a/59716739
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  legendOnClick(event: ChartEvent, legendItem: LegendItem): void {
+  legendOnClick(event: ChartEvent, legendItem: LegendItem, legend: LegendElement): void {
     const index = legendItem.datasetIndex;
     if (index !== undefined) {
       const { chart } = (this.$refs.chart as Vue).$children[0] as IChartJsWrapper;
@@ -420,9 +420,9 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
 
   @Watch('parameterValue')
   setValues(): void {
-    if (this.key !== undefined) {
+    if (this.key) {
       // get baseline
-      this.baseline = this.$store.state.currentSelectedParameter.baseline.values[this.key as string];
+      this.baseline = this.$store.state.currentSelectedParameter.baseline.values[this.key];
     }
     this.xValues = this.parameterValue.xValues ?? [];
     this.yMinValues = this.parameterValue.yMinimumValues ?? [];

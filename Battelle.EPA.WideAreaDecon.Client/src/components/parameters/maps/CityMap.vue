@@ -111,7 +111,6 @@ import { GeoJSON } from 'ol/format';
 import Overlay from 'ol/Overlay';
 import { GeoJSONLineString, GeoJSONPolygon } from 'ol/format/GeoJSON';
 import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
-import BaseEvent from 'ol/events/Event';
 
 @Component
 export default class CityMap extends Vue {
@@ -244,9 +243,7 @@ export default class CityMap extends Vue {
       overlap.set('type', 'building');
       this.source.addFeature(overlap);
 
-      const geom = overlap.getGeometry();
-
-      return geom !== undefined ? this.getAreaOfGeometry(geom) : 0;
+      return overlap ? this.getAreaOfPolygon(overlap.getGeometry()) : 0;
     });
   }
 
@@ -258,7 +255,7 @@ export default class CityMap extends Vue {
       const lineString = this.formatter.writeGeometryObject(new LineString(coords)) as GeoJSONLineString;
       const intersectingPoints = lineIntersect(plumeAsLine, lineString);
 
-      let lineFeat = new Feature<Geometry>();
+      let lineFeat = new Feature<LineString>();
       if (!intersectingPoints.features.length) {
         lineFeat = new Feature(this.formatter.readGeometry(lineString) as LineString);
       } else if (intersectingPoints.features.length < 2) {
@@ -355,16 +352,15 @@ export default class CityMap extends Vue {
           let polygon = target as Polygon;
 
           if (polygon.getType() === 'Circle') {
-            polygon = fromCircle(polygon as unknown as Circle);
+            polygon = fromCircle((polygon as unknown) as Circle);
           }
 
-          this.totalArea = this.getAreaOfGeometry(polygon);
+          this.totalArea = this.getAreaOfPolygon(polygon);
           this.updateAreaTooltip(polygon);
         });
       });
 
-      this.draw.on(['drawend'], async (event: BaseEvent | Event) => {
-        const feature = event.target as Feature<Polygon>;
+      this.draw.on('drawend', async ({ feature }: { feature: Feature<Polygon> }) => {
         feature.set('type', 'plume');
         const geom = feature.getGeometry() as Polygon | Circle;
         const polygon = geom.getType() === 'Circle' ? fromCircle(geom as Circle) : (geom as Polygon);
@@ -387,7 +383,7 @@ export default class CityMap extends Vue {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  getAreaOfGeometry(polygon: Geometry): number {
+  getAreaOfPolygon(polygon: Polygon): number {
     // transform polygon to projection capable of area calculations
     const geom = polygon.clone().transform('EPSG:4326', 'EPSG:3857');
     return getArea(geom);
@@ -429,14 +425,14 @@ export default class CityMap extends Vue {
         if (type === 'plume') {
           const geom = feature.getGeometry() as Polygon | Circle;
           const extent = geom.getExtent();
-          this.totalArea = this.getAreaOfGeometry(
+          this.totalArea = this.getAreaOfPolygon(
             geom.getType() === 'Circle' ? fromCircle(geom as Circle) : (geom as Polygon),
           );
           this.map?.getView().fit(extent);
           return;
         }
         if (type === 'building') {
-          const area = this.getAreaOfGeometry(feature.getGeometry() as Polygon);
+          const area = this.getAreaOfPolygon(feature.getGeometry() as Polygon);
           this.buildingAreasInPlume.push(area);
           return;
         }
