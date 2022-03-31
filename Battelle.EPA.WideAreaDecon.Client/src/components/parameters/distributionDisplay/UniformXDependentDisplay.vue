@@ -94,10 +94,18 @@ import container from '@/dependencyInjection/config';
 import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 import TYPES from '@/dependencyInjection/types';
 import IChartJsWrapper from '@/interfaces/component/IChartJsWrapper';
+import { State } from 'vuex-class';
+import { nameof } from 'ts-simple-nameof';
+import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
+import { StoreNames } from '@/constants/store/store';
+import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 
 @Component({ components: { ScatterPlotWrapper } })
 export default class UniformXDependentDisplay extends Vue implements IParameterDisplay {
   @Prop({ required: true }) parameterValue!: UniformXDependent;
+
+  @State(nameof<IParameterSelection>((s) => s.currentSelectedParameter), { namespace: StoreNames.PARAMETER_SELECTION })
+  scenarioParameters!: ParameterWrapper;
 
   private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
 
@@ -396,7 +404,7 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
 
   // adapted from mawir's answer on Stack Overflow: https://stackoverflow.com/a/59716739
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  legendOnClick(event: ChartEvent, legendItem: LegendItem, legend: LegendElement): void {
+  legendOnClick(event: ChartEvent, legendItem: LegendItem): void {
     const index = legendItem.datasetIndex;
     if (index !== undefined) {
       const { chart } = (this.$refs.chart as Vue).$children[0] as IChartJsWrapper;
@@ -412,9 +420,9 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
 
   @Watch('parameterValue')
   setValues(): void {
-    if (this.key) {
+    if (this.key !== undefined) {
       // get baseline
-      this.baseline = this.$store.state.currentSelectedParameter.baseline.values[this.key];
+      this.baseline = this.$store.state.currentSelectedParameter.baseline.values[this.key as string];
     }
     this.xValues = this.parameterValue.xValues ?? [];
     this.yMinValues = this.parameterValue.yMinimumValues ?? [];

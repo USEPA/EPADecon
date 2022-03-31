@@ -12,6 +12,7 @@ import Weibull from '@/implementations/parameter/distribution/Weibull';
 import TextValue from '@/implementations/parameter/distribution/TextValue';
 import EnumeratedFraction from '@/implementations/parameter/list/enumeratedFraction';
 import IParameter from '@/interfaces/parameter/IParameter';
+import ScaledBeta from '@/implementations/parameter/distribution/ScaledBeta';
 
 export default {
   predicate: (value: unknown): unknown => {
@@ -28,6 +29,8 @@ export default {
         return UniformXDependent;
       case ParameterType.pert:
         return BetaPERT;
+      case ParameterType.scaledBeta:
+        return ScaledBeta;
       case ParameterType.truncatedNormal:
         return TruncatedNormal;
       case ParameterType.bimodalTruncatedNormal:

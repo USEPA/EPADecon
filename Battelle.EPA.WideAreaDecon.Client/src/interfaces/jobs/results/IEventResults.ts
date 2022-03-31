@@ -7,4 +7,5 @@ export default interface IEventResults {
   totalSolidWasteProduced: number;
   totalAqueousWasteProduced: number;
   otherResults: IOtherResult;
+  [key: string]: number | IOtherResult;
 }

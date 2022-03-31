@@ -4,6 +4,7 @@ import BimodalTruncatedNormal from '@/implementations/parameter/distribution/Bim
 import Constant from '@/implementations/parameter/distribution/Constant';
 import LogNormal from '@/implementations/parameter/distribution/LogNormal';
 import LogUniform from '@/implementations/parameter/distribution/LogUniform';
+import ScaledBeta from '@/implementations/parameter/distribution/ScaledBeta';
 import TruncatedLogNormal from '@/implementations/parameter/distribution/TruncatedLogNormal';
 import TruncatedNormal from '@/implementations/parameter/distribution/TruncatedNormal';
 import Uniform from '@/implementations/parameter/distribution/Uniform';
@@ -13,6 +14,7 @@ import TextValue from '@/implementations/parameter/distribution/TextValue';
 import EnumeratedFraction from '@/implementations/parameter/list/enumeratedFraction';
 import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
 import IParameter from '@/interfaces/parameter/IParameter';
+import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
 
 export default {
   predicate: (value: unknown): unknown => {
@@ -29,6 +31,8 @@ export default {
         return UniformXDependent;
       case ParameterType.pert:
         return BetaPERT;
+      case ParameterType.scaledBeta:
+        return ScaledBeta;
       case ParameterType.truncatedNormal:
         return TruncatedNormal;
       case ParameterType.bimodalTruncatedNormal:
@@ -47,6 +51,8 @@ export default {
         return EnumeratedFraction;
       case ParameterType.enumeratedParameter:
         return EnumeratedParameter;
+      case ParameterType.contaminationDefinition:
+        return ContaminationDefinition;
       default:
         return undefined;
     }

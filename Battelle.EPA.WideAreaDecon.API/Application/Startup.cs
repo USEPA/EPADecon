@@ -164,6 +164,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
 
             services.AddTransient<JobStatusUpdater>();
             services.AddTransient<JobProgressUpdater>();
+
+            services.AddSingleton(new CityDataLinksService());
         }
 
         private void ConfigureEndpoints(IEndpointRouteBuilder endpoints)

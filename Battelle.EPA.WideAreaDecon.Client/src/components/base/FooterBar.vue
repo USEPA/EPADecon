@@ -11,12 +11,17 @@
 import Vue from 'vue';
 import { State } from 'vuex-class';
 import { Component } from 'vue-property-decorator';
+import { StoreNames } from '@/constants/store/store';
+import { nameof } from 'ts-simple-nameof';
+import IClientConfiguration from '@/interfaces/configuration/IClientConfiguration';
 
 @Component
 export default class FooterBar extends Vue {
-  @State publisherName!: string;
+  @State(nameof<IClientConfiguration>((s) => s.publisherName), { namespace: StoreNames.CLIENT_CONFIGURATION })
+  publisherName!: string;
 
-  @State applicationVersion!: string;
+  @State(nameof<IClientConfiguration>((s) => s.applicationVersion), { namespace: StoreNames.CLIENT_CONFIGURATION })
+  applicationVersion!: string;
 }
 </script>
 

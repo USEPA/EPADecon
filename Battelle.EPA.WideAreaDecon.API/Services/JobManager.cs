@@ -15,6 +15,7 @@ using Battelle.EPA.WideAreaDecon.Model;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
 using Microsoft.AspNetCore.SignalR;
 using Battelle.RiskAssessment.Common.Statistics;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
@@ -104,10 +105,11 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                     var extentOfContaminationParameters = Running.DefineScenario.Filters
                         .First(f => f.Name == "Extent of Contamination").Parameters;
+                    var contaminationDefinition = extentOfContaminationParameters.First(p => p.MetaData.Name == "Contamination Definition") as ContaminationDefinition;
 
                     var scenarioCreator = new ScenarioCreator(
-                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Area Contaminated") as EnumeratedParameter<DecontaminationElement>,
-                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Loading") as EnumeratedParameter<DecontaminationElement>,
+                        contaminationDefinition.AreaContaminated,
+                        contaminationDefinition.Loading,
                         extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Contamination Breakout") as EnumeratedFraction<BuildingCategory>,
                         extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
                         extentOfContaminationParameters.First(p => p.MetaData.Name == "Outdoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,

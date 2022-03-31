@@ -4,6 +4,7 @@ const changeableDistributionTypes: ParameterType[] = [
   ParameterType.constant,
   ParameterType.uniform,
   ParameterType.pert,
+  ParameterType.scaledBeta,
   ParameterType.truncatedNormal,
   ParameterType.truncatedLogNormal,
   ParameterType.logNormal,

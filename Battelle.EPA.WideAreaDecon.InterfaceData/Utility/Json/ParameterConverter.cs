@@ -71,11 +71,13 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json
             {
                 ParameterType.BimodalTruncatedNormal => JsonObject.ToObject<BimodalTruncatedNormalDistribution>(serializer),
                 ParameterType.Constant => JsonObject.ToObject<ConstantDistribution>(serializer),
+                ParameterType.ContaminationDefinition  => JsonObject.ToObject<ContaminationDefinition>(serializer),
                 ParameterType.EnumeratedFraction => GetEnumeratedFractionFromJson(JsonObject, serializer),
                 ParameterType.EnumeratedParameter => GetEnumeratedParameterFromJson(JsonObject, serializer),
                 ParameterType.LogNormal => JsonObject.ToObject<LogNormalDistribution>(),
                 ParameterType.LogUniform => JsonObject.ToObject<LogUniformDistribution>(),
                 ParameterType.Pert => JsonObject.ToObject<BetaPertDistribution>(),
+                ParameterType.ScaledBeta => JsonObject.ToObject<ScaledBetaDistribution>(),
                 ParameterType.TruncatedLogNormal => JsonObject.ToObject<TruncatedLogNormalDistribution>(),
                 ParameterType.TruncatedNormal => JsonObject.ToObject<TruncatedNormalDistribution>(),
                 ParameterType.Uniform => JsonObject.ToObject<UniformDistribution>(),
