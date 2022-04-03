@@ -54,13 +54,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import LogUniform from '@/implementations/parameter/distribution/LogUniform';
 import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
 export default class LogUniformDisplay extends BaseDistributionDisplay {
-  @Prop({ required: true }) parameterValue!: LogUniform;
+  get castParameterValue(): LogUniform {
+    return this.parameterValue as LogUniform;
+  }
 
   sliderValue = [0, 0];
 
@@ -88,19 +90,19 @@ export default class LogUniformDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.minValue as any;
     if (this.textMin === '') {
-      this.parameterValue.min = undefined;
+      this.castParameterValue.min = undefined;
     } else if (value === this.sliderValue[0]) {
-      this.parameterValue.min = value;
+      this.castParameterValue.min = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMin = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (this.sliderValue[1] <= value) {
         this.sliderValue = [value, value];
-        this.parameterValue.min = value;
-        this.parameterValue.max = value;
+        this.castParameterValue.min = value;
+        this.castParameterValue.max = value;
       } else {
         this.sliderValue = [value, this.sliderValue[1]];
-        this.parameterValue.min = value;
+        this.castParameterValue.min = value;
       }
     } else {
       this.textMin = this.sliderValue[0].toString();
@@ -113,19 +115,19 @@ export default class LogUniformDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.maxValue as any;
     if (this.textMax === '') {
-      this.parameterValue.max = undefined;
+      this.castParameterValue.max = undefined;
     } else if (value === this.sliderValue[1]) {
-      this.parameterValue.max = value;
+      this.castParameterValue.max = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMax = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
       if (this.sliderValue[0] >= value) {
         this.sliderValue = [value, value];
-        this.parameterValue.min = value;
-        this.parameterValue.max = value;
+        this.castParameterValue.min = value;
+        this.castParameterValue.max = value;
       } else {
         this.sliderValue = [this.sliderValue[0], value];
-        this.parameterValue.max = value;
+        this.castParameterValue.max = value;
       }
     } else {
       this.textMax = this.sliderValue[1].toString();
@@ -141,10 +143,10 @@ export default class LogUniformDisplay extends BaseDistributionDisplay {
   setValues(): void {
     this.ignoreNextValueSliderChange = true;
     this.sliderValue = [this.min, this.max];
-    this.sliderValue = [this.parameterValue.min ?? 0, this.parameterValue.max ?? 1];
+    this.sliderValue = [this.castParameterValue.min ?? 0, this.castParameterValue.max ?? 1];
 
-    this.textMin = this.parameterValue.min?.toString() ?? '';
-    this.textMax = this.parameterValue.max?.toString() ?? '';
+    this.textMin = this.castParameterValue.min?.toString() ?? '';
+    this.textMax = this.castParameterValue.max?.toString() ?? '';
   }
 
   created(): void {

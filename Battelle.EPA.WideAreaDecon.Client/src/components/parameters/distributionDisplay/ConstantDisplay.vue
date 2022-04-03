@@ -45,7 +45,9 @@ import BaseDistributionDisplay from '@/implementations/parameter/distribution/Ba
 
 @Component
 export default class ConstantParameterDisplay extends BaseDistributionDisplay {
-  @Prop({ required: true }) parameterValue!: Constant;
+  get castParameterValue(): Constant {
+    return this.parameterValue as Constant;
+  }
 
   sliderValue = 0;
 
@@ -87,10 +89,10 @@ export default class ConstantParameterDisplay extends BaseDistributionDisplay {
 
   @Watch('parameterValue')
   setValues(): void {
-    this.textValue = this.parameterValue.value?.toString() ?? '';
+    this.textValue = this.castParameterValue.value?.toString() ?? '';
 
     this.ignoreNextSliderChange = true;
-    this.sliderValue = this.parameterValue.value ?? (this.min + this.max) / 2.0;
+    this.sliderValue = this.castParameterValue.value ?? (this.min + this.max) / 2.0;
   }
 
   created(): void {

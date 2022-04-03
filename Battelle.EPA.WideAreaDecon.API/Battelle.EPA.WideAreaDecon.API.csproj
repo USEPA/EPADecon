@@ -16,7 +16,6 @@
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="7.30.2" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.39" />
-    <!--<PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />-->
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="5.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
@@ -26,6 +25,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
     <PackageReference Include="DotNetCore.NPOI" Version="1.2.2" />
+    <PackageReference Include="CSM.SodaDotNet" Version="0.10.1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\InputFiles\ModifyParameters.xlsx" Link="InputFiles\ModifyParameters.xlsx">
@@ -39,9 +39,6 @@
   <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Battelle.EPA.WideAreaDecon.API.xml</DocumentationFile>
   </PropertyGroup>
-  <!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <WarningLevel>5</WarningLevel>
-  </PropertyGroup>-->
   <Target Name="DeleteNPMBuild" AfterTargets="AfterClean">
     <Exec WorkingDirectory="$(SpaRoot)" Command="rmdir /S /Q dist" />
   </Target>

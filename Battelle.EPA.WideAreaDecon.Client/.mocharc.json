@@ -1,7 +1,4 @@
 {
-  "require": [
-    "tests/settings/tsconfig-paths.js",
-    "tests/settings/tsNode.js"
-  ],
+  "require": ["tests/settings/tsconfig-paths.js", "tests/settings/tsNode.js"],
   "watch-extensions": "ts"
 }

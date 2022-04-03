@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars,import/named
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { nelderMead } from '@/mixin/solverMixin';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
 import ParameterMetaData from '@/implementations/parameter/ParameterMetaData';

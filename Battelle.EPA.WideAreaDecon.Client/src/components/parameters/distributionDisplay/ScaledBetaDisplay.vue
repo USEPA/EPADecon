@@ -127,13 +127,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import BaseParameterDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 import ScaledBeta from '@/implementations/parameter/distribution/ScaledBeta';
 
 @Component
 export default class ScaledBetaDisplay extends BaseParameterDisplay {
-  @Prop() parameterValue!: ScaledBeta;
+  get castParameterValue(): ScaledBeta {
+    return this.parameterValue as ScaledBeta;
+  }
 
   alpha = 0;
 
@@ -209,7 +211,7 @@ export default class ScaledBetaDisplay extends BaseParameterDisplay {
 
   @Watch('parameterValue')
   setValues(): void {
-    const { min, max, alpha, beta } = this.parameterValue;
+    const { min, max, alpha, beta } = this.castParameterValue;
     const half = (this.min + this.max) / 2;
 
     this.minMax = [min ?? this.min, max ?? this.max];
