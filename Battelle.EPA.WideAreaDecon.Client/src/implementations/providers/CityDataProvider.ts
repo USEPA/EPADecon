@@ -82,7 +82,8 @@ export default class CityDataProvider implements ICityDataProvider {
     let request = '';
 
     if (!url) {
-      throw new Error('Location does not have subway data');
+      console.log('No subway data for city'); // TODO:: print warning to user
+      return [];
     }
 
     // build request based on location

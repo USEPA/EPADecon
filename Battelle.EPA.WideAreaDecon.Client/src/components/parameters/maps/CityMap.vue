@@ -81,7 +81,6 @@ import MapLocation from '@/enums/maps/mapLocation';
 import container from '@/dependencyInjection/config';
 import TYPES from '@/dependencyInjection/types';
 import ICityDataProvider from '@/interfaces/providers/ICityDataProvider';
-import ICityDataAPI from '@/interfaces/providers/ICityDataAPI';
 import {
   bostonViewOptions,
   dcViewOptions,
@@ -114,7 +113,7 @@ import ContaminationDefinition from '@/implementations/parameter/list/Contaminat
 
 @Component
 export default class CityMap extends Vue {
-  @Prop() parameterValue!: ContaminationDefinition;
+  @Prop({ required: true }) parameterValue!: ContaminationDefinition;
 
   readonly raster = new TileLayer({ source: new OSM() });
 
@@ -163,7 +162,9 @@ export default class CityMap extends Vue {
 
   sketch: Feature<Geometry> | null = null;
 
-  source: VectorSource<Geometry> = this.parameterValue.mapSource;
+  get source(): VectorSource<Geometry> {
+    return this.parameterValue.mapSource;
+  }
 
   subwayLineLengthsInPlume: number[] = [];
 
@@ -255,7 +256,7 @@ export default class CityMap extends Vue {
       const lineString = this.formatter.writeGeometryObject(new LineString(coords)) as GeoJSONLineString;
       const intersectingPoints = lineIntersect(plumeAsLine, lineString);
 
-      let lineFeat = new Feature<LineString>();
+      let lineFeat = new Feature<Geometry>();
       if (!intersectingPoints.features.length) {
         lineFeat = new Feature(this.formatter.readGeometry(lineString) as LineString);
       } else if (intersectingPoints.features.length < 2) {
@@ -352,15 +353,16 @@ export default class CityMap extends Vue {
           let polygon = target as Polygon;
 
           if (polygon.getType() === 'Circle') {
-            polygon = fromCircle((polygon as unknown) as Circle);
+            polygon = fromCircle(polygon as unknown as Circle);
           }
 
           this.totalArea = this.getAreaOfPolygon(polygon);
           this.updateAreaTooltip(polygon);
         });
       });
-
-      this.draw.on('drawend', async ({ feature }: { feature: Feature<Polygon> }) => {
+      // { event: BaseEvent }: { event: Feature<Geometry> }
+      this.draw.on(['drawend'], async (event) => {
+        const feature = (event as any).feature as Feature<Geometry>;
         feature.set('type', 'plume');
         const geom = feature.getGeometry() as Polygon | Circle;
         const polygon = geom.getType() === 'Circle' ? fromCircle(geom as Circle) : (geom as Polygon);
@@ -383,7 +385,10 @@ export default class CityMap extends Vue {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  getAreaOfPolygon(polygon: Polygon): number {
+  getAreaOfPolygon(polygon?: Geometry): number {
+    if (polygon === undefined) {
+      return 0.0;
+    }
     // transform polygon to projection capable of area calculations
     const geom = polygon.clone().transform('EPSG:4326', 'EPSG:3857');
     return getArea(geom);

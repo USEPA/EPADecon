@@ -18,6 +18,11 @@ import IApplicationActionProvider from './interfaces/providers/IApplicationActio
 import INavigationItemProvider from './interfaces/providers/INavigationItemProvider';
 import IScenarioParameterProvider from './interfaces/providers/IScenarioParameterProvider';
 import ParameterList from './implementations/parameter/ParameterList';
+import { Chart, registerables } from 'chart.js';
+import zoomPlugin from 'chartjs-plugin-zoom';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+Chart.register(...registerables, zoomPlugin, ChartDataLabels);
 
 Vue.config.productionTip = false;
 

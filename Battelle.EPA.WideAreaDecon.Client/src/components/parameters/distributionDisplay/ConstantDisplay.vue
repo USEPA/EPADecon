@@ -29,7 +29,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <p class="grey--text">{{ castParameterValue.metaData.units }}</p>
             </template>
           </v-text-field>
         </v-card>
@@ -39,13 +39,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import Constant from '@/implementations/parameter/distribution/Constant';
 import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
 export default class ConstantParameterDisplay extends BaseDistributionDisplay {
-  @Prop({ required: true }) parameterValue!: Constant;
+  get castParameterValue(): Constant {
+    return this.parameterValue as Constant;
+  }
 
   sliderValue = 0;
 
@@ -72,25 +74,25 @@ export default class ConstantParameterDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.value as any;
     if (this.textValue === '') {
-      this.$set(this.parameterValue, 'value', undefined);
+      this.$set(this.castParameterValue, 'value', undefined);
     } else if (value === this.sliderValue) {
-      this.$set(this.parameterValue, 'value', value);
-    } else if (!this.parameterValue.isSet && !castComponent.validate()) {
+      this.$set(this.castParameterValue, 'value', value);
+    } else if (!this.castParameterValue.isSet && !castComponent.validate()) {
       this.textValue = '';
     } else if (castComponent.validate()) {
       this.sliderValue = value;
-      this.$set(this.parameterValue, 'value', value);
+      this.$set(this.castParameterValue, 'value', value);
     } else {
       this.textValue = this.sliderValue.toString();
     }
   }
 
-  @Watch('parameterValue')
+  @Watch('castParameterValue')
   setValues(): void {
-    this.textValue = this.parameterValue.value?.toString() ?? '';
+    this.textValue = this.castParameterValue.value?.toString() ?? '';
 
     this.ignoreNextSliderChange = true;
-    this.sliderValue = this.parameterValue.value ?? (this.min + this.max) / 2.0;
+    this.sliderValue = this.castParameterValue.value ?? (this.min + this.max) / 2.0;
   }
 
   created(): void {

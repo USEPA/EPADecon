@@ -45,7 +45,7 @@
           </v-overflow-btn>
         </v-col>
       </v-row>
-      <component :key="getSelectedCategoryName()" :is="display.distComponent" :parameter-value="selectedCategory" />
+      <component :key="getSelectedCategoryName()" :is="display.distComponent" :parameterValue="selectedCategory" />
       <div v-if="display.displayChart" class="py-5" style="width: 100%; height: 400px">
         <distribution-chart
           :data-generator="display.dataGenerator"
@@ -60,7 +60,7 @@
       <text-value-display
         :key="getSelectedCategoryName()"
         :is="display.distComponent"
-        :parameter-value="parameterValue"
+        :parameterValue="parameterValue"
       />
     </template>
   </v-container>
@@ -121,12 +121,16 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   @Prop({ default: () => store.state.PARAMETER_SELECTION.currentSelectedParameter.baseline })
   baseline!: EnumeratedParameter;
 
-  selectedCategory: IParameter = Object.values(this.parameterValue.values)[0];
+  selectedCategory!: IParameter;
+  baselineCategory!: IParameter;
 
-  // baseline value of selected category
-  baselineCategory: IParameter = Object.values(this.baseline.values)[0];
+  currentDistType!: ParameterType;
 
-  currentDistType: ParameterType = ParameterType.constant;
+  created(): void {
+    this.selectedCategory = Object.values(this.parameterValue.values)[0];
+    this.baselineCategory = Object.values(this.parameterValue.values)[0];
+    this.currentDistType = this.selectedCategory.type;
+  }
 
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
 
@@ -235,9 +239,6 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     this.$emit('param-changed');
   }
 
-  created(): void {
-    this.currentDistType = this.selectedCategory.type;
-  }
 
   mounted(): void {
     this.checkErrorHighligtingOnSelect();

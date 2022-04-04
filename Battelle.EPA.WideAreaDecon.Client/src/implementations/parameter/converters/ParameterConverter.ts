@@ -139,7 +139,13 @@ export default class ParameterConverter implements IParameterConverter {
   private getValuesForDistribution(
     old: IUnivariateParameter,
     newType: ParameterType,
-  ): { mean?: number; stdDev?: number; min?: number; max?: number; mode?: number } {
+  ): {
+    mean?: number;
+    stdDev?: number;
+    min?: number;
+    max?: number;
+    mode?: number;
+  } {
     const isLogDist = logDistributionTypes.includes(newType);
     const { step, lowerLimit, upperLimit } = old.metaData;
     let { mean, stdDev, min, max, mode } = old;
