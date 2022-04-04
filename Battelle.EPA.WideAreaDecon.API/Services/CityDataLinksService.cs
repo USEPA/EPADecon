@@ -1,4 +1,5 @@
-﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Providers;
+﻿using System;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Providers;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.City;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json;
@@ -30,25 +31,34 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
         private string NYCBuildingLink()
         {
-            var link = "";
-            string fullUrl = "https://data.cityofnewyork.us/Housing-Development/Building-Footprints/nqwf-w8eh";
-            HttpClient client = new HttpClient();
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls13;
-            client.DefaultRequestHeaders.Accept.Clear();
-            var response = client.GetStringAsync(fullUrl).Result;
-            Regex rx = new Regex("\\<h3\\>building\\<\\/h3\\>[\\S\\s]*?\\<div class=\"apiEndpointWrapper\"\\>[\\S\\s]*?\\<\\/div\\>", RegexOptions.Compiled);
-            MatchCollection matches = rx.Matches(response);
+            try
+            {
+                var link = "";
+                string fullUrl = "https://data.cityofnewyork.us/Housing-Development/Building-Footprints/nqwf-w8eh";
+                HttpClient client = new HttpClient();
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls13;
+                client.DefaultRequestHeaders.Accept.Clear();
+                var response = client.GetStringAsync(fullUrl).Result;
+                Regex rx = new Regex(
+                    "\\<h3\\>building\\<\\/h3\\>[\\S\\s]*?\\<div class=\"apiEndpointWrapper\"\\>[\\S\\s]*?\\<\\/div\\>",
+                    RegexOptions.Compiled);
+                MatchCollection matches = rx.Matches(response);
 
-            var text = matches.FirstOrDefault().Value;
+                var text = matches.FirstOrDefault().Value;
 
-            HtmlDocument htmlDoc = new HtmlDocument();
-            htmlDoc.LoadHtml(text);
+                HtmlDocument htmlDoc = new HtmlDocument();
+                htmlDoc.LoadHtml(text);
 
-            var links = htmlDoc.DocumentNode.Descendants("input");
+                var links = htmlDoc.DocumentNode.Descendants("input");
 
-            link = links.FirstOrDefault().GetAttributeValue("value", "");
+                link = links.FirstOrDefault().GetAttributeValue("value", "");
 
-            return link;
+                return link;
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
         }
     }
 }

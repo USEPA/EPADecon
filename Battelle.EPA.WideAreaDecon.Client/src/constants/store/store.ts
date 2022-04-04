@@ -1,5 +1,4 @@
 /* eslint-disable no-shadow */
-// eslint-disable-next-line import/prefer-default-export
 export enum StoreNames {
   APPSETTINGS = 'APPSETTINGS',
   CLIENT_CONFIGURATION = 'CLIENT_CONFIGURATION',

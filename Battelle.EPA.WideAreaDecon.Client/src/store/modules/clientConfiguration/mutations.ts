@@ -3,7 +3,7 @@ import IClientConfiguration from '@/interfaces/configuration/IClientConfiguratio
 import { ClientConfigurationStoreMutations } from '@/constants/store/ClientConfiguration';
 
 const mutations: MutationTree<IClientConfiguration> = {
-  [ClientConfigurationStoreMutations.EXAMPLE_CLIENT_CONFIGURATION]: (state: IClientConfiguration): void => {
+  [ClientConfigurationStoreMutations.EXAMPLE_CLIENT_CONFIGURATION]: (): void => {
     // console.log()
   },
 };

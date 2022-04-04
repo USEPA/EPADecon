@@ -1,4 +1,3 @@
-import { injectable } from 'inversify';
 import ICityDataAPI from '@/interfaces/providers/ICityDataAPI';
 import Axios from 'axios';
 import { deserialize } from 'typescript-json-serializer';

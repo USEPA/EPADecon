@@ -45,7 +45,7 @@ export class Parameters {
 }
 
 /** minimizes a function using the downhill simplex method */
-// eslint-disable-next-line import/prefer-default-export, @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
+// @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
 export function nelderMead(f: (guess: number[]) => number, x0: number[], parameters?: Parameters): Simplex {
   // eslint-disable-next-line no-param-reassign
   parameters = parameters || new Parameters();

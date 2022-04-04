@@ -9,8 +9,14 @@ import ParameterList from '../parameter/ParameterList';
 export default class DefaultScenarioParameterProvider implements IScenarioParameterProvider {
   // eslint-disable-next-line class-methods-use-this
   async getScenarioParameters(): Promise<ParameterList> {
-    return axios.get<ParameterList>('/api/BaselineParameter').then<ParameterList>((response) => {
-      return deserialize<ParameterList>(response.data, ParameterList);
-    });
+    return axios
+      .get<ParameterList>('/api/BaselineParameter')
+      .then<ParameterList>((response) => {
+        return deserialize<ParameterList>(response.data, ParameterList);
+      })
+      .catch((e) => {
+        console.log(`Failed to load scenario parameters from API: ${e}`);
+        return new ParameterList();
+      });
   }
 }

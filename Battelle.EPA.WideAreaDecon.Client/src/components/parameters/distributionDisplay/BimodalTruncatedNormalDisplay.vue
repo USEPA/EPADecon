@@ -192,14 +192,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import BimodalTruncatedNormal from '@/implementations/parameter/distribution/BimodalTruncatedNormal';
 import { max } from 'lodash';
 import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
 export default class BimodalTruncatedNormalDisplay extends BaseDistributionDisplay {
-  @Prop({ required: true }) parameterValue!: BimodalTruncatedNormal;
+  get castParameterValue(): BimodalTruncatedNormal {
+    return this.parameterValue as BimodalTruncatedNormal;
+  }
 
   sliderValue = [0, 0];
 
@@ -320,9 +322,9 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.minValue as any;
     if (this.textMin === '') {
-      this.parameterValue.min = undefined;
+      this.castParameterValue.min = undefined;
     } else if (value === this.sliderValue[0]) {
-      this.parameterValue.min = value;
+      this.castParameterValue.min = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMin = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
@@ -336,11 +338,11 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
       }
       if (value >= this.sliderValue[1]) {
         this.sliderValue = [value, value];
-        this.parameterValue.min = value;
-        this.parameterValue.max = value;
+        this.castParameterValue.min = value;
+        this.castParameterValue.max = value;
       } else {
         this.sliderValue = [value, this.sliderValue[1]];
-        this.parameterValue.min = value;
+        this.castParameterValue.min = value;
       }
     } else {
       this.textMin = this.sliderValue[0].toString();
@@ -353,9 +355,9 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.maxValue as any;
     if (this.textMax === '') {
-      this.parameterValue.max = undefined;
+      this.castParameterValue.max = undefined;
     } else if (value === this.sliderValue[1]) {
-      this.parameterValue.max = value;
+      this.castParameterValue.max = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMax = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
@@ -369,11 +371,11 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
       }
       if (value <= this.sliderValue[0]) {
         this.sliderValue = [value, value];
-        this.parameterValue.min = value;
-        this.parameterValue.max = value;
+        this.castParameterValue.min = value;
+        this.castParameterValue.max = value;
       } else {
         this.sliderValue = [this.sliderValue[0], value];
-        this.parameterValue.max = value;
+        this.castParameterValue.max = value;
       }
     } else {
       this.textMax = this.sliderValue[1].toString();
@@ -387,9 +389,9 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent1 = this.$refs.meanValue1 as any;
     if (this.textMean1 === '') {
-      this.parameterValue.mean1 = undefined;
+      this.castParameterValue.mean1 = undefined;
     } else if (value1 === this.sliderMean1) {
-      this.parameterValue.mean1 = value1;
+      this.castParameterValue.mean1 = value1;
     } else if (!this.parameterValue.isSet && !castComponent1.validate(true)) {
       this.textMean1 = '';
     } else if (castComponent1.validate && castComponent1.validate(true)) {
@@ -406,9 +408,9 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent2 = this.$refs.meanValue2 as any;
     if (this.textMean2 === '') {
-      this.parameterValue.mean2 = undefined;
+      this.castParameterValue.mean2 = undefined;
     } else if (value1 === this.sliderMean2) {
-      this.parameterValue.mean2 = value1;
+      this.castParameterValue.mean2 = value1;
     } else if (!this.parameterValue.isSet && !castComponent2.validate(true)) {
       this.textMean2 = '';
     } else if (castComponent2.validate && castComponent2.validate(true)) {
@@ -430,9 +432,9 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent1 = this.$refs.stdValue1 as any;
     if (this.textStd1 === '') {
-      this.parameterValue.stdDev1 = undefined;
+      this.castParameterValue.stdDev1 = undefined;
     } else if (value1 === this.sliderStd1) {
-      this.parameterValue.stdDev1 = value1;
+      this.castParameterValue.stdDev1 = value1;
     } else if (!this.parameterValue.isSet && !castComponent1.validate(true)) {
       this.textStd1 = '';
     } else {
@@ -442,9 +444,9 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent2 = this.$refs.stdValue2 as any;
     if (this.textStd2 === '') {
-      this.parameterValue.stdDev2 = undefined;
+      this.castParameterValue.stdDev2 = undefined;
     } else if (value2 === this.sliderStd2) {
-      this.parameterValue.stdDev2 = value2;
+      this.castParameterValue.stdDev2 = value2;
     } else if (!this.parameterValue.isSet && !castComponent2.validate(true)) {
       this.textStd2 = '';
     } else {
@@ -476,24 +478,24 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
   @Watch('parameterValue')
   setValues(): void {
     this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.parameterValue.min ?? this.min, this.parameterValue.max ?? this.max];
+    this.sliderValue = [this.castParameterValue.min ?? this.min, this.castParameterValue.max ?? this.max];
 
     this.ignoreNextMeanSliderChange = true;
-    this.sliderMean1 = this.parameterValue.mean1 ?? (this.min + this.max) / 4.0;
+    this.sliderMean1 = this.castParameterValue.mean1 ?? (this.min + this.max) / 4.0;
     this.ignoreNextMeanSliderChange = true;
-    this.sliderMean2 = this.parameterValue.mean2 ?? (this.min + this.max) / 4.0;
+    this.sliderMean2 = this.castParameterValue.mean2 ?? (this.min + this.max) / 4.0;
 
     this.ignoreNextStdSliderChange = true;
-    this.sliderStd1 = this.parameterValue.stdDev ?? (this.max - this.min) / 5.0;
+    this.sliderStd1 = this.castParameterValue.stdDev ?? (this.max - this.min) / 5.0;
     this.ignoreNextStdSliderChange = true;
-    this.sliderStd2 = this.parameterValue.stdDev2 ?? (this.max - this.min) / 5.0;
+    this.sliderStd2 = this.castParameterValue.stdDev2 ?? (this.max - this.min) / 5.0;
 
-    this.textMin = this.parameterValue.min?.toString() ?? '';
-    this.textMax = this.parameterValue.max?.toString() ?? '';
-    this.textMean1 = this.parameterValue.mean1?.toString() ?? '';
-    this.textStd1 = this.parameterValue.stdDev1?.toString() ?? '';
-    this.textMean2 = this.parameterValue.mean2?.toString() ?? '';
-    this.textStd2 = this.parameterValue.stdDev2?.toString() ?? '';
+    this.textMin = this.castParameterValue.min?.toString() ?? '';
+    this.textMax = this.castParameterValue.max?.toString() ?? '';
+    this.textMean1 = this.castParameterValue.mean1?.toString() ?? '';
+    this.textStd1 = this.castParameterValue.stdDev1?.toString() ?? '';
+    this.textMean2 = this.castParameterValue.mean2?.toString() ?? '';
+    this.textStd2 = this.castParameterValue.stdDev2?.toString() ?? '';
   }
 
   created(): void {
