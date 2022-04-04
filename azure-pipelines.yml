@@ -27,7 +27,7 @@ jobs:
   steps:
   - task: UseNode@1
     inputs:
-      version: '12.x'
+      version: '16.x'
   
   - task: CmdLine@2
     inputs:

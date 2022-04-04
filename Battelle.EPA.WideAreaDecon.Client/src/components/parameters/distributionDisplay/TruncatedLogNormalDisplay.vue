@@ -121,14 +121,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import { max } from 'lodash';
 import TruncatedLogNormal from '@/implementations/parameter/distribution/TruncatedLogNormal';
 import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
 export default class TruncatedLogNormalDisplay extends BaseDistributionDisplay {
-  @Prop({ required: true }) parameterValue!: TruncatedLogNormal;
+  get castParameterValue(): TruncatedLogNormal {
+    return this.parameterValue as TruncatedLogNormal;
+  }
 
   sliderValue = [0, 0];
 
@@ -206,9 +208,9 @@ export default class TruncatedLogNormalDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.minValue as any;
     if (this.textMin === '') {
-      this.parameterValue.min = undefined;
+      this.castParameterValue.min = undefined;
     } else if (value === this.sliderValue[0]) {
-      this.parameterValue.min = value;
+      this.castParameterValue.min = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMin = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
@@ -218,11 +220,11 @@ export default class TruncatedLogNormalDisplay extends BaseDistributionDisplay {
       }
       if (value >= this.sliderValue[1]) {
         this.sliderValue = [value, value];
-        this.parameterValue.min = value;
-        this.parameterValue.max = value;
+        this.castParameterValue.min = value;
+        this.castParameterValue.max = value;
       } else {
         this.sliderValue = [value, this.sliderValue[1]];
-        this.parameterValue.min = value;
+        this.castParameterValue.min = value;
       }
     } else {
       this.textMin = this.sliderValue[0].toString();
@@ -235,9 +237,9 @@ export default class TruncatedLogNormalDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.maxValue as any;
     if (this.textMax === '') {
-      this.parameterValue.max = undefined;
+      this.castParameterValue.max = undefined;
     } else if (value === this.sliderValue[1]) {
-      this.parameterValue.max = value;
+      this.castParameterValue.max = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMax = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
@@ -247,11 +249,11 @@ export default class TruncatedLogNormalDisplay extends BaseDistributionDisplay {
       }
       if (value <= this.sliderValue[0]) {
         this.sliderValue = [value, value];
-        this.parameterValue.min = value;
-        this.parameterValue.max = value;
+        this.castParameterValue.min = value;
+        this.castParameterValue.max = value;
       } else {
         this.sliderValue = [this.sliderValue[0], value];
-        this.parameterValue.max = value;
+        this.castParameterValue.max = value;
       }
     } else {
       this.textMax = this.sliderValue[1].toString();
@@ -264,9 +266,9 @@ export default class TruncatedLogNormalDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.meanValue as any;
     if (this.textMean === '') {
-      this.parameterValue.mean = undefined;
+      this.castParameterValue.mean = undefined;
     } else if (value === this.sliderMean) {
-      this.parameterValue.mean = value;
+      this.castParameterValue.mean = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMean = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
@@ -287,9 +289,9 @@ export default class TruncatedLogNormalDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.stdValue as any;
     if (this.textStd === '') {
-      this.parameterValue.stdDev = undefined;
+      this.castParameterValue.stdDev = undefined;
     } else if (value === this.sliderStd) {
-      this.parameterValue.stdDev = value;
+      this.castParameterValue.stdDev = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textStd = '';
     } else {
@@ -314,20 +316,20 @@ export default class TruncatedLogNormalDisplay extends BaseDistributionDisplay {
   setValues(): void {
     this.ignoreNextValueSliderChange = true;
     this.sliderValue = [this.min, this.min];
-    this.sliderValue = [this.parameterValue.min ?? this.min, this.parameterValue.max ?? this.max];
+    this.sliderValue = [this.castParameterValue.min ?? this.min, this.castParameterValue.max ?? this.max];
 
     this.ignoreNextMeanSliderChange = true;
     this.sliderMean = this.min;
-    this.sliderMean = this.parameterValue.mean ?? (this.min + this.max) / 2.0;
+    this.sliderMean = this.castParameterValue.mean ?? (this.min + this.max) / 2.0;
 
     this.ignoreNextStdSliderChange = true;
     this.sliderStd = this.min;
-    this.sliderStd = this.parameterValue.stdDev ?? (this.max - this.min) / 5.0;
+    this.sliderStd = this.castParameterValue.stdDev ?? (this.max - this.min) / 5.0;
 
-    this.textMin = this.parameterValue.min?.toString() ?? '';
-    this.textMax = this.parameterValue.max?.toString() ?? '';
-    this.textMean = this.parameterValue.mean?.toString() ?? '';
-    this.textStd = this.parameterValue.stdDev?.toString() ?? '';
+    this.textMin = this.castParameterValue.min?.toString() ?? '';
+    this.textMax = this.castParameterValue.max?.toString() ?? '';
+    this.textMean = this.castParameterValue.mean?.toString() ?? '';
+    this.textStd = this.castParameterValue.stdDev?.toString() ?? '';
   }
 
   created(): void {

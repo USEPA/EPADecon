@@ -3,20 +3,23 @@ import IParameterDisplay from '@/interfaces/component/IParameterDisplay';
 import IParameter from '@/interfaces/parameter/IParameter';
 import { logDistributionTypes } from '@/mixin/parameterMixin';
 import { validateWithLimits } from '@/constants';
+import { Prop } from 'vue-property-decorator';
 
 export default class BaseParameterDisplay extends Vue implements IParameterDisplay {
-  parameterValue!: IParameter;
+  @Prop({ required: true }) parameterValue!: IParameter;
 
-  inputValidationRules = {
-    general: (value: string): boolean | string => validateWithLimits(this.min, this.max, Number(value)),
-    minMax: (min: string, max: string): boolean | string => min !== max || 'Min and max cannot be the same',
-    stdDev: (value: string): boolean | string => {
-      if (this.stdDevMin === undefined || this.stdDevMax === undefined) {
-        return true;
-      }
-      return validateWithLimits(this.stdDevMin, this.stdDevMax, Number(value));
-    },
-  };
+  get inputValidationRules() {
+    return {
+      general: (value: string): boolean | string => validateWithLimits(this.min, this.max, Number(value)),
+      minMax: (min: string, max: string): boolean | string => min !== max || 'Min and max cannot be the same',
+      stdDev: (value: string): boolean | string => {
+        if (this.stdDevMin === undefined || this.stdDevMax === undefined) {
+          return true;
+        }
+        return validateWithLimits(this.stdDevMin, this.stdDevMax, Number(value));
+      },
+    };
+  }
 
   get isLogDist(): boolean {
     return logDistributionTypes.includes(this.parameterValue.type);

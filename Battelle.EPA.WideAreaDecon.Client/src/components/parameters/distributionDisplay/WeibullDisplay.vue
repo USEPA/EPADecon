@@ -71,7 +71,9 @@ import BaseDistributionDisplay from '@/implementations/parameter/distribution/Ba
 
 @Component
 export default class WeibullDisplay extends BaseDistributionDisplay {
-  @Prop({ required: true }) parameterValue!: Weibull;
+  get weibullValue(): Weibull {
+    return this.parameterValue as Weibull;
+  }
 
   sliderValue = [0, 0];
 
@@ -145,9 +147,9 @@ export default class WeibullDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.LambdaValue as any;
     if (this.textLambda === '') {
-      this.parameterValue.lambda = undefined;
+      this.weibullValue.lambda = undefined;
     } else if (value === this.sliderLambda) {
-      this.parameterValue.lambda = value;
+      this.weibullValue.lambda = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textLambda = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
@@ -168,9 +170,9 @@ export default class WeibullDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.KValue as any;
     if (this.textK === '') {
-      this.parameterValue.k = undefined;
+      this.weibullValue.k = undefined;
     } else if (value === this.sliderK) {
-      this.parameterValue.k = value;
+      this.weibullValue.k = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textK = '';
     } else {
@@ -190,14 +192,14 @@ export default class WeibullDisplay extends BaseDistributionDisplay {
   setValues(): void {
     this.ignoreNextLambdaSliderChange = true;
     this.sliderLambda = 0;
-    this.sliderLambda = this.parameterValue.lambda ?? 1;
+    this.sliderLambda = this.weibullValue.lambda ?? 1;
 
     this.ignoreNextKSliderChange = true;
     this.sliderK = 2;
-    this.sliderK = this.parameterValue.k ?? 1;
+    this.sliderK = this.weibullValue.k ?? 1;
 
-    this.textLambda = this.parameterValue.lambda?.toString() ?? '';
-    this.textK = this.parameterValue.k?.toString() ?? '';
+    this.textLambda = this.weibullValue.lambda?.toString() ?? '';
+    this.textK = this.weibullValue.k?.toString() ?? '';
   }
 
   created(): void {

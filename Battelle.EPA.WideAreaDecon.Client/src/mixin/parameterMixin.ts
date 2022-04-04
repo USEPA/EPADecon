@@ -24,5 +24,4 @@ const logDistributionTypes: ParameterType[] = [
 /** Dstribution types that don't take the natural log of inputed values */
 const nonLogDistributionTypes = changeableDistributionTypes.filter((type) => !logDistributionTypes.includes(type));
 
-// eslint-disable-next-line import/prefer-default-export
 export { changeableDistributionTypes, nonLogDistributionTypes, logDistributionTypes };

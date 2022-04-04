@@ -26,5 +26,4 @@ const validateWithLimits = (lower: number, upper: number, value: number, inclusi
   return true;
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export { validateWithLimits };
