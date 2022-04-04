@@ -112,6 +112,9 @@ export default class ChartOptionsProvider implements IChartOptionsProvider {
     const options = this.getDefaultOptions();
 
     options.plugins = {
+      datalabels: {
+        display: false,
+      },
       tooltip: {
         enabled: true,
         callbacks: tooltipCallback,
@@ -146,6 +149,7 @@ export default class ChartOptionsProvider implements IChartOptionsProvider {
 
   getScatterOptions(): ChartOptions {
     // @ts-expect-error (types for chart.js wants ALL properties defined on scales)
+    //return this.getChartOptions(this.scatterCallback, this.scatterScales);
     return this.getChartOptions(this.scatterCallback, this.scatterScales);
   }
 }

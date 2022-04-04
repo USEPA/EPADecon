@@ -71,14 +71,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import { max } from 'lodash';
 import LogNormal from '@/implementations/parameter/distribution/LogNormal';
 import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
 export default class LogNormalDisplay extends BaseDistributionDisplay {
-  @Prop({ required: true }) parameterValue!: LogNormal;
+  get castParameterValue(): LogNormal {
+    return this.parameterValue as LogNormal;
+  }
 
   sliderValue = [0, 0];
 
@@ -148,9 +150,9 @@ export default class LogNormalDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.meanValue as any;
     if (this.textMean === '') {
-      this.parameterValue.mean = undefined;
+      this.castParameterValue.mean = undefined;
     } else if (value === this.sliderMean) {
-      this.parameterValue.mean = value;
+      this.castParameterValue.mean = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMean = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
@@ -171,9 +173,9 @@ export default class LogNormalDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.stdValue as any;
     if (this.textStd === '') {
-      this.parameterValue.stdDev = undefined;
+      this.castParameterValue.stdDev = undefined;
     } else if (value === this.sliderStd) {
-      this.parameterValue.stdDev = value;
+      this.castParameterValue.stdDev = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textStd = '';
     } else {
@@ -192,13 +194,13 @@ export default class LogNormalDisplay extends BaseDistributionDisplay {
   @Watch('parameterValue')
   setValues(): void {
     this.ignoreNextMeanSliderChange = true;
-    this.sliderMean = this.parameterValue.mean ?? 1;
+    this.sliderMean = this.castParameterValue.mean ?? 1;
 
     this.ignoreNextStdSliderChange = true;
-    this.sliderStd = this.parameterValue.stdDev ?? 1;
+    this.sliderStd = this.castParameterValue.stdDev ?? 1;
 
-    this.textMean = this.parameterValue.mean?.toString() ?? '';
-    this.textStd = this.parameterValue.stdDev?.toString() ?? '';
+    this.textMean = this.castParameterValue.mean?.toString() ?? '';
+    this.textStd = this.castParameterValue.stdDev?.toString() ?? '';
   }
 
   created(): void {

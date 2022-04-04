@@ -11,6 +11,10 @@ export default class DefaultScenarioDefinitionProvider implements IScenarioDefin
   async getScenarioDefinition(): Promise<ParameterList> {
     return axios
       .get<ParameterList>('/api/ScenarioDefinition')
-      .then<ParameterList>((response) => deserialize<ParameterList>(response.data, ParameterList));
+      .then<ParameterList>((response) => deserialize<ParameterList>(response.data, ParameterList))
+      .catch((e) => {
+        console.log(`Failed to load scenario definition from API: ${e}`);
+        return new ParameterList();
+      });
   }
 }

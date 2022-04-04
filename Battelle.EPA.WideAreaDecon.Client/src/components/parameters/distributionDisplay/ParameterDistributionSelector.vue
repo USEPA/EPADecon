@@ -36,7 +36,7 @@
       <component
         :key="currentSelectedParameter.path"
         :is="display.distComponent"
-        :parameter-value="currentSelectedParameter.current"
+        :parameterValue="currentSelectedParameter.current"
       />
 
       <div v-if="display.displayChart" class="py-5" style="width: 100%; height: 400px">

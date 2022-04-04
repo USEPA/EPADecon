@@ -58,7 +58,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <p class="grey--text">{{ castParameterValue.metaData.units }}</p>
             </template>
           </v-text-field>
         </v-card>
@@ -77,7 +77,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <p class="grey--text">{{ castParameterValue.metaData.units }}</p>
             </template>
           </v-text-field>
         </v-card>
@@ -98,7 +98,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <p class="grey--text">{{ castParameterValue.metaData.units }}</p>
             </template>
           </v-text-field>
         </v-card>
@@ -117,7 +117,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <p class="grey--text">{{ castParameterValue.metaData.units }}</p>
             </template>
           </v-text-field>
         </v-card>
@@ -127,13 +127,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import BaseParameterDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 import ScaledBeta from '@/implementations/parameter/distribution/ScaledBeta';
 
 @Component
 export default class ScaledBetaDisplay extends BaseParameterDisplay {
-  @Prop() parameterValue!: ScaledBeta;
+  get castParameterValue(): ScaledBeta {
+    return this.parameterValue as ScaledBeta;
+  }
 
   alpha = 0;
 
@@ -149,8 +151,9 @@ export default class ScaledBetaDisplay extends BaseParameterDisplay {
 
   textMin = '';
 
-  shapeValidation = (value: string): boolean | string =>
-    this.validateWithLimits(this.shapeMin, this.max, Number(value));
+  get shapeValidation(): (value: string) => boolean | string {
+    return (value: string) => this.validateWithLimits(this.shapeMin, this.max, Number(value));
+  }
 
   get shapeMin(): number {
     return this.min <= 0 ? this.step : this.min;
@@ -171,7 +174,7 @@ export default class ScaledBetaDisplay extends BaseParameterDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const component = this.$refs[input] as any;
     if (!component.validate()) {
-      this.$set(this.parameterValue, input, undefined);
+      this.$set(this.castParameterValue, input, undefined);
       return;
     }
 
@@ -196,20 +199,20 @@ export default class ScaledBetaDisplay extends BaseParameterDisplay {
   setAlphaOrBeta(shape: 'alpha' | 'beta', value?: number): void {
     const textShape: 'textAlpha' | 'textBeta' = shape === 'alpha' ? 'textAlpha' : 'textBeta';
     this[textShape] = value?.toString() ?? '';
-    this.$set(this.parameterValue, shape, value ?? (this.min + this.max) / 2);
+    this.$set(this.castParameterValue, shape, value ?? (this.min + this.max) / 2);
   }
 
   setMinMax([min, max]: (number | undefined)[]): void {
     this.textMin = min?.toString() ?? '';
     this.textMax = max?.toString() ?? '';
 
-    this.$set(this.parameterValue, 'min', min ?? this.min);
-    this.$set(this.parameterValue, 'max', max ?? this.max);
+    this.$set(this.castParameterValue, 'min', min ?? this.min);
+    this.$set(this.castParameterValue, 'max', max ?? this.max);
   }
 
-  @Watch('parameterValue')
+  @Watch('castParameterValue')
   setValues(): void {
-    const { min, max, alpha, beta } = this.parameterValue;
+    const { min, max, alpha, beta } = this.castParameterValue;
     const half = (this.min + this.max) / 2;
 
     this.minMax = [min ?? this.min, max ?? this.max];

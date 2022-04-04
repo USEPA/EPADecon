@@ -1,50 +1,36 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "CommonJS",
+    "target": "esnext",
+    "module": "esnext",
     "strict": true,
     "jsx": "preserve",
-    "importHelpers": true,
-    "noImplicitAny": true,
     "moduleResolution": "node",
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
     "resolveJsonModule": true,
     "sourceMap": true,
-    "skipLibCheck": true,
     "baseUrl": ".",
-    "types": [
-      "node",
-      "vuetify",
-      "reflect-metadata",
-      "mocha",
-      "chai"
-    ],
+    "types": ["webpack-env", "mocha", "chai", "node", "vuetify", "reflect-metadata"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "src/**/*.js",
+    "src/**/*.json",
     "tests/**/*.ts",
     "tests/**/*.tsx",
     "tests/**/*.js",
-    "assets/**/*.png",
+    "assets/**/*.png"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules", "dist"]
 }

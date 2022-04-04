@@ -52,7 +52,10 @@ export default class EnumeratedParameter implements IParameter {
   @JsonProperty()
   metaData: ParameterMetaData;
 
-  @JsonProperty({ ...{ isDictionary: true }, ...EnumeratedParameterDeserializer })
+  @JsonProperty({
+    ...{ isDictionary: true },
+    ...EnumeratedParameterDeserializer,
+  })
   values: Record<string, IParameter>;
 
   @JsonProperty()

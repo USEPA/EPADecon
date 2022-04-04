@@ -23,16 +23,6 @@
         :key="chartKey"
         ref="scatter"
       />
-      <chart-js-wrapper
-        v-else
-        :type="chartType"
-        class="pl-10 pr-2 mb-2"
-        id="chartWrapper"
-        :data="chartData"
-        :options="options"
-        :plugins="[]"
-        :key="chartKey"
-      />
 
       <v-chip v-if="chartLabels.x" class="px-6" id="xLabel" close @click:close="$emit('removeXLabel')" key="x">
         {{ resultProvider.convertCamelToTitleCase(chartLabels.x) }}
