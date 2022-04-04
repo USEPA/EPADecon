@@ -113,7 +113,7 @@ import ContaminationDefinition from '@/implementations/parameter/list/Contaminat
 
 @Component
 export default class CityMap extends Vue {
-  @Prop() parameterValue!: ContaminationDefinition;
+  @Prop({ required: true }) parameterValue!: ContaminationDefinition;
 
   readonly raster = new TileLayer({ source: new OSM() });
 
@@ -162,7 +162,9 @@ export default class CityMap extends Vue {
 
   sketch: Feature<Geometry> | null = null;
 
-  source: VectorSource<Geometry> = this.parameterValue.mapSource;
+  get source(): VectorSource<Geometry> {
+    return this.parameterValue.mapSource;
+  }
 
   subwayLineLengthsInPlume: number[] = [];
 
@@ -360,7 +362,7 @@ export default class CityMap extends Vue {
       });
       // { event: BaseEvent }: { event: Feature<Geometry> }
       this.draw.on(['drawend'], async (event) => {
-        const feature = event.target as Feature<Geometry>;
+        const feature = (event as any).feature as Feature<Geometry>;
         feature.set('type', 'plume');
         const geom = feature.getGeometry() as Polygon | Circle;
         const polygon = geom.getType() === 'Circle' ? fromCircle(geom as Circle) : (geom as Polygon);
