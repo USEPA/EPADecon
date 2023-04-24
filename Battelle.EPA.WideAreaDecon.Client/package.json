@@ -50,7 +50,7 @@
     "vuetify-loader": "^1.6.0",
     "vuex": "^3.6.2",
     "vuex-class": "^0.3.2",
-    "xlsx": "^0.16.9"
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.16.7",
