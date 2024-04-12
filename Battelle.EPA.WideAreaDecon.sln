@@ -21,9 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battelle.EPA.WideAreaDecon.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battelle.EPA.WideAreaDecon.InterfaceData.Tests", "Battelle.EPA.WideAreaDecon.InterfaceData.Tests\Battelle.EPA.WideAreaDecon.InterfaceData.Tests.csproj", "{8A03C6EB-B5F9-4ACC-A954-88A82C0E5B35}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{009F4977-9B66-44E5-8868-0DD78D5374CF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4A2BA88A-3D0F-4D39-8FDE-D93CE7417FB4}"
 	ProjectSection(SolutionItems) = preProject
-		NuGet.config = NuGet.config
+		nuget.config = nuget.config
 	EndProjectSection
 EndProject
 Global
