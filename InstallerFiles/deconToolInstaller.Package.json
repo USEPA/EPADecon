@@ -1,9 +1,9 @@
 {
   "name": "wide-area-decon-tool",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Wide Area Decontamination Tool",
   "repository": {
-    "url": "https://wp-abattfs01.milky-way.battelle.org/RiskAssessment/EXTRA"
+    "url": "https://githubes.battelle.io/ns-cwmd/battelle.ns.cwmd.epa.wad"
   },
   "main": "main.js",
   "author": "Battelle Memorial Institute",

@@ -6,11 +6,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Providers
     [TestFixture]
     internal class ExcelDefineScenarioParameterListProviderTest
     {
-        [SetUp]
-        public void SetUp()
-        {
-        }
-
         private static string TestFileName => @"InputFiles\DefineScenario.xlsx";
 
         [Test]
@@ -21,7 +16,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Providers
                 FileName = TestFileName
             };
 
-            var paramList = defineScenario.GetParameterList();
+            _ = defineScenario.GetParameterList();
+
             Assert.Pass();
         }
     }

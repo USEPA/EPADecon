@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results.ResourceAndCostResults;
 
 namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Cost
 {
@@ -28,19 +29,25 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Cost
             _costPerWasteSample = costPerWasteSample;
         }
 
-        public double CalculateSuppliesCost(double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public WasteSamplingResourceAndCostResults CalculateSuppliesCost(int deconTreatments, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
 
-            var solidWasteToBeSampled = fractionSampled * totalArea * _solidWastePerSurfaceArea * 0.5;
-            var liquidWasteToBeSampled = fractionSampled * totalArea * _liquidWastePerSurfaceArea * 0.5;
+            var solidWasteToBeSampled = fractionSampled * totalArea * _solidWastePerSurfaceArea * 0.5 * deconTreatments;
+            var liquidWasteToBeSampled = fractionSampled * totalArea * _liquidWastePerSurfaceArea * 0.5 * deconTreatments;
 
             var solidWasteSamples = solidWasteToBeSampled / _massPerWasteSample;
             var liquidWasteSamples = liquidWasteToBeSampled / _volumePerWasteSample;
 
             var wasteSamples = solidWasteSamples + liquidWasteSamples;
 
-            return _costPerWasteSample * wasteSamples;
+            return new WasteSamplingResourceAndCostResults()
+            {
+                WasteSamplingCost = _costPerWasteSample * wasteSamples,
+                TotalPpEUnits = new Dictionary<PpeLevel, int>(),
+                TotalAqueousWasteSamples = (int)Math.Ceiling(liquidWasteSamples),
+                TotalSolidWasteSamples = (int)Math.Ceiling(solidWasteSamples)
+            };
         }
     }
 }

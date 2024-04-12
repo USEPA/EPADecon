@@ -7,6 +7,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 {
     public interface ILaborDaysCalculator
     {
-        public double CalculateLaborDays(double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated);
+        public double CalculateLaborDays(int deconTreatments, double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated);
     }
 }

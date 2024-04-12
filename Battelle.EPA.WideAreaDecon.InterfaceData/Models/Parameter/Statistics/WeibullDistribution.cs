@@ -35,8 +35,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         {
             return new WeibullDistribution()
             {
-                K = typeof(WeibullDistribution).GetCellValue(nameof(K), row)?.ConvertToOptionalDouble(),
-                Lambda = typeof(WeibullDistribution).GetCellValue(nameof(Lambda), row)?.ConvertToOptionalDouble(),
+                K = typeof(WeibullDistribution).GetCellValue(nameof(K), row)?.ConvertToStepRoundedAndOptionalDouble(metaData),
+                Lambda = typeof(WeibullDistribution).GetCellValue(nameof(Lambda), row)?.ConvertToStepRoundedAndOptionalDouble(metaData),
                 MetaData = metaData
             };
         }
@@ -51,6 +51,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         }
 
         public string GetTextValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FrequencyValueType GetFrequencyValue()
         {
             throw new NotImplementedException();
         }

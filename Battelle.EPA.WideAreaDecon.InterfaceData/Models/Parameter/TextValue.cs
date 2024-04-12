@@ -4,7 +4,6 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Attributes;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Helpers;
-using Battelle.RiskAssessment.Common.Statistics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
@@ -45,6 +44,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
         public string GetTextValue()
         {
             return Value;
+        }
+
+        public FrequencyValueType GetFrequencyValue()
+        {
+            throw new NotImplementedException();
         }
     }
 }

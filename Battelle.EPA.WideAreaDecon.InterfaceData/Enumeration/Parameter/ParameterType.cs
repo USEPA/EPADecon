@@ -46,6 +46,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
         [EnumMember(Value = "Text")]
         Text,
 
+        [EnumMember(Value = "Frequency")]
+        Frequency,
+
         [EnumMember(Value = "Enumerated Fraction")] 
         EnumeratedFraction,
 

@@ -1,11 +1,12 @@
-using System;
-using System.IO;
+using Battelle.EPA.WideAreaDecon.API.Hubs;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Providers;
 using Battelle.EPA.WideAreaDecon.API.Models.ClientConfiguration;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
+using Battelle.EPA.WideAreaDecon.API.Models.Geospatial;
 using Battelle.EPA.WideAreaDecon.API.Services;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Providers;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
+using Battelle.EPA.WideAreaDecon.Model;
+using Battelle.EPA.WideAreaDecon.Model.Interface;
 using ElectronNET.API;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,8 +17,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using System;
+using System.IO;
 using VueCliMiddleware;
-using Battelle.EPA.WideAreaDecon.API.Hubs;
 
 namespace Battelle.EPA.WideAreaDecon.API.Application
 {
@@ -56,11 +58,11 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc(
-                    "v1",
+                    "v1.1",
                     new OpenApiInfo
                     {
                         Title = "Wide Area Decon Rest API",
-                        Version = "v1"
+                        Version = "v1.1"
                     });
 
                 c.DocInclusionPredicate((docName, apiDesc) =>
@@ -117,6 +119,9 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             app.UseRouting()
                 .UseEndpoints(ConfigureEndpoints);
 
+            GdalConfiguration.ConfigureGdal();
+            GdalConfiguration.ConfigureOgr();
+
 #if !DEBUG
             app.UseSpa(spa =>
             {
@@ -133,6 +138,18 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
             services.AddTransient(s =>
                 Configuration.GetSection("ClientConfiguration")
                     .Get<ClientConfiguration>());
+
+            var geospatialConfiguration = new GeospatialConfiguration();
+            Configuration.GetSection(nameof(GeospatialConfiguration))
+                .Bind(geospatialConfiguration);
+            services.AddSingleton(geospatialConfiguration);
+            // delete the directory when starting application
+            var fileDirectoryInfo = new DirectoryInfo(
+                Environment.ExpandEnvironmentVariables(geospatialConfiguration.SaveDirectory));
+            if (fileDirectoryInfo.Exists)
+            {
+                fileDirectoryInfo.Delete(true);
+            }
         }
 
         private void ConfigureProviders(IServiceCollection services)
@@ -160,12 +177,22 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
 
             services.AddSingleton<IParameterListProvider>(new EmptyParameterListProvider());
 
+            services.AddTransient<IJobProgressUpdater, JobProgressUpdater>();
+            services.AddTransient<IJobStatusUpdater, JobStatusUpdater>();
             services.AddSingleton<IJobManager, JobManager>();
 
             services.AddTransient<JobStatusUpdater>();
             services.AddTransient<JobProgressUpdater>();
 
             services.AddSingleton<CityDataLinksService>();
+            services.AddTransient<IResultsCalculator, ResultsCalculator>();
+            services.AddTransient<ICalculatorManager, CalculatorManager>();
+
+            services.AddTransient<IEventModelRunner, EventModelRunner>();
+            services.AddTransient<IAssignmentGenerator, AssignmentGenerator>();
+            services.AddTransient<IScenarioModelRunner, ScenarioModelRunner>();
+
+            services.AddTransient<IGeospatialFileService, GeospatialFileService>();
         }
 
         private void ConfigureEndpoints(IEndpointRouteBuilder endpoints)
@@ -178,7 +205,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Application
 #if DEBUG
             endpoints.MapToVueCliProxy(
                 "{*path}",
-                new SpaOptions {SourcePath = "../Battelle.EPA.WideAreaDecon.Client"},
+                new SpaOptions { SourcePath = "../Battelle.EPA.WideAreaDecon.Client" },
                 npmScript: "serve",
                 regex: "App running at",
                 port: Configuration.GetValue<int>("Port") + 1);

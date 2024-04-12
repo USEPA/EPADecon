@@ -1,24 +1,27 @@
+using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
+using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Battelle.EPA.WideAreaDecon.API.Models.Job;
+using Battelle.EPA.WideAreaDecon.InterfaceData;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Constants;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario;
+using Battelle.EPA.WideAreaDecon.Model.Interface;
+using Battelle.RiskAssessment.Common.Statistics;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
-using Battelle.EPA.WideAreaDecon.API.Models.Job;
-using Battelle.EPA.WideAreaDecon.API.Hubs;
-using Battelle.EPA.WideAreaDecon.API.Interfaces;
-using Battelle.EPA.WideAreaDecon.InterfaceData;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
-using Battelle.EPA.WideAreaDecon.Model;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
-using Microsoft.AspNetCore.SignalR;
-using Battelle.RiskAssessment.Common.Statistics;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
+    /// <summary>
+    /// <inheritdoc cref="IJobManager"/>
+    /// </summary>
     public class JobManager : IJobManager
     {
         private List<JobRequest> AllJobs { get; }
@@ -28,20 +31,35 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
         private CancellationTokenSource cancelCancellationTokenSource;
 
-        private JobStatusUpdater _statusUpdater;
-        private JobProgressUpdater _progressUpdater;
+        private readonly IEventModelRunner _eventModelRunner;
+        private readonly IScenarioModelRunner _scenarioModelRunner;
+        private readonly IJobStatusUpdater _statusUpdater;
+        private readonly IJobProgressUpdater _progressUpdater;
 
-        public JobManager(IHubContext<JobStatusHub, IJobStatusHub> hub)
+        /// <summary>
+        /// Constructs a job manager responsible for running jobs
+        /// </summary>
+        public JobManager(IEventModelRunner eventModelRunner,
+            IScenarioModelRunner scenarioModelRunner,
+            IJobProgressUpdater jobProgressUpdater,
+            IJobStatusUpdater jobStatusUpdater)
         {
+            _eventModelRunner = eventModelRunner;
+            _scenarioModelRunner = scenarioModelRunner;
+            _statusUpdater = jobStatusUpdater;
+            _progressUpdater = jobProgressUpdater;
+
             AllJobs = new List<JobRequest>();
             Queued = new ConcurrentQueue<JobRequest>();
             Running = null;
             Finished = new ConcurrentBag<JobRequest>();
-            _statusUpdater = new JobStatusUpdater(hub);
-            _progressUpdater = new JobProgressUpdater(hub);
+
             RunNextJob();
         }
 
+        /// <summary>
+        /// <inheritdoc cref="IJobManager.AddToQueue"/>
+        /// </summary>
         public async Task AddToQueue(JobRequest job)
         {
             AllJobs.Add(job);
@@ -80,7 +98,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
             Running = newRun;
 
             Task.Run(ConvertAndExecuteJob, cancelCancellationTokenSource.Token).ContinueWith(task => RunNextJob());
-
         }
 
         private Task ConvertAndExecuteJob() => Task.Run(async () =>
@@ -104,16 +121,21 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                     }
 
                     var extentOfContaminationParameters = Running.DefineScenario.Filters
-                        .First(f => f.Name == "Extent of Contamination").Parameters;
-                    var contaminationDefinition = extentOfContaminationParameters.First(p => p.MetaData.Name == "Contamination Definition") as ContaminationDefinition;
+                        .First(f => f.Name == ExtentOfContamination.SheetName).Parameters;
+                    var contaminationDefinition = extentOfContaminationParameters.First(p => p.MetaData.Name == ParameterNames.ContaminationDefinition) as ContaminationDefinition
+                      ?? throw new NullReferenceException($"{ParameterNames.ContaminationDefinition} parameter is null");
 
                     var scenarioCreator = new ScenarioCreator(
                         contaminationDefinition.AreaContaminated,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == ExtentOfContamination.CityBlockSizeName) as EnumeratedParameter<DecontaminationElement>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == ExtentOfContamination.BuildingSizeName) as EnumeratedParameter<BuildingCategory>,
+                        contaminationDefinition.BuildingAreasInPlume,
                         contaminationDefinition.Loading,
-                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Contamination Breakout") as EnumeratedFraction<BuildingCategory>,
-                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Indoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
-                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Outdoor Surface Type Breakout") as EnumeratedFraction<SurfaceType>,
-                        extentOfContaminationParameters.First(p => p.MetaData.Name == "Underground Surface Type Breakout") as EnumeratedFraction<SurfaceType>);
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == ExtentOfContamination.IndoorBuildingBreakoutName) as EnumeratedFraction<BuildingCategory>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == ExtentOfContamination.IndoorSurfaceBreakoutName) as EnumeratedFraction<SurfaceType>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == ExtentOfContamination.OutdoorSurfaceBreakoutName) as EnumeratedFraction<SurfaceType>,
+                        extentOfContaminationParameters.First(p => p.MetaData.Name == ExtentOfContamination.UndergroundSurfaceBreakoutName) as EnumeratedFraction<SurfaceType>,
+                        Running.DefinitionMode);
 
                     var scenarios = new List<ScenarioRealization>();
 
@@ -124,59 +146,138 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
 
                     var results = new List<JobResults>();
 
-                    for (int s = 0; s < scenarios.Count(); s++)
+                    for (int s = 0; s < scenarios.Count; s++)
                     {
                         LibraryInfo.SetSeed(seeds[s].Item1, seeds[s].Item2);
 
                         var realizationResults = new JobResults()
                         {
-                            scenarioResults = new ScenarioTypeResults()
+                            ScenarioResults = new ScenarioTypeResults()
                             {
-                                indoorResults = new Dictionary<BuildingCategory, ScenarioRealizationResults>(),
-                                outdoorResults = new ScenarioRealizationResults(),
-                                undergroundResults = new ScenarioRealizationResults()
+                                IndoorResults = new Dictionary<BuildingCategory, BuildingCategoryResults>(),
+                                OutdoorResults = new ScenarioRealizationResults(),
+                                UndergroundResults = new ScenarioRealizationResults()
                             },
-                            eventResults = new EventResults()
+                            EventResults = new EventResults()
                         };
 
-                        //RUN INDOOR SCENARIO
-                        foreach (var building in scenarios[s].IndoorBuildingsContaminated)
+
+                        // RUN INDOOR WITH MULTIPLE BUILDINGS
+                        // Loop through each building category to run the model building by building
+                        // within each category. The category buildings will be aggregated at the end
+                        foreach (BuildingCategory category in scenarios[s].IndoorBuildingsContaminated.Keys.ToList())
                         {
-                            if (building.Value.Count > 0)
+                            // Create a list that will hold the results for each building in the category
+                            var buildingCategoryResultsByBuilding = new SegmentResults()
                             {
-                                var indoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationElement.Indoor, building.Value);
-                                realizationResults.scenarioResults.indoorResults.Add(building.Key, indoorModelRunner.RunScenarioModel());
+                                Results = new List<ScenarioRealizationResults>()
+                            };
+
+                            // Looping through the buildings within each category
+                            if (scenarios[s].IndoorBuildingsContaminated[category].Count > 0)
+                            {
+                                foreach (var building in scenarios[s].IndoorBuildingsContaminated[category])
+                                {
+                                    // Run scenario model for the building
+                                    var buildingResults = _scenarioModelRunner
+                                        .RunScenarioModel(Running.ModifyParameter, DecontaminationElement.Indoor, building);
+
+                                    // Store the results in the building results list
+                                    buildingCategoryResultsByBuilding.Results.Add(buildingResults);
+                                }
                             }
+
+                            // Creating a list where all of the areas for each building will be stored
+                            var buildingAreasForCategory = new List<double>();
+
+                            // Loop through each individual building within the building category
+                            foreach (var building in scenarios[s].IndoorBuildingsContaminated[category])
+                            {
+                                // Sum the area for all surfaces within that building to get the
+                                // total area of the individual building
+                                var area = 0.0;
+
+                                foreach (var surface in building.Keys.ToList())
+                                {
+                                    area += building[surface].AreaContaminated;
+                                }
+
+                                buildingAreasForCategory.Add(area);
+                            }
+
+                            // Aggregate the list of building results for the current building category
+                            // and store the summed results, the number of buildings, and the areas of each of the 
+                            // buildings in the building category results object that we will then place in the 
+                            // dictionary for the corresponding building category key
+                            var categoryBuildingCount = buildingCategoryResultsByBuilding.Results.Count();
+
+                            var buildingCategoryResults = categoryBuildingCount > 0
+                                ? new BuildingCategoryResults()
+                                {
+                                    RealizationResults = buildingCategoryResultsByBuilding.SumResults(),
+                                    BuildingCount = categoryBuildingCount,
+                                    BuildingAreas = buildingAreasForCategory
+                                }
+                                : null;
+
+                            realizationResults.ScenarioResults.IndoorResults.Add(category, buildingCategoryResults);
                         }
 
-                        if (realizationResults.scenarioResults.indoorResults.Count == 0)
+                        if (realizationResults.ScenarioResults.IndoorResults.Count == 0)
                         {
-                            realizationResults.scenarioResults.indoorResults = null;
+                            realizationResults.ScenarioResults.IndoorResults = null;
                         }
 
                         //RUN OUTDOOR SCENARIO
-                        if (scenarios[s].OutdoorAreasContaminated.Sum(x => x.Value.AreaContaminated) > 0)
+                        if (scenarios[s].OutdoorAreasContaminated.Count > 0)
                         {
-                            var outdoorModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationElement.Outdoor, scenarios[s].OutdoorAreasContaminated);
-                            realizationResults.scenarioResults.outdoorResults = outdoorModelRunner.RunScenarioModel();
-                        } else
+                            var outdoorSegmentResults = new SegmentResults()
+                            {
+                                Results = new List<ScenarioRealizationResults>()
+                            };
+
+                            foreach (var outdoorSegment in scenarios[s].OutdoorAreasContaminated)
+                            {
+                                var segmentResults = _scenarioModelRunner
+                                    .RunScenarioModel(Running.ModifyParameter, DecontaminationElement.Outdoor, outdoorSegment);
+                                outdoorSegmentResults.Results.Add(segmentResults);
+                            }
+
+                            realizationResults.ScenarioResults.OutdoorResults = outdoorSegmentResults.SumResults();
+                        }
+                        else
                         {
-                            realizationResults.scenarioResults.outdoorResults = null;
+                            realizationResults.ScenarioResults.OutdoorResults = null;
                         }
 
                         //RUN UNDERGROUND SCENARIO
-                        if (scenarios[s].UndergroundBuildingsContaminated.Sum(x => x.Value.AreaContaminated) > 0)
+                        if (scenarios[s].UndergroundBuildingsContaminated.Count > 0)
                         {
-                            var undergroundModelRunner = new ScenarioModelRunner(Running.ModifyParameter, DecontaminationElement.Underground, scenarios[s].UndergroundBuildingsContaminated);
-                            realizationResults.scenarioResults.undergroundResults = undergroundModelRunner.RunScenarioModel();
-                        } else
+                            var undergroundSegmentResults = new SegmentResults()
+                            {
+                                Results = new List<ScenarioRealizationResults>()
+                            };
+
+                            foreach (var undergroundSegment in scenarios[s].UndergroundBuildingsContaminated)
+                            {
+                                var segmentResults = _scenarioModelRunner
+                                    .RunScenarioModel(Running.ModifyParameter, DecontaminationElement.Underground, undergroundSegment);
+                                undergroundSegmentResults.Results.Add(segmentResults);
+                            }
+
+                            realizationResults.ScenarioResults.UndergroundResults = undergroundSegmentResults.SumResults();
+                        }
+                        else
                         {
-                            realizationResults.scenarioResults.undergroundResults = null;
+                            realizationResults.ScenarioResults.UndergroundResults = null;
                         }
 
                         //RUN EVENT-SPECIFIC MODELS
-                        var eventModelRunner = new EventModelRunner(Running.ModifyParameter, realizationResults.scenarioResults.indoorResults, realizationResults.scenarioResults.outdoorResults, realizationResults.scenarioResults.undergroundResults);
-                        realizationResults.eventResults = eventModelRunner.RunEventModel();
+                        realizationResults.EventResults = _eventModelRunner.RunEventModel(
+                            realizationResults.ScenarioResults.IndoorResults,
+                            realizationResults.ScenarioResults.OutdoorResults,
+                            realizationResults.ScenarioResults.UndergroundResults,
+                            Running.ModifyParameter);
 
                         //Store results for realization
                         results.Add(realizationResults);
@@ -215,10 +316,19 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
                 Running = null;
             });
 
+        /// <summary>
+        /// <inheritdoc cref="IJobManager.GetStatus(Guid)"/>
+        /// </summary>
         public JobStatus GetStatus(Guid id) => GetJob(id)?.Status ?? JobStatus.Unknown;
 
+        /// <summary>
+        /// <inheritdoc cref="IJobManager.GetJob"/>
+        /// </summary>
         public JobRequest GetJob(Guid id) => AllJobs.FirstOrDefault(request => request.Id == id);
 
+        /// <summary>
+        /// <inheritdoc cref="IJobManager.CancelJob"/>
+        /// </summary>
         public void CancelJob()
         {
             if (Running != null && !cancelCancellationTokenSource.IsCancellationRequested)

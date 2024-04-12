@@ -26,7 +26,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -44,7 +44,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -141,8 +141,6 @@ export default class LogUniformDisplay extends BaseDistributionDisplay {
 
   @Watch('parameterValue')
   setValues(): void {
-    this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.max];
     this.sliderValue = [this.castParameterValue.min ?? 0, this.castParameterValue.max ?? 1];
 
     this.textMin = this.castParameterValue.min?.toString() ?? '';
@@ -150,6 +148,10 @@ export default class LogUniformDisplay extends BaseDistributionDisplay {
   }
 
   created(): void {
+    this.ignoreNextValueSliderChange = this.anyValueIsUndefined(
+      this.castParameterValue.min,
+      this.castParameterValue.max,
+    );
     this.setValues();
   }
 }

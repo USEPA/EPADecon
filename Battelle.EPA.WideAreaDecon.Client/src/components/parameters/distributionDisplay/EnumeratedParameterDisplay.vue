@@ -116,19 +116,21 @@ import store from '@/store';
   },
 })
 export default class EnumeratedParameterDisplay extends Vue implements IParameterDisplay {
+  /* eslint-disable @typescript-eslint/no-non-null-assertion */
+
   @Prop({ required: true }) parameterValue!: EnumeratedParameter;
 
   @Prop({ default: () => store.state.PARAMETER_SELECTION.currentSelectedParameter.baseline })
   baseline!: EnumeratedParameter;
 
-  selectedCategory!: IParameter;
-  baselineCategory!: IParameter;
+  selectedCategory: IParameter | null = null;
+  baselineCategory: IParameter | null = null;
 
-  currentDistType!: ParameterType;
+  currentDistType: ParameterType | null = null;
 
   created(): void {
     this.selectedCategory = Object.values(this.parameterValue.values)[0];
-    this.baselineCategory = Object.values(this.parameterValue.values)[0];
+    this.baselineCategory = Object.values(this.baseline.values)[0];
     this.currentDistType = this.selectedCategory.type;
   }
 
@@ -137,7 +139,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   get display(): DistributionDisplay {
     return container
       .get<IDistributionDisplayProvider>(TYPES.DistributionDisplayProvider)
-      .getDistributionDisplay(this.baselineCategory, this.selectedCategory);
+      .getDistributionDisplay(this.baselineCategory!, this.selectedCategory!);
   }
 
   get distNames(): ParameterType[] {
@@ -152,7 +154,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
     ) {
       return [ParameterType.constant];
     }
-    return this.baselineCategory.type === ParameterType.uniformXDependent
+    return this.baselineCategory!.type === ParameterType.uniformXDependent
       ? [...changeableDistributionTypes, ParameterType.uniformXDependent]
       : changeableDistributionTypes;
   }
@@ -172,7 +174,7 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   }
 
   onCategoryChanged(): void {
-    this.currentDistType = this.selectedCategory.type ?? ParameterType.constant;
+    this.currentDistType = this.selectedCategory!.type ?? ParameterType.constant;
 
     const category = this.getSelectedCategoryName();
     this.baselineCategory = this.baseline.values[category];
@@ -183,12 +185,10 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
 
     this.selectedCategory =
       this.currentDistType === ParameterType.uniformXDependent
-        ? this.baselineCategory
-        : this.parameterConverter.convertToNewType(this.selectedCategory, this.currentDistType);
+        ? this.baselineCategory!
+        : this.parameterConverter.convertToNewType(this.selectedCategory!, this.currentDistType!);
 
-    console.log(this.parameterValue.values[category]);
     this.parameterValue.values[category] = this.selectedCategory;
-    console.log(this.parameterValue.values[category]);
   }
 
   getSelectedCategoryName(): string {
@@ -238,7 +238,6 @@ export default class EnumeratedParameterDisplay extends Vue implements IParamete
   emitChange(): void {
     this.$emit('param-changed');
   }
-
 
   mounted(): void {
     this.checkErrorHighligtingOnSelect();

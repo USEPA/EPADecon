@@ -29,7 +29,7 @@
           v-model="sliderStd1"
           :max="stdDevMax"
           :min="stdDevMin"
-          :step="stdDevStep"
+          :step="step"
           thumb-label
           @change="onSliderStd1Stopped"
         >
@@ -59,7 +59,7 @@
           v-model="sliderStd2"
           :max="stdDevMax"
           :min="stdDevMin"
-          :step="stdDevStep"
+          :step="step"
           thumb-label
           @change="onSliderStd2Stopped"
         >
@@ -86,7 +86,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -104,7 +104,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -125,7 +125,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -143,7 +143,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -164,7 +164,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -182,7 +182,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -194,7 +194,6 @@
 <script lang="ts">
 import { Component, Watch } from 'vue-property-decorator';
 import BimodalTruncatedNormal from '@/implementations/parameter/distribution/BimodalTruncatedNormal';
-import { max } from 'lodash';
 import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
@@ -227,13 +226,13 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
 
   ignoreNextValueSliderChange = false;
 
-  ignoreNextMeanSliderChange = false;
+  ignoreNextMean1SliderChange = false;
 
-  ignoreNextStdSliderChange = false;
+  ignoreNextMean2SliderChange = false;
 
-  get stdDevStep(): number {
-    return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
-  }
+  ignoreNextStd1SliderChange = false;
+
+  ignoreNextStd2SliderChange = false;
 
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number[]): void {
@@ -262,8 +261,8 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
 
   @Watch('sliderMean1')
   onSliderMean1Changed(newValue: number): void {
-    if (this.ignoreNextMeanSliderChange) {
-      this.ignoreNextMeanSliderChange = false;
+    if (this.ignoreNextMean1SliderChange) {
+      this.ignoreNextMean1SliderChange = false;
       return;
     }
 
@@ -279,8 +278,8 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
 
   @Watch('sliderMean2')
   onSliderMean2Changed(newValue: number): void {
-    if (this.ignoreNextMeanSliderChange) {
-      this.ignoreNextMeanSliderChange = false;
+    if (this.ignoreNextMean2SliderChange) {
+      this.ignoreNextMean2SliderChange = false;
       return;
     }
 
@@ -296,8 +295,8 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
 
   @Watch('sliderStd1')
   onSliderStd1Changed(newValue: number): void {
-    if (this.ignoreNextStdSliderChange) {
-      this.ignoreNextStdSliderChange = false;
+    if (this.ignoreNextStd1SliderChange) {
+      this.ignoreNextStd1SliderChange = false;
       return;
     }
 
@@ -307,8 +306,8 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
 
   @Watch('sliderStd2')
   onSliderStd2Changed(newValue: number): void {
-    if (this.ignoreNextStdSliderChange) {
-      this.ignoreNextStdSliderChange = false;
+    if (this.ignoreNextStd2SliderChange) {
+      this.ignoreNextStd2SliderChange = false;
       return;
     }
 
@@ -477,17 +476,10 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
 
   @Watch('parameterValue')
   setValues(): void {
-    this.ignoreNextValueSliderChange = true;
     this.sliderValue = [this.castParameterValue.min ?? this.min, this.castParameterValue.max ?? this.max];
-
-    this.ignoreNextMeanSliderChange = true;
     this.sliderMean1 = this.castParameterValue.mean1 ?? (this.min + this.max) / 4.0;
-    this.ignoreNextMeanSliderChange = true;
     this.sliderMean2 = this.castParameterValue.mean2 ?? (this.min + this.max) / 4.0;
-
-    this.ignoreNextStdSliderChange = true;
-    this.sliderStd1 = this.castParameterValue.stdDev ?? (this.max - this.min) / 5.0;
-    this.ignoreNextStdSliderChange = true;
+    this.sliderStd1 = this.castParameterValue.stdDev1 ?? (this.max - this.min) / 5.0;
     this.sliderStd2 = this.castParameterValue.stdDev2 ?? (this.max - this.min) / 5.0;
 
     this.textMin = this.castParameterValue.min?.toString() ?? '';
@@ -499,6 +491,14 @@ export default class BimodalTruncatedNormalDisplay extends BaseDistributionDispl
   }
 
   created(): void {
+    this.ignoreNextValueSliderChange = this.anyValueIsUndefined(
+      this.castParameterValue.min,
+      this.castParameterValue.max,
+    );
+    this.ignoreNextMean1SliderChange = this.anyValueIsUndefined(this.castParameterValue.mean1);
+    this.ignoreNextMean2SliderChange = this.anyValueIsUndefined(this.castParameterValue.mean2);
+    this.ignoreNextStd1SliderChange = this.anyValueIsUndefined(this.castParameterValue.stdDev1);
+    this.ignoreNextStd2SliderChange = this.anyValueIsUndefined(this.castParameterValue.stdDev2);
     this.setValues();
   }
 }

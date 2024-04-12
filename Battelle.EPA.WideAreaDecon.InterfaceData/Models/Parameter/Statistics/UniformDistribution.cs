@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Attributes;
@@ -37,8 +32,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static UniformDistribution FromExcel(ParameterMetaData metaData, IRow information)
         {
-            var minimum = typeof(UniformDistribution).GetCellValue(nameof(Min), information)?.ConvertToOptionalDouble();
-            var maximum = typeof(UniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToOptionalDouble();
+            var minimum = typeof(UniformDistribution).GetCellValue(nameof(Min), information)?.ConvertToStepRoundedAndOptionalDouble(metaData);
+            var maximum = typeof(UniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToStepRoundedAndOptionalDouble(metaData);
 
             if (minimum < metaData.LowerLimit || minimum > metaData.UpperLimit)
             {
@@ -68,6 +63,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         }
 
         public string GetTextValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FrequencyValueType GetFrequencyValue()
         {
             throw new NotImplementedException();
         }

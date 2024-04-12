@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using System.Collections.Generic;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 {
@@ -26,33 +25,31 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 
         public double CalculateWorkDays(double laborDays, double numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
-            var numTeamsByPPE = 0;
+            var timeAssociatedWithEntries = 0.0;
 
-            foreach (var ppeFraction in ppePerLevelPerTeam)
+            if (_entryDurationByPPE.Values.Sum() > 0)
             {
-                if (ppeFraction.Value > 0)
+                var numTeamsByPPE = ppePerLevelPerTeam.Where(ppeFraction => ppeFraction.Value > 0).Count();
+                var laborHoursPerPPELevel = (laborDays * GlobalConstants.HoursPerWorkDay) / numTeamsByPPE;
+
+                var entriesPerPPELevel = new Dictionary<PpeLevel, double>
                 {
-                    numTeamsByPPE++;
-                }
+                    { PpeLevel.A, ppePerLevelPerTeam[PpeLevel.A].Equals(0) ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.A] },
+                    { PpeLevel.B, ppePerLevelPerTeam[PpeLevel.B].Equals(0) ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.B] },
+                    { PpeLevel.C, ppePerLevelPerTeam[PpeLevel.C].Equals(0) ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.C] },
+                    { PpeLevel.D, ppePerLevelPerTeam[PpeLevel.D].Equals(0) ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.D] }
+                };
+
+                var totalEntries = entriesPerPPELevel.Sum(x => x.Value);
+
+                var totalPrepTime = totalEntries * _entryPrepTime;
+                var totalDeconLineTime = totalEntries * _deconLineTime;
+                var totalRestPeriod = totalEntries * _postEntryRest;
+
+                timeAssociatedWithEntries = (totalPrepTime + totalDeconLineTime + totalRestPeriod) / GlobalConstants.HoursPerWorkDay;
             }
 
-            var laborHoursPerPPELevel = (laborDays * GlobalConstants.HoursPerWorkDay) / numTeamsByPPE;
-
-            var entriesPerPPELevel = new Dictionary<PpeLevel, double>
-            {
-                { PpeLevel.A, ppePerLevelPerTeam[PpeLevel.A] == 0 ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.A] },
-                { PpeLevel.B, ppePerLevelPerTeam[PpeLevel.B] == 0 ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.B] },
-                { PpeLevel.C, ppePerLevelPerTeam[PpeLevel.C] == 0 ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.C] },
-                { PpeLevel.D, ppePerLevelPerTeam[PpeLevel.D] == 0 ? 0 : laborHoursPerPPELevel / _entryDurationByPPE[PpeLevel.D] }
-            };
-
-            var totalEntries = entriesPerPPELevel.Sum(x => x.Value);
-
-            var totalPrepTime = totalEntries * _entryPrepTime;
-            var totalDeconLineTime = totalEntries * _deconLineTime;
-            var totalRestPeriod = totalEntries * _postEntryRest;
-
-            return laborDays + ((totalPrepTime + totalDeconLineTime + totalRestPeriod) / GlobalConstants.HoursPerWorkDay);
+            return laborDays + timeAssociatedWithEntries;
         }
     }
 }

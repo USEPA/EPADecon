@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Cost;
 using Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Time;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results.ResourceAndCostResults;
 using Battelle.EPA.WideAreaDecon.Model.Services;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 
@@ -41,15 +42,21 @@ namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling
         }
 
         //Element costs for scenario results
-        public double CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
+        public SiteSamplingResourceAndCostResults CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated,
              Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
-            var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated);
+            var supplies = Calculator_supplies.CalculateSuppliesCost(numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated);
             var laborCosts = Calculator_labor.CalculateLaborCost(elementDays[ElementDays.OnsiteDays], numberTeams);
-            var entExCosts = Calculator_entEx.CalculateEntrancesExitsCost(elementDays[ElementDays.LaborDays], numberTeams, ppePerLevelPerTeam);
+            var entEx = Calculator_entEx.CalculateEntrancesExitsCost(elementDays[ElementDays.LaborDays], numberTeams, ppePerLevelPerTeam);
             var analysisCosts = Calculator_analysis.CalculateAnalysisQuantityCost(fractionSampledWipe, fractionSampledHepa, areaContaminated);
-            
-            return (suppliesCosts + laborCosts + entExCosts + analysisCosts);
+
+            return new SiteSamplingResourceAndCostResults()
+            {
+                SamplingCost = supplies.SamplingCost + laborCosts + entEx.SamplingCost + analysisCosts,
+                TotalPpeUnits = entEx.TotalPpeUnits,
+                TotalVacuumSamples = supplies.TotalVacuumSamples,
+                TotalWipeSamples = supplies.TotalWipeSamples
+            };
         }
 
         //Travel costs for event results

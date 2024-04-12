@@ -21,35 +21,35 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             CostParameters costParameters)
         {
             Calculator_laborDays = new LaborDaysCalculator(
-                srParameters.massRemovedPerHourPerTeam,
-                srParameters.massPerSurfaceArea
+                srParameters.MassRemovedPerHourPerTeam,
+                srParameters.MassPerSurfaceArea
             );
 
             Calculator_workDays = new WorkDaysCalculator(
-                srParameters.entryDuration,
-                srParameters.entryPrepTime,
-                srParameters.deconLineTime,
-                srParameters.postEntryRest
+                srParameters.EntryDuration,
+                srParameters.EntryPrepTime,
+                srParameters.DeconLineTime,
+                srParameters.PostEntryRest
             );
 
             Calculator_onsiteDays = new OnsiteDaysCalculator(
-                srParameters.personnelOverheadDays
+                srParameters.PersonnelOverheadDays
             );
 
             Calculator_labor = new LaborCostCalculator(
-                srParameters.personnelReqPerTeam,
-                costParameters.hourlyRate,
-                srParameters.massPerSurfaceArea
+                srParameters.PersonnelReqPerTeam,
+                costParameters.HourlyRate,
+                srParameters.MassPerSurfaceArea
             );
 
             Calculator_entEx = new EntranceExitCostCalculator(
-                srParameters.personnelReqPerTeam,
-                srParameters.respiratorsPerPerson,
-                costParameters.respiratorCost,
-                costParameters.ppeCost,
-                srParameters.entryDuration,
-                costParameters.entryPrepCost,
-                costParameters.deconLineCost
+                srParameters.PersonnelReqPerTeam,
+                srParameters.RespiratorsPerPerson,
+                costParameters.RespiratorCost,
+                costParameters.PpeCost,
+                srParameters.EntryDuration,
+                costParameters.EntryPrepCost,
+                costParameters.DeconLineCost
             );
         }
         public SourceReductionCostCalculator GetCalculator()

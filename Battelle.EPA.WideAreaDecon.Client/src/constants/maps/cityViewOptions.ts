@@ -41,8 +41,13 @@ const sanFranciscoViewOptions: ViewOptions = {
   extent: [-122.51176, 37.706632, -122.328082, 37.83798],
 };
 
+const customViewOptions: ViewOptions = {
+  ...commonViewOptions,
+};
+
 export {
   bostonViewOptions,
+  customViewOptions,
   dcViewOptions,
   newOrleansViewOptions,
   nycViewOptions,

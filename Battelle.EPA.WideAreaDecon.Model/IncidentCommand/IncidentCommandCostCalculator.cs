@@ -3,6 +3,7 @@ using Battelle.EPA.WideAreaDecon.Model.Services;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.Model.IncidentCommand.Cost;
 using Battelle.EPA.WideAreaDecon.Model.IncidentCommand.Time;
+using Battelle.EPA.WideAreaDecon.Model.Domain;
 
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
 {
@@ -14,9 +15,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand
         public TravelCostCalculator Calculator_travel { get; set; }
 
         //Element time for scenario results
-        public double CalculateTime(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC, double onsiteDaysCLS, double onsiteDaysWS)
+        public double CalculateTime(List<Assignment> assignments)
         {
-            return Calculator_onsiteDays.CalculateOnSiteDays(onsiteDaysCS, onsiteDaysSR, onsiteDaysDC, onsiteDaysCLS, onsiteDaysWS);
+            return Calculator_onsiteDays.CalculateOnSiteDays(assignments);
         }
 
         //Element costs for scenario results

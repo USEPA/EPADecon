@@ -15,6 +15,7 @@ const PROVIDER_TYPES = {
   JobProvider: Symbol('IJobProvider'),
   JobResultProvider: Symbol('IJobResultProvider'),
   CityDataAPI: Symbol('ICityDataAPI'),
+  GeospatialFileProvider: Symbol('IGeospatialFileProvider'),
 };
 
 export default PROVIDER_TYPES;

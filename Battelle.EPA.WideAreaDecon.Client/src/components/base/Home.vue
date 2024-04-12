@@ -80,13 +80,15 @@ export default class Home extends Vue {
 
   componentName = '';
 
-  // eslint-disable-next-line class-methods-use-this, @typescript-eslint/no-explicit-any
-  getImage(name: string): any {
+  getImage(name: string): unknown {
     return container.get<IImageProvider>(TYPES.ImageProvider).getImage(name);
   }
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars,@typescript-eslint/no-explicit-any
-  itemSelected(item: IHomeOptions): void {
+  async itemSelected(item: IHomeOptions): Promise<void> {
+    if (item.action.initialActionAsync) {
+      await item.action.initialActionAsync();
+    }
+
     if (item.action.isModal()) {
       this.modalActive = true;
       this.componentName = item.action.getNext();

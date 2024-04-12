@@ -1,14 +1,14 @@
-﻿using Battelle.EPA.WideAreaDecon.API.Models.Job;
-using Battelle.EPA.WideAreaDecon.API.Hubs;
+﻿using Battelle.EPA.WideAreaDecon.API.Hubs;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Battelle.EPA.WideAreaDecon.API.Models.Job;
 using Microsoft.AspNetCore.SignalR;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
     /// <summary>
-    /// Update's a job's progress and alerts hub clients of change
+    /// <inheritdoc cref="IJobProgressUpdater"/>
     /// </summary>
-    public class JobProgressUpdater
+    public class JobProgressUpdater : IJobProgressUpdater
     {
         private readonly IHubContext<JobStatusHub, IJobStatusHub> _hub;
 
@@ -22,10 +22,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         }
 
         /// <summary>
-        /// Updates job progress
+        /// <inheritdoc cref="IJobProgressUpdater.UpdateJobProgress"/>
         /// </summary>
-        /// <param name="job">The job to be updated</param>
-        /// <param name="newJobProgress">The new job progress</param>
         public void UpdateJobProgress(JobRequest job, double newJobProgress)
         {
             job.Progress = newJobProgress;

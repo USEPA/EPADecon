@@ -3,6 +3,7 @@ using Battelle.EPA.WideAreaDecon.Model.SourceReduction.Cost;
 using Battelle.EPA.WideAreaDecon.Model.SourceReduction.Time;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.Model.Services;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results.ResourceAndCostResults;
 
 namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
 {
@@ -31,12 +32,16 @@ namespace Battelle.EPA.WideAreaDecon.Model.SourceReduction
         }
 
         //Element costs for scenario results
-        public double CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, double massToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
+        public SourceReductionResourceAndCostResults CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, double massToBeSourceReduced, double costPerTonRemoved, Dictionary<PpeLevel, double> ppePerLevelPerTeam, double area)
         {
             var laborCosts = Calculator_labor.CalculateLaborCost(elementDays[ElementDays.OnsiteDays], numberTeams, massToBeSourceReduced, costPerTonRemoved, area);
-            var entExCosts = Calculator_entEx.CalculateEntranceExitCost(elementDays[ElementDays.LaborDays], numberTeams, ppePerLevelPerTeam);
+            var entEx = Calculator_entEx.CalculateEntranceExitCost(elementDays[ElementDays.LaborDays], numberTeams, ppePerLevelPerTeam);
             
-            return (laborCosts + entExCosts);
+            return new SourceReductionResourceAndCostResults()
+            {
+                SourceReductionCost = laborCosts + entEx.SourceReductionCost,
+                TotalPpeUnits = entEx.TotalPpeUnits
+            };
         }
 
         //Travel costs for event results

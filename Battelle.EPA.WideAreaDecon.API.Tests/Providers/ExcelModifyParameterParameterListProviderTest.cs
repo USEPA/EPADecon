@@ -1,4 +1,5 @@
-﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Constants;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
 using NUnit.Framework;
 
 namespace Battelle.EPA.WideAreaDecon.API.Tests.Providers
@@ -6,11 +7,6 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Providers
     [TestFixture]
     internal class ExcelModifyParameterParameterListProviderTest
     {
-        [SetUp]
-        public void SetUp()
-        {
-        }
-
         private static string TestFileName => @"InputFiles\ModifyParameters.xlsx";
 
         [Test]
@@ -19,20 +15,21 @@ namespace Battelle.EPA.WideAreaDecon.API.Tests.Providers
             var modifyParameter = new ExcelModifyParameterParameterListProvider
             {
                 FileName = TestFileName,
-                GenericSheetNames = new []
+                GenericSheetNames = new[]
                 {
-                    "Incident Command",
-                    "Characterization Sampling",
-                    "Source Reduction",
-                    "Decontamination",
-                    "Clearance Sampling",
-                    "Waste Sampling",
-                    "Other",
-                    "Cost per Parameter"
+                    ParameterNames.IncidentCommand,
+                    ParameterNames.CharacterizationSampling,
+                    ParameterNames.SourceReduction,
+                    ParameterNames.Decontamination,
+                    ParameterNames.VerificationSampling,
+                    ParameterNames.ClearanceSampling,
+                    ParameterNames.WasteSampling,
+                    ParameterNames.Other,
+                    ParameterNames.Cost
                 }
             };
 
-            var paramList = modifyParameter.GetParameterList();
+            _ = modifyParameter.GetParameterList();
 
             Assert.Pass();
         }

@@ -24,13 +24,8 @@ export default class SubwayControls extends Vue {
 
   current = new EnumeratedParameter();
 
-  @Watch('current', { deep: true })
-  updateParameterValues(): void {
-    this.parameterValue.subwayProtectionFactor = this.current.values['Subway Protection Factor'];
-    this.parameterValue.subwayTunnelWidth = this.current.values['Subway Tunnel Width'];
-  }
-
-  created(): void {
+  @Watch('parameterValue')
+  setValues(): void {
     const { subwayProtectionFactor, subwayTunnelWidth, metaData } = this.currentSelectedParameter
       .baseline as ContaminationDefinition;
 
@@ -45,6 +40,10 @@ export default class SubwayControls extends Vue {
 
     this.baseline = new EnumeratedParameter(metaData, undefined, baselineValues);
     this.current = new EnumeratedParameter(metaData, undefined, currentValues);
+  }
+
+  created(): void {
+    this.setValues();
   }
 }
 </script>

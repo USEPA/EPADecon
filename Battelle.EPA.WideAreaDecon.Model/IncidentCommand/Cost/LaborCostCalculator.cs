@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using System.Collections.Generic;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand.Cost
 {
@@ -19,13 +19,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand.Cost
 
         public double CalculateLaborCost(double onSiteDays)
         {
-            var totalPersonnel = _personnelReqPerTeam.Values.Sum();
-
             var personnelHoursCost = _personnelReqPerTeam.Values.Zip(_personnelHourlyRate.Values, (x, y) => x * y).Sum();
 
             var laborHours = GlobalConstants.HoursPerWorkDay * onSiteDays;
 
-            return(laborHours * personnelHoursCost);
+            return (laborHours * personnelHoursCost);
         }
     }
 }

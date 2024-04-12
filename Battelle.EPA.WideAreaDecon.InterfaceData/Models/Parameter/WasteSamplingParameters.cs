@@ -1,95 +1,95 @@
-﻿using System;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
-    public class WasteSamplingParameters
+    public class WasteSamplingParameters : ISamplingParameters
     {
-        public double fractionSampled;
-        public double massPerWasteSample;
-        public double volumePerWasteSample;
-        public double wasteSamplesPerHrPerTeam;
-        public double solidWastePerSurfaceArea;
-        public double liquidWastePerSurfaceArea;
-        public double numTeams;
-        public double respiratorsPerPerson;
-        public Dictionary<PpeLevel, double> entryDuration;
-        public double entryPrepTime;
-        public double deconLineTime;
-        public double postEntryRest;
-        public Dictionary<PpeLevel, double> ppeRequired;
-        public double samplePackageTime;
-        public int numLabs;
-        public List<double> labUptimesHours;
-        public List<double> sampleShippingTime;
-        public List<double> labThroughput;
-        public double resultTransmissionToIC;
-        public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
-        public double personnelOverheadDays;
-        public double roundtripDays;
-        public double onsiteDays;
+        public double FractionSampled { get; set; }
+        public double MassPerWasteSample { get; set; }
+        public double VolumePerWasteSample { get; set; }
+        public double WasteSamplesPerHrPerTeam { get; set; }
+        public double SolidWastePerSurfaceArea { get; set; }
+        public double LiquidWastePerSurfaceArea { get; set; }
+        public double NumTeams { get; set; }
+        public double RespiratorsPerPerson { get; set; }
+        public Dictionary<PpeLevel, double> EntryDuration { get; set; }
+        public double EntryPrepTime { get; set; }
+        public double DeconLineTime { get; set; }
+        public double PostEntryRest { get; set; }
+        public Dictionary<PpeLevel, double> PpeRequired { get; set; }
+        public double SamplePackageTime { get; set; }
+        public int NumLabs { get; set; }
+        public List<double> LabUptimesHours { get; set; }
+        public List<double> SampleShippingTime { get; set; }
+        public List<double> LabThroughput { get; set; }
+        public double ResultTransmissionToIC { get; set; }
+        public Dictionary<PersonnelLevel, double> PersonnelReqPerTeam { get; set; }
+        public double PersonnelOverheadDays { get; set; }
+        public double RoundtripDays { get; set; }
+        public double OnsiteDays { get; set; }
 
         //Scenario parameters constructor
         public WasteSamplingParameters(
-            double _fractionSampled,
-            double _massPerWasteSample,
-            double _volumePerWasteSample,
-            double _wasteSamplesPerHrPerTeam,
-            double _solidWastePerSurfaceArea,
-            double _liquidWastePerSurfaceArea,
-            double _numTeams,
-            double _respiratorsPerPerson,
-            Dictionary<PpeLevel, double> _entryDuration,
-            double _entryPrepTime,
-            double _deconLineTime,
-            double _postEntryRest,
-            Dictionary<PpeLevel, double> _ppeRequired,
-            double _samplePackageTime,
-            int _numLabs,
-            List<double> _labUptimeHours,
-            List<double> _sampleShippingTime,
-            List<double> _labThroughput,
-            double _resultTransmissionToIC,
-            Dictionary<PersonnelLevel, double> _personnelPerTeam,
-            double _personnelOverheadDays,
-            double _roundtripDays)
+            double fractionSampled,
+            double massPerWasteSample,
+            double volumePerWasteSample,
+            double wasteSamplesPerHrPerTeam,
+            double solidWastePerSurfaceArea,
+            double liquidWastePerSurfaceArea,
+            double numTeams,
+            double respiratorsPerPerson,
+            Dictionary<PpeLevel, double> entryDuration,
+            double entryPrepTime,
+            double deconLineTime,
+            double postEntryRest,
+            Dictionary<PpeLevel, double> ppeRequired,
+            double samplePackageTime,
+            int numLabs,
+            List<double> labUptimeHours,
+            List<double> sampleShippingTime,
+            List<double> labThroughput,
+            double resultTransmissionToIC,
+            Dictionary<PersonnelLevel, double> personnelPerTeam,
+            double personnelOverheadDays,
+            double roundtripDays)
         {
-            fractionSampled = _fractionSampled;
-            massPerWasteSample = _massPerWasteSample;
-            volumePerWasteSample = _volumePerWasteSample;
-            wasteSamplesPerHrPerTeam = _wasteSamplesPerHrPerTeam;
-            solidWastePerSurfaceArea = _solidWastePerSurfaceArea;
-            liquidWastePerSurfaceArea = _liquidWastePerSurfaceArea;
-            numTeams = _numTeams;
-            respiratorsPerPerson = _respiratorsPerPerson;
-            entryDuration = _entryDuration;
-            entryPrepTime = _entryPrepTime;
-            deconLineTime = _deconLineTime;
-            postEntryRest = _postEntryRest;
-            ppeRequired = _ppeRequired;
-            samplePackageTime = _samplePackageTime;
-            numLabs = _numLabs;
-            labUptimesHours = _labUptimeHours;
-            sampleShippingTime = _sampleShippingTime;
-            labThroughput = _labThroughput;
-            resultTransmissionToIC = _resultTransmissionToIC;
-            personnelReqPerTeam = _personnelPerTeam;
-            personnelOverheadDays = _personnelOverheadDays;
-            roundtripDays = _roundtripDays;
+            FractionSampled = fractionSampled;
+            MassPerWasteSample = massPerWasteSample;
+            VolumePerWasteSample = volumePerWasteSample;
+            WasteSamplesPerHrPerTeam = wasteSamplesPerHrPerTeam;
+            SolidWastePerSurfaceArea = solidWastePerSurfaceArea;
+            LiquidWastePerSurfaceArea = liquidWastePerSurfaceArea;
+            NumTeams = numTeams;
+            RespiratorsPerPerson = respiratorsPerPerson;
+            EntryDuration = entryDuration;
+            EntryPrepTime = entryPrepTime;
+            DeconLineTime = deconLineTime;
+            PostEntryRest = postEntryRest;
+            PpeRequired = ppeRequired;
+            SamplePackageTime = samplePackageTime;
+            NumLabs = numLabs;
+            LabUptimesHours = labUptimeHours;
+            SampleShippingTime = sampleShippingTime;
+            LabThroughput = labThroughput;
+            ResultTransmissionToIC = resultTransmissionToIC;
+            PersonnelReqPerTeam = personnelPerTeam;
+            PersonnelOverheadDays = personnelOverheadDays;
+            RoundtripDays = roundtripDays;
         }
 
         //Event parameters constructor
         public WasteSamplingParameters(
-            double _numTeams,
-            Dictionary<PersonnelLevel, double> _personnelPerTeam,
-            double _roundtripDays,
-            double _onsiteDays)
+            double numTeams,
+            Dictionary<PersonnelLevel, double> personnelPerTeam,
+            double roundtripDays,
+            double onsiteDays)
         {
-            numTeams = _numTeams;
-            personnelReqPerTeam = _personnelPerTeam;
-            roundtripDays = _roundtripDays;
-            onsiteDays = _onsiteDays;
+            NumTeams = numTeams;
+            PersonnelReqPerTeam = personnelPerTeam;
+            RoundtripDays = roundtripDays;
+            OnsiteDays = onsiteDays;
         }
     }
 }

@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Providers;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Providers;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Constants;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
-using Microsoft.OpenApi.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Providers
 {
@@ -48,7 +47,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Providers
             }
 
             // If the file exists, open a new file stream to open the excel workbook
-            using var stream = new FileStream(FileName, FileMode.Open, FileAccess.Read) {Position = 0};
+            using var stream = new FileStream(FileName, FileMode.Open, FileAccess.Read) { Position = 0 };
             XSSFWorkbook xssWorkbook = new XSSFWorkbook(stream);
 
             // Building Treatment Methods Enumerated Parameter
@@ -109,14 +108,14 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Providers
                 ParameterFilter.FromExcelSheet(xssWorkbook.GetSheet(genericSheetName))).ToList();
             filters.Add(new ParameterFilter()
             {
-                Name = "Efficacy",
-                Filters = new ParameterFilter[0],
+                Name = ParameterNames.Efficacy,
+                Filters = Array.Empty<ParameterFilter>(),
                 Parameters = efficacyParameters.ToArray()
             });
             filters.Add(new ParameterFilter()
             {
-                Name = "Decontamination Treatment Methods by Surface",
-                Filters = new ParameterFilter[0],
+                Name = ParameterNames.DeconMethodBySurface,
+                Filters = Array.Empty<ParameterFilter>(),
                 Parameters = treatmentMethods.ToArray()
             });
 

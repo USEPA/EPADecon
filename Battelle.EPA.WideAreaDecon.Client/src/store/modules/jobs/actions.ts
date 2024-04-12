@@ -8,6 +8,7 @@ import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperLi
 import IGetJobResultsPayload from '@/interfaces/store/jobs/IGetJobResultsPayload';
 import ICurrentJob from '@/interfaces/store/jobs/ICurrentJob';
 import { JobsStoreActions, JobsStoreMutations } from '@/constants/store/Jobs';
+import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
 
 const actions: ActionTree<ICurrentJob, IRootState> = {
   [JobsStoreActions.CREATE_JOB_REQUEST]: (
@@ -20,6 +21,7 @@ const actions: ActionTree<ICurrentJob, IRootState> = {
       numberRealizations,
       seed1,
       seed2,
+      store.rootState.PARAMETER_SELECTION.scenarioDefinitionMode,
     );
     store.commit(JobsStoreMutations.SET_CURRENT_JOB, job);
   },
@@ -41,6 +43,12 @@ const actions: ActionTree<ICurrentJob, IRootState> = {
     const job = await jobProvider.getJobRequest(store.state.currentJob.id);
     if (job) {
       resultProvider.reset();
+
+      // TODO - store map source and location as part of job request
+      const prevContamDef = store.state.currentJob.defineScenario.filters[0].parameters[0]
+        .current as ContaminationDefinition;
+      job.defineScenario.filters[0].parameters[0].current = prevContamDef;
+
       store.commit(JobsStoreMutations.SET_CURRENT_JOB, job);
     }
   },
@@ -53,7 +61,15 @@ const actions: ActionTree<ICurrentJob, IRootState> = {
   },
 
   [JobsStoreActions.RESET_CURRENT_JOB_REQUEST]: (store: ActionContext<ICurrentJob, IRootState>) => {
-    const job = new JobRequest(JobStatus.unknown, new ParameterWrapperList(), new ParameterWrapperList(), 0, 0, 0);
+    const job = new JobRequest(
+      JobStatus.unknown,
+      new ParameterWrapperList(),
+      new ParameterWrapperList(),
+      0,
+      0,
+      0,
+      null,
+    );
     store.commit(JobsStoreMutations.SET_CURRENT_JOB, job);
   },
 

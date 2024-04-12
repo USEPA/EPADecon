@@ -16,10 +16,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Event
             CostParameters costParameters)
         {
             Calculator_travel = new TravelCostCalculator(
-                costParameters.rentalCarCostPerDay,
-                costParameters.roundtripTicketCostPerPerson,
-                costParameters.perDiem,
-                otParameters.personnelPerRentalCar
+                costParameters.RentalCarCostPerDay,
+                costParameters.RoundtripTicketCostPerPerson,
+                costParameters.PerDiem,
+                otParameters.PersonnelPerRentalCar
             );
         }
 

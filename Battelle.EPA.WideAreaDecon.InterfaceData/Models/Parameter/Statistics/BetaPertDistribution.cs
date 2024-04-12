@@ -36,9 +36,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static BetaPertDistribution FromExcel(ParameterMetaData metaData, IRow row)
         {
-            var minimum = typeof(BetaPertDistribution).GetCellValue(nameof(Min), row)?.ConvertToOptionalDouble();
-            var maximum = typeof(BetaPertDistribution).GetCellValue(nameof(Max), row)?.ConvertToOptionalDouble();
-            var mode = typeof(BetaPertDistribution).GetCellValue(nameof(Mode), row)?.ConvertToOptionalDouble();
+            var minimum = typeof(BetaPertDistribution).GetCellValue(nameof(Min), row)?.ConvertToStepRoundedAndOptionalDouble(metaData);
+            var maximum = typeof(BetaPertDistribution).GetCellValue(nameof(Max), row)?.ConvertToStepRoundedAndOptionalDouble(metaData);
+            var mode = typeof(BetaPertDistribution).GetCellValue(nameof(Mode), row)?.ConvertToStepRoundedAndOptionalDouble(metaData);
 
             if (minimum < metaData.LowerLimit || minimum > metaData.UpperLimit)
             {
@@ -74,6 +74,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         }
 
         public string GetTextValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FrequencyValueType GetFrequencyValue()
         {
             throw new NotImplementedException();
         }

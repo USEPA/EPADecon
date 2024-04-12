@@ -64,6 +64,7 @@ export default class DistributionDisplay {
       case ParameterType.enumeratedParameter:
       case ParameterType.uniformXDependent:
       case ParameterType.textValue:
+      case ParameterType.frequencyValue:
       case ParameterType.null:
       default:
         return false;
@@ -102,6 +103,8 @@ export default class DistributionDisplay {
         return 'enumerated-parameter-display';
       case ParameterType.textValue:
         return 'text-value-display';
+      case ParameterType.frequencyValue:
+        return 'frequency-value-display';
       case ParameterType.contaminationDefinition:
         return 'contamination-definition-display';
       default:

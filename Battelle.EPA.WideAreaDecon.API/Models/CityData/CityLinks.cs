@@ -1,9 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
-using Newtonsoft.Json;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.City
 {
@@ -13,6 +9,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.City
     public class CityLinks
     {
         [JsonProperty]
-        public List<City> cities { get; set; }
+        public List<City> Cities { get; set; }
+        public string General { get; set; }
     }
 }

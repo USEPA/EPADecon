@@ -7,7 +7,6 @@
     <v-tabs-items v-model="tab">
       <v-tab-item v-for="tab of tabNames" :key="tab">
         <component
-          @values-changed="setParameterValues"
           @param-changed="setParameterValues"
           :is="getTabComponent(tab)"
           :parameterValue="parameterValue"
@@ -27,6 +26,7 @@ import CityMap from './CityMap.vue';
 import BuildingControls from './BuildingControls.vue';
 import SubwayControls from './SubwayControls.vue';
 import PlumeConcentration from './PlumeConcentration.vue';
+import { nameof } from 'ts-simple-nameof';
 
 @Component({ components: { BuildingControls, CityMap, SubwayControls, PlumeConcentration } })
 export default class GeospatialDisplay extends Vue implements IParameterDisplay {
@@ -36,13 +36,14 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
 
   tabNames = ['map', 'plume concentration', 'buildings', 'subways'];
 
+  parameterWasReset = false;
+
   @Watch('parameterValue')
-  resetParameterValues(): void {
-    // const [buildingControls] = this.$refs.buildings as BuildingControls[];
-    // const [subwayControls] = this.$refs.subways as SubwayControls[];
+  resetParameterValueAndMap(): void {
+    this.parameterWasReset = true;
     const [map] = this.$refs.map as CityMap[];
 
-    map.changeMapLocation();
+    map.changeMapLocation(this.parameterValue.mapLocation);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -64,6 +65,13 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
   setParameterValues(): void {
     const [{ buildingAreasInPlume, source, subwayLineLengthsInPlume, totalArea }] = this.$refs.map as CityMap[];
 
+    this.parameterValue.mapSource = source;
+
+    if (this.parameterWasReset) {
+      this.parameterWasReset = false;
+      return;
+    }
+
     const bpf = (this.parameterValue.buildingProtectionFactor as Constant).value ?? 0.2;
     const spf = (this.parameterValue.subwayProtectionFactor as Constant).value ?? 0.2;
     const subwayTunnelWidth = (this.parameterValue.subwayTunnelWidth as Constant).value ?? 4;
@@ -72,8 +80,13 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     // indoor area
     const buildingAreaSum = buildingAreasInPlume.reduce((acc, cur) => acc + cur, 0);
     const LoadingIndoor = bpf * plumeConcentration;
-    this.$set(this.parameterValue.areaContaminated.values.Indoor, 'value', buildingAreaSum);
     this.$set(this.parameterValue.loading.values.Indoor, 'value', LoadingIndoor);
+    this.$set(
+      this.parameterValue,
+      nameof<ContaminationDefinition>((cd) => cd.buildingAreasInPlume),
+      buildingAreasInPlume.filter((a) => a > 0),
+    );
+    this.$set(this.parameterValue.areaContaminated.values.Indoor, 'value', buildingAreaSum);
 
     // underground
     const undergroundArea = subwayLineLengthsInPlume.reduce((acc, cur) => acc + cur, 0) * subwayTunnelWidth;
@@ -85,8 +98,6 @@ export default class GeospatialDisplay extends Vue implements IParameterDisplay 
     const outdoorArea = totalArea - buildingAreaSum - undergroundArea;
     this.$set(this.parameterValue.areaContaminated.values.Outdoor, 'value', outdoorArea);
     this.$set(this.parameterValue.loading.values.Outdoor, 'value', plumeConcentration);
-
-    this.parameterValue.mapSource = source;
   }
 }
 </script>

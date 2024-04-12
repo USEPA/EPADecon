@@ -3,6 +3,7 @@ import IJobRequest from '@/interfaces/jobs/IJobRequest';
 import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
+import { ScenarioDefinitionMode } from '@/types';
 
 @Serializable()
 export default class JobRequest implements IJobRequest {
@@ -36,13 +37,17 @@ export default class JobRequest implements IJobRequest {
   @JsonProperty()
   results: IJobResultRealization[];
 
+  @JsonProperty()
+  definitionMode: ScenarioDefinitionMode | null;
+
   constructor(
     status: JobStatus = JobStatus.new,
     defineScenario: ParameterWrapperList,
     modifyParameter: ParameterWrapperList,
     numberRealizations: number,
-    seed1: number, // default seed values?
+    seed1: number,
     seed2: number,
+    definitionMode: ScenarioDefinitionMode | null = null,
   ) {
     this.id = '';
     this.status = status;
@@ -53,5 +58,6 @@ export default class JobRequest implements IJobRequest {
     this.seed1 = seed1;
     this.seed2 = seed2;
     this.results = [];
+    this.definitionMode = definitionMode;
   }
 }

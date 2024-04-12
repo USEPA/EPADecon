@@ -1,69 +1,70 @@
-using System.Collections.Generic;
-using System.Linq;
-using System;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
+using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
-    public class SourceReductionParameters
+    public class SourceReductionParameters : IDeconElementParameters
     {
-        public double massToBeSourceReduced;
-        public double massPerSurfaceArea;
-        public double massRemovedPerHourPerTeam;
-        public Dictionary<PpeLevel, double> entryDuration;
-        public double entryPrepTime;
-        public double deconLineTime;
-        public double postEntryRest;
-        public double respiratorsPerPerson;
-        public double numTeams;
-        public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
-        public double personnelOverheadDays;
-        public double roundtripDays;
-        public Dictionary<PpeLevel, double> ppeRequired;
-        public double onsiteDays;
+        public double MassToBeSourceReduced { get; set; }
+        public double MassPerSurfaceArea { get; set; }
+        public double MassRemovedPerHourPerTeam { get; set; }
+
+
+        public Dictionary<PpeLevel, double> EntryDuration { get; set; }
+        public double EntryPrepTime { get; set; }
+        public double DeconLineTime { get; set; }
+        public double PostEntryRest { get; set; }
+        public double RespiratorsPerPerson { get; set; }
+        public double NumTeams { get; set; }
+        public Dictionary<PersonnelLevel, double> PersonnelReqPerTeam { get; set; }
+        public double PersonnelOverheadDays { get; set; }
+        public double RoundtripDays { get; set; }
+        public Dictionary<PpeLevel, double> PpeRequired { get; set; }
+        public double OnsiteDays { get; set; }
 
         //Scenario parameters constructor
         public SourceReductionParameters(
-            double _massToBeSourceReduced,
-            double _massPerSurfaceArea,
-            double _massRemovedPerHourPerTeam,
-            Dictionary<PpeLevel, double> _entryDuration,
-            double _entryPrepTime,
-            double _deconLineTime,
-            double _postEntryRest,
-            double _respiratorsPerPerson,
-            double _numTeams,
-            Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
-            double _personnelOverheadDays,
-            double _roundtripDays,
-            Dictionary<PpeLevel, double> _ppeRequired)
+            double massToBeSourceReduced,
+            double massPerSurfaceArea,
+            double massRemovedPerHourPerTeam,
+            Dictionary<PpeLevel, double> entryDuration,
+            double entryPrepTime,
+            double deconLineTime,
+            double postEntryRest,
+            double respiratorsPerPerson,
+            double numTeams,
+            Dictionary<PersonnelLevel, double> personnelReqPerTeam,
+            double personnelOverheadDays,
+            double roundtripDays,
+            Dictionary<PpeLevel, double> ppeRequired)
         {
-            massToBeSourceReduced = _massToBeSourceReduced;
-            massPerSurfaceArea = _massPerSurfaceArea;
-            massRemovedPerHourPerTeam = _massRemovedPerHourPerTeam;
-            entryDuration = _entryDuration;
-            entryPrepTime = _entryPrepTime;
-            deconLineTime = _deconLineTime;
-            postEntryRest = _postEntryRest;
-            respiratorsPerPerson = _respiratorsPerPerson;
-            numTeams = _numTeams;
-            personnelReqPerTeam = _personnelReqPerTeam;
-            personnelOverheadDays = _personnelOverheadDays;
-            roundtripDays = _roundtripDays;
-            ppeRequired = _ppeRequired;
+            MassToBeSourceReduced = massToBeSourceReduced;
+            MassPerSurfaceArea = massPerSurfaceArea;
+            MassRemovedPerHourPerTeam = massRemovedPerHourPerTeam;
+            EntryDuration = entryDuration;
+            EntryPrepTime = entryPrepTime;
+            DeconLineTime = deconLineTime;
+            PostEntryRest = postEntryRest;
+            RespiratorsPerPerson = respiratorsPerPerson;
+            NumTeams = numTeams;
+            PersonnelReqPerTeam = personnelReqPerTeam;
+            PersonnelOverheadDays = personnelOverheadDays;
+            RoundtripDays = roundtripDays;
+            PpeRequired = ppeRequired;
         }
 
         //Event parameters constructor
         public SourceReductionParameters(
-            double _numTeams,
-            Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
-            double _roundtripDays,
-            double _onsiteDays)
+            double numTeams,
+            Dictionary<PersonnelLevel, double> personnelReqPerTeam,
+            double roundtripDays,
+            double onsiteDays)
         {
-            numTeams = _numTeams;
-            personnelReqPerTeam = _personnelReqPerTeam;
-            roundtripDays = _roundtripDays;
-            onsiteDays = _onsiteDays;
+            NumTeams = numTeams;
+            PersonnelReqPerTeam = personnelReqPerTeam;
+            RoundtripDays = roundtripDays;
+            OnsiteDays = onsiteDays;
         }
     }
 }

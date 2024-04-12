@@ -28,6 +28,8 @@ import ChartOptionsProvider from '@/implementations/providers/ChartOptionsProvid
 import ICityDataProvider from '@/interfaces/providers/ICityDataProvider';
 import CityDataProvider from '@/implementations/providers/CityDataProvider';
 import PROVIDER_TYPES from './providers.types';
+import IGeospatialFileProvider from '@/interfaces/providers/IGeospatialFileProvider';
+import GeospatialFileProvider from '@/implementations/providers/GeospatialFileProvider';
 
 const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => {
   bind<IClientConfigurationProvider>(PROVIDER_TYPES.ClientConfigurationProvider).to(DefaultClientConfigurationProvider);
@@ -71,6 +73,8 @@ const providersContainerModule = new ContainerModule((bind: interfaces.Bind) => 
   bind<IJobProvider>(PROVIDER_TYPES.JobProvider).to(JobProvider);
 
   bind<IJobResultProvider>(PROVIDER_TYPES.JobResultProvider).to(JobResultProvider).inSingletonScope();
+
+  bind<IGeospatialFileProvider>(PROVIDER_TYPES.GeospatialFileProvider).to(GeospatialFileProvider).inSingletonScope();
 });
 
 export default providersContainerModule;

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
-using System.Security.Cryptography.X509Certificates;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Attributes;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
@@ -13,6 +6,9 @@ using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NPOI.SS.UserModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Stats = Battelle.RiskAssessment.Common.Statistics;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
@@ -77,14 +73,14 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
                 }
 
                 // select random index (x value)
-                int index = Convert.ToInt32(new Stats.UniformDistribution(0, XValues.Length - 1).Draw());
+                var index = Convert.ToInt32(new Stats.UniformDistribution(0, XValues.Length - 1).Draw());
 
                 // create uniform distribution from max and mins at x value
-                double min = YMinimumValues[index];
-                double max = YMaximumValues[index];
+                var min = YMinimumValues[index];
+                var max = YMaximumValues[index];
 
                 // if min and max are the same point, return constant distribution instead
-                if (min == max)
+                if (min.Equals(max))
                 {
                     return new Stats.ConstantDistribution(min);
                 }
@@ -95,6 +91,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         }
 
         public string GetTextValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FrequencyValueType GetFrequencyValue()
         {
             throw new NotImplementedException();
         }

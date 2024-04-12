@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
-using NPOI.SS.UserModel;
-using Newtonsoft.Json;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json;
-using Battelle.RiskAssessment.Common.Statistics;
+using Newtonsoft.Json;
+using NPOI.SS.UserModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Stats = Battelle.RiskAssessment.Common.Statistics;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List
 {
-    public class EnumeratedParameter<T> : IParameter where T: struct, Enum
+    public class EnumeratedParameter<T> : IParameter where T : struct, Enum
     {
         public ParameterType Type => ParameterType.EnumeratedParameter;
         public string TypeName => typeof(T).Name;
@@ -29,7 +28,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List
                 var tRows = rows
                     .Where(row => Enum.Parse<T>(ParameterMetaData.FromExcel(row).Category, true).Equals(val))
                     .ToArray();
-                
+
                 if (tRows.Any())
                 {
                     if (tRows.Count() == 1)
@@ -47,16 +46,21 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List
             return new EnumeratedParameter<T>()
             {
                 MetaData = metaData,
-                Values =  values
+                Values = values
             };
         }
 
-        public IDistribution CreateDistribution()
+        public Stats.IDistribution CreateDistribution()
         {
             throw new NotImplementedException();
         }
 
         public string GetTextValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FrequencyValueType GetFrequencyValue()
         {
             throw new NotImplementedException();
         }

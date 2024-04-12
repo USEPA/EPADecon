@@ -1,9 +1,10 @@
-﻿using System;
-using System.Linq;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Constants;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Attributes;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
 using NPOI.SS.UserModel;
+using System;
+using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
@@ -21,7 +22,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 
         public static ParameterMetaData FromExcel(IRow row)
         {
-            
+
             var name = typeof(ParameterMetaData).GetCellValue(nameof(Name), row) ??
                     throw new ApplicationException("Parameter must have a name");
 
@@ -42,6 +43,44 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
                     Step = -1.0
                 };
             }
+            else if (name == ParameterNames.Logistic.SamplingFrequency)
+            {
+                return new ParameterMetaData()
+                {
+                    ValidElements = typeof(ParameterMetaData).GetCellValue(nameof(ValidElements), row)
+                        ?.Split(';')
+                        .Select(Enum.Parse<DecontaminationElement>).ToArray() ??
+                    throw new ApplicationException("Error determining Valid Elements"),
+                    Category = typeof(ParameterMetaData).GetCellValue(nameof(Category), row),
+                    Name = name,
+                    Description = typeof(ParameterMetaData).GetCellValue(nameof(Description), row),
+                    Units = null,
+                    LowerLimit = -1.0,
+                    UpperLimit = -1.0,
+                    Step = -1.0
+                };
+            }
+
+            // PPE Fractions have to be built differently since the actual category value
+            // doesn't correspond to an enum. So this switch statement resets the category value
+            // based on the parameter name to make sure the EnumeratedFraction has an enum value
+            // to parse
+            string category = typeof(ParameterMetaData).GetCellValue(nameof(Category), row);
+            switch (name)
+            {
+                case "Fraction PPE Required (A)":
+                    category = "A";
+                    break;
+                case "Fraction PPE Required (B)":
+                    category = "B";
+                    break;
+                case "Fraction PPE Required (C)":
+                    category = "C";
+                    break;
+                case "Fraction PPE Required (D)":
+                    category = "D";
+                    break;
+            }
 
             return new ParameterMetaData()
             {
@@ -49,7 +88,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
                         ?.Split(';')
                         .Select(Enum.Parse<DecontaminationElement>).ToArray() ??
                     throw new ApplicationException("Error determining Valid Elements"),
-                Category = typeof(ParameterMetaData).GetCellValue(nameof(Category), row),
+                Category = category,
                 Name = name,
                 Description = typeof(ParameterMetaData).GetCellValue(nameof(Description), row),
                 Units = typeof(ParameterMetaData).GetCellValue(nameof(Units), row),

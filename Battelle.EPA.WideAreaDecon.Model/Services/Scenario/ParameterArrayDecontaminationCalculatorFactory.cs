@@ -23,45 +23,46 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             CostParameters costParameters)
         {
             Calculator_efficacy = new EfficacyCalculator(
-                dcParameters.efficacyParameters
+                dcParameters.EfficacyParameters
             );
 
             Calculator_laborDays = new LaborDaysCalculator(
-                dcParameters.applicationMethods,
-                dcParameters.initialSporeLoading,
-                dcParameters.treatmentDaysPerAm,
+                dcParameters.ApplicationMethods,
+                dcParameters.InitialSporeLoading,
+                dcParameters.TreatmentDaysPerAm,
                 Calculator_efficacy
             );
 
             Calculator_workDays = new WorkDaysCalculator();
 
             Calculator_onsiteDays = new OnsiteDaysCalculator(
-                dcParameters.personnelOverhead    
+                dcParameters.PersonnelOverheadDays    
             );
 
             Calculator_supplies = new SuppliesCostCalculator(
-                costParameters.deconAgentCostPerVolume,
-                costParameters.deconMaterialsCost,
-                dcParameters.fumigationAgentVolume,
-                dcParameters.agentVolume
+                costParameters.DeconAgentCostPerVolume,
+                costParameters.DeconMaterialsCost,
+                dcParameters.FumigationAgentVolume,
+                dcParameters.AgentVolume,
+                dcParameters.ApplicationMethods
             );
 
             Calculator_labor = new LaborCostCalculator(
-                dcParameters.personnelReqPerTeam,
-                costParameters.hourlyRate
+                dcParameters.PersonnelReqPerTeam,
+                costParameters.HourlyRate
             );
 
             Calculator_entEx = new EntranceExitCostCalculator(
-                dcParameters.personnelReqPerTeam,
-                dcParameters.respiratorsPerPerson,
-                costParameters.respiratorCost,
-                costParameters.ppeCost,
-                dcParameters.entryDuration,
-                dcParameters.entryPrepTime,
-                dcParameters.deconLineTime,
-                dcParameters.postEntryRest,
-                costParameters.entryPrepCost,
-                costParameters.deconLineCost
+                dcParameters.PersonnelReqPerTeam,
+                dcParameters.RespiratorsPerPerson,
+                costParameters.RespiratorCost,
+                costParameters.PpeCost,
+                dcParameters.EntryDuration,
+                dcParameters.EntryPrepTime,
+                dcParameters.DeconLineTime,
+                dcParameters.PostEntryRest,
+                costParameters.EntryPrepCost,
+                costParameters.DeconLineCost
             );
         }
         public DecontaminationCostCalculator GetCalculator()

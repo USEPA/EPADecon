@@ -33,8 +33,8 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static LogUniformDistribution FromExcel(ParameterMetaData metaData, IRow information)
         {
-            var minimum = typeof(LogUniformDistribution).GetCellValue(nameof(Min), information)?.ConvertToOptionalDouble();
-            var maximum = typeof(LogUniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToOptionalDouble();
+            var minimum = typeof(LogUniformDistribution).GetCellValue(nameof(Min), information)?.ConvertToStepRoundedAndOptionalDouble(metaData);
+            var maximum = typeof(LogUniformDistribution).GetCellValue(nameof(Max), information)?.ConvertToStepRoundedAndOptionalDouble(metaData);
 
             if (minimum < metaData.LowerLimit || minimum > metaData.UpperLimit)
             {
@@ -64,6 +64,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         }
 
         public string GetTextValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FrequencyValueType GetFrequencyValue()
         {
             throw new NotImplementedException();
         }

@@ -131,10 +131,17 @@ export default class TextParameterDisplay extends Vue implements IParameterDispl
   table-layout: fixed;
 
   & > tbody > tr > td {
-    min-width: 110px;
-    max-width: 110px;
-    word-wrap: break-word;
-    hyphens: auto;
+    &:first-child {
+      min-width: 110px;
+      max-width: 160px;
+      word-wrap: break-word;
+      hyphens: auto;
+    }
+
+    &:not(:first-child) {
+      min-width: 110px;
+      max-width: 110px;
+    }
   }
 }
 </style>

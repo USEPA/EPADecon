@@ -45,8 +45,12 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.ClearanceSampling.Cost
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(10826.1439350721, Calculator.CalculateSuppliesCost(numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated), 1e-6,
-                "Incorrect supplies cost calculated");
+            var costAndResourceResults = Calculator.CalculateSuppliesCost(numberTeams, fractionSampledWipe, fractionSampledHepa, areaContaminated);
+
+            Assert.AreEqual(10826.1439350721, costAndResourceResults.SamplingCost, 1e-6, "Incorrect supplies cost calculated");
+
+            Assert.AreEqual(162, costAndResourceResults.TotalVacuumSamples, 1e-6, "Incorrect number of vacuum samples calculated");
+            Assert.AreEqual(323, costAndResourceResults.TotalWipeSamples, 1e-6, "Incorrect number of wipe samples calculated");
         }
     }
 }

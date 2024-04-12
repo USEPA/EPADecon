@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Parameter
 {
@@ -29,15 +29,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
             {
                 string methodName = treatmentMethods[surface].GetStringValue();
                 var metaDataName = methodName + " Efficacy by Surface";
-                var values = Enum.GetValues(typeof(ApplicationMethod));
 
                 try
                 {
-                    var efficacyData = efficacyParameters.First(p => p.MetaData.Name == metaDataName) as EnumeratedParameter<SurfaceType>;
+                    var efficacyData = efficacyParameters.First(p => p.MetaData.Name == metaDataName) as EnumeratedParameter<SurfaceType>
+                        ?? throw new NullReferenceException($"{metaDataName} parameter is null");
 
-                    if (efficacyData.Values.ContainsKey(surface))
+                    if (efficacyData.Values.TryGetValue(surface, out var surfaceEfficacy))
                     {
-                        var drawnValue = efficacyData.Values[surface].CreateDistribution().Draw();
+                        var drawnValue = surfaceEfficacy.CreateDistribution().Draw();
                         if (drawnValue < 0)
                         {
                             efficacyValues.Add(surface, 0.0);
@@ -49,15 +49,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
                     }
                     else
                     {
-                        throw new System.InvalidOperationException();
+                        throw new InvalidOperationException();
                     }
 
                 }
-                catch (System.InvalidOperationException)
+                catch (InvalidOperationException)
                 {
                     metaDataName = methodName + " Efficacy";
-                    var efficacyData = efficacyParameters.First(p => p.MetaData.Name == metaDataName) as EnumeratedParameter<ApplicationMethod>;
-
+                    var efficacyData = efficacyParameters.First(p => p.MetaData.Name == metaDataName) as EnumeratedParameter<ApplicationMethod>
+                      ?? throw new NullReferenceException($"{metaDataName} parameter is null");
                     var drawnValue = efficacyData.Values[treatmentMethods[surface]].CreateDistribution().Draw();
                     if (drawnValue < 0)
                     {

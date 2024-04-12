@@ -1,90 +1,86 @@
-﻿using System;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
+﻿using Battelle.EPA.WideAreaDecon.Model.Domain;
+using Battelle.EPA.WideAreaDecon.Model.Interface;
+using Event = Battelle.EPA.WideAreaDecon.Model.Services.Event;
+using Scenario = Battelle.EPA.WideAreaDecon.Model.Services.Scenario;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
-    public class CalculatorManager
+    public class CalculatorManager : ICalculatorManager
     {
-        public CharacterizationSamplingParameters _characterizationSamplingParameters { get; set; }
-        public SourceReductionParameters _sourceReductionParameters { get; set; }
-        public DecontaminationParameters _decontaminationParameters { get; set; }
-        public ClearanceSamplingParameters _clearanceSamplingParameters { get; set; }
-        public WasteSamplingParameters _wasteSamplingParameters { get; set; }
-        public IncidentCommandParameters _incidentCommandParameters { get; set; }
-        public OtherParameters _otherParameters { get; set; }
-        public CostParameters _costParameters { get; set; }
-
-        public CalculatorCreator CreateCalculatorFactories()
+        public CalculatorCreator CreateScenarioCalculatorFactories(ScenarioParameters parameters)
         {
-            var csCalculatorFactory = new Services.Scenario.ParameterArrayCharacterizationSamplingCalculatorFactory(
-                _characterizationSamplingParameters,
-                _costParameters);
+            var csCalculatorFactory = new Scenario.ParameterArrayCharacterizationSamplingCalculatorFactory(
+                parameters.CharacterizationSamplingParameters,
+                parameters.CostParameters);
 
-            var srCalculatorFactory = new Services.Scenario.ParameterArraySourceReductionCalculatorFactory(
-                _sourceReductionParameters,
-                _costParameters);
+            var srCalculatorFactory = new Scenario.ParameterArraySourceReductionCalculatorFactory(
+                parameters.SourceReductionParameters,
+                parameters.CostParameters);
 
-            var dcCalculatorFactory = new Services.Scenario.ParameterArrayDecontaminationCalculatorFactory(
-                _decontaminationParameters,
-                _costParameters);
+            var dcCalculatorFactory = new Scenario.ParameterArrayDecontaminationCalculatorFactory(
+                parameters.DecontaminationParameters,
+                parameters.CostParameters);
 
-            var clsCalculatorFactory = new Services.Scenario.ParameterArrayClearanceSamplingCalculatorFactory(
-                _clearanceSamplingParameters,
-                _costParameters);
+            var vsCalculatorFactory = new Scenario.ParameterArrayVerificationSamplingCalculatorFactory(
+                parameters.VerificationSamplingParameters,
+                parameters.CostParameters);
 
-            var wsCalculatorFactory = new Services.Scenario.ParameterArrayWasteSamplingCalculatorFactory(
-                _wasteSamplingParameters,
-                _costParameters);
+            var clCalculatorFactory = new Scenario.ParameterArrayClearanceSamplingCalculatorFactory(
+                parameters.ClearanceSamplingParameters,
+                parameters.CostParameters);
 
-            var icCalculatorFactory = new Services.Scenario.ParameterArrayIncidentCommandCalculatorFactory(
-                _incidentCommandParameters,
-                _costParameters);
+            var wsCalculatorFactory = new Scenario.ParameterArrayWasteSamplingCalculatorFactory(
+                parameters.WasteSamplingParameters,
+                parameters.CostParameters);
 
-            return new CalculatorCreator() {
-                _characterizationSamplingFactory = csCalculatorFactory,
-                _sourceReductionFactory = srCalculatorFactory,
-                _decontaminationFactory = dcCalculatorFactory,
-                _clearanceSamplingFactory = clsCalculatorFactory,
-                _wasteSamplingFactory = wsCalculatorFactory,
-                _incidentCommandFactory = icCalculatorFactory
-            };
+            return new CalculatorCreator(
+                csCalculatorFactory,
+                srCalculatorFactory,
+                dcCalculatorFactory,
+                vsCalculatorFactory,
+                clCalculatorFactory,
+                wsCalculatorFactory);
         }
 
-        public CalculatorCreator CreateEventCalculatorFactories()
+        public CalculatorCreator CreateEventCalculatorFactories(EventParameters parameters)
         {
-            var csCalculatorFactory = new Services.Event.ParameterArrayCharacterizationSamplingCalculatorFactory(
-                _otherParameters,
-                _costParameters);
+            var csCalculatorFactory = new Event.ParameterArrayCharacterizationSamplingCalculatorFactory(
+                parameters.OtherParameters,
+                parameters.CostParameters);
 
-            var srCalculatorFactory = new Services.Event.ParameterArraySourceReductionCalculatorFactory(
-                _otherParameters,
-                _costParameters);
+            var srCalculatorFactory = new Event.ParameterArraySourceReductionCalculatorFactory(
+                parameters.OtherParameters,
+                parameters.CostParameters);
 
-            var dcCalculatorFactory = new Services.Event.ParameterArrayDecontaminationCalculatorFactory(
-                _otherParameters,
-                _costParameters);
+            var dcCalculatorFactory = new Event.ParameterArrayDecontaminationCalculatorFactory(
+                parameters.OtherParameters,
+                parameters.CostParameters);
 
-            var clsCalculatorFactory = new Services.Event.ParameterArrayClearanceSamplingCalculatorFactory(
-                _otherParameters,
-                _costParameters);
+            var vsCalculatorFactory = new Event.ParameterArrayVerificationSamplingCalculatorFactory(
+                parameters.OtherParameters,
+                parameters.CostParameters);
 
-            var wsCalculatorFactory = new Services.Event.ParameterArrayWasteSamplingCalculatorFactory(
-                _otherParameters,
-                _costParameters);
+            var clCalculatorFactory = new Event.ParameterArrayClearanceSamplingCalculatorFactory(
+                parameters.OtherParameters,
+                parameters.CostParameters);
 
-            var icCalculatorFactory = new Services.Event.ParameterArrayIncidentCommandCalculatorFactory(
-                _otherParameters,
-                _costParameters);
+            var wsCalculatorFactory = new Event.ParameterArrayWasteSamplingCalculatorFactory(
+                parameters.OtherParameters,
+                parameters.CostParameters);
 
-            return new CalculatorCreator()
-            {
-                _characterizationSamplingFactory = csCalculatorFactory,
-                _sourceReductionFactory = srCalculatorFactory,
-                _decontaminationFactory = dcCalculatorFactory,
-                _clearanceSamplingFactory = clsCalculatorFactory,
-                _wasteSamplingFactory = wsCalculatorFactory,
-                _incidentCommandFactory = icCalculatorFactory
-            };
+            var icCalculatorFactory = new Event.ParameterArrayIncidentCommandCalculatorFactory(
+                parameters.IncidentCommandParameters,
+                parameters.OtherParameters,
+                parameters.CostParameters);
+
+            return new CalculatorCreator(
+                csCalculatorFactory,
+                srCalculatorFactory,
+                dcCalculatorFactory,
+                vsCalculatorFactory,
+                clCalculatorFactory,
+                wsCalculatorFactory,
+                icCalculatorFactory);
         }
     }
 }

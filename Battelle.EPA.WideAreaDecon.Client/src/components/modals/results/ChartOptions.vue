@@ -76,7 +76,7 @@ export default class ChartOptions extends Vue {
 
   selected: { x: Result | null; y: Result[] } = { x: null, y: [] };
 
-  private maxNumberSeries = 4;
+  readonly maxNumberSeries = 4;
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 

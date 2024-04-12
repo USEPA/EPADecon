@@ -24,63 +24,63 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
             CostParameters costParameters)
         {
             Calculator_entEx = new EntrancesExitsCostCalculator(
-                wsParameters.personnelReqPerTeam,
-                wsParameters.respiratorsPerPerson,
-                costParameters.respiratorCost,
-                costParameters.ppeCost,
-                wsParameters.entryDuration,
-                costParameters.entryPrepCost,
-                costParameters.deconLineCost);
+                wsParameters.PersonnelReqPerTeam,
+                wsParameters.RespiratorsPerPerson,
+                costParameters.RespiratorCost,
+                costParameters.PpeCost,
+                wsParameters.EntryDuration,
+                costParameters.EntryPrepCost,
+                costParameters.DeconLineCost);
 
             Calculator_supplies = new SuppliesCostCalculator(
-                wsParameters.massPerWasteSample,
-                wsParameters.volumePerWasteSample,
-                wsParameters.solidWastePerSurfaceArea,
-                wsParameters.liquidWastePerSurfaceArea,
-                costParameters.wasteSampleCost
+                wsParameters.MassPerWasteSample,
+                wsParameters.VolumePerWasteSample,
+                wsParameters.SolidWastePerSurfaceArea,
+                wsParameters.LiquidWastePerSurfaceArea,
+                costParameters.WasteSampleCost
             );
 
             Calculator_laborDays = new LaborDaysCalculator(
-                wsParameters.solidWastePerSurfaceArea,
-                wsParameters.liquidWastePerSurfaceArea,
-                wsParameters.massPerWasteSample,
-                wsParameters.volumePerWasteSample,
-                wsParameters.wasteSamplesPerHrPerTeam
+                wsParameters.SolidWastePerSurfaceArea,
+                wsParameters.LiquidWastePerSurfaceArea,
+                wsParameters.MassPerWasteSample,
+                wsParameters.VolumePerWasteSample,
+                wsParameters.WasteSamplesPerHrPerTeam
             );
 
             Calculator_workdays = new WorkDaysCalculator(
-                wsParameters.entryDuration,
-                wsParameters.entryPrepTime,
-                wsParameters.deconLineTime, 
-                wsParameters.postEntryRest);
+                wsParameters.EntryDuration,
+                wsParameters.EntryPrepTime,
+                wsParameters.DeconLineTime, 
+                wsParameters.PostEntryRest);
 
             Calculator_onsiteDays = new OnsiteDaysCalculator(
-                wsParameters.personnelOverheadDays
+                wsParameters.PersonnelOverheadDays
             );
 
             Calculator_elementLag = new ElementLagCalculator(
-                wsParameters.solidWastePerSurfaceArea,
-                wsParameters.liquidWastePerSurfaceArea,
-                wsParameters.massPerWasteSample,
-                wsParameters.volumePerWasteSample,
-                wsParameters.labUptimesHours,
-                wsParameters.samplePackageTime,
-                wsParameters.sampleShippingTime,
-                wsParameters.labThroughput
+                wsParameters.SolidWastePerSurfaceArea,
+                wsParameters.LiquidWastePerSurfaceArea,
+                wsParameters.MassPerWasteSample,
+                wsParameters.VolumePerWasteSample,
+                wsParameters.LabUptimesHours,
+                wsParameters.SamplePackageTime,
+                wsParameters.SampleShippingTime,
+                wsParameters.LabThroughput
             );
 
             Calculator_labor = new LaborCostCalculator(
-                wsParameters.personnelReqPerTeam,
-                costParameters.hourlyRate
+                wsParameters.PersonnelReqPerTeam,
+                costParameters.HourlyRate
             );
 
             Calculator_analysis = new AnalysisQuantityCostCalculator(
-                wsParameters.massPerWasteSample,
-                wsParameters.volumePerWasteSample,
-                costParameters.solidWasteSampleAnalysisCost,
-                costParameters.liquidWasteSampleAnalysisCost,
-                wsParameters.solidWastePerSurfaceArea,
-                wsParameters.liquidWastePerSurfaceArea
+                wsParameters.MassPerWasteSample,
+                wsParameters.VolumePerWasteSample,
+                costParameters.SolidWasteSampleAnalysisCost,
+                costParameters.LiquidWasteSampleAnalysisCost,
+                wsParameters.SolidWastePerSurfaceArea,
+                wsParameters.LiquidWastePerSurfaceArea
             );
         }
 

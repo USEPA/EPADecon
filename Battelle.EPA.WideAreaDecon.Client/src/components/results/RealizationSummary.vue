@@ -34,7 +34,6 @@
 <script lang="ts">
 import { State } from 'vuex-class';
 import { Component, Vue } from 'vue-property-decorator';
-import IJobResultRealization from '@/interfaces/jobs/results/IJobResultRealization';
 import container from '@/dependencyInjection/config';
 import JobRequest from '@/implementations/jobs/JobRequest';
 import TYPES from '@/dependencyInjection/types';

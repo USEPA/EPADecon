@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results.ResourceAndCostResults;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost
 {
@@ -41,11 +43,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost
             _deconLineCost = deconLineCost;
         }
 
-        public double CalculateEntranceExitCost(double numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam, List<Dictionary<ApplicationMethod, double>> decontaminationLaborDays)
+        public DecontaminationResourceAndCostResults CalculateEntranceExitCost(double numberTeams, Dictionary<PpeLevel, double> ppePerLevelPerTeam, List<Dictionary<ApplicationMethod, double>> decontaminationLaborDays)
         {
             //Calculating the non-fumigation and non-fogging workdays for decon to account for no site entries
             //being made for fumigation/fogging
-            double laborDays = 0.0;
+            var laborDays = 0.0;
 
             foreach (var item in decontaminationLaborDays)
             {
@@ -58,33 +60,34 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost
                 }
             }
 
-            if (laborDays == 0.0)
+            if (laborDays.Equals(0))
             {
-                return 0.0;
+                return new DecontaminationResourceAndCostResults()
+                {
+                    DecontaminationCost = 0,
+                    TotalDeconAgentVolume = new Dictionary<ApplicationMethod, double>(),
+                    TotalPpeUnits = new Dictionary<PpeLevel, int>() {
+                        { PpeLevel.A, 0 },
+                        { PpeLevel.B, 0 },
+                        { PpeLevel.C, 0 },
+                        { PpeLevel.D, 0 }
+                    }
+                };
             }
 
             var totalPersonnel = _personnelReqPerTeam.Values.Sum() * numberTeams;
 
-            var numTeamsByPPE = 0;
-
-            foreach (var ppeFraction in ppePerLevelPerTeam)
-            {
-                if (ppeFraction.Value > 0)
-                {
-                    numTeamsByPPE++;
-                }
-            }
-
+            var numTeamsByPPE = ppePerLevelPerTeam.Where(ppeFraction => ppeFraction.Value > 0).Count();
             var laborHoursPerPPELevel = (laborDays * GlobalConstants.HoursPerWorkDay) / numTeamsByPPE;
 
             var entranceTimeAdjustment = _entryPrepTime + _deconLineTime + _postEntryRest;
 
             var entriesPerPPELevel = new Dictionary<PpeLevel, double>
             {
-                { PpeLevel.A, ppePerLevelPerTeam[PpeLevel.A] == 0 ? 0 : laborHoursPerPPELevel / (_entryDurationByPPE[PpeLevel.A] + entranceTimeAdjustment) },
-                { PpeLevel.B, ppePerLevelPerTeam[PpeLevel.B] == 0 ? 0 : laborHoursPerPPELevel / (_entryDurationByPPE[PpeLevel.B] + entranceTimeAdjustment) },
-                { PpeLevel.C, ppePerLevelPerTeam[PpeLevel.C] == 0 ? 0 : laborHoursPerPPELevel / (_entryDurationByPPE[PpeLevel.C] + entranceTimeAdjustment) },
-                { PpeLevel.D, ppePerLevelPerTeam[PpeLevel.D] == 0 ? 0 : laborHoursPerPPELevel / (_entryDurationByPPE[PpeLevel.D] + entranceTimeAdjustment) }
+                { PpeLevel.A, ppePerLevelPerTeam[PpeLevel.A].Equals(0) ? 0 : laborHoursPerPPELevel / (_entryDurationByPPE[PpeLevel.A] + entranceTimeAdjustment) },
+                { PpeLevel.B, ppePerLevelPerTeam[PpeLevel.B].Equals(0) ? 0 : laborHoursPerPPELevel / (_entryDurationByPPE[PpeLevel.B] + entranceTimeAdjustment) },
+                { PpeLevel.C, ppePerLevelPerTeam[PpeLevel.C].Equals(0) ? 0 : laborHoursPerPPELevel / (_entryDurationByPPE[PpeLevel.C] + entranceTimeAdjustment) },
+                { PpeLevel.D, ppePerLevelPerTeam[PpeLevel.D].Equals(0) ? 0 : laborHoursPerPPELevel / (_entryDurationByPPE[PpeLevel.D] + entranceTimeAdjustment) }
             };
 
             var totalEntries = entriesPerPPELevel.Sum(x => x.Value);
@@ -96,7 +99,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost
             var totalEntryPrepCost = totalEntries * _prepTimeCost;
             var totalDeconLineCost = totalEntries * _deconLineCost;
 
-            return (totalPersonnel * _respiratorsPerPerson * _costPerRespirator) + totalCostPpe + totalEntryPrepCost + totalDeconLineCost;
+            return new DecontaminationResourceAndCostResults()
+            {
+                DecontaminationCost = (totalPersonnel * _respiratorsPerPerson * _costPerRespirator) + totalCostPpe + totalEntryPrepCost + totalDeconLineCost,
+                TotalDeconAgentVolume = new Dictionary<ApplicationMethod, double>(),
+                TotalPpeUnits = new Dictionary<PpeLevel, int>()
+                {
+                    { PpeLevel.A, (int)Math.Ceiling((ppePerLevelPerTeam[PpeLevel.A] * _personnelReqPerTeam.Values.Sum() * totalEntries)) },
+                    { PpeLevel.B, (int)Math.Ceiling((ppePerLevelPerTeam[PpeLevel.B] * _personnelReqPerTeam.Values.Sum() * totalEntries)) },
+                    { PpeLevel.C, (int)Math.Ceiling((ppePerLevelPerTeam[PpeLevel.C] * _personnelReqPerTeam.Values.Sum() * totalEntries)) },
+                    { PpeLevel.D, (int)Math.Ceiling((ppePerLevelPerTeam[PpeLevel.D] * _personnelReqPerTeam.Values.Sum() * totalEntries)) }
+                }
+            };
         }
     }
 }

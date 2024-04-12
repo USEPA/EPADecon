@@ -44,9 +44,9 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static TruncatedNormalDistribution FromExcel(ParameterMetaData metaData, IRow row)
         {
-            var minimum = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Min), row)?.ConvertToOptionalDouble();
-            var maximum = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Max), row)?.ConvertToOptionalDouble();
-            var mean = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Mean), row)?.ConvertToOptionalDouble();
+            var minimum = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Min), row)?.ConvertToStepRoundedAndOptionalDouble(metaData);
+            var maximum = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Max), row)?.ConvertToStepRoundedAndOptionalDouble(metaData);
+            var mean = typeof(TruncatedNormalDistribution).GetCellValue(nameof(Mean), row)?.ConvertToStepRoundedAndOptionalDouble(metaData);
 
             if (minimum < metaData.LowerLimit || minimum > metaData.UpperLimit)
             {
@@ -70,7 +70,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
                 Max = maximum,
                 Mean = mean,
                 StdDev = typeof(TruncatedNormalDistribution).GetCellValue(nameof(StdDev), row)
-                    ?.ConvertToOptionalDouble()
+                    ?.ConvertToStepRoundedAndOptionalDouble(metaData)
             };
         }
 
@@ -84,6 +84,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         }
 
         public string GetTextValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FrequencyValueType GetFrequencyValue()
         {
             throw new NotImplementedException();
         }

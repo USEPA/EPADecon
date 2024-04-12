@@ -12,6 +12,7 @@ enum ParameterType {
   logNormal = 'Log Normal',
   weibull = 'Weibull',
   textValue = 'Text',
+  frequencyValue = 'Frequency',
   enumeratedFraction = 'Enumerated Fraction',
   enumeratedParameter = 'Enumerated Parameter',
   contaminationDefinition = 'Contamination Definition',

@@ -1,9 +1,9 @@
 <template>
-  <enumerated-parameter-display :parameterValue="current" :baseline="baseline" @param-changed="paramChanged" />
+  <enumerated-parameter-display :parameterValue="current" :baseline="baseline" />
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
 import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
 import { State } from 'vuex-class';
@@ -21,19 +21,11 @@ export default class PlumeConcentration extends Vue {
 
   current = new EnumeratedParameter();
 
-  // @Watch('current', { deep: true })
-  // updateParameterValue(): void {
-  //   this.parameterValue.buildingProtectionFactor = this.current.values['Building Protection Factor'];
-  // }
-
   @State(nameof<IParameterSelection>((s) => s.currentSelectedParameter), { namespace: StoreNames.PARAMETER_SELECTION })
   currentSelectedParameter!: ParameterWrapper;
 
-  paramChanged(): void {
-    this.$emit('param-changed');
-  }
-
-  created(): void {
+  @Watch('parameterValue')
+  setValues(): void {
     const { plumeConcentrationFactor, metaData } = this.currentSelectedParameter.baseline as ContaminationDefinition;
 
     const baselineValues = {
@@ -45,6 +37,10 @@ export default class PlumeConcentration extends Vue {
 
     this.baseline = new EnumeratedParameter(metaData, undefined, baselineValues);
     this.current = new EnumeratedParameter(this.parameterValue.metaData, undefined, currentValues);
+  }
+
+  created(): void {
+    this.setValues();
   }
 }
 </script>

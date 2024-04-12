@@ -1,48 +1,54 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.Model.Parameter;
+using Battelle.EPA.WideAreaDecon.Model.Interface;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
-    public class ScenarioModelRunner
+    public class ScenarioModelRunner : IScenarioModelRunner
     {
-        private readonly ParameterList _scenarioParameters;
-        private readonly DecontaminationElement _element;
-        private readonly Dictionary<SurfaceType, ContaminationInformation> _buildingDetails;
+        private readonly IResultsCalculator _resultsCalculator;
+        private readonly ICalculatorManager _calculatorManager;
 
         public ScenarioModelRunner(
-            ParameterList scenarioParameters,
-            DecontaminationElement element,
-            Dictionary<SurfaceType, ContaminationInformation> buildingDetails)
+            IResultsCalculator resultsCalculator,
+            ICalculatorManager calculatorManager)
         {
-            _scenarioParameters = scenarioParameters;
-            _element = element;
-            _buildingDetails = buildingDetails;
+            _resultsCalculator = resultsCalculator;
+            _calculatorManager = calculatorManager;
         }
 
-        public ScenarioRealizationResults RunScenarioModel()
+        public Dictionary<BuildingCategory, ScenarioRealizationResults> RunScenarioModel(
+            ParameterList scenarioParameters,
+            DecontaminationElement element,
+            Dictionary<BuildingCategory, Dictionary<SurfaceType, ContaminationInformation>> contaminationAreaByBuildingCategory)
         {
             var parameterManager = new ScenarioParameterManager(
-                _scenarioParameters.Filters.First(f => f.Name == "Characterization Sampling").Filters,
-                _scenarioParameters.Filters.First(f => f.Name == "Source Reduction").Filters,
-                _scenarioParameters.Filters.First(f => f.Name == "Decontamination").Filters,
-                _scenarioParameters.Filters.First(f => f.Name == "Clearance Sampling").Filters,
-                _scenarioParameters.Filters.First(f => f.Name == "Waste Sampling").Filters,
-                _scenarioParameters.Filters.First(f => f.Name == "Efficacy").Parameters,
-                _scenarioParameters.Filters.First(f => f.Name == "Incident Command").Filters,
-                _scenarioParameters.Filters.First(f => f.Name == "Cost per Parameter").Filters,
-                _scenarioParameters.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
+                _calculatorManager,
+                scenarioParameters);
 
-            var calculatorManager = parameterManager.RedrawParameters(_buildingDetails, _element);
+            return _resultsCalculator.CalculateScenarioResults(
+                contaminationAreaByBuildingCategory,
+                parameterManager,
+                element);
+        }
 
-            var resultsCalculator = parameterManager.SetDrawnParameters(calculatorManager);
+        public ScenarioRealizationResults RunScenarioModel(
+            ParameterList scenarioParameters,
+            DecontaminationElement element,
+            Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        {
+            var parameterManager = new ScenarioParameterManager(
+                _calculatorManager,
+                scenarioParameters);
 
-            return resultsCalculator.CalculateScenarioResults(parameterManager, calculatorManager, _buildingDetails, _element);
+            return _resultsCalculator.CalculateScenarioResults(
+                areaContaminated,
+                parameterManager,
+                element);
         }
     }
 }

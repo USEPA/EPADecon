@@ -5,7 +5,7 @@ enum Result {
   ElementCost = 'elementCost',
   TotalCost = 'totalCost',
   AreaContaminated = 'areaContaminated',
-  DecontaminationRounds = 'decontaminationRounds',
+  DecontaminationTreatments = 'decontaminationTreatments',
   SolidWasteProduced = 'solidWasteProduced',
   AqueousWasteProduced = 'aqueousWasteProduced',
 }

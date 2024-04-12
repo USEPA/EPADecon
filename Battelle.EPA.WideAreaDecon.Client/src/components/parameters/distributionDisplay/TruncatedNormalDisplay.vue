@@ -28,7 +28,7 @@
           v-model="sliderStd"
           :max="stdDevMax"
           :min="stdDevMin"
-          :step="stdDevStep"
+          :step="step"
           thumb-label
           @change="onSliderStdStopped"
         >
@@ -55,7 +55,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -73,7 +73,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -93,7 +93,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -111,7 +111,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -123,7 +123,6 @@
 <script lang="ts">
 import { Component, Watch } from 'vue-property-decorator';
 import TruncatedNormal from '@/implementations/parameter/distribution/TruncatedNormal';
-import { max } from 'lodash';
 import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
@@ -151,10 +150,6 @@ export default class TruncatedNormalDisplay extends BaseDistributionDisplay {
   ignoreNextMeanSliderChange = false;
 
   ignoreNextStdSliderChange = false;
-
-  get stdDevStep(): number {
-    return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
-  }
 
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number[]): void {
@@ -314,16 +309,8 @@ export default class TruncatedNormalDisplay extends BaseDistributionDisplay {
 
   @Watch('parameterValue')
   setValues(): void {
-    this.ignoreNextValueSliderChange = true;
-    this.sliderValue = [this.min, this.min];
     this.sliderValue = [this.castParameterValue.min ?? this.min, this.castParameterValue.max ?? this.max];
-
-    this.ignoreNextMeanSliderChange = true;
-    this.sliderMean = this.min;
     this.sliderMean = this.castParameterValue.mean ?? (this.min + this.max) / 2.0;
-
-    this.ignoreNextStdSliderChange = true;
-    this.sliderStd = this.min;
     this.sliderStd = this.castParameterValue.stdDev ?? (this.max - this.min) / 5.0;
 
     this.textMin = this.castParameterValue.min?.toString() ?? '';
@@ -333,6 +320,12 @@ export default class TruncatedNormalDisplay extends BaseDistributionDisplay {
   }
 
   created(): void {
+    this.ignoreNextValueSliderChange = this.anyValueIsUndefined(
+      this.castParameterValue.min,
+      this.castParameterValue.max,
+    );
+    this.ignoreNextMeanSliderChange = this.anyValueIsUndefined(this.castParameterValue.mean);
+    this.ignoreNextStdSliderChange = this.anyValueIsUndefined(this.castParameterValue.stdDev);
     this.setValues();
   }
 }

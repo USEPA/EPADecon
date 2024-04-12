@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results
+﻿namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results
 {
     public class ScenarioRealizationResults
     {
-        public GenericElementResults characterizationSamplingResults { get; set; }
-        public GenericElementResults sourceReductionResults { get; set; }
-        public GenericElementResults decontaminationResults { get; set; }
-        public GenericElementResults clearanceSamplingResults { get; set; }
-        public GenericElementResults wasteSamplingResults { get; set; }
-        public IncidentCommandResults incidentCommandResults { get; set; }
-        public GeneralResults generalResults { get; set; }
+        public CharacterizationSamplingResults CharacterizationSamplingResults { get; set; }
+        public SourceReductionResults SourceReductionResults { get; set; }
+        public DecontaminationResults DecontaminationResults { get; set; }
+        public VerificationSamplingResults VerificationSamplingResults { get; set; }
+        public ClearanceSamplingResults ClearanceSamplingResults { get; set; }
+        public WasteSamplingResults WasteSamplingResults { get; set; }
+        public GeneralResults GeneralResults { get; set; }
     }
 }

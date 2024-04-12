@@ -76,6 +76,19 @@ export default class BaseParameterDisplay extends Vue implements IParameterDispl
     return val <= lowerLimit ? lowerLimit : val;
   }
 
+  get units(): string | undefined {
+    let units = this.parameterValue.metaData.units;
+    if (units?.includes('^')) {
+      units = units.replace(/\^(\d+)/g, '<sup>$1</sup>');
+    }
+
+    return units;
+  }
+
+  anyValueIsUndefined(...values: (number | undefined)[]): boolean {
+    return values.some((v) => v === undefined);
+  }
+
   private parameterHasProperty(property: string): boolean {
     return Object.keys(this.parameterValue).includes(property);
   }

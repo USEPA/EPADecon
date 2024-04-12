@@ -58,7 +58,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ castParameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -77,7 +77,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ castParameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -98,7 +98,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ castParameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -117,7 +117,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ castParameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -151,6 +151,12 @@ export default class ScaledBetaDisplay extends BaseParameterDisplay {
 
   textMin = '';
 
+  ignoreNextAlphaSliderChange = false;
+
+  ignoreNextBetaSliderChange = false;
+
+  ignoreNextMinMaxSliderChange = false;
+
   get shapeValidation(): (value: string) => boolean | string {
     return (value: string) => this.validateWithLimits(this.shapeMin, this.max, Number(value));
   }
@@ -163,7 +169,21 @@ export default class ScaledBetaDisplay extends BaseParameterDisplay {
     const newValue = this[slider];
 
     if (slider === 'minMax') {
+      if (this.ignoreNextMinMaxSliderChange) {
+        this.ignoreNextMinMaxSliderChange = false;
+        return;
+      }
+
       this.setMinMax(newValue as number[]);
+      return;
+    }
+
+    if (slider === 'alpha' && this.ignoreNextAlphaSliderChange) {
+      this.ignoreNextAlphaSliderChange = false;
+      return;
+    }
+    if (slider === 'beta' && this.ignoreNextBetaSliderChange) {
+      this.ignoreNextBetaSliderChange = false;
       return;
     }
 
@@ -226,6 +246,12 @@ export default class ScaledBetaDisplay extends BaseParameterDisplay {
   }
 
   created(): void {
+    this.ignoreNextMinMaxSliderChange = this.anyValueIsUndefined(
+      this.castParameterValue.min,
+      this.castParameterValue.max,
+    );
+    this.ignoreNextAlphaSliderChange = this.anyValueIsUndefined(this.castParameterValue.alpha);
+    this.ignoreNextBetaSliderChange = this.anyValueIsUndefined(this.castParameterValue.beta);
     this.setValues();
   }
 }

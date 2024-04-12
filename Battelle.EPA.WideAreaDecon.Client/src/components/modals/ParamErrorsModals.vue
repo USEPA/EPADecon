@@ -10,7 +10,7 @@
                 <v-col>
                   <h4>Unset Parameters:</h4>
                   <v-list dense>
-                    <v-list-item v-for="(item, i) in unsetParams" :key="i">{{ item }}</v-list-item>
+                    <v-list-item v-for="(item, i) of unsetParams" :key="i">{{ item }}</v-list-item>
                   </v-list>
                 </v-col>
               </v-row>
@@ -27,10 +27,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, VModel, Watch } from 'vue-property-decorator';
-import { Action, Getter, State } from 'vuex-class';
-import ParameterList from '@/implementations/parameter/ParameterList';
-import ParameterFilter from '@/implementations/parameter/ParameterFilter';
+import { Component, VModel } from 'vue-property-decorator';
+import { State } from 'vuex-class';
 import ParameterWrapperList from '@/implementations/parameter/ParameterWrapperList';
 import ParameterWrapperFilter from '@/implementations/parameter/ParameterWrapperFilter';
 import { nameof } from 'ts-simple-nameof';
@@ -44,9 +42,14 @@ export default class ParamErrorsModals extends Vue {
   @State(nameof<IParameterSelection>((s) => s.scenarioDefinition), { namespace: StoreNames.PARAMETER_SELECTION })
   scenarioDefinition!: ParameterWrapperList;
 
-  // eslint-disable-next-line class-methods-use-this
+  @State(nameof<IParameterSelection>((s) => s.scenarioParameters), { namespace: StoreNames.PARAMETER_SELECTION })
+  scenarioParameters!: ParameterWrapperList;
+
   get unsetParams(): string[] {
-    return this.recursiveUnset(this.scenarioDefinition.filters);
+    return [
+      ...this.recursiveUnset(this.scenarioDefinition.filters),
+      ...this.recursiveUnset(this.scenarioParameters.filters),
+    ];
   }
 
   recursiveUnset(filter: ParameterWrapperFilter[]): string[] {

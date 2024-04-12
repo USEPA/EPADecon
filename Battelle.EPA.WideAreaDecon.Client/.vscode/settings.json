@@ -9,8 +9,6 @@
 
     // build folders
     "**/build/**": true,
-
-    "package-lock.json": true
   },
   "json.schemas": [
     {

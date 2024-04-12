@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Attributes;
@@ -53,13 +48,13 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         public static BimodalTruncatedNormalDistribution FromExcel(ParameterMetaData metaData, IRow information)
         {
             var minimum = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Min), information)
-                    ?.ConvertToOptionalDouble();
+                    ?.ConvertToStepRoundedAndOptionalDouble(metaData);
             var maximum = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Max), information)
-                    ?.ConvertToOptionalDouble();
+                    ?.ConvertToStepRoundedAndOptionalDouble(metaData);
             var mean1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean1), information)
-                    ?.ConvertToOptionalDouble();
+                    ?.ConvertToStepRoundedAndOptionalDouble(metaData);
             var mean2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(Mean2), information)
-                    ?.ConvertToOptionalDouble();
+                    ?.ConvertToStepRoundedAndOptionalDouble(metaData);
 
             if (minimum < metaData.LowerLimit || minimum > metaData.UpperLimit)
             {
@@ -86,10 +81,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
                 MetaData = metaData,
                 Mean1 = mean1,
                 StdDev1 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(StdDev1), information)
-                    ?.ConvertToOptionalDouble(),
+                    ?.ConvertToStepRoundedAndOptionalDouble(metaData),
                 Mean2 = mean2,
                 StdDev2 = typeof(BimodalTruncatedNormalDistribution).GetCellValue(nameof(StdDev2), information)
-                    ?.ConvertToOptionalDouble(),
+                    ?.ConvertToStepRoundedAndOptionalDouble(metaData),
                 Min = minimum,
                 Max = maximum,
             };
@@ -108,6 +103,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         }
 
         public string GetTextValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FrequencyValueType GetFrequencyValue()
         {
             throw new NotImplementedException();
         }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results
+﻿namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results
 {
     public class JobResults
     {
-        public ScenarioTypeResults scenarioResults { get; set; }
-        public EventResults eventResults { get; set; }
+        public ScenarioTypeResults ScenarioResults { get; set; }
+        public EventResults EventResults { get; set; }
     }
 }

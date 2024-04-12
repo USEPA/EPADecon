@@ -94,7 +94,11 @@ export default class EnumeratedFractionDisplay extends Vue implements IParameter
     return true;
   }
 
-  renormalize(newValue: number, changedIndex: number): void {
+  renormalize(newValue: number | undefined, changedIndex: number): void {
+    if (newValue === undefined) {
+      return;
+    }
+
     this.values[changedIndex].value = newValue;
     const normalizedFractions = this.normalize(changedIndex);
 

@@ -47,7 +47,11 @@
             <thead>
               <tr>
                 <th></th>
-                <th class="text-body-1 py-3" v-for="runNumber of displayedRunNumbers" :key="runNumber">
+                <th
+                  class="text-body-1 py-3"
+                  v-for="runNumber of displayedRunNumbers"
+                  :key="`${selectedLocation} - ${runNumber}`"
+                >
                   Run {{ runNumber }}
                   <v-icon class="ml-1" small @click="removeRunFromTable(runNumber)">mdi-close-circle</v-icon>
 
@@ -56,19 +60,60 @@
               </tr>
             </thead>
 
-            <tbody v-for="(elementResult, elementName) in exisitingLocation" :key="elementName">
+            <tbody>
+              <template v-for="(elementResult, elementName) in exisitingLocation">
+                <tr :key="elementName">
+                  <td class="text-subtitle-1 font-weight-medium">
+                    {{ resultProvider.convertCamelToTitleCase(elementName) }}
+                  </td>
+                  <td :colspan="displayedRunNumbers.length" />
+                </tr>
+
+                <template v-for="(_, result) in elementResult">
+                  <template v-if="resultIsNumber(elementResult[result])">
+                    <tr :key="`${elementName} - ${result}`">
+                      <td class="pl-8">
+                        {{ resultProvider.convertCamelToTitleCase(result) }}
+                        <span
+                          v-if="resultProvider.getUnitsAsHtml(result)"
+                          v-html="`(${resultProvider.getUnitsAsHtml(result)})`"
+                        />
+                      </td>
+
+                      <td v-for="runNumber in displayedRunNumbers" :key="`${elementName} - ${result} - ${runNumber}`">
+                        {{ getCellValueSingleLocation(elementName, result, runNumber) }}
+                      </td>
+                    </tr>
+                  </template>
+
+                  <template v-else
+                    ><!-- need to flatten result in table -->
+                    <tr
+                      v-for="(_, subResultName) of elementResult[result]"
+                      :key="`${elementName} - ${result} - ${subResultName}`"
+                    >
+                      <td class="pl-8">
+                        {{ resultProvider.convertCamelToTitleCase(result) }} - {{ subResultName }}
+                        <span
+                          v-if="resultProvider.getUnitsAsHtml(result)"
+                          v-html="`(${resultProvider.getUnitsAsHtml(result)})`"
+                        />
+                      </td>
+
+                      <td
+                        v-for="runNumber in displayedRunNumbers"
+                        :key="`${elementName} - ${result} - ${subResultName} - ${runNumber}`"
+                      >
+                        {{ getCellValueSingleLocation(elementName, result, runNumber, subResultName) }}
+                      </td>
+                    </tr>
+                  </template>
+                </template>
+              </template>
               <tr>
-                <td class="text-subtitle-1 font-weight-medium">
-                  {{ resultProvider.convertCamelToTitleCase(elementName) }}
-                </td>
-                <td :colspan="displayedRunNumbers.length" />
-              </tr>
-
-              <tr v-for="(_, result) in elementResult" :key="result">
-                <td class="pl-8">{{ resultProvider.convertCamelToTitleCase(result) }}</td>
-
-                <td v-for="runNumber in displayedRunNumbers" :key="runNumber">
-                  {{ getCellValueSingleLocation(elementName, result, runNumber) }}
+                <td class="pl-8">Number Of Buildings</td>
+                <td v-for="runNumber of displayedRunNumbers" :key="runNumber">
+                  {{ getLocationBuildingOrSegmentCount(runNumber) }}
                 </td>
               </tr>
             </tbody>
@@ -103,20 +148,66 @@
               </tr>
             </thead>
 
-            <tbody v-for="(elementResult, elementName) in exisitingLocation" :key="elementName">
+            <tbody>
+              <template v-for="(elementResult, elementName) in exisitingLocation">
+                <tr :key="elementName">
+                  <td class="text-subtitle-1 font-weight-medium">
+                    {{ resultProvider.convertCamelToTitleCase(elementName) }}
+                  </td>
+
+                  <td :class="getCellClass(i)" v-for="i in locations.length * displayedRunNumbers.length" :key="i" />
+                </tr>
+
+                <template v-for="(_, result) in elementResult">
+                  <template v-if="resultIsNumber(elementResult[result])">
+                    <tr :key="`${elementName} - ${result}`">
+                      <td class="pl-8">
+                        {{ resultProvider.convertCamelToTitleCase(result) }}
+                        <span
+                          v-if="resultProvider.getUnitsAsHtml(result)"
+                          v-html="`(${resultProvider.getUnitsAsHtml(result)})`"
+                        />
+                      </td>
+
+                      <td
+                        :class="getCellClass(i + 1)"
+                        v-for="(location, i) in tableLocations"
+                        :key="`${location} - ${i}`"
+                      >
+                        {{ getCellValueAllLocations(location, elementName, result, i) }}
+                      </td>
+                    </tr>
+                  </template>
+
+                  <template v-else>
+                    <!-- need to flatten result in table -->
+                    <tr
+                      v-for="(_, subResultName) of elementResult[result]"
+                      :key="`${elementName} - ${result} - ${subResultName}`"
+                    >
+                      <td class="pl-8">
+                        {{ resultProvider.convertCamelToTitleCase(result) }} - {{ subResultName }}
+                        <span
+                          v-if="resultProvider.getUnitsAsHtml(result)"
+                          v-html="`(${resultProvider.getUnitsAsHtml(result)})`"
+                        />
+                      </td>
+
+                      <td
+                        :class="getCellClass(i + 1)"
+                        v-for="(location, i) in tableLocations"
+                        :key="`${location} - ${i}`"
+                      >
+                        {{ getCellValueAllLocations(location, elementName, result, i, subResultName) }}
+                      </td>
+                    </tr>
+                  </template>
+                </template>
+              </template>
               <tr>
-                <td class="text-subtitle-1 font-weight-medium">
-                  {{ resultProvider.convertCamelToTitleCase(elementName) }}
-                </td>
-
-                <td :class="getCellClass(i)" v-for="i in locations.length * displayedRunNumbers.length" :key="i" />
-              </tr>
-
-              <tr v-for="(_, result) in elementResult" :key="result">
-                <td>{{ resultProvider.convertCamelToTitleCase(result) }}</td>
-
-                <td :class="getCellClass(i + 1)" v-for="(location, i) in tableLocations" :key="`${location} - ${i}`">
-                  {{ getCellValueAllLocations(location, elementName, result, i) }}
+                <td class="pl-8">Number Of Buildings</td>
+                <td v-for="(location, i) of tableLocations" :class="getCellClass(i + 1)" :key="`${location} - ${i}`">
+                  {{ getLocationBuildingOrSegmentCount(calculateRunNumber(i), location) }}
                 </td>
               </tr>
             </tbody>
@@ -146,13 +237,14 @@ import { nameof } from 'ts-simple-nameof';
 import ICurrentJob from '@/interfaces/store/jobs/ICurrentJob';
 import { StoreNames } from '@/constants/store/store';
 import JobRequest from '@/implementations/jobs/JobRequest';
+import ResourceResult from '@/enums/jobs/results/resourceResult';
 
 @Component({ components: { RealizationDetails } })
 export default class RealizationTable extends Vue {
   @State(nameof<ICurrentJob>((s) => s.currentJob), { namespace: StoreNames.JOBS })
   currJob!: JobRequest;
 
-  private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
+  resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
   results!: IJobResultRealization[];
 
@@ -176,7 +268,9 @@ export default class RealizationTable extends Vue {
     return existingLocations.flatMap(([location, resultSet]) => {
       const isIndoor = location.toLowerCase().includes('indoor');
       return isIndoor
-        ? Object.keys(resultSet).map((l) => `${l} Building`)
+        ? Object.entries(resultSet)
+            .filter(([, er]) => er)
+            .map(([category]) => `${category} Building`)
         : this.resultProvider.convertCamelToTitleCase(location.replace('Results', ''));
     });
   }
@@ -190,7 +284,8 @@ export default class RealizationTable extends Vue {
     const { scenarioResults } = this.currJob.results[0];
     if (scenarioResults.indoorResults) {
       // indoor exists
-      return Object.values(scenarioResults.indoorResults)[0];
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      return Object.values(scenarioResults.indoorResults).filter((er) => er)[0]!.realizationResults;
     }
 
     if (scenarioResults.outdoorResults) {
@@ -223,14 +318,33 @@ export default class RealizationTable extends Vue {
     return cellNumber && cellNumber % this.locations.length === 0 && cellNumber ? 'border-right' : '';
   }
 
-  getCellValueAllLocations(location: string, elementName: string, result: Result, index: number): string {
-    const value = this.getLocationResults(this.calculateRunNumber(index), location)[elementName][result];
-    return this.resultProvider.formatNumber(value);
+  getCellValueAllLocations(
+    location: string,
+    elementName: string,
+    result: Result,
+    index: number,
+    subResult?: ResourceResult,
+  ): string {
+    let value = this.getLocationResults(this.calculateRunNumber(index), location)[elementName][result];
+    if (subResult !== undefined) {
+      value = (value as Record<string, number>)[subResult];
+    }
+
+    return this.resultProvider.formatNumber(value as number);
   }
 
-  getCellValueSingleLocation(elementName: string, result: Result, runNumber: number): string {
-    const value = this.getLocationResults(runNumber)[elementName][result];
-    return this.resultProvider.formatNumber(value);
+  getCellValueSingleLocation(
+    elementName: string,
+    result: Result,
+    runNumber: number,
+    subResult?: ResourceResult,
+  ): string {
+    let value = this.getLocationResults(runNumber)[elementName][result];
+    if (subResult !== undefined) {
+      value = (value as Record<string, number>)[subResult];
+    }
+
+    return this.resultProvider.formatNumber(value as number);
   }
 
   getLocationResults(runNumber: number, location?: string): IElementResultSet {
@@ -243,12 +357,33 @@ export default class RealizationTable extends Vue {
       selectedLocation = selectedLocation[0].toLowerCase() + `${selectedLocation}Results`.substring(1);
     }
 
-    return isIndoor ? run.indoorResults[selectedLocation] : (run[selectedLocation] as IElementResultSet);
+    return isIndoor
+      ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        run.indoorResults[selectedLocation]!.realizationResults
+      : (run[selectedLocation] as IElementResultSet);
+  }
+
+  getLocationBuildingOrSegmentCount(runNumber: number, location?: string): number | string {
+    const run = this.resultProvider.getRealizationResults(this.results, runNumber).scenarioResults;
+
+    let selectedLocation = (location !== undefined ? location : this.selectedLocation).replace(/ Building$/, '');
+
+    const isIndoor = Object.keys(BuildingCategory).includes(selectedLocation);
+    if (!isIndoor) {
+      selectedLocation = selectedLocation[0].toLowerCase() + `${selectedLocation}Results`.substring(1);
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return isIndoor ? run.indoorResults[selectedLocation]!.buildingCount : 'N/A';
   }
 
   removeRunFromTable(runNumber: number): void {
     const index = this.displayedRunNumbers.indexOf(runNumber);
     this.displayedRunNumbers.splice(index, 1);
+  }
+
+  resultIsNumber(result: Result | ResourceResult): boolean {
+    return this.resultProvider.resultIsNumber(result);
   }
 
   showRealizationSummary(realization: number): void {

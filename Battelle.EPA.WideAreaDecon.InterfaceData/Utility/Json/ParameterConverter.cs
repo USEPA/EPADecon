@@ -84,6 +84,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json
                 ParameterType.UniformXDependent => JsonObject.ToObject<UniformXDependentDistribution>(),
                 ParameterType.Weibull => JsonObject.ToObject<WeibullDistribution>(),
                 ParameterType.Text => JsonObject.ToObject<TextValue>(),
+                ParameterType.Frequency => JsonObject.ToObject<FrequencyValue>(),
                 _ => throw new SerializationException($"Unknown type {type} found")
             };
         }
@@ -100,6 +101,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json
                 "DecontaminationElement" => JsonObject.ToObject<EnumeratedParameter<DecontaminationElement>>(serializer),
                 "ApplicationMethod" => JsonObject.ToObject<EnumeratedParameter<ApplicationMethod>>(serializer),
                 "SurfaceType" => JsonObject.ToObject<EnumeratedParameter<SurfaceType>>(serializer),
+                "BuildingCategory" => JsonObject.ToObject<EnumeratedParameter<BuildingCategory>>(serializer),
                 _ => throw new SerializationException($"Uknown enumerated parameter type name {typeName} found")
             };
 
@@ -116,6 +118,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Json
             {
                 "BuildingCategory" => JsonObject.ToObject<EnumeratedFraction<BuildingCategory>>(serializer),
                 "SurfaceType" => JsonObject.ToObject<EnumeratedFraction<SurfaceType>>(serializer),
+                "PpeLevel" => JsonObject.ToObject<EnumeratedFraction<PpeLevel>>(serializer),
                 _ => throw new SerializationException($"Uknown enumerated fraction type name {typeName} found")
             };
 

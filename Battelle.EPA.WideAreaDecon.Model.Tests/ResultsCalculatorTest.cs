@@ -1,156 +1,299 @@
-﻿using System;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Constants;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
+using Battelle.EPA.WideAreaDecon.Model.Domain;
+using Battelle.EPA.WideAreaDecon.Model.Parameter;
+using Battelle.EPA.WideAreaDecon.Model.Tests.Helpers;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
-using Battelle.EPA.WideAreaDecon.Model.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests
 {
     public class ResultsCalculatorTest
     {
-        private ResultsCalculator IndoorCalculator { get; set; }
-        private ResultsCalculator OutdoorCalculator { get; set; }
-        private ResultsCalculator UndergroundCalculator { get; set; }
-        private ScenarioParameterManager ManageParameters { get; set; }
-        private CalculatorManager ManageCalculatorsIndoor { get; set; }
-        private CalculatorManager ManageCalculatorsOutdoor { get; set; }
-        private CalculatorManager ManageCalculatorsUnderground { get; set; }
-        private Dictionary<SurfaceType, ContaminationInformation> IndoorScenarioDefinitionDetails { get; set; }
-        private Dictionary<SurfaceType, ContaminationInformation> OutdoorScenarioDefinitionDetails { get; set; }
-        private Dictionary<SurfaceType, ContaminationInformation> UndergroundScenarioDefinitionDetails { get; set; }
-        private ParameterList ScenarioParameters { get; set; }
+        private ResultsCalculator _sut;
+        private ParameterList _scenarioParameters;
 
         [SetUp]
         public void Setup()
         {
-            IndoorScenarioDefinitionDetails = new Dictionary<SurfaceType, ContaminationInformation>();
-            OutdoorScenarioDefinitionDetails = new Dictionary<SurfaceType, ContaminationInformation>();
-            UndergroundScenarioDefinitionDetails = new Dictionary<SurfaceType, ContaminationInformation>();
-            var contaminationInfo = new ContaminationInformation(500, 40);
-
-            var indoorSurfaces = SurfaceTypeHelper.GetSurfaceTypesForElement(DecontaminationElement.Indoor);
-            var outdoorSurfaces = SurfaceTypeHelper.GetSurfaceTypesForElement(DecontaminationElement.Outdoor);
-            var undergroundSurfaces = SurfaceTypeHelper.GetSurfaceTypesForElement(DecontaminationElement.Underground);
-
-            foreach (SurfaceType surface in indoorSurfaces)
-            {
-                IndoorScenarioDefinitionDetails.Add(surface, contaminationInfo);
-            }
-
-            foreach (SurfaceType surface in outdoorSurfaces)
-            {
-                OutdoorScenarioDefinitionDetails.Add(surface, contaminationInfo);
-            }
-
-            foreach (SurfaceType surface in undergroundSurfaces)
-            {
-                UndergroundScenarioDefinitionDetails.Add(surface, contaminationInfo);
-            }
-
-            string TestFileName1 = @"InputFiles\ModifyParametersTest.xlsx";
+            string testFileName1 = @"InputFiles\ModifyParametersTest.xlsx";
             var modifyParameters = new ExcelModifyParameterParameterListProvider
             {
-                FileName = TestFileName1,
+                FileName = testFileName1,
                 GenericSheetNames = new[]
                 {
-                    "Incident Command",
-                    "Characterization Sampling",
-                    "Source Reduction",
-                    "Decontamination",
-                    "Clearance Sampling",
-                    "Waste Sampling",
-                    "Other",
-                    "Cost per Parameter"
+                    ParameterNames.IncidentCommand,
+                    ParameterNames.CharacterizationSampling,
+                    ParameterNames.SourceReduction,
+                    ParameterNames.Decontamination,
+                    ParameterNames.VerificationSampling,
+                    ParameterNames.ClearanceSampling,
+                    ParameterNames.WasteSampling,
+                    ParameterNames.Other,
+                    ParameterNames.Cost
                 }
             };
-            ScenarioParameters = modifyParameters.GetParameterList();
 
-            ManageParameters = new ScenarioParameterManager(
-                ScenarioParameters.Filters.First(f => f.Name == "Characterization Sampling").Filters,
-                ScenarioParameters.Filters.First(f => f.Name == "Source Reduction").Filters,
-                ScenarioParameters.Filters.First(f => f.Name == "Decontamination").Filters,
-                ScenarioParameters.Filters.First(f => f.Name == "Clearance Sampling").Filters,
-                ScenarioParameters.Filters.First(f => f.Name == "Waste Sampling").Filters,
-                ScenarioParameters.Filters.First(f => f.Name == "Efficacy").Parameters,
-                ScenarioParameters.Filters.First(f => f.Name == "Incident Command").Filters,
-                ScenarioParameters.Filters.First(f => f.Name == "Cost per Parameter").Filters,
-                ScenarioParameters.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
-
-            ManageCalculatorsIndoor = ManageParameters.RedrawParameters(IndoorScenarioDefinitionDetails, DecontaminationElement.Indoor);
-            IndoorCalculator = ManageParameters.SetDrawnParameters(ManageCalculatorsIndoor);
-
-            ManageCalculatorsOutdoor = ManageParameters.RedrawParameters(OutdoorScenarioDefinitionDetails, DecontaminationElement.Outdoor);
-            OutdoorCalculator = ManageParameters.SetDrawnParameters(ManageCalculatorsOutdoor);
-
-            ManageCalculatorsUnderground = ManageParameters.RedrawParameters(UndergroundScenarioDefinitionDetails, DecontaminationElement.Underground);
-            UndergroundCalculator = ManageParameters.SetDrawnParameters(ManageCalculatorsUnderground);
+            _scenarioParameters = modifyParameters.GetParameterList();
+            _sut = new ResultsCalculator();
         }
 
-        [Test]
-        public void CalculateScenarioResults()
-        {
-            var indoorResults = IndoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsIndoor, IndoorScenarioDefinitionDetails, DecontaminationElement.Indoor);
-
-            Assert.AreEqual(3.55573600063148, indoorResults.characterizationSamplingResults.workDays, 1e-6, "Incorrect work days calculated for total characterization sampling");
-            Assert.AreEqual(10.3814843618254, indoorResults.characterizationSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for total characterization sampling");
-            Assert.AreEqual(403148, indoorResults.characterizationSamplingResults.elementCost, 1e-6, "Incorrect element cost calculated for total characterization sampling");
-
-            Assert.AreEqual(2.15568635102324, indoorResults.sourceReductionResults.workDays, 1e-6, "Incorrect work days calculated for source reduction");
-            Assert.AreEqual(2.15568635102324, indoorResults.sourceReductionResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for source reduction");
-            Assert.AreEqual(87608, indoorResults.sourceReductionResults.elementCost, 1e-6, "Incorrect element cost calculated for source reduction");
-
-            Assert.AreEqual(12.0, indoorResults.decontaminationResults.workDays, 1e-6, "Incorrect work days calculated for decontamination");
-            Assert.AreEqual(14.0, indoorResults.decontaminationResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for decontamination");
-            Assert.AreEqual(367247, indoorResults.decontaminationResults.elementCost, 1e-6, "Incorrect element cost calculated for decontamination");
-
-            Assert.AreEqual(14.2229440025259, indoorResults.clearanceSamplingResults.workDays, 1e-6, "Incorrect work days calculated for clearance sampling");
-            Assert.AreEqual(41.5259374473017, indoorResults.clearanceSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for clearance sampling");
-            Assert.AreEqual(1612592, indoorResults.clearanceSamplingResults.elementCost, 1e-6, "Incorrect element cost calculated for clearance sampling");
-
-            Assert.AreEqual(35.9621353499528, indoorResults.wasteSamplingResults.workDays, 1e-6, "Incorrect work days calculated for waste sampling");
-            Assert.AreEqual(90.8382274836837, indoorResults.wasteSamplingResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for waste sampling");
-            Assert.AreEqual(3017160, indoorResults.wasteSamplingResults.elementCost, 1e-6, "Incorrect element cost calculated for waste sampling");
-
-            Assert.AreEqual(166.901335643834, indoorResults.incidentCommandResults.onSiteDays, 1e-6, "Incorrect onsite days calculated for incident command");
-            Assert.AreEqual(2991290, indoorResults.incidentCommandResults.elementCost, 1e-6, "Incorrect element cost calculated for incident command");
-
-            Assert.AreEqual(8479045, indoorResults.generalResults.totalCost, 1e-6, "Incorrect total cost calculated");
-            Assert.AreEqual(4, indoorResults.generalResults.decontaminationRounds, 1e-6, "Incorrect number of decontamination rounds calculated");
-        }
 
         [Test]
-        public void CalculateEventResults()
+        public void CalculateIndoorScenarioResults_ReturnDictionary()
         {
-            //var outdoorResults = OutdoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsOutdoor, OutdoorScenarioDefinitionDetails, DecontaminationElement.Outdoor);
-            //var undergroundResults = UndergroundCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsUnderground, UndergroundScenarioDefinitionDetails, DecontaminationElement.Underground);
+            // Setup
+            var expected = ResultsCalculatorTestAssets.IndoorResults[ResultsCalculatorTestAssets.BuildingCategory];
 
-            ScenarioRealizationResults outdoorResults = null;
-            ScenarioRealizationResults undergroundResults = null;
-            
-            var indoorResults = new Dictionary<BuildingCategory, ScenarioRealizationResults> 
+            var deconElement = DecontaminationElement.Indoor;
+            var surfaces = SurfaceTypeHelper.GetSurfaceTypesForElement(deconElement);
+            var contaminationInfo = new ContaminationInformation(500, 40);
+            var scenarioDefinitionDetails = surfaces.ToDictionary(s => s, _ => contaminationInfo);
+
+            var scenarioParameterManager = new ScenarioParameterManager(
+                new CalculatorManager(),
+                _scenarioParameters);
+
+            var contaminationAreaByBuildingCategory = new Dictionary<BuildingCategory, Dictionary<SurfaceType, ContaminationInformation>>()
             {
-                { BuildingCategory.Agricultural, IndoorCalculator.CalculateScenarioResults(ManageParameters, ManageCalculatorsIndoor, IndoorScenarioDefinitionDetails, DecontaminationElement.Indoor) }
+                { ResultsCalculatorTestAssets.BuildingCategory, scenarioDefinitionDetails }
             };
 
-            var eventModelRunner = new EventModelRunner(ScenarioParameters, indoorResults, outdoorResults, undergroundResults);
+            // SUT
+            var result = _sut.CalculateScenarioResults(
+                contaminationAreaByBuildingCategory,
+                scenarioParameterManager,
+                deconElement);
 
-            var eventResults = eventModelRunner.RunEventModel();
+            // Assert
+            AssertScenarioRealizationResults(expected, result[ResultsCalculatorTestAssets.BuildingCategory]);
+        }
 
-            Assert.AreEqual(65621.8671176747, eventResults.otherResults.characterizationSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for characterization sampling");
-            Assert.AreEqual(20790.8988141693, eventResults.otherResults.sourceReductionTravelCost, 1e-6, "Incorrect travel cost calculated for source reduction");
-            Assert.AreEqual(58400, eventResults.otherResults.decontaminationTravelCost, 1e-6, "Incorrect travel cost calculated for decontamination");
-            Assert.AreEqual(230687.468470699, eventResults.otherResults.clearanceSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for clearance sampling");
-            Assert.AreEqual(492042.605663524, eventResults.otherResults.wasteSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for waste sampling");
-            Assert.AreEqual(380028.005198627, eventResults.otherResults.incidentCommandTravelCost, 1e-6, "Incorrect travel cost calculated for incident command");
+        [Test]
+        public void CalculateOutdoorScenarioResults_ReturnScenarioRealizationResults()
+        {
+            // Setup
+            var expected = ResultsCalculatorTestAssets.OutdoorResults;
 
-            Assert.AreEqual(9726615.84526469, eventResults.totalEventCost, 1e-6, "Incorrect event cost calculated");
+            var deconElement = DecontaminationElement.Outdoor;
+            var surfaces = SurfaceTypeHelper.GetSurfaceTypesForElement(deconElement);
+            var contaminationInfo = new ContaminationInformation(500, 40);
+            var scenarioDefinitionDetails = surfaces.ToDictionary(s => s, _ => contaminationInfo);
 
-            Assert.AreEqual(3000, eventResults.totalContaminationArea, 1e-6, "Incorrect total contamination area calculated");
+            var scenarioParameterManageer = new ScenarioParameterManager(
+                new CalculatorManager(),
+                _scenarioParameters);
+
+            // SUT
+            var result = _sut.CalculateScenarioResults(
+                scenarioDefinitionDetails,
+                scenarioParameterManageer,
+                deconElement);
+
+            // Assert
+            AssertScenarioRealizationResults(expected, result);
+        }
+
+        [Test]
+        public void CalculateUndergroundScenarioResults_ReturnScenarioRealizationResults()
+        {
+            // Setup
+            var expected = ResultsCalculatorTestAssets.UndergroundResults;
+
+            var deconElement = DecontaminationElement.Underground;
+
+            var surfaces = SurfaceTypeHelper.GetSurfaceTypesForElement(deconElement);
+            var contaminationInfo = new ContaminationInformation(500, 40);
+            var scenarioDefinitionDetails = surfaces.ToDictionary(s => s, _ => contaminationInfo);
+
+            var scenarioParameterManageer = new ScenarioParameterManager(
+                new CalculatorManager(),
+                _scenarioParameters);
+
+            // SUT
+            var result = _sut.CalculateScenarioResults(
+                scenarioDefinitionDetails,
+                scenarioParameterManageer,
+                deconElement);
+
+            // Assert
+            AssertScenarioRealizationResults(expected, result);
+        }
+
+        [Test]
+        public void CalculateEventResults_ReturnEventResults()
+        {
+            // Setup
+            var indoorResults = ResultsCalculatorTestAssets.IndoorResults[ResultsCalculatorTestAssets.BuildingCategory];
+            var elementOnsiteDays = new Dictionary<ElementCategory, double>
+            {
+                { ElementCategory.CharacterizationSampling, indoorResults.CharacterizationSamplingResults.OnSiteDays },
+                { ElementCategory.SourceReduction, indoorResults.SourceReductionResults.OnSiteDays },
+                { ElementCategory.Decontamination, indoorResults.DecontaminationResults.OnSiteDays },
+                { ElementCategory.VerificationSampling, indoorResults.VerificationSamplingResults.OnSiteDays },
+                { ElementCategory.ClearanceSampling, indoorResults.ClearanceSamplingResults.OnSiteDays },
+                { ElementCategory.WasteSampling, indoorResults.WasteSamplingResults.OnSiteDays },
+            };
+
+            var assignments = new List<Assignment>
+            {
+                new()
+                {
+                    ElementCategory = ElementCategory.CharacterizationSampling,
+                    DaysToCompletion = elementOnsiteDays[ElementCategory.CharacterizationSampling],
+                    SubsequentAssignments = new List<Assignment>
+                    {
+                        new()
+                        {
+                            ElementCategory = ElementCategory.SourceReduction,
+                            DaysToCompletion = elementOnsiteDays[ElementCategory.SourceReduction],
+                            SubsequentAssignments = new List<Assignment>
+                            {
+                                new()
+                                {
+                                    ElementCategory = ElementCategory.Decontamination,
+                                    DaysToCompletion = elementOnsiteDays[ElementCategory.Decontamination],
+                                    SubsequentAssignments = new List<Assignment>
+                                    {
+                                        new()
+                                        {
+                                            ElementCategory = ElementCategory.VerificationSampling,
+                                            DaysToCompletion = elementOnsiteDays[ElementCategory.VerificationSampling],
+                                            SubsequentAssignments = new List<Assignment>
+                                            {
+                                                new()
+                                                {
+                                                    ElementCategory = ElementCategory.ClearanceSampling,
+                                                    DaysToCompletion = elementOnsiteDays[ElementCategory.ClearanceSampling],
+                                                    SubsequentAssignments = new List<Assignment>
+                                                    {
+                                                        new()
+                                                        {
+                                                            ElementCategory = ElementCategory.WasteSampling,
+                                                            DaysToCompletion = elementOnsiteDays[ElementCategory.WasteSampling]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            var eventParameterManager = new EventParameterManager(
+                new CalculatorManager(),
+                _scenarioParameters,
+                elementOnsiteDays);
+            var eventParameters = eventParameterManager.RedrawParameters();
+            var eventCalculators = eventParameterManager.SetDrawnParameters(eventParameters);
+
+            // SUT
+            var result = _sut.CalculateEventResults(
+                eventParameters,
+                eventCalculators,
+                indoorResults.GeneralResults,
+                assignments);
+
+            // Assert
+            Assert.AreEqual(65773.048437, result.OtherResults.CharacterizationSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for characterization sampling");
+            Assert.AreEqual(20778.479280, result.OtherResults.SourceReductionTravelCost, 1e-6, "Incorrect travel cost calculated for source reduction");
+            Assert.AreEqual(58400, result.OtherResults.DecontaminationTravelCost, 1e-6, "Incorrect travel cost calculated for decontamination");
+            Assert.AreEqual(65773.048437, result.OtherResults.VerificationSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for verification sampling");
+            Assert.AreEqual(65773.048437, result.OtherResults.ClearanceSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for clearance sampling");
+            Assert.AreEqual(453123.596015, result.OtherResults.WasteSamplingTravelCost, 1e-6, "Incorrect travel cost calculated for waste sampling");
+            Assert.AreEqual(316981.668126, result.OtherResults.IncidentCommandTravelCost, 1e-6, "Incorrect travel cost calculated for incident command");
+            Assert.AreEqual(1046602.888733, result.OtherResults.TotalTravelCost, 1e-6, "Incorrect total travel cost calculated");
+
+            Assert.AreEqual(2489076, result.IncidentCommandResults.ElementCost, 1e-6, "Incorrect element cost calculated for incident command");
+            Assert.AreEqual(138.880741, result.IncidentCommandResults.OnSiteDays, 1e-6, "Incorrect onsite days calculated for incident command");
+
+            Assert.AreEqual(8170028.888733, result.TotalEventCost, 1e-6, "Incorrect event cost calculated");
+            Assert.AreEqual(3000, result.TotalContaminationArea, 1e-6, "Incorrect total contamination area calculated");
+            Assert.AreEqual(138.880741, result.TotalEventDuration, 1e-6, "Incorrect total event duration calculated");
+            Assert.AreEqual(54000, result.TotalAqueousWasteProduced, 1e-6, "Incorrect total produced aqueous waste calculated");
+            Assert.AreEqual(21600, result.TotalSolidWasteProduced, 1e-6, "Incorrect total produced solid waste calculated");
+        }
+
+        private static void AssertScenarioRealizationResults(ScenarioRealizationResults expected, ScenarioRealizationResults actual)
+        {
+            // Characterization Sampling
+            Assert.AreEqual(expected.CharacterizationSamplingResults.WorkDays, actual.CharacterizationSamplingResults.WorkDays, 1e-6, "Incorrect work days calculated for characterization sampling");
+            Assert.AreEqual(expected.CharacterizationSamplingResults.OnSiteDays, actual.CharacterizationSamplingResults.OnSiteDays, 1e-6, "Incorrect onsite days calculated for characterization sampling");
+            Assert.AreEqual(expected.CharacterizationSamplingResults.ElementCost, actual.CharacterizationSamplingResults.ElementCost, 1e-6, "Incorrect element cost calculated for characterization sampling");
+            Assert.AreEqual(expected.CharacterizationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.A), actual.CharacterizationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.A), 1e-6, "Incorrect number of ppe level a units calculated for characterization sampling");
+            Assert.AreEqual(expected.CharacterizationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.B), actual.CharacterizationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.B), 1e-6, "Incorrect number of ppe level b units calculated for characterization sampling");
+            Assert.AreEqual(expected.CharacterizationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.C), actual.CharacterizationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.C), 1e-6, "Incorrect number of ppe level c units calculated for characterization sampling");
+            Assert.AreEqual(expected.CharacterizationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.D), actual.CharacterizationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.D), 1e-6, "Incorrect number of ppe level d units calculated for characterization sampling");
+            Assert.AreEqual(expected.CharacterizationSamplingResults.VacuumSamples, actual.CharacterizationSamplingResults.VacuumSamples, 1e-6, "Incorrect number of vacuum samples calculated for chracterization sampling");
+            Assert.AreEqual(expected.CharacterizationSamplingResults.WipeSamples, actual.CharacterizationSamplingResults.WipeSamples, 1e-6, "Incorrect number of wipe samples calculated for characterization sampling");
+
+            // Source Reduction
+            Assert.AreEqual(expected.SourceReductionResults.WorkDays, actual.SourceReductionResults.WorkDays, 1e-6, "Incorrect work days calculated for source reduction");
+            Assert.AreEqual(expected.SourceReductionResults.OnSiteDays, actual.SourceReductionResults.OnSiteDays, 1e-6, "Incorrect onsite days calculated for source reduction");
+            Assert.AreEqual(expected.SourceReductionResults.ElementCost, actual.SourceReductionResults.ElementCost, 1e-6, "Incorrect element cost calculated for source reduction");
+            Assert.AreEqual(expected.SourceReductionResults.PpeUnits.GetValueOrDefault(PpeLevel.A), actual.SourceReductionResults.PpeUnits.GetValueOrDefault(PpeLevel.A), 1e-6, "Incorrect number of ppe level a units calculated for source reduction");
+            Assert.AreEqual(expected.SourceReductionResults.PpeUnits.GetValueOrDefault(PpeLevel.B), actual.SourceReductionResults.PpeUnits.GetValueOrDefault(PpeLevel.B), 1e-6, "Incorrect number of ppe level b units calculated for source reduction");
+            Assert.AreEqual(expected.SourceReductionResults.PpeUnits.GetValueOrDefault(PpeLevel.C), actual.SourceReductionResults.PpeUnits.GetValueOrDefault(PpeLevel.C), 1e-6, "Incorrect number of ppe level c units calculated for source reduction");
+            Assert.AreEqual(expected.SourceReductionResults.PpeUnits.GetValueOrDefault(PpeLevel.D), actual.SourceReductionResults.PpeUnits.GetValueOrDefault(PpeLevel.D), 1e-6, "Incorrect number of ppe level d units calculated for source reduction");
+
+            // Decontamination
+            Assert.AreEqual(expected.DecontaminationResults.WorkDays, actual.DecontaminationResults.WorkDays, 1e-6, "Incorrect work days calculated for decontamination");
+            Assert.AreEqual(expected.DecontaminationResults.OnSiteDays, actual.DecontaminationResults.OnSiteDays, 1e-6, "Incorrect onsite days calculated for decontamination");
+            Assert.AreEqual(expected.DecontaminationResults.ElementCost, actual.DecontaminationResults.ElementCost, 1e-6, "Incorrect element cost calculated for decontamination");
+            Assert.AreEqual(expected.DecontaminationResults.PpeUnits.GetValueOrDefault(PpeLevel.A), actual.DecontaminationResults.PpeUnits.GetValueOrDefault(PpeLevel.A), 1e-6, "Incorrect number of ppe level a units calculated for decontamination");
+            Assert.AreEqual(expected.DecontaminationResults.PpeUnits.GetValueOrDefault(PpeLevel.B), actual.DecontaminationResults.PpeUnits.GetValueOrDefault(PpeLevel.B), 1e-6, "Incorrect number of ppe level b units calculated for decontamination");
+            Assert.AreEqual(expected.DecontaminationResults.PpeUnits.GetValueOrDefault(PpeLevel.C), actual.DecontaminationResults.PpeUnits.GetValueOrDefault(PpeLevel.C), 1e-6, "Incorrect number of ppe level c units calculated for decontamination");
+            Assert.AreEqual(expected.DecontaminationResults.PpeUnits.GetValueOrDefault(PpeLevel.D), actual.DecontaminationResults.PpeUnits.GetValueOrDefault(PpeLevel.D), 1e-6, "Incorrect number of ppe level d units calculated for decontamination");
+            Assert.AreEqual(expected.DecontaminationResults.DeconAgentVolume.GetValueOrDefault(ApplicationMethod.Fogging), actual.DecontaminationResults.DeconAgentVolume.GetValueOrDefault(ApplicationMethod.Fogging), 1e-6, "Incorrect fogging agent volume calculated for decontamination");
+
+            // Verification Sampling
+            Assert.AreEqual(expected.VerificationSamplingResults.WorkDays, actual.VerificationSamplingResults.WorkDays, 1e-6, "Incorrect work days calculated for verification sampling");
+            Assert.AreEqual(expected.VerificationSamplingResults.OnSiteDays, actual.VerificationSamplingResults.OnSiteDays, 1e-6, "Incorrect onsite days calculated for verification sampling");
+            Assert.AreEqual(expected.VerificationSamplingResults.ElementCost, actual.VerificationSamplingResults.ElementCost, 1e-6, "Incorrect element cost calculated for verification sampling");
+            Assert.AreEqual(expected.VerificationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.A), actual.VerificationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.A), 1e-6, "Incorrect number of ppe level a units calculated for verification sampling");
+            Assert.AreEqual(expected.VerificationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.B), actual.VerificationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.B), 1e-6, "Incorrect number of ppe level b units calculated for verification sampling");
+            Assert.AreEqual(expected.VerificationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.C), actual.VerificationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.C), 1e-6, "Incorrect number of ppe level c units calculated for verification sampling");
+            Assert.AreEqual(expected.VerificationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.D), actual.VerificationSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.D), 1e-6, "Incorrect number of ppe level d units calculated for verification sampling");
+            Assert.AreEqual(expected.VerificationSamplingResults.VacuumSamples, actual.VerificationSamplingResults.VacuumSamples, 1e-6, "Incorrect number of vacuum samples calculated for verification sampling");
+            Assert.AreEqual(expected.VerificationSamplingResults.WipeSamples, actual.VerificationSamplingResults.WipeSamples, 1e-6, "Incorrect number of wipe samples calculated for verification sampling");
+
+            // Clearance Sampling
+            Assert.AreEqual(expected.ClearanceSamplingResults.WorkDays, actual.ClearanceSamplingResults.WorkDays, 1e-6, "Incorrect work days calculated for clearance sampling");
+            Assert.AreEqual(expected.ClearanceSamplingResults.OnSiteDays, actual.ClearanceSamplingResults.OnSiteDays, 1e-6, "Incorrect onsite days calculated for clearance sampling");
+            Assert.AreEqual(expected.ClearanceSamplingResults.ElementCost, actual.ClearanceSamplingResults.ElementCost, 1e-6, "Incorrect element cost calculated for clearance sampling");
+            Assert.AreEqual(expected.ClearanceSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.A), actual.ClearanceSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.A), 1e-6, "Incorrect number of ppe level a units calculated for clearance sampling");
+            Assert.AreEqual(expected.ClearanceSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.B), actual.ClearanceSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.B), 1e-6, "Incorrect number of ppe level b units calculated for clearance sampling");
+            Assert.AreEqual(expected.ClearanceSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.C), actual.ClearanceSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.C), 1e-6, "Incorrect number of ppe level c units calculated for clearance sampling");
+            Assert.AreEqual(expected.ClearanceSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.D), actual.ClearanceSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.D), 1e-6, "Incorrect number of ppe level d units calculated for clearance sampling");
+            Assert.AreEqual(expected.ClearanceSamplingResults.VacuumSamples, actual.ClearanceSamplingResults.VacuumSamples, 1e-6, "Incorrect number of vacuum samples calculated for clearance sampling");
+            Assert.AreEqual(expected.ClearanceSamplingResults.WipeSamples, actual.ClearanceSamplingResults.WipeSamples, 1e-6, "Incorrect number of wipe samples calculated for clearance sampling");
+
+            // Waste Sampling
+            Assert.AreEqual(expected.WasteSamplingResults.WorkDays, actual.WasteSamplingResults.WorkDays, 1e-6, "Incorrect work days calculated for waste sampling");
+            Assert.AreEqual(expected.WasteSamplingResults.OnSiteDays, actual.WasteSamplingResults.OnSiteDays, 1e-6, "Incorrect onsite days calculated for waste sampling");
+            Assert.AreEqual(expected.WasteSamplingResults.ElementCost, actual.WasteSamplingResults.ElementCost, 1e-6, "Incorrect element cost calculated for waste sampling");
+            Assert.AreEqual(expected.WasteSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.A), actual.WasteSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.A), 1e-6, "Incorrect number of ppe level a units calculated for waste sampling");
+            Assert.AreEqual(expected.WasteSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.B), actual.WasteSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.B), 1e-6, "Incorrect number of ppe level b units calculated for waste sampling");
+            Assert.AreEqual(expected.WasteSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.C), actual.WasteSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.C), 1e-6, "Incorrect number of ppe level c units calculated for waste sampling");
+            Assert.AreEqual(expected.WasteSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.D), actual.WasteSamplingResults.PpeUnits.GetValueOrDefault(PpeLevel.D), 1e-6, "Incorrect number of ppe level d units calculated for waste sampling");
+            Assert.AreEqual(expected.WasteSamplingResults.AqueousWasteSamples, actual.WasteSamplingResults.AqueousWasteSamples, 1e-6, "Incorrect aqueous waste samples calculated for waste sampling");
+            Assert.AreEqual(expected.WasteSamplingResults.SolidWasteSamples, actual.WasteSamplingResults.SolidWasteSamples, 1e-6, "Incorrect solid waste samples calculated for waste sampling");
+
+            // General
+            Assert.AreEqual(expected.GeneralResults.TotalCost, actual.GeneralResults.TotalCost, 1e-6, "Incorrect total cost calculated");
+            Assert.AreEqual(expected.GeneralResults.DecontaminationTreatments, actual.GeneralResults.DecontaminationTreatments, 1e-6, "Incorrect number of decontamination treatments calculated");
+            Assert.AreEqual(expected.GeneralResults.AqueousWasteProduced, actual.GeneralResults.AqueousWasteProduced, 1e-6, "Incorrect produced aqueous waste calculated");
+            Assert.AreEqual(expected.GeneralResults.SolidWasteProduced, actual.GeneralResults.SolidWasteProduced, 1e-6, "Incorrect produced solid waste calculated");
+            Assert.AreEqual(expected.GeneralResults.AreaContaminated, actual.GeneralResults.AreaContaminated, 1e-6, "Incorrect area contaminated calculated");
         }
     }
 }

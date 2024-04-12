@@ -5,6 +5,7 @@ import Axios from 'axios';
 import { deserialize, serialize } from 'typescript-json-serializer';
 import JobRequest from '../jobs/JobRequest';
 import ParameterWrapperList from '../parameter/ParameterWrapperList';
+import { ScenarioDefinitionMode } from '@/types';
 
 @injectable()
 export default class JobProvider implements IJobProvider {
@@ -17,8 +18,17 @@ export default class JobProvider implements IJobProvider {
     numberRealizations: number,
     seed1: number,
     seed2: number,
+    definitionMode: ScenarioDefinitionMode | null,
   ): JobRequest {
-    const job = new JobRequest(JobStatus.new, scenarioDefinition, scenarioParameters, numberRealizations, seed1, seed2);
+    const job = new JobRequest(
+      JobStatus.new,
+      scenarioDefinition,
+      scenarioParameters,
+      numberRealizations,
+      seed1,
+      seed2,
+      definitionMode,
+    );
     return job;
   }
 

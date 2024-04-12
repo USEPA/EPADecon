@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Time
 {
@@ -24,10 +26,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Time
             _surfaceSporeLoading = initialSporeLoading;
         }
 
-        public List<Dictionary<ApplicationMethod, double>> CalculateLaborDays()
+        public DecontaminationTreatmentInformation CalculateLaborDays()
         {
-            var deconRounds = new List<Dictionary<ApplicationMethod, double>>();
+            var deconTreatments = new List<Dictionary<ApplicationMethod, double>>();
+            var surfaceTreatments = new Dictionary<SurfaceType, int>();
 
+            // Initialize all needed decon rounds for each surface to 0
+            foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
+            {
+                surfaceTreatments.Add(surface, 0);
+            }
+
+            // Loop through surfaces until they all meet the desired post-decon threshold
             while (_surfaceSporeLoading.Values.Any(loading => loading > GlobalConstants.DesiredSporeThreshold))
             {
                 var surfaces = _surfaceSporeLoading.Where(pair => pair.Value > GlobalConstants.DesiredSporeThreshold).Select(pair => pair.Key).ToList();
@@ -36,6 +46,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Time
 
                 foreach (var surface in surfaces)
                 {
+                    // Increment the number of decon treatments needed for each contaminated surface
+                    surfaceTreatments[surface] += 1;
+
+                    // Get the treatment method for each contaminated surface
                     var method = _appMethodBySurfaceType[surface];
 
                     if (!laborDays.ContainsKey(method))
@@ -44,12 +58,18 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Time
                     }
                 }
 
-                deconRounds.Add(laborDays);
+                deconTreatments.Add(laborDays);
 
                 _surfaceSporeLoading = _efficacyCalculator.CalculateEfficacy(_surfaceSporeLoading, _appMethodBySurfaceType);
             }
 
-            return deconRounds;
+            // Return the resulting list of decon round descriptions
+            // and surface round descriptions
+            return new DecontaminationTreatmentInformation()
+            {
+                DecontaminationTreatments = deconTreatments,
+                SurfaceTreatments = surfaceTreatments
+            };
         }
     }
 }

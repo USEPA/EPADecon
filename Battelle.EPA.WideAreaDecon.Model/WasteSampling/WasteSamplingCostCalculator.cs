@@ -4,6 +4,7 @@ using Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.Model.Services;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results.ResourceAndCostResults;
 
 namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling
 {
@@ -20,9 +21,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling
         public TravelCostCalculator Calculator_travel { get; set; }
 
         //Element time for scenario results
-        public Dictionary<ElementDays, double> CalculateTime(double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
+        public Dictionary<ElementDays, double> CalculateTime(int deconTreatments, double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
-            var laborDays = Calculator_laborDays.CalculateLaborDays(numberTeams, fractionSampled, areaContaminated);
+            var laborDays = Calculator_laborDays.CalculateLaborDays(deconTreatments, numberTeams, fractionSampled, areaContaminated);
             var workDays = Calculator_workdays.CalculateWorkDays(laborDays, numberTeams, ppePerLevelPerTeam);
             var onsiteDays = Calculator_onsiteDays.CalculateOnsiteDays(workDays);
 
@@ -35,20 +36,26 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling
         }
 
         //Element lag due to lab analysis duration for scenario results
-        public double CalculateElementLag(int numberLabs, double sampleTimeTransmitted, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public double CalculateElementLag(int deconTreatments, int numberLabs, double sampleTimeTransmitted, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
-            return Calculator_elementLag.CalculateElementLagTime(numberLabs, sampleTimeTransmitted, fractionSampled, areaContaminated);
+            return Calculator_elementLag.CalculateElementLagTime(deconTreatments, numberLabs, sampleTimeTransmitted, fractionSampled, areaContaminated);
         }
 
         //Element costs for scenario results
-        public double CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
+        public WasteSamplingResourceAndCostResults CalculateElementCosts(int deconTreatments, Dictionary<ElementDays, double> elementDays, double numberTeams, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<PpeLevel, double> ppePerLevelPerTeam)
         {
-            var entExCosts = Calculator_entEx.CalculateEntrancesExitsCost(elementDays[ElementDays.LaborDays], numberTeams, ppePerLevelPerTeam);
-            var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(fractionSampled, areaContaminated);
+            var entEx = Calculator_entEx.CalculateEntrancesExitsCost(elementDays[ElementDays.LaborDays], numberTeams, ppePerLevelPerTeam);
+            var supplies = Calculator_supplies.CalculateSuppliesCost(deconTreatments, fractionSampled, areaContaminated);
             var laborCosts = Calculator_labor.CalculateLaborCost(elementDays[ElementDays.OnsiteDays], numberTeams);
-            var analysisCosts = Calculator_analysis.CalculateAnalysisQuantityCost(fractionSampled, areaContaminated);
+            var analysisCosts = Calculator_analysis.CalculateAnalysisQuantityCost(deconTreatments, fractionSampled, areaContaminated);
 
-            return (entExCosts + suppliesCosts + laborCosts + analysisCosts);
+            return new WasteSamplingResourceAndCostResults()
+            {
+                WasteSamplingCost = entEx.WasteSamplingCost + supplies.WasteSamplingCost + laborCosts + analysisCosts,
+                TotalPpEUnits = entEx.TotalPpEUnits,
+                TotalAqueousWasteSamples = supplies.TotalAqueousWasteSamples,
+                TotalSolidWasteSamples = supplies.TotalSolidWasteSamples
+            };
         }
 
         //Travel costs for event results
