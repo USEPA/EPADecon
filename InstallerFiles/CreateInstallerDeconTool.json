@@ -15,10 +15,6 @@
       {
         "source": "InstallerFiles\\epaLogo.ico",
         "destination": "epaLogo.ico"
-      },
-      {
-        "source": "Battelle.EPA.WideAreaDecon.Client\\.npmrc",
-        "destination": "..\\.npmrc"
       }
     ]
   },
