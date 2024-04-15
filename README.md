@@ -14,7 +14,7 @@ The Wide-Area Decontamination Tool (WADT) estimates the cost and time associated
 
 ## Software Dependencies
 
-- ASP.Net Core 3.1 (Visual Studio 2019)
+- ASP.Net Core 6.0 (Visual Studio 2022)
 - Node (https://nodejs.org/en/download/)
 
 ## Running the Application
@@ -29,7 +29,7 @@ Follow the standards set forth by the group for all .NET development.
 
 It is recommended that development is completed in two enviroments:
 
-1. Changes to .NET code (backend functionality) in Visual Studio 2019
+1. Changes to .NET code (backend functionality) in Visual Studio 2022
 2. Changes to VueJS code (frontend functionality) in Visual Studio Code
 
 ### Visual Studio Code Extensions Required
