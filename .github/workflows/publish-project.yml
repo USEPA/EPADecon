@@ -35,7 +35,7 @@ jobs:
       run: dotnet test Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj --no-build -c Release --verbosity normal
     
     - name: Publish
-      run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj --no-build -c Release
+      run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj --no-build -c Release -o ./publish
 
     - name: Copy Build Files
       run: cp -R ./Battelle.EPA.WideAreaDecon.API/bin/Release/net6.0/gdal ./publish
