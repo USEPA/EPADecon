@@ -32,6 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
         [Test]
         public void CalculateLaborDays()
         {
+            var deconTreatments = 4;
             var numberTeams = 4.0;
             var fractionSampled = 0.3;
             var info = new ContaminationInformation(500.0, 20.0);
@@ -43,7 +44,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Time
                 areaContaminated.Add(surface, info);
             }
 
-            Assert.AreEqual(4.3619840720967, Calculator.CalculateLaborDays(numberTeams, fractionSampled, areaContaminated), 1e-6, "Incorrect labor days calculated");
+            Assert.AreEqual(17.4479362883868, Calculator.CalculateLaborDays(deconTreatments, numberTeams, fractionSampled, areaContaminated), 1e-6, "Incorrect labor days calculated");
         }
     }
 }

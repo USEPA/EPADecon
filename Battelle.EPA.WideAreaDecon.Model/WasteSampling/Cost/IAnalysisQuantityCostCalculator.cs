@@ -6,6 +6,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Cost
 {
     public interface IAnalysisQuantityCostCalculator
     {
-        public double CalculateAnalysisQuantityCost(double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated);
+        public double CalculateAnalysisQuantityCost(int deconTreatments, double fractionSampled, Dictionary<SurfaceType, ContaminationInformation> areaContaminated);
     }
 }

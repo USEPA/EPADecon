@@ -11,6 +11,7 @@ import Uniform from '@/implementations/parameter/distribution/Uniform';
 import UniformXDependent from '@/implementations/parameter/distribution/UniformXDependent';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
 import TextValue from '@/implementations/parameter/distribution/TextValue';
+import FrequencyValue from '@/implementations/parameter/distribution/FrequencyValue';
 import EnumeratedFraction from '@/implementations/parameter/list/enumeratedFraction';
 import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
 import IParameter from '@/interfaces/parameter/IParameter';
@@ -45,6 +46,8 @@ export default {
         return LogNormal;
       case ParameterType.textValue:
         return TextValue;
+      case ParameterType.frequencyValue:
+        return FrequencyValue;
       case ParameterType.weibull:
         return Weibull;
       case ParameterType.enumeratedFraction:

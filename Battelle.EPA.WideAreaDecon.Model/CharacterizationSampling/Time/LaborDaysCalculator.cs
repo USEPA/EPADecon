@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData;
 
 namespace Battelle.EPA.WideAreaDecon.Model.CharacterizationSampling.Time
 {

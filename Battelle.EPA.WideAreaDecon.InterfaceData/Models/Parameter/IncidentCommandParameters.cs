@@ -1,36 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter;
+using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
-    public class IncidentCommandParameters
+    public class IncidentCommandParameters : IBaseParameters
     {
-        public Dictionary<PersonnelLevel, double> personnelReqPerTeam;
-        public double personnelOverheadDays;
-        public double roundtripDays;
-        public double onsiteDays;
-
-        //Scenario parameters constructor
-        public IncidentCommandParameters(
-            Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
-            double _personnelOverheadDays,
-            double _roundtripDays)
-        {
-            personnelReqPerTeam = _personnelReqPerTeam;
-            personnelOverheadDays = _personnelOverheadDays;
-            roundtripDays = _roundtripDays;
-        }
+        public Dictionary<PersonnelLevel, double> PersonnelReqPerTeam { get; set; }
+        public double PersonnelOverheadDays { get; set; }
+        public double RoundtripDays { get; set; }
 
         //Event parameters constructor
         public IncidentCommandParameters(
-            double _roundtripDays,
-            Dictionary<PersonnelLevel, double> _personnelReqPerTeam,
-            double _onsiteDays)
+            Dictionary<PersonnelLevel, double> personnelReqPerTeam,
+            double roundtripDays,
+            double personnelOverheadDays)
         {
-            personnelReqPerTeam = _personnelReqPerTeam;
-            roundtripDays = _roundtripDays;
-            onsiteDays = _onsiteDays;
+            PersonnelReqPerTeam = personnelReqPerTeam;
+            PersonnelOverheadDays = personnelOverheadDays;
+            RoundtripDays = roundtripDays;
         }
     }
 }

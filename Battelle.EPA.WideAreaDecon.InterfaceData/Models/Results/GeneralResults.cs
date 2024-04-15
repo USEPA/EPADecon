@@ -1,15 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results
 {
     public class GeneralResults
     {
-        public double totalCost { get; set; }
-        public double areaContaminated { get; set; }
-        public int decontaminationRounds { get; set; }
-        public double solidWasteProduced { get; set; }
-        public double aqueousWasteProduced { get; set; }
+        public double TotalCost { get; set; }
+        public double AreaContaminated { get; set; }
+        public int DecontaminationTreatments { get; set; }
+        public double SolidWasteProduced { get; set; }
+        public double AqueousWasteProduced { get; set; }
+
+        public static GeneralResults SumResults(List<GeneralResults> generalResults)
+        {
+            GeneralResults summedGeneralResults = new GeneralResults()
+            {
+                TotalCost = generalResults.Sum(segmentElement => segmentElement.TotalCost),
+                AreaContaminated = generalResults.Sum(segmentElement => segmentElement.AreaContaminated),
+                DecontaminationTreatments = generalResults.Sum(segmentElement => segmentElement.DecontaminationTreatments),
+                SolidWasteProduced = generalResults.Sum(segmentElement => segmentElement.SolidWasteProduced),
+                AqueousWasteProduced = generalResults.Sum(segmentElement => segmentElement.AqueousWasteProduced)
+            };
+
+            return summedGeneralResults;
+        }
     }
 }

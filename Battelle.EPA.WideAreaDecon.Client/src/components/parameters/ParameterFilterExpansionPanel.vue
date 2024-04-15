@@ -85,7 +85,6 @@ export default class ParameterFilterExpansionPanel extends Vue {
     return this.filter.parameters;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   setNewParameter(param: ParameterWrapper): void {
     this.$store.commit(
       `${StoreNames.PARAMETER_SELECTION}/${ParameterSelectionStoreMutations.CHANGE_CURRENT_SELECTED_PARAMETER}`,
@@ -93,7 +92,6 @@ export default class ParameterFilterExpansionPanel extends Vue {
     );
   }
 
-  // eslint-disable-next-line class-methods-use-this
   getParameterClass(param: ParameterWrapper): string {
     let classText = '';
     if (param === this.currentSelectedParameter) {

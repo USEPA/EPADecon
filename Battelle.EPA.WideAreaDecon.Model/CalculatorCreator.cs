@@ -1,29 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Battelle.EPA.WideAreaDecon.Model.Domain;
+using Battelle.EPA.WideAreaDecon.Model.Services;
 
 namespace Battelle.EPA.WideAreaDecon.Model
 {
     public class CalculatorCreator
     {
-        public Services.ICharacterizationSamplingCalculatorFactory _characterizationSamplingFactory { get; set; }
-        public Services.ISourceReductionCalculatorFactory _sourceReductionFactory { get; set; }
-        public Services.IDecontaminationCalculatorFactory _decontaminationFactory { get; set; }
-        public Services.IClearanceSamplingCalculatorFactory _clearanceSamplingFactory { get; set; }
-        public Services.IWasteSamplingCalculatorFactory _wasteSamplingFactory { get; set; }
-        public Services.IIncidentCommandCalculatorFactory _incidentCommandFactory { get; set; }
+        private readonly ICharacterizationSamplingCalculatorFactory _characterizationSamplingFactory;
+        private readonly ISourceReductionCalculatorFactory _sourceReductionFactory;
+        private readonly IDecontaminationCalculatorFactory _decontaminationFactory;
+        private readonly IVerificationSamplingCalculatorFactory _verificationSamplingFactory;
+        private readonly IClearanceSamplingCalculatorFactory _clearanceSamplingFactory;
+        private readonly IWasteSamplingCalculatorFactory _wasteSamplingFactory;
+        private readonly IIncidentCommandCalculatorFactory _incidentCommandFactory;
 
-        public ResultsCalculator GetCalculators()
+        public CalculatorCreator(
+            ICharacterizationSamplingCalculatorFactory characterizationSamplingCalculatorFactory,
+            ISourceReductionCalculatorFactory sourceReductionCalculatorFactory,
+            IDecontaminationCalculatorFactory decontaminationCalculatorFactory,
+            IVerificationSamplingCalculatorFactory verificationSamplingCalculatorFactory,
+            IClearanceSamplingCalculatorFactory clearanceSamplingCalculatorFactory,
+            IWasteSamplingCalculatorFactory wasteSamplingCalculatorFactory,
+            IIncidentCommandCalculatorFactory incidentCommandCalculatorFactory)
         {
-            return new ResultsCalculator()
-            {
-                _characterizationSamplingCostCalculator = _characterizationSamplingFactory.GetCalculator(),
-                _sourceReductionCostCalculator = _sourceReductionFactory.GetCalculator(),
-                _decontaminationCostCalculator = _decontaminationFactory.GetCalculator(),
-                _clearanceSamplingCostCalculator = _clearanceSamplingFactory.GetCalculator(),
-                _wasteSamplingCostCalculator = _wasteSamplingFactory.GetCalculator(),
-                _incidentCommandCostCalculator = _incidentCommandFactory.GetCalculator()
-            };
+            _characterizationSamplingFactory = characterizationSamplingCalculatorFactory;
+            _sourceReductionFactory = sourceReductionCalculatorFactory;
+            _decontaminationFactory = decontaminationCalculatorFactory;
+            _verificationSamplingFactory = verificationSamplingCalculatorFactory;
+            _clearanceSamplingFactory = clearanceSamplingCalculatorFactory;
+            _wasteSamplingFactory = wasteSamplingCalculatorFactory;
+            _incidentCommandFactory = incidentCommandCalculatorFactory;
         }
+
+        public CalculatorCreator(
+            ICharacterizationSamplingCalculatorFactory characterizationSamplingCalculatorFactory,
+            ISourceReductionCalculatorFactory sourceReductionCalculatorFactory,
+            IDecontaminationCalculatorFactory decontaminationCalculatorFactory,
+            IVerificationSamplingCalculatorFactory verificationSamplingCalculatorFactory,
+            IClearanceSamplingCalculatorFactory clearanceSamplingCalculatorFactory,
+            IWasteSamplingCalculatorFactory wasteSamplingCalculatorFactory)
+        {
+            _characterizationSamplingFactory = characterizationSamplingCalculatorFactory;
+            _sourceReductionFactory = sourceReductionCalculatorFactory;
+            _decontaminationFactory = decontaminationCalculatorFactory;
+            _verificationSamplingFactory = verificationSamplingCalculatorFactory;
+            _clearanceSamplingFactory = clearanceSamplingCalculatorFactory;
+            _wasteSamplingFactory = wasteSamplingCalculatorFactory;
+        }
+
+        public ScenarioCalculators GetScenarioCalculators() =>
+            new ScenarioCalculators
+            {
+                CharacterizationSamplingCostCalculator = _characterizationSamplingFactory.GetCalculator(),
+                SourceReductionCostCalculator = _sourceReductionFactory.GetCalculator(),
+                DecontaminationCostCalculator = _decontaminationFactory.GetCalculator(),
+                VerificationSamplingCostCalculator = _verificationSamplingFactory.GetCalculator(),
+                ClearanceSamplingCostCalculator = _clearanceSamplingFactory.GetCalculator(),
+                WasteSamplingCostCalculator = _wasteSamplingFactory.GetCalculator()
+            };
+
+        public EventCalculators GetEventCalculators() =>
+            new EventCalculators
+            {
+                 CharacterizationSamplingCostCalculator = _characterizationSamplingFactory.GetCalculator(),
+                 SourceReductionCostCalculator = _sourceReductionFactory.GetCalculator(),
+                 DecontaminationCostCalculator = _decontaminationFactory.GetCalculator(),
+                 VerificationSamplingCostCalculator = _verificationSamplingFactory.GetCalculator(),
+                 ClearanceSamplingCostCalculator = _clearanceSamplingFactory.GetCalculator(),
+                 WasteSamplingCostCalculator = _wasteSamplingFactory.GetCalculator(),
+                IncidentCommandCostCalculator = _incidentCommandFactory.GetCalculator()
+            };
     }
 }

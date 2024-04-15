@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results.ResourceAndCostResults;
 
 namespace Battelle.EPA.WideAreaDecon.Model.ClearanceSampling.Cost
 {
@@ -31,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.ClearanceSampling.Cost
             _hepaRentalCostPerDay = hepaRentalCostPerDay;
         }
 
-        public double CalculateSuppliesCost(double numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
+        public SiteSamplingResourceAndCostResults CalculateSuppliesCost(double numberTeams, double fractionSampledWipe, double fractionSampledHepa, Dictionary<SurfaceType, ContaminationInformation> areaContaminated)
         {
             var totalArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
 
@@ -48,7 +49,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.ClearanceSampling.Cost
 
             var hepaRentalCost = hepaRentalDays * _hepaRentalCostPerDay;
 
-            return totalWipeCost + totalHepaCost + hepaRentalCost;
+            return new SiteSamplingResourceAndCostResults()
+            {
+                SamplingCost = totalWipeCost + totalHepaCost + hepaRentalCost,
+                TotalPpeUnits = new Dictionary<PpeLevel, int>(),
+                TotalVacuumSamples = (int)Math.Ceiling(hepaSocksUsed),
+                TotalWipeSamples = (int)Math.Ceiling(wipesUsed)
+            };
         }
     }
 }

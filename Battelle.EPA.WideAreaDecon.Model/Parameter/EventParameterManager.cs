@@ -1,16 +1,21 @@
-﻿using System;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Constants;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Utility.Extensions;
+using Battelle.EPA.WideAreaDecon.Model.Domain;
+using Battelle.EPA.WideAreaDecon.Model.Interface;
 using System.Collections.Generic;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Parameter
 {
     public class EventParameterManager
     {
+        private readonly ICalculatorManager _calculatorManager;
         private readonly ParameterFilter[] _characterizationSamplingParameters;
         private readonly ParameterFilter[] _sourceReductionParameters;
         private readonly ParameterFilter[] _decontaminationParameters;
+        private readonly ParameterFilter[] _verificationSamplingParameters;
         private readonly ParameterFilter[] _clearanceSamplingParameters;
         private readonly ParameterFilter[] _wasteSamplingParameters;
         private readonly ParameterFilter[] _otherParameters;
@@ -19,195 +24,188 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
         private readonly Dictionary<ElementCategory, double> _elementOnsiteDays;
 
         public EventParameterManager(
-            ParameterFilter[] csParameters,
-            ParameterFilter[] srParameters,
-            ParameterFilter[] dcParameters,
-            ParameterFilter[] clsParameters,
-            ParameterFilter[] wsParameters,
-            ParameterFilter[] otParameters,
-            ParameterFilter[] icParameters,
-            ParameterFilter[] costParameters,
+            ICalculatorManager calculatorManager,
+            ParameterList eventParameters,
             Dictionary<ElementCategory, double> elementOnsiteDays)
         {
-            _characterizationSamplingParameters = csParameters;
-            _sourceReductionParameters = srParameters;
-            _decontaminationParameters = dcParameters;
-            _clearanceSamplingParameters = clsParameters;
-            _wasteSamplingParameters = wsParameters;
-            _otherParameters = otParameters;
-            _incidentCommandParameters = icParameters;
-            _costParameters = costParameters;
+            _calculatorManager = calculatorManager;
             _elementOnsiteDays = elementOnsiteDays;
+
+            _characterizationSamplingParameters = eventParameters.Filters.First(f => f.Name == ParameterNames.CharacterizationSampling).Filters;
+            _sourceReductionParameters = eventParameters.Filters.First(f => f.Name == ParameterNames.SourceReduction).Filters;
+            _decontaminationParameters = eventParameters.Filters.First(f => f.Name == ParameterNames.Decontamination).Filters;
+            _verificationSamplingParameters = eventParameters.Filters.First(f => f.Name == ParameterNames.VerificationSampling).Filters;
+            _clearanceSamplingParameters = eventParameters.Filters.First(f => f.Name == ParameterNames.ClearanceSampling).Filters;
+            _wasteSamplingParameters = eventParameters.Filters.First(f => f.Name == ParameterNames.WasteSampling).Filters;
+            _otherParameters = eventParameters.Filters.First(f => f.Name == ParameterNames.Other).Filters;
+            _incidentCommandParameters = eventParameters.Filters.First(f => f.Name == ParameterNames.IncidentCommand).Filters;
+            _costParameters = eventParameters.Filters.First(f => f.Name == ParameterNames.Cost).Filters;
         }
 
-        public CalculatorManager RedrawParameters()
+        public EventParameters RedrawParameters()
         {
-            return new CalculatorManager()
+            return new()
             {
-                _characterizationSamplingParameters = SetCharacterizationSamplingParameters(),
-                _sourceReductionParameters = SetSourceReductionParameters(),
-                _decontaminationParameters = SetDecontaminationParameters(),
-                _clearanceSamplingParameters = SetClearanceSamplingParameters(),
-                _wasteSamplingParameters = SetWasteSamplingParameters(),
-                _incidentCommandParameters = SetIncidentCommandParameters(),
-                _otherParameters = SetOtherParameters(),
-                _costParameters = SetCostParameters()
+                CharacterizationSamplingParameters = SetCharacterizationSamplingParameters(),
+                SourceReductionParameters = SetSourceReductionParameters(),
+                DecontaminationParameters = SetDecontaminationParameters(),
+                VerificationSamplingParameters = SetVerificationSamplingParameters(),
+                ClearanceSamplingParameters = SetClearanceSamplingParameters(),
+                WasteSamplingParameters = SetWasteSamplingParameters(),
+                IncidentCommandParameters = SetIncidentCommandParameters(),
+                OtherParameters = SetOtherParameters(),
+                CostParameters = SetCostParameters()
             };
         }
 
-        public ResultsCalculator SetDrawnParameters(CalculatorManager calculatorManager)
+        public EventCalculators SetDrawnParameters(EventParameters parameters)
         {
-            var calculatorCreator = calculatorManager.CreateEventCalculatorFactories();
-
-            return new ResultsCalculator()
-            {
-                _characterizationSamplingCostCalculator = calculatorCreator._characterizationSamplingFactory.GetCalculator(),
-                _sourceReductionCostCalculator = calculatorCreator._sourceReductionFactory.GetCalculator(),
-                _decontaminationCostCalculator = calculatorCreator._decontaminationFactory.GetCalculator(),
-                _clearanceSamplingCostCalculator = calculatorCreator._clearanceSamplingFactory.GetCalculator(),
-                _wasteSamplingCostCalculator = calculatorCreator._wasteSamplingFactory.GetCalculator(),
-                _incidentCommandCostCalculator = calculatorCreator._incidentCommandFactory.GetCalculator()
-            };
+            var calculatorCreator = _calculatorManager.CreateEventCalculatorFactories(parameters);
+            return calculatorCreator.GetEventCalculators();
         }
 
         private CharacterizationSamplingParameters SetCharacterizationSamplingParameters()
         {
-            var numTeams = _characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
-            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
-            {
-                [PersonnelLevel.OSC] = _characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL1] = _characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-1)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL2] = _characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-2)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL3] = _characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-3)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL4] = _characterizationSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
-            };
-            var roundtripDays = _characterizationSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
+            var personnelParams = _characterizationSamplingParameters.First(p => p.Name == ParameterNames.Personnel.Name).Parameters;
+            var logisticParams = _characterizationSamplingParameters.First(p => p.Name == ParameterNames.Logistic.Name).Parameters;
+
+            var numTeams = personnelParams.GetNumTeams();
+            var personnel = personnelParams.GetPersonnel();
+            var roundtripDays = logisticParams.GetRoundtripDays();
             var onsiteDays = _elementOnsiteDays[ElementCategory.CharacterizationSampling];
 
             return new CharacterizationSamplingParameters(
                 numTeams,
-                personnelReqPerTeam,
+                personnel,
                 roundtripDays,
                 onsiteDays);
         }
 
         private SourceReductionParameters SetSourceReductionParameters()
         {
-            var numTeams = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
-            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
-            {
-                [PersonnelLevel.OSC] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL1] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-1)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL2] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-2)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL3] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-3)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL4] = _sourceReductionParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
-            };
-            var roundtripDays = _sourceReductionParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
+            var personnelParams = _sourceReductionParameters.First(p => p.Name == ParameterNames.Personnel.Name).Parameters;
+            var logisticParams = _sourceReductionParameters.First(p => p.Name == ParameterNames.Logistic.Name).Parameters;
+
+            var numTeams = personnelParams.GetNumTeams();
+            var personnel = personnelParams.GetPersonnel();
+            var roundtripDays = logisticParams.GetRoundtripDays();
             var onsiteDays = _elementOnsiteDays[ElementCategory.SourceReduction];
-            
+
             return new SourceReductionParameters(
                 numTeams,
-                personnelReqPerTeam,
+                personnel,
                 roundtripDays,
                 onsiteDays);
         }
 
         private DecontaminationParameters SetDecontaminationParameters()
         {
-            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
-            {
-                [PersonnelLevel.OSC] = _decontaminationParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL1] = _decontaminationParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-1)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL2] = _decontaminationParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-2)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL3] = _decontaminationParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-3)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL4] = _decontaminationParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
-            };
-            var roundtripDays = _decontaminationParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
-            var numTeams = _decontaminationParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
+            var personnelParams = _decontaminationParameters.First(p => p.Name == ParameterNames.Personnel.Name).Parameters;
+            var logisticParams = _decontaminationParameters.First(p => p.Name == ParameterNames.Logistic.Name).Parameters;
+
+            var numTeams = personnelParams.GetNumTeams();
+            var personnel = personnelParams.GetPersonnel();
+            var roundtripDays = logisticParams.GetRoundtripDays();
             var onsiteDays = _elementOnsiteDays[ElementCategory.Decontamination];
 
             return new DecontaminationParameters(
-               personnelReqPerTeam,
-                roundtripDays,
                 numTeams,
+                personnel,
+                roundtripDays,
+                onsiteDays);
+        }
+
+        private VerificationSamplingParameters SetVerificationSamplingParameters()
+        {
+            var personnelParams = _verificationSamplingParameters.First(p => p.Name == ParameterNames.Personnel.Name).Parameters;
+            var logisticParams = _verificationSamplingParameters.First(p => p.Name == ParameterNames.Logistic.Name).Parameters;
+
+            var numTeams = personnelParams.GetNumTeams();
+            var personnel = personnelParams.GetPersonnel();
+            var roundtripDays = logisticParams.GetRoundtripDays();
+            var onsiteDays = _elementOnsiteDays[ElementCategory.VerificationSampling];
+
+            return new VerificationSamplingParameters(
+                numTeams,
+                personnel,
+                roundtripDays,
                 onsiteDays);
         }
 
         private ClearanceSamplingParameters SetClearanceSamplingParameters()
         {
-            var numTeams = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
-            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
-            {
-                [PersonnelLevel.OSC] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL1] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-1)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL2] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-2)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL3] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-3)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL4] = _clearanceSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
-            };
-            var roundtripDays = _clearanceSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
+            var personnelParams = _clearanceSamplingParameters.First(p => p.Name == ParameterNames.Personnel.Name).Parameters;
+            var logisticParams = _clearanceSamplingParameters.First(p => p.Name == ParameterNames.Logistic.Name).Parameters;
+
+            var numTeams = personnelParams.GetNumTeams();
+            var personnel = personnelParams.GetPersonnel();
+            var roundtripDays = logisticParams.GetRoundtripDays();
             var onsiteDays = _elementOnsiteDays[ElementCategory.ClearanceSampling];
 
             return new ClearanceSamplingParameters(
                 numTeams,
-                personnelReqPerTeam,
+                personnel,
                 roundtripDays,
                 onsiteDays);
         }
 
         private WasteSamplingParameters SetWasteSamplingParameters()
         {
-            var numTeams = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Teams Required").CreateDistribution().Draw();
-            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
-            {
-                [PersonnelLevel.OSC] = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL1] = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-1)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL2] = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-2)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL3] = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-3)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL4] = _wasteSamplingParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
-            };
-            var roundtripDays = _wasteSamplingParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
+            var personnelParams = _wasteSamplingParameters.First(p => p.Name == ParameterNames.Personnel.Name).Parameters;
+            var logisticParams = _wasteSamplingParameters.First(p => p.Name == ParameterNames.Logistic.Name).Parameters;
+
+            var numTeams = personnelParams.GetNumTeams();
+            var personnel = personnelParams.GetPersonnel();
+            var roundtripDays = logisticParams.GetRoundtripDays();
             var onsiteDays = _elementOnsiteDays[ElementCategory.WasteSampling];
 
             return new WasteSamplingParameters(
                 numTeams,
-                personnelReqPerTeam,
+                personnel,
                 roundtripDays,
                 onsiteDays);
         }
 
         private IncidentCommandParameters SetIncidentCommandParameters()
         {
-            var personnelReqPerTeam = new Dictionary<PersonnelLevel, double>
-            {
-                [PersonnelLevel.OSC] = _incidentCommandParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (OSC)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL1] = _incidentCommandParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-1)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL2] = _incidentCommandParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-2)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL3] = _incidentCommandParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-3)").CreateDistribution().Draw(),
-                [PersonnelLevel.PL4] = _incidentCommandParameters.First(p => p.Name == "Personnel").Parameters.First(n => n.MetaData.Name == "Personnel Required (PL-4)").CreateDistribution().Draw()
-            };
-            var roundtripDays = _incidentCommandParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Days").CreateDistribution().Draw();
-            var onsiteDays = _elementOnsiteDays[ElementCategory.IncidentCommand];
+            var personnelParams = _incidentCommandParameters.First(p => p.Name == ParameterNames.Personnel.Name).Parameters;
+            var logisticParams = _incidentCommandParameters.First(p => p.Name == ParameterNames.Logistic.Name).Parameters;
+
+            var personnel = personnelParams.GetPersonnel();
+            var roundtripDays = logisticParams.GetRoundtripDays();
+            var overheadDays = logisticParams.GetOverheadDays();
 
             return new IncidentCommandParameters(
+                personnel,
                 roundtripDays,
-                personnelReqPerTeam,
-                onsiteDays);
+                overheadDays);
         }
 
         private OtherParameters SetOtherParameters()
         {
-            var personnelPerRentalCar = _otherParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Number of Personnel per Rental Car").CreateDistribution().Draw();
+            var logisticParams = _otherParameters.First(p => p.Name == ParameterNames.Logistic.Name).Parameters;
+            var personnelPerRentalCar = logisticParams.GetPersonnelPerRentalCar();
 
             return new OtherParameters(personnelPerRentalCar);
         }
 
         private CostParameters SetCostParameters()
         {
-            var rentalCarCostPerDay = _costParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Rental Car Cost per Day").CreateDistribution().Draw();
-            var roundtripTicketCostPerPerson = _costParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Roundtrip Ticket Cost per Person").CreateDistribution().Draw();
-            var perDiem = _costParameters.First(p => p.Name == "Logistic").Parameters.First(n => n.MetaData.Name == "Per Diem").CreateDistribution().Draw();
+            var personnelParams = _costParameters.First(p => p.Name == ParameterNames.Personnel.Name).Parameters;
+            var suppliesParams = _costParameters.First(p => p.Name == ParameterNames.Supplies.Name).Parameters;
+            var logisticParams = _costParameters.First(p => p.Name == ParameterNames.Logistic.Name).Parameters;
+
+            var hourlyRate = personnelParams.GetHourlyRates();
+            var icRentalCostPerDay = suppliesParams.GetIcRentalCostPerDay();
+            var icSuppliesCostPerDay = suppliesParams.GetIcSuppliesCostPerDay();
+            var rentalCarCostPerDay = logisticParams.GetRentalCarCostPerDay();
+            var roundtripTicketCostPerPerson = logisticParams.GetRoundtripTicketCostPerPerson();
+            var perDiem = logisticParams.GetPerDiemCost();
 
             return new CostParameters(
+                hourlyRate,
+                icRentalCostPerDay,
+                icSuppliesCostPerDay,
                 rentalCarCostPerDay,
                 roundtripTicketCostPerPerson,
                 perDiem);

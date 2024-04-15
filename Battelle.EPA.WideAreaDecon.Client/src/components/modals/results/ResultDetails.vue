@@ -59,7 +59,7 @@ export default class ResultDetails extends Vue {
 
   @VModel({ default: () => false }) isVisible!: boolean;
 
-  private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
+  resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
   private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
 

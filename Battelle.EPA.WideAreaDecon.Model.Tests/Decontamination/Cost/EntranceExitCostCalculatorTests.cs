@@ -82,9 +82,15 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Cost
                 { PpeLevel.D, 0.0 }
             };
             var numTeams = 2.0;
-            
-            Assert.AreEqual(71492.5907073374, Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam, decontaminationWorkdays), 
-                1e-6, "Incorrect cost calculated");
+
+            var costAndResourceResults = Calculator.CalculateEntranceExitCost(numTeams, ppePerLevelPerTeam, decontaminationWorkdays);
+
+            Assert.AreEqual(71492.5907073374, costAndResourceResults.DecontaminationCost, 1e-6, "Incorrect cost calculated");
+
+            Assert.AreEqual(0, costAndResourceResults.TotalPpeUnits[PpeLevel.A], 1e-6, "Incorrect PPE units calculated for Level A");
+            Assert.AreEqual(145, costAndResourceResults.TotalPpeUnits[PpeLevel.B], 1e-6, "Incorrect PPE units calculated for Level B");
+            Assert.AreEqual(145, costAndResourceResults.TotalPpeUnits[PpeLevel.C], 1e-6, "Incorrect PPE units calculated for Level C");
+            Assert.AreEqual(0, costAndResourceResults.TotalPpeUnits[PpeLevel.D], 1e-6, "Incorrect PPE units calculated for Level D");
         }
     }
 }

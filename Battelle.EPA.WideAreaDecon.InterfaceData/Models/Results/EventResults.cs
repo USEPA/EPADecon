@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results
+﻿namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results
 {
     public class EventResults
     {
-        public OtherResults otherResults { get; set; }
-        public double totalEventCost { get; set; }
-        public double totalEventDuration { get; set; }
-        public double totalContaminationArea { get; set; }
-        public double totalSolidWasteProduced { get; set; }
-        public double totalAqueousWasteProduced { get; set; }
+        public OtherResults OtherResults { get; set; }
+        public IncidentCommandResults IncidentCommandResults { get; set; }
+        public double TotalEventCost { get; set; }
+        public double TotalEventDuration { get; set; }
+        public double TotalContaminationArea { get; set; }
+        public double TotalSolidWasteProduced { get; set; }
+        public double TotalAqueousWasteProduced { get; set; }
     }
 }

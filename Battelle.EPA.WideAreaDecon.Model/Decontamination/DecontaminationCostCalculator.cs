@@ -5,6 +5,8 @@ using Battelle.EPA.WideAreaDecon.Model.Decontamination.Time;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.Model.Services;
 using Battelle.EPA.WideAreaDecon.InterfaceData;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results.ResourceAndCostResults;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
 {
@@ -19,10 +21,10 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
         public TravelCostCalculator Calculator_travel { get; set; }
 
         //Element time for scenario results
-        public Tuple<List<Dictionary<ApplicationMethod, double>>, Dictionary<ElementDays, double>> CalculateTime()
+        public DecontaminationTimeInformation CalculateTime()
         {
             var laborDays = Calculator_laborDays.CalculateLaborDays();
-            var workDays = Calculator_workDays.CalculateWorkDays(laborDays);
+            var workDays = Calculator_workDays.CalculateWorkDays(laborDays.DecontaminationTreatments);
             var onsiteDays = Calculator_onsiteDays.CalculateOnsiteDays(workDays);
 
             var elementDays = new Dictionary<ElementDays, double>
@@ -31,17 +33,27 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination
                 { ElementDays.OnsiteDays, onsiteDays }
             };
 
-            return new Tuple<List<Dictionary<ApplicationMethod, double>>, Dictionary<ElementDays, double>> (laborDays, elementDays);
+            return new DecontaminationTimeInformation
+            {
+                DecontaminationTreatments = laborDays.DecontaminationTreatments,
+                SurfaceTreatments = laborDays.SurfaceTreatments,
+                DecontaminationDays = elementDays
+            };
         }
 
         //Element costs for scenario results
-        public double CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<SurfaceType, ApplicationMethod> treatmentMethods, List<Dictionary<ApplicationMethod, double>> decontaminationWorkdays)
+        public DecontaminationResourceAndCostResults CalculateElementCosts(Dictionary<ElementDays, double> elementDays, double numberTeams, Dictionary<PpeLevel, double> ppeEachLevelPerTeam, Dictionary<SurfaceType, ContaminationInformation> areaContaminated, Dictionary<SurfaceType, ApplicationMethod> treatmentMethods, List<Dictionary<ApplicationMethod, double>> decontaminationWorkdays, Dictionary<SurfaceType, int> surfaceTreatments)
         {
-            var suppliesCosts = Calculator_supplies.CalculateSuppliesCost(areaContaminated, treatmentMethods);
+            var supplies = Calculator_supplies.CalculateSuppliesCost(areaContaminated, treatmentMethods, surfaceTreatments, decontaminationWorkdays);
             var laborCosts = Calculator_labor.CalculateLaborCost(elementDays[ElementDays.OnsiteDays], numberTeams);
-            var entExCosts = Calculator_entEx.CalculateEntranceExitCost(numberTeams, ppeEachLevelPerTeam, decontaminationWorkdays);
-            
-            return (suppliesCosts + laborCosts + entExCosts);
+            var entEx = Calculator_entEx.CalculateEntranceExitCost(numberTeams, ppeEachLevelPerTeam, decontaminationWorkdays);
+
+            return new DecontaminationResourceAndCostResults()
+            {
+                DecontaminationCost = supplies.DecontaminationCost + laborCosts + entEx.DecontaminationCost,
+                TotalDeconAgentVolume = supplies.TotalDeconAgentVolume,
+                TotalPpeUnits = entEx.TotalPpeUnits
+            };
         }
 
         //Travel costs for event results

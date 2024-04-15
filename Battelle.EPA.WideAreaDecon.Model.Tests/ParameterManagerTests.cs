@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using System.Linq;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
-using Battelle.EPA.WideAreaDecon.InterfaceData;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Constants;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Providers;
+using Battelle.EPA.WideAreaDecon.Model.Interface;
 using Battelle.EPA.WideAreaDecon.Model.Parameter;
+using Moq;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Tests
 {
     public class ParameterManagerTests
     {
-        private ScenarioParameterManager Manager { get; set; }
+        private ScenarioParameterManager _sut;
 
         [SetUp]
         public void Setup()
@@ -24,28 +25,22 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                 FileName = TestFileName1,
                 GenericSheetNames = new[]
                 {
-                    "Incident Command",
-                    "Characterization Sampling",
-                    "Source Reduction",
-                    "Decontamination",
-                    "Clearance Sampling",
-                    "Waste Sampling",
-                    "Other",
-                    "Cost per Parameter"
+                    ParameterNames.IncidentCommand,
+                    ParameterNames.CharacterizationSampling,
+                    ParameterNames.SourceReduction,
+                    ParameterNames.Decontamination,
+                    ParameterNames.VerificationSampling,
+                    ParameterNames.ClearanceSampling,
+                    ParameterNames.WasteSampling,
+                    ParameterNames.Other,
+                    ParameterNames.Cost
                 }
             };
-            var scenarioDetails = modifyParameters.GetParameterList();
+            var scenarioParameters = modifyParameters.GetParameterList();
 
-            Manager = new ScenarioParameterManager(
-                scenarioDetails.Filters.First(f => f.Name == "Characterization Sampling").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Source Reduction").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Decontamination").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Clearance Sampling").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Waste Sampling").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Efficacy").Parameters,
-                scenarioDetails.Filters.First(f => f.Name == "Incident Command").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Cost per Parameter").Filters,
-                scenarioDetails.Filters.First(f => f.Name == "Decontamination Treatment Methods by Surface").Parameters);
+            _sut = new ScenarioParameterManager(
+                Mock.Of<ICalculatorManager>(),
+                scenarioParameters);
         }
 
         [Test]
@@ -59,9 +54,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests
                 scenarioDefinitionDetails.Add(surface, info);
             }
 
-            var indoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationElement.Indoor);
-            var outdoorParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationElement.Outdoor);
-            var undergroundParameters = Manager.RedrawParameters(scenarioDefinitionDetails, DecontaminationElement.Underground);
+            _ = _sut.RedrawParameters(scenarioDefinitionDetails, DecontaminationElement.Indoor);
+            _ = _sut.RedrawParameters(scenarioDefinitionDetails, DecontaminationElement.Outdoor);
+            _ = _sut.RedrawParameters(scenarioDefinitionDetails, DecontaminationElement.Underground);
 
             Assert.Pass();
         }

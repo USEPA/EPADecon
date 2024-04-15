@@ -8,6 +8,8 @@ export default class HomeOptionModalAction implements IHomeOptionAction {
     return true;
   }
 
+  initialActionAsync: (() => Promise<void>) | undefined;
+
   getNext(): string {
     return this.nextPageName;
   }

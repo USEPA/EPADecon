@@ -32,7 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static LogNormalDistribution FromExcel(ParameterMetaData metaData, IRow information)
         {
-            var mean = typeof(LogNormalDistribution).GetCellValue(nameof(Mean), information)?.ConvertToOptionalDouble();
+            var mean = typeof(LogNormalDistribution).GetCellValue(nameof(Mean), information)?.ConvertToStepRoundedAndOptionalDouble(metaData);
 
             if (mean < metaData.LowerLimit || mean > metaData.UpperLimit)
             {
@@ -44,7 +44,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
                 MetaData = metaData,
                 Mean = mean,
                 StdDev = typeof(LogNormalDistribution).GetCellValue(nameof(StdDev), information)
-                    ?.ConvertToOptionalDouble(),
+                    ?.ConvertToStepRoundedAndOptionalDouble(metaData),
             };
         }
 
@@ -58,6 +58,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         }
 
         public string GetTextValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FrequencyValueType GetFrequencyValue()
         {
             throw new NotImplementedException();
         }

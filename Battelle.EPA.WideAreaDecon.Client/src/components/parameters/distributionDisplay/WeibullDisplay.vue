@@ -12,7 +12,7 @@
         </v-slider>
       </v-col>
       <v-col>
-        <v-slider v-model="sliderK" :max="max" :min="min" :step="KStep" thumb-label @change="onSliderKStopped">
+        <v-slider v-model="sliderK" :max="max" :min="min" :step="step" thumb-label @change="onSliderKStopped">
           <template v-slot:prepend>
             <p class="grey--text">{{ min }}</p>
           </template>
@@ -36,7 +36,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -54,7 +54,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -64,14 +64,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch } from 'vue-property-decorator';
-import { max } from 'lodash';
+import { Component, Watch } from 'vue-property-decorator';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
 import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
 @Component
 export default class WeibullDisplay extends BaseDistributionDisplay {
-  get weibullValue(): Weibull {
+  get castParameterValue(): Weibull {
     return this.parameterValue as Weibull;
   }
 
@@ -90,10 +89,6 @@ export default class WeibullDisplay extends BaseDistributionDisplay {
   ignoreNextLambdaSliderChange = false;
 
   ignoreNextKSliderChange = false;
-
-  get KStep(): number {
-    return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
-  }
 
   get min(): number {
     return super.min <= 1 ? 1 + this.step : super.min;
@@ -147,9 +142,9 @@ export default class WeibullDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.LambdaValue as any;
     if (this.textLambda === '') {
-      this.weibullValue.lambda = undefined;
+      this.castParameterValue.lambda = undefined;
     } else if (value === this.sliderLambda) {
-      this.weibullValue.lambda = value;
+      this.castParameterValue.lambda = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textLambda = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
@@ -170,9 +165,9 @@ export default class WeibullDisplay extends BaseDistributionDisplay {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const castComponent = this.$refs.KValue as any;
     if (this.textK === '') {
-      this.weibullValue.k = undefined;
+      this.castParameterValue.k = undefined;
     } else if (value === this.sliderK) {
-      this.weibullValue.k = value;
+      this.castParameterValue.k = value;
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textK = '';
     } else {
@@ -190,19 +185,16 @@ export default class WeibullDisplay extends BaseDistributionDisplay {
 
   @Watch('parameterValue')
   setValues(): void {
-    this.ignoreNextLambdaSliderChange = true;
-    this.sliderLambda = 0;
-    this.sliderLambda = this.weibullValue.lambda ?? 1;
+    this.sliderLambda = this.castParameterValue.lambda ?? 1;
+    this.sliderK = this.castParameterValue.k ?? 1;
 
-    this.ignoreNextKSliderChange = true;
-    this.sliderK = 2;
-    this.sliderK = this.weibullValue.k ?? 1;
-
-    this.textLambda = this.weibullValue.lambda?.toString() ?? '';
-    this.textK = this.weibullValue.k?.toString() ?? '';
+    this.textLambda = this.castParameterValue.lambda?.toString() ?? '';
+    this.textK = this.castParameterValue.k?.toString() ?? '';
   }
 
   created(): void {
+    this.ignoreNextLambdaSliderChange = this.anyValueIsUndefined(this.castParameterValue.lambda);
+    this.ignoreNextKSliderChange = this.anyValueIsUndefined(this.castParameterValue.k);
     this.setValues();
   }
 }

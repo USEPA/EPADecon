@@ -32,6 +32,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Cost
         [Test]
         public void CalculateCost()
         {
+            var deconTreatments = 4;
             var fractionSampled = 0.3;
             var info = new ContaminationInformation(500.0, 20.0);
             var areaContaminated = new Dictionary<SurfaceType, ContaminationInformation>();
@@ -39,10 +40,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.WasteSampling.Cost
             foreach (SurfaceType surface in Enum.GetValues(typeof(SurfaceType)))
             {
                 areaContaminated.Add(surface, info);
-            }
+            };
 
-            Assert.AreEqual(23868.7768425132, Calculator.CalculateSuppliesCost(fractionSampled, areaContaminated), 1e-6,
-                "Incorrect supplies cost calculated");
+            var costAndResourceResults = Calculator.CalculateSuppliesCost(deconTreatments, fractionSampled, areaContaminated);
+
+            Assert.AreEqual(95475.1073700526, costAndResourceResults.WasteSamplingCost, 1e-6, "Incorrect cost calculated");
+
+            Assert.AreEqual(2700, costAndResourceResults.TotalAqueousWasteSamples, 1e-6, "Incorrect number of liquid waste samples calculated");
+            Assert.AreEqual(2326, costAndResourceResults.TotalSolidWasteSamples, 1e-6, "Incorrect number of solid waste samples calculated");
         }
     }
 }

@@ -2,7 +2,7 @@
   <v-container class="mb-5">
     <v-row>
       <v-col align="center">
-        <v-btn v-show="selectedSet.points.length < 6" @click="addPoint">Add Point</v-btn>
+        <v-btn :disabled="disableAddButton" @click="addPoint">Add Point</v-btn>
       </v-col>
       <v-col align="center">
         <v-btn-toggle
@@ -28,7 +28,7 @@
       />
     </v-row>
 
-    <v-row v-show="editPoint">
+    <v-row>
       <v-col>
         <v-card class="pa-2" outlined tile>
           <v-text-field
@@ -45,6 +45,7 @@
           <v-text-field
             @input="updateOnTextChange($event, 'min', selectedSet.indices[selectedIndex])"
             :rules="[validationRulesMin]"
+            :disabled="!pointSelected || !showDistribution[1]"
             type="number"
             :value="selectedSet.mins[selectedIndex]"
             :label="`Min ${parameterValue.metaData.name}`"
@@ -57,6 +58,7 @@
           <v-text-field
             @input="updateOnTextChange($event, 'max', selectedSet.indices[selectedIndex])"
             :rules="[validationRulesMax]"
+            :disabled="!pointSelected || !showDistribution[1]"
             type="number"
             :value="selectedSet.maxs[selectedIndex]"
             :label="`Max ${parameterValue.metaData.name}`"
@@ -67,7 +69,10 @@
       <v-col>
         <v-btn
           :disabled="
-            selectedSet.points.length <= 2 || selectedIndex <= 0 || selectedIndex === selectedSet.points.length - 1
+            selectedSet.points.length <= 2 ||
+            selectedIndex <= 0 ||
+            selectedIndex === selectedSet.points.length - 1 ||
+            !showDistribution[1]
           "
           @click="removePoint(selectedSet.indices[selectedIndex])"
         >
@@ -89,7 +94,7 @@ import {
   CreateScatterChartDataset,
   DefaultChartData,
 } from 'battelle-common-vue-charting';
-import { ActiveElement, ChartDataset, ChartEvent, LegendElement, LegendItem, Point } from 'chart.js';
+import { ActiveElement, ChartDataset, ChartEvent, LegendItem, Point } from 'chart.js';
 import container from '@/dependencyInjection/config';
 import IChartOptionsProvider from '@/interfaces/providers/IChartOptionsProvider';
 import TYPES from '@/dependencyInjection/types';
@@ -99,6 +104,8 @@ import { nameof } from 'ts-simple-nameof';
 import IParameterSelection from '@/interfaces/store/parameterSelection/IParameterSelection';
 import { StoreNames } from '@/constants/store/store';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
+import EnumeratedParameter from '@/implementations/parameter/list/enumeratedParameter';
+import { Context } from 'chartjs-plugin-datalabels';
 
 @Component({ components: { ScatterPlotWrapper } })
 export default class UniformXDependentDisplay extends Vue implements IParameterDisplay {
@@ -113,8 +120,6 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
 
   baseline!: UniformXDependent;
 
-  editPoint = false;
-
   selectedIndex = -1;
 
   chartOptions = this.chartOptionsProvider.getDefaultOptions();
@@ -128,6 +133,17 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
   dependentVariables: string[] = [];
 
   selectedSetName = '';
+
+  /** First element is baseline, second is current */
+  showDistribution: boolean[] = [true, true];
+
+  get pointSelected(): boolean {
+    return this.selectedIndex !== -1;
+  }
+
+  get disableAddButton(): boolean {
+    return this.selectedSet.points.length >= 6 || !this.showDistribution[1];
+  }
 
   get variableSets(): {
     name: string;
@@ -258,6 +274,8 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
         baselineColor,
         baselineColor,
       );
+      baselineMinScatter.hidden = !this.showDistribution[0];
+      baselineMinScatter.backgroundColor = (context: Context) => this.markSelectedPoint(context, baselineColor);
       dataSets.push(baselineMinScatter);
     }
 
@@ -272,6 +290,8 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
       );
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (baselineMaxScatter as any).fill = '-1';
+      baselineMaxScatter.hidden = !this.showDistribution[0];
+      baselineMaxScatter.backgroundColor = (context: Context) => this.markSelectedPoint(context, baselineColor);
       dataSets.push(baselineMaxScatter);
     }
 
@@ -294,6 +314,8 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
         currentColor,
         currentColor,
       );
+      minScatter.hidden = !this.showDistribution[1];
+      minScatter.backgroundColor = (context: Context) => this.markSelectedPoint(context, currentColor);
       dataSets.push(minScatter);
     }
 
@@ -308,15 +330,12 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
       );
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (maxScatter as any).fill = '-1';
+      maxScatter.hidden = !this.showDistribution[1];
+      maxScatter.backgroundColor = (context: Context) => this.markSelectedPoint(context, currentColor);
       dataSets.push(maxScatter);
     }
 
     return new DefaultChartData(dataSets);
-  }
-
-  @Watch('selectedSetName')
-  onSelectedSetChanged(): void {
-    this.editPoint = false;
   }
 
   addPoint(): void {
@@ -337,6 +356,11 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     this.xValues.splice(this.selectedSet.indices[index], 0, point);
     this.yMinValues.splice(this.selectedSet.indices[index], 0, minEfficacy);
     this.yMaxValues.splice(this.selectedSet.indices[index], 0, maxEfficacy);
+
+    if (this.showDistribution[1]) {
+      // select new point
+      this.selectedIndex = index;
+    }
   }
 
   removePoint(index: number): void {
@@ -351,7 +375,6 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     this.yMaxValues.splice(index, 1);
 
     this.selectedIndex = -1;
-    this.editPoint = false;
   }
 
   updateOnTextChange(value: string, maxOrMin: string, index: number): void {
@@ -369,6 +392,7 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
 
   updateSelectedVariable(setName: string): void {
     this.$set(this.parameterValue, 'selectedVariable', setName);
+    this.selectedIndex = -1;
   }
 
   validationRulesMin(value: number): boolean | string {
@@ -399,7 +423,6 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
     if (elements.length === 0) {
       this.selectedIndex = -1;
     }
-    this.editPoint = this.selectedIndex >= 0;
   }
 
   // adapted from mawir's answer on Stack Overflow: https://stackoverflow.com/a/59716739
@@ -411,18 +434,43 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
       const maxMeta = chart.getDatasetMeta(index);
       const minMeta = chart.getDatasetMeta(index - 1);
 
-      minMeta.hidden = !minMeta.hidden;
-      maxMeta.hidden = !maxMeta.hidden;
+      const distIndex = Math.floor(0.5 * index);
+
+      const hidden = this.showDistribution[distIndex];
+      this.showDistribution.splice(distIndex, 1, !hidden);
+
+      minMeta.hidden = hidden;
+      maxMeta.hidden = hidden;
+
+      if (distIndex == 1) {
+        this.selectedIndex = -1;
+      }
 
       chart.update();
     }
+  }
+
+  markSelectedPoint(context: Context, defaultColor: string): string | undefined {
+    const { chartArea } = context.chart;
+    if (!chartArea) {
+      return;
+    }
+
+    const darkerColor = defaultColor.replace(/\d+\.*\d*(?=\))/, '1.0');
+    return context.dataIndex === this.selectedIndex ? darkerColor : defaultColor;
+  }
+
+  @Watch(nameof<UniformXDependentDisplay>((d) => d.selectedIndex))
+  onSelectedIndexChanged(): void {
+    const { chart } = (this.$refs.chart as Vue).$children[0] as IChartJsWrapper;
+    chart.update();
   }
 
   @Watch('parameterValue')
   setValues(): void {
     if (this.key) {
       // get baseline
-      this.baseline = this.$store.state.currentSelectedParameter.baseline.values[this.key];
+      this.baseline = (this.scenarioParameters.baseline as EnumeratedParameter).values[this.key] as UniformXDependent;
     }
     this.xValues = this.parameterValue.xValues ?? [];
     this.yMinValues = this.parameterValue.yMinimumValues ?? [];
@@ -437,13 +485,21 @@ export default class UniformXDependentDisplay extends Vue implements IParameterD
         },
         onClick: this.legendOnClick,
       },
+      datalabels: {
+        display: false,
+      },
     };
 
     // set chart event callbacks
     this.chartOptions.onClick = this.onClick;
     this.chartOptions.onHover = this.onHover;
 
-    this.selectedSetName = this.variableSets[0].name;
+    this.chartOptions.interaction = {
+      mode: 'x',
+    };
+
+    this.selectedSetName = this.parameterValue.selectedVariable;
+    this.showDistribution = [true, true];
   }
 
   created(): void {

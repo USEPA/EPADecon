@@ -64,9 +64,14 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.SourceReduction.Cost
             var numberTeams = 4.0;
             var laborDays = 1.019638794335;
 
-            Assert.AreEqual(15311.2691541947,
-                Calculator.CalculateEntranceExitCost(laborDays, numberTeams, ppeEachLevelPerTeam), 1e-6,
-                "Incorrect cost calculated");
+            var costAndResourceResults = Calculator.CalculateEntranceExitCost(laborDays, numberTeams, ppeEachLevelPerTeam);
+
+            Assert.AreEqual(15311.2691541947, costAndResourceResults.SourceReductionCost, 1e-6, "Incorrect cost calculated");
+
+            Assert.AreEqual(0, costAndResourceResults.TotalPpeUnits[PpeLevel.A], 1e-6, "Incorrect PPE units calculated for Level A");
+            Assert.AreEqual(18, costAndResourceResults.TotalPpeUnits[PpeLevel.B], 1e-6, "Incorrect PPE units calculated for Level B");
+            Assert.AreEqual(18, costAndResourceResults.TotalPpeUnits[PpeLevel.C], 1e-6, "Incorrect PPE units calculated for Level C");
+            Assert.AreEqual(0, costAndResourceResults.TotalPpeUnits[PpeLevel.D], 1e-6, "Incorrect PPE units calculated for Level D");
         }
     }
 }

@@ -1,4 +1,5 @@
 import IOtherResult from './element/IOtherResult';
+import IIncidentCommandResult from './element/IIncidentCommandResult';
 
 export default interface IEventResults {
   totalEventCost: number;
@@ -7,5 +8,6 @@ export default interface IEventResults {
   totalSolidWasteProduced: number;
   totalAqueousWasteProduced: number;
   otherResults: IOtherResult;
-  [key: string]: number | IOtherResult;
+  incidentCommandResults: IIncidentCommandResult;
+  [key: string]: number | IOtherResult | IIncidentCommandResult;
 }

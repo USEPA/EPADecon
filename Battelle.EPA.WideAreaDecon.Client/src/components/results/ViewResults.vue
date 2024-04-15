@@ -7,6 +7,7 @@
           icon="mdi-currency-usd"
           text="Average Total Cost"
           :value="`$${averageTotalCost}`"
+          :definition="definitions[Result.TotalCost]"
         />
       </v-col>
       <v-col cols="3" sm="6" lg="3">
@@ -15,7 +16,10 @@
           icon="mdi-earth"
           text="Average Total Area Contaminated"
           :value="`${averageTotalAreaContaminated} m^2`"
-        />
+          :definition="definitions[Result.AreaContaminated]"
+        >
+          <template v-slot:value> {{ averageTotalAreaContaminated }} m<sup>2</sup> </template>
+        </dashboard-result-card>
       </v-col>
       <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
@@ -23,24 +27,36 @@
           icon="mdi-calendar"
           text="Average Total Workdays"
           :value="averageTotalWorkdays"
+          :definition="definitions[Result.Workdays]"
         />
       </v-col>
       <v-col cols="3" sm="6" lg="3">
         <dashboard-result-card
-          @showDetails="showResultDetails($event, Result.DecontaminationRounds)"
+          @showDetails="showResultDetails($event, Result.DecontaminationTreatments)"
           icon="mdi-hand-water"
-          text="Average Number of Decontamination Iterations"
-          :value="averageDeconRounds"
+          text="Average Number of Decontamination Treatments"
+          :value="averageDeconTreatments"
+          :definition="definitions[Result.DecontaminationTreatments]"
         />
       </v-col>
     </v-row>
 
     <v-row>
       <v-col cols="6" sm="12" lg="6">
-        <dashboard-chart-card text="Cost Breakdown By Element" :data="costBreakdown" />
+        <dashboard-chart-card
+          :text="['Total Cost Breakdown By Element']"
+          :data="costBreakdown"
+          :definition="definitions.avgTotalCost"
+        />
       </v-col>
       <v-col cols="6" sm="12" lg="6">
-        <dashboard-chart-card text="Workday Breakdown By Element" :data="workdayBreakdown" />
+        <dashboard-chart-card
+          @resultChanged="chartResultChanged"
+          :text="dayChartText"
+          :data="dayChartSelectedBreakdown"
+          :results="dayChartResults"
+          :definition="definitions.avgDays"
+        />
       </v-col>
     </v-row>
 
@@ -51,10 +67,16 @@
           icon="mdi-tent"
           text="Average Number of Onsite Days"
           :value="averageTotalOnSiteDays"
+          :definition="definitions[Result.OnSiteDays]"
         />
       </v-col>
       <v-col cols="3" sm="6" lg="3">
-        <dashboard-result-card icon="mdi-replay" text="Number of Realizations" :value="currentJob.numberRealizations" />
+        <dashboard-result-card
+          icon="mdi-replay"
+          text="Number of Realizations"
+          :value="currentJob.numberRealizations"
+          :definition="definitions.realization"
+        />
       </v-col>
       <v-col cols="6" sm="12" lg="6">
         <v-card style="height: 100%">
@@ -94,6 +116,7 @@ import IElementBreakdown from '@/interfaces/jobs/results/IElementBreakdown';
 import RealizationSummary from './RealizationSummary.vue';
 import DashboardResultCard from './DashboardResultCard.vue';
 import DashboardChartCard from './DashboardChartCard.vue';
+import resultDefintion from '@/constants/results/resultDefinition';
 
 @Component({
   components: {
@@ -114,6 +137,9 @@ export default class ViewResults extends Vue {
 
   private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
+  private onSiteDaysText = 'On Site Day Breakdown By Element';
+  private workdaysText = 'Workday Breakdown By Element';
+
   showModal = false;
 
   modalTitle = '';
@@ -126,15 +152,54 @@ export default class ViewResults extends Vue {
 
   averageTotalOnSiteDays = '';
 
-  averageDeconRounds = '';
+  averageDeconTreatments = '';
 
   costBreakdown: unknown;
 
   workdayBreakdown: unknown;
 
+  onSiteDayBreakdown: unknown;
+
+  dayChartSelectedBreakdown: unknown;
+
+  dayChartSelectedResult: Result = Result.Workdays;
+
+  dayChartText = [this.workdaysText, this.onSiteDaysText];
+
   Result = Result; // needed to use enum in template
 
   details: IResultDetails = { values: [], mean: 0, minimum: 0, maximum: 0, stdDev: 0 };
+
+  get definitions(): Record<string, string> {
+    const daysText = this.dayChartSelectedResult === Result.Workdays ? 'workdays' : 'onsite days';
+    return {
+      [Result.TotalCost]: `${resultDefintion.event.totalEventCost}. Averaged across all realizations.`,
+      [Result.AreaContaminated]: `${resultDefintion.general.areaContaminated}. Averaged across all realizations.`,
+      [Result.DecontaminationTreatments]: `${resultDefintion.general.decontaminationTreatments}. Averaged across all realizations.`,
+      [Result.Workdays]:
+        'The total number of days teams spent entering the site, performing their duties (e.g. sampling or decontamination), and exiting the site. Also includes time associated with entry preparation, decontamination line, and post-entry rest periods. Averaged across all realizations.',
+      [Result.OnSiteDays]:
+        'The total number of work days plus any additional days needed for the setup and teardown of each element of the event. Averaged across all realizations.',
+      realization: 'The number of times the scenario was executed by the model.',
+      avgTotalCost:
+        'The total cost of the remediation event broken down by the total costs of each element. Averaged across all realizations.',
+      avgDays: `The total ${daysText} of the remediation event broken down by the total ${daysText} of each element. Averaged across all realizations.`,
+    };
+  }
+
+  get dayChartResults(): Result[] {
+    return [Result.Workdays, Result.OnSiteDays];
+  }
+
+  get dayChartTextOptions(): string[] {
+    return [this.workdaysText, this.onSiteDaysText];
+  }
+
+  chartResultChanged(newValue: Result): void {
+    this.dayChartSelectedResult = newValue;
+    const breakdown = newValue === Result.Workdays ? this.workdayBreakdown : this.onSiteDayBreakdown;
+    this.$set(this, 'dayChartSelectedBreakdown', breakdown);
+  }
 
   getElementBreakdownChartData(result: Result): ChartData {
     const elementResults: IElementBreakdown[] = [];
@@ -199,11 +264,20 @@ export default class ViewResults extends Vue {
     this.averageTotalCost = this.getAverageFormatted(Result.TotalCost);
     this.averageTotalAreaContaminated = this.getAverageFormatted(Result.AreaContaminated);
     this.averageTotalWorkdays = this.getAverageFormatted(Result.Workdays);
-    this.averageDeconRounds = this.getAverageFormatted(Result.DecontaminationRounds);
+    this.averageDeconTreatments = this.getAverageFormatted(Result.DecontaminationTreatments);
     this.averageTotalOnSiteDays = this.getAverageFormatted(Result.OnSiteDays);
 
     this.costBreakdown = this.getElementBreakdownChartData(Result.ElementCost);
     this.workdayBreakdown = this.getElementBreakdownChartData(Result.Workdays);
+    this.onSiteDayBreakdown = this.getElementBreakdownChartData(Result.OnSiteDays);
+    this.dayChartSelectedResult = Result.Workdays;
+    this.dayChartSelectedBreakdown = this.workdayBreakdown;
+
+    // remove incident command values
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (this.onSiteDayBreakdown as any).labels.pop();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (this.onSiteDayBreakdown as any).datasets[0].data.pop();
   }
 
   created(): void {

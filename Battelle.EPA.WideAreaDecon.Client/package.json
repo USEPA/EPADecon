@@ -1,6 +1,6 @@
 {
   "name": "wide-area-decon-tool",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -15,12 +15,13 @@
     "@fortawesome/vue-fontawesome": "^2.0.0",
     "@mdi/font": "^5.8.55",
     "@microsoft/signalr": "^6.0.1",
+    "@turf/difference": "6.5.0",
     "@turf/intersect": "^6.5.0",
     "@turf/line-intersect": "^6.5.0",
     "@turf/line-slice": "^6.5.0",
     "@turf/polygon-to-line": "^6.5.0",
     "@types/chart.js": "^2.9.33",
-    "axios": "^0.21.1",
+    "axios": "^1.6.8",
     "battelle-common-typescript-statistics": "../BuildPackages/battelle-common-typescript-statistics-0.0.18.tgz",
     "battelle-common-vue-charting": "../BuildPackages/battelle-common-vue-charting-0.0.31.tgz",
     "chart.js": "^3.5",
@@ -50,7 +51,7 @@
     "vuetify-loader": "^1.6.0",
     "vuex": "^3.6.2",
     "vuex-class": "^0.3.2",
-    "xlsx": "^0.16.9"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.16.7",

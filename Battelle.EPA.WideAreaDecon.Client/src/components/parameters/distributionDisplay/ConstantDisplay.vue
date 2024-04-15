@@ -29,7 +29,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ castParameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -57,12 +57,13 @@ export default class ConstantParameterDisplay extends BaseDistributionDisplay {
 
   @Watch('sliderValue')
   onSliderValueChanged(newValue: number): void {
-    if (!this.ignoreNextSliderChange) {
-      this.textValue = newValue.toString();
-      this.$set(this.parameterValue, 'value', newValue);
-    } else {
+    if (this.ignoreNextSliderChange) {
       this.ignoreNextSliderChange = false;
+      return;
     }
+
+    this.textValue = newValue.toString();
+    this.$set(this.parameterValue, 'value', newValue);
   }
 
   onSliderStopped(): void {
@@ -90,12 +91,11 @@ export default class ConstantParameterDisplay extends BaseDistributionDisplay {
   @Watch('castParameterValue')
   setValues(): void {
     this.textValue = this.castParameterValue.value?.toString() ?? '';
-
-    this.ignoreNextSliderChange = true;
     this.sliderValue = this.castParameterValue.value ?? (this.min + this.max) / 2.0;
   }
 
   created(): void {
+    this.ignoreNextSliderChange = this.anyValueIsUndefined(this.castParameterValue.value);
     this.setValues();
   }
 }

@@ -11,7 +11,7 @@ export default class DefaultNavigationItemProvider implements INavigationItemPro
   getNavigationItems(): INavigationItem[] {
     return [
       new NavigationItem(
-        'Define Scenario',
+        'Define Contamination Zone',
         'fa-biohazard',
         '/DefineScenario',
         true,
@@ -24,7 +24,7 @@ export default class DefaultNavigationItemProvider implements INavigationItemPro
         },
       ),
       new NavigationItem(
-        'Modify Parameters',
+        'Insert Decontamination Parameters',
         'fa-shower',
         '/ModifyParameters',
         true,

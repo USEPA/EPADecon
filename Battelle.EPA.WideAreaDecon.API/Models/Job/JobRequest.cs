@@ -4,6 +4,8 @@ using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter;
 using Newtonsoft.Json;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Results;
+using Newtonsoft.Json.Converters;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Job;
 
 namespace Battelle.EPA.WideAreaDecon.API.Models.Job
 {
@@ -35,5 +37,12 @@ namespace Battelle.EPA.WideAreaDecon.API.Models.Job
 
         [JsonProperty]
         public ulong Seed2 { get; set; }
+
+        [JsonProperty]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ScenarioDefinitionMode DefinitionMode { get; set; }
+
+
+        public bool IsGeospatialDefinition => DefinitionMode == ScenarioDefinitionMode.Geospatial;
     }
 }

@@ -331,3 +331,5 @@ ASALocalRun/
 
 Battelle.EPA.WideAreaDecon.API/dist/
 !BuildPackages/*
+Installer/*
+*.zip

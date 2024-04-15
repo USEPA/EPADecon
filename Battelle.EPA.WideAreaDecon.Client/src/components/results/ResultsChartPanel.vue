@@ -20,12 +20,26 @@
         class="scatter pr-2 mb-2"
         :data="chartData"
         :options="options"
-        :key="chartKey"
+        :key="`${chartKey}-scatter`"
         ref="scatter"
+      />
+      <chart-js-wrapper
+        v-else
+        :type="chartType"
+        class="pl-10 pr-2 mb-2"
+        id="chartWrapper"
+        :data="chartData"
+        :options="options"
+        :plugins="[]"
+        :key="chartKey"
       />
 
       <v-chip v-if="chartLabels.x" class="px-6" id="xLabel" close @click:close="$emit('removeXLabel')" key="x">
         {{ resultProvider.convertCamelToTitleCase(chartLabels.x) }}
+        &nbsp;<span
+          v-if="resultProvider.getUnitsAsHtml(chartLabels.x)"
+          v-html="`(${resultProvider.getUnitsAsHtml(chartLabels.x)})`"
+        />
       </v-chip>
 
       <div v-if="chartLabels.y.length" class="d-flex flex-wrap justify-center" id="yLabel" ref="yLabel">
@@ -38,6 +52,10 @@
           close
         >
           {{ resultProvider.convertCamelToTitleCase(label) }}
+          &nbsp;<span
+            v-if="resultProvider.getUnitsAsHtml(label)"
+            v-html="`(${resultProvider.getUnitsAsHtml(label)})`"
+          />
         </v-chip>
       </div>
     </div>
@@ -66,7 +84,7 @@ export default class ResultsChartPanel extends Vue {
 
   @Prop() details!: IResultDetails | null;
 
-  private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
+  resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
   private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
 

@@ -1,89 +1,90 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter
 {
     public class CostParameters
     {
-        public Dictionary<PersonnelLevel, double> hourlyRate;
-        public double icRentalCostPerDay;
-        public double icSuppliesCostPerDay;
-        public double wipeCost;
-        public double hepaCost;
-        public double wasteSampleCost;
-        public double respiratorCost;
-        public Dictionary<PpeLevel, double> ppeCost;
-        public double wipeAnalysisCost;
-        public double hepaAnalysisCost;
-        public double solidWasteSampleAnalysisCost;
-        public double liquidWasteSampleAnalysisCost;
-        public double vacuumRentalCostPerDay;
-        public double costPerMassOfMaterialRemoved;
-        public double deconAgentCostPerVolume;
-        public double deconMaterialsCost;
-        public double rentalCarCostPerDay;
-        public double roundtripTicketCostPerPerson;
-        public double perDiem;
-        public double entryPrepCost;
-        public double deconLineCost;
+        public Dictionary<PersonnelLevel, double> HourlyRate;
+        public double IcRentalCostPerDay;
+        public double IcSuppliesCostPerDay;
+        public double WipeCost;
+        public double HepaCost;
+        public double WasteSampleCost;
+        public double RespiratorCost;
+        public Dictionary<PpeLevel, double> PpeCost;
+        public double WipeAnalysisCost;
+        public double HepaAnalysisCost;
+        public double SolidWasteSampleAnalysisCost;
+        public double LiquidWasteSampleAnalysisCost;
+        public double VacuumRentalCostPerDay;
+        public double CostPerMassOfMaterialRemoved;
+        public double DeconAgentCostPerVolume;
+        public double DeconMaterialsCost;
+        public double RentalCarCostPerDay;
+        public double RoundtripTicketCostPerPerson;
+        public double PerDiem;
+        public double EntryPrepCost;
+        public double DeconLineCost;
 
         //Scenario parameters constructor
         public CostParameters(
-            Dictionary<PersonnelLevel, double> _hourlyRate,
-            double _icRentalCostPerDay,
-            double _icSuppliesCostPerDay,
-            double _wipeCost,
-            double _hepaCost,
-            double _wasteSampleCost,
-            double _respiratorCost,
-            Dictionary<PpeLevel, double> _ppeCost,
-            double _wipeAnalysisCost,
-            double _hepaAnalysisCost,
-            double _solidWasteSampleAnalysisCost,
-            double _liquidWasteSampleAnalysisCost,
-            double _vacuumRentalCostPerDay,
-            double _costPerMassOfMaterialRemoved,
-            double _deconAgentCostPerVolume,
-            double _deconMaterialsCost,
-            double _rentalCarCostPerDay,
-            double _roundtripTicketCostPerPerson,
-            double _perDiem,
-            double _entryPrepCost,
-            double _deconLineCost)
+            Dictionary<PersonnelLevel, double> hourlyRate,
+            double wipeCost,
+            double hepaCost,
+            double wasteSampleCost,
+            double respiratorCost,
+            Dictionary<PpeLevel, double> ppeCost,
+            double wipeAnalysisCost,
+            double hepaAnalysisCost,
+            double solidWasteSampleAnalysisCost,
+            double liquidWasteSampleAnalysisCost,
+            double vacuumRentalCostPerDay,
+            double costPerMassOfMaterialRemoved,
+            double deconAgentCostPerVolume,
+            double deconMaterialsCost,
+            double rentalCarCostPerDay,
+            double roundtripTicketCostPerPerson,
+            double perDiem,
+            double entryPrepCost,
+            double deconLineCost)
         {
-            hourlyRate = _hourlyRate;
-            icRentalCostPerDay = _icRentalCostPerDay;
-            icSuppliesCostPerDay = _icSuppliesCostPerDay;
-            wipeCost = _wipeCost;
-            hepaCost = _hepaCost;
-            wasteSampleCost = _wasteSampleCost;
-            respiratorCost = _respiratorCost;
-            ppeCost = _ppeCost;
-            wipeAnalysisCost = _wipeAnalysisCost;
-            hepaAnalysisCost = _hepaAnalysisCost;
-            solidWasteSampleAnalysisCost = _solidWasteSampleAnalysisCost;
-            liquidWasteSampleAnalysisCost = _liquidWasteSampleAnalysisCost;
-            vacuumRentalCostPerDay = _vacuumRentalCostPerDay;
-            costPerMassOfMaterialRemoved = _costPerMassOfMaterialRemoved;
-            deconAgentCostPerVolume = _deconAgentCostPerVolume;
-            deconMaterialsCost = _deconMaterialsCost;
-            rentalCarCostPerDay = _rentalCarCostPerDay;
-            roundtripTicketCostPerPerson = _roundtripTicketCostPerPerson;
-            perDiem = _perDiem;
-            entryPrepCost = _entryPrepCost;
-            deconLineCost = _deconLineCost;
+            HourlyRate = hourlyRate;
+            WipeCost = wipeCost;
+            HepaCost = hepaCost;
+            WasteSampleCost = wasteSampleCost;
+            RespiratorCost = respiratorCost;
+            PpeCost = ppeCost;
+            WipeAnalysisCost = wipeAnalysisCost;
+            HepaAnalysisCost = hepaAnalysisCost;
+            SolidWasteSampleAnalysisCost = solidWasteSampleAnalysisCost;
+            LiquidWasteSampleAnalysisCost = liquidWasteSampleAnalysisCost;
+            VacuumRentalCostPerDay = vacuumRentalCostPerDay;
+            CostPerMassOfMaterialRemoved = costPerMassOfMaterialRemoved;
+            DeconAgentCostPerVolume = deconAgentCostPerVolume;
+            DeconMaterialsCost = deconMaterialsCost;
+            RentalCarCostPerDay = rentalCarCostPerDay;
+            RoundtripTicketCostPerPerson = roundtripTicketCostPerPerson;
+            PerDiem = perDiem;
+            EntryPrepCost = entryPrepCost;
+            DeconLineCost = deconLineCost;
         }
 
         //Event parameters constructor
         public CostParameters(
-            double _rentalCarCostPerDay,
-            double _roundtripTicketCostPerPerson,
-            double _perDiem)
+            Dictionary<PersonnelLevel, double> hourlyRate, 
+            double icRentalCostPerDay,
+            double icSuppliesCostPerDay,
+            double rentalCarCostPerDay,
+            double roundtripTicketCostPerPerson,
+            double perDiem)
         {
-            rentalCarCostPerDay = _rentalCarCostPerDay;
-            roundtripTicketCostPerPerson = _roundtripTicketCostPerPerson;
-            perDiem = _perDiem;
+            RentalCarCostPerDay = rentalCarCostPerDay;
+            RoundtripTicketCostPerPerson = roundtripTicketCostPerPerson;
+            PerDiem = perDiem;
+            HourlyRate = hourlyRate;
+            IcRentalCostPerDay = icRentalCostPerDay;
+            IcSuppliesCostPerDay = icSuppliesCostPerDay;
         }
     }
 }

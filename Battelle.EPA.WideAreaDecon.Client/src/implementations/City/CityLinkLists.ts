@@ -6,7 +6,11 @@ export default class CityLinkLists {
   @JsonProperty({ type: CityLink })
   cities: Array<CityLink> = [];
 
-  constructor(list: Array<CityLink>) {
+  @JsonProperty()
+  general = '';
+
+  constructor(list: Array<CityLink>, general: string) {
     this.cities = list;
+    this.general = general;
   }
 }

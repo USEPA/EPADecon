@@ -47,8 +47,8 @@
                 <p class="text-subtitle-1">Total Workdays</p>
               </v-col>
               <v-col>
-                <p class="text-body-2 mb-0">{{ resultProvider.formatNumber(deconRounds) }}</p>
-                <p class="text-subtitle-1">Decontamination Iterations</p>
+                <p class="text-body-2 mb-0">{{ resultProvider.formatNumber(deconTreatments) }}</p>
+                <p class="text-subtitle-1">Decontamination Treatments</p>
               </v-col>
             </v-row>
           </v-container>
@@ -80,7 +80,7 @@ export default class RealizationDetails extends Vue {
 
   @VModel({ default: () => false }) isVisible!: boolean;
 
-  private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
+  resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
   private chartOptionsProvider = container.get<IChartOptionsProvider>(TYPES.ChartOptionsProvider);
 
@@ -96,7 +96,7 @@ export default class RealizationDetails extends Vue {
 
   totalWorkdays = 0;
 
-  deconRounds = 0;
+  deconTreatments = 0;
 
   @Watch('realizationNumber')
   setValues(): void {
@@ -105,7 +105,7 @@ export default class RealizationDetails extends Vue {
     this.totalCost = this.getResult(Result.TotalCost) ?? 0;
     this.areaContaminated = this.getResult(Result.AreaContaminated) ?? 0;
     this.totalWorkdays = this.getResult(Result.Workdays) ?? 0;
-    this.deconRounds = this.getResult(Result.DecontaminationRounds) ?? 0;
+    this.deconTreatments = this.getResult(Result.DecontaminationTreatments) ?? 0;
 
     this.chartKey += 2;
   }

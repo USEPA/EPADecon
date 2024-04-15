@@ -55,13 +55,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Tests.Decontamination.Time
             var decontaminationWorkdays = Calculator.CalculateLaborDays();
 
             var workdays = 0.0;
-            foreach (var item in decontaminationWorkdays)
+            foreach (var item in decontaminationWorkdays.DecontaminationTreatments)
             {
                 workdays += item.Sum(x => x.Value);
             }
 
             Assert.AreEqual(12.0, workdays, 1e-6, "Incorrect workdays calculated");
-            Assert.AreEqual(4.0, decontaminationWorkdays.Count, 1e-6, "Incorrect decontamination rounds calculated");
+            Assert.AreEqual(4.0, decontaminationWorkdays.DecontaminationTreatments.Count, 1e-6, "Incorrect decontamination treatments calculated");
         }
     }
 }

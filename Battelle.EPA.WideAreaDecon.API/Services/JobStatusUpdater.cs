@@ -1,24 +1,24 @@
-﻿using System;
-using System.Linq;
-using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
-using Battelle.EPA.WideAreaDecon.API.Models.Job;
+﻿using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
 using Battelle.EPA.WideAreaDecon.API.Hubs;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
+using Battelle.EPA.WideAreaDecon.API.Models.Job;
 using Microsoft.AspNetCore.SignalR;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Battelle.EPA.WideAreaDecon.API.Services
 {
     /// <summary>
-    /// Updates a job's status and alerts hub clients of change
+    /// <inheritdoc cref="IJobStatusUpdater"/>
     /// </summary>
-    public class JobStatusUpdater
+    public class JobStatusUpdater : IJobStatusUpdater
     {
         private readonly JobStatus[] _initialJobStatuses = new[] { JobStatus.New, JobStatus.Queued };
 
         private readonly JobStatus[] _runningJobStatuses = new[] { JobStatus.Running };
 
-        private readonly JobStatus[] _completedJobStatuses = new[] { JobStatus.Completed };
+        //private readonly JobStatus[] _completedJobStatuses = new[] { JobStatus.Completed };
 
         private readonly IHubContext<JobStatusHub, IJobStatusHub> _hub;
 
@@ -32,10 +32,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Services
         }
 
         /// <summary>
-        /// Updates job status
+        /// <inheritdoc cref="IJobStatusUpdater.UpdateJobStatus"/>
         /// </summary>
-        /// <param name="job">The job to be updated</param>
-        /// <param name="newJobStatus">The new job status</param>
         public async Task UpdateJobStatus(JobRequest job, JobStatus newJobStatus)
         {
             var oldJobStatus = job.Status;

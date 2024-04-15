@@ -56,6 +56,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter
                 ParameterType.LogNormal => LogNormalDistribution.FromExcel(metaData, row),
                 ParameterType.Weibull => WeibullDistribution.FromExcel(metaData, row),
                 ParameterType.Text => TextValue.FromExcel(metaData, row),
+                ParameterType.Frequency => FrequencyValue.FromExcel(metaData, row),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -68,5 +69,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Interfaces.Parameter
         public IDistribution CreateDistribution();
 
         public string GetTextValue();
+
+        public FrequencyValueType GetFrequencyValue();
     }
 }

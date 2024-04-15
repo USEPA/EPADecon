@@ -16,7 +16,7 @@
           v-model="sliderStd"
           :max="stdDevMax"
           :min="stdDevMin"
-          :step="stdDevStep"
+          :step="step"
           thumb-label
           @change="onSliderStdStopped"
         >
@@ -43,7 +43,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -61,7 +61,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -72,7 +72,6 @@
 
 <script lang="ts">
 import { Component, Watch } from 'vue-property-decorator';
-import { max } from 'lodash';
 import LogNormal from '@/implementations/parameter/distribution/LogNormal';
 import BaseDistributionDisplay from '@/implementations/parameter/distribution/BaseDistributionDisplay';
 
@@ -82,8 +81,6 @@ export default class LogNormalDisplay extends BaseDistributionDisplay {
     return this.parameterValue as LogNormal;
   }
 
-  sliderValue = [0, 0];
-
   sliderMean = 0;
 
   sliderStd = 0;
@@ -92,29 +89,9 @@ export default class LogNormalDisplay extends BaseDistributionDisplay {
 
   textStd = '';
 
-  ignoreNextValueSliderChange = false;
-
   ignoreNextMeanSliderChange = false;
 
   ignoreNextStdSliderChange = false;
-
-  get stdDevStep(): number {
-    return max([(this.sliderValue[1] - this.sliderValue[0]) / 100, 0.01]) ?? 0.01;
-  }
-
-  @Watch('sliderValue')
-  onSliderValueChanged(newValue: number[]): void {
-    if (this.ignoreNextValueSliderChange) {
-      this.ignoreNextValueSliderChange = false;
-      return;
-    }
-    if (newValue[0] > this.sliderMean) {
-      [this.sliderMean] = newValue;
-    }
-    if (newValue[1] < this.sliderMean) {
-      [, this.sliderMean] = newValue;
-    }
-  }
 
   @Watch('sliderMean')
   onSliderMeanChanged(newValue: number): void {
@@ -125,12 +102,6 @@ export default class LogNormalDisplay extends BaseDistributionDisplay {
 
     this.textMean = newValue.toString();
     this.$set(this.parameterValue, 'mean', newValue);
-    if (newValue < this.sliderValue[0]) {
-      this.sliderValue = [newValue, this.sliderValue[1]];
-    }
-    if (newValue > this.sliderValue[1]) {
-      this.sliderValue = [this.sliderValue[0], newValue];
-    }
   }
 
   @Watch('sliderStd')
@@ -156,11 +127,6 @@ export default class LogNormalDisplay extends BaseDistributionDisplay {
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textMean = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
-      if (value >= this.sliderValue[1]) {
-        this.sliderValue = [this.sliderValue[0], value];
-      } else if (value <= this.sliderValue[0]) {
-        this.sliderValue = [value, this.sliderValue[1]];
-      }
       this.sliderMean = value;
     } else {
       this.textMean = this.sliderMean.toString();
@@ -193,10 +159,7 @@ export default class LogNormalDisplay extends BaseDistributionDisplay {
 
   @Watch('parameterValue')
   setValues(): void {
-    this.ignoreNextMeanSliderChange = true;
     this.sliderMean = this.castParameterValue.mean ?? 1;
-
-    this.ignoreNextStdSliderChange = true;
     this.sliderStd = this.castParameterValue.stdDev ?? 1;
 
     this.textMean = this.castParameterValue.mean?.toString() ?? '';
@@ -204,6 +167,8 @@ export default class LogNormalDisplay extends BaseDistributionDisplay {
   }
 
   created(): void {
+    this.ignoreNextMeanSliderChange = this.anyValueIsUndefined(this.castParameterValue.mean);
+    this.ignoreNextStdSliderChange = this.anyValueIsUndefined(this.castParameterValue.stdDev);
     this.setValues();
   }
 }

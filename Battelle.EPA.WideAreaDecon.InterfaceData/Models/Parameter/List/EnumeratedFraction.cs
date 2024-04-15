@@ -39,5 +39,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.List
         {
             throw new NotImplementedException();
         }
+
+        public FrequencyValueType GetFrequencyValue()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

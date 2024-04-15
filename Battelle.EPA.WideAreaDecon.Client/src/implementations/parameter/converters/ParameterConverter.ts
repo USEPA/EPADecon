@@ -20,9 +20,11 @@ import NullParameter from '../NullParameter';
 import UniformXDependent from '../distribution/UniformXDependent';
 import Weibull from '../distribution/Weibull';
 import TextValue from '../distribution/TextValue';
+import FrequencyValue from '../distribution/FrequencyValue';
 import ParameterMetaData from '../ParameterMetaData';
 import EnumeratedFraction from '../list/enumeratedFraction';
 import EnumeratedParameter from '../list/enumeratedParameter';
+import FrequencyValueType from '@/enums/parameter/frequencyValueType';
 
 @injectable()
 export default class ParameterConverter implements IParameterConverter {
@@ -62,6 +64,8 @@ export default class ParameterConverter implements IParameterConverter {
         return new UniformXDependent(old.metaData);
       case ParameterType.textValue:
         return new TextValue(old.metaData, old.text || 'null');
+      case ParameterType.frequencyValue:
+        return new FrequencyValue(old.metaData, old.frequency || FrequencyValueType.Never);
       case ParameterType.weibull: {
         if (old.mean === undefined || old.stdDev === undefined) {
           return new Weibull(old.metaData);
@@ -126,6 +130,8 @@ export default class ParameterConverter implements IParameterConverter {
         return new Weibull(old.metaData);
       case ParameterType.textValue:
         return new TextValue(old.metaData);
+      case ParameterType.frequencyValue:
+        return new FrequencyValue(old.metaData, FrequencyValueType.Never);
       case ParameterType.enumeratedFraction:
         return new EnumeratedFraction(old.metaData);
       case ParameterType.enumeratedParameter:

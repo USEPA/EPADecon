@@ -27,13 +27,13 @@
         <v-window v-model="window">
           <v-window-item>
             <enumerated-parameter-display
-              :baseline="baseline.areaContaminated"
+              :baseline="castBaseline.areaContaminated"
               :parameterValue="parameterValue.areaContaminated"
             />
           </v-window-item>
 
           <v-window-item>
-            <enumerated-parameter-display :baseline="baseline.loading" :parameterValue="parameterValue.loading" />
+            <enumerated-parameter-display :baseline="castBaseline.loading" :parameterValue="parameterValue.loading" />
           </v-window-item>
         </v-window>
       </v-col>
@@ -41,7 +41,7 @@
 
     <v-row>
       <v-col class="ml-auto" cols="auto">
-        <v-btn @click="switchModes">switch to {{ otherMode }}</v-btn>
+        <v-btn @click="switchModes">switch to {{ otherModeDisplay }}</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -90,10 +90,18 @@ export default class ContaminationDefinitionDisplay extends Vue implements IPara
     return this.currentSelectedParameter.baseline;
   }
 
+  get castBaseline(): ContaminationDefinition {
+    return this.baseline as ContaminationDefinition;
+  }
+
   window = 0;
 
   get otherMode(): ScenarioDefinitionMode {
     return this.scenarioDefinitionMode === 'geospatial' ? 'manual' : 'geospatial';
+  }
+
+  get otherModeDisplay(): string {
+    return this.otherMode === 'geospatial' ? 'map-based' : 'numerical inputs';
   }
 
   get parameters(): EnumeratedParameter[] {

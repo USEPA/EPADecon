@@ -38,7 +38,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -56,7 +56,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -74,7 +74,7 @@
             type="number"
           >
             <template v-slot:append>
-              <p class="grey--text">{{ parameterValue.metaData.units }}</p>
+              <span class="grey--text" v-html="units" />
             </template>
           </v-text-field>
         </v-card>
@@ -235,10 +235,7 @@ export default class BetaPertDisplay extends BaseDistributionDisplay {
 
   @Watch('parameterValue')
   setValues(): void {
-    this.ignoreNextValueSliderChange = true;
     this.sliderValue = [this.castParameterValue.min ?? this.min, this.castParameterValue.max ?? this.max];
-
-    this.ignoreNextModeSliderChange = true;
     this.sliderMode = this.castParameterValue.mode ?? (this.min + this.max) / 2.0;
 
     this.textMin = this.castParameterValue.min?.toString() ?? '';
@@ -247,6 +244,11 @@ export default class BetaPertDisplay extends BaseDistributionDisplay {
   }
 
   created(): void {
+    this.ignoreNextValueSliderChange = this.anyValueIsUndefined(
+      this.castParameterValue.min,
+      this.castParameterValue.max,
+    );
+    this.ignoreNextModeSliderChange = this.anyValueIsUndefined(this.castParameterValue.mode);
     this.setValues();
   }
 }

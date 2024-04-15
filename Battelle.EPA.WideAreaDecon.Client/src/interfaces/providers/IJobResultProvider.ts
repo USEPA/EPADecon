@@ -1,3 +1,4 @@
+import ResourceResult from '@/enums/jobs/results/resourceResult';
 import Result from '@/enums/jobs/results/result';
 import JobRequest from '@/implementations/jobs/JobRequest';
 import IElementBreakdown from '../jobs/results/IElementBreakdown';
@@ -54,11 +55,22 @@ export default interface IJobResultProvider {
   getResultElementBreakdown(realization: IJobResultRealization, result: Result): IElementBreakdown[];
 
   /** Retrieves the units for a given result (if they exist)
-   * @param {Result} result - The result to get units for.
+   * @param {Result | ResourceResult} result - The result to get units for.
    * @returns The units for the given result (or undefined if they don't exist).
    */
-  getUnits(result: Result): string | undefined;
+  getUnits(result: Result | ResourceResult): string | undefined;
+
+  /** Retrieves the units for a given result (if they exist)
+   * @param {Result | ResourceResult} result - The result to get units for.
+   * @returns The units for the given result formatted as html(or undefined if they don't exist).
+   */
+  getUnitsAsHtml(result: Result | ResourceResult): string | undefined;
 
   /** Resets stored results and details */
   reset(): void;
+
+  /** Indicates whether the given result denotes a numeric value
+   * @param {Result | ResourceResult} result - The result in question
+   */
+  resultIsNumber(result: Result | ResourceResult): boolean;
 }

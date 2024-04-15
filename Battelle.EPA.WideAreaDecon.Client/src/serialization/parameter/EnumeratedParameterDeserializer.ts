@@ -10,6 +10,7 @@ import Uniform from '@/implementations/parameter/distribution/Uniform';
 import UniformXDependent from '@/implementations/parameter/distribution/UniformXDependent';
 import Weibull from '@/implementations/parameter/distribution/Weibull';
 import TextValue from '@/implementations/parameter/distribution/TextValue';
+import FrequencyValue from '@/implementations/parameter/distribution/FrequencyValue';
 import EnumeratedFraction from '@/implementations/parameter/list/enumeratedFraction';
 import IParameter from '@/interfaces/parameter/IParameter';
 import ScaledBeta from '@/implementations/parameter/distribution/ScaledBeta';
@@ -45,6 +46,8 @@ export default {
         return Weibull;
       case ParameterType.textValue:
         return TextValue;
+      case ParameterType.frequencyValue:
+        return FrequencyValue;
       case ParameterType.enumeratedFraction:
         return EnumeratedFraction;
       case ParameterType.enumeratedParameter:

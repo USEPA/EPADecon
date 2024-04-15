@@ -31,7 +31,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static ConstantDistribution FromExcel(ParameterMetaData metaData, IRow row)
         {
-            var value = typeof(ConstantDistribution).GetCellValue(nameof(Value), row)?.ConvertToOptionalDouble();
+            var value = typeof(ConstantDistribution).GetCellValue(nameof(Value), row)?.ConvertToStepRoundedAndOptionalDouble(metaData);
 
             if (value < metaData.LowerLimit || value > metaData.UpperLimit)
             {
@@ -55,6 +55,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         }
 
         public string GetTextValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FrequencyValueType GetFrequencyValue()
         {
             throw new NotImplementedException();
         }

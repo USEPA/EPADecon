@@ -7,21 +7,19 @@
         <template v-slot:activator="{ on: tOn, attrs: tAttrs }">
           <v-menu bottom offset-y>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn icon v-bind="{ ...attrs, ...tAttrs }" v-on="{ ...on, ...tOn }">
+              <v-btn :disabled="isUsingFile" icon v-bind="{ ...attrs, ...tAttrs }" v-on="{ ...on, ...tOn }">
                 <v-icon> {{ currentToolIcon }} </v-icon>
               </v-btn>
             </template>
             <v-list class="mt-2 ml-n1">
-              <template v-for="tool of mapTools">
-                <v-tooltip left :key="tool.shape">
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-list-item @click="drawShape = tool.shape" v-bind="attrs" v-on="on">
-                      <v-icon :class="{ 'primary--text': tool.shape === drawShape }"> {{ tool.icon }} </v-icon>
-                    </v-list-item>
-                  </template>
-                  {{ tool.tooltip }}
-                </v-tooltip>
-              </template>
+              <v-tooltip left v-for="tool of mapTools" :key="tool.shape">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-list-item @click="drawShape = tool.shape" v-bind="attrs" v-on="on">
+                    <v-icon :class="{ 'primary--text': tool.shape === drawShape }"> {{ tool.icon }} </v-icon>
+                  </v-list-item>
+                </template>
+                {{ tool.tooltip }}
+              </v-tooltip>
             </v-list>
           </v-menu>
         </template>
@@ -47,20 +45,33 @@
             </template>
             <v-list class="mt-2 ml-n1">
               <v-list-item
-                v-for="location of Object.values(mapLocations)"
-                @click="mapLocation = location"
+                v-for="location of Object.values(mapLocations).slice(0, -1)"
+                @click="changeMapLocation(location)"
                 :key="location"
               >
-                <span :class="{ 'primary--text': location === mapLocation }">{{ location }}</span>
+                <span :class="{ 'primary--text': location === parameterValue.mapLocation }">{{ location }}</span>
               </v-list-item>
             </v-list>
           </v-menu>
         </template>
         Change location
       </v-tooltip>
+
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on: tOn, attrs: tAttrs }">
+          <v-menu bottom left offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn @click="uploadFile" icon v-bind="{ ...attrs, ...tAttrs }" v-on="{ ...on, ...tOn }">
+                <v-icon> mdi-file-upload </v-icon>
+              </v-btn>
+            </template>
+          </v-menu>
+        </template>
+        Upload file
+      </v-tooltip>
     </v-toolbar>
 
-    <v-card id="map-legend">
+    <v-card v-if="!isUsingFile" id="map-legend">
       <v-card-text class="text-body-2">
         <v-row>
           <v-col cols="7" class="pb-0 pr-0">Building</v-col>
@@ -83,16 +94,15 @@ import TYPES from '@/dependencyInjection/types';
 import ICityDataProvider from '@/interfaces/providers/ICityDataProvider';
 import {
   bostonViewOptions,
-  dcViewOptions,
-  newOrleansViewOptions,
+  customViewOptions,
   nycViewOptions,
   phillyViewOptions,
   sanFranciscoViewOptions,
+  dcViewOptions,
 } from '@/constants';
 import { CycleColorProvider } from 'battelle-common-vue-charting';
-import { intersect, lineIntersect, lineSlice, polygonToLine } from '@/utilities';
+import { difference, intersect, lineIntersect, lineSlice, polygonToLine } from '@/utilities';
 import { DrawShape } from '@/types';
-
 import VectorSource from 'ol/source/Vector';
 import Draw, { createBox, createRegularPolygon } from 'ol/interaction/Draw';
 import Map from 'ol/Map';
@@ -102,14 +112,17 @@ import { OSM } from 'ol/source';
 import { defaults as defaultControls, ScaleLine } from 'ol/control';
 import { getArea, getLength } from 'ol/sphere';
 import { unByKey } from 'ol/Observable';
-import Feature from 'ol/Feature';
-import { Circle, Geometry, LineString, Polygon } from 'ol/geom';
-import { fromCircle } from 'ol/geom/Polygon';
+import Feature, { FeatureLike } from 'ol/Feature';
+import { Circle, Geometry, LineString, MultiPolygon, Polygon } from 'ol/geom';
+import { fromCircle, fromExtent } from 'ol/geom/Polygon';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
-import { GeoJSON } from 'ol/format';
+import { GeoJSON, KML } from 'ol/format';
 import Overlay from 'ol/Overlay';
 import { GeoJSONLineString, GeoJSONPolygon } from 'ol/format/GeoJSON';
+import { getCenter } from 'ol/extent';
 import ContaminationDefinition from '@/implementations/parameter/list/ContaminationDefinition';
+import IGeospatialFileProvider from '@/interfaces/providers/IGeospatialFileProvider';
+import { Coordinate } from 'ol/coordinate';
 
 @Component
 export default class CityMap extends Vue {
@@ -131,7 +144,7 @@ export default class CityMap extends Vue {
 
   map: Map | null = null;
 
-  mapTools = [
+  mapTools: { icon: string; shape: DrawShape; tooltip: string }[] = [
     {
       icon: 'mdi-cursor-move',
       shape: 'None',
@@ -154,17 +167,38 @@ export default class CityMap extends Vue {
     },
   ];
 
-  mapLocation = MapLocation.NewYorkCity;
+  mapLocation: MapLocation = MapLocation.NewYorkCity;
 
   mapLocations = MapLocation;
 
   formatter = new GeoJSON();
+
+  geospatialFileProvider = container.get<IGeospatialFileProvider>(TYPES.GeospatialFileProvider);
 
   sketch: Feature<Geometry> | null = null;
 
   get source(): VectorSource<Geometry> {
     return this.parameterValue.mapSource;
   }
+
+  styleFunction = (feature: FeatureLike) => {
+    const style = new Style({
+      fill: new Fill({
+        color: new CycleColorProvider().getNextColor(),
+      }),
+    });
+
+    if (feature.get('type') === 'building') {
+      style.setStroke(
+        new Stroke({
+          color: 'rgba(0, 0, 0, 1)',
+          width: 0.8,
+        }),
+      );
+    }
+
+    return style;
+  };
 
   subwayLineLengthsInPlume: number[] = [];
 
@@ -184,12 +218,16 @@ export default class CityMap extends Vue {
     return this.source.getFeatures().length > 0;
   }
 
+  get isUsingFile(): boolean {
+    return this.parameterValue.mapLocation === MapLocation.Custom;
+  }
+
   get viewOptions(): ViewOptions {
-    switch (this.mapLocation) {
+    switch (this.parameterValue.mapLocation) {
       case MapLocation.Boston:
         return bostonViewOptions;
-      case MapLocation.NewOrleans:
-        return newOrleansViewOptions;
+      // case MapLocation.NewOrleans:
+      //   return newOrleansViewOptions;
       case MapLocation.NewYorkCity:
         return nycViewOptions;
       case MapLocation.Philadelphia:
@@ -198,6 +236,14 @@ export default class CityMap extends Vue {
         return sanFranciscoViewOptions;
       case MapLocation.WashingtonDc:
         return dcViewOptions;
+      case MapLocation.Custom: {
+        // zoom & center get set manually
+        return {
+          ...customViewOptions,
+          zoom: 0,
+          center: [0, 0],
+        };
+      }
       default:
         return {};
     }
@@ -208,48 +254,51 @@ export default class CityMap extends Vue {
     if (this.draw) {
       this.map?.removeInteraction(this.draw);
     }
-    this.addInteraction();
-    this.initAreaTooltip();
-    this.source.clear();
+    this.source.clear(false);
     this.clearArea();
-    this.$emit('values-changed');
+    this.initAreaTooltip();
+    this.addInteraction();
+    this.$emit('param-changed');
   }
 
-  @Watch('mapLocation')
-  changeMapLocation(): void {
+  changeMapLocation(location: MapLocation): void {
+    this.parameterValue.mapLocation = location;
     this.map?.setView(new View(this.viewOptions));
     this.resetMapDrawings();
   }
 
-  async getBuildingAreasInPlume(polygon: Polygon): Promise<void> {
-    const buildingCoords = await this.cityDataProvider.getInstersectingBuildingCoordinates(polygon, this.mapLocation);
+  async getBuildingAreasInPlume(polygon: Polygon | MultiPolygon): Promise<void> {
+    const buildingCoords = await this.cityDataProvider.getInstersectingBuildingCoordinates(
+      polygon instanceof Polygon ? (polygon as Polygon) : fromExtent(polygon.getExtent()),
+      this.parameterValue.mapLocation,
+    );
+    let buildings: Feature<Geometry>[] = [];
     this.buildingAreasInPlume = buildingCoords.map((coords) => {
       const building = new Polygon([coords]);
 
-      const overlap = this.formatter.readFeature(
-        intersect(
-          this.formatter.writeGeometryObject(polygon) as GeoJSONPolygon,
-          this.formatter.writeGeometryObject(building) as GeoJSONPolygon,
-        ),
+      const buildingIntersect = intersect(
+        this.formatter.writeGeometryObject(polygon) as GeoJSONPolygon,
+        this.formatter.writeGeometryObject(building) as GeoJSONPolygon,
       );
-      // add building to map
-      overlap.setStyle(
-        new Style({
-          stroke: new Stroke({
-            color: 'rgba(0, 0, 0, 1)',
-            width: 0.8,
-          }),
-        }),
-      );
-      overlap.set('type', 'building');
-      this.source.addFeature(overlap);
 
+      if (!buildingIntersect) {
+        return 0;
+      }
+
+      const overlap = this.formatter.readFeature(buildingIntersect);
+      overlap.set('type', 'building');
+      buildings.push(overlap);
       return overlap ? this.getAreaOfPolygon(overlap.getGeometry()) : 0;
     });
+
+    this.source.addFeatures(buildings);
   }
 
   async getSubwayAreasInPlume(polygon: Polygon): Promise<void> {
-    const subwayCoords = await this.cityDataProvider.getIntersectingSubwayCoordinates(polygon, this.mapLocation);
+    const subwayCoords = await this.cityDataProvider.getIntersectingSubwayCoordinates(
+      polygon,
+      this.parameterValue.mapLocation,
+    );
     const plumeAsLine = polygonToLine(this.formatter.writeGeometryObject(polygon) as GeoJSONPolygon);
 
     this.subwayLineLengthsInPlume = subwayCoords.map((coords) => {
@@ -347,8 +396,6 @@ export default class CityMap extends Vue {
           }),
         );
 
-        this.initAreaTooltip();
-
         listener = this.sketch.getGeometry()?.on('change', ({ target }) => {
           let polygon = target as Polygon;
 
@@ -357,18 +404,18 @@ export default class CityMap extends Vue {
           }
 
           this.totalArea = this.getAreaOfPolygon(polygon);
-          this.updateAreaTooltip(polygon);
+          this.updateAreaTooltip(polygon.getInteriorPoint().getCoordinates());
         });
       });
       // { event: BaseEvent }: { event: Feature<Geometry> }
       this.draw.on(['drawend'], async (event) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const feature = (event as any).feature as Feature<Geometry>;
         feature.set('type', 'plume');
         const geom = feature.getGeometry() as Polygon | Circle;
         const polygon = geom.getType() === 'Circle' ? fromCircle(geom as Circle) : (geom as Polygon);
-        await this.getBuildingAreasInPlume(polygon);
-        await this.getSubwayAreasInPlume(polygon);
-        this.$emit('values-changed');
+        await Promise.all([this.getBuildingAreasInPlume(polygon), this.getSubwayAreasInPlume(polygon)]);
+        this.$emit('param-changed');
 
         // unset sketch
         this.sketch = null;
@@ -376,6 +423,23 @@ export default class CityMap extends Vue {
         unByKey(listener);
       });
     }
+  }
+
+  focusMapOnMultiPolygon(multi: MultiPolygon): void {
+    const fullExtent = multi.getExtent();
+    const center = getCenter(fullExtent);
+    const view = this.map?.getView();
+    const resolution = view?.getResolution();
+
+    this.map?.getView().fit(fullExtent);
+    this.map?.getView().setCenter(center);
+
+    const newResolution = view?.getResolution() ?? 0;
+    if (newResolution <= 0) {
+      view?.setResolution(resolution);
+    }
+
+    this.updateAreaTooltip(center);
   }
 
   clearArea(): void {
@@ -407,14 +471,18 @@ export default class CityMap extends Vue {
     }
 
     this.areaTooltipEl = document.createElement('div');
-    this.areaTooltipEl.classList.add('ol-tooltip', 'v-tooltip__content');
+    this.areaTooltipEl.classList.add('menuable__content__active', 'v-tooltip__content');
 
     this.areaTooltip = new Overlay({ element: this.areaTooltipEl });
     this.map?.addOverlay(this.areaTooltip);
   }
 
   initMap(): void {
-    const vector = new VectorLayer({ source: this.source });
+    const vector = new VectorLayer({
+      source: this.source,
+      declutter: true,
+      style: this.styleFunction,
+    });
 
     this.map = new Map({
       layers: [this.raster, vector],
@@ -423,42 +491,161 @@ export default class CityMap extends Vue {
       controls: defaultControls().extend([new ScaleLine({ units: 'metric' })]),
     });
 
-    if (this.parameterValue.areaContaminated.isSet) {
-      const feats = this.source.getFeatures();
-      feats.forEach((feature) => {
-        const type = feature.get('type');
-        if (type === 'plume') {
-          const geom = feature.getGeometry() as Polygon | Circle;
-          const extent = geom.getExtent();
-          this.totalArea = this.getAreaOfPolygon(
-            geom.getType() === 'Circle' ? fromCircle(geom as Circle) : (geom as Polygon),
-          );
-          this.map?.getView().fit(extent);
-          return;
-        }
-        if (type === 'building') {
-          const area = this.getAreaOfPolygon(feature.getGeometry() as Polygon);
-          this.buildingAreasInPlume.push(area);
-          return;
-        }
-        if (type === 'subway') {
-          const len = this.getLengthOfLine(feature.getGeometry() as LineString);
-          this.subwayLineLengthsInPlume.push(len);
-        }
-      });
+    this.initAreaTooltip();
+
+    const feats = this.source.getFeatures();
+    if (feats.length) {
+      if (this.parameterValue.mapLocation !== MapLocation.Custom) {
+        feats.forEach((feature) => {
+          const type = feature.get('type');
+          if (type === 'building') {
+            const area = this.getAreaOfPolygon(feature.getGeometry() as Polygon);
+            this.buildingAreasInPlume.push(area);
+            return;
+          }
+          if (type === 'plume') {
+            const geom = feature.getGeometry() as Polygon | Circle;
+            const extent = geom.getExtent();
+            this.totalArea = this.getAreaOfPolygon(
+              geom.getType() === 'Circle' ? fromCircle(geom as Circle) : (geom as Polygon),
+            );
+            this.map?.getView().fit(extent);
+            this.updateAreaTooltip(getCenter(extent));
+            return;
+          }
+          if (type === 'subway') {
+            const len = this.getLengthOfLine(feature.getGeometry() as LineString);
+            this.subwayLineLengthsInPlume.push(len);
+          }
+        });
+      } else {
+        const plumeGeoms: Polygon[] = [];
+        feats.forEach((feature) => {
+          const type = feature.get('type');
+          if (type === 'building') {
+            const area = this.getAreaOfPolygon(feature.getGeometry() as Polygon);
+            this.buildingAreasInPlume.push(area);
+            return;
+          }
+          if (type === 'plume') {
+            plumeGeoms.push(feature.getGeometry() as Polygon);
+          }
+        });
+        const multiGeometry = new MultiPolygon(plumeGeoms);
+        this.totalArea = this.getAreaOfPolygon(multiGeometry);
+        this.focusMapOnMultiPolygon(multiGeometry);
+      }
     }
   }
 
-  updateAreaTooltip(polygon: Polygon): void {
+  updateAreaTooltip(center: Coordinate): void {
     if (this.areaTooltipEl) {
-      this.areaTooltip?.setPosition(polygon.getInteriorPoint().getCoordinates());
-      this.areaTooltipEl.innerText = this.formattedArea;
+      this.areaTooltip?.setPosition(center);
+      this.areaTooltipEl.innerHTML = this.formattedArea.replace(/\^(.+)/, '<sup>$1</sup>');
     }
+  }
+
+  uploadFile(): void {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.addEventListener('change', async () => {
+      const file = input.files?.[0];
+      if (!file) {
+        return;
+      }
+
+      if (file.type !== 'application/zip' && !file.name.endsWith('.kml')) {
+        alert('Only kml or Shapefile zips are supported');
+        return;
+      }
+
+      let fileId = '';
+      try {
+        fileId = await this.geospatialFileProvider.uploadFileAsync(file);
+      } catch (error) {
+        alert('There was an error uploading the file');
+        return;
+      }
+
+      this.parameterValue.mapSource = new VectorSource({
+        url: this.geospatialFileProvider.getFileUrl(fileId),
+        format: new KML({ extractStyles: false }),
+        wrapX: false,
+      });
+      const vector = new VectorLayer({
+        source: this.parameterValue.mapSource,
+        declutter: true,
+        style: this.styleFunction,
+      });
+
+      this.map?.setLayers([this.raster, vector]);
+      this.drawShape = 'None';
+      this.changeMapLocation(MapLocation.Custom);
+
+      let skipEvent = false;
+
+      this.source.on('change', async () => {
+        if (skipEvent) {
+          return;
+        }
+
+        if (this.source && this.source.getState() === 'ready') {
+          skipEvent = true;
+
+          const features = this.source.getFeatures();
+          if (!features || !features.length) {
+            return;
+          }
+
+          const multiGeometry = new MultiPolygon([features[0].getGeometry() as Polygon]);
+          features[0].set('type', 'plume');
+
+          // remove any overlapping areas
+          for (let i = 1; i < features.length; i++) {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            const featureGeom = this.formatter.writeGeometryObject(features[i].getGeometry()!) as GeoJSONPolygon;
+            const existingGeom = this.formatter.writeGeometryObject(multiGeometry) as GeoJSONPolygon;
+
+            const overlap = intersect(featureGeom, existingGeom);
+            if (overlap) {
+              const diff = difference(featureGeom, existingGeom);
+
+              if (diff === null) {
+                // no area left, remove feature
+                features.splice(i, 1);
+                continue;
+              } else if (diff.geometry.type === 'Polygon') {
+                diff.geometry.coordinates = diff.geometry.coordinates.filter((coord) => coord.length > 0);
+                const newArea = this.formatter.readGeometry(diff.geometry) as Polygon;
+                multiGeometry.appendPolygon(newArea);
+                features[i].setGeometry(newArea);
+              }
+            } else {
+              // no overlap
+              multiGeometry.appendPolygon(this.formatter.readGeometry(featureGeom) as Polygon);
+            }
+
+            features[i].set('type', 'plume');
+          }
+
+          this.totalArea = this.getAreaOfPolygon(multiGeometry);
+          this.focusMapOnMultiPolygon(multiGeometry);
+
+          this.source.clear();
+          this.source.addFeatures(features);
+          await this.getBuildingAreasInPlume(multiGeometry);
+
+          skipEvent = false;
+          this.$emit('param-changed');
+        }
+      });
+    });
+
+    input.click();
   }
 
   mounted(): void {
     this.initMap();
-    this.initAreaTooltip();
     this.addInteraction();
   }
 }

@@ -3,7 +3,7 @@
     <v-container>
       <v-row v-if="shouldIncludeTitle || isChangeableDist" dense>
         <v-col cols="5" xl="6">
-          <v-card-title v-if="shouldIncludeTitle">{{ currentSelectedParameter.path }}</v-card-title>
+          <v-card-title v-if="shouldIncludeTitle">{{ path }}</v-card-title>
         </v-col>
 
         <v-col cols="3" xl="2" offset="1">
@@ -32,6 +32,11 @@
       </v-row>
 
       <v-divider color="grey" v-if="shouldIncludeTitle" />
+
+      <!-- <v-card-text v-if="shouldIncludeTitle">
+        <v-icon>help</v-icon>
+        {{ description }}
+      </v-card-text> -->
 
       <component
         :key="currentSelectedParameter.path"
@@ -74,6 +79,7 @@ import BimodalTruncatedNormalDisplay from '@/components/parameters/distributionD
 import EnumeratedFractionDisplay from '@/components/parameters/distributionDisplay/EnumeratedFractionDisplay.vue';
 import EnumeratedParameterDisplay from '@/components/parameters/distributionDisplay/EnumeratedParameterDisplay.vue';
 import TextValueDisplay from '@/components/parameters/distributionDisplay/TextValueDisplay.vue';
+import FrequencyValueDisplay from '@/components/parameters/distributionDisplay/FrequencyValueDisplay.vue';
 import ParameterWrapper from '@/implementations/parameter/ParameterWrapper';
 import { changeableDistributionTypes, nonLogDistributionTypes } from '@/mixin/parameterMixin';
 import container from '@/dependencyInjection/config';
@@ -110,6 +116,7 @@ import { ParameterSelectionStoreGetters, ParameterSelectionStoreMutations } from
     ContaminationDefinitionDisplay,
     DistributionChart,
     TextValueDisplay,
+    FrequencyValueDisplay,
   },
 })
 export default class ParameterDistributionSelector extends Vue {
@@ -125,6 +132,13 @@ export default class ParameterDistributionSelector extends Vue {
   resetCurrentJobRequest!: () => void;
 
   parameterConverter = container.get<IParameterConverter>(TYPES.ParameterConverter);
+
+  get path(): string {
+    // remove path if Extent of Contamination parameter
+    return this.currentSelectedParameter.path.includes('Extent of Contamination')
+      ? this.currentSelectedParameter.name
+      : this.currentSelectedParameter.path;
+  }
 
   @Watch('currentSelectedParameter', { deep: true })
   onCurrentSelectedParameterChange(newValue: ParameterWrapper, oldValue: ParameterWrapper): void {
@@ -151,6 +165,10 @@ export default class ParameterDistributionSelector extends Vue {
 
   get isChangeableDist(): boolean {
     return changeableDistributionTypes.find((p) => p === this.currentSelectedParameter.type) !== undefined;
+  }
+
+  get description(): string {
+    return this.currentSelectedParameter.baseline.metaData.description ?? '';
   }
 
   get shouldIncludeTitle(): boolean {

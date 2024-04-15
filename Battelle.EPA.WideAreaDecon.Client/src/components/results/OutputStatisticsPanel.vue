@@ -9,12 +9,17 @@
           <template v-slot:default v-if="result">
             <thead>
               <tr>
-                <th colspan="2" class="text-body-1 text-left">{{ result }}</th>
+                <th colspan="2" class="text-body-1 text-left">
+                  {{ result }}
+                  <span v-if="getUnitsByIndex(index)" v-html="getUnitsByIndex(index)" />
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(value, detail) of detailsWithoutValues[index]" :key="detail">
-                <td>{{ resultProvider.convertCamelToTitleCase(detail) }}</td>
+                <td>
+                  {{ resultProvider.convertCamelToTitleCase(detail) }}
+                </td>
                 <td class="text-right">{{ resultProvider.formatNumber(value) }}</td>
               </tr>
             </tbody>
@@ -40,7 +45,7 @@ export default class OutputStatisticsPanel extends Vue {
 
   @Prop() results!: { x: Result | null; y: Result[] };
 
-  private resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
+  resultProvider = container.get<IJobResultProvider>(TYPES.JobResultProvider);
 
   get resultsFormatted(): (string | null)[] {
     return [
@@ -58,6 +63,16 @@ export default class OutputStatisticsPanel extends Vue {
 
   get detailsWithoutValues(): ({ mean: number; minimum: number; maximum: number; stdDev: number } | null)[] {
     return [this.details.x, ...this.details.y].map((d) => (d ? omit(d, ['values']) : d));
+  }
+
+  getUnitsByIndex(index: number): string | undefined {
+    const result = index === 0 && this.results.x !== null ? this.results.x : this.results.y[index - 1];
+    if (result === this.results.x && index > 0) {
+      return;
+    }
+
+    const units = this.resultProvider.getUnitsAsHtml(result);
+    return units ? `(${units})` : undefined;
   }
 }
 </script>

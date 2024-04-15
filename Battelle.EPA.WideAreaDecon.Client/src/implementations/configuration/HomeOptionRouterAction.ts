@@ -12,7 +12,10 @@ export default class HomeOptionRouterAction implements IHomeOptionAction {
     return this.nextRouteName;
   }
 
-  constructor(nextRouteName: string) {
+  initialActionAsync: (() => Promise<void>) | undefined;
+
+  constructor(nextRouteName: string, initialAction: (() => Promise<void>) | undefined = undefined) {
     this.nextRouteName = nextRouteName;
+    this.initialActionAsync = initialAction;
   }
 }

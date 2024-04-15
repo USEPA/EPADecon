@@ -20,65 +20,65 @@ namespace Battelle.EPA.WideAreaDecon.Model.Services.Scenario
         public ElementLagCalculator Calculator_elementLag { get; set; }
 
         public ParameterArrayClearanceSamplingCalculatorFactory(
-            ClearanceSamplingParameters csParameters,
+            ClearanceSamplingParameters vsParameters,
             CostParameters costParameters)
         {
             Calculator_supplies = new SuppliesCostCalculator(
-                csParameters.surfaceAreaPerWipe,
-                csParameters.surfaceAreaPerHepa,
-                csParameters.hepaSocksPerHrPerTeam,
-                costParameters.wipeCost,
-                costParameters.hepaCost,
-                costParameters.vacuumRentalCostPerDay
+                vsParameters.SurfaceAreaPerWipe,
+                vsParameters.SurfaceAreaPerHepa,
+                vsParameters.HepaSocksPerHrPerTeam,
+                costParameters.WipeCost,
+                costParameters.HepaCost,
+                costParameters.VacuumRentalCostPerDay
             );
 
             Calculator_laborDays = new LaborDaysCalculator(
-                csParameters.surfaceAreaPerWipe,
-                csParameters.surfaceAreaPerHepa,
-                csParameters.wipesPerHrPerTeam,
-                csParameters.hepaSocksPerHrPerTeam
+                vsParameters.SurfaceAreaPerWipe,
+                vsParameters.SurfaceAreaPerHepa,
+                vsParameters.WipesPerHrPerTeam,
+                vsParameters.HepaSocksPerHrPerTeam
             );
 
             Calculator_workdays = new WorkDaysCalculator(
-                csParameters.entryDuration,
-                csParameters.entryPrepTime,
-                csParameters.deconLineTime,
-                csParameters.postEntryRest
+                vsParameters.EntryDuration,
+                vsParameters.EntryPrepTime,
+                vsParameters.DeconLineTime,
+                vsParameters.PostEntryRest
             );
 
             Calculator_onsiteDays = new OnsiteDaysCalculator(
-                csParameters.personnelOverheadDays
+                vsParameters.PersonnelOverheadDays
             );
 
             Calculator_elementLag = new ElementLagCalculator(
-                csParameters.surfaceAreaPerWipe,
-                csParameters.surfaceAreaPerHepa,
-                csParameters.labUptimesHours,
-                csParameters.samplePackageTime,
-                csParameters.sampleShippingTime,
-                csParameters.labThroughput
+                vsParameters.SurfaceAreaPerWipe,
+                vsParameters.SurfaceAreaPerHepa,
+                vsParameters.LabUptimesHours,
+                vsParameters.SamplePackageTime,
+                vsParameters.SampleShippingTime,
+                vsParameters.LabThroughput
             );
 
             Calculator_labor = new LaborCostCalculator(
-                csParameters.personnelReqPerTeam,
-                costParameters.hourlyRate
+                vsParameters.PersonnelReqPerTeam,
+                costParameters.HourlyRate
             );
 
             Calculator_analysis = new AnalysisQuantityCostCalculator(
-                csParameters.surfaceAreaPerWipe,
-                csParameters.surfaceAreaPerHepa,
-                costParameters.wipeAnalysisCost,
-                costParameters.hepaAnalysisCost
+                vsParameters.SurfaceAreaPerWipe,
+                vsParameters.SurfaceAreaPerHepa,
+                costParameters.WipeAnalysisCost,
+                costParameters.HepaAnalysisCost
             );
 
             Calculator_entEx = new EntrancesExitsCostCalculator(
-                csParameters.personnelReqPerTeam,
-                csParameters.respiratorsPerPerson,
-                costParameters.respiratorCost,
-                costParameters.ppeCost,
-                csParameters.entryDuration,
-                costParameters.entryPrepCost,
-                costParameters.deconLineCost
+                vsParameters.PersonnelReqPerTeam,
+                vsParameters.RespiratorsPerPerson,
+                costParameters.RespiratorCost,
+                costParameters.PpeCost,
+                vsParameters.EntryDuration,
+                costParameters.EntryPrepCost,
+                costParameters.DeconLineCost
             );
         }
 

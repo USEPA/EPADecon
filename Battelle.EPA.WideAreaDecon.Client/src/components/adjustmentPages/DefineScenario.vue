@@ -1,7 +1,7 @@
 <template>
   <v-container :fill-height="!!scenarioDefinitionMode" fluid>
     <template v-if="!scenarioDefinitionMode">
-      <p class="text-h5 text-center">Contamination Definition Mode:</p>
+      <p class="text-h5 text-center">Choose Contamination Definition Type:</p>
 
       <v-row justify="center">
         <v-card v-for="option in options" :key="option.title" flat class="pa-5">
@@ -75,16 +75,16 @@ export default class DefineScenario extends Vue {
   // TODO move to provider
   options = [
     {
-      title: 'Geospatial Definition',
+      title: 'Map-Based',
       image: 'MapPlume',
-      helpMessage: 'Draw plumes on a map to define the area contaminated and loading',
+      helpMessage: 'Draw plumes on a map or upload shapefiles to define the area contaminated and loading',
       helpActive: false,
       value: 'geospatial',
     },
     {
-      title: 'Manual Definition',
+      title: 'Numerical Inputs',
       image: 'CreateScenario', // TODO find different image
-      helpMessage: 'Manually define the total area contaminated and loading',
+      helpMessage: 'Use numerical inputs to define the total area contaminated and loading',
       helpActive: false,
       value: 'manual',
     },

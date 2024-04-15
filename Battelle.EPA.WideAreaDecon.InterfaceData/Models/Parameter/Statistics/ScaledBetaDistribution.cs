@@ -39,10 +39,10 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
 
         public static ScaledBetaDistribution FromExcel(ParameterMetaData metaData, IRow row)
         {
-            var minimum = typeof(ScaledBetaDistribution).GetCellValue(nameof(Min), row)?.ConvertToOptionalDouble();
-            var maximum = typeof(ScaledBetaDistribution).GetCellValue(nameof(Max), row)?.ConvertToOptionalDouble();
-            var alpha = typeof(ScaledBetaDistribution).GetCellValue(nameof(Alpha), row)?.ConvertToOptionalDouble();
-            var beta = typeof(ScaledBetaDistribution).GetCellValue(nameof(Beta), row)?.ConvertToOptionalDouble();
+            var minimum = typeof(ScaledBetaDistribution).GetCellValue(nameof(Min), row)?.ConvertToStepRoundedAndOptionalDouble(metaData);
+            var maximum = typeof(ScaledBetaDistribution).GetCellValue(nameof(Max), row)?.ConvertToStepRoundedAndOptionalDouble(metaData);
+            var alpha = typeof(ScaledBetaDistribution).GetCellValue(nameof(Alpha), row)?.ConvertToStepRoundedAndOptionalDouble(metaData);
+            var beta = typeof(ScaledBetaDistribution).GetCellValue(nameof(Beta), row)?.ConvertToStepRoundedAndOptionalDouble(metaData);
 
             if (minimum < metaData.LowerLimit || minimum > metaData.UpperLimit)
             {
@@ -85,6 +85,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Models.Parameter.Statistics
         }
 
         public string GetTextValue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FrequencyValueType GetFrequencyValue()
         {
             throw new NotImplementedException();
         }

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
 using Battelle.EPA.WideAreaDecon.API.Interfaces;
 using Battelle.EPA.WideAreaDecon.API.Services;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
-using Battelle.EPA.WideAreaDecon.API.Enumeration.Job;
+using System;
+using System.Threading.Tasks;
 
 namespace Battelle.EPA.WideAreaDecon.API.Hubs
 {
@@ -28,22 +28,14 @@ namespace Battelle.EPA.WideAreaDecon.API.Hubs
         /// <returns></returns>
         public async Task JoinWatchJobGroup(Guid jobId)
         {
-            try
-            {
-                var job = _jobManager.GetJob(jobId);
+            var job = _jobManager.GetJob(jobId);
 
-                if (job == null)
-                {
-                    return;
-                }
-
-                await Groups.AddToGroupAsync(Context.ConnectionId, $"{jobId}");
-                //await Clients.Group($"{jobId}").JobStatusChanged(jobId, job.Status);
-            }
-            catch (Exception e)
+            if (job == null)
             {
-                Console.WriteLine(e);
+                return;
             }
+
+            await Groups.AddToGroupAsync(Context.ConnectionId, $"{jobId}");
         }
 
         /// <summary>
@@ -53,14 +45,7 @@ namespace Battelle.EPA.WideAreaDecon.API.Hubs
         /// <returns></returns>
         public async Task LeaveWatchJobGroup(Guid jobId)
         {
-            try
-            {
-                await Groups.RemoveFromGroupAsync(Context.ConnectionId, $"{jobId}");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, $"{jobId}");
         }
 
         /// <summary>
@@ -70,16 +55,8 @@ namespace Battelle.EPA.WideAreaDecon.API.Hubs
         /// <param name="newProgress">The new progress value</param>
         public void UpdateJobProgress(Guid jobId, double newProgress)
         {
-            try
-            {
-                var oldJob = _jobManager.GetJob(jobId);
-                oldJob.Progress = newProgress;
-                // TODO add update progress method to job manager
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            var oldJob = _jobManager.GetJob(jobId);
+            oldJob.Progress = newProgress;
         }
 
         /// <summary>
@@ -89,23 +66,15 @@ namespace Battelle.EPA.WideAreaDecon.API.Hubs
         /// <param name="newJobStatus">The new job status</param>
         public void UpdateJobStatus(Guid jobId, JobStatus newJobStatus)
         {
-            try
+            var oldJob = _jobManager.GetJob(jobId);
+            var oldJobStatus = oldJob.Status;
+            if (oldJobStatus == newJobStatus)
             {
-                var oldJob = _jobManager.GetJob(jobId);
-                var oldJobStatus = oldJob.Status;
-                if (oldJobStatus == newJobStatus)
-                {
-                    return;
-                }
-                _statusUpdater.UpdateJobStatus(oldJob, newJobStatus);
+                return;
+            }
+            _ = _statusUpdater.UpdateJobStatus(oldJob, newJobStatus);
 
-                //_jobManager.UpdateJob(oldJob);
-                Clients.Group($"{jobId}").JobStatusChanged(jobId, newJobStatus);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            Clients.Group($"{jobId}").JobStatusChanged(jobId, newJobStatus);
         }
     }
 }

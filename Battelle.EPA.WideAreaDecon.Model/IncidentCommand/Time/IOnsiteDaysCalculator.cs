@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Battelle.EPA.WideAreaDecon.Model.Domain;
+using System.Collections.Generic;
 
 namespace Battelle.EPA.WideAreaDecon.Model.IncidentCommand.Time
 {
     public interface IOnsiteDaysCalculator
     {
-        public double CalculateOnSiteDays(double onsiteDaysCS, double onsiteDaysSR, double onsiteDaysDC, double onsiteDaysCLS, double onsiteDaysWS);
+        public double CalculateOnSiteDays(List<Assignment> assignments);
     }
 }

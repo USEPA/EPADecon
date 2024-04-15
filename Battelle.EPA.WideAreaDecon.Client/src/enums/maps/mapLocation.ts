@@ -4,8 +4,9 @@ enum MapLocation {
   WashingtonDc = 'Washington DC',
   Boston = 'Boston',
   Philadelphia = 'Philadelphia',
-  NewOrleans = 'New Orleans',
+  // NewOrleans = 'New Orleans',
   SanFrancisco = 'San Francisco',
+  Custom = 'Custom',
 }
 
 export default MapLocation;
