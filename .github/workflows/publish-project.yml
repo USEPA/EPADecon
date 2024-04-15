@@ -9,7 +9,11 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: pwsh
 
     steps:
     - uses: actions/checkout@v4
@@ -34,14 +38,14 @@ jobs:
       run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj --no-build -c Release
 
     - name: Copy Build Files
-      run: cp -R ./Battelle.EPA.WideAreaDecon.API/bin/Release/net6.0/gdal ./Battelle.EPA.WideAreaDecon.API/bin/Release/net6.0/Battelle.RiskAssessment.Common.Statistics.Native.* ./publish
+      run: cp -R ./Battelle.EPA.WideAreaDecon.API/bin/Release/net6.0/gdal,./Battelle.EPA.WideAreaDecon.API/bin/Release/net6.0/Battelle.RiskAssessment.Common.Statistics.Native.* ./publish
 
     - name: Test Typescript
       working-directory: Battelle.EPA.WideAreaDecon.Client
       run: npm run test
 
     - name: Create Archive
-      run: powershell Compress-Archive -Path ./publish/* -DestinationPath ./Battelle.EPA.WideAreaDecon.zip
+      run: Compress-Archive -Path ./publish/* -DestinationPath ./Battelle.EPA.WideAreaDecon.zip
 
     - name: Create Installer
       run: ./InstallerFiles/Battelle.Common.Utilities.ElectronAppInstallerCreator.exe ./InstallerFiles/CreateInstallerDeconTool.json
