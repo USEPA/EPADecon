@@ -14,12 +14,11 @@ The Wide-Area Decontamination Tool (WADT) estimates the cost and time associated
 
 ## Software Dependencies
 
-- ASP.Net Core 6.0 (Visual Studio 2022)
-- Node (https://nodejs.org/en/download/)
-
+- [ASP.Net Core 6.0 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-aspnetcore-6.0.32-windows-hosting-bundle-installer)
+  
 ## Running the Application
 
-An executable will be delivered which runs the application.
+Each release's assets will contain an executable that can be downloaded and run. [Click here](https://github.com/USEPA/EPADecon/releases/latest) to access the latest release. Please note that the software dependenices listed above will need to be installed for the application to work.
 
 # Contribute
 
