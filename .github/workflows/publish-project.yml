@@ -29,13 +29,13 @@ jobs:
         node-version: 20.x
 
     - name: Build
-      run: dotnet build Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj -c Release -r win-x64
+      run: dotnet build Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj -c Release -r win-x64 --self-contained
 
     - name: Test .NET
       run: dotnet test Battelle.EPA.WideAreaDecon.API.Tests/Battelle.EPA.WideAreaDecon.API.Tests.csproj --no-build -c Release --verbosity normal
     
     - name: Publish
-      run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj --no-build -c Release -o ./publish -r win-x64
+      run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj --no-build -c Release -o ./publish -r win-x64 --self-contained
 
     - name: Copy Build Files
       run: cp -R ./Battelle.EPA.WideAreaDecon.API/bin/Release/net6.0/gdal, ./Battelle.EPA.WideAreaDecon.API/bin/Release/net6.0/Battelle.RiskAssessment.Common.Statistics.Native.*  ./publish
