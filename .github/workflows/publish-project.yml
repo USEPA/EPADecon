@@ -38,7 +38,7 @@ jobs:
       run: dotnet publish Battelle.EPA.WideAreaDecon.API/Battelle.EPA.WideAreaDecon.API.csproj --no-build -c Release -o ./publish -r win-x64 --self-contained
 
     - name: Copy Build Files
-      run: cp -R ./Battelle.EPA.WideAreaDecon.API/bin/Release/net6.0/gdal, ./Battelle.EPA.WideAreaDecon.API/bin/Release/net6.0/Battelle.RiskAssessment.Common.Statistics.Native.*  ./publish
+      run: cp -R ./Battelle.EPA.WideAreaDecon.API/bin/Release/net6.0/win-x64/gdal, ./Battelle.EPA.WideAreaDecon.API/bin/Release/net6.0/win-x64/Battelle.RiskAssessment.Common.Statistics.Native.*  ./publish
 
     - name: Test Typescript
       working-directory: Battelle.EPA.WideAreaDecon.Client
