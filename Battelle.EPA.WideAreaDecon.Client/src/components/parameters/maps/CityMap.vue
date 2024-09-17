@@ -554,7 +554,7 @@ export default class CityMap extends Vue {
         return;
       }
 
-      if (file.type !== 'application/zip' && !file.name.endsWith('.kml')) {
+      if (file.type !== 'application/zip' && file.type !== 'application/x-zip-compressed' && !file.name.endsWith('.kml')) {
         alert('Only kml or Shapefile zips are supported');
         return;
       }
