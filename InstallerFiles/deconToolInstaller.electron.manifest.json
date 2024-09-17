@@ -1,6 +1,6 @@
 {
   "executable": "Battelle.EPA.WideAreaDecon.API",
-  "description": "Wide Area Decontamination Tool",
+  "description": "Wide-Area Biodecon Resource Estimation Tool",
   "name": "wide-area-decon",
   "author": "Battelle Memorial Institute",
   "splashscreen": {
@@ -10,9 +10,9 @@
   "cacheDirectory": "resources/cache",
   "build": {
     "appId": "com.electron.Battelle.WideAreaDeconTool.app",
-    "productName": "Wide Area Decon",
+    "productName": "Wide-Area Biodecon Resource Estimation Tool",
     "copyright": "Copyright 2023",
-    "buildVersion": "1.1.0",
+    "buildVersion": "1.1.1",
     "compression": "maximum",
     "directories": {
       "output": "",
