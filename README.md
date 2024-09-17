@@ -1,6 +1,6 @@
 # Introduction
 
-The Wide-Area Decontamination Tool (WADT) estimates the cost and time associated with a remediation effort following the release of a biological agent in human-usable indoor, outdoor, and underground areas. The WADT utilizes a vairety of equations to calculate the cost and time associated with seven components of the decontamination process, including:
+The Wide-Area Biodecon Resource Estimation Tool (WABRET) estimates the cost and time associated with a remediation effort following the release of a biological agent in human-usable indoor, outdoor, and underground areas. The WABRET utilizes a vairety of equations to calculate the cost and time associated with seven components of the decontamination process, including:
   1. Incident Command: the oversight of all personnel and processes
   2. Characterization Sampling: the initial sampling of surfaces to determine the contaminant levels present before decontamination
   3. Source Reduction: the removal of material from the site area prior to decontamination to save the cost of decontaminating said materials
@@ -97,7 +97,7 @@ To ensure consistency in refactoring and linting, please ensure your Visual Stud
 
 ## Running the Application in Development
 
-The wide area decontamination tool is an ASP.Net Core application with a VueJs TypeScript frontend.
+The Wide-Area Biodecon Resource Estimation Tool is an ASP.Net Core application with a VueJs TypeScript frontend.
 
 Ensure that all dependencies listed above are installed and configured appropriately. When first getting started with the application, clone the repository in the folder of your choice. This initial step should only be performed once:
 
