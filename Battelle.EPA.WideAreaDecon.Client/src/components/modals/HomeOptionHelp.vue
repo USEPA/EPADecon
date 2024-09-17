@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" :max-width="maxWidth">
     <template v-slot:activator="{ on }">
-      <v-icon v-on="on" @click="selectedHelpItem = item">help</v-icon>
+      <v-icon v-on="on" @click="selectedHelpItem = item">mdi-help-circle</v-icon>
     </template>
     <v-card class="mx-auto">
       <v-system-bar class="mb-3" color="primary" height="60">
