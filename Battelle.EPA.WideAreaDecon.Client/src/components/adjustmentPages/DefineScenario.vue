@@ -12,7 +12,7 @@
 
             <v-dialog v-model="option.helpActive" max-width="600">
               <template v-slot:activator="{ on }">
-                <v-icon v-on="on">help</v-icon>
+                <v-icon v-on="on">mdi-help-circle</v-icon>
               </template>
               <v-card class="mx-auto">
                 <v-system-bar class="mb-3" color="primary" height="60">
