@@ -41,6 +41,12 @@
   <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Battelle.EPA.WideAreaDecon.API.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
   <Target Name="DeleteNPMBuild" AfterTargets="AfterClean">
     <Exec WorkingDirectory="$(SpaRoot)" Command="rmdir /S /Q dist" />
   </Target>
