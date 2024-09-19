@@ -21,7 +21,7 @@ export default class Weibull implements IUnivariateParameter {
   }
 
   get max(): number {
-    return this.metaData.lowerLimit;
+    return this.metaData.upperLimit;
   }
 
   // What is the difference between calculateMean and the mean member getter

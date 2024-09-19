@@ -74,8 +74,6 @@ export default class WeibullDisplay extends BaseDistributionDisplay {
     return this.parameterValue as Weibull;
   }
 
-  sliderValue = [0, 0];
-
   sliderLambda = 0;
 
   sliderK = 0;
@@ -94,20 +92,6 @@ export default class WeibullDisplay extends BaseDistributionDisplay {
     return super.min <= 1 ? 1 + this.step : super.min;
   }
 
-  @Watch('sliderValue')
-  onSliderValueChanged(newValue: number[]): void {
-    if (this.ignoreNextValueSliderChange) {
-      this.ignoreNextValueSliderChange = false;
-      return;
-    }
-    if (newValue[0] > this.sliderLambda) {
-      [this.sliderLambda] = newValue;
-    }
-    if (newValue[1] < this.sliderLambda) {
-      [, this.sliderLambda] = newValue;
-    }
-  }
-
   @Watch('sliderLambda')
   onSliderLambdaChanged(newValue: number): void {
     if (this.ignoreNextLambdaSliderChange) {
@@ -117,12 +101,6 @@ export default class WeibullDisplay extends BaseDistributionDisplay {
 
     this.textLambda = newValue.toString();
     this.$set(this.parameterValue, 'lambda', newValue);
-    if (newValue < this.sliderValue[0]) {
-      this.sliderValue = [newValue, this.sliderValue[1]];
-    }
-    if (newValue > this.sliderValue[1]) {
-      this.sliderValue = [this.sliderValue[0], newValue];
-    }
   }
 
   @Watch('sliderK')
@@ -148,11 +126,6 @@ export default class WeibullDisplay extends BaseDistributionDisplay {
     } else if (!this.parameterValue.isSet && !castComponent.validate(true)) {
       this.textLambda = '';
     } else if (castComponent.validate && castComponent.validate(true)) {
-      if (value >= this.sliderValue[1]) {
-        this.sliderValue = [this.sliderValue[0], value];
-      } else if (value <= this.sliderValue[0]) {
-        this.sliderValue = [value, this.sliderValue[1]];
-      }
       this.sliderLambda = value;
     } else {
       this.textLambda = this.sliderLambda.toString();

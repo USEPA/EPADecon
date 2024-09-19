@@ -112,7 +112,7 @@ export default class LogNormalDisplay extends BaseDistributionDisplay {
     }
 
     this.textStd = newValue.toString();
-    this.$set(this.parameterValue, 'mean', newValue);
+    this.$set(this.parameterValue, 'stdDev', newValue);
   }
 
   updateOnTextMeanChange(): void {
