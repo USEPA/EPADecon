@@ -27,7 +27,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Parameter
 
             foreach (SurfaceType surface in treatmentMethods.Keys.ToList())
             {
-                string methodName = treatmentMethods[surface].GetStringValue();
+                var method = treatmentMethods[surface];
+                if (method == ApplicationMethod.None)
+                {
+                    continue;
+                }
+
+                var methodName = method.GetStringValue();
                 var metaDataName = methodName + " Efficacy by Surface";
 
                 try

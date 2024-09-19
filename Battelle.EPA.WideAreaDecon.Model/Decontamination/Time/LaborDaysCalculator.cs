@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using Battelle.EPA.WideAreaDecon.InterfaceData.Models.Scenario;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Time
 {
@@ -24,6 +24,13 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Time
             _treatmentDaysPerAm = treatmentDaysPerAm;
             _efficacyCalculator = efficacyCalculator;
             _surfaceSporeLoading = initialSporeLoading;
+
+            // remove surfaces with "None" as application method
+            foreach (var (surface, _) in _appMethodBySurfaceType.Where(surfaceMethodPair => surfaceMethodPair.Value == ApplicationMethod.None))
+            {
+                //_appMethodBySurfaceType.Remove(x.Key);
+                _surfaceSporeLoading.Remove(surface);
+            }
         }
 
         public DecontaminationTreatmentInformation CalculateLaborDays()
@@ -46,6 +53,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Time
 
                 foreach (var surface in surfaces)
                 {
+
                     // Increment the number of decon treatments needed for each contaminated surface
                     surfaceTreatments[surface] += 1;
 
