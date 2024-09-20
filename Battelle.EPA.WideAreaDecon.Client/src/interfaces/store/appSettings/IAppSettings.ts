@@ -10,4 +10,5 @@ export default interface IAppSettings {
   applicationVersion: string;
   publisherName: string;
   errorIcon: string;
+  disclaimerAcknowledged: boolean;
 }

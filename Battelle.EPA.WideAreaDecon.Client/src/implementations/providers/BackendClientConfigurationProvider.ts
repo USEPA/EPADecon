@@ -7,10 +7,15 @@ import axios from 'axios';
 
 @injectable()
 export default class BackendClientConfigurationProvider implements IClientConfigurationProvider {
-  // eslint-disable-next-line class-methods-use-this
+  private url = "/api/ClientConfiguration";
+  
   getClientConfigurationAsync(): Promise<IClientConfiguration> {
     return axios
-      .get<IClientConfiguration>('/api/ClientConfiguration')
+      .get<IClientConfiguration>(this.url)
       .then<IClientConfiguration>((response) => response.data);
+  }
+
+  getReport(): Promise<string> {
+    return axios.get<string>(`${this.url}/report`).then<string>((response) => response.data);
   }
 }

@@ -11,7 +11,7 @@
     <Description>Application to calculate the decontamination costs associated with a wide area contamination event</Description>
     <AssemblyName>Battelle.EPA.WideAreaDecon.API</AssemblyName>
     <RootNamespace>Battelle.EPA.WideAreaDecon.API</RootNamespace>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="7.30.2" />
@@ -37,6 +37,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\README.md" />
+	<None Include="Assets\WIDE-AREA_DECONTAMINATION_TOOL_REPORT 08122022_508.pdf" Link="Report%(Extension)">
+		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</None>
   </ItemGroup>
   <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Battelle.EPA.WideAreaDecon.API.xml</DocumentationFile>
@@ -101,6 +104,9 @@
     <Content Update="inputFileConfiguration.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
   </ItemGroup>
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="Schema\appsettings.schema.json" schema_4appsettings_1schema_1json__JsonSchema="http://json-schema.org/draft-04/schema#" /></VisualStudio></ProjectExtensions>
 </Project>

@@ -28,7 +28,6 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Time
             // remove surfaces with "None" as application method
             foreach (var (surface, _) in _appMethodBySurfaceType.Where(surfaceMethodPair => surfaceMethodPair.Value == ApplicationMethod.None))
             {
-                //_appMethodBySurfaceType.Remove(x.Key);
                 _surfaceSporeLoading.Remove(surface);
             }
         }
