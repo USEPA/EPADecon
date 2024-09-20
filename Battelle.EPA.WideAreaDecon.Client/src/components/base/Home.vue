@@ -36,9 +36,11 @@
                   </v-card>
                 </v-container>
               </v-card>
+            </v-row>
 
+            <v-row align="center" justify="center">
               <v-card>
-                <v-card-title class="justify-center">More Information:</v-card-title>
+                <v-card-title class="subtitle-1">More Information:</v-card-title>
                 <v-card-actions class="justify-space-between">
                   <v-btn @click="openReport" outlined text color="primary darken-1"> View report </v-btn>
                   <v-btn @click="glossaryIsVisible = true" outlined text color="primary darken-1"
@@ -47,12 +49,6 @@
                 >
               </v-card>
             </v-row>
-
-            <v-row align="center" justify="center">
-              
-            </v-row>
-
-            <v-row align="center" justify="center"> </v-row>
           </v-container>
 
           <v-row v-else align="center" justify="center">
