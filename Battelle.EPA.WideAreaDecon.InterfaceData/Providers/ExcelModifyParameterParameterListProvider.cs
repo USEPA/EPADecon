@@ -48,7 +48,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Providers
 
             // If the file exists, open a new file stream to open the excel workbook
             using var stream = new FileStream(FileName, FileMode.Open, FileAccess.Read) { Position = 0 };
-            XSSFWorkbook xssWorkbook = new XSSFWorkbook(stream);
+            var xssWorkbook = new XSSFWorkbook(stream);
 
             // Building Treatment Methods Enumerated Parameter
             var treatmentMethods = new List<IParameter>();
@@ -70,6 +70,11 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Providers
             var efficacyParameters = new List<IParameter>();
             foreach (var method in Enum.GetValues(typeof(ApplicationMethod)).Cast<ApplicationMethod>())
             {
+                if (method == ApplicationMethod.None)
+                {
+                    continue;
+                }
+
                 var methodSheet = xssWorkbook.GetSheet(method.GetStringValue());
                 var rows = new Dictionary<IRow, ParameterMetaData>();
                 for (var i = 1; i <= methodSheet.LastRowNum; i++)

@@ -10,6 +10,7 @@ enum ApplicationMethod {
   liquidSuspension = 'Liquid Suspension',
   liquidWipe = 'Liquid Wipe',
   physical = 'Physical',
+  none = 'None',
 }
 
 export default ApplicationMethod;

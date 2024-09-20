@@ -21,7 +21,7 @@ const pageRequiresResults = (to: Route, from: Route, next: NavigationGuardNext) 
   }
 };
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -68,3 +68,13 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, _, next) => {
+  if (store.state.APPSETTINGS.disclaimerAcknowledged || to.name === 'home') {
+    next();
+  } else {
+    next({ name: 'home' });
+  }
+});
+
+export default router;

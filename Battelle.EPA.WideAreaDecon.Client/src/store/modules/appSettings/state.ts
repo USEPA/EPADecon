@@ -14,6 +14,8 @@ const state: IAppSettings = {
   navigationItems: [],
 
   applicationActions: [],
+
+  disclaimerAcknowledged: false,
 };
 
 export default state;

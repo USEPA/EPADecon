@@ -1,44 +1,46 @@
-﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.Serialization;
 
 namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ApplicationMethod
     {
-        [EnumMember(Value = "Aerosol")] 
+        [EnumMember(Value = "Aerosol")]
         Aerosol,
 
-        [EnumMember(Value = "Foam Spray")] 
+        [EnumMember(Value = "Foam Spray")]
         FoamSpray,
 
-        [EnumMember(Value = "Fogging")] 
+        [EnumMember(Value = "Fogging")]
         Fogging,
 
-        [EnumMember(Value = "Fumigation")] 
+        [EnumMember(Value = "Fumigation")]
         Fumigation,
 
-        [EnumMember(Value = "Gel")] 
+        [EnumMember(Value = "Gel")]
         Gel,
 
         [EnumMember(Value = "Liquid Immersion")]
         LiquidImmersion,
 
-        [EnumMember(Value = "Liquid Spray")] 
+        [EnumMember(Value = "Liquid Spray")]
         LiquidSpray,
 
         [EnumMember(Value = "Liquid Suspension")]
         LiquidSuspension,
 
-        [EnumMember(Value = "Liquid Wipe")] 
+        [EnumMember(Value = "Liquid Wipe")]
         LiquidWipe,
 
-        [EnumMember(Value = "Physical")] 
-        Physical
+        [EnumMember(Value = "Physical")]
+        Physical,
+
+        [EnumMember(Value = "None")]
+        None,
     }
 
     public static class ApplicableApplicationMethodHelper
@@ -55,7 +57,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> IndoorCeilingsMethods = new List<ApplicationMethod> { 
+        public static readonly List<ApplicationMethod> IndoorCeilingsMethods = new List<ApplicationMethod> {
             ApplicationMethod.FoamSpray,
             ApplicationMethod.Fogging,
             ApplicationMethod.Fumigation,
@@ -116,7 +118,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> PavementMethods = new List<ApplicationMethod> { 
+        public static readonly List<ApplicationMethod> PavementMethods = new List<ApplicationMethod> {
             ApplicationMethod.FoamSpray,
             ApplicationMethod.LiquidImmersion,
             ApplicationMethod.LiquidSpray,
@@ -132,7 +134,7 @@ namespace Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter
             ApplicationMethod.Physical
         };
 
-        public static readonly List<ApplicationMethod> WaterMethods = new List<ApplicationMethod> { 
+        public static readonly List<ApplicationMethod> WaterMethods = new List<ApplicationMethod> {
             ApplicationMethod.LiquidSuspension,
             ApplicationMethod.Physical
         };

@@ -27,4 +27,8 @@ export default class DefaultClientConfigurationProvider implements IClientConfig
   getClientConfiguration(): IClientConfiguration {
     return this.defaultConfig;
   }
+
+  async getReport(): Promise<string> {
+    return '';
+  }
 }
