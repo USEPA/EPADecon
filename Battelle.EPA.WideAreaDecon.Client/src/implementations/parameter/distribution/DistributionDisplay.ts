@@ -22,6 +22,20 @@ export default class DistributionDisplay {
     return distributions;
   }
 
+  get distChartLabels(): string[] {
+    const labels: string[] = [];
+
+    if (this.baseline.distribution !== undefined && this.baseline.text !== ParameterType.constant) {
+      labels.push('Baseline');
+    }
+
+    if (this.current.distribution !== undefined && this.current.type !== ParameterType.constant) {
+      labels.push('Current');
+    }
+
+    return labels;
+  }
+
   get dataGenerator(): DistributionDataGenerator {
     // don't use baseline distribution if constant distribution
     const useBaseline = this.baseline.type !== ParameterType.constant;

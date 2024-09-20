@@ -47,6 +47,7 @@
       <div v-if="display.displayChart" class="py-5" style="width: 100%; height: 400px">
         <distribution-chart
           :distribution-series="display.chartData"
+          :series-labels="display.distChartLabels"
           :x-axis-label="display.xAxisLabel"
           :y-axis-label="'Probability of Selection'"
           :data-generator="display.dataGenerator"

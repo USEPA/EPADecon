@@ -50,6 +50,7 @@
         <distribution-chart
           :data-generator="display.dataGenerator"
           :distribution-series="display.chartData"
+          :series-labels="display.distChartLabels"
           :x-axis-label="display.xAxisLabel"
           :y-axis-label="'Probability of Selection'"
           :force-x-axis-min-zero="false"
