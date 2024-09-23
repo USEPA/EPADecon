@@ -147,7 +147,7 @@ export default class JobResultProvider implements IJobResultProvider {
               b,
               true,
               this.resourceResultsIncludesResultName.bind(this),
-              Object.values,
+              (elementResult) => Object.values(elementResult).filter((v) => v > 0),
             ),
           )
           .reduce((acc, cur) => {

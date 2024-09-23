@@ -27,7 +27,7 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
         {
             var timeAssociatedWithEntries = 0.0;
 
-            if (_entryDurationByPPE.Values.Sum() > 0)
+            if (_entryDurationByPPE.Values.Sum() > 0 && laborDays > 0)
             {
                 var numTeamsByPPE = ppePerLevelPerTeam.Where(ppeFraction => ppeFraction.Value > 0).Count();
                 var laborHoursPerPPELevel = (laborDays * GlobalConstants.HoursPerWorkDay) / numTeamsByPPE;
