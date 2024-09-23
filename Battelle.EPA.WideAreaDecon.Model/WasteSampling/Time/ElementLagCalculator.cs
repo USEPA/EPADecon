@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Battelle.EPA.WideAreaDecon.InterfaceData;
+using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 using System.Collections.Generic;
 using System.Linq;
-using Battelle.EPA.WideAreaDecon.InterfaceData;
-using Battelle.EPA.WideAreaDecon.InterfaceData.Enumeration.Parameter;
 
 namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 {
@@ -18,11 +17,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
         private readonly List<double> _labThroughput;
 
         public ElementLagCalculator(
-            double solidWastePerSurfaceArea,  
-            double liquidWastePerSurfaceArea, 
+            double solidWastePerSurfaceArea,
+            double liquidWastePerSurfaceArea,
             double massPerWasteSample,
             double volumePerWasteSample,
-            List<double> labUptimesHours, 
+            List<double> labUptimesHours,
             double samplePackageTime,
             List<double> sampleShippingTime,
             List<double> labThroughput)
@@ -50,6 +49,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
             var liquidWasteSamples = liquidWasteToBeSampled / _volumePerWasteSample;
 
             var wasteSamples = solidWasteSamples + liquidWasteSamples;
+
+            if (wasteSamples == 0)
+            {
+                return 0;
+            }
 
             double samplesPerLab = wasteSamples / numberLabs;
 

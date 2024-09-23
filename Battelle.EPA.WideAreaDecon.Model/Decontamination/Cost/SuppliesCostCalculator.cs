@@ -33,8 +33,11 @@ namespace Battelle.EPA.WideAreaDecon.Model.Decontamination.Cost
             Dictionary<SurfaceType, ApplicationMethod> treatmentMethods, Dictionary<SurfaceType, int> surfaceTreatments,
             List<Dictionary<ApplicationMethod, double>> decontaminationWorkDays)
         {
-            // Calculating the total contaminated area
-            var totalContaminationArea = areaContaminated.Sum(x => x.Value.AreaContaminated);
+            // Calculating the total contaminated area (excluding surfaces with "None" as the selected decon method)
+            var totalContaminationArea = areaContaminated.Sum(surfaceContaminationInfo =>
+                treatmentMethods[surfaceContaminationInfo.Key] != ApplicationMethod.None
+                    ? surfaceContaminationInfo.Value.AreaContaminated
+                    : 0);
 
             // Invoking the calculations specific to non-fogging/fumigation treatment methods and the calculations specific 
             // to the fogging/fumigation treatment methods

@@ -443,7 +443,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             if (parameters.SamplingFrequency != FrequencyValueType.Never &&
                  parameters.FractionSampledHepa > 0 &&
-                 parameters.FractionSampledWipe > 0)
+                 parameters.FractionSampledWipe > 0 &&
+                 numberOfDeconTreatments > 0)
             {
                 var segmentedVsResults = new List<VerificationSamplingResults>();
                 if (parameters.SamplingFrequency == FrequencyValueType.Once)
@@ -531,7 +532,8 @@ namespace Battelle.EPA.WideAreaDecon.Model
 
             if (parameters.SamplingFrequency != FrequencyValueType.Never &&
                 parameters.FractionSampledHepa > 0 &&
-                parameters.FractionSampledWipe > 0)
+                parameters.FractionSampledWipe > 0 &&
+                numberOfDeconTreatments > 0)
             {
                 var segmentedClResults = new List<ClearanceSamplingResults>();
                 if (parameters.SamplingFrequency == FrequencyValueType.Once)

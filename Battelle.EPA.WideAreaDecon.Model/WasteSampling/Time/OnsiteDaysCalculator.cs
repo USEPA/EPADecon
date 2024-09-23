@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
+﻿namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 {
     public class OnsiteDaysCalculator : IOnsiteDaysCalculator
     {
@@ -15,7 +11,9 @@ namespace Battelle.EPA.WideAreaDecon.Model.WasteSampling.Time
 
         public double CalculateOnsiteDays(double workDays)
         {
-            return workDays + _overheadDays;
+            return workDays > 0
+                ? workDays + _overheadDays
+                : 0;
         }
     }
 }
