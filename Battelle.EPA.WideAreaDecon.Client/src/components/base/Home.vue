@@ -61,7 +61,7 @@
                   usage.
                 </p>
                 <p>
-                  WABRET has been extensively tested and verified. However, as for all complex software, these programs
+                  WABRET has been extensively tested. However, as for all complex software, these programs
                   may not be completely free of errors and may not be applicable for all cases. In no event will the
                   U.S. EPA be liable for direct, indirect, special, incidental, or consequential damages arising out of
                   the use of the programs and/or associated documentation.
