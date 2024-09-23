@@ -53,18 +53,22 @@
 
           <v-row v-else align="center" justify="center">
             <v-card class="mt-16" max-width="600">
-              <v-card-title> Disclaimer </v-card-title>
               <v-card-text class="text-body-1">
                 <p>
-                  Execution of any WABRET, and modification to system configuration files must be made at the user's own
-                  risk. Neither the U.S. EPA nor the program author(s) can assume responsibility for program
-                  modification, content, output, interpretation, or usage.
+                  <span class="font-weight-bold">Notice</span>: Execution of any WABRET, and modification to system
+                  configuration files must be made at the user's own risk. Neither the U.S. EPA nor the program
+                  author(s) can assume responsibility for program modification, content, output, interpretation, or
+                  usage.
                 </p>
                 <p>
                   WABRET has been extensively tested and verified. However, as for all complex software, these programs
                   may not be completely free of errors and may not be applicable for all cases. In no event will the
                   U.S. EPA be liable for direct, indirect, special, incidental, or consequential damages arising out of
                   the use of the programs and/or associated documentation.
+                </p>
+                <p>
+                  This software is intended as a proof of concept and should not be used for decision-making purposes
+                  without the guidance and input of a qualified subject matter expert.
                 </p>
               </v-card-text>
               <v-card-actions center>
